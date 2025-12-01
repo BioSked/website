@@ -6,6 +6,7 @@ import { cn } from '@/lib/utils';
 import starterPlanLogo from '@/assets/logos/starter-plan.svg';
 import plusPlanLogo from '@/assets/logos/plus-plan.svg';
 import proPlanLogo from '@/assets/logos/pro-plan.svg';
+import entPlanLogo from '@/assets/logos/ent-plan.svg';
 import laptopScreen from '@/assets/screenshots/mm-laptop-fade-r.png';
 
 interface Feature {
@@ -41,10 +42,16 @@ export function PricingCards({ plans }: PricingCardsProps) {
       const basePlan = plans.find(p => p.id === plan.baseOn);
       if (basePlan) {
         allFeatures.push({
-          name: `Everything in ${basePlan.title}, plus:`,
-          included: true,
+          name: `Everything in ${basePlan.title}, and:`,
+          included: false,
         });
       }
+    }
+    else {
+      allFeatures.push({
+        name: 'Includes:',
+        isIncluded: false
+      });
     }
     
     plan.features.forEach(feature => {
@@ -79,7 +86,7 @@ export function PricingCards({ plans }: PricingCardsProps) {
                       />
                     )}
                     <h3 className="text-plan-title tracking-tight">{plan.title}</h3>
-                    {plan.popular && <div className="rounded-xl bg-blue-100 text-blue-700 px-3 text-sm py-1 ml-auto">Popular</div>}
+                    {plan.popular && <div className="rounded-xl bg-blue-100 text-blue-700 px-3 text-sm py-1 ml-auto">Recommended</div>}
                   </div>
 
                   <div className="font-normal text-sm text-muted-foreground">{plan.description}</div>
@@ -110,12 +117,12 @@ export function PricingCards({ plans }: PricingCardsProps) {
                 {features.map((feature, index) => (
                   <div key={index} className="flex items-start">
                     <div class={'mt-0.5 text-'+plan.color+'-500'}>
-                      {!feature.name.startsWith('Everything') && <Check className="size-4 stroke-current mr-3" />}
+                      {feature.included && <Check className="size-4 stroke-current mr-3" />}
                     </div>
                     <span
                       className={cn(
                         'text-sm leading-tight',
-                        feature.name.startsWith('Everything')
+                        !feature.included
                           ? 'font-bold'
                           : 'font-normal',
                       )}
@@ -137,25 +144,15 @@ export function PricingCards({ plans }: PricingCardsProps) {
               <div className="flex flex-col gap-8 md:flex-row md:justify-between">
                 <div className="flex-2">
                   <img 
-                    src={starterPlanLogo.src} 
+                    src={entPlanLogo.src} 
                     alt="Starter"
-                    className="h-5 w-auto inline-block"
-                  />
-                  <img 
-                    src={plusPlanLogo.src} 
-                    alt="Plus"
-                    className="h-5 w-auto inline-block"
-                  />
-                  <img 
-                    src={proPlanLogo.src} 
-                    alt="Pro"
                     className="h-5 w-auto inline-block"
                   />
                   <h3 className="text-2xl sm:text-3xl font-bold text-white mt-2 mb-1">{enterprisePlan.title}</h3>
                   <div className="font-normal text-muted-foreground">{enterprisePlan.description}</div>
-                  <Button className="mt-5 w-1/2 shadow-sm bg-white text-card-foreground font-bold" asChild>
+                  <Button className="mt-5 px-6 shadow-xl shadow-blue-200/20 bg-white text-card-foreground font-bold" asChild>
                     <a href="/getquote">
-                      Contact Sales
+                      Let's talk
                     </a>
                   </Button>
                 </div>
@@ -170,12 +167,12 @@ export function PricingCards({ plans }: PricingCardsProps) {
               {buildFeatureList(enterprisePlan).map((feature, index) => (
                 <div key={index} className="flex items-start gap-3">
                   <div className="mt-0.5">
-                    <Check className="text-white size-4" />
+                    <Check className="text-white size-4 stroke-cyan-500" />
                   </div>
                   <span
                     className={cn(
                       'text-sm leading-tight text-white',
-                      feature.name.startsWith('Everything')
+                      feature.included
                         ? 'font-medium'
                         : '',
                     )}

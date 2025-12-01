@@ -22,7 +22,7 @@ export function FAQAccordion({ faqData }: FAQAccordionProps) {
         <AccordionItem
           key={faq.id}
           value={faq.id}
-          className="border bg-background/60 px-5 py-3 rounded hover:shadow-primary/5 rounded-lg transition-all duration-300 hover:shadow-md mb-4"
+          className="border bg-background/60 px-5 py-3 mb-4 rounded hover:shadow-primary/5 rounded-lg transition-all duration-300 hover:shadow-md mb-4"
         >
           <AccordionTrigger className="cursor-pointer text-base w-full font-medium hover:no-underline md:text-lg lg:text-xl">
             {faq.question}
