@@ -3,6 +3,7 @@ export const prerender = true;
 
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Hero from "@/components/sections/Hero.astro";
+import Manifesto from "@/components/sections/Manifesto.astro";
 import Logos from "@/components/sections/Logos.astro";
 import FeatureShowcase from "@/components/sections/FeaturesShowcase.astro";
 import AIInno from "@/components/sections/AIInnovation.astro";
@@ -17,6 +18,7 @@ import WhatsNew from "@/components/sections/WhatsNew.astro";
   description="Momentum by BioSked: AI-powered scheduling software for hospitals, clinics, and medical practices. Trusted by radiology, emergency medicine, anesthesiology, and specialty groups. Automate physician schedules, RVU tracking, and compliance. Start free."
 >
 	<Hero/>
+	<Manifesto/>
 	<Testimonials/>
 	<!-- <FullTimelineView client:visible={{rootMargin: "150px"}} /> -->
 	<a id="momentum"/>

@@ -113,13 +113,13 @@ export default function TestimonialsCarouselSection() {
         <CarouselContent className="-ml-4 pb-5">
           {testimonials.map((testimonial) => (
             <CarouselItem key={testimonial.id} className="pl-4 basis-auto">
-              <Card className="max-w-60 sm:max-w-sm select-none p-5 sm:p-9 h-full bg-background border-top">
+              <Card className="max-w-60 sm:max-w-sm select-none p-5 sm:p-9 h-full bg-white/30 hover:bg-white/60 transition-all duration-200 border-top">
                 <img src={QuoteSvg.src} class="size-8 sm:size-12"/>
-                <blockquote className="text-muted-foreground italic leading-relaxed text-sm">
+                <blockquote className="text-foreground italic leading-relaxed text-sm transition-color duration-200">
                   {testimonial.testimonial}"
                 </blockquote>
                 <div className="mt-6 mb-4 flex flex-col sm:flex-row gap-3 items-center text-center sm:text-left">
-                  <div className="hidden md:flex size-10 bg-sidebar-primary text-sidebar-primary-foreground shrink-0 items-center justify-center rounded-full bg-mute text-sm font-medium">
+                  <div className="hidden text-white md:flex size-10 bg-secondary/90 shrink-0 items-center justify-center rounded-full bg-mute text-sm font-medium">
                     {testimonial.initials}
                   </div>
                   <div className="min-w-0 flex-1">

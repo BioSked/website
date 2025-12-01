@@ -98,19 +98,19 @@ const BOARD = [
     <hr>
     <div class="mt-6 mb-8 grid grid-cols-2 gap-8 md:grid-cols-4">
       <div>
-        <h3 class="text-metric-large font-light text-secondary">
+        <h3 class="text-metric-large font-light text-accent">
           1,000+
         </h3>
         <p class="text-muted-foreground mt-1 font-medium">Healthcare sites</p>
       </div>
       <div>
-        <h3 class="text-metric-large font-light text-secondary">
+        <h3 class="text-metric-large font-light text-accent">
           50K+
         </h3>
         <p class="text-muted-foreground mt-1 font-medium">Clinicians scheduled</p>
       </div>
       <div>
-        <h3 class="text-metric-large font-light text-secondary">
+        <h3 class="text-metric-large font-light text-accent">
           90%
         </h3>
         <p class="text-muted-foreground mt-1 font-medium">
@@ -118,7 +118,7 @@ const BOARD = [
         </p>
       </div>
       <div>
-        <h3 class="text-metric-large font-light text-secondary">
+        <h3 class="text-metric-large font-light text-accent">
           15+
         </h3>
         <p class="text-muted-foreground mt-1 font-medium">
@@ -162,8 +162,8 @@ const BOARD = [
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
       {LEADERSHIP.map((member) => (
-        <Card className="p-0 overflow-hidden">
-          <div class="flex flex-col grayscale hover:grayscale-0 transition-all duration-200 scale-99 hover:scale-101">
+        <Card className="p-0 overflow-hidden group">
+          <div class="flex flex-col transition-all duration-300 scale-99 hover:scale-101">
             <div class="flex items-center gap-4 p-6 md:p-8">
               {member.image ? (
                 <Image
@@ -171,14 +171,14 @@ const BOARD = [
                   alt={member.name}
                   width={160}
                   height={160}
-                  class="w-20 h-20 object-cover rounded-full shrink-0 "
+                  class="w-20 h-20 object-cover grayscale transition-all duration-300 group-hover:grayscale-0 rounded shrink-0 shadow-xl shadow-secondary/20"
                   loading="lazy"
                   quality={95}
                   format="webp"
                   densities={[1, 2]}
                 />
               ) : (
-                <div class="w-20 h-20 rounded-full bg-muted shrink-0" />
+                <div class="w-20 h-20 rounded bg-muted shrink-0" />
               )}
               <div>
                 <h3 class="text-xl font-semibold tracking-tight md:text-2xl text-foreground">
@@ -233,14 +233,14 @@ const BOARD = [
                   alt={member.name}
                   width={160}
                   height={160}
-                  class="w-20 h-20 object-cover rounded-full shrink-0 grayscale"
+                  class="w-20 h-20 object-cover rounded shrink-0 grayscale"
                   loading="lazy"
                   quality={95}
                   format="webp"
                   densities={[1, 2]}
                 />
               ) : (
-                <div class="w-20 h-20 rounded-full bg-muted shrink-0" />
+                <div class="w-20 h-20 rounded bg-muted shrink-0" />
               )}
               <div>
                 <h3 class="text-display-card">
@@ -254,7 +254,7 @@ const BOARD = [
                     href={member.linkedinUrl} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    class="inline-flex items-center justify-center rounded-full bg-[#0072b1] p-0.5 transition-opacity hover:opacity-80"
+                    class="inline-flex items-center justify-center rounded bg-[#0072b1] p-0.5 transition-opacity hover:opacity-80"
                     aria-label={`${member.name} on LinkedIn`}
                   >
                     <Linkedin className="w-2.5 h-2.5 text-white" />
