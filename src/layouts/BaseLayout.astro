@@ -6,6 +6,7 @@ import NavigationProvider from '@/components/elements/NavigationProvider.astro';
 import Banner from '@/components/layout/Banner.astro';
 import Navbar from "@/components/layout/Navbar.astro";
 import Footer from "@/components/layout/Footer.astro";
+import { GoogleTagmanagerPartytown, SiteVerification } from '@digi4care/astro-google-tagmanager';
 // import { ContactSalesModal } from '@/components/sections/ContactSalesModal.tsx';
 
 const { title, description } = Astro.props;
@@ -16,6 +17,8 @@ const currentPath = Astro.url.pathname;
   <head>
     <BaseHead title={title} description={description} />
     <script charset="utf-8" type="text/javascript" src="//js-eu1.hsforms.net/forms/embed/v2.js"></script>
+    <SiteVerification id="349814302" />
+    <GoogleTagmanagerPartytown id="G-8BGTQK1QD9" />
   </head>
   <body
     class={`h-screen antialiased flex flex-col [--header-height:calc(var(--spacing)*12)] lg:[--header-height:calc(var(--spacing)*18)]`}
