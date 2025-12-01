@@ -8,7 +8,7 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   site: 'https://biosked.com',
   output: 'static',
-  outDir: './docs',
+  // outDir: './docs', // change to docs when pushing build manually (instead of using GH workflow)
   
   experimental: {
     svgo: true,
