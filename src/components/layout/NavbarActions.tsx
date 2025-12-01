@@ -189,9 +189,8 @@ export function NavbarActions({ pathname }: NavbarActionsProps) {
                     variant={button.variant}
                     className="h-12 flex-1 rounded-sm shadow-sm font-bold shadow-primary/40 border border-white/40"
                     onClick={button.isModal ? () => {
-                    window.location.href = '/bookdemo'
-                    setIsMenuOpen(false);
-                    } : undefined}
+                        setIsMenuOpen(false);
+                    } : () => {window.location.href = '/bookdemo'; } }
                 >
                     {button.isModal ? button.label : <a href={button.href}>{button.label}</a>}
                 </Button>
