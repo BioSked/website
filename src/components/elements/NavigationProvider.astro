@@ -1,0 +1,82 @@
+---
+interface Props {
+  currentPath: string;
+}
+
+const { currentPath } = Astro.props;
+---
+
+<div data-navigation-provider data-current-path={currentPath}>
+  <slot />
+</div>
+
+<script>
+  function getCurrentPath() {
+    const provider = document.querySelector('[data-navigation-provider]');
+    return provider?.getAttribute('data-current-path') || '/';
+  }
+  
+  function handleAnchorClick(e: MouseEvent) {
+    const target = e.target as HTMLElement;
+    const link = target.closest('a');
+    
+    if (!link) return;
+    
+    const href = link.getAttribute('href');
+    if (!href) return;
+    
+
+    const url = new URL(href, window.location.origin);
+    const isHashLink = url.pathname === window.location.pathname && url.hash;
+    const isSamePageHash = href.startsWith('/#') || href.startsWith('#');
+    
+    if (isHashLink || isSamePageHash) {
+      e.preventDefault();
+      
+      const targetId = url.hash.slice(1);
+      const targetElement = document.getElementById(targetId);
+      
+      if (targetElement) {
+        targetElement.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+        });
+        
+        if (url.hash) {
+          window.history.pushState(null, '', url.hash);
+        }
+      }
+    }
+  }
+  
+  document.addEventListener('click', handleAnchorClick);
+  
+  function scrollToHashOnLoad() {
+    const hash = window.location.hash;
+    if (hash) {
+      setTimeout(() => {
+        const targetElement = document.getElementById(hash.slice(1));
+        if (targetElement) {
+          targetElement.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start',
+          });
+        }
+      }, 100);
+    }
+  }
+  
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', scrollToHashOnLoad);
+  } else {
+    scrollToHashOnLoad();
+  }
+  
+  document.addEventListener('astro:page-load', scrollToHashOnLoad);
+  
+  if (typeof window !== 'undefined') {
+    (window as any).__navigationContext = {
+      getCurrentPath
+    };
+  }
+</script>

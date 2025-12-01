@@ -1,0 +1,15 @@
+---
+export const prerender = true;
+
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import AboutContent from "@/components/sections/AboutContent.astro";
+import CTA from "@/components/sections/CTA.astro";
+---
+
+<BaseLayout 
+  title="About Us | BioSked & Momentum | Healthcare Scheduling Innovation" 
+  description="Discover how BioSked's Momentum platform is revolutionizing healthcare workforce management with AI-powered scheduling. Learn about our mission to eliminate scheduling headaches for hospital groups, clinics, and medical practices in the US and EU."
+>
+  <AboutContent />
+  <CTA/>
+</BaseLayout>

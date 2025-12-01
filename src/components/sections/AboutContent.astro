@@ -1,0 +1,280 @@
+---
+import Card from '@/components/ui/Card.astro';
+import Linkedin from '@/assets/logos/linkedin.svg';
+import AIInno from "@/components/sections/AIInnovation.astro";
+import cyanDust from '@/assets/layout/cyan-dust_background.webp';
+import { Image } from 'astro:assets';
+import davidProfile from '@/assets/profile-photos/david_profile.png';
+import danProfile from '@/assets/profile-photos/dan_profile.png';
+import sarahProfile from '@/assets/profile-photos/sarah_profile.jpg';
+import marcProfile from '@/assets/profile-photos/marc_profile.jpg';
+import xavierProfile from '@/assets/profile-photos/xavier_profile.jpg';
+import fredProfile from '@/assets/profile-photos/fred_profile.jpg';
+import dougProfile from '@/assets/profile-photos/doug_profile.jpg';
+
+const LEADERSHIP = [
+  {
+    id: 1,
+    name: 'David Dudok de Wit',
+    role: 'CEO',
+    linkedinUrl: 'https://www.linkedin.com/in/daviddudokdewit/',
+    bio: `Scaled Proton to 100M+ users as head of growth and product. Previously built teams at Nestlé Nespresso, SITA, and founded his own profitable SaaS company. Brings expertise in product-led growth and scaling B2B platforms.`,
+    image: davidProfile,
+  },
+  {
+    id: 2,
+    name: 'Sarah Mertz',
+    role: 'Co-Founder, Sales & Marketing Director',
+    linkedinUrl: 'https://www.linkedin.com/in/sarahmertz/',
+    bio: `Led Momentum's European expansion since 2015. Previously built sales and marketing strategies in radiology and medical imaging markets across Europe. Started career at NEHS (formerly Global Imaging Online), leading PACS/RIS provider.`,
+    image: sarahProfile,
+  },
+  {
+    id: 3,
+    name: 'Doug Nicholson',
+    role: 'General Manager, North America',
+    linkedinUrl: 'https://www.linkedin.com/in/doug-r-nicholson/',
+    bio: `Started as a Momentum user at University of Rochester Medical Center before joining Bio-Optronics as project manager. Now leads North American operations. Former US Navy IT Manager with 8 years in operations.`,
+    image: dougProfile,
+  },
+  {
+    id: 4,
+    name: 'Frederic Andreae',
+    role: 'Vice-President of Product & Engineering',
+    linkedinUrl: 'https://www.linkedin.com/in/fredandreae/',
+    bio: `Founded and led Biings Technologies, building SaaS products for workplace health and absence prevention. Previously researcher in industrial systems at University of Lausanne. Combines technical depth with product vision.`,
+    image: fredProfile,
+  },
+];
+
+const BOARD = [
+  {
+    id: 1,
+    name: 'Dan Kerpelman',
+    role: 'Executive Chairman',
+    linkedinUrl: 'https://www.linkedin.com/in/dkerpelman/',
+    bio: `40+ years scaling medical technology companies from startup to exit. Former CEO of Bio-Optronics and multiple public/private healthcare tech businesses. Serves on several healthcare and technology boards.`,
+    image: danProfile,
+  },
+  {
+    id: 2,
+    name: 'Marc Degrauwe',
+    role: 'Board Member',
+    linkedinUrl: 'https://www.linkedin.com/in/marc-degrauwe-b2882458/',
+    bio: ``,
+    image: marcProfile,
+  },
+  {
+    id: 3,
+    name: 'Xavier Paternot',
+    role: 'Board Member',
+    linkedinUrl: 'https://www.linkedin.com/in/xavier-paternot-31a26719/',
+    bio: ``,
+    image: xavierProfile,
+  },
+];
+---
+
+<section class="section-padding relative">
+  <div class="absolute top-1/4 left-0 size-[800px] bg-no-repeat" style={'transform: scaleX(-1); background-image: url("'+cyanDust.src+'");'}></div>
+  <div class="container relative max-w-5xl">
+    <div>
+      <h1 class="text-display-hero">
+        Healthcare scheduling
+        <br />
+        reimagined.
+      </h1>
+      <p class="text-muted-foreground mt-6 max-w-2xl text-lead">
+        Healthcare scheduling is complex—multi-site coverage, rotation fairness, compliance rules, shift preferences, RVU balancing. We built Momentum to handle that complexity automatically, so scheduling teams can focus on strategic workforce planning and physicians can focus on patients.
+      </p>
+    </div>
+  </div>
+</section>
+
+  <section class="container max-w-5xl relative">
+    <h2 class="text-muted-foreground font-mono text-sm font-semibold tracking-widest mb-4">
+      BY THE NUMBERS
+    </h2>
+    <hr>
+    <div class="mt-6 mb-8 grid grid-cols-2 gap-8 md:grid-cols-4">
+      <div>
+        <h3 class="text-metric-large font-light text-secondary">
+          1,000+
+        </h3>
+        <p class="text-muted-foreground mt-1 font-medium">Healthcare sites</p>
+      </div>
+      <div>
+        <h3 class="text-metric-large font-light text-secondary">
+          50K+
+        </h3>
+        <p class="text-muted-foreground mt-1 font-medium">Clinicians scheduled</p>
+      </div>
+      <div>
+        <h3 class="text-metric-large font-light text-secondary">
+          90%
+        </h3>
+        <p class="text-muted-foreground mt-1 font-medium">
+          Admin time saved
+        </p>
+      </div>
+      <div>
+        <h3 class="text-metric-large font-light text-secondary">
+          15+
+        </h3>
+        <p class="text-muted-foreground mt-1 font-medium">
+          Years in healthcare
+        </p>
+      </div>
+    </div>
+    <hr>
+  </section>
+
+  <section class="lg:py-15 container max-w-5xl py-10 md:py-12 mt-12">
+    <div class="mb-8 md:mb-10">
+      <h4 class="text-display-section font-bold">
+        Our approach
+      </h4>
+    </div>
+    <div class="max-w-2xl space-y-2 md:space-y-8 lg:space-y-4">
+      <p class="text-lg leading-relaxed">
+        Most scheduling software just digitizes your spreadsheet. Momentum thinks for you.
+      </p>
+      <p class="text-lg leading-relaxed">
+        Our rules-based automation builds schedules automatically—whether you're a solo physician managing your own rotations or a workforce director coordinating across multiple hospitals. You define the rules once (shift patterns, fairness policies, compliance requirements), and Momentum handles the complexity from there.
+      </p>
+      <p class="text-lg leading-relaxed">
+        The result? Fair schedules, fewer disputes, and time back for what matters—patient care, strategic planning, or simply going home on time.
+      </p>
+    </div>
+  </section>
+
+  <AIInno/>
+
+  <section class="lg:py-15 container max-w-5xl py-10 md:py-12 relative">
+    <div class="mb-8 md:mb-12">
+      <h2 class="text-display-section font-bold">
+        Leadership
+      </h2>
+      <p class="text-muted-foreground mt-4 text-lead">
+        Led by healthcare operators and technologists passionate about solving real scheduling problems.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
+      {LEADERSHIP.map((member) => (
+        <Card className="p-0 overflow-hidden">
+          <div class="flex flex-col grayscale hover:grayscale-0 transition-all duration-200 scale-99 hover:scale-101">
+            <div class="flex items-center gap-4 p-6 md:p-8">
+              {member.image ? (
+                <Image
+                  src={member.image}
+                  alt={member.name}
+                  width={160}
+                  height={160}
+                  class="w-20 h-20 object-cover rounded-full shrink-0 "
+                  loading="lazy"
+                  quality={95}
+                  format="webp"
+                  densities={[1, 2]}
+                />
+              ) : (
+                <div class="w-20 h-20 rounded-full bg-muted shrink-0" />
+              )}
+              <div>
+                <h3 class="text-xl font-semibold tracking-tight md:text-2xl text-foreground">
+                  {member.name}
+                </h3>
+                <div class="flex items-center gap-1.5 mt-1">
+                  <p class="text-xs md:text-sm">
+                    {member.role}
+                  </p>
+                  <a 
+                    href={member.linkedinUrl} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center justify-center rol p-0.5 transition-opacity grayscale-1 opacity-80 hover:opacity-100"
+                    aria-label={`${member.name} on LinkedIn`}
+                  >
+                    <img src={Linkedin.src} width="16"/>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {member.bio && (
+              <div class="px-6 pb-6 md:px-8 md:pb-8">
+                <div class="space-y-4 text-sm leading-relaxed md:text-base">
+                  {member.bio.split('\n\n').map((paragraph: string) => (
+                    <p class="text-muted-foreground">{paragraph}</p>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        </Card>
+      ))}
+    </div>
+  </section>
+  <!-- <section class="lg:py-15 container max-w-5xl py-10 md:py-12">
+    <div class="mb-8 md:mb-12">
+      <h2 class="text-display-section font-bold">
+        Board of Directors
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-2 gap-4 lg:gap-6">
+      {BOARD.map((member) => (
+        <Card className="p-0 overflow-hidden">
+          <div class="flex flex-col">
+            <div class="flex items-center gap-4 p-6 md:p-8">
+              {member.image ? (
+                <Image
+                  src={member.image}
+                  alt={member.name}
+                  width={160}
+                  height={160}
+                  class="w-20 h-20 object-cover rounded-full shrink-0 grayscale"
+                  loading="lazy"
+                  quality={95}
+                  format="webp"
+                  densities={[1, 2]}
+                />
+              ) : (
+                <div class="w-20 h-20 rounded-full bg-muted shrink-0" />
+              )}
+              <div>
+                <h3 class="text-display-card">
+                  {member.name}
+                </h3>
+                <div class="flex items-center gap-1.5 mt-1">
+                  <p class="text-primary text-xs font-medium md:text-sm">
+                    {member.role}
+                  </p>
+                  <a 
+                    href={member.linkedinUrl} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center justify-center rounded-full bg-[#0072b1] p-0.5 transition-opacity hover:opacity-80"
+                    aria-label={`${member.name} on LinkedIn`}
+                  >
+                    <Linkedin className="w-2.5 h-2.5 text-white" />
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {member.bio && (
+              <div class="px-6 pb-6 md:px-8 md:pb-8">
+                <div class="space-y-4 text-sm leading-relaxed md:text-base">
+                  {member.bio.split('\n\n').map((paragraph: string) => (
+                    <p class="text-muted-foreground">{paragraph}</p>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        </Card>
+      ))}
+    </div>
+  </section> -->
+</section>

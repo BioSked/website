@@ -1,0 +1,80 @@
+---
+import { Image } from "astro:assets";
+import cyanDust from '@/assets/layout/cyan-dust_background.webp';
+import AiEngine from '@/assets/layout/ai-engine.svg';
+import scheduleScreenshot from '@/assets/screenshots/mm-schedule_background.png';
+import bfhLogo from '@/assets/companies/bfh.svg';
+import swissLogo from '@/assets/companies/swiss-confederation.svg';
+import enseaLogo from '@/assets/companies/ensea.png';
+---
+
+<section class="relative">
+  <div class="absolute top-1/4 left-0 translate-x-1 size-[800px] bg-no-repeat" style={'transform: scaleX(-1); background-image: url("'+cyanDust.src+'");'}></div>
+  <div class="lg:py-15 container py-10 md:py-12">
+    <div class="relative transition-all duration-200 scale-100 hover:scale-101 border-border bg-card text-card-foreground h-full rounded-2xl border shadow-lg overflow-hidden overflow-hidden" style="background: linear-gradient(258deg, #0A367F 17.51%, #081847 88.95%);">
+      <div class="p-12">
+        <div class="grid gap-6 lg:grid-cols-2 lg:gap-8">
+          <div class="space-y-1">
+            <p class="text-primary font-semibold">
+              <AiEngine class="inline-block size-6 mb-1 mr-1"/> AI-Enhanced Scheduling
+            </p>
+            <h3 class="text-4xl font-bold leading-tight text-white mb-4">
+              15+ Years of Innovation
+            </h3>
+
+            <div class="space-y-3 leading-relaxed text-white">
+              <p>
+                Our smart engine harnesses 15 years of real-world data and advanced machine learning research to streamline your scheduling decisions and free up your valuable time.
+              </p>
+              <p>
+                We partner with leading academic institutions, including the <strong>Bern University of Applied Sciences</strong> (BFH) and the École Nationale Supérieure de l'Électronique et de ses Applications (<strong>ENSEA</strong>), supported by the <strong>Swiss government</strong>, to continuously drive innovation.
+              </p>
+            </div>
+          </div>
+
+          <div class="relative flex flex-col justify-between gap-4">
+            <div class="relative -mt-6 lg:-mt-8 max-h-48 lg:max-h-56">
+              <div class="mix-blend-lighten opacity-80" style="transform: rotate(6deg) skewX(-18deg) translateX(1em);">
+                <Image
+                  src={scheduleScreenshot}
+                  alt="AI-powered scheduling interface"
+                  class="w-full h-auto rounded-lg object-contain"
+                  loading="lazy"
+                  quality={85}
+                  format="webp"
+                />
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between gap-4 lg:gap-4 w-full">
+              <Image
+                src={enseaLogo}
+                alt="ENSEA research partner logo"
+                class="h-12 lg:h-16 w-auto object-contain grayscale"
+                loading="lazy"
+                quality={90}
+                format="webp"
+              />
+              <Image
+                src={bfhLogo}
+                alt="Bern University of Applied Sciences research partner logo"
+                class="h-12 lg:h-16 w-auto object-contain grayscale"
+                loading="lazy"
+                quality={90}
+                format="webp"
+              />
+              <Image
+                src={swissLogo}
+                alt="Swiss Confederation funding partner logo"
+                class="h-12 lg:h-16 w-auto object-contain grayscale"
+                loading="lazy"
+                quality={90}
+                format="webp"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

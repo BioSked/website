@@ -1,0 +1,64 @@
+---
+import Stats from './Stats.astro';
+import EmergencyIcon from '@/assets/specialties/emergency.svg';
+import AnesthesiologyIcon from '@/assets/specialties/anesthesiology.svg';
+import RadiologyIcon from '@/assets/specialties/radiology.svg';
+import PathologyIcon from '@/assets/specialties/pathology.svg';
+import CardiologyIcon from '@/assets/specialties/cardiology.svg';
+import ObgynIcon from '@/assets/specialties/obgyn.svg';
+import PediatricsIcon from '@/assets/specialties/pediatrics.svg';
+import ResidencyIcon from '@/assets/specialties/residency.svg';
+import OpthalmologyIcon from '@/assets/specialties/opthalmology.svg';
+import TelemedicineIcon from '@/assets/specialties/telemedicine.svg';
+import PrimaryCareIcon from '@/assets/specialties/primary-care.svg';
+
+const specialties = [
+  { name: 'Emergency', icon: EmergencyIcon },
+  { name: 'Anesthesiology', icon: AnesthesiologyIcon },
+  { name: 'Radiology', icon: RadiologyIcon },
+  { name: 'Pathology', icon: PathologyIcon },
+  { name: 'Cardiology', icon: CardiologyIcon },
+  { name: 'OB/GYN', icon: ObgynIcon },
+  { name: 'Pediatrics', icon: PediatricsIcon },
+  { name: 'Residency', icon: ResidencyIcon },
+  { name: 'Ophthalmology', icon: OpthalmologyIcon },
+  { name: 'Telemedicine', icon: TelemedicineIcon },
+  { name: 'Primary Care', icon: PrimaryCareIcon },
+];
+---
+
+<section class="section-padding relative">
+
+  <div class="container mt-8">
+    <div class="mx-auto max-w-6xl rounded-lg transition-all duration-300">
+      <div class="flex flex-col space-y-1.5 p-6 pb-2">
+        <h3 class="text-center text-display-section font-medium">
+          Designed to meet the needs of small and large healthcare teams
+        </h3>
+        <p class="text-center text-small text-muted-foreground">
+          From medical offices to hospital networks, Momentum adapts to the unique scheduling needs of every specialty
+        </p>
+      </div>
+
+      <div class="p-6 pt-2 pb-4">
+        <div class="grid grid-cols-4 gap-1.5 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-11 lg:gap-2">
+          {specialties.map((specialty) => {
+            const Icon = specialty.icon;
+            return (
+                <div class="size-30 items-center bg-primary/20 rounded-lg text-primary">
+                  <Icon class="size-6 lg:size-8" />
+                  {specialty.name}
+                </div>
+            );
+          })}
+        </div>
+        
+        <div class="mt-6 border-t border-white/10 pt-6">
+          <p class="text-center text-sm text-white/80">
+            Trusted across dozens of specialties. Yours can be next.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

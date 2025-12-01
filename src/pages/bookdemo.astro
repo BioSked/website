@@ -1,0 +1,31 @@
+---
+export const prerender = true;
+
+import BaseLayout from "@/layouts/BaseLayout.astro";
+---
+
+<BaseLayout 
+  title="Book a demo | BioSked & Momentum | Healthcare Scheduling Innovation" 
+  description="Book a demo"
+>
+    <div class="container section-padding">
+      <h1 class="text-2xl sm:text-4xl text-center font-bold max-w-4xl mx-auto">See How Momentum Fits Your Organization</h1>
+      <p class="text-md sm:text-lg text-center mt-4 mb-10 text-muted-foreground max-w-xl mx-auto">Whether you're a solo practice or multi-site health system, we'll show you how Momentum automates scheduling for your team.</p>
+      <div class="max-w-xl mx-auto bg-card-foreground transition-all duration-400 .ease-in-out scale-99 hover:scale-100 shadow-xl shadow-card-foreground/30 rounded-2xl px-4 sm:px-10 pb-10 pt-1">
+        <h1 class="text-display-card text-cente font-bold max-w-2xl mx-auto text-white my-5">Book a Demo</h1>
+        <hr class="border-white/10">
+        <div id="hubspot-demo" class="mt-5"></div>
+      </div>
+      <script charset="utf-8" type="text/javascript" src="//js-eu1.hsforms.net/forms/embed/v2.js"></script>
+      <script>
+        hbspt.forms.create({
+          formInstanceId: "1",
+          portalId: "25195055",
+          formId: "e937d75c-2dbc-4b77-8e53-1582aa472092",
+          region: "eu1",
+          class: '',
+          target: "#hubspot-demo"
+        });
+      </script>
+    </div>
+</BaseLayout>

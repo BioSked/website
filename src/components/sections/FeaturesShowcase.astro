@@ -1,0 +1,104 @@
+---
+import {  TrendingUp, Sparkles, CandlestickChart, ArrowRight } from 'lucide-astro';
+import Card from '@/components/ui/Card.astro';
+import CardHeader from '@/components/ui/CardHeader.astro';
+import CardTitle from '@/components/ui/CardTitle.astro';
+import Button from '@/components/ui/Button.astro';
+import MMLogo from '@/assets/logos/momentum_logo.svg';
+import { siteConfig } from '@/config';
+
+const features = [
+  {
+    id: 'fairness',
+    icon: Sparkles,
+    headline: 'Fair Schedules, Every Time',
+    metric: 'Zero scheduling disputes',
+    description:
+      'Automatically balance shift counts, RVUs, weekend rotations, and provider preferences. Every schedule is equitable and transparent—so clinicians trust the process, admins reduce complaints, and leaders improve retention.',
+  },
+  {
+    id: 'automation',
+    icon: TrendingUp,
+    headline: 'Intelligent Automation That Adapts to You',
+    metric: 'Hours saved every week',
+    description:
+      'From simple rotations to complex multi-site coverage, Momentum automates schedule generation, conflict detection, and compliance tracking. Customize the rules once, then let the system handle the repetitive work—freeing your team to focus on exceptions, strategy, and patient care.',
+  },
+  {
+    id: 'coverage',
+    icon: CandlestickChart,
+    headline: 'Always Covered, Never Surprised',
+    metric: 'Zero scheduling gaps',
+    description:
+      'Automated conflict detection catches coverage gaps, overtime violations, and compliance issues before they become problems. Better schedules mean better patient access, fewer last-minute emergencies, and happier staff.',
+  },
+];
+---
+
+<section
+  id="features-showcase"
+  class="section-padding"
+>
+  <div class="container">
+    <div class="mx-auto max-w-4xl space-y-3 lg:space-y-4 text-center">
+      <img src={MMLogo.src} class="mx-auto w-40 md:w-50 mb-10" />
+      <h2 class="text-display-section">
+        Scheduling That Works for Everyone
+      </h2>
+      <p class="text-muted-foreground text-lead">
+        Whether you're a physician managing your own schedule or leading workforce planning for a multi-site system, Momentum handles the complexity automatically.
+      </p>
+    </div>
+
+    <div class="relative mt-8 grid grid-cols-1 gap-4 md:mt-12 md:grid-cols-3 md:gap-6">
+
+      <div class="blob-primary pointer-events-none absolute -left-20 top-0 size-64 rounded-full opacity-30 blur-3xl will-change-transform dark:opacity-40"></div>
+      <div class="blob-secondary pointer-events-none absolute -right-20 top-20 size-56 rounded-full opacity-25 blur-3xl will-change-transform dark:opacity-35"></div>
+      
+      {
+        features.map((feature) => {
+          const Icon = feature.icon;
+
+          return (
+            <Card className="relative h-full bg-white/30 rounded-none">
+              <CardHeader className="space-y-4">
+                <div class="flex items-center justify-center">
+                  <div class="flex size-12 items-center justify-center rounded-lg bg-card-foreground/10">
+                    <Icon class="size-6 text-card-foreground" strokeWidth={2.1} />
+                  </div>
+                </div>
+
+                <div class="space-y-1 text-center">
+                  <CardTitle className="text-display-card">
+                    {feature.headline}
+                  </CardTitle>
+                </div>
+
+                <div class="text-center">
+                  <p class="text-cyan-500 text-metric-small">
+                    {feature.metric}
+                  </p>
+                </div>
+
+                <p class="text-muted-foreground/70 leading-relaxed pt-2">
+                  {feature.description}
+                </p>
+              </CardHeader>
+            </Card>
+          );
+        })
+      }
+    </div>
+
+    {siteConfig.features.showCaseStudies && (
+      <div class="mt-8 flex items-center justify-center md:mt-12">
+        <Button
+          variant="ghost"
+          size="lg"
+        >
+          See Case Studies
+        </Button>
+      </div>
+    )}
+  </div>
+</section>

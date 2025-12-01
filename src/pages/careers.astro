@@ -1,0 +1,121 @@
+---
+export const prerender = true;
+
+import BaseLayout from "@/layouts/BaseLayout.astro";
+---
+
+<BaseLayout 
+  title="Careers at BioSked | Join Our Healthcare Technology Team" 
+  description="Join BioSked's mission to revolutionize healthcare scheduling with our Momentum platform. Explore engineering, product, and sales careers at a fast-growing healthcare technology company serving the US and EU. Remote-friendly positions available."
+>
+  <section class="section-padding relative overflow-hidden">
+    <div class="container relative z-10">
+      <div class="mx-auto max-w-3xl text-center">
+        <h1 class="text-display-hero">
+          Join Our Team
+        </h1>
+        <p class="mx-auto mt-6 max-w-2xl text-lead text-muted-foreground">
+          Help us transform healthcare scheduling and make a real impact—from solo physicians to large health systems. We're building intelligent automation that gives healthcare teams time back for what matters: patient care, strategic planning, and work-life balance.
+        </p>
+      </div>
+
+      <div class="mt-12 border rounded p-10 py-2">
+        <div id="whr_embed_hook"></div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script is:inline type="text/javascript">
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', loadWorkable);
+  } else {
+    loadWorkable();
+  }
+
+  function loadWorkable() {
+    const script = document.createElement('script');
+    script.src = 'https://www.workable.com/assets/embed.js';
+    script.onload = function() {
+      whr(document).ready(function() {
+        whr_embed(687206, {"base":"jobs","detail":"titles","zoom":"country", "grouping": "department" });
+      });
+    };
+    document.body.appendChild(script);
+  }
+</script>
+
+<style is:global>
+  #whr_embed_hook {
+    font-family: inherit;
+  }
+  
+  #whr_embed_hook .whr-items {
+    margin: 0;
+    padding: 0;
+  }
+  
+  #whr_embed_hook .whr-item {
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+    background: hsl(var(--border));
+    border-radius: 0.75rem;
+    transition: all 0.3s ease;
+  }
+  
+  #whr_embed_hook .whr-item:hover {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  }
+  
+  #whr_embed_hook .whr-item > a,
+  #whr_embed_hook .whr-item > div {
+    display: block;
+    padding: 1.5rem;
+    background: hsl(var(--card));
+    border-radius: 0.5rem;
+    text-decoration: none;
+  }
+  
+  #whr_embed_hook .whr-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: hsl(var(--foreground));
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+  }
+  
+  #whr_embed_hook .whr-title a {
+    color: hsl(var(--foreground));
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  
+  #whr_embed_hook .whr-title a:hover {
+    color: hsl(var(--primary));
+  }
+  
+  #whr_embed_hook .whr-info {
+    color: hsl(var(--muted-foreground));
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+  }
+  
+  #whr_embed_hook .whr-location,
+  #whr_embed_hook .whr-department {
+    display: inline-block;
+    margin-right: 1rem;
+    margin-bottom: 0.25rem;
+  }
+  
+  #whr_embed_hook .whr-group {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  #whr_embed_hook .whr-group .whr-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: hsl(var(--foreground));
+    margin-bottom: 1rem;
+  }
+</style>

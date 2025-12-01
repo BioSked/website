@@ -1,0 +1,156 @@
+---
+import Logo from '@/components/layout/Logo.astro';
+import { Image } from 'astro:assets';
+import { siteConfig } from '@/config';
+import appStoreLogo from '@/assets/download-buttons/app-store.svg';
+import googlePlayLogo from '@/assets/download-buttons/google-play.svg';
+import linkedInLogo from '@/assets/logos/linkedin.svg';
+import cyanDust from '@/assets/layout/cyan-dust_background.webp';
+
+interface Props {
+  currentPage: string;
+}
+
+const { currentPage } = Astro.props;
+
+const pathname = currentPage?.replace(/\/$/, '') || '';
+
+const ALL_FOOTER_SECTIONS = [
+  {
+    title: 'Solution',
+    hidden: false,
+    links: [
+      { name: 'Product', href: '/', hidden: false, isModal: false },
+      { name: 'Blog', href: 'https://blog.biosked.com/category/blog/', hidden: true, isModal: false },
+      // { name: 'Solution', href: '/solutions', hidden: !siteConfig.features.showFooterSolutions, isModal: false },
+      { name: 'Pricing', href: '/pricing', hidden: false, isModal: false },
+      { name: 'Integrations', href: '/#integrations', hidden: !siteConfig.features.showFooterIntegrations, isModal: false },
+      { name: 'Support', href: 'https://kb.biosked.fr/en/knowledge/kb-tickets/new', hidden: false, isModal: false },
+    ],
+  },
+  {
+    title: 'Resources',
+    hidden: !siteConfig.features.showFooterResources,
+    links: [
+      { name: 'Documentation', href: '/docs', hidden: false, isModal: false },
+      { name: 'Help Center', href: '/help', hidden: false, isModal: false },
+      { name: 'Blog', href: '/blog', hidden: false, isModal: false },
+      { name: 'Case Studies', href: '/case-studies', hidden: false, isModal: false },
+    ],
+  },
+  {
+    title: 'Company',
+    hidden: false,
+    links: [
+      { name: 'About us', href: '/about', hidden: false, isModal: false },
+      { name: 'Careers', href: '/careers', hidden: false, isModal: false },
+      { name: 'Schedule a Demo', href: '#', hidden: true, isModal: true },
+      { name: 'LinkedIn', href: 'https://www.linkedin.com/company/biosked/', hidden: false, isModal: false }
+    ],
+  },
+];
+
+const FOOTER_SECTIONS = ALL_FOOTER_SECTIONS
+  .filter(section => !section.hidden)
+  .map(section => ({
+    ...section,
+    links: section.links.filter(link => !link.hidden),
+  }));
+
+const SOCIAL_LINKS = [
+  {
+    name: 'Follow on LinkedIn',
+    href: 'https://www.linkedin.com/company/biosked/',
+  },
+ 
+];
+
+
+const hideFooter = [
+  '/signin',
+  '/signup',
+  '/docs',
+  '/not-found',
+  '/forgot-password',
+].some((route) => pathname.includes(route));
+
+const currentYear = new Date().getFullYear();
+---
+
+{!hideFooter && (
+  <footer class="relative pt-12 pb-30">
+    <div class="absolute bottom-0 left-0 size-[800px] bg-no-repeat pointer-events-none" style={'background-image: url("'+cyanDust.src+'"); background-position-y: 300%; transform:scaleX(-1);'}></div>
+    <div class="container flex mb-15 flex-col-reverse md:flex-row gap-12 relative sm:max-w-4xl lg:max-w-5xl px-8">
+      <div class="flex-2 flex flex-col gap-1">
+        <Logo loading="lazy"/>
+        <div class="text-muted-foreground text-sm my-4">
+          Americas Headquarter: Rochester, New York<br>
+          Europe Headquarter: Geneva, Switzerland
+        </div>
+        <div class="text-muted-foreground text-sm">Copyright © {currentYear} BioSked, Inc.</div>
+      </div>
+      <div class="flex-1 flex">
+        {FOOTER_SECTIONS.map((section) => (
+            <div class="flex-1">
+              <h3 class="text-foreground mb-2 font-bold text-sm uppercase md:mb-4">
+                {section.title}
+              </h3>
+              <ul class="space-y-2">
+                {section.links.map((link) => (
+                  <li>
+                    {link.isModal ? (
+                      <button
+                        onclick="window.dispatchEvent(new CustomEvent('open-contact-sales'))"
+                        class="text-muted-foreground hover:text-card-foreground text-left text-sm transition-colors cursor-pointer"
+                      >
+                        {link.name}
+                      </button>
+                    ) : (
+                      <a
+                        href={link.href}
+                        class="text-muted-foreground hover:text-card-foreground text-sm transition-colors"
+                      >
+                        {link.name!='LinkedIn' ? (
+                          <div>{link.name}</div>
+                        ) : (
+                          <Image 
+                            src={linkedInLogo} 
+                            alt="Follow us on LinkedIn" 
+                            width={16}
+                            class="fill-muted hover:fill-card-foreground mt-3"
+                          />
+                        )}
+                      </a>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        {/*{SOCIAL_LINKS.map((link) => (
+          <a
+            href={link.href}
+            class="text-muted-foreground hover:text-card-foreground flex items-center gap-2 text-sm transition-colors"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {link.name}
+          </a>
+        ))}*/}
+      </div>
+    </div>
+    {/*<a
+      href="/privacy-policy"
+      class="text-muted-foreground hover:text-foreground text-sm transition-colors"
+    >
+      Privacy
+    </a>
+    <a
+      href="/terms-and-conditions"
+      class="text-muted-foreground hover:text-foreground text-sm transition-colors"
+    >
+      Terms
+    </a>*/}
+    </div>
+  </footer>
+)}

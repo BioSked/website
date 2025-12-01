@@ -1,0 +1,29 @@
+---
+import { Image } from 'astro:assets';
+import bioSkedLogo from '@/assets/logos/biosked-logo.svg';
+import bioSkedLogoDark from '@/assets/logos/biosked-logo-dark.svg';
+
+interface Props {
+  className?: string;
+  loading?: 'eager' | 'lazy';
+}
+
+const { className = "", loading = "eager" } = Astro.props;
+---
+
+<a href="/" class={`flex flex-1 gap-2 ${className}`}>
+  <Image 
+    src={bioSkedLogo} 
+    alt="BioSked Logo" 
+    width={150}
+    loading={loading}
+    class="dark:hidden"
+  />
+  <Image 
+    src={bioSkedLogoDark} 
+    alt="BioSked Logo" 
+    width={78} 
+    loading={loading}
+    class="hidden dark:block"
+  />
+</a>

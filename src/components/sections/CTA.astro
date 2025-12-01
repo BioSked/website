@@ -1,0 +1,34 @@
+---
+import Button from '@/components/ui/Button.astro';
+import Card from '@/components/ui/Card.astro';
+import HalftonePattern from '@/components/elements/HalftonePattern.astro';
+---
+
+<section id="cta" class="section-padding">
+
+  <div class="container">
+    <Card className="relative">
+      <HalftonePattern />
+      <div class="relative z-10 mx-auto max-w-3xl space-y-6 p-6 text-center md:space-y-8 md:p-8 lg:p-12">
+        <div class="space-y-4">
+          <h2 class="text-display-section text-foreground">
+            Ready to Transform How Your Organization Schedules?
+          </h2>
+          <p class="text-muted-foreground text-lead">
+            Join 250+ healthcare organizations scheduling across 1,000+ sites with Momentum. Build fair schedules, reduce administrative burden, and improve staff satisfaction.
+          </p>
+        </div>
+        <div class="flex flex-wrap justify-center gap-3">
+          <a href="/bookdemo">
+            <Button
+            size="lg"
+            className="mt-2 border border-white/50 rounded-full pl-5.5! before:rounded-full shadow-sm shadow-primary/50 hover:shadow-md font-bold transition-all duration-200 scale-100 hover:scale-106"
+          >
+            Schedule a Demo
+          </Button>
+          </a>
+        </div>
+      </div>
+    </Card>
+  </div>
+</section>

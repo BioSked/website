@@ -1,0 +1,62 @@
+---
+import { FAQAccordion } from './FAQAccordion.tsx';
+import Noise from '@/components/elements/Noise.astro';
+import { MessageCircleMore, ChevronRight } from 'lucide-react';
+import Card from '@/components/ui/Card.astro';
+import CardHeader from '@/components/ui/CardHeader.astro';
+import CardContent from '@/components/ui/CardContent.astro';
+import CardFooter from '@/components/ui/CardFooter.astro';
+import Button from '@/components/ui/Button.astro';
+import cyanDust from '@/assets/layout/cyan-dust_background.webp';
+
+const faqData = [
+  {
+    id: 'pricing-calculation',
+    question: 'How is pricing calculated?',
+    answer:
+      'Per active user per month. A user is anyone who builds schedules OR gets scheduled.',
+  },
+  {
+    id: 'upgrade-later',
+    question: 'Can we start small and scale up?',
+    answer:
+      'Yes. Upgrade or downgrade anytime. Mix plans across departments (e.g., Starter for admin staff, Plus for clinical teams).'
+  },
+  {
+    id: 'compliance',
+    question: 'Is this compliant with healthcare regulations?',
+    answer:
+      'Yes. We\'re fully HIPAA and GDPR compliant. We only store scheduling data, not PHI.',
+  },
+  {
+    id: 'implementation',
+    question: "What's included in implementation?",
+    answer:
+    "All plans include onboarding and configuration support. Pro and Enterprise include dedicated project management and custom rule setup."
+  },
+  {
+    id: 'control',
+    question: 'Do we lose control over our schedules?',
+    answer:
+      'No. Momentum automates the repetitive work (pattern generation, conflict checking, fairness tracking) but you maintain full control over rules, exceptions, and final approval. Think of it as an intelligent assistant, not a replacement.',
+  },
+  {
+    id: 'time-reinvestment',
+    question: 'What do teams do with the time they save?',
+    answer:
+      'Most scheduling teams reinvest saved time into strategic workforce planning, staff development, credentialing support, and proactive problem-solving. Momentum makes your team more effective, not smaller.',
+  },
+
+];
+---
+
+<section class="section-padding relative">
+  <div class="absolute top-1/4 right-0 size-[800px] bg-no-repeat" style={'background-image: url("'+cyanDust.src+'");'}></div>
+  <div class="container relative">
+    <h2 class="text-display-section text-center mb-12">
+      Frequently asked questions
+    </h2>
+
+    <FAQAccordion client:visible faqData={faqData}/>
+
+</section>

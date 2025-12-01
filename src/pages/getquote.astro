@@ -1,0 +1,23 @@
+---
+export const prerender = true;
+
+import BaseLayout from "@/layouts/BaseLayout.astro";
+---
+
+<BaseLayout 
+  title="Get a quote | BioSked & Momentum" 
+  description="Get your price"
+>
+    <div class="container section-padding">
+      <h1 class="text-2xl sm:text-4xl text-center font-bold max-w-4xl mx-auto">Get started with Momentum</h1>
+      <p class="text-md sm:text-lg text-center mt-4 mb-10 text-muted-foreground max-w-xl mx-auto">Tell us about your organization and we'll help you find the right plan
+
+</p>
+      <div class="max-w-xl mx-auto bg-white/60 border border-primary/30 transition-all duration-400 .ease-in-out scale-99 hover:scale-100 shadow-xl shadow-secondary/10 rounded-2xl px-4 sm:px-10 pb-10 pt-1">
+        <h1 class="text-display-card text-secondary font-bold max-w-2xl mx-auto my-5">Get a Quote</h1>
+        <hr class="border-input">
+        <script src="https://js-eu1.hsforms.net/forms/embed/25195055.js" defer></script>
+        <div class="hs-form-frame" data-target="#hubspot-quote" data-region="eu1" data-form-id="152f6973-10dd-42d4-af28-2df2f8f830e9" data-portal-id="25195055"></div>
+      </div>
+    </div>
+</BaseLayout>

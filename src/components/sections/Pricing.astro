@@ -1,0 +1,92 @@
+---
+import { PricingCards } from './PricingCards.tsx';
+import cyanDust from '@/assets/layout/cyan-dust_background.webp';
+
+const pricingPlans = [
+  {
+  id: 'starter',
+  title: 'Starter',
+  color: 'green',
+  description: 'For small groups with simple rotations',
+  monthlyPrice: 4.99,
+  popular: false,
+  features: [
+    'Centralized time-off & shift requests',
+    'Web + mobile app access',
+    'Basic schedule templates',
+  ],
+  },
+  {
+    id: 'plus',
+    title: 'Plus',
+    color: 'cyan',
+    description: 'For departments with complex coverage',
+    monthlyPrice: 8.99,
+    popular: false,
+    baseOn: 'starter',
+    features: [
+      'Automated shift patterns & rotations',
+      'Custom configuration for your workflows',
+      'Time & attendance tracking',
+      'Schedule analytics & reporting',
+    ],
+  },
+  {
+    id: 'pro',
+    title: 'Pro',
+    color: 'orange',
+    description: 'For large or multi-specialty groups',
+    monthlyPrice: 10.99,
+    popular: true,
+    baseOn: 'plus',
+    features: [
+      'Full rules-based schedule automation',
+      'Multi-site scheduling support',
+      'Expert deployment & configuration',
+      'ROI analysis & optimization',
+      'Priority support (faster response times)',
+    ],
+  },
+  {
+    id: 'enterprise',
+    title: 'Enterprise',
+    color: 'blue',
+    description: 'For health systems with multiple facilities',
+    monthlyPrice: null,
+    popular: false,
+    baseOn: 'pro',
+    features: [
+      'Dedicated account manager',
+      'Service level agreements (99.9% uptime)',
+      'Single sign-on (SSO)',
+      'API access & custom integrations',
+      'White-label options',
+    ],
+  },
+];
+---
+
+<section class="section-padding relative overflow-hidden">
+  <div class="absolute top-0 left-0 size-[800px] bg-no-repeat pointer-events-none" style={'background-image: url("'+cyanDust.src+'"); background-position-y: 0%; transform:scaleX(-1);'}></div>
+  <div
+    class="text-orange-400 text-blue-500 from-background/30 to-background/30 pointer-events-none absolute inset-0 z-1 bg-linear-to-b"
+  >
+  </div>
+  
+
+  <div class="bigger-container relative z-10">
+    <div class="text-center">
+      <h2 class="text-2xl sm:text-4xl font-bold tracking-tight">
+        Different teams need different plans
+      </h2>
+      <p class="text-muted-foreground mx-auto mt-3 max-w-2xl text-md sm:text-lg">
+        From quick-scheduling to full automation, your teams have different needs. Choose a single plan for all your staff or distribute according to the need of each team. It all stays under one flexible account.
+      </p>
+      <div class="bg-primary/10 border border-primary/75 rounded mx-auto max-w-sm p-2 mt-8">
+        <p class=" text-lg text-card-foreground">Prices start at <strong>USD 4.99</strong></p>
+        <p class="text-muted-foreground text-sm">/ user / month</p>
+      </div>
+    </div>
+    <PricingCards client:load plans={pricingPlans} />
+  </div>
+</section>

@@ -1,0 +1,28 @@
+---
+export const prerender = true;
+
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Hero from "@/components/sections/Hero.astro";
+import Logos from "@/components/sections/Logos.astro";
+import FeatureShowcase from "@/components/sections/FeaturesShowcase.astro";
+import AIInno from "@/components/sections/AIInnovation.astro";
+import CTA from "@/components/sections/CTA.astro";
+import Testimonials from "@/components/sections/Testimonials.astro";
+// import FullTimelineView from "@/components/sections/FullTimelineView.tsx";
+import WhatsNew from "@/components/sections/WhatsNew.astro";
+---
+
+<BaseLayout 
+  title="Momentum - Healthcare Scheduling Software | Radiology, Emergency & Multi-Specialty" 
+  description="Momentum by BioSked: AI-powered scheduling software for hospitals, clinics, and medical practices. Trusted by radiology, emergency medicine, anesthesiology, and specialty groups. Automate physician schedules, RVU tracking, and compliance. Start free."
+>
+	<Hero/>
+	<Testimonials/>
+	<!-- <FullTimelineView client:visible={{rootMargin: "150px"}} /> -->
+	<a id="momentum"/>
+	<FeatureShowcase />
+	<WhatsNew />
+	<!-- <Logos/> -->
+  <AIInno />
+	<CTA />
+</BaseLayout>
