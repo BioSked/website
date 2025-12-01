@@ -149,7 +149,7 @@ export function PricingCards({ plans }: PricingCardsProps) {
                     className="h-5 w-auto inline-block"
                   />
                   <h3 className="text-2xl sm:text-3xl font-bold text-white mt-2 mb-1">{enterprisePlan.title}</h3>
-                  <div className="font-normal text-muted-foreground">{enterprisePlan.description}</div>
+                  <div className="font-normal text-white/50">{enterprisePlan.description}</div>
                   <Button className="mt-5 px-6 shadow-xl shadow-blue-200/20 bg-white text-card-foreground font-bold" asChild>
                     <a href="/getquote">
                       Let's talk
@@ -163,17 +163,17 @@ export function PricingCards({ plans }: PricingCardsProps) {
               </div>
             </CardHeader>
 
-            <CardContent className="grid gap-1 p-4 pt-3 md:grid-cols-2 md:p-6 md:pt-4 lg:grid-cols-3">
+            <CardContent className="grid gap-2 p-4 pt-3 md:grid-cols-2 md:p-6 md:pt-4 lg:grid-cols-3">
               {buildFeatureList(enterprisePlan).map((feature, index) => (
-                <div key={index} className="flex items-start gap-3">
+                <div key={index} className="flex items-start">
                   <div className="mt-0.5">
-                    <Check className="text-white size-4 stroke-cyan-500" />
+                    {feature.included && <Check className="size-4 stroke-cyan-500 mr-3" />}
                   </div>
                   <span
                     className={cn(
                       'text-sm leading-tight text-white',
-                      feature.included
-                        ? 'font-medium'
+                      !feature.included
+                        ? 'font-bold'
                         : '',
                     )}
                   >
