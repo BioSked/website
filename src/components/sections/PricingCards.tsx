@@ -139,7 +139,7 @@ export function PricingCards({ plans }: PricingCardsProps) {
 
       {enterprisePlan && (
         <div className="mx-auto mt-24 max-w-4xl">
-          <Card className="hover:shadow-primary/5 gap-4 p-4 transition-all duration-300 hover:shadow-lg blue-gradient transition-all duration-200 scale-100 hover:scale-101">
+          <Card className="shadow-secondary/15 shadow-xl gap-4 p-4 transition-all duration-300 blue-gradient transition-all duration-200 scale-100 hover:scale-101">
             <CardHeader className="bg-white/5 shadow-sm rounded-md p-4 md:p-6 ">
               <div className="flex flex-col gap-8 md:flex-row md:justify-between">
                 <div className="flex-2">
@@ -150,7 +150,7 @@ export function PricingCards({ plans }: PricingCardsProps) {
                   />
                   <h3 className="text-2xl sm:text-3xl font-bold text-white mt-2 mb-1">{enterprisePlan.title}</h3>
                   <div className="font-normal text-white/50">{enterprisePlan.description}</div>
-                  <Button className="mt-5 px-6 shadow-xl shadow-blue-200/20 bg-white text-card-foreground font-bold" asChild>
+                  <Button className="mt-5 px-6 h-10 text-md shadow-lg bg-white/70 hover:bg-white hover:shadow-xl shadow-blue-200/20 bg-white text-card-foreground font-bold" asChild>
                     <a href="/getquote">
                       Let's talk
                     </a>

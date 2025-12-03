@@ -24,10 +24,10 @@ export function FAQAccordion({ faqData }: FAQAccordionProps) {
           value={faq.id}
           className="border bg-background/60 px-5 py-3 mb-4 rounded hover:shadow-primary/5 rounded-lg transition-all duration-300 hover:shadow-md mb-4"
         >
-          <AccordionTrigger className="cursor-pointer text-base w-full font-medium hover:no-underline md:text-lg lg:text-xl">
+          <AccordionTrigger className="cursor-pointer text-base w-full font-semibold hover:no-underline md:text-lg lg:text-xl">
             {faq.question}
           </AccordionTrigger>
-          <AccordionContent className="text-muted-foreground text-base leading-relaxed">
+          <AccordionContent className="text-foreground/75 text-base leading-relaxed sm:pr-8 lg:pr-12">
             {faq.answer}
           </AccordionContent>
         </AccordionItem>

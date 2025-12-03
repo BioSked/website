@@ -80,15 +80,17 @@ export function NavbarActions({ pathname }: NavbarActionsProps) {
     <div className="hidden items-center justify-end gap-4 lg:flex">
         {/*<ThemeToggle />*/}
         {ACTION_BUTTONS.map((button) => (
-        <Button
-            key={button.label}
-            variant={button.variant}
-            className="rounded-full shadow-none font-bold border border-white/50 shadow-sm hover:shadow-lg shadow-primary/40 transition-all duration-200 scale-100 hover:scale-103"
-            onClick={button.isModal ? () => window.dispatchEvent(new CustomEvent('open-contact-sales')) : undefined}
-        >
-            {button.isModal ? button.label : <a href={button.href}>{button.label}</a>}
-            </Button>
-            ))}
+            <a href={button.href}>
+                <Button
+                    key={button.label}
+                    variant={button.variant}
+                    className="rounded-full shadow-none font-bold border border-white/50 shadow-sm hover:shadow-lg shadow-primary/40 transition-all duration-200 scale-100 hover:scale-103"
+                    onClick={button.isModal ? () => window.dispatchEvent(new CustomEvent('open-contact-sales')) : undefined}
+                >
+                    {button.label}
+                </Button>
+            </a>
+        ))}
     </div>
 
     <div className="flex items-center gap-2 lg:hidden lg:gap-4">
@@ -184,16 +186,15 @@ export function NavbarActions({ pathname }: NavbarActionsProps) {
 
             <div className="flex flex-col gap-4.5 px-6 py-6 bg-background shadow-md">
                 {ACTION_BUTTONS.map((button) => (
-                <Button
-                    key={button.label}
-                    variant={button.variant}
-                    className="h-12 flex-1 rounded-sm shadow-sm font-bold shadow-primary/40 border border-white/40"
-                    onClick={button.isModal ? () => {
-                        setIsMenuOpen(false);
-                    } : () => {window.location.href = '/bookdemo'; } }
-                >
-                    {button.isModal ? button.label : <a href={button.href}>{button.label}</a>}
-                </Button>
+                <a href="/bookdemo">
+                    <Button
+                        key={button.label}
+                        variant={button.variant}
+                        className="h-12 flex-1 rounded-sm shadow-sm font-bold shadow-primary/40 border border-white/40"
+                    >
+                        {button.label}
+                    </Button>
+                </a>
                 ))}
             </div>
             </div>

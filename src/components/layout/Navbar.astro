@@ -24,7 +24,7 @@ const hideNavbar = ['/signin', '/signup', '/docs', '/not-found', '/forgot-passwo
     <div class="navbar-container flex items-center h-16">
       <Logo />
       <div class="flex flex-1 justify-center hidden lg:block">
-          <DesktopNav client:idle pathname={pathname} />
+          <DesktopNav client:idle pathname={pathname}  pagename={Astro.url.pathname} />
       </div>
       <div class="flex flex-1 justify-end">
         <NavbarActions client:idle pathname={pathname}/>

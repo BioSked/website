@@ -11,7 +11,7 @@ import {
 import { siteConfig } from "@/config";
 
 const ALL_NAV_LINKS = [
-    { label: 'Product', href: '/#momentum' },
+    { label: 'Product', href: '/', anchor: '#momentum' },
     {
       label: 'Solutions',
       href: '#',
@@ -117,9 +117,10 @@ const icons: Record<string, React.FC<{ className?: string }>> = {
 
 interface DesktopNavProps {
   pathname: string;
+  pagename: string;
 }
 
-export function DesktopNav({ pathname }: DesktopNavProps) {
+export function DesktopNav({ pathname,pagename }: DesktopNavProps) {
   const isActive = (itemHref: string) => {
 
     if (itemHref.includes('#')) {
@@ -167,7 +168,7 @@ export function DesktopNav({ pathname }: DesktopNavProps) {
               </>
             ) : (
               <NavigationMenuLink
-                href={item.href}
+                href={item.href + (pagename=='/' && item.anchor ? item.anchor : '')}
                 className={cn(
                   navigationMenuTriggerStyle(),
                   isActive(item.href)
