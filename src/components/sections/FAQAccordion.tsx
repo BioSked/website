@@ -22,12 +22,12 @@ export function FAQAccordion({ faqData }: FAQAccordionProps) {
         <AccordionItem
           key={faq.id}
           value={faq.id}
-          className="border bg-background/60 px-5 py-3 mb-4 rounded hover:shadow-primary/5 rounded-lg transition-all duration-300 hover:shadow-md mb-4"
+          className="border bg-background/60 mb-4 rounded border-none outline-1 outline-border shadow-none [&[data-state='closed']]:hover:outline-primary [&[data-state='closed']]:hover:outline-2 rounded-lg transition-none duration-300"
         >
-          <AccordionTrigger className="cursor-pointer text-base w-full font-semibold hover:no-underline md:text-lg lg:text-xl">
+          <AccordionTrigger className="cursor-pointer px-5 py-4 duration-300 [&[data-state='open']]:pb-2 text-base w-full font-semibold hover:no-underline md:text-lg lg:text-xl">
             {faq.question}
           </AccordionTrigger>
-          <AccordionContent className="text-foreground/75 text-base leading-relaxed sm:pr-8 lg:pr-12">
+          <AccordionContent className="text-foreground/75 text-base leading-relaxed sm:pr-8 lg:pr-12 pl-5">
             {faq.answer}
           </AccordionContent>
         </AccordionItem>
