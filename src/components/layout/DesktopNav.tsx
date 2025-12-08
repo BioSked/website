@@ -48,6 +48,7 @@ const ALL_NAV_LINKS = [
       subitems: [
         {
           label: 'About us',
+          subtitle: 'Meet the team',
           href: '/about',
         },
         {
@@ -57,10 +58,12 @@ const ALL_NAV_LINKS = [
         },
         {
           label: 'Careers',
+          subtitle: "We're hiring",
           href: '/careers',
         },
         {
           label: 'Help & Support',
+          subtitle: "How can we help?",
           href: 'https://kb.biosked.fr/en/knowledge/kb-tickets/new',
         },
       ],
@@ -145,8 +148,9 @@ export function DesktopNav({ pathname,pagename }: DesktopNavProps) {
                 >
                   {item.label}
                 </NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <ul className="grid w-[220px] gap-0">
+                <NavigationMenuContent className={'-ml-3'}>
+                  <div class="bg-white/5 border-1 border-secondary/10 rounded-sm p-1">
+                    <ul className="grid w-[220px] gap-0">
                     {item.subitems.map((subitem) => {
                       const isSubitemActive = isActive(subitem.href);
                       return (
@@ -154,16 +158,18 @@ export function DesktopNav({ pathname,pagename }: DesktopNavProps) {
                           <NavigationMenuLink
                             href={subitem.href}
                             className={cn(
-                              "",
+                              "text-foreground! px-3",
                               isSubitemActive && ""
                             )}
                           >
                             {subitem.label}
+                            <div className={cn("text-muted-foreground -mt-1")}>{subitem.subtitle}</div>
                           </NavigationMenuLink>
                         </li>
                       );
                     })}
                   </ul>
+                  </div>
                 </NavigationMenuContent>
               </>
             ) : (

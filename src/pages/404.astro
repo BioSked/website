@@ -17,7 +17,7 @@ import { Home, ArrowLeft, Mail, Book } from 'lucide-astro';
     <div class="container relative z-10">
       <div class="mx-auto max-w-3xl text-center">
         <div class="mb-6">
-          <span class="text-9xl font-bold text-muted-foreground/30 dark:text-muted-foreground/20">404</span>
+          <span class="text-9xl font-thin text-muted-foreground/30 dark:text-muted-foreground/20">404</span>
         </div>
 
         <h1 class="text-display-hero mb-4">
@@ -30,9 +30,8 @@ import { Home, ArrowLeft, Mail, Book } from 'lucide-astro';
 
         <div class="flex flex-wrap justify-center gap-4 mb-12">
           <Button
-            size="sm"
-            variant="default"
-            className="rounded-full shadow-none"
+            size="lg"
+            className="rounded-full shadow-sm shadow-primary/50 hover:shadow-md px-5! font-semibold ease-in-out transition-all duration-200 border border-white/50"
             href="/"
           >
             <Home class="size-4" />
@@ -46,9 +45,9 @@ import { Home, ArrowLeft, Mail, Book } from 'lucide-astro';
           <div class="grid md:grid-cols-3 gap-6 text-left">
             <a 
               href="/pricing" 
-              class="group p-6 rounded-lg border border-border hover:border-primary transition-colors bg-card hover:bg-accent/5"
+              class="p-6 bg-white/50 hover:bg-white/70 shadow-sm shadow-secondary/5 hover:outline-primary hover:outline-1 rounded-lg border border-secondary/10"
             >
-              <h3 class="font-semibold mb-2 group-hover:text-primary transition-colors">
+              <h3 class="font-semibold mb-2">
                 Pricing Plans
               </h3>
               <p class="text-sm text-muted-foreground">
@@ -58,9 +57,9 @@ import { Home, ArrowLeft, Mail, Book } from 'lucide-astro';
 
             <a 
               href="/about" 
-              class="group p-6 rounded-lg border border-border hover:border-primary transition-colors bg-card hover:bg-accent/5"
+              class="p-6 bg-white/50 hover:bg-white/70 shadow-sm shadow-secondary/5 hover:outline-primary hover:outline-1 rounded-lg border border-secondary/10"
             >
-              <h3 class="font-semibold mb-2 group-hover:text-primary transition-colors">
+              <h3 class="font-semibold mb-2">
                 About Us
               </h3>
               <p class="text-sm text-muted-foreground">
@@ -70,9 +69,9 @@ import { Home, ArrowLeft, Mail, Book } from 'lucide-astro';
 
             <a 
               href="/careers" 
-              class="group p-6 bg-white/70 hover:shadow-sm hover:bg-white rounded-lg border border-secondary/10 transition-colors"
+              class="p-6 bg-white/50 hover:bg-white/70 shadow-sm shadow-secondary/5 hover:outline-primary hover:outline-1 rounded-lg border border-secondary/10"
             >
-              <h3 class="font-semibold mb-2 transition-colors">
+              <h3 class="font-semibold mb-2">
                 Careers
               </h3>
               <p class="text-sm text-muted-foreground">
@@ -82,7 +81,7 @@ import { Home, ArrowLeft, Mail, Book } from 'lucide-astro';
           </div>
         </div>
 
-        <div class="my-12">
+        <div class="my-8">
           <p class="text-sm text-muted-foreground">
             Looking for something specific? 
             <a href="/contact" class="text-foreground hover:underline font-medium">Contact our team</a>

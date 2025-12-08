@@ -8,8 +8,8 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
   title="Careers at BioSked | Join Our Healthcare Technology Team" 
   description="Join BioSked's mission to revolutionize healthcare scheduling with our Momentum platform. Explore engineering, product, and sales careers at a fast-growing healthcare technology company serving the US and EU. Remote-friendly positions available."
 >
-  <section class="section-padding relative overflow-hidden">
-    <div class="container relative z-10">
+  <section class="section-padding relative ">
+    <div class="container relative z-10 max-w-5xl">
       <div class="mx-auto max-w-3xl text-center">
         <h1 class="text-display-hero">
           Join Our Team
@@ -19,7 +19,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
         </p>
       </div>
 
-      <div class="mt-12 border rounded p-10 py-2">
+      <div class="mt-12 bg-secondary/5 rounded p-8 min-h-16 py-2">
         <div id="whr_embed_hook"></div>
       </div>
     </div>
@@ -57,14 +57,14 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
   
   #whr_embed_hook .whr-item {
     margin-bottom: 1rem;
-    padding: 0.75rem;
+    padding: 1rem;
     background: hsl(var(--border));
     border-radius: 0.75rem;
     transition: all 0.3s ease;
   }
   
   #whr_embed_hook .whr-item:hover {
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    background: rgba(10, 54, 127, 0.05);
   }
   
   #whr_embed_hook .whr-item > a,
@@ -97,7 +97,6 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
   #whr_embed_hook .whr-info {
     color: hsl(var(--muted-foreground));
     font-size: 0.875rem;
-    margin-top: 0.5rem;
   }
   
   #whr_embed_hook .whr-location,
@@ -109,13 +108,15 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
   
   #whr_embed_hook .whr-group {
     margin-top: 2rem;
-    margin-bottom: 1rem;
+    margin-bottom: .25rem;
+    margin-left:  1rem;
+    text-transform: uppercase;
+    font-size: var(--text-xs);
   }
   
   #whr_embed_hook .whr-group .whr-title {
     font-size: 1.5rem;
     font-weight: 600;
-    color: hsl(var(--foreground));
     margin-bottom: 1rem;
   }
 </style>

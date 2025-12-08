@@ -19,9 +19,9 @@ const hideNavbar = ['/signin', '/signup', '/docs', '/not-found', '/forgot-passwo
 
 {!hideNavbar && (
   <header
-    class="sticky top-0 z-50 bg-background/80 border-b backdrop-blur-md supports-backdrop-filter:bg-background/60"
+    class="sticky top-0 z-50 bg-linear-to-t from-background/0 to-white/80 border-b backdrop-blur-md supports-backdrop-filter:bg-background/60"
   >
-    <div class="navbar-container flex items-center h-16">
+    <div class="container max-w-5xl flex items-center h-16">
       <Logo />
       <div class="flex flex-1 justify-center hidden lg:block">
           <DesktopNav client:idle pathname={pathname}  pagename={Astro.url.pathname} />

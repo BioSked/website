@@ -73,7 +73,7 @@ export function PricingCards({ plans }: PricingCardsProps) {
           return (
             <Card
               key={plan.id}
-              className={'h-full gap-6 p-4 shadow-none bg-transparent transition-all duration-100 rounded-none border-none mm-card relative '+(plan.popular ? 'bg-blue-600/6 shadow-xl hover:bg-blue-600/4':'hover:bg-white/25')}
+              className={'h-full gap-6 p-4 shadow-none bg-transparent transition-all duration-100 rounded-none border-none mm-card relative '+(plan.popular ? 'bg-blue-600/6 shadow-lg shadow-secondary/15 hover:bg-blue-500/5':'hover:bg-white/25')}
             >
               <div class="cornecross"></div>
               <CardHeader className={'mt-0.5 rounded-md p-4 md:px-6 bg-white shadow-sm b order border-'+plan.color+'-600/20'}>

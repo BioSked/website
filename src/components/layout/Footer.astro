@@ -80,7 +80,7 @@ const currentYear = new Date().getFullYear();
 {!hideFooter && (
   <footer class="relative pt-12 pb-30">
     <div class="absolute bottom-0 left-0 size-[800px] bg-no-repeat pointer-events-none" style={'background-image: url("'+cyanDust.src+'"); background-position-y: 300%; transform:scaleX(-1);'}></div>
-    <div class="container flex mb-15 flex-col-reverse md:flex-row gap-12 relative sm:max-w-4xl lg:max-w-5xl px-8">
+    <div class="container flex mb-15 flex-col-reverse md:flex-row gap-12 relative sm:max-w-2xl lg:max-w-5xl">
       <div class="flex-2 flex flex-col gap-1">
         <Logo loading="lazy"/>
         <div class="text-muted-foreground text-sm my-4">
@@ -108,7 +108,7 @@ const currentYear = new Date().getFullYear();
                     ) : (
                       <a
                         href={link.href}
-                        class="text-muted-foreground hover:text-card-foreground text-sm transition-colors"
+                        class="not-hover:text-muted-foreground text-sm transition-colors"
                       >
                         {link.name!='LinkedIn' ? (
                           <div>{link.name}</div>

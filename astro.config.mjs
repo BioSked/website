@@ -4,6 +4,7 @@ import mdx from '@astrojs/mdx';
 import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
+import rehypeAddClasses from 'rehype-add-classes';
 
 export default defineConfig({
   site: 'https://biosked.com',
@@ -22,7 +23,9 @@ export default defineConfig({
   integrations: [
     mdx(), 
     react(), 
-    sitemap()
+    sitemap({
+      filter: (page) => page !== 'https://biosked.com/privacy/',
+    })
   ],
 
   vite: {
@@ -43,5 +46,16 @@ export default defineConfig({
         usePolling: true,
       }
     }
+  },
+  markdown: {
+    rehypePlugins: [
+      [rehypeAddClasses, {
+        'h1': 'text-display-section font-bold',
+        'h2': 'text-display-card mt-6 sm:mt-10',
+        'h3': 'font-semibold',
+        'p': 'py-4 sm:py-6 text-foreground/80',
+        'strong': 'text-foreground font-semibold'
+      }]
+    ]
   }
 });
