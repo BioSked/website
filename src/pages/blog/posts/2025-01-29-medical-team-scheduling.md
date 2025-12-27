@@ -1,14 +1,14 @@
 ---
 layout: "@layouts/ArticleLayout.astro"
-date: January 29, 2025
+date: 2025-01-29
 author: David Dudok de Wit
 title: BioSked reinvents medical team scheduling with the new version of Momentum
 description: Designed to reduce clicks and streamline workflows, the new Date-based view allows administrators to complete tasks up to 10 times faster, cutting scheduling administration time by up to 80%.
-image: "/src/assets/images/Blog%20Article%20Image%20SFAR.webp"
+image: "/src/assets/images/medical-team-scheduling.webp"
 
 ---
 
-![Alt text](/src/assets/images/Blog%20Article%20Image%20SFAR.webp)
+![Alt text](/src/assets/images/medical-team-scheduling.webp)
 
 Scheduling medical teams is a significant challenge for healthcare organizations. The demands of on-call shifts, the unique requirements of each specialty, and unexpected changes make the task highly complex, especially when available tools don’t fully meet real-world needs. The result? Substantial cost implications, dissatisfied teams, and, at times, compromised care quality. 
 

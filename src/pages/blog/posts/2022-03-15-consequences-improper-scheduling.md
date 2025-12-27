@@ -1,6 +1,6 @@
 ---
 layout: "@layouts/ArticleLayout.astro"
-date: March 15, 2022
+date: 2022-03-15
 author: BioSked
 title: "The Consequences of Improper Scheduling"
 description: For healthcare organizations, the benefits of proper physician and staff scheduling are frequently highlighted. What people fail to discuss in-depth are the problems organizations face when they build schedules incorrectly.

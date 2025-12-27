@@ -1,6 +1,6 @@
 ---
 layout: "@layouts/ArticleLayout.astro"
-date: August 9, 2023
+date: 2023-08-09
 author: BioSked
 title: "Scheduling Myths That Ruin Efficiency"
 description: Today we are going to take a look at a few scheduling myths that truly impact the efficiency of healthcare staff scheduling.

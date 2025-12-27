@@ -1,9 +1,10 @@
 ---
 layout: "@layouts/ArticleLayout.astro"
-date: January 2024
+date: 2025-07-02
 author: Jessica
 title: Vue par shift pour une meilleure coordination sur le terrain
 description: Radiology has evolved — but scheduling hasn’t kept up. As imaging volumes grow and teleradiology networks expand across regions, many departments still rely on templates and spreadsheets built for a different era.
+image: "/src/assets/images/Display%20per%20Shift%201080x628.png"
 ---
 
 # Nouveauté Momentum : une vue par shift pour une meilleure coordination sur le terrain

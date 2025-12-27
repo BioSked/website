@@ -1,6 +1,6 @@
 ---
 layout: "@layouts/ArticleLayout.astro"
-date: August 9, 2023
+date: 2023-08-09
 author: BioSked
 title: "Optimize Physician Scheduling with AI"
 description: The Benefits of Using Artificial Intelligence (AI) for Medical Planning

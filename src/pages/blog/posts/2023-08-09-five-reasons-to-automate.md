@@ -1,6 +1,6 @@
 ---
 layout: "@layouts/ArticleLayout.astro"
-date: August 9, 2023
+date: 2023-08-09
 author: BioSked
 title: "5 Reasons to Switch to Automated Physician Scheduling Software"
 description: We explore the 5 reasons why a medical service should switch to automatic physician scheduling software.

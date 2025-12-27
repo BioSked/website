@@ -1,6 +1,6 @@
 ---
 layout: "@layouts/ArticleLayout.astro"
-date: May 15, 2022
+date: 2022-05-15
 author: BioSked
 title: "Improve Your Practice’s Scheduling: Understanding Equity"
 description: In scheduling, equity is a frequently used term. Unfortunately, it is not always a clear term. This article takes equity and breaks it down, explaining why it is such an essential part of practice scheduling.

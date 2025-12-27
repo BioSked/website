@@ -1,6 +1,6 @@
 ---
 layout: "@layouts/ArticleLayout.astro"
-date: October 24, 2023
+date: 2023-10-24
 author: BioSked
 title: "Why Healthcare Scheduling Software is Essential"
 description: In the ever-evolving landscape of healthcare, resource allocation and fair scheduling are paramount to delivering quality care while ensuring the well-being of healthcare professionals.

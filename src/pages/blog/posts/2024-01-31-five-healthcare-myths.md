@@ -1,6 +1,6 @@
 ---
 layout: "@layouts/ArticleLayout.astro"
-date: January 31, 2024
+date: 2024-01-31
 author: David Dudok de Wit
 title: 5 Myths of Healthcare Staff Scheduling Software
 description: Let’s debunk five common myths and explore the reality of how such software can be advantageous.

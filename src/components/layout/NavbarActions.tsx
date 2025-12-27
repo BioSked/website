@@ -95,7 +95,7 @@ export function NavbarActions({ pagename, navLinks}: NavbarActionsProps)
                 <div className="flex flex-1 justify-end">
                     <div className="items-center justify-end gap-4 flex">
                         {ACTION_BUTTONS.map((button) => (
-                            <a href={button.href}>
+                            <a href={button.href} key={button.label}>
                                 <Button
                                     key={button.label}
                                     variant={button.variant}

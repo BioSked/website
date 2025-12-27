@@ -1,6 +1,6 @@
 ---
 layout: "@layouts/ArticleLayout.astro"
-date: September 4, 2022
+date: 2022-09-04
 author: BioSked
 title: "Creating a Culture of Physician Wellness"
 description: Provider burnout is a growing epidemic in our country. It is important to confront burnout in your practice and help providers regain control of their lives. But how?

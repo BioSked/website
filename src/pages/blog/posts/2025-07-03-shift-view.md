@@ -1,13 +1,13 @@
 ---
 layout: "@layouts/ArticleLayout.astro"
-date: July 3, 2025
+date: 2025-07-02
 author: David Dudok de Wit
 title: Shift-Based View for Better On-the-Ground Coordination
 description: Radiology has evolved — but scheduling hasn’t kept up. As imaging volumes grow and teleradiology networks expand across regions, many departments still rely on templates and spreadsheets built for a different era
-image: "/src/assets/images/Display%20per%20Shift%201080x628.png"
+image: "/src/assets/images/shift-view.png"
 ---
 
-![Alt text](/src/assets/images/Display%20per%20Shift%201080x628.png)
+![Alt text](/src/assets/images/shift-view.png)
 
 Designed for all types of healthcare facilities, regardless of specialty, Momentum is the intelligent scheduling solution built to optimize rosters, enhance real-time visibility, and streamline service coordination. Intuitive and powerful, it adapts to the needs of over 30,000 daily users across more than 1,000 healthcare facilities in 9 countries.
 

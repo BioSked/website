@@ -1,6 +1,6 @@
 ---
 layout: "@layouts/ArticleLayout.astro"
-date: November 6, 2023
+date: 2023-11-06
 author: BioSked
 title: "Scheduling Struggles: The Implications of Manual Staff Scheduling"
 description: Why efficient healthcare workforce management requires automated scheduling software.

@@ -1,6 +1,6 @@
 ---
 layout: "@layouts/ArticleLayout.astro"
-date: October 17, 2023
+date: 2023-10-17
 author: BioSked
 title: "Benefits of Automating Physician Scheduling software"
 description: With the advent of advanced software solutions, automating physician scheduling has become an essential tool for healthcare organizations looking to streamline their operations.

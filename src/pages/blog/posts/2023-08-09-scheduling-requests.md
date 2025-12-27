@@ -1,6 +1,6 @@
 ---
 layout: "@layouts/ArticleLayout.astro"
-date: August 9, 2023
+date: 2023-08-09
 author: BioSked
 title: "Healthcare Scheduling Requests: A System That Works"
 description: Don’t underestimate the importance of a proper request management system. Having one that works increases employee satisfaction and reduces confusion.

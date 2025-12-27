@@ -1,6 +1,6 @@
 ---
 layout: "@layouts/ArticleLayout.astro"
-date: September 21, 2023
+date: 2023-09-21
 author: BioSked
 title: "The Prescription for Efficient Healthcare"
 description: Why Hospitals Should Embrace Employee Scheduling Software?

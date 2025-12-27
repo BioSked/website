@@ -1,6 +1,6 @@
 ---
 layout: "@layouts/ArticleLayout.astro"
-date: October 17, 2023
+date: 2023-10-17
 author: BioSked
 title: "Innovative Solutions for Smarter Anesthesia Scheduling"
 description: In today’s fast-paced medical environment, an efficient and effective anesthesia scheduling system is crucial for healthcare facilities.
