@@ -4,11 +4,11 @@ date: 2022-09-04
 author: BioSked
 title: "Creating a Culture of Physician Wellness"
 description: Provider burnout is a growing epidemic in our country. It is important to confront burnout in your practice and help providers regain control of their lives. But how?
-image: "/src/assets/images/physician-wellness.webp"
+image: "../../../assets/images/physician-wellness.webp"
 
 ---
 
-![Alt text](/src/assets/images/physician-wellness.webp)
+![Alt text](../../../assets/images/physician-wellness.webp)
 
 Provider burnout is a growing epidemic in our country. Physicians work in high stress situations every day, but with the demand to see more patients growing, they rarely have time to slow down and reflect. With high patient quotas and administrative demands, the work-life balance tips more towards work and less towards life. These long hours lead to less time with family and loved ones. Provider job satisfaction goes down, and with it patient care. It is important to confront burnout in your practice and help providers regain control of their lives. But how?
 

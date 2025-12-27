@@ -14,16 +14,16 @@ const posts = (await getCollection('enPosts'))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 
 const dateOptions = {
-  year: 'numeric',
-  month: 'long',
-  day: 'numeric'
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
 };
 
-const allPosts = Object.values(
-  Astro.currentLocale === 'fr' 
-    ? import.meta.glob('./posts/fr/*.md', { eager: true })
-    : import.meta.glob('./posts/*.md', { eager: true })
-);
+// const allPosts = Object.values(
+//   Astro.currentLocale === 'fr' 
+//     ? import.meta.glob('./posts/fr/*.md', { eager: true })
+//     : import.meta.glob('./posts/*.md', { eager: true })
+// );
 
 const lastPost = posts[0];
 
