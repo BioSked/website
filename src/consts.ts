@@ -57,9 +57,16 @@ export const NAV_LINKS = [
         label: 'nav.resources',
         alt: 'nav.resources-subtitle',
         href: '#',
-        showMobile: true,
         showDesktop: true,
+        showMobile: true,
         subitems: [
+            {
+                label: 'nav.blog',
+                alt: 'nav.blog-subtitle',
+                href: '/blog',
+                showDesktop: false,
+                showMobile: true,
+            },
             {
                 label: 'Integrations',
                 alt: '',
@@ -102,7 +109,7 @@ export const NAV_LINKS = [
         alt: 'nav.blog-subtitle',
         href: '/blog',
         showDesktop: true,
-        showMobile: true,
+        showMobile: false,
     }
 ];
 

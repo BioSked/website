@@ -39,7 +39,7 @@ const t = useTranslations(Astro.currentLocale);
 
         <div class="border rounded mb-20 bg-white/20 hover:bg-white/35 transition-all shadow-xl shadow-secondary/5">
             <a href={`/blog/posts/${lastPost.id}`} class="md:flex md:grid-cols-2 group">
-                <div class="flex-3"><Image src={lastPost.data.image} alt={lastPost.data.title} class="rounded-sm opacity-90 group-hover:opacity-100 transition-all ease-out duration-300"/></div>
+                <div class="flex-3"><Image src={lastPost.data.image} alt={lastPost.data.title} class="rounded-sm md:opacity-90 group-hover:opacity-100 transition-all ease-out duration-300"/></div>
                 <div class="flex-2 p-5 md:pl-9 sm:pr-6 sm:pt-7">
                     <span class="text-muted-foreground text-sm">{lastPost.data.author} · {lastPost.data.date.toLocaleDateString('en-US', dateOptions)}</span>
                     <span class="opacity-0 group-hover:opacity-100 transition-opacity ease-out duration-500 text-cyan-500 font-medium tracking-large text-sm ml-2 hidden lg:inline">READ</span>
@@ -53,7 +53,7 @@ const t = useTranslations(Astro.currentLocale);
             {posts.slice(1).map((post, index) => 
                 <a href={`/blog/posts/${post.id}`} class="group">
                     <li class={index%2 ? 'md:pl-12 border-none' :'md:pr-12 group relative md:border-r md:border-secondary/10'}>
-                        <Image src={post.data.image} alt={post.data.title} class="rounded-sm mb-5 shadow-lg shadow-secondary/10 opacity-90 group-hover:opacity-100 transition-all ease-out duration-300"/>
+                        <Image src={post.data.image} alt={post.data.title} class="rounded-sm mb-4 md:mb-5 shadow-lg shadow-secondary/10 md:opacity-90 group-hover:opacity-100 transition-all ease-out duration-300"/>
                         <span class="text-muted-foreground text-sm">{post.data.author} · {post.data.date.toLocaleDateString('en-US', dateOptions)}</span>
                         <span class="opacity-0 group-hover:opacity-100 transition-opacity ease-out duration-500 text-cyan-500 font-medium tracking-large text-sm ml-2">READ</span>
                         <h2 class="text-display-card my-3">{post.data.title}</h2>
