@@ -38,7 +38,7 @@ const t = useTranslations(Astro.currentLocale);
         <h1 class="text-display-section mb-10">Blog</h1>
 
         <div class="border rounded mb-20 bg-white/20 hover:bg-white/35 transition-all shadow-xl shadow-secondary/5">
-            <a href={'blog/posts/'+lastPost.id} class="md:flex md:grid-cols-2 group">
+            <a href={`/blog/posts/${lastPost.id}`} class="md:flex md:grid-cols-2 group">
                 <div class="flex-3"><Image src={lastPost.data.image} alt={lastPost.data.title} class="rounded-sm opacity-90 group-hover:opacity-100 transition-all ease-out duration-300"/></div>
                 <div class="flex-2 p-5 md:pl-9 sm:pr-6 sm:pt-7">
                     <span class="text-muted-foreground text-sm">{lastPost.data.author} · {lastPost.data.date.toLocaleDateString('en-US', dateOptions)}</span>
@@ -51,7 +51,7 @@ const t = useTranslations(Astro.currentLocale);
         
         <ul class="grid grid-cols-1 md:grid-cols-2 gap-y-20">
             {posts.slice(1).map((post, index) => 
-                <a href={'blog/posts/'+post.id} class="group">
+                <a href={`/blog/posts/${post.id}`} class="group">
                     <li class={index%2 ? 'md:pl-12 border-none' :'md:pr-12 group relative md:border-r md:border-secondary/10'}>
                         <Image src={post.data.image} alt={post.data.title} class="rounded-sm mb-5 shadow-lg shadow-secondary/10 opacity-90 group-hover:opacity-100 transition-all ease-out duration-300"/>
                         <span class="text-muted-foreground text-sm">{post.data.author} · {post.data.date.toLocaleDateString('en-US', dateOptions)}</span>
