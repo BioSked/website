@@ -1,0 +1,59 @@
+---
+export const prerender = true;
+
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+import { currentLocale } from 'astro:i18n';
+import { useTranslations } from '@/i18n/i18n';
+import { ArrowRight } from 'lucide-react';
+
+const allPosts = Object.values(
+  Astro.currentLocale === 'fr' 
+    ? import.meta.glob('./posts/fr/*.md', { eager: true })
+    : import.meta.glob('./posts/*.md', { eager: true })
+);
+
+// Sort posts by date (newest first)
+allPosts.sort((a: any, b: any) => {
+  return new Date(b.frontmatter.date).valueOf() - new Date(a.frontmatter.date).valueOf();
+});
+
+const lastPost = allPosts[0];
+
+const t = useTranslations(Astro.currentLocale);
+---
+
+<BaseLayout
+    title="Blogs | BioSked & Momentum | Healthcare Scheduling Innovation"
+    description=""
+>
+    <div class="container max-w-5xl section-padding mb-30">
+        <h1 class="text-display-section mb-10">Blog</h1>
+
+        <div class="border rounded mb-20 bg-white/20 hover:bg-white/35 transition-all shadow-xl shadow-secondary/5">
+            <a href={lastPost.url} class="md:flex md:grid-cols-2 group">
+                <div class="flex-3">{lastPost.frontmatter.image ? <img src={lastPost.frontmatter.image} class="rounded-sm opacity-90 group-hover:opacity-100 transition-all ease-out duration-300"/> : '' }</div>
+                <div class="flex-2 p-5 md:pl-9 sm:pr-6 sm:pt-7">
+                    <span class="text-muted-foreground text-sm">{lastPost.frontmatter.author} · {lastPost.frontmatter.date}</span>
+                    <span class="opacity-0 group-hover:opacity-100 transition-opacity ease-out duration-500 text-cyan-500 font-medium tracking-large text-sm ml-2 hidden lg:inline">READ</span>
+                    <h2 class="text-display-card my-3">{lastPost.frontmatter.title}</h2>
+                    <div class="text-muted-foreground text-sm">{lastPost.frontmatter.description}</div>
+                </div>     
+            </a>
+        </div>
+        
+        <ul class="grid grid-cols-1 md:grid-cols-2 gap-y-20">
+            {allPosts.slice(1).map((post, index) => 
+                <a href={post.url} class="group">
+                    <li class={index%2 ? 'md:pl-12 border-none' :'md:pr-12 group relative md:border-r md:border-secondary/10'}>
+                        {post.frontmatter.image ? <img src={post.frontmatter.image} class="rounded-sm mb-5 shadow-lg shadow-secondary/10 opacity-90 group-hover:opacity-100 transition-all ease-out duration-300"/> : '' }
+                        <span class="text-muted-foreground text-sm">{post.frontmatter.author} · {post.frontmatter.date}</span>
+                        <span class="opacity-0 group-hover:opacity-100 transition-opacity ease-out duration-500 text-cyan-500 font-medium tracking-large text-sm ml-2">READ</span>
+                        <h2 class="text-display-card my-3">{post.frontmatter.title}</h2>
+                        <div class="text-muted-foreground text-sm">{post.frontmatter.description}</div>
+                    </li>
+                </a>
+            )}
+        </ul>
+    </div>
+</BaseLayout>

@@ -1,0 +1,14 @@
+{
+    "nav": {
+        "product": "Product",
+        "pricing": "Pricing",
+        "resources": "Resources",
+        "blog": "Blog",
+        "careers": "Careers",
+        "careers-subtitle": "We're hiring!",
+        "help": "Help",
+        "help-subtitle" : "How can we help?",
+        "about" : "About us",
+        "about-subtitle" : "Meet the team"
+    }
+}

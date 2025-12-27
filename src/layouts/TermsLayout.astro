@@ -1,8 +1,10 @@
 ---
 import BaseLayout from './BaseLayout.astro';
 const { frontmatter } = Astro.props;
+const { title, description } = Astro.props;
 ---
-<BaseLayout url={frontmatter.url}>
+
+<BaseLayout title={title}>
 	<div class="container max-w-2xl section-padding">
 		<slot />
 	</div>

@@ -3,12 +3,13 @@ import '@/styles/global.css';
 import { SITE_TITLE, SITE_METADATA } from '../consts';
 
 const canonicalURL = Astro.site 
-  ? new URL(Astro.url.pathname, Astro.site)
-  : null;
+? new URL(Astro.url.pathname, Astro.site)
+: null;
 
-const { title, description, image } = Astro.props;
+const { title, description, image, author } = Astro.props;
 const finalTitle = title || SITE_METADATA.title.default;
 const finalDescription = description || SITE_METADATA.description;
+const finalAuthor = author || SITE_METADATA.authors[0].name;
 const finalImage = image || SITE_METADATA.openGraph.images[0].url;
 const imageURL = new URL(finalImage, Astro.url);
 ---
@@ -17,52 +18,63 @@ const imageURL = new URL(finalImage, Astro.url);
 
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <meta
-  name="robots"
-  content={`${SITE_METADATA.robots.index ? 'index' : 'noindex'}, ${SITE_METADATA.robots.follow ? 'follow' : 'nofollow'}`}
+name="robots"
+content={`${SITE_METADATA.robots.index ? 'index' : 'noindex'}, ${SITE_METADATA.robots.follow ? 'follow' : 'nofollow'}`}
 />
 <meta name="keywords" content={SITE_METADATA.keywords.join(', ')} />
-<meta name="author" content={SITE_METADATA.authors[0].name} />
+<meta name="author" content={finalAuthor} />
 <meta name="creator" content={SITE_METADATA.creator} />
 <meta name="publisher" content={SITE_METADATA.publisher} />
 
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=GT-NB96M5G7"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'GT-NB96M5G7');
+</script>
+<!-- <GoogleTagmanagerPartytown id="GT-NB96M5G7" /> -->
+
 <script is:inline>
-  (function() {
-    // const theme = localStorage.getItem('theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-    // if (theme === 'dark') document.documentElement.classList.add('dark');
-    // Force light mode
-    document.documentElement.classList.remove('dark');
-    localStorage.setItem('theme', 'light');
-  })();
+    (function() {
+// const theme = localStorage.getItem('theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+// if (theme === 'dark') document.documentElement.classList.add('dark');
+// Force light mode
+        document.documentElement.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+    })();
 </script>
 <style is:inline>
-  html {
-    color-scheme: light;
-  }
+    html {
+        color-scheme: light;
+    }
 </style>
 
 {
-  SITE_METADATA.icons.icon.map((icon) => (
-    <link rel="icon" type={icon.type} sizes={icon.sizes} href={icon.url} />
-  ))
+    SITE_METADATA.icons.icon.map((icon) => (
+        <link rel="icon" type={icon.type} sizes={icon.sizes} href={icon.url} />
+        ))
 }
 {
-  SITE_METADATA.icons.apple.map((icon) => (
-    <link rel="apple-touch-icon" sizes={icon.sizes} href={icon.url} />
-  ))
+    SITE_METADATA.icons.apple.map((icon) => (
+        <link rel="apple-touch-icon" sizes={icon.sizes} href={icon.url} />
+        ))
 }
 {
-  SITE_METADATA.icons.shortcut.map((icon) => (
-    <link rel="shortcut icon" href={icon.url} />
-  ))
+    SITE_METADATA.icons.shortcut.map((icon) => (
+        <link rel="shortcut icon" href={icon.url} />
+        ))
 }
 
 <link rel="manifest" href="/favicon/site.webmanifest" />
 <link rel="sitemap" href="/sitemap-index.xml" />
 <link
-  rel="alternate"
-  type="application/rss+xml"
-  title={SITE_TITLE}
-  href={Astro.site ? new URL('rss.xml', Astro.site).toString() : '/rss.xml'}
+rel="alternate"
+type="application/rss+xml"
+title={SITE_TITLE}
+href={Astro.site ? new URL('rss.xml', Astro.site).toString() : '/rss.xml'}
 />
 <link rel="alternate" hreflang="en-US" href={`https://www.biosked.com${Astro.url.pathname}`} />
 <link rel="alternate" hreflang="en-GB" href={`https://www.biosked.com${Astro.url.pathname}`} />
@@ -83,12 +95,12 @@ const imageURL = new URL(finalImage, Astro.url);
 <meta property="og:description" content={finalDescription} />
 <meta property="og:image" content={imageURL} />
 <meta
-  property="og:image:width"
-  content={SITE_METADATA.openGraph.images[0].width.toString()}
+property="og:image:width"
+content={SITE_METADATA.openGraph.images[0].width.toString()}
 />
 <meta
-  property="og:image:height"
-  content={SITE_METADATA.openGraph.images[0].height.toString()}
+property="og:image:height"
+content={SITE_METADATA.openGraph.images[0].height.toString()}
 />
 <meta property="og:image:alt" content={SITE_METADATA.openGraph.images[0].alt} />
 
@@ -100,149 +112,149 @@ const imageURL = new URL(finalImage, Astro.url);
 
 
 <script type="application/ld+json" is:inline>
-{
-  "@context": "https://schema.org",
-  "@graph": [
     {
-      "@type": "Organization",
-      "@id": "https://www.biosked.com/#organization",
-      "name": "BioSked Inc.",
-      "legalName": "BioSked Inc.",
-      "url": "https://www.biosked.com",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://www.biosked.com/images/logo.png",
-        "width": 512,
-        "height": 512
-      },
-      "description": "Healthcare technology company specializing in AI-powered scheduling and workforce management solutions for hospitals, clinics, medical practices, and multi-specialty groups including radiology, emergency medicine, anesthesiology, and more.",
-      "address": [
-        {
-          "@type": "PostalAddress",
-          "addressCountry": "US"
-        },
-        {
-          "@type": "PostalAddress",
-          "addressCountry": "EU"
-        }
-      ],
-      "contactPoint": [
-        {
-          "@type": "ContactPoint",
-          "contactType": "Sales",
-          "email": "sales@biosked.com",
-          "availableLanguage": ["English"]
-        },
-        {
-          "@type": "ContactPoint",
-          "contactType": "Customer Support",
-          "email": "support@biosked.com",
-          "availableLanguage": ["English"]
-        }
-      ],
-      "sameAs": [
-        "https://www.linkedin.com/company/biosked"
-      ],
-      "areaServed": [
-        {
-          "@type": "Country",
-          "name": "United States"
-        },
-        {
-          "@type": "Place",
-          "name": "European Union"
-        }
-      ]
-    },
-    {
-      "@type": "WebSite",
-      "@id": "https://www.biosked.com/#website",
-      "url": "https://www.biosked.com",
-      "name": "Momentum by BioSked",
-      "description": "Momentum: AI-powered healthcare scheduling software for hospitals, clinics, and medical practices",
-      "publisher": {
-        "@id": "https://www.biosked.com/#organization"
-      },
-      "inLanguage": "en-US",
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": "https://www.biosked.com/search?q={search_term_string}",
-        "query-input": "required name=search_term_string"
-      }
-    },
-    {
-      "@type": "SoftwareApplication",
-      "@id": "https://www.biosked.com/#software",
-      "name": "Momentum",
-      "applicationCategory": "BusinessApplication",
-      "applicationSubCategory": "Healthcare Management Software",
-      "operatingSystem": "Web, iOS, Android",
-      "description": "Healthcare scheduling software for radiology, emergency medicine, anesthesiology, pathology, cardiology, OB/GYN, pediatrics, ophthalmology, telemedicine, and primary care. Automates schedule generation, shift swaps, RVU tracking, and compliance for hospitals, clinics, and medical groups.",
-      "url": "https://www.biosked.com",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD",
-        "priceValidUntil": "2025-12-31",
-        "availability": "https://schema.org/InStock",
-        "url": "https://www.biosked.com/pricing"
-      },
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.8",
-        "reviewCount": "150",
-        "bestRating": "5",
-        "worstRating": "1"
-      },
-      "creator": {
-        "@id": "https://www.biosked.com/#organization"
-      },
-      "audience": [
-        {
-          "@type": "Audience",
-          "audienceType": "Hospital Groups"
-        },
-        {
-          "@type": "Audience",
-          "audienceType": "Medical Clinics"
-        },
-        {
-          "@type": "Audience",
-          "audienceType": "Large Medical Practices"
-        },
-        {
-          "@type": "Audience",
-          "audienceType": "Small Medical Practices"
-        },
-        {
-          "@type": "Audience",
-          "audienceType": "Radiology Departments"
-        },
-        {
-          "@type": "Audience",
-          "audienceType": "Emergency Departments"
-        },
-        {
-          "@type": "Audience",
-          "audienceType": "Specialty Medical Groups"
-        }
-      ],
-      "featureList": [
-        "Automated schedule generation",
-        "RVU scheduling and tracking",
-        "Radiology scheduling optimization",
-        "Emergency department scheduling",
-        "Multi-site scheduling",
-        "Shift swap management",
-        "Compliance tracking",
-        "Staff optimization",
-        "AI-powered scheduling",
-        "Mobile app access",
-        "Real-time notifications",
-        "Specialty-specific templates"
-      ],
-      "screenshot": "https://www.biosked.com/images/screenshot.png"
-    }
-  ]
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "Organization",
+                "@id": "https://www.biosked.com/#organization",
+                "name": "BioSked Inc.",
+                "legalName": "BioSked Inc.",
+                "url": "https://www.biosked.com",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "https://www.biosked.com/images/logo.png",
+                    "width": 512,
+                    "height": 512
+                },
+                "description": "Healthcare technology company specializing in AI-powered scheduling and workforce management solutions for hospitals, clinics, medical practices, and multi-specialty groups including radiology, emergency medicine, anesthesiology, and more.",
+                "address": [
+                    {
+                        "@type": "PostalAddress",
+                        "addressCountry": "US"
+                    },
+                    {
+                        "@type": "PostalAddress",
+                        "addressCountry": "EU"
+                    }
+                ],
+                "contactPoint": [
+                    {
+                        "@type": "ContactPoint",
+                        "contactType": "Sales",
+                        "email": "sales@biosked.com",
+                        "availableLanguage": ["English"]
+                    },
+                    {
+                        "@type": "ContactPoint",
+                        "contactType": "Customer Support",
+                        "email": "support@biosked.com",
+                        "availableLanguage": ["English"]
+                    }
+                ],
+                "sameAs": [
+                    "https://www.linkedin.com/company/biosked"
+                ],
+                "areaServed": [
+                    {
+                        "@type": "Country",
+                        "name": "United States"
+                    },
+                    {
+                        "@type": "Place",
+                        "name": "European Union"
+                    }
+                ]
+            },
+            {
+                "@type": "WebSite",
+                "@id": "https://www.biosked.com/#website",
+                "url": "https://www.biosked.com",
+                "name": "Momentum by BioSked",
+                "description": "Momentum: AI-powered healthcare scheduling software for hospitals, clinics, and medical practices",
+                "publisher": {
+                    "@id": "https://www.biosked.com/#organization"
+                },
+                "inLanguage": "en-US",
+                "potentialAction": {
+                    "@type": "SearchAction",
+                    "target": "https://www.biosked.com/search?q={search_term_string}",
+                    "query-input": "required name=search_term_string"
+                }
+            },
+            {
+                "@type": "SoftwareApplication",
+                "@id": "https://www.biosked.com/#software",
+                "name": "Momentum",
+                "applicationCategory": "BusinessApplication",
+                "applicationSubCategory": "Healthcare Management Software",
+                "operatingSystem": "Web, iOS, Android",
+                "description": "Healthcare scheduling software for radiology, emergency medicine, anesthesiology, pathology, cardiology, OB/GYN, pediatrics, ophthalmology, telemedicine, and primary care. Automates schedule generation, shift swaps, RVU tracking, and compliance for hospitals, clinics, and medical groups.",
+                "url": "https://www.biosked.com",
+                "offers": {
+                    "@type": "Offer",
+                    "price": "0",
+                    "priceCurrency": "USD",
+                    "priceValidUntil": "2025-12-31",
+                    "availability": "https://schema.org/InStock",
+                    "url": "https://www.biosked.com/pricing"
+                },
+                "aggregateRating": {
+                    "@type": "AggregateRating",
+                    "ratingValue": "4.8",
+                    "reviewCount": "150",
+                    "bestRating": "5",
+                    "worstRating": "1"
+                },
+                "creator": {
+                    "@id": "https://www.biosked.com/#organization"
+                },
+                "audience": [
+                    {
+                        "@type": "Audience",
+                        "audienceType": "Hospital Groups"
+                    },
+                    {
+                        "@type": "Audience",
+                        "audienceType": "Medical Clinics"
+                    },
+                    {
+                        "@type": "Audience",
+                        "audienceType": "Large Medical Practices"
+                    },
+                    {
+                        "@type": "Audience",
+                        "audienceType": "Small Medical Practices"
+                    },
+                    {
+                        "@type": "Audience",
+                        "audienceType": "Radiology Departments"
+                    },
+                    {
+                        "@type": "Audience",
+                        "audienceType": "Emergency Departments"
+                    },
+                    {
+                        "@type": "Audience",
+                        "audienceType": "Specialty Medical Groups"
+                    }
+                ],
+                "featureList": [
+                    "Automated schedule generation",
+                    "RVU scheduling and tracking",
+                    "Radiology scheduling optimization",
+                    "Emergency department scheduling",
+                    "Multi-site scheduling",
+                    "Shift swap management",
+                    "Compliance tracking",
+                    "Staff optimization",
+                    "AI-powered scheduling",
+                    "Mobile app access",
+                    "Real-time notifications",
+                    "Specialty-specific templates"
+                ],
+                "screenshot": "https://www.biosked.com/images/screenshot.png"
+            }
+        ]
 }
 </script>
