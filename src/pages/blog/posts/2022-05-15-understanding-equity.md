@@ -4,11 +4,11 @@ date: 2022-05-15
 author: BioSked
 title: "Improve Your Practice’s Scheduling: Understanding Equity"
 description: In scheduling, equity is a frequently used term. Unfortunately, it is not always a clear term. This article takes equity and breaks it down, explaining why it is such an essential part of practice scheduling.
-image: "/src/assets/images/improve-practices.webp"
+image: "../../../assets/images/improve-practices.webp"
 
 ---
 
-![Alt text](/src/assets/images/improve-practices.webp)
+![Alt text](../../../assets/images/improve-practices.webp)
 
 Provider burnout is a growing epidemic in our country. Physicians work in high stress situations every day, but with the demand to see more patients growing, they rarely have time to slow down and reflect. With high patient quotas and administrative demands, the work-life balance tips more towards work and less towards life. These long hours lead to less time with family and loved ones. Provider job satisfaction goes down, and with it patient care. It is important to confront burnout in your practice and help providers regain control of their lives. But how?
 

@@ -4,11 +4,11 @@ date: 2022-03-15
 author: BioSked
 title: "The Consequences of Improper Scheduling"
 description: For healthcare organizations, the benefits of proper physician and staff scheduling are frequently highlighted. What people fail to discuss in-depth are the problems organizations face when they build schedules incorrectly.
-image: "/src/assets/images/improper-scheduling.webp"
+image: "../../../assets/images/improper-scheduling.webp"
 
 ---
 
-![Alt text](/src/assets/images/improper-scheduling.webp)
+![Alt text](../../../assets/images/improper-scheduling.webp)
 
 For healthcare organizations, the benefits of proper physician and staff scheduling are frequently highlighted. What people fail to discuss in-depth are the problems organizations face when they build schedules incorrectly. Despite the existence of automated scheduling applications specifically designed for healthcare organizations, many organizations continue to take great risks by using outdated scheduling methods. Below are just a few issues that can arise and cause major problems within an organization if physicians and staff aren’t properly scheduled.
 

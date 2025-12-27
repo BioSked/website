@@ -4,11 +4,11 @@ date: 2023-10-17
 author: BioSked
 title: "Innovative Solutions for Smarter Anesthesia Scheduling"
 description: In today’s fast-paced medical environment, an efficient and effective anesthesia scheduling system is crucial for healthcare facilities.
-image: "/src/assets/images/smart-anesthesia_980x653.webp"
+image: "../../../assets/images/smart-anesthesia_980x653.webp"
 
 ---
 
-![Alt text](/src/assets/images/smart-anesthesia_980x653.webp)
+![Alt text](../../../assets/images/smart-anesthesia_980x653.webp)
 
 **Stay Ahead of the Curve: Innovative Solutions for Smarter Anesthesia Scheduling**
 

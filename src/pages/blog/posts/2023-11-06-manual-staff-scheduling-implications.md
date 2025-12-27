@@ -4,11 +4,11 @@ date: 2023-11-06
 author: BioSked
 title: "Scheduling Struggles: The Implications of Manual Staff Scheduling"
 description: Why efficient healthcare workforce management requires automated scheduling software.
-image: "/src/assets/images/Scheduling-Struggles-Implications.webp"
+image: "../../../assets/images/Scheduling-Struggles-Implications.webp"
 
 ---
 
-![Alt text](/src/assets/images/Scheduling-Struggles-Implications.webp)
+![Alt text](../../../assets/images/Scheduling-Struggles-Implications.webp)
 
 **Why efficient healthcare workforce management requires automated scheduling software?**
 

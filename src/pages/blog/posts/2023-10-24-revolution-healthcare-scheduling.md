@@ -4,11 +4,11 @@ date: 2023-10-24
 author: BioSked
 title: "Why Healthcare Scheduling Software is Essential"
 description: In the ever-evolving landscape of healthcare, resource allocation and fair scheduling are paramount to delivering quality care while ensuring the well-being of healthcare professionals.
-image: "/src/assets/images/Healthcare-Scheduling-Software-Essential-980x653.webp"
+image: "../../../assets/images/Healthcare-Scheduling-Software-Essential-980x653.webp"
 
 ---
 
-![Alt text](/src/assets/images/Healthcare-Scheduling-Software-Essential-980x653.webp)
+![Alt text](../../../assets/images/Healthcare-Scheduling-Software-Essential-980x653.webp)
 
 In the ever-evolving landscape of healthcare, resource allocation and fair scheduling are paramount to delivering quality care while ensuring the well-being of healthcare professionals. This is where healthcare scheduling software, like Momentum Scheduling, steps in as a game-changer. With a suite of features designed to streamline scheduling, enhance resource allocation, and improve decision-making, Momentum Scheduling is transforming healthcare management. In this article, we’ll explore how this software revolutionizes the healthcare industry.
 

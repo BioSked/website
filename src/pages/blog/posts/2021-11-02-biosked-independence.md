@@ -4,11 +4,11 @@ date: 2021-11-02
 author: BioSked
 title: "Momentum Healthcare Scheduling Software becomes an independent company"
 description: We are proud to announce that Momentum has been taken over by its employees and a syndicate of private investors through the creation of BioSked, a company entirely dedicated to its development and promotion.
-image: "/src/assets/images/MomentumBiosked.png"
+image: "../../../assets/images/MomentumBiosked.png"
 
 ---
 
-![Alt text](/src/assets/images/MomentumBiosked.png)
+![Alt text](../../../assets/images/MomentumBiosked.png)
 
 ## We are proud to announce that Momentum has been taken over by its employees and a syndicate of private investors through the creation of BioSked, a company entirely dedicated to its development and promotion.
 

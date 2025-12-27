@@ -4,11 +4,11 @@ date: 2023-08-09
 author: BioSked
 title: "Optimize Physician Scheduling with AI"
 description: The Benefits of Using Artificial Intelligence (AI) for Medical Planning
-image: "/src/assets/images/10-reasons-scheduling.webp"
+image: "../../../assets/images/10-reasons-scheduling.webp"
 
 ---
 
-![Alt text](/src/assets/images/10-reasons-scheduling.webp)
+![Alt text](../../../assets/images/10-reasons-scheduling.webp)
 
 ## The Benefits of Using Artificial Intelligence (AI) for Medical Planning
 

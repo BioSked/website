@@ -4,11 +4,11 @@ date: 2024-01-31
 author: David Dudok de Wit
 title: 5 Myths of Healthcare Staff Scheduling Software
 description: Let’s debunk five common myths and explore the reality of how such software can be advantageous.
-image: "/src/assets/images/5-myths-1080x675.webp"
+image: "../../../assets/images/5-myths-1080x675.webp"
 
 ---
 
-![Alt text](/src/assets/images/5-myths-1080x675.webp)
+![Alt text](../../../assets/images/5-myths-1080x675.webp)
 
 In the complex and fast-paced world of healthcare, efficient staff scheduling is critical to ensure that patient care is never compromised. Despite the clear benefits of healthcare staff scheduling software, there are persistent myths that prevent some hospitals and medical practices from embracing these technological solutions. Let’s debunk five common myths and explore the reality of how such software can be advantageous.
 

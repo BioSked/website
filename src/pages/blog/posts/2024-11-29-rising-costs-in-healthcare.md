@@ -4,11 +4,11 @@ date: 2024-11-29
 author: Doug Nicholson
 title: The Rising Costs of Job Vacancies and Turnover in Healthcare Organizations 
 description: Exploring the costly implications of staff turnover and what you can do to prevent it.
-image: "/src/assets/images/Staff-needs-1080x675.webp"
+image: "../../../assets/images/Staff-needs-1080x675.webp"
 
 ---
 
-![Alt text](/src/assets/images/Staff-needs-1080x675.webp)
+![Alt text](../../../assets/images/Staff-needs-1080x675.webp)
 
 **Exploring the costly implications of staff turnover and what you can do to prevent it.**
 

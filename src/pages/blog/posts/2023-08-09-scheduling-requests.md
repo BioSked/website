@@ -4,11 +4,11 @@ date: 2023-08-09
 author: BioSked
 title: "Healthcare Scheduling Requests: A System That Works"
 description: Don’t underestimate the importance of a proper request management system. Having one that works increases employee satisfaction and reduces confusion.
-image: "/src/assets/images/helthcare-scheduling.webp"
+image: "../../../assets/images/helthcare-scheduling.webp"
 
 ---
 
-![Alt text](/src/assets/images/helthcare-scheduling.webp)
+![Alt text](../../../assets/images/helthcare-scheduling.webp)
 
 Creating schedules at a healthcare organization is hard. One of the hardest parts for schedule creators is managing the time-off requests that come up for every scheduling block. There are many ways to try and stay on top of all of these requests, but most options are manual and have a high risk for error. If you manage your organization’s time-off requests one of these ways, I’m sure you’ve worried about these issues occurring at some point, or maybe they already have.
 

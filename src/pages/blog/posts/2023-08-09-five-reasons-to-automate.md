@@ -4,11 +4,11 @@ date: 2023-08-09
 author: BioSked
 title: "5 Reasons to Switch to Automated Physician Scheduling Software"
 description: We explore the 5 reasons why a medical service should switch to automatic physician scheduling software.
-image: "/src/assets/images/schedule-biosked.webp"
+image: "../../../assets/images/schedule-biosked.webp"
 
 ---
 
-![Alt text](/src/assets/images/schedule-biosked.webp)
+![Alt text](../../../assets/images/schedule-biosked.webp)
 
 In a medical department, planning doctors’ working schedules can be a real challenge. Physicians have personal preferences and availability, while having to meet the needs of patients and organizational constraints.
 

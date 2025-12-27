@@ -4,11 +4,11 @@ date: 2025-11-05
 author: Doug Nicholson
 title: First RVU-Based Scheduling Platform
 description: Radiology has evolved — but scheduling hasn’t kept up. As imaging volumes grow and teleradiology networks expand across regions, many departments still rely on templates and spreadsheets built for a different era.
-image: "/src/assets/images/rvu-time.png"
+image: "../../../assets/images/rvu-time.png"
 
 ---
 
-![Alt text](/src/assets/images/rvu-time.png)
+![Alt text](../../../assets/images/rvu-time.png)
 
 Radiology has evolved — but scheduling hasn’t kept up.
 

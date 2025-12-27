@@ -4,11 +4,11 @@ date: 2023-10-03
 author: BioSked
 title: "The Prescription for Efficient Healthcare"
 description: Why Hospitals Should Embrace Employee Scheduling Software?
-image: "/src/assets/images/prescription-healthcare-980x653.webp"
+image: "../../../assets/images/prescription-healthcare-980x653.webp"
 
 ---
 
-![Alt text](/src/assets/images/prescription-healthcare-980x653.webp)
+![Alt text](../../../assets/images/prescription-healthcare-980x653.webp)
 
 In the dynamic and high-stakes environment of healthcare, effective staff scheduling can mean the difference between life and death. Managing the schedules of doctors, nurses, and other healthcare professionals is a complex and critical task. Fortunately, innovative solutions like Momentum Scheduling are changing the game. In this blog post, we’ll explore the key features and benefits of hospital employee scheduling software, shedding light on why it’s essential for hospitals to adopt these systems. 
 

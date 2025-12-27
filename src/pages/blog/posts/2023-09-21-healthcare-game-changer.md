@@ -4,11 +4,11 @@ date: 2023-09-21
 author: BioSked
 title: "The Prescription for Efficient Healthcare"
 description: Why Hospitals Should Embrace Employee Scheduling Software?
-image: "/src/assets/images/healthcare-planning.webp"
+image: "../../../assets/images/healthcare-planning.webp"
 
 ---
 
-![Alt text](/src/assets/images/healthcare-planning.webp)
+![Alt text](../../../assets/images/healthcare-planning.webp)
 
 In an ever-evolving healthcare industry, staying ahead of the curve is essential. That’s where staff scheduling software comes in – a game changer that can streamline operations and revolutionize healthcare organizations. With its advanced features and intuitive interface, this software allows healthcare facilities to manage their staff schedules with ease and efficiency. Nurses, doctors, and other medical professionals can easily access their schedules, make changes, and stay informed about any updates in real-time. 
 

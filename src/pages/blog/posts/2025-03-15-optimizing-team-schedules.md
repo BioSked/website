@@ -4,10 +4,10 @@ date: 2025-03-14
 author: David Dudok de Wit
 title: AI - a powerful lever for optimizing team schedules
 description: In a world where efficiency and optimized human resource management are essential, artificial intelligence (AI) has today become an indispensable tool for enhancing management in the healthcare sector
-image: "/src/assets/images/ai-laptop.webp"
+image: "../../../assets/images/ai-laptop.webp"
 ---
 
-![BioSked AI](/src/assets/images/ai-laptop.webp)
+![BioSked AI](../../../assets/images/ai-laptop.webp)
 
 In a world where efficiency and optimized human resource management are essential, artificial intelligence (AI) has today become an indispensable tool for enhancing management in the healthcare sector. Thanks to advanced algorithms, AI enables intelligent scheduling that meets regulatory requirements, the specific operational constraints of each facility, and the expectations of healthcare professionals.
 

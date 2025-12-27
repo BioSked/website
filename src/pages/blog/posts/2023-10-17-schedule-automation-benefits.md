@@ -4,11 +4,11 @@ date: 2023-10-17
 author: BioSked
 title: "Benefits of Automating Physician Scheduling software"
 description: With the advent of advanced software solutions, automating physician scheduling has become an essential tool for healthcare organizations looking to streamline their operations.
-image: "/src/assets/images/automating-schedules_980x653.webp"
+image: "../../../assets/images/automating-schedules_980x653.webp"
 
 ---
 
-![Alt text](/src/assets/images/automating-schedules_980x653.webp)
+![Alt text](../../../assets/images/automating-schedules_980x653.webp)
 
 Are you tired of spending hours manually scheduling physician shifts and maintaining an organized schedule? The cumbersome process of physician scheduling can often lead to confusion and inefficiency within healthcare facilities. However, with the advent of advanced software solutions, automating physician scheduling has become an essential tool for healthcare organizations looking to streamline their operations.
 
