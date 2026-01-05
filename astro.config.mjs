@@ -60,6 +60,27 @@ export default defineConfig({
             }
         }
     },
+
+    // Redirects legacy pages (mostly dating from the old Wordpress website)
+    redirects: {
+        "bookdemo": {
+            destination: "/demo",
+            status: 301
+        },
+        "schedule-a-demo": {
+            destination: "/demo",
+            status: 301
+        },
+        "/the-first-rvu-based-multi-time-zone-scheduling-platform-for-radiology-teams": {
+            destination: "/blog/posts/2025-11-05-rvu-based-scheduling",
+            status: 301
+        },
+        "ai-a-powerful-lever-for-optimizing-team-schedules-in-healthcare-settings": {
+            destination: "/blog/posts/2025-03-15-optimizing-team-schedules",
+            status: 301
+        },
+    },
+
     markdown: {
         rehypePlugins: [
             [rehypeAddClasses, {

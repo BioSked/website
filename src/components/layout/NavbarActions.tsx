@@ -17,7 +17,7 @@ interface NavbarActionsProps {
 }
 
 const ACTION_BUTTONS = [
-    { label: 'Book a Demo', href: '/bookdemo', variant: 'default' as const, isModal: false },
+    { label: 'Book a Demo', href: '/demo', variant: 'default' as const, isModal: false },
 ];
 
 export function NavbarActions({ pagename, navLinks}: NavbarActionsProps)
