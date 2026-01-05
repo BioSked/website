@@ -1,6 +1,6 @@
 ---
 layout: "@layouts/ArticleLayout.astro"
-date: 2024-11-29
+date: 2023-11-29
 author: Doug Nicholson
 title: The Rising Costs of Job Vacancies and Turnover in Healthcare Organizations 
 description: Exploring the costly implications of staff turnover and what you can do to prevent it.

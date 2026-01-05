@@ -85,5 +85,5 @@ All blog posts are located in `src/pages/blog/posts` and are written using the [
 2. Name your file with a date+title pattern like this `YYYY-MM-DD-article-title.md` (eg. `2026-01-05-happy-new-year.md`)
 3. Make sure your `.md` files starts with the necessary meta-data such as _Title_, _Description_, _Author_, _Date_ and _Image_.
 3. If your blog post includes an image, place it in `src/assets/images`
-3. Commit the change on GitHub
-4. Done. The website will be automatically rebuilt with your new blog post.
+3. Commit your changes on GitHub
+4. Done. The website will automatically rebuilt itself with your new blog post.

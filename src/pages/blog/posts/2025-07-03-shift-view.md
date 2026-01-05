@@ -1,6 +1,6 @@
 ---
 layout: "@layouts/ArticleLayout.astro"
-date: 2025-07-02
+date: 2025-07-03
 author: David Dudok de Wit
 title: Shift-Based View for Better On-the-Ground Coordination
 description: Radiology has evolved — but scheduling hasn’t kept up. As imaging volumes grow and teleradiology networks expand across regions, many departments still rely on templates and spreadsheets built for a different era

@@ -71,12 +71,96 @@ export default defineConfig({
             destination: "/demo",
             status: 301
         },
-        "/the-first-rvu-based-multi-time-zone-scheduling-platform-for-radiology-teams": {
+        "contact-sales": {
+            destination: "/demo",
+            status: 301
+        },
+        "about-biosked/leadership-team": {
+            destination: "/about",
+            status: 301
+        },
+        "the-first-rvu-based-multi-time-zone-scheduling-platform-for-radiology-teams": {
             destination: "/blog/posts/2025-11-05-rvu-based-scheduling",
+            status: 301
+        },
+        "momentum-update-a-shift-based-view-for-better-on-the-ground-coordination": {
+            destination: "/blog/posts/2025-07-03-shift-view",
             status: 301
         },
         "ai-a-powerful-lever-for-optimizing-team-schedules-in-healthcare-settings": {
             destination: "/blog/posts/2025-03-15-optimizing-team-schedules",
+            status: 301
+        },
+        "biosked-reinvents-medical-team-scheduling-with-the-new-version-of-momentum": {
+            destination: "/blog/posts/2025-01-29-medical-team-scheduling",
+            status: 301
+        },
+        "5-myths-of-healthcare-staff-scheduling-software": {
+            destination: "/blog/posts/2024-01-31-five-healthcare-myths",
+            status: 301
+        },
+        "the-year-of-improved-workforce-management": {
+            destination: "/blog/posts/2023-12-21-year-2024",
+            status: 301
+        },
+        "the-costly-implications-of-staff-turnover-in-healthcare-organizations": {
+            destination: "/blog/posts/2023-11-29-rising-costs-in-healthcare",
+            status: 301
+        },
+        "scheduling-struggles-the-implications-of-manual-staff-scheduling": {
+            destination: "/blog/posts/2023-11-06-manual-staff-scheduling-implications",
+            status: 301
+        },
+        "revolutionizing-healthcare-management-why-healthcare-scheduling-software-is-essential": {
+            destination: "/blog/posts/2023-10-24-revolution-healthcare-scheduling",
+            status: 301
+        },
+        "innovative-solutions-for-smarter-anesthesia-scheduling": {
+            destination: "/blog/posts/2023-10-17-smarter-anesthesia",
+            status: 301
+        },
+        "benefits-of-automating-physician-scheduling-software": {
+            destination: "/blog/posts/2023-10-17-schedule-automation-benefits",
+            status: 301
+        },
+        "prescription-for-efficient-healthcare": {
+            destination: "/blog/posts/2023-10-03-prescription-efficient-healthcare",
+            status: 301
+        },
+        "a-game-changer-in-healthcare-how-staff-scheduling-software-streamlines-operations": {
+            destination: "/blog/posts/2023-09-21-healthcare-game-changer",
+            status: 301
+        },
+        "optimize-physician-scheduling": {
+            destination: "/blog/posts/2023-08-09-physician-scheduling-ai",
+            status: 301
+        },
+        "10-reasons-for-physician-scheduling-software": {
+            destination: "/blog/posts/2023-08-09-five-reasons-to-automate",
+            status: 301
+        },
+        "scheduling-myths-that-ruin-efficiency": {
+            destination: "/blog/posts/2023-08-09-scheduling-myths",
+            status: 301
+        },
+        "healthcare-scheduling-requests": {
+            destination: "/blog/posts/2023-08-09-scheduling-requests",
+            status: 301
+        },
+        "creating-culturef-physician-wellness": {
+            destination: "/blog/posts/2022-09-04-culture-of-physician-wellness",
+            status: 301
+        },
+        "improving-your-practices-scheduling-understanding-equity": {
+            destination: "/blog/posts/2022-05-15-understanding-equity",
+            status: 301
+        },
+        "consequences-of-improper-scheduling": {
+            destination: "/blog/posts/2022-03-15-consequences-improper-scheduling",
+            status: 301
+        },
+        "press-release-healthcare-scheduling-software": {
+            destination: "/blog/posts/2021-11-02-biosked-independence",
             status: 301
         },
     },
