@@ -6,20 +6,22 @@ const canonicalURL = Astro.site
 ? new URL(Astro.url.pathname, Astro.site)
 : null;
 
-const { title, description, image, author } = Astro.props;
+const { title, description, image, author, noIndex } = Astro.props;
 const finalTitle = title || SITE_METADATA.title.default;
 const finalDescription = description || SITE_METADATA.description;
 const finalAuthor = author || SITE_METADATA.authors[0].name;
 const finalImage = image || SITE_METADATA.openGraph.images[0].url;
 const imageURL = new URL(finalImage, Astro.url);
+const robotsIndex = noIndex ? false : SITE_METADATA.robots.index;
+const robotsFollow = noIndex ? false : SITE_METADATA.robots.follow;
 ---
 
 <meta charset="utf-8" />
 
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <meta
-name="robots"
-content={`${SITE_METADATA.robots.index ? 'index' : 'noindex'}, ${SITE_METADATA.robots.follow ? 'follow' : 'nofollow'}`}
+    name="robots"
+    content={`${robotsIndex ? 'index' : 'noindex'}, ${robotsFollow ? 'follow' : 'nofollow'}`}
 />
 <meta name="keywords" content={SITE_METADATA.keywords.join(', ')} />
 <meta name="author" content={finalAuthor} />

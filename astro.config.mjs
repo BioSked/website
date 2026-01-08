@@ -37,7 +37,9 @@ export default defineConfig({
         mdx(), 
         react(), 
         sitemap({
-            filter: (page) => page !== 'https://biosked.com/privacy/',
+            filter: (page) => 
+                page !== 'https://biosked.com/privacy/' && 
+                !page.includes('/changelog/'),
         })
     ],
 
@@ -173,14 +175,15 @@ export default defineConfig({
                 h3: 'max-w-2xl mx-auto font-semibold mt-4 sm:mt-6',
                 p: 'redacted mb-3 sm:mb-4 text-foreground/85',
                 strong: 'text-foreground font-semibold',
-                ul: "max-w-2xl mx-auto mb-6 list-none pl-5 text-foreground/85 [&>li]:before:content-['▪︎'] [&>li]:before:-ml-6 [&>li]:before:mr-2",
+                ul: "max-w-2xl mx-auto mb-6 list-none pl-5 text-foreground/85 [&>li]:before:content-['—'] [&>li]:before:-ml-6 [&>li]:before:mr-2",
                 ol: "max-w-2xl mx-auto mb-6 list-[upper-roman] pl-5 text-foreground/85 [&>li]:pl-2",
-                li: "my-3 before:text-accent marker:text-accent",
+                li: "my-2 pl-2 before:text-secondary/25 marker:text-accent",
                 img: 'mb-8 sm:mb-15 rounded shadow-xl shadow-secondary/10 border border-secondary/15',
                 hr: 'my-6 md:my-10 max-w-2xl mx-auto',
                 a: 'text-accent hover:underline',
                 blockquote: 'py-4 [&>p]:bg-primary/10 [&>p]:rounded-r [&>p]:p-4 [&>p]:pl-6 [&>p]:border-l [&>p]:border-cyan-500 [&>p]:border-l-2',
                 pre: 'redacted mb-3 sm:mb-4 text-foreground/85 !bg-secondary/10 !text-secondary rounded-sm p-3 text-sm',
+                code: 'text-sm bg-blue-400/15 text-secondary rounded-sm px-1 py-1'
             }]
         ]
     }

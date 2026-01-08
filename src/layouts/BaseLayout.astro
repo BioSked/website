@@ -9,13 +9,13 @@ import Footer from "@/components/layout/Footer.astro";
 import { GoogleTagmanagerPartytown } from '@digi4care/astro-google-tagmanager';
 // import { ContactSalesModal } from '@/components/sections/ContactSalesModal.tsx';
 
-const { title, description, author } = Astro.props;
+const { title, description, author, noIndex } = Astro.props;
 const currentPath = Astro.url.pathname;
 ---
 
 <html lang="en" class="bg-noise">
   <head>
-    <BaseHead title={title} description={description} author={author}/>
+    <BaseHead title={title} description={description} author={author} noIndex={noIndex}/>
     <script charset="utf-8" type="text/javascript" src="//js-eu1.hsforms.net/forms/embed/v2.js"></script>
   </head>
   <body
