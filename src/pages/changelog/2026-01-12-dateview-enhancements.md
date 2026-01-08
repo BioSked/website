@@ -15,8 +15,8 @@ noindex: true
 
 - **Dark mode**: Choose between light, dark or just let Momentum follow your system display preference.
 - **Quick-search**: instantly locate assignments on screen as you type.
-- **New Analytics and Metrics**: understand assignment distribution according to Roles, Staff, Location or Hours and use the Activity heatmap to quickly understand where.
-- **Instant Analytics**:  directly integrated in the Date-view for quick access to single day, staff, staff group, role or role group reporting.
+- **New Analytics and Metrics**: understand assignment distribution according to Roles, Staff, Location or Hours and use the Activity heatmap to locate high assignment periods.
+- **Instant Analytics** directly integrated in the Date-view for quick access to single day, staff, staff group, role or role group reporting.
 
 
 ## 💎 Improvements
