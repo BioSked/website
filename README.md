@@ -2,7 +2,7 @@
 
 Welcome to our marketing and multilingual website built with Astro, React, and Tailwind CSS.
 
-## 🚀 Tech Stack
+## ⚙️ Tech Stack
 
 - **[Astro](https://astro.build)** - Static site generator with partial hydration
 - **[React](https://react.dev)** - UI components with islands architecture
@@ -39,7 +39,7 @@ Welcome to our marketing and multilingual website built with Astro, React, and T
 └── tsconfig.json          # TypeScript configuration
 ```
 
-## 🌍 Key Features and Dependencies
+## 📦 Key Features and Dependencies
 
 - **Internationalization (i18n)**: English and French support with URL-based locale routing
 - **Static Site Generation**: Fast, SEO-friendly static output
@@ -53,7 +53,7 @@ Welcome to our marketing and multilingual website built with Astro, React, and T
 - **Styling**: Class Variance Authority, clsx, tailwind-merge
 
 
-## 🚦 Getting Started
+## 🏁 Getting Started
 
 ```bash
 # Install dependencies
