@@ -3,27 +3,86 @@ layout: "@layouts/ChangelogLayout.astro"
 date: 2026-01-12
 version: 4.4
 author: Frédéric Andreae
-title: Dateview improvements
-description: In a world where efficiency and optimized human resource management are essential, artificial intelligence (AI) has today become an indispensable tool for enhancing management in the healthcare sector
+title: Major Scheduling, Analytics, and Performance Improvements
+description: Version 4.4 introduces powerful new scheduling workflows, real-time analytics, and major performance improvements to help teams plan faster, scale confidently, and gain immediate operational insight.
 image: "../../../assets/images/ai-laptop.webp"
 noindex: true
 ---
 
-<!-- ![BioSked AI](../../../assets/images/ai-laptop.webp) -->
-
 ## ✨ New
 
-- **Dark mode**: Choose between light, dark or just let Momentum follow your system display preference.
-- **Quick-search**: instantly locate assignments on screen as you type.
-- **New Analytics and Metrics**: understand assignment distribution according to Roles, Staff, Location or Hours and use the Activity heatmap to locate high assignment periods.
-- **Instant Analytics** directly integrated in the Date-view for quick access to single day, staff, staff group, role or role group reporting.
+### Timeline View
+- New hour-by-hour visualization of assignment coverage.
+- Quickly identify coverage gaps and overlaps.
+- Supports multi-timezone viewing, making it easier to manage distributed teams.
+- Designed for high-volume schedules where visibility into coverage density matters.
 
+### Bulk Editing for Assignments
+- Select multiple assignments using:
+  - Ctrl / Cmd + click
+  - Ctrl / Cmd + A to select all visible assignments
+- Apply changes in bulk:
+  - Lock / Unlock
+  - Publish / Unpublish
+  - Change dates
+  - Reassign staff
+- Dramatically reduces repetitive work for large schedules.
+
+### Faster Assignment Creation
+- Right-click any cell in the schedule to create a new assignment.
+- Automatically pre-fills relevant fields based on context and active filters, including:
+  - Date
+  - Role
+  - Staff
+  - Location
+- Staff **and role lists** are filtered to the current view, reducing errors and speeding up scheduling for large teams.
+
+### Analytics Dashboard
+- Real-time operational insights based on the current filters and schedule view.
+- Key metrics include:
+  - Unfilled assignments
+  - Total cost
+  - Average hours
+  - Distribution by role and staff
+- Visualizations:
+  - Hourly distribution
+  - Heatmap showing assignment density
+- Enables quick analysis without exporting data.
+
+### Keyboard Shortcuts
+- Power-user shortcuts for faster navigation and actions.
+- Examples:
+  - `Ctrl / Cmd + K` — Quick search
+  - `N` — Create a new assignment
+
+### Assignment Duplication
+- Duplicate selected assignments:
+  - Once
+  - Or on a recurring pattern (e.g., weekly)
+- Useful for repeating schedules and rapidly building future coverage.
+- Designed to work with bulk selection and existing filters for precise control.
+
+---
 
 ## 💎 Improvements
 
-- **Overall layout** simplification, with clearer access to main commands.
-- **Schedule build** added to the new Date-view.
-- **Multi-select**: Ability to select an entire row or column of assignments for faster bulk-editing.
-- **Multi-select**: New option to *Publish* / *Unpublish* individual or bulk assignments.
-- Ability to add assignments for a specific row, column or specific cell.
-- Improved loading time and faster UI refresh
+### Performance & Scale
+- Removed the previous hard cap on the number of assignments that can be viewed at once.
+- Schedules now scale significantly better across all views.
+- Faster loading and UI refreshes throughout the application, especially for large datasets.
+
+### Schedule & UI Enhancements
+- Simplified layout with clearer access to primary actions.
+- New Shift View layout options for alternative schedule visualization.
+- Dark mode support:
+  - Light
+  - Dark
+  - System preference
+
+### Multi-Select Enhancements
+- Select entire rows or columns of assignments.
+- Publish or unpublish assignments individually or in bulk.
+- Copy and paste schedules using multi-select.
+
+### Search
+- Quick-search instantly highlights assignments on screen as you type.
