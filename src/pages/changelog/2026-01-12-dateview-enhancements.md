@@ -6,7 +6,7 @@ author: Frédéric Andreae
 title: Major Scheduling, Analytics and Performance Improvements
 description: Version 4.4 introduces powerful new scheduling workflows, real-time analytics, and major performance improvements to help teams plan faster, scale confidently, and gain immediate operational insight.
 image: "../../assets/images/momentum4-4.png"
-noindex: true
+
 ---
 
 ![Momentum 4.4](../../assets/images/momentum4-4.png)

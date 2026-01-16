@@ -5,8 +5,8 @@ version: "2.9.0 (Mobile)"
 author: Frédéric Andreae
 title: 📱 Mobile App update
 description: Momentum mobile app received a quick coat of paint along with a few background improvements.
-image: ""
-noindex: true
+image: "../../assets/images/scheduling-myths.webp"
+
 ---
 
 We've given the Momentum mobile app a quick coat of paint along with a few background improvements.

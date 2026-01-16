@@ -5,8 +5,8 @@ version: "4.1.0"
 author: Frédéric Andreae
 title: Smart-cloning and multi-select
 description: New Smart cloning feature to easily duplicate an existing schedule.
-image: "../../assets/images/momentum4-1.png"
-noindex: true
+image: "../../assets/images/scheduling-myths.webp"
+
 ---
 
 ![Momentum 4.1](../../assets/images/momentum4-1.png)

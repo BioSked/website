@@ -6,7 +6,6 @@ author: Frédéric Andreae
 title: Vue-par-date et Performances améliorées
 description: Momentum 4.4 introduit de nouveaux flux de travail pour la planification et l'analyses en temps réel et d'importantes améliorations de performances pour aider les équipes à planifier plus rapidement.
 image: ""
-noindex: true
 ---
 
 ![Momentum 4.4](../../../assets/images/momentum4-4.png)
