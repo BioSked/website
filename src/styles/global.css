@@ -216,8 +216,14 @@
         @apply font-display font-weight-display;
     }
 
-    p.redacted:not(:has(img)),
-    pre.redacted:not(:has(img))
+    .redacted > h1,
+    .redacted > h2,
+    .redacted > h3,
+    .redacted > p:not(:has(img)),
+    .redacted > pre:not(:has(img)),
+    .redacted > ul,
+    .redacted > ol,
+    .redacted > hr
     {
         @apply max-w-2xl mx-auto;
     }

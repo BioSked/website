@@ -11,13 +11,13 @@ const pubDate = postDate.toLocaleDateString('en-US', {
 ---
 
 <BaseLayout title={frontmatter.title} description={frontmatter.description} author={frontmatter.author}>
-	<div class="container max-w-5xl section-padding md:text-lg mb-10 md:mb-20">
-		<div class="text-muted-foreground text-sm font-medium text-center mb-8"><a href="/blog" class="transition-all hover:text-foreground">Blog</a> <span class="mx-1 font-light">/</span> News</div>
+	<div class="container max-w-5xl section-padding text-sm md:text-base mb-10 md:mb-20 group redacted">
+		<div class="text-muted-foreground text-sm font-medium text-center mb-4"><a href="/blog" class="transition-all hover:text-foreground">Blog</a> <span class="mx-1 font-light">/</span> News</div>
 		<h1 class="text-display-section font-bold text-center max-w-xl mx-auto mb-6">
 			{frontmatter.title}
 		</h1>
-		<hr class="my-6 md:my-8 max-w-2xl mx-auto">
-		<div class="mb-8 text-center text-muted-foreground text-tight text-base">{frontmatter.author} <span class="mx-2">·</span> {pubDate}</div>
+		<hr class="my-4 md:my-6 max-w-2xl mx-auto">
+		<div class="mb-8 text-center text-muted-foreground text-tight">{frontmatter.author} <span class="mx-2">·</span> {pubDate}</div>
 		<slot />
 	</div>
 </BaseLayout>

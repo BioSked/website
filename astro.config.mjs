@@ -170,20 +170,20 @@ export default defineConfig({
     markdown: {
         rehypePlugins: [
             [rehypeAddClasses, {
-                h1: 'max-w-2xl mx-auto text-display-section font-bold text-center max-w-xl mx-auto mb-6',
-                h2: 'max-w-2xl mx-auto text-display-card mt-8 sm:mt-12 mb-4 sm:mb-6',
-                h3: 'max-w-2xl mx-auto font-semibold mt-4 sm:mt-6',
-                p: 'redacted mb-3 sm:mb-4 text-foreground/85',
+                h1: 'text-display-section font-bold text-center max-w-xl mx-auto mb-6',
+                h2: 'text-display-card mt-8 sm:mt-12 mb-4 sm:mb-6',
+                h3: 'font-semibold mt-4 sm:mt-6',
+                p: 'mb-3 sm:mb-4 text-foreground/85',
                 strong: 'text-foreground font-semibold',
-                ul: "max-w-2xl mx-auto mb-6 list-none pl-5 text-foreground/85 [&>li]:before:content-['—'] [&>li]:before:-ml-6 [&>li]:before:mr-2",
-                ol: "max-w-2xl mx-auto mb-6 list-[upper-roman] pl-5 text-foreground/85 [&>li]:pl-2",
+                ul: "mb-6 list-none pl-5 text-foreground/85 [&>li]:before:content-['—'] [&>li]:before:-ml-6 [&>li]:before:mr-2",
+                ol: "mb-6 list-[upper-roman] pl-5 text-foreground/85 [&>li]:pl-2",
                 li: "my-2 pl-2 before:text-secondary/25 marker:text-accent",
-                img: 'mb-8 sm:mb-15 rounded shadow-xl shadow-secondary/10 border border-secondary/15',
-                hr: 'my-6 md:my-10 max-w-2xl mx-auto',
+                img: 'mb-8 sm:mb-12 rounded shadow-xl shadow-secondary/10 border border-secondary/15',
+                hr: 'my-6 md:my-10',
                 a: 'text-accent hover:underline',
                 blockquote: 'py-4 [&>p]:bg-primary/10 [&>p]:rounded-r [&>p]:p-4 [&>p]:pl-6 [&>p]:border-l [&>p]:border-cyan-500 [&>p]:border-l-2',
-                pre: 'redacted mb-3 sm:mb-4 text-foreground/85 !bg-secondary/10 !text-secondary rounded-sm p-3 text-sm',
-                code: 'text-sm bg-blue-400/15 text-secondary rounded-sm px-1 py-1'
+                pre: 'mb-3 sm:mb-4 text-foreground/85 !bg-secondary/10 !text-secondary rounded-sm p-3 text-sm',
+                code: 'text-sm bg-secondary/5 border border-secondary/10 text-secondary rounded-sm px-1.5 py-0.5 font-medium'
             }]
         ]
     }

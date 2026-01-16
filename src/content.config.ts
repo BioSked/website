@@ -13,6 +13,18 @@ const enPosts = defineCollection({
     }),
 });
 
+const enChangelogs = defineCollection({
+    loader: glob({ pattern: "*.md", base: "./src/pages/changelog" }),
+    schema: ({ image }) => z.object({
+        title: z.string(),
+        description: z.string(),
+        image: image(),
+        author: z.string(),
+        version: z.string(),
+        date: z.date(),
+    }),
+});
+
 // const frPosts = defineCollection({
 //     loader: glob({ pattern: "**/*.md", base: "./src/pages/blog/posts/fr" }),
 //     schema: ({ image }) => z.object({
@@ -24,4 +36,4 @@ const enPosts = defineCollection({
 //     }),
 // });
 
-export const collections = { enPosts };
+export const collections = { enPosts, enChangelogs};

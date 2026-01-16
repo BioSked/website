@@ -1,0 +1,62 @@
+---
+export const prerender = true;
+
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+import { currentLocale } from 'astro:i18n';
+import { useTranslations } from '@/i18n/i18n';
+import { ArrowRight } from 'lucide-react';
+import { Image } from 'astro:assets';
+import { getCollection, render } from 'astro:content';
+
+// Sort by date - newest first
+const allPosts = (await getCollection('enChangelogs'))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const posts = await Promise.all(
+  allPosts.map(async (post) => {
+    const { Content } = await render(post);
+    return { ...post, Content };
+  })
+);
+
+const dateOptions = {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+};
+
+const t = useTranslations(Astro.currentLocale);
+---
+
+<BaseLayout
+    title="Momentum Changelog | BioSked | Healthcare Scheduling Innovation"
+    description="Momentum updates and improvements"
+    noIndex="true"
+>
+    <div class="container section-padding max-w-5xl">
+        <h1 class="text-display-hero mb-12 md:mb-25">Changelog</h1>
+        {posts.map((post, index) => 
+            <div class="md:flex pb-15 md:pb-40 md:not-last:border-l md:not-last:border-gray-300/90 ml-2">
+                <div class="flex-2 relative">
+                    <a href={`/changelog/${post.id}`} class="sticky top-26">
+                        <span class="text-foreground/70 relative md:-top-6 md:-left-3">
+                            <span class="hidden md:inline text-accent text-2xl relative top-1">▪︎</span>
+                            <span class="relative md:ml-1 top-0.5">{post.data.date.toLocaleDateString('en-US', dateOptions)}</span>
+                        </span><br>
+                        <span class="relative hover:opacity-70 transition-opacity text-sm md:text-base duration-200 md:-top-4 ml-4 bg-primary/25 border border-accent/15 py-0.5 px-2 rounded-sm text-accent">v{post.data.version}</span>
+                    </a>
+                </div>
+                <div class="flex-6">
+                    <h2 class="text-display-card font-bold mb-4 mt-5 md:-mt-5 md:mb-6">
+                        {post.data.title}
+                    </h2>
+                    {/*{post.data.image && <Image src={post.data.image} alt={post.data.title} class="mb-4 md:mb-7 rounded shadow-xl shadow-secondary/10 border border-secondary/15"/>}*/}
+                    <post.Content />
+                </div>
+            </div>
+            <hr class="sm:hidden last:hidden pb-15">
+        )}
+        </div>
+    </div>
+</BaseLayout>

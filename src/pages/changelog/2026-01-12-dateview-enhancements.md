@@ -1,88 +1,52 @@
 ---
 layout: "@layouts/ChangelogLayout.astro"
 date: 2026-01-12
-version: 4.4
+version: "4.4.0"
 author: Frédéric Andreae
-title: Major Scheduling, Analytics, and Performance Improvements
+title: Major Scheduling, Analytics and Performance Improvements
 description: Version 4.4 introduces powerful new scheduling workflows, real-time analytics, and major performance improvements to help teams plan faster, scale confidently, and gain immediate operational insight.
-image: "../../../assets/images/ai-laptop.webp"
+image: "../../assets/images/momentum4-4.png"
 noindex: true
 ---
 
-## ✨ New
+![Momentum 4.4](../../assets/images/momentum4-4.png)
 
-### Timeline View
-- New hour-by-hour visualization of assignment coverage.
-- Quickly identify coverage gaps and overlaps.
-- Supports multi-timezone viewing, making it easier to manage distributed teams.
-- Designed for high-volume schedules where visibility into coverage density matters.
+This release focuses on the new Momentum application introduced in 2025 and includes an overall layout simplification with clearer access to primary actions, making your schedules easier to interact with.
 
-### Bulk Editing for Assignments
-- Select multiple assignments using:
-  - Ctrl / Cmd + click
-  - Ctrl / Cmd + A to select all visible assignments
-- Apply changes in bulk:
-  - Lock / Unlock
-  - Publish / Unpublish
-  - Change dates
-  - Reassign staff
-- Dramatically reduces repetitive work for large schedules.
+**Instant Analytics** are now available directly on all schedules removing the need to export data or to create custom reports. A new **Timeline view** has been added, specifically designed for high-volume schedules where visibility into coverage density matters. 
 
-### Faster Assignment Creation
-- Right-click any cell in the schedule to create a new assignment.
-- Automatically pre-fills relevant fields based on context and active filters, including:
-  - Date
-  - Role
-  - Staff
-  - Location
-- Staff **and role lists** are filtered to the current view, reducing errors and speeding up scheduling for large teams.
+Momentum Classic remains available as the default when you login. You can access the new version from the top menu in _**Scheduling** → **View schedule** → **Date View (new)**_.
 
-### Analytics Dashboard
-- Real-time operational insights based on the current filters and schedule view.
-- Key metrics include:
-  - Unfilled assignments
-  - Total cost
-  - Average hours
-  - Distribution by role and staff
-- Visualizations:
-  - Hourly distribution
-  - Heatmap showing assignment density
-- Enables quick analysis without exporting data.
+## ✨ UI and usability enhancements
 
-### Keyboard Shortcuts
-- Power-user shortcuts for faster navigation and actions.
-- Examples:
-  - `Ctrl / Cmd + K` — Quick search
-  - `N` — Create a new assignment
+- **Dark mode**: Choose between light, dark or let the UI follow your system preference.
+- **Quick-search**: instantly highlights assignments on screen as you type.
+- **Fast Assignment creation**: Right-click any cell in the schedule to create a new assignment. Assignment fields are now automatically pre-filled based on context and active filters (date, role, staff, location).
+- **Row/Column Multi-Select**: Select entire rows or columns of assignments for faster bulk editing.
+- **Multi-Select**: Publish or unpublish assignments individually or in bulk.
+- **Shift View**: new layout options for alternative schedule visualization.
+- **Keyboard Shortcuts**: faster navigation and actions for power-users, for example:<br>
+    • `N` to create an assignment<br>
+    • `F` to edit filters<br>
+    • `Ctrl + K` to quick-search (`⌘ + K` on Mac)
 
-### Assignment Duplication
-- Duplicate selected assignments:
-  - Once
-  - Or on a recurring pattern (e.g., weekly)
-- Useful for repeating schedules and rapidly building future coverage.
-- Designed to work with bulk selection and existing filters for precise control.
+## 🕐 Timeline View
 
----
+- **Hour-by-hour visualization** of assignment coverage
+- **Gaps and overlaps highlighting** for quick identification
+- **Multi-timezone viewing** to easily manage teams distributed accross multiple timezones.
 
-## 💎 Improvements
 
-### Performance & Scale
-- Removed the previous hard cap on the number of assignments that can be viewed at once.
-- Schedules now scale significantly better across all views.
-- Faster loading and UI refreshes throughout the application, especially for large datasets.
+## 📊 Instant Analytics Dashboard
 
-### Schedule & UI Enhancements
-- Simplified layout with clearer access to primary actions.
-- New Shift View layout options for alternative schedule visualization.
-- Dark mode support:
-  - Light
-  - Dark
-  - System preference
+- **Real-time operational insights** based on the current filters and schedule view.
+- **Heatmap**: visual representation of assignment density.
+- **Distribution graph**: understand how assignments are distributed accross _roles_, _staffs_ and _hours_.
+- **Key metrics** including average hours, total cost and unfilled assignments.
 
-### Multi-Select Enhancements
-- Select entire rows or columns of assignments.
-- Publish or unpublish assignments individually or in bulk.
-- Copy and paste schedules using multi-select.
 
-### Search
-- Quick-search instantly highlights assignments on screen as you type.
+## 💎 Performance Improvements
+
+- Increase of the number of assignments that can be viewed at once (previous hard cap removed).
+- Faster loading time and UI refreshes throughout the application, especially for large datasets.
+- Improved large schedules loading and navigration.
