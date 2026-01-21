@@ -17,15 +17,15 @@ This release focuses on the new Momentum application introduced in 2025 and incl
 
 Momentum Classic remains available as the default when you login. You can access the new version from the top menu in _**Scheduling** → **View schedule** → **Date View (new)**_.
 
-## ✨ UI and usability enhancements
+## ✨ UI and Usability Enhancements
 
 - **Dark mode**: Choose between light, dark or let the UI follow your system preference.
-- **Quick-search**: instantly highlights assignments on screen as you type.
-- **Fast Assignment creation**: Right-click any cell in the schedule to create a new assignment. Assignment fields are now automatically pre-filled based on context and active filters (date, role, staff, location).
+- **Quick-search**: Instantly highlights assignments on screen as you type.
+- **Fast assignment creation**: Right-click any cell in the schedule to create a new assignment. Assignment fields are now automatically pre-filled based on context and active filters (date, role, staff, location).
 - **Row/Column Multi-Select**: Select entire rows or columns of assignments for faster bulk editing.
 - **Multi-Select**: Publish or unpublish assignments individually or in bulk.
-- **Shift View**: new layout options for alternative schedule visualization.
-- **Keyboard Shortcuts**: faster navigation and actions for power-users, for example:<br>
+- **Shift View**: New layout options for alternative schedule visualization.
+- **Keyboard Shortcuts**: Faster navigation and actions for power-users, for example:<br>
     • `N` to create an assignment<br>
     • `F` to edit filters<br>
     • `Ctrl + K` to quick-search (`⌘ + K` on Mac)
@@ -40,13 +40,13 @@ Momentum Classic remains available as the default when you login. You can access
 ## 📊 Instant Analytics Dashboard
 
 - **Real-time operational insights** based on the current filters and schedule view.
-- **Heatmap**: visual representation of assignment density.
-- **Distribution graph**: understand how assignments are distributed accross _roles_, _staffs_ and _hours_.
-- **Key metrics** including average hours, total cost and unfilled assignments.
+- **Heatmap**: Visual representation of assignment density.
+- **Distribution graph**: Understand how assignments are distributed accross _roles_, _staffs_ and _hours_.
+- **Key metrics** including average hours, total cost, and unfilled assignments.
 
 
 ## 💎 Performance Improvements
 
 - Increase of the number of assignments that can be viewed at once (previous hard cap removed).
 - Faster loading time and UI refreshes throughout the application, especially for large datasets.
-- Improved large schedules loading and navigration.
+- Improved large schedules loading and navigation.
