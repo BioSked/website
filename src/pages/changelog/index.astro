@@ -43,8 +43,8 @@ const t = useTranslations(Astro.currentLocale);
                         <span class="text-foreground/70 relative md:-top-6 md:-left-3">
                             <span class="hidden md:inline text-accent text-2xl relative top-1">▪︎</span>
                             <span class="relative md:ml-1 top-0.5">{post.data.date.toLocaleDateString('en-US', dateOptions)}</span>
-                        </span><br>
-                        <span class="relative hover:opacity-70 transition-opacity text-sm md:text-base duration-200 md:-top-4 ml-4 bg-primary/25 border border-accent/15 py-0.5 px-2 rounded-sm text-accent">v{post.data.version}</span>
+                        </span><br class="hidden md:block">
+                        <span class="relative hover:opacity-70 transition-opacity text-sm md:text-base duration-200 top-0.5 md:-top-4 ml-2 md:ml-4 bg-primary/25 border border-accent/15 py-0.5 px-2 rounded-sm text-accent">v{post.data.version}</span>
                     </a>
                 </div>
                 <div class="flex-6">
