@@ -9,6 +9,7 @@ import danProfile from '@/assets/profile-photos/dan_profile.png';
 import sarahProfile from '@/assets/profile-photos/sarah_profile.jpg';
 import marcProfile from '@/assets/profile-photos/marc_profile.jpg';
 import xavierProfile from '@/assets/profile-photos/xavier_profile.jpg';
+import lakuProfile from '@/assets/profile-photos/laku_profile.jpg';
 import fredProfile from '@/assets/profile-photos/fred_profile.jpg';
 import dougProfile from '@/assets/profile-photos/doug_profile.jpg';
 
@@ -57,27 +58,53 @@ const BOARD = [
   {
     id: 1,
     name: 'Dan Kerpelman',
-    role: 'Executive Chairman',
+    role: 'Co-founder, Chairman',
     linkedinUrl: 'https://www.linkedin.com/in/dkerpelman/',
     bio: `40+ years scaling medical technology companies from startup to exit. Former CEO of Bio-Optronics and multiple public/private healthcare tech businesses. Serves on several healthcare and technology boards.`,
     image: danProfile,
   },
   {
     id: 2,
+    name: 'David Dudok de Wit',
+    role: 'Director',
+    linkedinUrl: 'https://www.linkedin.com/in/daviddudokdewit/',
+    bio: `Before joining BioSked as CEO, David led growth and product development at Proton, a SaaS platform dedicated to privacy protection, used by over 100 million users worldwide.\n\n
+His background as a leader in startups, scale-ups, and international companies, along with his experience across various industries such as healthcare, aviation, technology, and consumer goods, has given him strong expertise in technology, product growth, and innovation.
+He has contributed to the success of companies like Nestlé Nespresso, SITA, and Frederique Constant, and has founded his own profitable SaaS company.\n\nDavid holds a BSc and MSc in Information Systems, as well as Reforge certifications in growth and strategy.`,
+    image: davidProfile,
+  },
+  {
+    id: 3,
+    name: 'Sarah Mertz',
+    role: 'Co-Founder, Director',
+    linkedinUrl: 'https://www.linkedin.com/in/sarahmertz/',
+    bio: `Sarah Mertz is currently Vice President of Sales & Marketing for BioSked. She was previously European sales manager at Bio-Optronics and responsible for Momentum sales and marketing in the European Market. She joined Bio-optronics in 2015 as marketing specialist for the Momentum product in Europe.\n\nShe started her career in the French radiology market in 2013 as marketing communication specialist with Global Imaging Online, now NEHS, the leading PACS/RIS provider. Previously, she worked in the plastics and software.\n\nSarah holds a BS in Information Technology and an MBA in international business from the IDRAC Business School.`,
+    image: sarahProfile,
+  },
+  {
+    id: 4,
     name: 'Marc Degrauwe',
-    role: 'Board Member',
+    role: 'Director',
     linkedinUrl: 'https://www.linkedin.com/in/marc-degrauwe-b2882458/',
     bio: ``,
     image: marcProfile,
   },
   {
-    id: 3,
+    id: 5,
     name: 'Xavier Paternot',
-    role: 'Board Member',
+    role: 'Director',
     linkedinUrl: 'https://www.linkedin.com/in/xavier-paternot-31a26719/',
     bio: ``,
     image: xavierProfile,
   },
+  {
+    id: 6,
+    name: 'Laku Adedoyin',
+    role: 'Director',
+    linkedinUrl: 'https://www.linkedin.com/in/lakuad/',
+    bio: ``,
+    image: lakuProfile,
+  }
 ];
 ---
 
@@ -185,10 +212,10 @@ const BOARD = [
                 <div class="w-20 h-20 rounded bg-muted shrink-0" />
               )}
               <div>
-                <h3 class="text-xl font-semibold tracking-tight sm:text-2xl text-foreground">
+                <h3 class="text-xl font-semibold tracking-tight md:text-2xl text-foreground">
                   {member.name}
                 </h3>
-                <div class="flex items-center gap-1.5 mt-1">
+                <div class="flex items-center gap-1.5 mt-0">
                   <p class="text-sm">
                     {member.role}
                   </p>
@@ -219,25 +246,26 @@ const BOARD = [
       ))}
     </div>
   </section>
-  <!-- <section class="lg:py-15 container max-w-5xl py-10 md:py-12">
+  <!-- BOARD OF DIRECTORS -->
+  <section class="container max-w-5xl pb-10 md:pb-15 lg:pb-25">
     <div class="mb-8 md:mb-12">
       <h2 class="text-display-section font-bold">
         Board of Directors
       </h2>
     </div>
 
-    <div class="grid grid-cols-2 gap-4 lg:gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 md:gap-1">
       {BOARD.map((member) => (
-        <Card className="p-0 overflow-hidden">
+        <Card className="p-0 overflow-hidden group">
           <div class="flex flex-col">
-            <div class="flex items-center gap-4 p-6 md:p-8">
+            <div class="flex items-center gap-4">
               {member.image ? (
                 <Image
                   src={member.image}
                   alt={member.name}
                   width={160}
                   height={160}
-                  class="w-20 h-20 object-cover rounded shrink-0 grayscale"
+                  class="w-20 h-20 mt-4 mb-5 object-cover grayscale transition-all duration-300 group-hover:grayscale-0 rounded shrink-0 shadow-lg shadow-secondary/20"
                   loading="lazy"
                   quality={95}
                   format="webp"
@@ -247,38 +275,28 @@ const BOARD = [
                 <div class="w-20 h-20 rounded bg-muted shrink-0" />
               )}
               <div>
-                <h3 class="text-display-card">
+                <h3 class="text-xl font-semibold tracking-tight md:text-2xl text-foreground">
                   {member.name}
                 </h3>
-                <div class="flex items-center gap-1.5 mt-1">
-                  <p class="text-accent text-xs font-medium md:text-sm">
+                <div class="flex items-center gap-1.5 mb-1">
+                  <p class="text-sm">
                     {member.role}
                   </p>
-                  <a 
+                </div>
+                <a 
                     href={member.linkedinUrl} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    class="inline-flex items-center justify-center rounded bg-[#0072b1] p-0.5 transition-opacity hover:opacity-80"
+                    class="inline-flex items-center justify-center rol transition-opacity grayscale-1 opacity-25 hover:opacity-90"
                     aria-label={`${member.name} on LinkedIn`}
-                  >
-                    <Linkedin className="w-2.5 h-2.5 text-white" />
-                  </a>
-                </div>
+                >
+                    <img src={Linkedin.src} width="16"/>
+                </a>
               </div>
             </div>
-
-            {member.bio && (
-              <div class="px-6 pb-6 md:px-8 md:pb-8">
-                <div class="space-y-4 text-sm leading-relaxed md:text-base">
-                  {member.bio.split('\n\n').map((paragraph: string) => (
-                    <p class="text-muted-foreground">{paragraph}</p>
-                  ))}
-                </div>
-              </div>
-            )}
           </div>
         </Card>
       ))}
     </div>
-  </section> -->
+  </section>
 </section>
