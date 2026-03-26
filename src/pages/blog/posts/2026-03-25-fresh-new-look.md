@@ -4,11 +4,11 @@ date: 2026-03-25
 author: Jessica Jannaud
 title: "Momentum gets a fresh new look"
 description: Fewer clicks, smoother workflows. Discover what the latest Momentum update changes in your day-to-day.
-image: "../../../assets/images/momentum4-4.png"
+image: "../../../assets/images/momentum_new-features.jpg"
 
 ---
 
-![Momentum 4.4](../../../assets/images/momentum4-4.png)
+![Momentum 4.4](../../../assets/images/momentum_new-features.jpg)
 
 **Momentum gets a fresh new look: dark mode, keyboard shortcuts, and one-click creation**
 
