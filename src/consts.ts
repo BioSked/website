@@ -98,7 +98,7 @@ export const NAV_LINKS = [
             {
                 label: 'nav.help',
                 alt: 'nav.help-subtitle',
-                href: 'https://kb.biosked.fr/en/knowledge/kb-tickets/new',
+                href: 'https://kb.biosked.com/en/knowledge/kb-tickets/new',
                 showDesktop: true,
                 showMobile: false,
             },
