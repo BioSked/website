@@ -11,10 +11,12 @@ import dateView from '@/assets/screenshots/dateview.png';
 interface Props {
   title?: string;
   lead?: string;
+  demoHref?: string;
 }
 const {
   title = 'La plateforme de planification médicale reconnue qui associe IA, équité et simplicité',
   lead = 'Gardes, astreintes, désidératas : des plannings conformes et équitables, générés en heures, pas en jours.',
+  demoHref = '/fr/demo/',
 } = Astro.props;
 ---
 
@@ -40,7 +42,7 @@ const {
         </p>
 
         <div class="flex flex-wrap gap-2">
-          <a href="/fr/demo/">
+          <a href={demoHref}>
             <Button
               size="lg"
               variant="default"

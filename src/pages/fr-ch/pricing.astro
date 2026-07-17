@@ -29,7 +29,7 @@ const inclusions = [
     id: 'generation-ia',
     icon: Sparkles,
     title: 'Génération automatique par IA',
-    text: 'Des plannings générés automatiquement dans le respect des contrats, des compétences, des règles de temps de travail et des désidératas de chacun — avec l’équité comme critère à part entière, y compris pour les gardes et piquets.',
+    text: 'Des plannings générés automatiquement dans le respect des contrats, des compétences, des règles de temps de travail et des désidératas de chacun — avec l’équité comme critère à part entière, y compris pour les gardes et astreintes.',
   },
   {
     id: 'accompagnement',
@@ -41,7 +41,7 @@ const inclusions = [
     id: 'integrations',
     icon: Workflow,
     title: 'Intégrations avec votre environnement',
-    text: 'Momentum se connecte à vos outils : RIS (par exemple NGI), agendas personnels, solutions RH et de timbrage (par exemple Kelio), exports vers la paie.',
+    text: 'Momentum se connecte à vos outils : RIS (par exemple NGI), agendas personnels, solutions RH et de badgeage (par exemple Kelio), exports vers la paie.',
   },
   {
     id: 'support',
@@ -61,7 +61,7 @@ const steps = [
   {
     number: '01',
     title: 'Démo personnalisée',
-    text: 'Nous partons de vos plannings réels : gardes, piquets, multi-sites, règles locales. Vous voyez Momentum fonctionner sur des cas qui ressemblent aux vôtres.',
+    text: 'Nous partons de vos plannings réels : gardes, astreintes, multi-sites, règles locales. Vous voyez Momentum fonctionner sur des cas qui ressemblent aux vôtres.',
   },
   {
     number: '02',
@@ -80,13 +80,13 @@ const faqData = [
     id: 'construction-tarif',
     question: 'Comment le tarif de Momentum est-il construit ?',
     answer:
-      'Les abonnements démarrent à CHF 5.99 par professionnel planifié et par mois. Le tarif final dépend de votre périmètre réel : nombre de professionnels planifiés, nombre de sites, spécialités, modules activés (gardes et piquets, bourse aux services, timbrage…) et intégrations souhaitées. Après un cadrage avec nos équipes, vous recevez une proposition détaillée, sans surprise et sans coûts cachés.',
+      'Les abonnements démarrent à CHF 5.99 par professionnel planifié et par mois. Le tarif final dépend de votre périmètre réel : nombre de professionnels planifiés, nombre de sites, spécialités, modules activés (gardes et astreintes, bourse aux services, badgeage…) et intégrations souhaitées. Après un cadrage avec nos équipes, vous recevez une proposition détaillée, sans surprise et sans coûts cachés.',
   },
   {
     id: 'roi',
     question: 'Comment se justifie l’investissement face à un planning fait à la main ?',
     answer:
-      'Le point de comparaison n’est pas un autre logiciel, mais le coût réel du planning manuel : des jours d’administration chaque mois, des échanges de gardes informels, des compteurs que personne ne peut vérifier. Nos clients mesurent le retour sur quatre plans. Le temps : jusqu’à 90 % de temps de gestion en moins — au CHIREC, la construction du planning mensuel est passée de 4 jours à 4–5 heures. Les coûts : chez IMAGIR, l’interconnexion de Momentum avec EasyDoct et Kelio permet « le gain d’un ETP voire deux ». La fiabilité financière : des plannings générés dans le respect des contrats et des règles, un timbrage qui alimente la paie. L’équité : des répartitions traçables et des compteurs visibles par tous — 90 à 100 % de satisfaction dans les études de cas publiées.',
+      'Le point de comparaison n’est pas un autre logiciel, mais le coût réel du planning manuel : des jours d’administration chaque mois, des échanges de gardes informels, des compteurs que personne ne peut vérifier. Nos clients mesurent le retour sur quatre plans. Le temps : jusqu’à 90 % de temps de gestion en moins — au CHIREC, la construction du planning mensuel est passée de 4 jours à 4–5 heures. Les coûts : chez IMAGIR, l’interconnexion de Momentum avec EasyDoct et Kelio permet « le gain d’un ETP voire deux ». La fiabilité financière : des plannings générés dans le respect des contrats et des règles, un badgeage qui alimente la paie. L’équité : des répartitions traçables et des compteurs visibles par tous — 90 à 100 % de satisfaction dans les études de cas publiées.',
   },
   {
     id: 'mise-en-place',
@@ -98,7 +98,7 @@ const faqData = [
     id: 'integrations',
     question: 'Quelles intégrations sont possibles ?',
     answer:
-      'Momentum s’intègre à votre environnement existant : RIS comme NGI, agendas personnels, outils RH et de timbrage comme Kelio, exports vers la paie. Les intégrations pertinentes sont identifiées lors du cadrage et incluses dans la proposition.',
+      'Momentum s’intègre à votre environnement existant : RIS comme NGI, agendas personnels, outils RH et de badgeage comme Kelio, exports vers la paie. Les intégrations pertinentes sont identifiées lors du cadrage et incluses dans la proposition.',
   },
   {
     id: 'hebergement-rgpd',
@@ -141,8 +141,8 @@ const faqStructuredData = {
 ---
 
 <BaseLayout
-  title="Tarifs Suisse | Momentum, planification médicale | BioSked"
-  description="Tarifs Momentum pour la Suisse romande : à partir de CHF 5.99 par professionnel planifié et par mois, avec accompagnement au déploiement depuis notre siège européen de Genève. Proposition sur devis selon votre périmètre."
+  title="Tarifs Momentum Suisse | Planification médicale sur devis | BioSked"
+  description="Un abonnement Momentum adapté à votre organisation de santé : effectifs, sites, spécialités, modules et intégrations. À partir de CHF 5.99 par professionnel planifié et par mois. Déploiement accompagné — paramétrage des règles, formation, support en français. Demandez votre devis."
 >
   <script type="application/ld+json" set:html={JSON.stringify(faqStructuredData)} />
 
