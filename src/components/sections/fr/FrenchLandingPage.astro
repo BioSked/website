@@ -1,6 +1,7 @@
 ---
 import Button from '@/components/ui/Button.astro';
-import FrenchInterfacePreview from './FrenchInterfacePreview.astro';
+import { Image } from 'astro:assets';
+import dateView from '@/assets/screenshots/dateview.png';
 import type { FrenchLandingPage as LandingPage } from '@/data/frLandingPages';
 
 interface Props {
@@ -31,9 +32,16 @@ const { page } = Astro.props;
         </div>
       </div>
       <div class="overflow-hidden rounded-xl border border-secondary/10 bg-white/30 p-1 shadow-xl shadow-secondary/10">
-        <div class="origin-top-left scale-[0.58] sm:scale-[0.7] lg:scale-[0.56]" style="width: 760px; height: 390px;">
-          <FrenchInterfacePreview />
-        </div>
+        <Image
+          src={dateView}
+          alt="Interface de planification Momentum : vue mensuelle des plannings, gardes et compteurs"
+          width={840}
+          widths={[420, 840, 1260]}
+          format="webp"
+          quality={85}
+          loading="eager"
+          class="w-full h-auto rounded-lg"
+        />
       </div>
     </div>
   </div>

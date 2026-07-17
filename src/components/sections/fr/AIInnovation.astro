@@ -5,7 +5,7 @@ import AiEngine from '@/assets/layout/ai-engine.svg';
 import bfhLogo from '@/assets/companies/bfh.svg';
 import swissLogo from '@/assets/companies/swiss-confederation.svg';
 import enseaLogo from '@/assets/companies/ensea.png';
-import FrenchInterfacePreview from './FrenchInterfacePreview.astro';
+import scheduleScreenshot from '@/assets/screenshots/mm-schedule_background.png';
 ---
 
 <section class="relative">
@@ -33,10 +33,15 @@ import FrenchInterfacePreview from './FrenchInterfacePreview.astro';
           </div>
 
           <div class="relative flex flex-col justify-between gap-4">
-            <div class="relative -mt-6 lg:-mt-8 max-h-48 lg:max-h-56 overflow-hidden rounded-lg opacity-80 mix-blend-lighten">
-              <div class="mix-blend-lighten opacity-80" style="transform: rotate(6deg) skewX(-18deg) translateX(1em);">
-                <FrenchInterfacePreview />
-              </div>
+            <div class="relative -mt-6 lg:-mt-8 max-h-48 lg:max-h-56">
+              <Image
+                src={scheduleScreenshot}
+                alt="Interface de planification Momentum optimisée par l’IA"
+                class="w-full h-auto rounded-lg object-contain"
+                loading="lazy"
+                quality={85}
+                format="webp"
+              />
             </div>
 
             <div class="flex items-center justify-between gap-4 lg:gap-4 w-full">
