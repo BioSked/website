@@ -1,0 +1,29 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Button from '@/components/ui/Button.astro';
+import type { MarketContent } from '@/i18n/market/types';
+import type { LocaleCode } from '@/i18n/locales';
+
+/** Post-submission thank-you page (noindex). TODO: embed the HubSpot Meetings
+ *  scheduler of the responsible AE here once marketing provides the link. */
+interface Props {
+    market: MarketContent;
+    locale: LocaleCode;
+}
+const { market, locale } = Astro.props;
+const t = market.thankyou!;
+---
+
+<BaseLayout title={t.title} description={t.heading} noIndex={true}>
+    <section class="section-padding">
+        <div class="container max-w-2xl text-center">
+            <h1 class="text-display-section">{t.heading}</h1>
+            <p class="text-lead text-muted-foreground mt-5">{t.body}</p>
+            <div class="mt-8">
+                <a href={`/${locale}/`}>
+                    <Button size="lg" variant="ghost" className="rounded-full px-4 font-semibold">{t.back}</Button>
+                </a>
+            </div>
+        </div>
+    </section>
+</BaseLayout>

@@ -1,0 +1,294 @@
+---
+import Card from '@/components/ui/Card.astro';
+import Linkedin from '@/assets/logos/linkedin.svg';
+import AIInno from "@/components/sections/fr/AIInnovation.astro";
+import cyanDust from '@/assets/layout/cyan-dust_background.webp';
+import { Image } from 'astro:assets';
+import davidProfile from '@/assets/profile-photos/david_profile.png';
+import danProfile from '@/assets/profile-photos/dan_profile.png';
+import sarahProfile from '@/assets/profile-photos/sarah_profile.jpg';
+import marcProfile from '@/assets/profile-photos/marc_profile.jpg';
+import xavierProfile from '@/assets/profile-photos/xavier_profile.jpg';
+import lakuProfile from '@/assets/profile-photos/laku_profile.jpg';
+import fredProfile from '@/assets/profile-photos/fred_profile.jpg';
+import dougProfile from '@/assets/profile-photos/doug_profile.jpg';
+
+const LEADERSHIP = [
+  {
+    id: 1,
+    name: 'David Dudok de Wit',
+    role: 'CEO',
+    linkedinUrl: 'https://www.linkedin.com/in/daviddudokdewit/',
+    bio: `Avant de rejoindre BioSked comme CEO, David a piloté la croissance et le développement produit chez Proton, plateforme SaaS dédiée à la protection de la vie privée et utilisée par plus de 100 millions d’utilisateurs.\n\nSon parcours en startups, scale-ups et groupes internationaux, dans la santé, l’aviation, la technologie et les biens de consommation, lui donne une expertise forte en produit, croissance et innovation.`,
+    image: davidProfile,
+  },
+  {
+    id: 2,
+    name: 'Sarah Mertz',
+    role: 'Co-fondatrice, Directrice commerciale et marketing',
+    linkedinUrl: 'https://www.linkedin.com/in/sarahmertz/',
+    bio: `Sarah dirige les ventes et le marketing de BioSked. Elle était auparavant responsable commerciale Europe chez Bio-Optronics, en charge du développement de Momentum sur le marché européen.\n\nElle connaît particulièrement bien le marché français de la radiologie, où elle a commencé sa carrière en 2013 chez Global Imaging Online, devenu NEHS.`,
+    image: sarahProfile,
+  },
+  {
+    id: 3,
+    name: 'Doug Nicholson',
+    role: 'Directeur général Amérique du Nord',
+    linkedinUrl: 'https://www.linkedin.com/in/doug-r-nicholson/',
+    bio: `Doug apporte une expérience approfondie de Momentum, d’abord comme chef de projet chez Bio-Optronics puis chez BioSked, où il a développé les opérations Amériques.\n\nAvant Bio-Optronics, il était responsable IT du département d’anesthésiologie de l’University of Rochester Medical Center, où il a aussi utilisé Momentum côté client.`,
+    image: dougProfile,
+  },
+  {
+    id: 4,
+    name: 'Frédéric Andreae',
+    role: 'Vice-président Produit et Ingénierie',
+    linkedinUrl: 'https://www.linkedin.com/in/fredandreae/',
+    bio: `Frédéric dirige le produit et l’ingénierie chez BioSked. Il a auparavant fondé Biings Technologies, où il a conçu un produit SaaS dédié à la prévention des absences et à la santé au travail.\n\nIl a débuté comme chercheur en symbiose industrielle à l’Université de Lausanne et possède une formation en systèmes d’information.`,
+    image: fredProfile,
+  },
+];
+
+const BOARD = [
+  {
+    id: 1,
+    name: 'Dan Kerpelman',
+    role: 'Co-fondateur, Président',
+    linkedinUrl: 'https://www.linkedin.com/in/dkerpelman/',
+    bio: `Plus de 40 ans d’expérience dans le développement d’entreprises de technologie médicale, de la création à la croissance internationale. Ancien CEO de Bio-Optronics, Dan siège à plusieurs conseils dans la santé et la technologie.`,
+    image: danProfile,
+  },
+  {
+    id: 2,
+    name: 'David Dudok de Wit',
+    role: 'Administrateur',
+    linkedinUrl: 'https://www.linkedin.com/in/daviddudokdewit/',
+    bio: `David apporte une expérience de direction produit, croissance et SaaS international, avec un parcours dans la santé, la technologie, l’aviation et les biens de consommation.`,
+    image: davidProfile,
+  },
+  {
+    id: 3,
+    name: 'Sarah Mertz',
+    role: 'Co-fondatrice, Administratrice',
+    linkedinUrl: 'https://www.linkedin.com/in/sarahmertz/',
+    bio: `Sarah accompagne le développement commercial et marketing de Momentum en Europe depuis 2015, avec une connaissance forte des organisations de radiologie françaises.`,
+    image: sarahProfile,
+  },
+  {
+    id: 4,
+    name: 'Marc Degrauwe',
+    role: 'Administrateur',
+    linkedinUrl: 'https://www.linkedin.com/in/marc-degrauwe-b2882458/',
+    bio: ``,
+    image: marcProfile,
+  },
+  {
+    id: 5,
+    name: 'Xavier Paternot',
+    role: 'Administrateur',
+    linkedinUrl: 'https://www.linkedin.com/in/xavier-paternot-31a26719/',
+    bio: ``,
+    image: xavierProfile,
+  },
+  {
+    id: 6,
+    name: 'Laku Adedoyin',
+    role: 'Administrateur',
+    linkedinUrl: 'https://www.linkedin.com/in/lakuad/',
+    bio: ``,
+    image: lakuProfile,
+  }
+];
+---
+
+<section class="section-padding relative">
+  <div class="absolute top-1/4 left-0 size-[800px] bg-no-repeat" style={'transform: scaleX(-1); background-image: url("'+cyanDust.src+'");'}></div>
+  <div class="container relative max-w-5xl">
+    <div>
+      <h1 class="text-display-hero">
+        La planification médicale
+        <br />
+        repensée.
+      </h1>
+      <p class="text-muted-foreground mt-6 max-w-2xl text-lead">
+        La planification médicale est complexe : couverture multisites, équité des rotations, règles de conformité, désidératas, gardes, badgeage et indicateurs d’activité. BioSked construit Momentum pour automatiser cette complexité et redonner du temps aux équipes de soins.
+      </p>
+    </div>
+  </div>
+</section>
+
+  <section class="container max-w-5xl relative">
+    <h2 class="text-muted-foreground font-mono text-sm font-semibold tracking-widest mb-4">
+      CHIFFRES CLÉS
+    </h2>
+    <hr>
+    <div class="mt-6 mb-8 grid grid-cols-2 gap-8 md:grid-cols-4">
+      <div>
+        <h3 class="text-metric-large font-light text-accent">
+          1,000+
+        </h3>
+        <p class="text-muted-foreground mt-1 font-medium">Sites de santé</p>
+      </div>
+      <div>
+        <h3 class="text-metric-large font-light text-accent">
+          50K+
+        </h3>
+        <p class="text-muted-foreground mt-1 font-medium">Utilisateurs planifiés</p>
+      </div>
+      <div>
+        <h3 class="text-metric-large font-light text-accent">
+          90%
+        </h3>
+        <p class="text-muted-foreground mt-1 font-medium">
+          De temps administratif gagné, jusqu’à (étude de cas CHIREC, 2025)
+        </p>
+      </div>
+      <div>
+        <h3 class="text-metric-large font-light text-accent">
+          15+
+        </h3>
+        <p class="text-muted-foreground mt-1 font-medium">
+          Années dans la santé
+        </p>
+      </div>
+    </div>
+    <hr>
+  </section>
+
+  <section class="lg:py-15 container max-w-5xl py-10 md:py-12 mt-12">
+    <h4 class="text-display-section font-bold mb-8">
+      Notre approche
+    </h4>
+    <div class="max-w-2xl space-y-4">
+      <p class="text-lg leading-relaxed">
+        La plupart des outils digitalisent le tableur. Momentum va plus loin : il applique vos règles et propose des plannings optimisés.
+      </p>
+      <p class="text-lg leading-relaxed">
+        Vous définissez vos règles une fois : vacations, équité, compétences, repos, contrats, demandes individuelles et contraintes de service. Momentum gère ensuite la complexité répétitive, tout en laissant les responsables garder la main sur les exceptions.
+      </p>
+      <p class="text-lg leading-relaxed">
+        Résultat : des plannings plus justes, moins de contestations et plus de temps pour le soin, la coordination et le pilotage des ressources.
+      </p>
+    </div>
+  </section>
+
+  <AIInno/>
+
+  <section id="equipe" class="lg:py-15 container max-w-5xl py-10 md:py-12 relative">
+    <div class="mb-8 md:mb-12">
+      <h2 class="text-display-section font-bold">
+        Équipe dirigeante
+      </h2>
+      <p class="text-muted-foreground mt-4 text-lead">
+        Une équipe qui combine expertise santé, produit, ingénierie et accompagnement terrain.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 md:gap-20">
+      {LEADERSHIP.map((member) => (
+        <Card className="p-0 overflow-hidden group transition-all duration-300 scale-100 hover:scale-101">
+          <div class="flex flex-col">
+            <div class="flex items-center gap-4">
+              {member.image ? (
+                <Image
+                  src={member.image}
+                  alt={member.name}
+                  width={160}
+                  height={160}
+                  class="w-20 h-20 object-cover grayscale transition-all duration-300 group-hover:grayscale-0 rounded shrink-0 shadow-xl shadow-secondary/20"
+                  loading="lazy"
+                  quality={95}
+                  format="webp"
+                  densities={[1, 2]}
+                />
+              ) : (
+                <div class="w-20 h-20 rounded bg-muted shrink-0" />
+              )}
+              <div>
+                <h3 class="text-xl font-semibold tracking-tight md:text-2xl text-foreground">
+                  {member.name}
+                </h3>
+                <div class="flex items-center gap-1.5 mt-0">
+                  <p class="text-sm">
+                    {member.role}
+                  </p>
+                  <a 
+                    href={member.linkedinUrl} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center justify-center rol p-0.5 transition-opacity grayscale-1 opacity-80 hover:opacity-100"
+                    aria-label={`${member.name} on LinkedIn`}
+                  >
+                    <img src={Linkedin.src} width="16"/>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {member.bio && (
+              <div class="pt-6 pb-16 md:pb-20">
+                <div class="space-y-4 text-sm leading-relaxed md:text-base">
+                  {member.bio.split('\n\n').map((paragraph: string) => (
+                    <p class="md:text-muted-foreground group-hover:text-foreground transition-text duration-300">{paragraph}</p>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        </Card>
+      ))}
+    </div>
+  </section>
+  <!-- BOARD OF DIRECTORS -->
+  <section class="container max-w-5xl pb-10 md:pb-15 lg:pb-25">
+    <div class="mb-8 md:mb-12">
+      <h2 class="text-display-section font-bold">
+        Conseil d’administration
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 md:gap-1">
+      {BOARD.map((member) => (
+        <Card className="p-0 overflow-hidden group">
+          <div class="flex flex-col">
+            <div class="flex items-center gap-4">
+              {member.image ? (
+                <Image
+                  src={member.image}
+                  alt={member.name}
+                  width={160}
+                  height={160}
+                  class="w-20 h-20 mt-4 mb-5 object-cover grayscale transition-all duration-300 group-hover:grayscale-0 rounded shrink-0 shadow-lg shadow-secondary/20"
+                  loading="lazy"
+                  quality={95}
+                  format="webp"
+                  densities={[1, 2]}
+                />
+              ) : (
+                <div class="w-20 h-20 rounded bg-muted shrink-0" />
+              )}
+              <div>
+                <h3 class="text-xl font-semibold tracking-tight md:text-2xl text-foreground">
+                  {member.name}
+                </h3>
+                <div class="flex items-center gap-1.5 mb-1">
+                  <p class="text-sm">
+                    {member.role}
+                  </p>
+                </div>
+                <a 
+                    href={member.linkedinUrl} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center justify-center rol transition-opacity grayscale-1 opacity-25 hover:opacity-90"
+                    aria-label={`${member.name} on LinkedIn`}
+                >
+                    <img src={Linkedin.src} width="16"/>
+                </a>
+              </div>
+            </div>
+          </div>
+        </Card>
+      ))}
+    </div>
+  </section>
+</section>

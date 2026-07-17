@@ -1,0 +1,89 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Card from '@/components/ui/Card.astro';
+import Button from '@/components/ui/Button.astro';
+import { Quote } from 'lucide-astro';
+import type { MarketContent } from '@/i18n/market/types';
+import type { LocaleCode } from '@/i18n/locales';
+
+/**
+ * Shared references page for the de/nl/it markets: one featured case
+ * (CHIREC) + concrete one-liners for the other published cases, linking to
+ * the full French case-study pages. Copy from market.references.
+ */
+interface Props {
+    market: MarketContent;
+    locale: LocaleCode;
+}
+const { market, locale } = Astro.props;
+const r = market.references!;
+const demoHref = `/${locale}/demo/`;
+---
+
+<BaseLayout title={r.metaTitle} description={r.metaDescription}>
+    <section class="section-padding">
+        <div class="container max-w-4xl">
+            <p class="font-mono text-sm font-semibold uppercase tracking-widest text-muted-foreground">{r.kicker}</p>
+            <h1 class="text-display-hero mt-4">{r.heading}</h1>
+            <p class="text-lead text-muted-foreground mt-5 max-w-2xl">{r.lead}</p>
+        </div>
+    </section>
+
+    <section class="section-padding pt-0">
+        <div class="container max-w-5xl">
+            <Card className="p-8 md:p-10 bg-white/15">
+                <div class="mb-4 flex flex-wrap items-center gap-2 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+                    <span>{r.featured.specialty}</span>
+                    <span>·</span>
+                    <span>{r.featured.factsLine}</span>
+                </div>
+                <h2 class="text-display-card mb-4">{r.featured.org}</h2>
+                <div class="grid gap-8 md:grid-cols-5">
+                    <div class="md:col-span-3 space-y-3">
+                        {r.featured.paragraphs.map((p) => (
+                            <p class="text-foreground/85">{p}</p>
+                        ))}
+                        <figure class="mt-5 border-l-2 border-cyan-500 pl-4">
+                            <Quote class="size-5 text-accent/40 mb-2" />
+                            <blockquote class="text-foreground/90">{r.featured.quote.text}</blockquote>
+                            <figcaption class="mt-2 text-sm">
+                                <span class="font-semibold text-foreground">{r.featured.quote.author}</span>
+                                <span class="text-muted-foreground"> — {r.featured.quote.role}</span>
+                            </figcaption>
+                        </figure>
+                    </div>
+                    <div class="md:col-span-2 grid grid-cols-3 md:grid-cols-1 gap-6 md:border-l md:border-secondary/10 md:pl-8">
+                        {r.featured.stats.map((s) => (
+                            <div>
+                                <div class="text-display-card font-bold text-accent">{s.value}</div>
+                                <div class="text-muted-foreground text-sm mt-1">{s.label}</div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </Card>
+
+            <div class="grid gap-4 sm:grid-cols-2 mt-6">
+                {r.others.map((o) => (
+                    <Card className="p-6 bg-white/15">
+                        <div class="mb-2 flex flex-wrap items-center gap-2 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+                            <span>{o.specialty}</span>
+                        </div>
+                        <h3 class="font-semibold text-foreground mb-2">{o.org}</h3>
+                        <p class="text-muted-foreground text-sm">{o.line}</p>
+                    </Card>
+                ))}
+            </div>
+
+            <p class="text-muted-foreground text-sm mt-8">
+                {r.languageNote}
+                <a href="/fr/cas-clients/" class="text-accent hover:underline ml-1">{r.fullStudiesLabel}</a>
+            </p>
+            <div class="mt-10">
+                <a href={demoHref}>
+                    <Button size="lg" className="rounded-full px-5 font-bold">{r.demoCta}</Button>
+                </a>
+            </div>
+        </div>
+    </section>
+</BaseLayout>

@@ -1,0 +1,44 @@
+---
+export const prerender = true;
+
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Hero from "@/components/sections/Hero.astro";
+import FeatureGrid from "@/components/sections/intl/FeatureGrid.astro";
+import CTA from "@/components/sections/CTA.astro";
+import VideoTourSection from "@/components/sections/intl/VideoTourSection.astro";
+import QuoteBand from "@/components/sections/intl/QuoteBand.astro";
+import { MARKET } from "@/i18n/market/nl";
+import { BE2027 } from "@/i18n/market/nl-be2027";
+import { HOME_CONTENT } from "@/i18n/homeContent";
+import phoneImage from "@/assets/layout/mobilehand-nl.webp";
+
+const c = HOME_CONTENT['nl'];
+---
+
+<BaseLayout title={c.metaTitle} description={c.metaDescription}>
+	<Hero
+		title={c.hero.title}
+		lead={c.hero.lead}
+		demoLabel={c.hero.demoLabel}
+		demoHref="/nl/demo"
+		tourLabel=""
+		badges={c.hero.badges}
+		phoneImage={phoneImage}
+		phoneAlt="Momentum mobiele app — 90% minder administratietijd, AI-assistent"
+		screenshotAlt="Momentum roosterinterface: maandoverzicht met diensten, wachtdiensten en tellers voor artsenteams"
+	/>
+	<QuoteBand text={MARKET.quote.text} author={MARKET.quote.author} role={MARKET.quote.role} stats={MARKET.quote.stats} moreHref="/nl/referenties" moreLabel="Bekijk alle referenties" />
+	<section class="section-padding pt-0">
+		<div class="container max-w-5xl">
+			<div class="rounded-lg border border-secondary/15 bg-white/40 p-6 md:p-8">
+				<h2 class="text-display-card mb-2">{BE2027.homeModule.heading}</h2>
+				<p class="text-muted-foreground mb-4">{BE2027.homeModule.text}</p>
+				<a href="/nl/arbeidstijdregistratie-2027/" class="text-sm font-semibold text-cyan-600 transition-colors hover:text-secondary">{BE2027.homeModule.linkLabel}</a>
+			</div>
+		</div>
+	</section>
+	<a id="momentum"></a>
+	<FeatureGrid heading={c.features.heading} sub={c.features.sub} items={c.features.items} />
+	<VideoTourSection heading={c.hero.tourLabel} buttonLabel={c.hero.tourLabel} />
+	<CTA heading={c.cta.heading} sub={c.cta.sub} buttonLabel={c.cta.buttonLabel} demoHref="/nl/demo" />
+</BaseLayout>

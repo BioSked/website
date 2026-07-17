@@ -14,7 +14,7 @@ const pubDate = postDate.toLocaleDateString('en-US', {
 <BaseLayout title={frontmatter.title} description={frontmatter.description} author={frontmatter.author} noIndex={frontmatter.noindex}>
 	<div class="container max-w-5xl section-padding text-sm md:text-base mb-10 md:mb-20 redacted">
 		<div class="text-muted-foreground font-medium text-center text-sm">
-			<a href="/changelog" class="transition-all hover:text-foreground">Changelog</a>
+			<a href="/changelog/" class="transition-all hover:text-foreground">Changelog</a>
 			<span class="mx-1 font-light">/</span>
 			{pubDate}
 			<span class="ml-2 bg-primary/25 border border-accent/15 py-0.5 px-1 rounded-sm text-accent">V.{frontmatter.version}</span>

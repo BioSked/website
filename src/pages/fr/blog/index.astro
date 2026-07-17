@@ -1,0 +1,58 @@
+---
+export const prerender = true;
+
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+
+// Sort by date - newest first
+const posts = (await getCollection('frPosts'))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const dateOptions = {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+};
+
+const lastPost = posts[0];
+---
+
+<BaseLayout
+    title="Blog BioSked | Planification médicale, IA et QVCT"
+    description="Articles BioSked en français sur la planification médicale, l'IA, les plannings de garde, la radiologie, l'anesthésie, les urgences et la QVCT."
+>
+    <div class="container max-w-5xl section-padding mb-30">
+        <h1 class="text-display-section mb-3">Blog BioSked</h1>
+        <p class="text-muted-foreground text-lead max-w-2xl mb-10">
+            Analyses, guides et nouveautés Momentum pour les équipes médicales françaises.
+        </p>
+
+        <div class="border rounded mb-20 bg-white/20 hover:bg-white/35 transition-all shadow-xl shadow-secondary/5">
+            <a href={`/fr/blog/${lastPost.id}`} class="md:flex md:grid-cols-2 group">
+                <div class="flex-3"><Image src={lastPost.data.image} alt={lastPost.data.title} class="rounded-sm md:opacity-90 group-hover:opacity-100 transition-all ease-out duration-300"/></div>
+                <div class="flex-2 p-5 md:pl-9 sm:pr-6 sm:pt-7">
+                    <span class="text-muted-foreground text-sm">{lastPost.data.author} · {lastPost.data.date.toLocaleDateString('fr-FR', dateOptions)}</span>
+                    <span class="opacity-0 group-hover:opacity-100 transition-opacity ease-out duration-500 text-cyan-500 font-medium tracking-large text-sm ml-2 hidden lg:inline">LIRE</span>
+                    <h2 class="text-display-card my-3">{lastPost.data.title}</h2>
+                    <div class="text-muted-foreground text-sm">{lastPost.data.description}</div>
+                </div>     
+            </a>
+        </div>
+        
+        <ul class="grid grid-cols-1 md:grid-cols-2 gap-y-20">
+            {posts.slice(1).map((post, index) => 
+                <a href={`/fr/blog/${post.id}`} class="group">
+                    <li class={index%2 ? 'md:pl-12 border-none' :'md:pr-12 group relative md:border-r md:border-secondary/10'}>
+                        <Image src={post.data.image} alt={post.data.title} class="rounded-sm mb-4 md:mb-5 shadow-lg shadow-secondary/10 md:opacity-90 group-hover:opacity-100 transition-all ease-out duration-300"/>
+                        <span class="text-muted-foreground text-sm">{post.data.author} · {post.data.date.toLocaleDateString('fr-FR', dateOptions)}</span>
+                        <span class="opacity-0 group-hover:opacity-100 transition-opacity ease-out duration-500 text-cyan-500 font-medium tracking-large text-sm ml-2">LIRE</span>
+                        <h2 class="text-display-card my-3">{post.data.title}</h2>
+                        <div class="text-muted-foreground text-sm">{post.data.description}</div>
+                    </li>
+                </a>
+            )}
+        </ul>
+    </div>
+</BaseLayout>

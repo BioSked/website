@@ -1,0 +1,34 @@
+---
+export const prerender = true;
+
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Hero from "@/components/sections/Hero.astro";
+import FeatureGrid from "@/components/sections/intl/FeatureGrid.astro";
+import CTA from "@/components/sections/CTA.astro";
+import VideoTourSection from "@/components/sections/intl/VideoTourSection.astro";
+import QuoteBand from "@/components/sections/intl/QuoteBand.astro";
+import { MARKET } from "@/i18n/market/it";
+import { HOME_CONTENT } from "@/i18n/homeContent";
+import phoneImage from "@/assets/layout/mobilehand-it.webp";
+
+const c = HOME_CONTENT['it'];
+---
+
+<BaseLayout title={c.metaTitle} description={c.metaDescription}>
+	<Hero
+		title={c.hero.title}
+		lead={c.hero.lead}
+		demoLabel={c.hero.demoLabel}
+		demoHref="/it/demo"
+		tourLabel=""
+		badges={c.hero.badges}
+		phoneImage={phoneImage}
+		phoneAlt="App mobile Momentum — 90% di tempo amministrativo in meno, Assistente IA"
+		screenshotAlt="Interfaccia Momentum: vista mensile dei turni con guardie, reperibilità e contatori per i team medici"
+	/>
+	<QuoteBand text={MARKET.quote.text} author={MARKET.quote.author} role={MARKET.quote.role} stats={MARKET.quote.stats} moreHref="/it/referenze" moreLabel="Vedi tutte le referenze" />
+	<a id="momentum"></a>
+	<FeatureGrid heading={c.features.heading} sub={c.features.sub} items={c.features.items} />
+	<VideoTourSection heading={c.hero.tourLabel} buttonLabel={c.hero.tourLabel} />
+	<CTA heading={c.cta.heading} sub={c.cta.sub} buttonLabel={c.cta.buttonLabel} demoHref="/it/demo" />
+</BaseLayout>

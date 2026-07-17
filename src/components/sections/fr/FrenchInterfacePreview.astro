@@ -1,0 +1,220 @@
+---
+const days = ["Lun. 01/09", "Mar. 02/09", "Mer. 03/09", "Jeu. 04/09", "Ven. 05/09", "Sam. 06/09"];
+const rows = [
+  { label: "Site 1", cells: ["Angio 1", "Scanner", "IRM 1.5T", "Consult.", "Repos", "Garde"] },
+  { label: "Site 2", cells: ["Radio", "Écho", "Mammo", "Scanner", "Repos", "Astreinte"] },
+  { label: "Urgences", cells: ["Matin", "Après-midi", "Nuit", "Renfort", "Repos", "Garde"] },
+];
+
+const assignments = [
+  ["SM", "PL", "SN", "SM", "TLD", "EA"],
+  ["ED", "GB", "BB", "JB", "HK", ""],
+  ["LB", "LN", "SM", "ED", "JE", ""],
+  ["RP", "AGS", "PL", "VL", "GB", ""],
+  ["AD", "TLD", "BB", "RP", "EA", ""],
+  ["LN", "SP", "EM", "HK", "DG", "RP"],
+  ["GB", "NS", "HK", "PL", "AL", ""],
+  ["SP", "EM", "JB", "SN", "NS", ""],
+  ["JS", "CAM", "FPO", "AE", "MO", "GL"],
+  ["PK", "MG", "CG", "JPB", "EA", ""],
+  ["TB", "JM", "AL", "FC", "ED", "BB"],
+  ["AG", "LC", "TD", "SR", "NB", ""],
+  ["AD", "ED", "SM", "EA", "BB", ""],
+  ["HK", "SP", "TLD", "RP", "AL", "SM"],
+  ["JS", "PK", "CG", "AE", "MO", ""],
+  ["GB", "LN", "BB", "RP", "EA", ""],
+  ["VL", "JE", "SM", "JPB", "GL", ""],
+  ["SM", "JB", "AD", "JR", "EM", "NS"],
+];
+---
+
+<div class="momentum-preview" aria-label="Aperçu de l'interface Momentum en français">
+  <div class="preview-topbar">
+    <div class="preview-logo">momentum</div>
+    <div class="preview-pill">01/09/2026 - 06/09/2026</div>
+    <div class="preview-status">Publié</div>
+    <div class="preview-filter">Filtres</div>
+    <div class="preview-team">Radiologues</div>
+  </div>
+
+  <div class="preview-grid" style={`--cols:${days.length}; --rows:${assignments.length};`}>
+    <div class="preview-corner">Sites</div>
+    {days.map((day) => <div class="preview-day">{day}</div>)}
+
+    {rows.map((row, rowIndex) => (
+      <>
+        {row.cells.map((cell, cellIndex) => (
+          <div class={`preview-row-label tone-${(rowIndex + cellIndex) % 5}`}>
+            {cellIndex === 0 ? <strong>{row.label}</strong> : cell}
+          </div>
+        ))}
+      </>
+    ))}
+
+    {assignments.flatMap((row, rowIndex) =>
+      row.map((cell, colIndex) => (
+        <div class="preview-cell">
+          {cell && (
+            <span class={`assignment tone-${(rowIndex + colIndex) % 6}`}>
+              {cell}
+            </span>
+          )}
+        </div>
+      ))
+    )}
+  </div>
+
+  <div class="preview-footer">
+    <span>304 affectations</span>
+    <div class="preview-tools">
+      <span>−</span>
+      <span>+</span>
+      <span>Vue grille</span>
+    </div>
+    <span class="preview-validate">Valider</span>
+  </div>
+</div>
+
+<style>
+  .momentum-preview {
+    overflow: hidden;
+    border: 1px solid color-mix(in oklch, var(--secondary) 18%, transparent);
+    border-radius: 10px;
+    background: #f8fbff;
+    box-shadow: 0 24px 70px rgb(8 24 71 / 16%);
+    color: #081847;
+    min-width: 760px;
+  }
+
+  .preview-topbar {
+    display: grid;
+    grid-template-columns: minmax(110px, 1fr) auto auto auto auto;
+    gap: 12px;
+    align-items: center;
+    min-height: 44px;
+    padding: 8px 12px;
+    background: #0a367f;
+    color: white;
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  .preview-logo {
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: 0;
+  }
+
+  .preview-pill,
+  .preview-filter,
+  .preview-team {
+    border-radius: 8px;
+    background: white;
+    color: #081847;
+    padding: 6px 12px;
+    white-space: nowrap;
+  }
+
+  .preview-status {
+    border-radius: 8px;
+    background: #0abf8a;
+    padding: 6px 12px;
+    white-space: nowrap;
+  }
+
+  .preview-team {
+    background: rgb(8 24 71 / 22%);
+    color: white;
+  }
+
+  .preview-grid {
+    display: grid;
+    grid-template-columns: 150px repeat(var(--cols), minmax(92px, 1fr));
+    grid-template-rows: 38px repeat(var(--rows), 28px);
+    border-top: 1px solid #d7e3f5;
+    background-image: radial-gradient(#abc4e6 0.8px, transparent 0.8px);
+    background-size: 8px 8px;
+  }
+
+  .preview-corner,
+  .preview-day,
+  .preview-row-label,
+  .preview-cell {
+    border-right: 1px solid #d7e3f5;
+    border-bottom: 1px solid #d7e3f5;
+  }
+
+  .preview-corner,
+  .preview-day {
+    display: grid;
+    place-items: center;
+    background: #ffffff;
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  .preview-row-label {
+    display: flex;
+    align-items: center;
+    padding: 0 7px;
+    overflow: hidden;
+    background: #eef6ff;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .preview-cell {
+    position: relative;
+    background: rgb(255 255 255 / 42%);
+    padding: 3px;
+  }
+
+  .assignment {
+    display: block;
+    min-height: 20px;
+    border: 1px solid rgb(8 24 71 / 55%);
+    border-radius: 3px;
+    padding: 1px 5px;
+    overflow: hidden;
+    color: #081847;
+    font-size: 12px;
+    font-weight: 800;
+    line-height: 17px;
+    white-space: nowrap;
+  }
+
+  .tone-0 { background: #ff9b73; }
+  .tone-1 { background: #8ee88f; }
+  .tone-2 { background: #3da3f5; }
+  .tone-3 { background: #ffd84c; }
+  .tone-4 { background: #f6a9b5; }
+  .tone-5 { background: #78d7e8; }
+
+  .preview-footer {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 10px;
+    align-items: center;
+    min-height: 40px;
+    padding: 6px 14px;
+    background: white;
+    color: #081847;
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  .preview-tools {
+    display: flex;
+    gap: 12px;
+    color: #0a367f;
+  }
+
+  .preview-validate {
+    justify-self: end;
+    border: 1px solid #d7e3f5;
+    border-radius: 8px;
+    padding: 5px 12px;
+    color: #0abf8a;
+  }
+</style>

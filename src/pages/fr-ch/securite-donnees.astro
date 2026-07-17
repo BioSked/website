@@ -1,0 +1,72 @@
+---
+export const prerender = true;
+
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Card from "@/components/ui/Card.astro";
+import Button from "@/components/ui/Button.astro";
+
+const points = [
+  {
+    title: "Hébergement dans l'Union européenne",
+    text: "Les données de production Momentum de nos clients européens sont hébergées dans l'Union européenne. Les modalités précises (localisation, sous-traitants) sont documentées contractuellement.",
+  },
+  {
+    title: "RGPD et contrat de sous-traitance",
+    text: "Bio-Optronics Sàrl intervient comme sous-traitant au sens du RGPD pour les données de planification de ses clients. Un accord de traitement des données (DPA) est fourni sur demande, avec la liste des sous-traitants ultérieurs.",
+  },
+  {
+    title: "Des données de planification, pas de dossiers patients",
+    text: "Momentum traite les données nécessaires à la planification des équipes : identités professionnelles, affectations, compteurs, temps de travail. La solution n'a pas vocation à héberger de dossiers médicaux de patients.",
+  },
+  {
+    title: "Chiffrement",
+    text: "Les échanges avec la plateforme sont chiffrés en transit (TLS) et les données sont chiffrées au repos chez notre fournisseur d'infrastructure.",
+  },
+  {
+    title: "Accès et traçabilité",
+    text: "Les droits d'accès dans Momentum sont définis par rôles et par privilèges, administrés par votre organisation. Les demandes (congés, échanges, désidératas) sont tracées dans l'application.",
+  },
+  {
+    title: "Ce que Momentum ne fait pas",
+    text: "Momentum n'est pas un outil de surveillance des employés : pas de notation individuelle des personnes, pas de détection comportementale. Les compteurs servent l'équité de la répartition, visibles des équipes elles-mêmes.",
+  },
+];
+---
+
+<BaseLayout
+  title="Sécurité & données | BioSked Momentum"
+  description="Comment Momentum traite les données de planification : hébergement dans l'Union européenne, RGPD et DPA sur demande, chiffrement, accès par rôles, pas de surveillance individuelle."
+>
+  <section class="section-padding">
+    <div class="container max-w-4xl">
+      <p class="font-mono text-sm font-semibold uppercase tracking-widest text-muted-foreground">Sécurité &amp; données</p>
+      <h1 class="text-display-hero mt-4">Des engagements vérifiables, pas des slogans</h1>
+      <p class="text-lead text-muted-foreground mt-5 max-w-2xl">
+        Les DSI et DPO ont des questions précises. Voici nos réponses, dans les limites de ce que
+        nous documentons contractuellement — le détail s'examine avec votre équipe lors du cadrage.
+      </p>
+    </div>
+  </section>
+  <section class="section-padding pt-0">
+    <div class="container max-w-5xl">
+      <div class="grid gap-4 sm:grid-cols-2">
+        {points.map((pt) => (
+          <Card className="p-6 bg-white/15">
+            <h2 class="font-semibold text-foreground mb-2">{pt.title}</h2>
+            <p class="text-muted-foreground text-sm">{pt.text}</p>
+          </Card>
+        ))}
+      </div>
+      <p class="text-muted-foreground text-sm mt-8">
+        Questions RGPD, DPA, sous-traitants : <a href="mailto:info@biosked.com" class="text-accent hover:underline">info@biosked.com</a> ·
+        Voir aussi les <a href="/fr-ch/mentions-legales/" class="text-accent hover:underline">mentions légales</a> et la
+        <a href="/privacy/" class="text-accent hover:underline">politique de confidentialité</a>.
+      </p>
+      <div class="mt-10">
+        <a href="/fr-ch/demo/">
+          <Button size="lg" className="rounded-full px-5 font-bold">Demander une démo</Button>
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

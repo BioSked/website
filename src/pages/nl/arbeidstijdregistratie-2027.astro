@@ -1,0 +1,48 @@
+---
+export const prerender = true;
+
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Card from "@/components/ui/Card.astro";
+import Button from "@/components/ui/Button.astro";
+import { BE2027 } from "@/i18n/market/nl-be2027";
+
+const c = BE2027;
+---
+
+<BaseLayout title={c.metaTitle} description={c.metaDescription}>
+    <section class="section-padding">
+        <div class="container max-w-4xl">
+            <p class="font-mono text-sm font-semibold uppercase tracking-widest text-muted-foreground">{c.kicker}</p>
+            <h1 class="text-display-hero mt-4">{c.heading}</h1>
+            <p class="text-lead text-muted-foreground mt-5 max-w-2xl">{c.lead}</p>
+            <div class="mt-8">
+                <a href="/nl/demo/">
+                    <Button size="lg" className="rounded-full px-5 font-bold">{c.demoCta}</Button>
+                </a>
+            </div>
+        </div>
+    </section>
+    <section class="section-padding pt-0">
+        <div class="container max-w-4xl space-y-10">
+            {c.sections.map((s) => (
+                <div>
+                    <h2 class="text-display-card mb-4">{s.heading}</h2>
+                    {s.paragraphs.map((p) => <p class="text-foreground/85 mb-3">{p}</p>)}
+                </div>
+            ))}
+            <div class="grid gap-4 sm:grid-cols-3">
+                {c.facts.map((f) => (
+                    <Card className="p-6 bg-white/15">
+                        <div class="text-display-card font-bold text-accent">{f.value}</div>
+                        <div class="text-muted-foreground text-sm mt-1">{f.label}</div>
+                    </Card>
+                ))}
+            </div>
+            <div>
+                <a href="/nl/demo/">
+                    <Button size="lg" className="rounded-full px-5 font-bold">{c.demoCta}</Button>
+                </a>
+            </div>
+        </div>
+    </section>
+</BaseLayout>

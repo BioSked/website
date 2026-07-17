@@ -1,0 +1,88 @@
+---
+export const prerender = true;
+
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Card from "@/components/ui/Card.astro";
+
+const papers = [
+  { file: "/livres-blancs/livre-blanc-etablissement-de-sante.pdf", title: "Planification dynamique en établissement de santé", desc: "Les bénéfices mesurables d’une planification automatisée à l’échelle d’un établissement : temps administratif, équité, continuité des soins." },
+  { file: "/livres-blancs/livre-blanc-radiologie.pdf", title: "Planification dynamique en radiologie", desc: "Vacations, modalités, mutualisation multi-sites : le guide pratique pour les groupes d’imagerie.", missing: true },
+  { file: "/livres-blancs/livre-blanc-anesthesie.pdf", title: "Planification dynamique en anesthésie", desc: "Blocs, IADE, repos de sécurité : organiser la planification d’un service d’anesthésie." },
+  { file: "/livres-blancs/livre-blanc-cardiologie.pdf", title: "Planification dynamique en cardiologie", desc: "Concilier activité programmée, gardes et astreintes dans les services de cardiologie." },
+  { file: "/livres-blancs/livre-blanc-urgences.pdf", title: "Planification dynamique aux urgences", desc: "Gardes, continuité, imprévus : les leviers d’une planification soutenable aux urgences." },
+].filter(p => !p.missing);
+---
+
+<BaseLayout
+  title="Livres blancs planification médicale | BioSked Momentum"
+  description="Guides pratiques BioSked : la planification dynamique en établissement de santé, anesthésie, cardiologie et urgences. Téléchargement après un court formulaire."
+>
+  <section class="section-padding">
+    <div class="container max-w-4xl">
+      <p class="font-mono text-sm font-semibold uppercase tracking-widest text-muted-foreground">Ressources</p>
+      <h1 class="text-display-hero mt-4">Livres blancs : la planification médicale, en pratique</h1>
+      <p class="text-lead text-muted-foreground mt-5 max-w-2xl">
+        Quatre guides issus de plus de 15 ans de planification d’équipes médicales. Renseignez votre
+        adresse professionnelle une seule fois : les téléchargements se débloquent immédiatement.
+      </p>
+    </div>
+  </section>
+
+  <section class="section-padding pt-0">
+    <div class="container max-w-5xl">
+      <div class="grid gap-4 sm:grid-cols-2">
+        {papers.map((p) => (
+          <Card className="p-6 bg-white/15">
+            <h2 class="font-semibold text-foreground mb-2">{p.title}</h2>
+            <p class="text-muted-foreground text-sm mb-4">{p.desc}</p>
+            <a
+              href={p.file}
+              class="wp-download hidden text-sm font-semibold text-cyan-600 transition-colors hover:text-secondary"
+              data-file={p.file}
+              download
+            >Télécharger le PDF</a>
+            <span class="wp-locked text-muted-foreground text-sm">Verrouillé — remplissez le formulaire ci-dessous.</span>
+          </Card>
+        ))}
+      </div>
+
+      <div id="wp-form-card" class="mt-10 max-w-xl mx-auto bg-white/60 border border-primary/30 shadow-xl shadow-secondary/10 rounded-2xl px-4 sm:px-10 pb-10 pt-1">
+        <h2 class="text-display-card text-secondary font-bold max-w-2xl mx-auto my-5">Recevoir les livres blancs</h2>
+        <hr class="border-input">
+        <div id="hubspot-wp" class="mt-5"></div>
+      </div>
+      <p class="text-muted-foreground text-xs mt-3 text-center">
+        <a href="/fr/securite-donnees/" class="hover:text-foreground transition-colors">Hébergement dans l’Union européenne · RGPD · DPA sur demande</a>
+      </p>
+    </div>
+  </section>
+
+  <script charset="utf-8" type="text/javascript" src="//js-eu1.hsforms.net/forms/embed/v2.js"></script>
+  <script is:inline>
+    (function () {
+      var KEY = 'biosked-wp-unlocked';
+      function unlock() {
+        document.querySelectorAll('.wp-download').forEach(function (a) { a.classList.remove('hidden'); });
+        document.querySelectorAll('.wp-locked').forEach(function (s) { s.remove(); });
+        var f = document.getElementById('wp-form-card');
+        if (f) f.classList.add('hidden');
+      }
+      try { if (localStorage.getItem(KEY)) unlock(); } catch (e) {}
+      /* TODO marketing: remplacer par un formulaire HubSpot dédié « livres blancs »
+         (avec workflow d'envoi par email) — le formulaire devis sert de collecte en attendant. */
+      hbspt.forms.create({
+        formInstanceId: "3",
+        portalId: "25195055",
+        formId: "152f6973-10dd-42d4-af28-2df2f8f830e9",
+        region: "eu1",
+        locale: "fr",
+        target: "#hubspot-wp",
+        onFormSubmitted: function () {
+          try { localStorage.setItem(KEY, '1'); } catch (e) {}
+          if (typeof gtag === 'function') gtag('event', 'whitepaper_unlock', { page_locale: 'fr' });
+          unlock();
+        }
+      });
+    })();
+  </script>
+</BaseLayout>

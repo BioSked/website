@@ -15,45 +15,15 @@ const { currentPage } = Astro.props;
 
 const pathname = currentPage?.replace(/\/$/, '') || '';
 
-const ALL_FOOTER_SECTIONS = [
-    {
-        title: 'Momentum',
-        hidden: false,
-        links: [
-            { name: 'Product', href: '/', hidden: false, isModal: false },
-// { name: 'Solution', href: '/solutions', hidden: !siteConfig.features.showFooterSolutions, isModal: false },
-            { name: 'Pricing', href: '/pricing', hidden: false, isModal: false },
-            { name: 'Integrations', href: '/#integrations', hidden: !siteConfig.features.showFooterIntegrations, isModal: false },
-            { name: 'Support', href: 'https://kb.biosked.com/en/knowledge/kb-tickets/new', hidden: false, isModal: false },
-            { name: 'Changelog', href: '/changelog', hidden: false, isModal: false },
-        ],
-    },
-    {
-        title: 'Resources',
-        hidden: !siteConfig.features.showFooterResources,
-        links: [
-            { name: 'Documentation', href: '/docs', hidden: false, isModal: false },
-            { name: 'Help Center', href: '/help', hidden: false, isModal: false },
-            { name: 'Blog', href: '/blog', hidden: false, isModal: false },
-        ],
-    },
-    {
-        title: 'Company',
-        hidden: false,
-        links: [
-            { name: 'Blog', href: '/blog', hidden: false, isModal: false },
-            { name: 'About us', href: '/about', hidden: false, isModal: false },
-            { name: 'Careers', href: '/careers', hidden: false, isModal: false },
-            { name: 'LinkedIn', href: 'https://www.linkedin.com/company/biosked/', hidden: false, isModal: false }
-        ],
-    },
-];
+import { footerFor } from '@/i18n/footerLinks';
+import type { LocaleCode } from '@/i18n/locales';
 
-const FOOTER_SECTIONS = ALL_FOOTER_SECTIONS
-.filter(section => !section.hidden)
-.map(section => ({
+const locale = (Astro.currentLocale ?? 'en') as LocaleCode;
+const footer = footerFor(locale);
+
+const FOOTER_SECTIONS = footer.sections.map((section) => ({
     ...section,
-    links: section.links.filter(link => !link.hidden),
+    links: section.links.map((link) => ({ ...link, isModal: false })),
 }));
 
 const SOCIAL_LINKS = [
@@ -82,12 +52,12 @@ const currentYear = new Date().getFullYear();
             <div class="flex-2 flex flex-col gap-1">
                 <Logo loading="lazy"/>
                 <div class="text-muted-foreground text-sm my-4">
-                    Americas Headquarter: Rochester, New York<br>
-                    Europe Headquarter: Geneva, Switzerland
+                    {footer.hqLines[0]}<br>
+                    {footer.hqLines[1]}
                 </div>
                 <div class="text-muted-foreground text-sm">Copyright © {currentYear} BioSked, Inc.</div>
                 <div class="text-muted-foreground text-sm mt-1">
-                    <a href="/privacy" class="hover:text-card-foreground transition-colors">Privacy Policy</a>
+                    <a href="/privacy/" class="hover:text-card-foreground transition-colors">{footer.privacyLabel}</a>
                 </div>
             </div>
             <div class="flex-1 flex">

@@ -1,0 +1,26 @@
+{
+    "nav": {
+        "product": "Produkt",
+        "product-subtitle": "Momentum entdecken",
+        "pricing": "Preise",
+        "pricing-subtitle": "Pläne und Angebote",
+        "resources": "Ressourcen",
+        "resources-subtitle": "Guides, Blog und Unternehmen",
+        "blog": "Blog",
+        "blog-subtitle": "Artikel und Neuigkeiten",
+        "careers": "Karriere",
+        "careers-subtitle": "Wir stellen ein!",
+        "help": "Hilfe",
+        "help-subtitle": "Wie können wir helfen?",
+        "about": "Über uns",
+        "about-subtitle": "Das Team kennenlernen",
+        "references": "Referenzen",
+        "references-subtitle": "Dokumentierte Kundenergebnisse"
+    },
+    "cta": {
+        "demo": "Demo buchen"
+    },
+    "switcher": {
+        "label": "Sprache"
+    }
+}

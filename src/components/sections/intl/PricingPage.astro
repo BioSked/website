@@ -1,0 +1,80 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Card from '@/components/ui/Card.astro';
+import Button from '@/components/ui/Button.astro';
+import CTA from '@/components/sections/CTA.astro';
+import { FAQAccordion } from '@/components/sections/FAQAccordion';
+import type { MarketContent } from '@/i18n/market/types';
+import type { HomeContent } from '@/i18n/homeContent';
+import type { LocaleCode } from '@/i18n/locales';
+
+/**
+ * Shared quote-based pricing page for the de/nl/it markets: value-led framing
+ * (guided deployment, integrations, support) instead of price cards — the
+ * strategy used for European markets. Copy comes from the market file.
+ */
+interface Props {
+    market: MarketContent;
+    home: HomeContent;
+    locale: LocaleCode;
+}
+const { market, home, locale } = Astro.props;
+const p = market.pricing;
+const demoHref = `/${locale}/demo/`;
+const quoteHref = `/${locale}/getquote/`;
+const faqData = p.faq.map((f, i) => ({ id: `faq-${i}`, question: f.q, answer: f.a }));
+const proof = home.cta.sub;
+const faqSchema = JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: p.faq.map((f) => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+});
+---
+
+<BaseLayout title={p.metaTitle} description={p.metaDescription}>
+    <script type="application/ld+json" set:html={faqSchema} />
+    <section class="section-padding">
+        <div class="container max-w-4xl">
+            <p class="font-mono text-sm font-semibold uppercase tracking-widest text-muted-foreground">{p.kicker}</p>
+            <h1 class="text-display-hero mt-4">{p.heading}</h1>
+            <p class="text-lead text-muted-foreground mt-5 max-w-2xl">{p.lead}</p>
+            {p.anchor && <p class="mt-4 text-lg text-foreground" set:html={p.anchor} />}
+            <div class="mt-8 flex flex-wrap gap-3">
+                <a href={demoHref}>
+                    <Button size="lg" className="rounded-full px-5 font-bold">{p.demoCta}</Button>
+                </a>
+                <a href={quoteHref}>
+                    <Button size="lg" variant="ghost" className="rounded-full px-4 font-semibold">{p.quoteCta}</Button>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding pt-0">
+        <div class="container max-w-5xl">
+            <h2 class="text-display-section tracking-tight mb-8">{p.includedTitle}</h2>
+            <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                {p.included.map((item) => (
+                    <Card className="p-6 bg-white/15">
+                        <h3 class="font-semibold text-foreground mb-2">{item.title}</h3>
+                        <p class="text-muted-foreground text-sm">{item.text}</p>
+                    </Card>
+                ))}
+            </div>
+            <p class="text-muted-foreground text-sm mt-8">{proof}</p>
+        </div>
+    </section>
+
+    <section class="section-padding pt-0">
+        <div class="container max-w-4xl">
+            <h2 class="text-display-section tracking-tight text-center mb-8">{p.faqTitle}</h2>
+            <FAQAccordion client:visible faqData={faqData} />
+        </div>
+    </section>
+
+    <CTA heading={home.cta.heading} sub={home.cta.sub} buttonLabel={home.cta.buttonLabel} demoHref={demoHref} />
+</BaseLayout>

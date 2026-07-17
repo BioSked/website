@@ -3,6 +3,19 @@ import Button from '@/components/ui/Button.astro';
 import Card from '@/components/ui/Card.astro';
 import HalftonePattern from '@/components/elements/HalftonePattern.astro';
 import MMIcon from '@/assets/logos/MM-Icon.svg';
+
+interface Props {
+  heading?: string;
+  sub?: string;
+  buttonLabel?: string;
+  demoHref?: string;
+}
+const {
+  heading = 'Ready to Transform How Your Organization Schedules?',
+  sub = 'Join 250+ healthcare organizations scheduling across 1,000+ sites with Momentum. Build fair schedules, reduce administrative burden, and improve staff satisfaction.',
+  buttonLabel = 'Schedule a Demo',
+  demoHref = '/demo',
+} = Astro.props;
 ---
 
 <section id="cta" class="section-padding">
@@ -14,19 +27,19 @@ import MMIcon from '@/assets/logos/MM-Icon.svg';
         <div class="space-y-4">
           <MMIcon class="inline-block size-16 "/>
           <h2 class="text-display-section text-foreground mt-5 tracking-tight">
-            Ready to Transform How Your Organization Schedules?
+            {heading}
           </h2>
           <p class="text-muted-foreground text-lead">
-            Join 250+ healthcare organizations scheduling across 1,000+ sites with Momentum. Build fair schedules, reduce administrative burden, and improve staff satisfaction.
+            {sub}
           </p>
         </div>
         <div class="flex flex-wrap justify-center gap-3">
-          <a href="/demo">
+          <a href={demoHref}>
             <Button
               size="lg"
               className="mt-2 border border-white/50 rounded-full pl-5.5! before:rounded-full shadow-sm shadow-primary/50 hover:shadow-md font-bold transition-all duration-200 scale-100 hover:scale-106"
             >
-              Schedule a Demo
+              {buttonLabel}
             </Button>
           </a>
         </div>

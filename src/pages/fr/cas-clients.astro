@@ -1,0 +1,15 @@
+---
+export const prerender = true;
+
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import CaseStudies from '@/components/sections/fr/CaseStudies.astro';
+import CTA from '@/components/sections/fr/CTA.astro';
+---
+
+<BaseLayout
+  title="Cas clients France | BioSked Momentum"
+  description="Sept études de cas Momentum en intégralité : CHIREC, CHU Angers, IMALLIANCE-HDF, IRIS GRIM, Les Cèdres, IMAGIR Bordeaux et Hôpital Européen de Marseille. Urgences, radiologie, anesthésie — chiffres publiés et témoignages."
+>
+  <CaseStudies />
+  <CTA />
+</BaseLayout>

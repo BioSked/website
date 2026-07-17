@@ -1,0 +1,36 @@
+---
+import { specialtyPages } from '@/data/frLandingPages';
+
+const featured = [
+  specialtyPages.radiologie,
+  specialtyPages.anesthesie,
+  specialtyPages.urgences,
+  specialtyPages['etablissements-de-sante'],
+  specialtyPages.cardiologie,
+  specialtyPages['autres-specialites-medicales'],
+];
+---
+
+<section id="specialites" class="section-padding">
+  <div class="container max-w-5xl">
+    <div class="mb-8 max-w-3xl">
+      <p class="font-mono text-sm font-semibold uppercase tracking-widest text-muted-foreground">Spécialités et structures</p>
+      <h2 class="text-display-section mt-3">Des parcours adaptés au terrain médical français</h2>
+      <p class="text-muted-foreground text-lead mt-4">
+        Vacations et mutualisation multi-sites en radiologie, blocs et repos de sécurité en anesthésie, lignes de garde aux urgences, pilotage multi-établissements en GHT : chaque page traite les contraintes réelles du service, avec les résultats mesurés chez nos clients.
+      </p>
+    </div>
+    <div class="grid gap-4 md:grid-cols-3">
+      {featured.map((page) => (
+        <a href={`/fr/secteurs-soins/${page.slug}`} class="group border border-secondary/10 bg-white/25 p-5 transition-all hover:bg-white/60">
+          <p class="text-sm font-semibold text-cyan-600">{page.eyebrow}</p>
+          <h3 class="text-display-card mt-3">{page.title}</h3>
+          <p class="mt-4 text-sm text-muted-foreground">{page.description}</p>
+          <span class="mt-6 inline-block text-sm font-semibold text-secondary">
+            Explorer
+          </span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

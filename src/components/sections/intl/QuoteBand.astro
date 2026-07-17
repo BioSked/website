@@ -1,0 +1,48 @@
+---
+import Card from '@/components/ui/Card.astro';
+import { Quote } from 'lucide-astro';
+
+/**
+ * Homepage proof band for the de/nl/it markets: one translated customer quote
+ * (original attribution kept) + three published proof-point stats.
+ */
+interface Props {
+    text: string;
+    author: string;
+    role: string;
+    stats: { value: string; label: string }[];
+    moreHref?: string;
+    moreLabel?: string;
+}
+const { text, author, role, stats, moreHref, moreLabel } = Astro.props;
+---
+
+<section class="section-padding pt-0">
+    <div class="container max-w-5xl">
+        <Card className="p-8 md:p-12 bg-white/15">
+            <div class="grid gap-10 md:grid-cols-5 md:items-center">
+                <figure class="md:col-span-3">
+                    <Quote class="size-8 text-accent/40 mb-4" />
+                    <blockquote class="text-foreground text-lg md:text-xl leading-relaxed">
+                        {text}
+                    </blockquote>
+                    <figcaption class="mt-5 text-sm">
+                        <span class="font-semibold text-foreground">{author}</span>
+                        <span class="text-muted-foreground"> — {role}</span>
+                    </figcaption>
+                    {moreHref && moreLabel && (
+                        <a href={moreHref} class="mt-4 inline-block text-sm font-semibold text-cyan-600 transition-colors hover:text-secondary">{moreLabel}</a>
+                    )}
+                </figure>
+                <div class="md:col-span-2 grid grid-cols-3 md:grid-cols-1 gap-6 md:border-l md:border-secondary/10 md:pl-10">
+                    {stats.map((s) => (
+                        <div>
+                            <div class="text-display-card font-bold text-accent">{s.value}</div>
+                            <div class="text-muted-foreground text-sm mt-1">{s.label}</div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </Card>
+    </div>
+</section>

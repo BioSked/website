@@ -1,0 +1,103 @@
+---
+import Button from '@/components/ui/Button.astro';
+import FrenchInterfacePreview from './FrenchInterfacePreview.astro';
+import type { FrenchLandingPage as LandingPage } from '@/data/frLandingPages';
+
+interface Props {
+  page: LandingPage;
+}
+
+const { page } = Astro.props;
+---
+
+<section class="section-padding">
+  <div class="container max-w-5xl">
+    <div class="grid gap-10 lg:grid-cols-[1fr_420px] lg:items-center">
+      <div>
+        <p class="font-mono text-sm font-semibold uppercase tracking-widest text-muted-foreground">{page.eyebrow}</p>
+        <h1 class="text-display-hero mt-4">{page.title}</h1>
+        <p class="text-lead mt-5 max-w-2xl text-muted-foreground">{page.description}</p>
+        <div class="mt-7 flex flex-wrap gap-3">
+          <a href="/fr/demo/">
+            <Button size="lg" className="rounded-full px-5 font-bold">
+              Demander une démo
+            </Button>
+          </a>
+          <a href="/fr/cas-clients/">
+            <Button size="lg" variant="ghost" className="rounded-full px-4 font-semibold">
+              Voir les cas clients
+            </Button>
+          </a>
+        </div>
+      </div>
+      <div class="overflow-hidden rounded-xl border border-secondary/10 bg-white/30 p-1 shadow-xl shadow-secondary/10">
+        <div class="origin-top-left scale-[0.58] sm:scale-[0.7] lg:scale-[0.56]" style="width: 760px; height: 390px;">
+          <FrenchInterfacePreview />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pb-10 md:pb-16">
+  <div class="container max-w-5xl">
+    <div class="grid gap-6 md:grid-cols-[1.1fr_0.9fr]">
+      <div class="border-y border-secondary/10 py-8">
+        <h2 class="text-display-section">Les enjeux à traiter</h2>
+        <p class="mt-4 text-lg leading-relaxed text-foreground/80">{page.primaryPain}</p>
+      </div>
+      <div class="grid gap-3">
+        {page.pains.map((pain) => (
+          <div class="border border-secondary/10 bg-white/25 p-4">
+            <p class="font-semibold text-secondary">{pain}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-10 md:py-16">
+  <div class="container max-w-5xl">
+    <div class="mb-8 max-w-2xl">
+      <p class="font-mono text-sm font-semibold uppercase tracking-widest text-muted-foreground">Réponse Momentum</p>
+      <h2 class="text-display-section mt-3">Un planning plus rapide à construire, plus simple à défendre</h2>
+    </div>
+    <div class="grid gap-4 md:grid-cols-2">
+      {page.outcomes.map((outcome) => (
+        <div class="border-l-2 border-cyan-500 bg-white/20 p-5">
+          <p class="text-lg font-semibold">{outcome}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="py-10 md:py-16">
+  <div class="container max-w-5xl">
+    <div class="grid gap-6 border border-secondary/10 bg-secondary/5 p-6 md:grid-cols-[1fr_auto] md:items-center md:p-8">
+      <div>
+        <p class="font-mono text-sm font-semibold uppercase tracking-widest text-muted-foreground">Preuve terrain</p>
+        <p class="text-lead mt-3">{page.proof}</p>
+      </div>
+      <a href="/fr/demo/">
+        <Button size="lg" className="rounded-full px-5 font-bold">
+          Planifier une démo
+        </Button>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="pb-16 md:pb-24">
+  <div class="container max-w-5xl">
+    <h2 class="text-display-card">À explorer ensuite</h2>
+    <div class="mt-4 flex flex-wrap gap-3">
+      {page.related.map((link) => (
+        <a href={link.href} class="rounded-full border border-secondary/15 px-4 py-2 text-sm font-semibold transition-colors hover:bg-white/50">
+          {link.label}
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

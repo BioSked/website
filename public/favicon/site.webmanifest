@@ -1,7 +1,7 @@
 {
-  "name": "Momentum - Healthcare Scheduling by BioSked",
+  "name": "Momentum - Planification médicale par BioSked",
   "short_name": "Momentum",
-  "description": "AI-powered healthcare scheduling software for hospitals and medical practices",
+  "description": "Logiciel de planification médicale avec IA pour hôpitaux, groupes médicaux et établissements de santé",
   "icons": [
     {
       "src": "/favicon/web-app-manifest-192x192.png",

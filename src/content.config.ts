@@ -13,6 +13,19 @@ const enPosts = defineCollection({
     }),
 });
 
+const frPosts = defineCollection({
+    loader: glob({ pattern: "*.md", base: "./src/pages/fr/blog" }),
+    schema: ({ image }) => z.object({
+        title: z.string(),
+        description: z.string(),
+        image: image(),
+        author: z.string(),
+        date: z.date(),
+        canonicalPath: z.string().optional(),
+        sourceUrl: z.string().optional(),
+    }),
+});
+
 const enChangelogs = defineCollection({
     loader: glob({ pattern: "*.md", base: "./src/pages/changelog" }),
     schema: ({ image }) => z.object({
@@ -25,15 +38,4 @@ const enChangelogs = defineCollection({
     }),
 });
 
-// const frPosts = defineCollection({
-//     loader: glob({ pattern: "**/*.md", base: "./src/pages/blog/posts/fr" }),
-//     schema: ({ image }) => z.object({
-//         title: z.string(),
-//         description: z.string(),
-//         image: image(),
-//         author: z.string(),
-//         date: z.date()
-//     }),
-// });
-
-export const collections = { enPosts, enChangelogs};
+export const collections = { enPosts, frPosts, enChangelogs };

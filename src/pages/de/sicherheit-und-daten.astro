@@ -1,0 +1,7 @@
+---
+export const prerender = true;
+import SecurityPage from "@/components/sections/intl/SecurityPage.astro";
+import { MARKET } from "@/i18n/market/de";
+import { HOME_CONTENT } from "@/i18n/homeContent";
+---
+<SecurityPage market={MARKET} locale="de" demoLabel={HOME_CONTENT['de'].hero.demoLabel} />

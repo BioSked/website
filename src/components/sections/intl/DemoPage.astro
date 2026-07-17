@@ -1,0 +1,90 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { Quote } from 'lucide-astro';
+import type { MarketContent } from '@/i18n/market/types';
+import type { LocaleCode } from '@/i18n/locales';
+
+/**
+ * Shared demo-request page for the de/nl/it markets — a closing page, not a
+ * bare form: proof beside the form, what-happens-next, GDPR reassurance.
+ * HubSpot embed is locale-aware and redirects to the locale thank-you page.
+ */
+interface Props {
+    market: MarketContent;
+    locale: LocaleCode;
+}
+const { market, locale } = Astro.props;
+const d = market.demo;
+const q = market.quote;
+
+const SECURITY_PATH: Record<string, string> = { de: '/de/sicherheit-und-daten/', nl: '/nl/beveiliging-en-gegevens/', it: '/it/sicurezza-e-dati/' };
+const HS_LOCALE: Record<string, string> = { de: 'de', nl: 'nl', it: 'it' };
+const formId = d.formId ?? 'e937d75c-2dbc-4b77-8e53-1582aa472092';
+const thankYouPath = market.thankyou ? `/${locale}/demo/${market.thankyou.slug}/` : undefined;
+---
+
+<BaseLayout title={d.metaTitle} description={d.metaDescription}>
+    <div class="container section-padding">
+      <h1 class="text-2xl sm:text-4xl text-center font-bold max-w-4xl mx-auto">{d.heading}</h1>
+      <p class="text-md sm:text-lg text-center mt-4 mb-10 text-muted-foreground max-w-xl mx-auto">{d.sub}</p>
+
+      <div class="mx-auto grid max-w-5xl gap-8 lg:grid-cols-5">
+        <div class="lg:col-span-3">
+          <div class="bg-card-foreground transition-all duration-400 shadow-xl shadow-card-foreground/30 rounded-2xl px-4 sm:px-10 pb-10 pt-1">
+            <h2 class="text-display-card text-center font-bold max-w-2xl mx-auto text-white my-5">{d.formTitle}</h2>
+            <hr class="border-white/10">
+            <div id="hubspot-demo" class="mt-5"></div>
+          </div>
+          {d.privacyNote && (
+            <p class="text-muted-foreground text-xs mt-3 text-center">
+              <a href={SECURITY_PATH[locale] ?? '/'} class="hover:text-foreground transition-colors">{d.privacyNote}</a>
+            </p>
+          )}
+        </div>
+        <aside class="lg:col-span-2 space-y-6">
+          {d.steps && d.steps.length > 0 && (
+            <ol class="space-y-3">
+              {d.steps.map((step, i) => (
+                <li class="flex gap-3">
+                  <span class="bg-primary/10 text-accent grid size-7 shrink-0 place-items-center rounded-full text-sm font-bold">{i + 1}</span>
+                  <span class="text-foreground/85 text-sm">{step}</span>
+                </li>
+              ))}
+            </ol>
+          )}
+          <figure class="border-l-2 border-cyan-500 pl-4">
+            <Quote class="size-5 text-accent/40 mb-2" />
+            <blockquote class="text-foreground/90 text-sm">{q.text}</blockquote>
+            <figcaption class="mt-2 text-xs">
+              <span class="font-semibold text-foreground">{q.author}</span>
+              <span class="text-muted-foreground"> — {q.role}</span>
+            </figcaption>
+          </figure>
+          <div class="grid grid-cols-3 gap-4">
+            {q.stats.map((s) => (
+              <div>
+                <div class="font-bold text-accent">{s.value}</div>
+                <div class="text-muted-foreground text-xs mt-1">{s.label}</div>
+              </div>
+            ))}
+          </div>
+        </aside>
+      </div>
+
+      <script charset="utf-8" type="text/javascript" src="//js-eu1.hsforms.net/forms/embed/v2.js"></script>
+      <script is:inline define:vars={{ formId, hsLocale: HS_LOCALE[locale] ?? 'en', thankYouPath, pageLocale: locale }}>
+        hbspt.forms.create({
+          formInstanceId: "1",
+          portalId: "25195055",
+          formId: formId,
+          region: "eu1",
+          locale: hsLocale,
+          redirectUrl: thankYouPath || undefined,
+          target: "#hubspot-demo",
+          onFormSubmitted: function () {
+            if (typeof gtag === 'function') gtag('event', 'demo_form_submit', { page_locale: pageLocale });
+          }
+        });
+      </script>
+    </div>
+</BaseLayout>

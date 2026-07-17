@@ -1,0 +1,23 @@
+---
+export const prerender = true;
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Button from "@/components/ui/Button.astro";
+---
+<BaseLayout title="Demande reçue | BioSked Momentum" description="Nous avons bien reçu votre demande." noIndex={true}>
+    <section class="section-padding">
+        <div class="container max-w-2xl text-center">
+            <h1 class="text-display-section">Merci — nous avons bien reçu votre demande.</h1>
+            <p class="text-lead text-muted-foreground mt-5">
+                Un membre de notre équipe vous recontactera pour convenir d’un créneau.
+                Si vous souhaitez nous transmettre dès maintenant quelques précisions — équipes, sites,
+                processus de planification actuel — écrivez-nous : info@biosked.com.
+            </p>
+            <!-- TODO: intégrer le module HubSpot Meetings de l'AE responsable (Sarah/Léo) dès que le lien est fourni. -->
+            <div class="mt-8">
+                <a href="/fr/">
+                    <Button size="lg" variant="ghost" className="rounded-full px-4 font-semibold">Retour à l’accueil</Button>
+                </a>
+            </div>
+        </div>
+    </section>
+</BaseLayout>

@@ -1,0 +1,26 @@
+{
+    "nav": {
+        "product": "Product",
+        "product-subtitle": "Ontdek Momentum",
+        "pricing": "Prijzen",
+        "pricing-subtitle": "Abonnementen en offertes",
+        "resources": "Resources",
+        "resources-subtitle": "Gidsen, blog en bedrijf",
+        "blog": "Blog",
+        "blog-subtitle": "Artikelen en nieuws",
+        "careers": "Vacatures",
+        "careers-subtitle": "Kom ons team versterken",
+        "help": "Hulp",
+        "help-subtitle": "Hoe kunnen we helpen?",
+        "about": "Over ons",
+        "about-subtitle": "Maak kennis met het team",
+        "references": "Referenties",
+        "references-subtitle": "Gedocumenteerde klantresultaten"
+    },
+    "cta": {
+        "demo": "Demo aanvragen"
+    },
+    "switcher": {
+        "label": "Taal"
+    }
+}

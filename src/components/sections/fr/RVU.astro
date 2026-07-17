@@ -1,0 +1,44 @@
+---
+// What's New section component
+import { Image } from 'astro:assets';
+import timeRvu from '@/assets/screenshots/time-rvu.webp';
+---
+
+<section class="py-20">
+  <div class="container max-w-4xl">
+    <div class="relative">
+        <a
+          href="/fr/fonctionnalites/rapports-et-statistiques/"
+          class="border border-primary/50 group bg-white/20 relative flex flex-col items-center pb-6 pt-6 text-center transition-all duration-200 px-8 sm:px-10"
+        >
+          <div class="bg-border absolute top-0 h-px w-full md:hidden"></div>
+          <div class="mb-6 max-w-sm lg:mb-8">
+            <Image
+              src={timeRvu}
+              alt="Planification avec volumes RVU"
+              class="w-2/3 m-auto sm:w-full h-auto rounded-lg mt-3"
+              height={200}
+            />
+          </div>
+          <h2 class="mb-4 text-2xl font-semibold md:mb-5 tracking-tight text-secondary">
+            Une solution prête pour la planification par <strong>charge réelle</strong>
+          </h2>
+          <p class="text-secondary/60 mb-auto text-md sm:text-lg pb-4">
+            En radiologie et dans les organisations multisites, Momentum aide à équilibrer les affectations selon l’activité, les compétences, les contraintes de garde et les indicateurs de charge. La planification devient plus juste, plus lisible et plus facile à ajuster.
+          </p>
+        </a>
+      <div class="absolute -left-[5px] -top-[5px]">
+        <div class="bg-primary size-3 rounded-full"></div>
+      </div>
+      <div class="absolute -right-[5px] -top-[5px]">
+        <div class="bg-primary size-3 rounded-full"></div>
+      </div>
+      <div class="absolute -bottom-[5px] -left-[5px]">
+        <div class="bg-primary size-3 rounded-full"></div>
+      </div>
+      <div class="absolute -bottom-[5px] -right-[5px]">
+        <div class="bg-primary size-3 rounded-full"></div>
+      </div>
+    </div>
+  </div>
+</section>

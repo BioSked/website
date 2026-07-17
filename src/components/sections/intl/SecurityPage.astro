@@ -1,0 +1,50 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Card from '@/components/ui/Card.astro';
+import Button from '@/components/ui/Button.astro';
+import type { MarketContent } from '@/i18n/market/types';
+import type { LocaleCode } from '@/i18n/locales';
+
+/**
+ * Shared security & data page for the de/nl/it markets — mirrors
+ * /fr/securite-donnees. Copy from market.security.
+ */
+interface Props {
+    market: MarketContent;
+    locale: LocaleCode;
+    demoLabel: string;
+}
+const { market, locale, demoLabel } = Astro.props;
+const s = market.security!;
+const demoHref = `/${locale}/demo/`;
+---
+
+<BaseLayout title={s.metaTitle} description={s.metaDescription}>
+    <section class="section-padding">
+        <div class="container max-w-4xl">
+            <p class="font-mono text-sm font-semibold uppercase tracking-widest text-muted-foreground">{s.kicker}</p>
+            <h1 class="text-display-hero mt-4">{s.heading}</h1>
+            <p class="text-lead text-muted-foreground mt-5 max-w-2xl">{s.lead}</p>
+        </div>
+    </section>
+    <section class="section-padding pt-0">
+        <div class="container max-w-5xl">
+            <div class="grid gap-4 sm:grid-cols-2">
+                {s.points.map((pt) => (
+                    <Card className="p-6 bg-white/15">
+                        <h2 class="font-semibold text-foreground mb-2">{pt.title}</h2>
+                        <p class="text-muted-foreground text-sm">{pt.text}</p>
+                    </Card>
+                ))}
+            </div>
+            <p class="text-muted-foreground text-sm mt-8">
+                {s.contactLine} <a href="mailto:info@biosked.com" class="text-accent hover:underline">info@biosked.com</a>
+            </p>
+            <div class="mt-10">
+                <a href={demoHref}>
+                    <Button size="lg" className="rounded-full px-5 font-bold">{demoLabel}</Button>
+                </a>
+            </div>
+        </div>
+    </section>
+</BaseLayout>

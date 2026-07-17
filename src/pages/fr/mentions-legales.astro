@@ -1,0 +1,43 @@
+---
+export const prerender = true;
+
+import BaseLayout from "@/layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Mentions légales | BioSked Momentum"
+  description="Mentions légales du site biosked.com pour le marché français : éditeur, direction de la publication, contact."
+>
+  <section class="section-padding">
+    <div class="container max-w-2xl">
+      <h1 class="text-display-section mb-8">Mentions légales</h1>
+
+      <h2 class="text-display-card mt-8 mb-3">Éditeur du site</h2>
+      <p class="text-foreground/85 mb-3">
+        Bio-Optronics Sàrl, société à responsabilité limitée de droit suisse, Nyon (Suisse) —
+        entité européenne de BioSked, Inc., Fairport, New York (États-Unis).
+      </p>
+      <p class="text-foreground/85 mb-3">
+        Contact : <a href="mailto:info@biosked.com" class="text-accent hover:underline">info@biosked.com</a>
+      </p>
+
+      <h2 class="text-display-card mt-8 mb-3">Directeur de la publication</h2>
+      <p class="text-foreground/85 mb-3">David Dudok de Wit, directeur général.</p>
+
+      <h2 class="text-display-card mt-8 mb-3">Hébergement</h2>
+      <!-- TODO au lancement public : renseigner l'hébergeur définitif du site (nom, adresse, contact). -->
+      <p class="text-foreground/85 mb-3">
+        Les coordonnées de l'hébergeur du site seront précisées lors de la mise en ligne publique.
+        Les données de l'application Momentum sont hébergées dans l'Union européenne
+        (voir <a href="/fr/securite-donnees/" class="text-accent hover:underline">Sécurité &amp; données</a>).
+      </p>
+
+      <h2 class="text-display-card mt-8 mb-3">Données personnelles</h2>
+      <p class="text-foreground/85 mb-3">
+        Le traitement des données personnelles est décrit dans la
+        <a href="/privacy/" class="text-accent hover:underline">politique de confidentialité</a>
+        et sur la page <a href="/fr/securite-donnees/" class="text-accent hover:underline">Sécurité &amp; données</a>.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,137 @@
+---
+import { Image } from 'astro:assets';
+import Button from '@/components/ui/Button.astro';
+import chuAngers from '@/assets/case-studies/chu-angers.jpg';
+import imalliance from '@/assets/case-studies/imalliance-hdf.jpg';
+import irisGrim from '@/assets/case-studies/iris-grim.jpg';
+import cedres from '@/assets/case-studies/cedres.jpg';
+import imagir from '@/assets/case-studies/imagir-bordeaux.jpg';
+import marseille from '@/assets/case-studies/hopital-europeen-marseille.png';
+import chirec from '@/assets/case-studies/chirec.jpg';
+
+const caseStudies = [
+  {
+    title: 'CHIREC — Hôpital de Braine-l’Alleud',
+    specialty: 'Urgences',
+    fact: '40 000 passages/an · planning mensuel : 4 j → 4–5 h · Belgique',
+    image: chirec,
+    quote:
+      'Je ne m’attendais pas à ce que Momentum ait un tel impact. C’est clair, fluide, automatisé. Je suis impressionné par la capacité de l’outil à générer des plannings aussi optimisés en respectant presque tous les souhaits.',
+    person: 'Dr Frédéric Cavallotto, chef du service des Urgences',
+    href: '/fr/cas-clients/chirec',
+  },
+  {
+    title: 'CHU Angers',
+    specialty: 'Urgences',
+    fact: '52 praticiens · urgences + Samu',
+    image: chuAngers,
+    quote:
+      'Aujourd’hui tout est au même endroit et accessible sur internet, en tant qu’administrateur de Momentum pour le DMU, je n’ai rien à faire si ce n’est à me connecter pour accéder à toutes les demandes des praticiens et gérer mes plannings.',
+    person: 'Dr Thomas Boishardy, praticien hospitalier',
+    href: '/fr/cas-clients/chu-angers',
+  },
+  {
+    title: 'IMALLIANCE-HDF',
+    specialty: 'Radiologie',
+    fact: '34 radiologues · 12 sites',
+    image: imalliance,
+    quote:
+      'Le résultat est surprenant. Le planning est produit aujourd’hui très aisément, et en cas d’aléas (absence, modalité en panne, etc.), les possibilités de remplacement sont proposées pour un ajustement du planning quasi-immédiat.',
+    person: 'Dominique Molmy, secrétaire référente',
+    href: '/fr/cas-clients/imalliance-hdf',
+  },
+  {
+    title: 'IRIS GRIM',
+    specialty: 'Radiologie',
+    fact: '45 radiologues · Nantes',
+    image: irisGrim,
+    quote:
+      'Depuis Momentum, la planification automatique des vacations, les déplacements des médecins, autant sur leurs vacations que d’un site à un autre, sont beaucoup plus rapides et très faciles à intégrer.',
+    person: 'Fabienne Tual et Marie-Aline Douceau, gestionnaires de planification',
+    href: '/fr/cas-clients/iris-grim',
+  },
+  {
+    title: 'Centre d’Imagerie Médicale Les Cèdres',
+    specialty: 'Radiologie multisites',
+    fact: 'Client depuis 2014',
+    image: cedres,
+    quote:
+      'Momentum s’adapte vraiment à notre organisation et c’est un vrai point fort de la solution.',
+    person: 'Karine Delaunay, cadre administrative',
+    href: '/fr/cas-clients/imagerie-medicale-les-cedres',
+  },
+  {
+    title: 'IMAGIR',
+    specialty: 'Radiologie',
+    fact: '9 sites de production · Bordeaux',
+    image: imagir,
+    quote:
+      'Le trio Momentum, Easydoct et Kelio est indéniable et apporte une réelle plus-value. L’interconnexion de ces outils permet facilement le gain d’un ETP voire deux.',
+    person: 'Anthony Bagot, responsable opérationnel',
+    href: '/fr/cas-clients/imagir-bordeaux',
+  },
+  {
+    title: 'Hôpital Européen de Marseille',
+    specialty: 'Anesthésie',
+    fact: 'env. 20 MAR + 10 IADEs',
+    image: marseille,
+    quote:
+      'L’expertise du chef de projet était très intéressante et poussée. Cela m’a permis d’atteindre jusqu’à 95 % d’automatisation de la planification des anesthésistes-réanimateurs et des IADEs !',
+    person: 'Dr Jean-Marc Stordeur, anesthésiste-réanimateur',
+    href: '/fr/cas-clients/hopital-europeen-marseille',
+  },
+];
+---
+
+<section id="cas-clients" class="section-padding">
+  <div class="container max-w-5xl">
+    <div class="mb-8 md:mb-12">
+      <p class="font-mono text-sm font-semibold tracking-widest text-muted-foreground">ÉTUDES DE CAS</p>
+      <h2 class="text-display-section mt-3">Retours d’expérience Momentum</h2>
+      <p class="text-muted-foreground text-lead mt-4 max-w-3xl">
+        Des services d’urgences aux groupes d’imagerie, ces équipes détaillent comment Momentum réduit la charge de planification, sécurise les remplacements en cas d’aléas et améliore la visibilité des plannings.
+      </p>
+    </div>
+
+    <div class="grid gap-4 md:grid-cols-2">
+      {caseStudies.map((study, index) => (
+        <a
+          href={study.href}
+          class={`group border border-secondary/10 bg-white/30 transition-all duration-200 hover:bg-white/60 ${index === 0 ? 'md:col-span-2' : ''}`}
+        >
+          <article class={`grid h-full gap-5 p-5 ${index === 0 ? 'md:grid-cols-[260px_1fr] md:p-6' : ''}`}>
+            <Image
+              src={study.image}
+              alt={study.title}
+              class={`w-full rounded-sm object-cover shadow-lg shadow-secondary/10 ${index === 0 ? 'h-40 md:h-full' : 'aspect-[16/10] h-auto'}`}
+              loading="lazy"
+              quality={82}
+              format="webp"
+            />
+            <div class="flex h-full flex-col">
+              <div class="mb-4 flex flex-wrap items-center gap-2 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+                <span>{study.specialty}</span>
+                <span>·</span>
+                <span>{study.fact}</span>
+              </div>
+              <h3 class="text-display-card">{study.title}</h3>
+              <p class="mt-4 text-foreground/80">“{study.quote}”</p>
+              <p class="mt-4 text-sm font-semibold text-secondary">{study.person}</p>
+              <span class="mt-auto pt-6 text-sm font-semibold text-cyan-600 transition-colors group-hover:text-secondary">
+                Lire l’étude de cas
+              </span>
+            </div>
+          </article>
+        </a>
+      ))}
+    </div>
+
+    <div class="mt-10 flex justify-center">
+      <a href="/fr/demo/">
+        <Button size="lg" className="rounded-full px-5 font-bold">
+          Demander une démo
+        </Button>
+      </a>
+    </div>
+  </div>
+</section>

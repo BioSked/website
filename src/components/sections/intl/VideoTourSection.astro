@@ -1,0 +1,55 @@
+---
+import { Image } from 'astro:assets';
+import { Play } from 'lucide-astro';
+import dateView from '@/assets/screenshots/dateview.png';
+
+/**
+ * Click-to-play product tour (same video as the biosked.com hero).
+ * The video is English for now — heading/label carry an (EN) marker until
+ * localized versions exist. Iframe is injected on click only.
+ */
+interface Props {
+    heading: string;
+    buttonLabel: string;
+}
+const { heading, buttonLabel } = Astro.props;
+const uid = 'tour-' + Math.random().toString(36).slice(2, 8);
+---
+
+<section class="section-padding pt-0">
+    <div class="container max-w-5xl">
+        <h2 class="text-display-section tracking-tight text-center mb-8">{heading}</h2>
+        <div id={`${uid}-box`} class="relative mx-auto w-full rounded-xl border border-border bg-background/45 p-1 shadow-[4px_2px_3rem_rgba(0,0,0,.15)] backdrop-blur-sm md:p-2">
+            <Image src={dateView} alt="" width={1000} height={563} format="webp" quality={80} class="w-full h-auto rounded-lg" />
+            <button
+                type="button"
+                id={`${uid}-btn`}
+                class="absolute inset-0 grid place-items-center cursor-pointer group"
+                aria-label={buttonLabel}
+            >
+                <span class="flex items-center gap-2 rounded-full bg-card-foreground/85 px-5 py-3 text-white font-semibold shadow-lg transition-transform group-hover:scale-105">
+                    <Play class="size-5 fill-white" /> {buttonLabel}
+                </span>
+            </button>
+        </div>
+    </div>
+</section>
+
+<script is:inline define:vars={{ uid }}>
+    (function () {
+        var btn = document.getElementById(uid + '-btn');
+        var box = document.getElementById(uid + '-box');
+        if (!btn || !box) return;
+        btn.addEventListener('click', function () {
+            var iframe = document.createElement('iframe');
+            iframe.className = 'w-full rounded-lg aspect-video';
+            iframe.src = 'https://www.youtube.com/embed/_DLDf09HXQ8?autoplay=1&muted=0&rel=0';
+            iframe.title = 'Momentum product tour';
+            iframe.setAttribute('frameborder', '0');
+            iframe.setAttribute('allow', 'autoplay; encrypted-media; picture-in-picture');
+            iframe.setAttribute('allowfullscreen', '');
+            box.innerHTML = '';
+            box.appendChild(iframe);
+        });
+    })();
+</script>

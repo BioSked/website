@@ -1,10 +1,12 @@
 ---
 import '@/styles/global.css';
 import { SITE_TITLE, SITE_METADATA } from '../consts';
+import { hreflangAlternates, canonicalPathFor, splitLocale } from '@/i18n/locales';
 
-const canonicalURL = Astro.site 
-? new URL(Astro.url.pathname, Astro.site)
+const canonicalURL = Astro.site
+? new URL(canonicalPathFor(Astro.url.pathname), Astro.site)
 : null;
+const pageLocale = splitLocale(Astro.url.pathname).locale;
 
 const { title, description, image, author, noIndex } = Astro.props;
 const finalTitle = title || SITE_METADATA.title.default;
@@ -70,17 +72,17 @@ const robotsFollow = noIndex ? false : SITE_METADATA.robots.follow;
         ))
 }
 
-<link rel="manifest" href="/favicon/site.webmanifest" />
+<link rel="manifest" href="/favicon/site.webmanifest/" />
 <link rel="sitemap" href="/sitemap-index.xml" />
 <link
 rel="alternate"
 type="application/rss+xml"
 title={SITE_TITLE}
-href={Astro.site ? new URL('rss.xml', Astro.site).toString() : '/rss.xml'}
+href={Astro.site ? new URL(pageLocale === 'fr' || pageLocale === 'fr-ch' ? 'fr/rss.xml' : 'rss.xml', Astro.site).toString() : '/rss.xml'}
 />
-<link rel="alternate" hreflang="en-US" href={`https://www.biosked.com${Astro.url.pathname}`} />
-<link rel="alternate" hreflang="en-GB" href={`https://www.biosked.com${Astro.url.pathname}`} />
-<link rel="alternate" hreflang="x-default" href={`https://www.biosked.com${Astro.url.pathname}`} />
+{hreflangAlternates(Astro.url.pathname).map((alt) => (
+    <link rel="alternate" hreflang={alt.code === 'fr-ch' ? 'fr-CH' : alt.code} href={new URL(alt.path, Astro.site ?? 'https://biosked.com').toString()} />
+))}
 <meta name="generator" content={Astro.generator} />
 
 {canonicalURL && <link rel="canonical" href={canonicalURL} />}
@@ -119,13 +121,13 @@ content={SITE_METADATA.openGraph.images[0].height.toString()}
         "@graph": [
             {
                 "@type": "Organization",
-                "@id": "https://www.biosked.com/#organization",
+                "@id": "https://biosked.com/#organization",
                 "name": "BioSked Inc.",
                 "legalName": "BioSked Inc.",
-                "url": "https://www.biosked.com",
+                "url": "https://biosked.com",
                 "logo": {
                     "@type": "ImageObject",
-                    "url": "https://www.biosked.com/images/logo.png",
+                    "url": "https://biosked.com/images/logo.png",
                     "width": 512,
                     "height": 512
                 },
@@ -145,13 +147,13 @@ content={SITE_METADATA.openGraph.images[0].height.toString()}
                         "@type": "ContactPoint",
                         "contactType": "Sales",
                         "email": "sales@biosked.com",
-                        "availableLanguage": ["English"]
+                        "availableLanguage": ["English", "French", "German", "Dutch", "Italian"]
                     },
                     {
                         "@type": "ContactPoint",
                         "contactType": "Customer Support",
                         "email": "support@biosked.com",
-                        "availableLanguage": ["English"]
+                        "availableLanguage": ["English", "French", "German", "Dutch", "Italian"]
                     }
                 ],
                 "sameAs": [
@@ -170,46 +172,26 @@ content={SITE_METADATA.openGraph.images[0].height.toString()}
             },
             {
                 "@type": "WebSite",
-                "@id": "https://www.biosked.com/#website",
-                "url": "https://www.biosked.com",
+                "@id": "https://biosked.com/#website",
+                "url": "https://biosked.com",
                 "name": "Momentum by BioSked",
                 "description": "Momentum: AI-powered healthcare scheduling software for hospitals, clinics, and medical practices",
                 "publisher": {
-                    "@id": "https://www.biosked.com/#organization"
+                    "@id": "https://biosked.com/#organization"
                 },
-                "inLanguage": "en-US",
-                "potentialAction": {
-                    "@type": "SearchAction",
-                    "target": "https://www.biosked.com/search?q={search_term_string}",
-                    "query-input": "required name=search_term_string"
-                }
+                "inLanguage": ["en", "fr", "de", "nl", "it"]
             },
             {
                 "@type": "SoftwareApplication",
-                "@id": "https://www.biosked.com/#software",
+                "@id": "https://biosked.com/#software",
                 "name": "Momentum",
                 "applicationCategory": "BusinessApplication",
                 "applicationSubCategory": "Healthcare Management Software",
                 "operatingSystem": "Web, iOS, Android",
                 "description": "Healthcare scheduling software for radiology, emergency medicine, anesthesiology, pathology, cardiology, OB/GYN, pediatrics, ophthalmology, telemedicine, and primary care. Automates schedule generation, shift swaps, RVU tracking, and compliance for hospitals, clinics, and medical groups.",
-                "url": "https://www.biosked.com",
-                "offers": {
-                    "@type": "Offer",
-                    "price": "0",
-                    "priceCurrency": "USD",
-                    "priceValidUntil": "2025-12-31",
-                    "availability": "https://schema.org/InStock",
-                    "url": "https://www.biosked.com/pricing"
-                },
-                "aggregateRating": {
-                    "@type": "AggregateRating",
-                    "ratingValue": "4.8",
-                    "reviewCount": "150",
-                    "bestRating": "5",
-                    "worstRating": "1"
-                },
+                "url": "https://biosked.com",
                 "creator": {
-                    "@id": "https://www.biosked.com/#organization"
+                    "@id": "https://biosked.com/#organization"
                 },
                 "audience": [
                     {
@@ -255,7 +237,7 @@ content={SITE_METADATA.openGraph.images[0].height.toString()}
                     "Real-time notifications",
                     "Specialty-specific templates"
                 ],
-                "screenshot": "https://www.biosked.com/images/screenshot.png"
+                "screenshot": "https://biosked.com/images/screenshot.png"
             }
         ]
 }

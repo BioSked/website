@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://www.biosked.com/sitemap-index.xml
+Sitemap: https://biosked.com/sitemap-index.xml
 
 # Crawl-delay for aggressive bots
 User-agent: GPTBot

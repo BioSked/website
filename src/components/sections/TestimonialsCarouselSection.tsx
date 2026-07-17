@@ -51,7 +51,7 @@ const testimonials = [
     id: '4',
     name: 'Bernard Bensadoun',
     title: 'Group Director',
-    hospital: 'Irimed',
+    hospital: 'IRIS GRIM',
     testimonial:
       'Choosing Momentum as an assisted scheduling tool quickly proved to be the right decision. Its pay-per-use business model is flexible and advantageous.',
     initials: 'BB',
@@ -81,7 +81,7 @@ const testimonials = [
     id: '7',
     name: 'Frédéric Cavallotto',
     title: 'Emergency Dept. Head',
-    hospital: 'UCLA Health',
+    hospital: 'CHIREC — Hôpital de Braine-l’Alleud',
     testimonial:
       "I'm impressed by the tool's ability to generate highly optimized schedules while respecting almost all individual requests. Thanks to Momentum, I spend less time on schedule creation and can now devote more time to the medical management of the department.",
     initials: 'FC',

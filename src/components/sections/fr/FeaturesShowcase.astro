@@ -1,0 +1,104 @@
+---
+import {  TrendingUp, Sparkles, CandlestickChart, ArrowRight } from 'lucide-astro';
+import Card from '@/components/ui/Card.astro';
+import CardHeader from '@/components/ui/CardHeader.astro';
+import CardTitle from '@/components/ui/CardTitle.astro';
+import Button from '@/components/ui/Button.astro';
+import MMLogo from '@/assets/logos/momentum_logo.svg';
+import { siteConfig } from '@/consts';
+
+const features = [
+  {
+    id: 'fairness',
+    icon: Sparkles,
+    headline: 'L’équité, calculée et visible par tous',
+    metric: '90–100 % de satisfaction des équipes',
+    description:
+      'Compteurs d’équité, jours fériés travaillés, astreintes, pénibilité : chaque répartition repose sur des règles lisibles et des compteurs que praticiens et direction consultent. Les demandes sont tracées, les arbitrages sont justifiables, les contestations diminuent — 90 à 100 % de satisfaction dans nos études de cas publiées (CHIREC, CHU Angers).',
+  },
+  {
+    id: 'automation',
+    icon: TrendingUp,
+    headline: 'Le planning mensuel en heures, pas en jours',
+    metric: 'De 4 jours à 4–5 heures par mois (CHIREC)',
+    description:
+      'Momentum génère les plannings dans le respect des contrats, des compétences, des règles de temps de travail et des désidératas — de la rotation simple à la mutualisation multi-sites. Au CHIREC, la construction du planning des urgences est passée de 4 jours à 4–5 heures par mois, soit jusqu’à 90 % de temps de gestion des horaires en moins (étude de cas 2025). Vous ne traitez plus que les exceptions.',
+  },
+  {
+    id: 'coverage',
+    icon: CandlestickChart,
+    headline: 'La couverture et la paie sous contrôle',
+    metric: '« Le gain d’un ETP voire deux » (IMAGIR)',
+    description:
+      'Absences non couvertes, repos non respectés, dépassements : les alertes les repèrent avant publication, pas sur la fiche de paie. Le badgeage alimente l’export paie, et les intégrations font le reste — RIS (NGI), prise de rendez-vous (EasyDoct), RH et badgeage (Kelio). Chez IMAGIR, cette interconnexion permet « le gain d’un ETP voire deux ».',
+  },
+];
+---
+
+<section
+  id="fonctionnalites"
+  class="section-padding"
+>
+  <div class="container">
+    <div class="mx-auto max-w-4xl space-y-3 lg:space-y-4 text-center">
+      <img src={MMLogo.src} class="mx-auto w-40 md:w-50 mb-10" />
+      <h2 class="text-display-section">
+        Ce que Momentum change pour votre service
+      </h2>
+      <p class="text-muted-foreground text-lead">
+        Le vrai point de comparaison n’est pas un autre logiciel : c’est le planning construit à la main. Trois résultats, mesurés chez nos clients : du temps administratif rendu au soin, des coûts maîtrisés du badgeage à la paie, une équité que chacun peut vérifier.
+      </p>
+    </div>
+
+    <div class="relative mt-8 grid grid-cols-1 gap-4 md:mt-12 md:grid-cols-3 md:gap-6">
+
+      <div class="blob-primary pointer-events-none absolute -left-20 top-0 size-64 rounded-full opacity-30 blur-3xl will-change-transform dark:opacity-40"></div>
+      <div class="blob-secondary pointer-events-none absolute -right-20 top-20 size-56 rounded-full opacity-25 blur-3xl will-change-transform dark:opacity-35"></div>
+      
+      {
+        features.map((feature) => {
+          const Icon = feature.icon;
+
+          return (
+            <Card className="relative h-full bg-white/30 rounded-none">
+              <CardHeader className="space-y-4">
+                <div class="flex items-center justify-center">
+                  <div class="flex size-12 items-center justify-center rounded-lg bg-card-foreground/10">
+                    <Icon class="size-6 text-card-foreground" strokeWidth={2.1} />
+                  </div>
+                </div>
+
+                <div class="space-y-1 text-center">
+                  <CardTitle className="text-display-card">
+                    {feature.headline}
+                  </CardTitle>
+                </div>
+
+                <div class="text-center">
+                  <p class="text-cyan-500 text-metric-small">
+                    {feature.metric}
+                  </p>
+                </div>
+
+                <p class="text-muted-foreground/70 leading-relaxed pt-2">
+                  {feature.description}
+                </p>
+              </CardHeader>
+            </Card>
+          );
+        })
+      }
+    </div>
+
+    {siteConfig.features.showCaseStudies && (
+      <div class="mt-8 flex items-center justify-center md:mt-12">
+        <Button
+          variant="ghost"
+          size="lg"
+        >
+          Voir les cas clients
+        </Button>
+      </div>
+    )}
+  </div>
+</section>

@@ -1,0 +1,26 @@
+{
+    "nav": {
+        "product": "Prodotto",
+        "product-subtitle": "Scopri Momentum",
+        "pricing": "Prezzi",
+        "pricing-subtitle": "Piani e preventivi",
+        "resources": "Risorse",
+        "resources-subtitle": "Guide, blog e azienda",
+        "blog": "Blog",
+        "blog-subtitle": "Articoli e novità",
+        "careers": "Carriere",
+        "careers-subtitle": "Stiamo assumendo!",
+        "help": "Aiuto",
+        "help-subtitle": "Come possiamo aiutarti?",
+        "about": "Chi siamo",
+        "about-subtitle": "Scopri il team",
+        "references": "Referenze",
+        "references-subtitle": "Risultati documentati dei clienti"
+    },
+    "cta": {
+        "demo": "Richiedi una demo"
+    },
+    "switcher": {
+        "label": "Lingua"
+    }
+}

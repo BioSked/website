@@ -1,0 +1,38 @@
+---
+export const prerender = true;
+
+import BaseLayout from "@/layouts/BaseLayout.astro";
+---
+
+<BaseLayout 
+  title="Obtenir un devis | BioSked Momentum" 
+  description="Demandez un devis Momentum adapté à votre organisation : professionnels à planifier, sites, modules, intégrations. Réponse personnalisée."
+>
+    <div class="container section-padding">
+      <h1 class="text-2xl sm:text-4xl text-center font-bold max-w-4xl mx-auto">Démarrer avec Momentum</h1>
+      <p class="text-md sm:text-lg text-center mt-4 mb-10 text-muted-foreground max-w-xl mx-auto">Présentez-nous votre organisation et nous vous orienterons vers le bon accompagnement.</p>
+      <div class="max-w-xl mx-auto bg-white/60 border border-primary/30 transition-all duration-400 shadow-xl shadow-secondary/10 rounded-2xl px-4 sm:px-10 pb-10 pt-1">
+        <h2 class="text-display-card text-secondary font-bold max-w-2xl mx-auto my-5">Obtenir un devis</h2>
+        <hr class="border-input">
+        <div id="hubspot-quote" class="mt-5"></div>
+      </div>
+      <p class="text-muted-foreground text-xs mt-3 text-center">
+        <a href="/fr/securite-donnees/" class="hover:text-foreground transition-colors">Hébergement dans l’Union européenne · RGPD · DPA sur demande</a>
+      </p>
+      <script charset="utf-8" type="text/javascript" src="//js-eu1.hsforms.net/forms/embed/v2.js"></script>
+      <script is:inline define:vars={{ thankYouPath: "/fr/demo/merci/", pageLocale: "fr" }}>
+        hbspt.forms.create({
+          formInstanceId: "2",
+          portalId: "25195055",
+          formId: "152f6973-10dd-42d4-af28-2df2f8f830e9",
+          region: "eu1",
+          locale: "fr",
+          redirectUrl: thankYouPath,
+          target: "#hubspot-quote",
+          onFormSubmitted: function () {
+            if (typeof gtag === 'function') gtag('event', 'quote_form_submit', { page_locale: pageLocale });
+          }
+        });
+      </script>
+    </div>
+</BaseLayout>

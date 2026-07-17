@@ -1,0 +1,7 @@
+---
+export const prerender = true;
+import PricingPage from "@/components/sections/intl/PricingPage.astro";
+import { MARKET } from "@/i18n/market/de";
+import { HOME_CONTENT } from "@/i18n/homeContent";
+---
+<PricingPage market={MARKET} home={HOME_CONTENT['de']} locale="de" />

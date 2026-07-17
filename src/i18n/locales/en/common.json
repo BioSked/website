@@ -7,8 +7,15 @@
         "careers": "Careers",
         "careers-subtitle": "We're hiring!",
         "help": "Help",
-        "help-subtitle" : "How can we help?",
-        "about" : "About us",
-        "about-subtitle" : "Meet the team"
+        "help-subtitle": "How can we help?",
+        "about": "About us",
+        "about-subtitle": "Meet the team",
+        "blog-subtitle": "Articles and news"
+    },
+    "cta": {
+        "demo": "Book a Demo"
+    },
+    "switcher": {
+        "label": "Language"
     }
 }

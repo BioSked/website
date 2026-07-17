@@ -1,14 +1,39 @@
 {
     "nav": {
         "product": "Produit",
+        "product-subtitle": "Découvrir Momentum",
         "pricing": "Tarifs",
-        "resources": "Resources",
+        "pricing-subtitle": "Plans et devis",
+        "resources": "Ressources",
+        "resources-subtitle": "Guides, blog et société",
         "blog": "Blog",
+        "blog-subtitle": "Articles et actualités",
         "careers": "Carrières",
         "careers-subtitle": "Nous recrutons !",
         "help": "Aide",
-        "help-subtitle" : "Peut-on vous aider ?",
-        "about" : "À propos",
-        "about-subtitle" : "Rencontrez l'équipe"
+        "help-subtitle": "Peut-on vous aider ?",
+        "about": "À propos",
+        "about-subtitle": "Rencontrez l'équipe",
+        "specialties": "Spécialités",
+        "specialties-subtitle": "Parcours adaptés aux services de soins",
+        "radiology": "Radiologie",
+        "radiology-subtitle": "Imagerie, RIS et multisites",
+        "anesthesia": "Anesthésie",
+        "anesthesia-subtitle": "Blocs, IADEs et repos de sécurité",
+        "emergency": "Urgences",
+        "emergency-subtitle": "Gardes, continuité et imprévus",
+        "healthcare-facilities": "Établissements",
+        "healthcare-facilities-subtitle": "Pilotage multisites",
+        "case-studies": "Cas clients",
+        "case-studies-subtitle": "Retours d’expérience France",
+        "security": "Sécurité",
+        "whitepapers": "Livres blancs",
+        "whitepapers-subtitle": "Guides pratiques par spécialité"
+    },
+    "cta": {
+        "demo": "Demander une démo"
+    },
+    "switcher": {
+        "label": "Langue"
     }
 }

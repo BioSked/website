@@ -22,7 +22,8 @@ There are no lint, test, or format scripts configured. ESLint and Prettier confi
 - **Astro components** (`.astro`) for static content, **React** (`.tsx`) for interactive islands
 - **Hydration directives**: use `client:idle`, `client:visible`, or `client:load` sparingly on React components
 - **Dual UI components** exist: e.g., `Button.astro` + `button.tsx` — use the Astro version in `.astro` files
-- **i18n**: English (default, no prefix) and French (`/fr/` prefix). Translations in `src/i18n/locales/{lang}/{namespace}.json`
+- **i18n**: 5 locales — English (default, no prefix), French `/fr/`, German `/de/`, Dutch `/nl/`, Italian `/it/`. de/nl/it fall back to English via rewrite (same URL, EN content) until localized. Chrome strings in `src/i18n/locales/{lang}/common.json`; per-locale nav/footer/home copy in `src/i18n/{navLinks,footerLinks,homeContent}.ts`; cross-locale path mapping in `src/i18n/locales.ts` (`altPathFor()` powers the language switcher + hreflang)
+- **French pages** live under `src/pages/fr/` with French section variants in `src/components/sections/fr/`; the EN reference sections stay untouched in `src/components/sections/` (Hero/CTA accept optional props, defaults = EN copy)
 
 ## Key Paths
 
@@ -35,8 +36,8 @@ There are no lint, test, or format scripts configured. ESLint and Prettier confi
 | `src/components/elements/` | Small reusable Astro components |
 | `src/layouts/` | Page templates (BaseLayout, ArticleLayout, etc.) |
 | `src/i18n/` | Translation system and locale JSON files |
-| `src/pages/blog/posts/` | English blog posts (markdown) |
-| `src/pages/blog/posts/fr/` | French blog posts |
+| `src/pages/blog/posts/` | English blog posts (markdown, collection `enPosts`) |
+| `src/pages/fr/blog/` | French blog posts (collection `frPosts`) |
 | `src/pages/changelog/` | Changelog entries (markdown) |
 | `src/consts.ts` | Site config, nav links, feature flags |
 | `src/styles/global.css` | Tailwind imports + CSS design tokens |
@@ -66,9 +67,9 @@ There are no lint, test, or format scripts configured. ESLint and Prettier confi
 
 ## Deployment
 
-- **GitHub Pages** via GitHub Actions (`.github/workflows/deploy.yml`)
-- Auto-deploys on push to `main`
-- Site URL: `https://biosked.com`
+- **PRODUCTION**: push to `main` deploys to GitHub Pages (biosked.com) in ~2 min via `.github/workflows/deploy.yml` — every merge is live
+- Rollback to the EN-only site: see ROLLBACK.md (branch `en-only-backup`, tag `en-only-2026-07-17`)
+- After editing `redirects` in `astro.config.mjs`, run `node scripts/generate-redirects.mjs` to regenerate `public/_redirects`
 
 ## Environment Variables
 

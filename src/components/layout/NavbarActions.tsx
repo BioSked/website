@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { cn } from '@/lib/utils';
+import { Globe, ChevronDown } from 'lucide-react';
 import bioSkedLogo from '@/assets/logos/biosked-logo.svg';
 import { Button } from '@/components/ui/button';
 import {
@@ -12,17 +13,65 @@ import {
     navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 
-interface NavbarActionsProps {
-    pagename: string;
+interface LanguageOption {
+    code: string;
+    label: string;
+    href: string;
+    active: boolean;
 }
 
-const ACTION_BUTTONS = [
-    { label: 'Book a Demo', href: '/demo', variant: 'default' as const, isModal: false },
-];
+interface NavbarActionsProps {
+    pagename: string;
+    navLinks: any[];
+    demoCta?: { label: string; href: string };
+    languages?: LanguageOption[];
+}
 
-export function NavbarActions({ pagename, navLinks}: NavbarActionsProps)
+function LanguageSwitcher({ languages, className }: { languages: LanguageOption[]; className?: string }) {
+    const [open, setOpen] = useState(false);
+    const current = languages.find((l) => l.active);
+    return (
+        <div className={cn('relative', className)}>
+            <button
+                type="button"
+                onClick={() => setOpen(!open)}
+                onBlur={() => setTimeout(() => setOpen(false), 150)}
+                aria-label="Change language"
+                className="flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer h-9 px-2"
+            >
+                <Globe className="size-4" />
+                <span className="uppercase font-medium whitespace-nowrap">{current?.code}</span>
+                <ChevronDown className={cn('size-3 transition-transform', open ? 'rotate-180' : '')} />
+            </button>
+            {open && (
+                <ul className="absolute right-0 top-full mt-1 w-36 rounded-sm border border-secondary/10 bg-background shadow-md p-1 z-50">
+                    {languages.map((lang) => (
+                        <li key={lang.code}>
+                            <a
+                                href={lang.href}
+                                data-locale-choice={lang.code}
+                                className={cn(
+                                    'block rounded-xs px-3 py-1.5 text-sm transition-colors hover:bg-secondary/5',
+                                    lang.active ? 'font-semibold text-foreground' : 'text-muted-foreground'
+                                )}
+                            >
+                                {lang.label}
+                            </a>
+                        </li>
+                    ))}
+                </ul>
+            )}
+        </div>
+    );
+}
+
+export function NavbarActions({ pagename, navLinks, demoCta, languages }: NavbarActionsProps)
 {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+    const ACTION_BUTTONS = [
+        { label: demoCta?.label ?? 'Book a Demo', href: demoCta?.href ?? '/demo', variant: 'default' as const, isModal: false },
+    ];
 
     const MOBILE_LINK = navLinks.filter(item => item.showMobile).map(item => ({
         ...item,
@@ -39,7 +88,7 @@ export function NavbarActions({ pagename, navLinks}: NavbarActionsProps)
         <header
             className="sticky top-0 z-50 bg-linear-to-t from-background/0 to-white/80 border-b backdrop-blur-md supports-backdrop-filter:bg-background/60"
         >
-            <div class="container max-w-5xl flex items-center h-16">
+            <div className="container max-w-5xl flex items-center h-16">
                 <a href="/" className="flex flex-1 gap-2">
                     <img 
                         src={bioSkedLogo.src} 
@@ -47,7 +96,7 @@ export function NavbarActions({ pagename, navLinks}: NavbarActionsProps)
                         width={125}
                     />
                 </a>
-                <div class="flex flex-1 justify-center hidden md:block">
+                <div className="flex flex-1 justify-center hidden md:block">
                     <NavigationMenu viewport={false}>
                         <NavigationMenuList>
                             {DESKTOP_LINK.map((item) => (
@@ -58,7 +107,7 @@ export function NavbarActions({ pagename, navLinks}: NavbarActionsProps)
                                             {item.label}
                                         </NavigationMenuTrigger>
                                         <NavigationMenuContent className={'-ml-3'}>
-                                            <div class="bg-white/5 border-1 border-secondary/10 rounded-sm p-1">
+                                            <div className="bg-white/5 border-1 border-secondary/10 rounded-sm p-1">
                                                 <ul className="grid w-[220px] gap-0">
                                                     {item.subitems.map((subitem) => {
                                                         return (
@@ -93,7 +142,10 @@ export function NavbarActions({ pagename, navLinks}: NavbarActionsProps)
                     </NavigationMenu>
                 </div>
                 <div className="flex flex-1 justify-end">
-                    <div className="items-center justify-end gap-4 flex">
+                    <div className="items-center justify-end gap-2 flex">
+                        {languages && languages.length > 1 && (
+                            <LanguageSwitcher languages={languages} className="hidden md:block" />
+                        )}
                         {ACTION_BUTTONS.map((button) => (
                             <a href={button.href} key={button.label}>
                                 <Button
@@ -182,6 +234,24 @@ export function NavbarActions({ pagename, navLinks}: NavbarActionsProps)
                             )}
                         </div>
                     ))}
+                    {languages && languages.length > 1 && (
+                        <div className="mt-8 flex flex-wrap gap-2">
+                            {languages.map((lang) => (
+                                <a
+                                    key={lang.code}
+                                    href={lang.href}
+                                    data-locale-choice={lang.code}
+                                    onClick={() => setIsMenuOpen(false)}
+                                    className={cn(
+                                        'rounded-sm border border-secondary/15 px-3 py-1.5 text-sm transition-colors',
+                                        lang.active ? 'bg-secondary/10 font-semibold text-foreground' : 'text-muted-foreground'
+                                    )}
+                                >
+                                    {lang.label}
+                                </a>
+                            ))}
+                        </div>
+                    )}
                 </nav>
             </div>
         </div>

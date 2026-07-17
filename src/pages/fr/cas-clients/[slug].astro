@@ -1,0 +1,94 @@
+---
+export const prerender = true;
+
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Card from '@/components/ui/Card.astro';
+import Button from '@/components/ui/Button.astro';
+import { Quote } from 'lucide-astro';
+import { FR_CASE_STUDIES } from '@/data/frCaseStudies';
+
+export function getStaticPaths() {
+    return FR_CASE_STUDIES.map((cs, i) => ({
+        params: { slug: cs.slug },
+        props: {
+            cs,
+            prev: FR_CASE_STUDIES[(i - 1 + FR_CASE_STUDIES.length) % FR_CASE_STUDIES.length],
+            next: FR_CASE_STUDIES[(i + 1) % FR_CASE_STUDIES.length],
+        },
+    }));
+}
+const { cs, prev, next } = Astro.props;
+---
+
+<BaseLayout title={cs.metaTitle} description={cs.metaDescription}>
+    <section class="section-padding">
+        <div class="container max-w-4xl">
+            <p class="font-mono text-sm font-semibold uppercase tracking-widest text-muted-foreground">Cas client · {cs.year}</p>
+            <h1 class="text-display-hero mt-4">{cs.title}</h1>
+            <div class="mt-5 flex flex-wrap items-center gap-2 text-sm font-semibold uppercase tracking-widest text-muted-foreground">
+                <span>{cs.specialty}</span>
+                <span>·</span>
+                <span>{cs.factsLine}</span>
+            </div>
+            <p class="text-lead text-muted-foreground mt-5 max-w-2xl">{cs.intro}</p>
+        </div>
+    </section>
+
+    <section class="section-padding pt-0">
+        <div class="container max-w-4xl space-y-10">
+            <div>
+                <h2 class="text-display-card mb-4">L’organisation</h2>
+                {cs.context.map((p) => <p class="text-foreground/85 mb-3">{p}</p>)}
+            </div>
+            <div>
+                <h2 class="text-display-card mb-4">Avant Momentum</h2>
+                {cs.challenge.map((p) => <p class="text-foreground/85 mb-3">{p}</p>)}
+            </div>
+            <div>
+                <h2 class="text-display-card mb-4">La mise en place</h2>
+                {cs.solution.map((p) => <p class="text-foreground/85 mb-3">{p}</p>)}
+            </div>
+
+            <div>
+                <h2 class="text-display-card mb-6">Résultats</h2>
+                <div class="grid gap-4 sm:grid-cols-3 mb-6">
+                    {cs.results.map((r) => (
+                        <Card className="p-6 bg-white/15">
+                            <div class="text-display-card font-bold text-accent">{r.value}</div>
+                            <div class="text-muted-foreground text-sm mt-1">{r.label}</div>
+                        </Card>
+                    ))}
+                </div>
+                {cs.resultsNarrative.map((p) => <p class="text-foreground/85 mb-3">{p}</p>)}
+            </div>
+
+            {cs.quotes.map((q) => (
+                <figure class="border-l-2 border-cyan-500 pl-5 py-1">
+                    <Quote class="size-6 text-accent/40 mb-2" />
+                    <blockquote class="text-foreground/90 text-lg">{q.text}</blockquote>
+                    <figcaption class="mt-3 text-sm">
+                        <span class="font-semibold text-foreground">{q.author}</span>
+                        <span class="text-muted-foreground"> — {q.role}</span>
+                    </figcaption>
+                </figure>
+            ))}
+
+            <div class="flex flex-wrap gap-3 pt-4">
+                <a href="/fr/demo/">
+                    <Button size="lg" className="rounded-full px-5 font-bold">Demander une démo</Button>
+                </a>
+                <a href={cs.relatedSectorHref}>
+                    <Button size="lg" variant="ghost" className="rounded-full px-4 font-semibold">{cs.relatedSectorLabel}</Button>
+                </a>
+                <a href="/fr/cas-clients/">
+                    <Button size="lg" variant="ghost" className="rounded-full px-4 font-semibold">Tous les cas clients</Button>
+                </a>
+            </div>
+
+            <nav class="mt-6 flex justify-between border-t border-secondary/10 pt-6 text-sm" aria-label="Autres cas clients">
+                <a href={`/fr/cas-clients/${prev.slug}/`} class="text-muted-foreground hover:text-foreground transition-colors">← {prev.org}</a>
+                <a href={`/fr/cas-clients/${next.slug}/`} class="text-muted-foreground hover:text-foreground transition-colors">{next.org} →</a>
+            </nav>
+        </div>
+    </section>
+</BaseLayout>

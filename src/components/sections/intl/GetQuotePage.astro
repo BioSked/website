@@ -1,0 +1,60 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import type { MarketContent } from '@/i18n/market/types';
+import type { LocaleCode } from '@/i18n/locales';
+
+/**
+ * Shared quote-request page for the de/nl/it markets — same closing-page
+ * treatment as the demo page (steps, GDPR note, locale-aware embed).
+ */
+interface Props {
+    market: MarketContent;
+    locale: LocaleCode;
+}
+const { market, locale } = Astro.props;
+const d = market.demo;
+const q = market.getquote ?? {
+    metaTitle: d.metaTitle,
+    metaDescription: d.metaDescription,
+    heading: d.heading,
+    sub: d.sub,
+    formTitle: d.formTitle,
+};
+
+const SECURITY_PATH: Record<string, string> = { de: '/de/sicherheit-und-daten/', nl: '/nl/beveiliging-en-gegevens/', it: '/it/sicurezza-e-dati/' };
+const HS_LOCALE: Record<string, string> = { de: 'de', nl: 'nl', it: 'it' };
+const formId = (market.getquote && market.getquote.formId) || '152f6973-10dd-42d4-af28-2df2f8f830e9';
+const thankYouPath = market.thankyou ? `/${locale}/demo/${market.thankyou.slug}/` : undefined;
+---
+
+<BaseLayout title={q.metaTitle} description={q.metaDescription}>
+    <div class="container section-padding">
+      <h1 class="text-2xl sm:text-4xl text-center font-bold max-w-4xl mx-auto">{q.heading}</h1>
+      <p class="text-md sm:text-lg text-center mt-4 mb-10 text-muted-foreground max-w-xl mx-auto">{q.sub}</p>
+      <div class="max-w-xl mx-auto bg-white/60 border border-primary/30 transition-all duration-400 shadow-xl shadow-secondary/10 rounded-2xl px-4 sm:px-10 pb-10 pt-1">
+        <h2 class="text-display-card text-secondary font-bold max-w-2xl mx-auto my-5">{q.formTitle}</h2>
+        <hr class="border-input">
+        <div id="hubspot-quote" class="mt-5"></div>
+      </div>
+      {d.privacyNote && (
+        <p class="text-muted-foreground text-xs mt-3 text-center">
+          <a href={SECURITY_PATH[locale] ?? '/'} class="hover:text-foreground transition-colors">{d.privacyNote}</a>
+        </p>
+      )}
+      <script charset="utf-8" type="text/javascript" src="//js-eu1.hsforms.net/forms/embed/v2.js"></script>
+      <script is:inline define:vars={{ formId, hsLocale: HS_LOCALE[locale] ?? 'en', thankYouPath, pageLocale: locale }}>
+        hbspt.forms.create({
+          formInstanceId: "2",
+          portalId: "25195055",
+          formId: formId,
+          region: "eu1",
+          locale: hsLocale,
+          redirectUrl: thankYouPath || undefined,
+          target: "#hubspot-quote",
+          onFormSubmitted: function () {
+            if (typeof gtag === 'function') gtag('event', 'quote_form_submit', { page_locale: pageLocale });
+          }
+        });
+      </script>
+    </div>
+</BaseLayout>

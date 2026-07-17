@@ -1,0 +1,43 @@
+---
+import Card from '@/components/ui/Card.astro';
+import { CalendarCheck, Scale, MessagesSquare, BarChart3, Repeat, Clock } from 'lucide-astro';
+
+/**
+ * Compact localized feature grid used by the de/nl/it homepages.
+ * Icons are fixed per slot; copy comes from src/i18n/homeContent.ts.
+ */
+interface FeatureItem {
+    title: string;
+    text: string;
+}
+interface Props {
+    heading: string;
+    sub: string;
+    items: FeatureItem[]; // exactly 6
+}
+const { heading, sub, items } = Astro.props;
+const icons = [CalendarCheck, Clock, Scale, Repeat, MessagesSquare, BarChart3];
+---
+
+<section id="features" class="section-padding">
+    <div class="container max-w-5xl">
+        <div class="mx-auto max-w-2xl text-center mb-10 md:mb-14">
+            <h2 class="text-display-section tracking-tight">{heading}</h2>
+            <p class="text-muted-foreground text-lead mt-4">{sub}</p>
+        </div>
+        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {items.map((item, i) => {
+                const Icon = icons[i % icons.length];
+                return (
+                    <Card className="p-6 bg-white/15">
+                        <div class="bg-primary/10 text-accent grid size-10 place-items-center rounded-lg mb-4">
+                            <Icon class="size-5" />
+                        </div>
+                        <h3 class="font-semibold text-foreground mb-2">{item.title}</h3>
+                        <p class="text-muted-foreground text-sm">{item.text}</p>
+                    </Card>
+                );
+            })}
+        </div>
+    </div>
+</section>

@@ -1,0 +1,36 @@
+---
+export const prerender = true;
+
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Hero from "@/components/sections/fr/Hero.astro";
+import Manifesto from "@/components/sections/fr/Manifesto.astro";
+import Logos from "@/components/sections/Logos.astro";
+import FeatureShowcase from "@/components/sections/fr/FeaturesShowcase.astro";
+import AIInno from "@/components/sections/fr/AIInnovation.astro";
+import CTA from "@/components/sections/fr/CTA.astro";
+import VideoTourSection from "@/components/sections/intl/VideoTourSection.astro";
+import Testimonials from "@/components/sections/fr/Testimonials.astro";
+import CaseStudies from "@/components/sections/fr/CaseStudies.astro";
+import Specialties from "@/components/sections/fr/Specialties.astro";
+// import FullTimelineView from "@/components/sections/FullTimelineView.tsx";
+import RVU from "@/components/sections/fr/RVU.astro";
+---
+
+<BaseLayout 
+  title="Momentum - Logiciel de planification médicale par IA | BioSked France" 
+  description="Momentum par BioSked automatise les plannings médicaux, gardes, désidératas, badgeage et reporting pour les services de radiologie, anesthésie, urgences et établissements multisites."
+>
+	<Hero/>
+	<Manifesto/>
+	<Testimonials/>
+  <CaseStudies/>
+	<!-- <FullTimelineView client:visible={{rootMargin: "150px"}} /> -->
+	<a id="momentum"/>
+	<FeatureShowcase />
+  <Specialties />
+	<RVU />
+	<!-- <Logos/> -->
+  <AIInno />
+	<VideoTourSection heading="La visite guidée en 1 minute (EN)" buttonLabel="Lancer la vidéo (EN)" />
+	<CTA />
+</BaseLayout>

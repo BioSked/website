@@ -1,0 +1,267 @@
+---
+export const prerender = true;
+
+import {
+  MonitorSmartphone,
+  Sparkles,
+  HeartHandshake,
+  Workflow,
+  Headset,
+  ShieldCheck,
+} from 'lucide-astro';
+
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import CTA from "@/components/sections/fr/CTA.astro";
+import Button from "@/components/ui/Button.astro";
+import Card from "@/components/ui/Card.astro";
+import CardHeader from "@/components/ui/CardHeader.astro";
+import CardTitle from "@/components/ui/CardTitle.astro";
+import { FAQAccordion } from "@/components/sections/FAQAccordion";
+
+const inclusions = [
+  {
+    id: 'plateforme',
+    icon: MonitorSmartphone,
+    title: 'Plateforme web et nouvelle application mobile',
+    text: 'La plateforme complète de planification et la nouvelle application iOS et Android, incluse pour chaque utilisateur : connexion par Face ID ou empreinte, planning accessible hors connexion, notifications en temps réel, disponible en cinq langues.',
+  },
+  {
+    id: 'generation-ia',
+    icon: Sparkles,
+    title: 'Génération automatique par IA',
+    text: 'Des plannings générés automatiquement dans le respect des contrats, des compétences, des règles de temps de travail et des désidératas de chacun — avec l’équité comme critère à part entière, y compris pour les gardes et piquets.',
+  },
+  {
+    id: 'accompagnement',
+    icon: HeartHandshake,
+    title: 'Accompagnement au déploiement',
+    text: 'Un chef de projet dédié vous accompagne de bout en bout : paramétrage de vos règles, reprise de vos plannings existants, mise en place des intégrations et formation de vos équipes.',
+  },
+  {
+    id: 'integrations',
+    icon: Workflow,
+    title: 'Intégrations avec votre environnement',
+    text: 'Momentum se connecte à vos outils : RIS (par exemple NGI), agendas personnels, solutions RH et de timbrage (par exemple Kelio), exports vers la paie.',
+  },
+  {
+    id: 'support',
+    icon: Headset,
+    title: 'Support en français et mises à jour continues',
+    text: 'Une équipe support francophone réactive, qui connaît le quotidien des services de soins, et des mises à jour régulières incluses dans l’abonnement — sans montée de version à payer.',
+  },
+  {
+    id: 'hebergement',
+    icon: ShieldCheck,
+    title: 'Hébergement dans l’Union européenne',
+    text: 'Vos données sont hébergées dans l’Union européenne, avec un traitement aligné sur le RGPD. Momentum gère des données de planification — pas de dossiers médicaux de patients.',
+  },
+];
+
+const steps = [
+  {
+    number: '01',
+    title: 'Démo personnalisée',
+    text: 'Nous partons de vos plannings réels : gardes, piquets, multi-sites, règles locales. Vous voyez Momentum fonctionner sur des cas qui ressemblent aux vôtres.',
+  },
+  {
+    number: '02',
+    title: 'Cadrage du périmètre',
+    text: 'Nous précisons ensemble effectifs planifiés, sites, spécialités, modules, intégrations et calendrier de déploiement.',
+  },
+  {
+    number: '03',
+    title: 'Proposition sur mesure',
+    text: 'Vous recevez une proposition claire et détaillée : abonnement, accompagnement au déploiement et formation — sans coûts cachés.',
+  },
+];
+
+const faqData = [
+  {
+    id: 'construction-tarif',
+    question: 'Comment le tarif de Momentum est-il construit ?',
+    answer:
+      'Les abonnements démarrent à CHF 5.99 par professionnel planifié et par mois. Le tarif final dépend de votre périmètre réel : nombre de professionnels planifiés, nombre de sites, spécialités, modules activés (gardes et piquets, bourse aux services, timbrage…) et intégrations souhaitées. Après un cadrage avec nos équipes, vous recevez une proposition détaillée, sans surprise et sans coûts cachés.',
+  },
+  {
+    id: 'roi',
+    question: 'Comment se justifie l’investissement face à un planning fait à la main ?',
+    answer:
+      'Le point de comparaison n’est pas un autre logiciel, mais le coût réel du planning manuel : des jours d’administration chaque mois, des échanges de gardes informels, des compteurs que personne ne peut vérifier. Nos clients mesurent le retour sur quatre plans. Le temps : jusqu’à 90 % de temps de gestion en moins — au CHIREC, la construction du planning mensuel est passée de 4 jours à 4–5 heures. Les coûts : chez IMAGIR, l’interconnexion de Momentum avec EasyDoct et Kelio permet « le gain d’un ETP voire deux ». La fiabilité financière : des plannings générés dans le respect des contrats et des règles, un timbrage qui alimente la paie. L’équité : des répartitions traçables et des compteurs visibles par tous — 90 à 100 % de satisfaction dans les études de cas publiées.',
+  },
+  {
+    id: 'mise-en-place',
+    question: 'Y a-t-il des frais de mise en place ? Combien de temps dure le déploiement ?',
+    answer:
+      'Chaque déploiement comprend un accompagnement projet : paramétrage de vos règles, reprise de vos plannings, intégrations et formation des équipes. Cet accompagnement est chiffré en toute transparence dans la proposition. Selon le périmètre — un service, un groupe multi-sites ou un établissement entier —, la mise en service prend de quelques semaines à quelques mois.',
+  },
+  {
+    id: 'integrations',
+    question: 'Quelles intégrations sont possibles ?',
+    answer:
+      'Momentum s’intègre à votre environnement existant : RIS comme NGI, agendas personnels, outils RH et de timbrage comme Kelio, exports vers la paie. Les intégrations pertinentes sont identifiées lors du cadrage et incluses dans la proposition.',
+  },
+  {
+    id: 'hebergement-rgpd',
+    question: 'Où sont hébergées nos données ? Et le RGPD ?',
+    answer:
+      'Vos données sont hébergées dans l’Union européenne et leur traitement est aligné sur le RGPD. Momentum gère des données de planification — pas de dossiers médicaux de patients.',
+  },
+  {
+    id: 'app-mobile',
+    question: 'L’application mobile est-elle incluse ?',
+    answer:
+      'Oui. La nouvelle application Momentum (iOS et Android) est incluse pour tous les utilisateurs : connexion par Face ID ou empreinte, planning accessible hors connexion, services à céder, échanger ou prendre, notifications en temps réel — disponible en français, anglais, allemand, néerlandais et italien.',
+  },
+  {
+    id: 'demarrage',
+    question: 'Comment démarrer ?',
+    answer:
+      'En trois étapes : une démonstration personnalisée sur vos cas réels, un cadrage de votre périmètre avec nos équipes, puis une proposition sur mesure. La plupart des organisations commencent par demander une démo — comptez ensuite de quelques semaines à quelques mois jusqu’à la mise en service, selon le périmètre.',
+  },
+];
+
+const stats = [
+  { value: '250+', label: 'organisations de santé' },
+  { value: '1 000+', label: 'sites de santé' },
+  { value: '9', label: 'pays' },
+];
+
+const faqStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqData.map((faq) => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer,
+    },
+  })),
+};
+---
+
+<BaseLayout
+  title="Tarifs Suisse | Momentum, planification médicale | BioSked"
+  description="Tarifs Momentum pour la Suisse romande : à partir de CHF 5.99 par professionnel planifié et par mois, avec accompagnement au déploiement depuis notre siège européen de Genève. Proposition sur devis selon votre périmètre."
+>
+  <script type="application/ld+json" set:html={JSON.stringify(faqStructuredData)} />
+
+  <!-- 1. Hero -->
+  <section class="section-padding">
+    <div class="container max-w-4xl">
+      <p class="font-mono text-sm font-semibold uppercase tracking-widest text-muted-foreground">Tarifs</p>
+      <h1 class="text-display-hero mt-4">Un devis adapté à votre organisation de santé</h1>
+      <p class="text-lead text-muted-foreground mt-5 max-w-2xl">
+        Momentum n’est pas une simple licence : chaque déploiement est accompagné — paramétrage de vos règles, reprise de vos plannings existants, intégrations, formation des équipes. Votre tarif reflète donc votre périmètre réel : nombre de professionnels planifiés, sites, spécialités, modules et intégrations. Rien de plus.
+      </p>
+      <p class="mt-4 text-lg text-foreground">
+        À partir de <strong>CHF 5.99</strong> par professionnel planifié et par mois.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="/fr-ch/demo/">
+          <Button size="lg" className="rounded-full px-5 font-bold">
+            Demander une démo
+          </Button>
+        </a>
+        <a href="/fr-ch/getquote/">
+          <Button size="lg" variant="ghost" className="rounded-full px-4 font-semibold">
+            Obtenir un devis
+          </Button>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Ce que comprend votre abonnement -->
+  <section class="section-padding">
+    <div class="container">
+      <div class="mx-auto max-w-3xl space-y-3 text-center lg:space-y-4">
+        <h2 class="text-display-section">Ce que comprend votre abonnement</h2>
+        <p class="text-lead text-muted-foreground">
+          Un abonnement Momentum couvre bien plus qu’un logiciel : la plateforme, la nouvelle application mobile, l’accompagnement projet et le support — pour toute l’équipe.
+        </p>
+      </div>
+
+      <div class="mt-8 grid grid-cols-1 gap-4 md:mt-12 md:grid-cols-2 md:gap-6 lg:grid-cols-3">
+        {
+          inclusions.map((item) => {
+            const Icon = item.icon;
+            return (
+              <Card className="relative h-full bg-white/30 rounded-none">
+                <CardHeader className="space-y-4">
+                  <div class="flex size-12 items-center justify-center rounded-lg bg-card-foreground/10">
+                    <Icon class="size-6 text-card-foreground" strokeWidth={2.1} />
+                  </div>
+                  <CardTitle className="text-display-card">
+                    {item.title}
+                  </CardTitle>
+                  <p class="text-muted-foreground/80 leading-relaxed">
+                    {item.text}
+                  </p>
+                </CardHeader>
+              </Card>
+            );
+          })
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. De la démo à la proposition -->
+  <section class="section-padding">
+    <div class="container max-w-5xl">
+      <div class="mx-auto max-w-3xl space-y-3 text-center lg:space-y-4">
+        <h2 class="text-display-section">De la démo à la proposition</h2>
+        <p class="text-lead text-muted-foreground">
+          Trois étapes suffisent pour obtenir un devis fidèle à votre réalité de terrain.
+        </p>
+      </div>
+
+      <div class="mt-8 grid grid-cols-1 gap-4 md:mt-12 md:grid-cols-3 md:gap-6">
+        {
+          steps.map((step) => (
+            <div class="rounded-lg border border-input bg-background/60 p-6">
+              <p class="font-mono text-sm font-semibold tracking-widest text-primary">{step.number}</p>
+              <h3 class="mt-3 text-lg font-semibold">{step.title}</h3>
+              <p class="mt-2 leading-relaxed text-muted-foreground">{step.text}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. FAQ -->
+  <section class="section-padding">
+    <div class="container">
+      <h2 class="text-display-section mb-12 text-center">Questions fréquentes</h2>
+      <FAQAccordion client:visible faqData={faqData} />
+    </div>
+  </section>
+
+  <!-- 5. Preuves -->
+  <section class="section-padding">
+    <div class="container max-w-4xl text-center">
+      <div class="grid grid-cols-1 gap-8 sm:grid-cols-3">
+        {
+          stats.map((stat) => (
+            <div>
+              <p class="text-4xl font-bold tracking-tight">{stat.value}</p>
+              <p class="mt-1 text-muted-foreground">{stat.label}</p>
+            </div>
+          ))
+        }
+      </div>
+      <p class="text-lead text-muted-foreground mx-auto mt-10 max-w-2xl">
+        Au CHIREC (Belgique), la construction du planning mensuel des urgences est passée de 4&nbsp;jours à 4–5&nbsp;heures — jusqu’à 90&nbsp;% de temps de gestion des horaires en moins (étude de cas 2025).
+      </p>
+      <a href="/fr/cas-clients/" class="mt-6 inline-block">
+        <Button size="lg" variant="ghost" className="rounded-full px-4 font-semibold">
+          Voir les cas clients
+        </Button>
+      </a>
+    </div>
+  </section>
+
+  <CTA />
+</BaseLayout>

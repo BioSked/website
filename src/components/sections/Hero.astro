@@ -3,11 +3,35 @@ import { Play } from 'lucide-astro';
 import Button from '@/components/ui/Button.astro';
 import { Image } from 'astro:assets';
 import dateView from '@/assets/screenshots/dateview.png';
+import type { ImageMetadata } from 'astro';
 import mobileInHand from '@/assets/layout/mobilehand.png';
 import cyanDust from '@/assets/layout/cyan-dust_background.webp';
 import GroupIcon from '@/assets/layout/group2.svg';
 import HospitalIcon from '@/assets/layout/hospital.svg';
 import EarthIcon from '@/assets/layout/earth.svg';
+
+interface Props {
+  title?: string;
+  lead?: string;
+  demoLabel?: string;
+  demoHref?: string;
+  tourLabel?: string;
+  badges?: [string, string, string];
+  screenshotAlt?: string;
+  phoneImage?: ImageMetadata;
+  phoneAlt?: string;
+}
+const {
+  title = 'Smart staff scheduling for healthcare',
+  lead = 'Create AI-powered, fair, compliant schedules 10x faster so teams can focus on care.',
+  demoLabel = 'Book a Demo',
+  demoHref = '/demo',
+  tourLabel = 'Watch 1-minute tour',
+  badges = ['Trusted by 50,000+ daily users', '1,000+ healthcare sites', '9 countries'],
+  screenshotAlt = 'Momentum healthcare scheduling software calendar interface showing physician schedules, shift management, and RVU tracking for medical practices',
+  phoneImage = mobileInHand,
+  phoneAlt = 'MM Mobile',
+} = Astro.props;
 ---
 
 <section class="section-padding relative">
@@ -23,52 +47,52 @@ import EarthIcon from '@/assets/layout/earth.svg';
     <div class="flex">
       <div class="flex max-w-[900px] flex-col gap-5 md:gap-6 flex-3">
         <h1 class="text-display-hero text-left">
-          Smart staff scheduling for healthcare
+          {title}
           <!-- <br class="hidden md:block" /> -->
         </h1>
         
         <p class="max-w-[90%] text-lead">
-          Create AI-powered, fair, compliant schedules 10x faster so teams can focus on care.
+          {lead}
         </p>
 
         <div class="flex flex-wrap gap-2">
-          <a href="/demo">
+          <a href={demoHref}>
             <Button
               size="lg"
               variant="default"
               className="rounded-full shadow-sm shadow-primary/50 hover:shadow-md px-5 font-bold ease-in-out transition-all scale-100 hover:scale-103 duration-200 border border-white/50"
               onclick="window.dispatchEvent(new CustomEvent('open-contact-sales'))"
             >
-              Book a Demo
+              {demoLabel}
             </Button>
           </a>
 
-          <Button
+          {tourLabel && <Button
             size="lg"
             variant="ghost"
             className="rounded-full shadow-none font-semibold px-3 text-card-foreground hover:bg-card-foreground/5"
             id="see-how-it-works-btn"
           >
-            &nbsp; Watch 1-minute tour
+            &nbsp; {tourLabel}
             <div class="bg-background/15 border-background/10 grid size-5.5 place-items-center rounded-full border">
               <Play class="size-4 mr-2 fill-primary/30" />
             </div>
-          </Button>
+          </Button>}
         </div>
         <div class="font-semibold text-muted-foreground text-sm">
-          <GroupIcon class="inline-block size-7 mb-1 mr-1"/>Trusted by 50,000+ daily users
+          <GroupIcon class="inline-block size-7 mb-1 mr-1"/>{badges[0]}
           <span class="mx-2 font-light hidden lg:inline">|</span>
           <hr class="lg:hidden border-none mb-1">
-          <HospitalIcon class="inline-block size-5 mb-1 mr-1"/>1,000+ healthcare sites
+          <HospitalIcon class="inline-block size-5 mb-1 mr-1"/>{badges[1]}
           <span class="mx-2 font-light hidden lg:inline">|</span>
           <hr class="lg:hidden border-none mb-2">
-          <EarthIcon class="inline-block size-5 mb-1 mr-1"/>9 countries
+          <EarthIcon class="inline-block size-5 mb-1 mr-1"/>{badges[2]}
         </div>
       </div>
       <div class="hidden sm:block flex-2">
         <Image 
-          src={mobileInHand} 
-          alt="MM Mobile"
+          src={phoneImage} 
+          alt={phoneAlt}
           class="w-200"
         />
       </div>
@@ -79,7 +103,7 @@ import EarthIcon from '@/assets/layout/earth.svg';
       <Image
         id="hero-image"
         src={dateView}
-        alt="Momentum healthcare scheduling software calendar interface showing physician schedules, shift management, and RVU tracking for medical practices"
+        alt={screenshotAlt}
         width={1000}
         height={563}
         widths={[640, 750, 828, 1000, 1500, 2000]}

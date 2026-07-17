@@ -1,0 +1,20 @@
+---
+export const prerender = true;
+
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import FrenchLandingPage from '@/components/sections/fr/FrenchLandingPage.astro';
+import { specialtyPages } from '@/data/frLandingPages';
+
+export function getStaticPaths() {
+  return Object.values(specialtyPages).map((page) => ({
+    params: { slug: page.slug },
+    props: { page },
+  }));
+}
+
+const { page } = Astro.props;
+---
+
+<BaseLayout title={page.metaTitle} description={page.metaDescription}>
+  <FrenchLandingPage page={page} />
+</BaseLayout>
