@@ -14,6 +14,12 @@ git push origin refs/tags/en-only-2026-07-17^{commit}:main --force
 
 GitHub Pages redeploys automatically on push (~2 minutes). That's it.
 
+Do NOT touch the Pages settings during rollback: the site now uses
+**workflow builds** (`build_type: workflow`) with the custom domain
+**biosked.com set in repo Settings → Pages** (changed at launch, 17 Jul 2026 —
+previously the domain lived in the legacy `docs/CNAME` file). Both the old and
+new source trees build and deploy correctly under this configuration.
+
 Non-force alternative (keeps history, adds a revert commit):
 
 ```bash
