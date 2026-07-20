@@ -170,7 +170,7 @@ export default defineConfig({
         "ressources/temoignages": { destination: "/fr/cas-clients", status: 301 },
         "la-societe-biosked": { destination: "/fr/about", status: 301 },
         "la-societe-biosked/nous-connaitre": { destination: "/fr/about", status: 301 },
-        "la-societe-biosked/lequipe": { destination: "/fr/about#equipe", status: 301 },
+        "la-societe-biosked/lequipe": { destination: "/fr/about/#equipe", status: 301 },
         "la-societe-biosked/nous-rejoindre-2": { destination: "/fr/careers", status: 301 },
         "secteurs-soins": { destination: "/fr/#specialites", status: 301 },
         "fonctionnalites": { destination: "/fr/#fonctionnalites", status: 301 },
