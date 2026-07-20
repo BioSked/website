@@ -165,6 +165,9 @@ export default defineConfig({
         "blog/posts/fr/2025-07-03-shift-view": { destination: "/fr/blog/nouveaute-momentum-une-vue-par-shift-pour-une-meilleure-coordination-sur-le-terrain", status: 301 },
         "accueil-biosked": { destination: "/fr/", status: 301 },
         "demander-une-demo": { destination: "/fr/demo", status: 301 },
+        // Legacy biosked.nl slug (host-level 301s forward the path here;
+        // the .nl legal-page slug is identical to the .fr one, already mapped)
+        "een-demonstratie-aanvragen": { destination: "/nl/demo", status: 301 },
         "ressources": { destination: "/fr/ressources", status: 301 },
         "ressources/livre-blanc": { destination: "/fr/ressources", status: 301 },
         "ressources/temoignages": { destination: "/fr/cas-clients", status: 301 },
