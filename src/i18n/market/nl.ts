@@ -25,7 +25,7 @@ export const MARKET: MarketContent = {
         metaDescription:
             'Plan een demo van Momentum: automatische roostergeneratie, wacht- en bereikbaarheidsdiensten, verlof, tijdregistratie en rapportages – afgestemd op uw organisatie.',
         heading: 'Bekijk hoe Momentum bij uw organisatie past',
-        sub: 'We laten u zien hoe Momentum het rooster volgens uw regels genereert, wacht- en bereikbaarheidsdiensten over uw locaties verdeelt en verlof en voorkeuren ordent – aan de hand van voorbeelden uit uw specialisme.',
+        sub: 'We laten u zien hoe Momentum het rooster volgens uw regels genereert, wacht- en bereikbaarheidsdiensten over uw locaties verdeelt en verlof en voorkeuren ordent – aan de hand van voorbeelden uit uw specialisme. De applicatie is beschikbaar in het Nederlands; de demo wordt in het Engels of het Frans gegeven.',
         steps: [
             'Persoonlijke demo — aan de hand van uw eigen roosterpraktijk',
             'Behoefteanalyse — teams, locaties, modules, integraties',

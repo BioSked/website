@@ -70,7 +70,7 @@ export const HOME_CONTENT: Record<'de' | 'nl' | 'it', HomeContent> = {
         },
         features: {
             heading: 'Van roostergeneratie tot loonexport',
-            sub: 'Een artsenrooster is geen gewoon personeelsrooster: wacht- en bereikbaarheidsdiensten, werktijdregels, bezetting over meerdere campussen, eerlijkheid die maanden overspant. Momentum dekt dat volledige planningsproces in één platform.',
+            sub: 'Een artsenrooster is geen gewoon personeelsrooster: wacht- en bereikbaarheidsdiensten, werktijdregels, bezetting over meerdere campussen, eerlijkheid die maanden overspant. Momentum dekt dat volledige planningsproces in één platform. De applicatie is beschikbaar in het Nederlands.',
             items: [
                 { title: 'Automatische roostergeneratie', text: 'Roosters gegenereerd binnen contracten, competenties, werktijdregels en persoonlijke voorkeuren. De planner beoordeelt het voorstel en stuurt bij, in plaats van elke maand zelf te puzzelen.' },
                 { title: 'Wacht- en bereikbaarheidsdiensten', text: 'Wachtdiensten en bereikbaarheid gepland over meerdere campussen en teams, met bewaking van rusttijden en continuïteit. Iedereen ziet dezelfde, actuele versie.' },
