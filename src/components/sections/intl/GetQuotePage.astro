@@ -42,7 +42,7 @@ const thankYouPath = market.thankyou ? `/${locale}/demo/${market.thankyou.slug}/
         </p>
       )}
       <script is:inline define:vars={{ formId, hsLocale: HS_LOCALE[locale] ?? 'en', thankYouPath }}>
-        hbspt.forms.create({
+        window.bskHsForm({
           formInstanceId: "2",
           portalId: "25195055",
           formId: formId,
