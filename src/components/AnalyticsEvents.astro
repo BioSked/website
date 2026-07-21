@@ -1,6 +1,7 @@
 <script>
     import {
         classifyCtaPath,
+        createDedupedEventDispatcher,
         leadEventForForm,
         normalizeSiteLanguage,
     } from '@/lib/analytics.mjs';
@@ -13,7 +14,6 @@
 
     const analyticsWindow = window as AnalyticsWindow;
     const siteLanguage = normalizeSiteLanguage(document.documentElement.lang);
-    const recentLeads = new Map<string, number>();
 
     function track(
         eventName: string,
@@ -47,6 +47,14 @@
         analyticsWindow.gtag('event', eventName, eventParameters);
     }
 
+    const dispatchLead = createDedupedEventDispatcher(
+        (
+            eventName: string,
+            parameters: Record<string, unknown>,
+            onComplete: () => void,
+        ) => track(eventName, parameters, onComplete),
+    );
+
     analyticsWindow.bskTrackLead = (formId: string, onComplete?: () => void) => {
         const eventName = leadEventForForm(formId, location.pathname);
         if (!eventName) {
@@ -55,14 +63,7 @@
         }
 
         const dedupeKey = `${eventName}:${formId}:${location.pathname}`;
-        const now = Date.now();
-        if (now - (recentLeads.get(dedupeKey) || 0) < 2000) {
-            onComplete?.();
-            return;
-        }
-        recentLeads.set(dedupeKey, now);
-
-        track(eventName, { form_id: formId }, onComplete);
+        dispatchLead(dedupeKey, eventName, { form_id: formId }, onComplete);
     };
 
     document.addEventListener('click', (event) => {

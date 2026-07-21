@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url';
 import { dirname, resolve } from 'node:path';
 import {
   classifyCtaPath,
+  createDedupedEventDispatcher,
   leadEventForForm,
   normalizeSiteLanguage,
 } from '../src/lib/analytics.mjs';
@@ -44,6 +45,30 @@ assert.equal(
   'whitepaper_unlock',
 );
 assert.equal(leadEventForForm('unknown', '/demo/'), null);
+
+let now = 1000;
+const sentEvents = [];
+const dispatch = createDedupedEventDispatcher(
+  (eventName, parameters, onComplete) => sentEvents.push({ eventName, parameters, onComplete }),
+  2000,
+  () => now,
+);
+let duplicateCompleted = 0;
+dispatch('demo:key', 'demo_form_submit', { form_id: 'demo' });
+dispatch('demo:key', 'demo_form_submit', { form_id: 'demo' }, () => { duplicateCompleted += 1; });
+assert.equal(sentEvents.length, 1);
+assert.equal(duplicateCompleted, 0);
+assert.equal(typeof sentEvents[0].onComplete, 'function');
+sentEvents[0].onComplete();
+assert.equal(duplicateCompleted, 1);
+sentEvents[0].onComplete();
+assert.equal(duplicateCompleted, 1);
+dispatch('demo:key', 'demo_form_submit', { form_id: 'demo' }, () => { duplicateCompleted += 1; });
+assert.equal(duplicateCompleted, 2);
+assert.equal(sentEvents.length, 1);
+now += 2001;
+dispatch('demo:key', 'demo_form_submit', { form_id: 'demo' });
+assert.equal(sentEvents.length, 2);
 
 const baseHead = read('src/components/BaseHead.astro');
 assert.match(baseHead, /if \(gpc \|\| choice === 'denied'\) return;/);

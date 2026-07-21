@@ -23,6 +23,40 @@ export function classifyCtaPath(pathname) {
   return null;
 }
 
+export function createDedupedEventDispatcher(
+  sendEvent,
+  dedupeWindowMs = 2000,
+  now = Date.now,
+) {
+  const recentEvents = new Map();
+
+  return (dedupeKey, eventName, parameters, onComplete) => {
+    const currentTime = now();
+    const existing = recentEvents.get(dedupeKey);
+    if (existing && currentTime - existing.startedAt < dedupeWindowMs) {
+      if (onComplete) {
+        if (existing.completed) onComplete();
+        else existing.callbacks.add(onComplete);
+      }
+      return;
+    }
+
+    const state = {
+      startedAt: currentTime,
+      completed: false,
+      callbacks: new Set(onComplete ? [onComplete] : []),
+    };
+    recentEvents.set(dedupeKey, state);
+
+    sendEvent(eventName, parameters, () => {
+      if (state.completed) return;
+      state.completed = true;
+      for (const callback of state.callbacks) callback();
+      state.callbacks.clear();
+    });
+  };
+}
+
 export function leadEventForForm(formId, pathname) {
   if (DEMO_FORM_IDS.has(formId)) return 'demo_form_submit';
   if (formId !== QUOTE_FORM_ID) return null;
