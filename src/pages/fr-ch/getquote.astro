@@ -19,8 +19,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
       <p class="text-muted-foreground text-xs mt-3 text-center">
         <a href="/fr-ch/securite-donnees/" class="hover:text-foreground transition-colors">Hébergement dans l’Union européenne · RGPD · DPA sur demande</a>
       </p>
-      <script charset="utf-8" type="text/javascript" src="//js-eu1.hsforms.net/forms/embed/v2.js"></script>
-      <script is:inline define:vars={{ thankYouPath: "/fr-ch/demo/merci/", pageLocale: "fr-ch" }}>
+      <script is:inline define:vars={{ thankYouPath: "/fr-ch/demo/merci/" }}>
         hbspt.forms.create({
           formInstanceId: "2",
           portalId: "25195055",
@@ -30,7 +29,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
           redirectUrl: thankYouPath,
           target: "#hubspot-quote",
           onFormSubmitted: function () {
-            if (typeof gtag === 'function') gtag('event', 'quote_form_submit', { page_locale: pageLocale });
+            if (typeof window.bskTrackLead === 'function') window.bskTrackLead("152f6973-10dd-42d4-af28-2df2f8f830e9");
           }
         });
       </script>

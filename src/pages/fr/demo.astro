@@ -46,8 +46,7 @@ import { Quote } from "lucide-astro";
         </aside>
       </div>
 
-      <script charset="utf-8" type="text/javascript" src="//js-eu1.hsforms.net/forms/embed/v2.js"></script>
-      <script is:inline define:vars={{ thankYouPath: "/fr/demo/merci/", pageLocale: "fr" }}>
+      <script is:inline define:vars={{ thankYouPath: "/fr/demo/merci/" }}>
         hbspt.forms.create({
           formInstanceId: "1",
           portalId: "25195055",
@@ -57,7 +56,7 @@ import { Quote } from "lucide-astro";
           redirectUrl: thankYouPath,
           target: "#hubspot-demo",
           onFormSubmitted: function () {
-            if (typeof gtag === 'function') gtag('event', 'demo_form_submit', { page_locale: pageLocale });
+            if (typeof window.bskTrackLead === 'function') window.bskTrackLead("a28f608c-a613-4fbe-a382-1fbc49b6885c");
           }
         });
       </script>

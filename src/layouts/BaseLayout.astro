@@ -6,6 +6,7 @@ import NavigationProvider from '@/components/elements/NavigationProvider.astro';
 import Banner from '@/components/layout/Banner.astro';
 import LocalePrefs from '@/components/LocalePrefs.astro';
 import ConsentBanner from '@/components/ConsentBanner.astro';
+import AnalyticsEvents from '@/components/AnalyticsEvents.astro';
 import Navbar from "@/components/layout/Navbar.astro";
 import Footer from "@/components/layout/Footer.astro";
 import { GoogleTagmanagerPartytown } from '@digi4care/astro-google-tagmanager';
@@ -24,6 +25,7 @@ const lang = Astro.currentLocale ?? 'en';
   <body
     class={`h-screen antialiased flex flex-col [--header-height:calc(var(--spacing)*12)] lg:[--header-height:calc(var(--spacing)*18)]`}
   >
+    <AnalyticsEvents />
       <svg width="0" height="0" style="position: absolute;">
         <filter id="noise-texture">
             <feTurbulence 
