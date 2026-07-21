@@ -31,13 +31,49 @@ const robotsFollow = noIndex ? false : SITE_METADATA.robots.follow;
 <meta name="publisher" content={SITE_METADATA.publisher} />
 
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=GT-NB96M5G7"></script>
-<script>
+<script is:inline>
+    // Consent-gated Google Analytics (CNIL "basic" mode).
+    // Outside EU/CH timezones: GA loads immediately (no banner shown).
+    // Inside: nothing loads until the visitor accepts (ConsentBanner).
+    // Global Privacy Control is honored as a standing refusal.
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
+    window.gtag = gtag;
     gtag('js', new Date());
+    gtag('consent', 'default', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'denied' });
 
-    gtag('config', 'GT-NB96M5G7');
+    window.__bskLoadGA = function () {
+        if (window.__bskGALoaded) return;
+        window.__bskGALoaded = true;
+        gtag('consent', 'update', { analytics_storage: 'granted' });
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=GT-NB96M5G7';
+        document.head.appendChild(s);
+        gtag('config', 'GT-NB96M5G7');
+    };
+
+    (function () {
+        var choice = null;
+        try {
+            var raw = localStorage.getItem('biosked-consent');
+            if (raw) {
+                var parsed = JSON.parse(raw);
+                // Choices older than 12 months are re-asked.
+                choice = (Date.now() - (parsed.t || 0) < 31536000000) ? parsed.v : null;
+            }
+        } catch (e) {}
+        var gpc = navigator.globalPrivacyControl === true;
+        var eu = false;
+        try {
+            var tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+            eu = /^Europe\//.test(tz) || /^Atlantic\/(Canary|Madeira|Azores|Reykjavik)$/.test(tz);
+        } catch (e) {}
+        if (choice === 'granted') { window.__bskLoadGA(); return; }
+        if (choice === 'denied' || gpc) return;
+        if (!eu) { window.__bskLoadGA(); return; }
+        window.__bskConsentPending = true;
+    })();
 </script>
 <!-- <GoogleTagmanagerPartytown id="GT-NB96M5G7" /> -->
 

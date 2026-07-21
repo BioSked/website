@@ -5,6 +5,7 @@ import BaseHead from '@/components/BaseHead.astro';
 import NavigationProvider from '@/components/elements/NavigationProvider.astro';
 import Banner from '@/components/layout/Banner.astro';
 import LocaleSuggest from '@/components/LocaleSuggest.astro';
+import ConsentBanner from '@/components/ConsentBanner.astro';
 import Navbar from "@/components/layout/Navbar.astro";
 import Footer from "@/components/layout/Footer.astro";
 import { GoogleTagmanagerPartytown } from '@digi4care/astro-google-tagmanager';
@@ -48,5 +49,6 @@ const lang = Astro.currentLocale ?? 'en';
     
     <!-- <ContactSalesModal client:idle={{timeout: 3000}} /> -->
   	<LocaleSuggest />
+  	<ConsentBanner />
 </body>
 </html>
