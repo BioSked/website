@@ -8,13 +8,13 @@ import {
 import AutoScroll from 'embla-carousel-auto-scroll';
 import OptimizedImage from '@/components/OptimizedImage';
 
-import chirecLogo from '@/assets/companies/chirec-2015.png';
-import chuAngersLogo from '@/assets/companies/chu.png';
-import imagirLogo from '@/assets/companies/imagir-or.png';
-import irimedLogo from '@/assets/companies/irimed.webp';
-import lakewoodLogo from '@/assets/companies/lakewood.webp';
-import rrhLogo from '@/assets/companies/rrh.png';
-import washingtonLogo from '@/assets/companies/washington-medicine.png';
+import chirecLogo from '@/assets/companies/chirec-2015-h160.webp';
+import chuAngersLogo from '@/assets/companies/chu-h160.webp';
+import imagirLogo from '@/assets/companies/imagir-or-h160.webp';
+import irimedLogo from '@/assets/companies/irimed-h160.webp';
+import lakewoodLogo from '@/assets/companies/lakewood-h160.webp';
+import rrhLogo from '@/assets/companies/rrh-h160.webp';
+import washingtonLogo from '@/assets/companies/washington-medicine-h160.webp';
 
 const logos = [
   { name: 'Rochester Regional Health', src: rrhLogo },

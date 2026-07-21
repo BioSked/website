@@ -69,7 +69,7 @@ const papers = [
       try { if (localStorage.getItem(KEY)) unlock(); } catch (e) {}
       /* TODO marketing: remplacer par un formulaire HubSpot dédié « livres blancs »
          (avec workflow d'envoi par email) — le formulaire devis sert de collecte en attendant. */
-      hbspt.forms.create({
+      window.bskHsForm({
         formInstanceId: "3",
         portalId: "25195055",
         formId: "152f6973-10dd-42d4-af28-2df2f8f830e9",

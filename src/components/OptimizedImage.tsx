@@ -23,12 +23,16 @@ export default function OptimizedImage({
   height,
   style
 }: OptimizedImageProps) {
+  // When only one dimension is given, derive the other from the intrinsic
+  // aspect ratio so the width/height hint pair never distorts.
+  const w = width || (height ? Math.round((src.width * height) / src.height) : src.width);
+  const h = height || (width ? Math.round((src.height * width) / src.width) : src.height);
   return (
     <img
       src={src.src}
       alt={alt}
-      width={width || src.width}
-      height={height || src.height}
+      width={w}
+      height={h}
       loading={loading}
       decoding="async"
       className={className}
