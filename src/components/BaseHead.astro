@@ -8,6 +8,13 @@ const canonicalURL = Astro.site
 : null;
 const pageLocale = splitLocale(Astro.url.pathname).locale;
 
+// True localized equivalents of this page (never a fallback-EN-under-a-locale URL),
+// used by the instant locale-switch script below.
+const localeAlts: Record<string, string> = {};
+for (const a of hreflangAlternates(Astro.url.pathname)) {
+    if (a.code !== 'x-default') localeAlts[a.code] = a.path;
+}
+
 const { title, description, image, author, noIndex } = Astro.props;
 const finalTitle = title || SITE_METADATA.title.default;
 const finalDescription = description || SITE_METADATA.description;
@@ -19,6 +26,50 @@ const robotsFollow = noIndex ? false : SITE_METADATA.robots.follow;
 ---
 
 <meta charset="utf-8" />
+
+<!--
+  Instant locale switch. First-time visitors on the English tree are sent to the
+  page in their browser's language before paint (no flash, no banner). Rules:
+  - Only redirects FROM the default English tree; a visitor who deep-linked into
+    /fr/, /de/, ... is never bounced.
+  - An explicit choice (language switcher) is stored and always wins; an English
+    preference keeps the English page.
+  - Targets only TRUE localized equivalents (hreflang set), so no one is sent to
+    English content served under a locale URL. Crawlers (en-US) never redirect.
+-->
+<script is:inline define:vars={{ localeCurrent: pageLocale, localeAlts }}>
+    (function () {
+        try {
+            if (localeCurrent !== 'en') return;
+            var KEY = 'biosked-locale-pref';
+            var want = null;
+            try { want = localStorage.getItem(KEY); } catch (e) {}
+            if (!want) {
+                var langs = navigator.languages || [navigator.language || 'en'];
+                for (var i = 0; i < langs.length; i++) {
+                    var l = String(langs[i]).toLowerCase();
+                    if (l === 'fr-ch') { want = 'fr-ch'; break; }
+                    if (l.indexOf('fr') === 0) {
+                        want = 'fr';
+                        try { if (Intl.DateTimeFormat().resolvedOptions().timeZone === 'Europe/Zurich') want = 'fr-ch'; } catch (e) {}
+                        break;
+                    }
+                    if (l.indexOf('de') === 0) { want = 'de'; break; }
+                    if (l.indexOf('nl') === 0) { want = 'nl'; break; }
+                    if (l.indexOf('it') === 0) { want = 'it'; break; }
+                    if (l.indexOf('en') === 0) { want = 'en'; break; }
+                }
+            }
+            if (!want || want === 'en') return;
+            var target = localeAlts[want];
+            if (!target) return;
+            var here = location.pathname.replace(/\/+$/, '') || '/';
+            var there = String(target).replace(/\/+$/, '') || '/';
+            if (here === there) return;
+            location.replace(target + location.search + location.hash);
+        } catch (e) {}
+    })();
+</script>
 
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <meta
