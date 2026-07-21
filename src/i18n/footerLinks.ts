@@ -1,4 +1,4 @@
-import type { LocaleCode } from './locales';
+import { frChLocalPathFor, type LocaleCode } from './locales';
 
 /**
  * Per-locale footer content. Kept as literal strings (no t() layer) — the
@@ -151,7 +151,7 @@ const FR_CH: FooterLocale = {
     ...FR,
     sections: FR.sections.map((s) => ({
         ...s,
-        links: s.links.map((l) => ({ ...l, href: ['/fr/', '/fr/pricing', '/fr/demo', '/fr/getquote', '/fr/securite-donnees', '/fr/mentions-legales'].includes(l.href) ? '/fr-ch' + l.href.slice(3) : l.href })),
+        links: s.links.map((l) => ({ ...l, href: frChLocalPathFor(l.href) })),
     })),
 };
 

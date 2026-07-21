@@ -1,5 +1,5 @@
 import { NAV_LINKS } from '@/consts';
-import type { LocaleCode } from './locales';
+import { frChLocalPathFor, type LocaleCode } from './locales';
 
 /**
  * Per-locale navigation structures. Labels are translation keys resolved
@@ -76,23 +76,20 @@ function prefixHrefs(links: typeof NAV_LINKS, prefix: string) {
 
 const REFERENCES_PATH: Record<string, string> = { de: '/de/referenzen', nl: '/nl/referenties', it: '/it/referenze' };
 
-const FR_CH_LOCAL_HREFS = ['/fr/', '/fr/pricing', '/fr/demo', '/fr/getquote', '/fr/securite-donnees', '/fr/mentions-legales'];
-
-function reprefixFrNav(prefix: string) {
+function reprefixFrNav() {
     // Only the pages that exist in the Swiss locale are re-prefixed; deep
     // French content (secteurs, cas clients, blog) is shared with /fr.
-    const fix = (href: string) => (href && FR_CH_LOCAL_HREFS.includes(href) ? prefix + href.slice(3) : href);
     return FR_NAV_LINKS.map((link) => ({
         ...link,
-        href: fix(link.href),
-        subitems: link.subitems?.map((sub) => ({ ...sub, href: fix(sub.href) })),
+        href: frChLocalPathFor(link.href),
+        subitems: link.subitems?.map((sub) => ({ ...sub, href: frChLocalPathFor(sub.href) })),
     }));
 }
 
 export function navLinksFor(locale: LocaleCode) {
     if (locale === 'en') return NAV_LINKS;
     if (locale === 'fr') return FR_NAV_LINKS;
-    if (locale === 'fr-ch') return reprefixFrNav('/fr-ch');
+    if (locale === 'fr-ch') return reprefixFrNav();
     const links = prefixHrefs(NAV_LINKS, `/${locale}`);
     // Insert the references page after the first item (Product)
     return [

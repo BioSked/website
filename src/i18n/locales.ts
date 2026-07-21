@@ -7,6 +7,9 @@
  * de/nl/it mirror every English route via Astro's i18n fallback (rewrite)
  * until they get localized pages of their own.
  */
+import { FR_CH_LOCAL } from './frChPaths.mjs';
+export { FR_CH_LOCAL, frChLocalPathFor } from './frChPaths.mjs';
+
 export const LOCALE_CODES = ['en', 'fr', 'fr-ch', 'de', 'nl', 'it'] as const;
 export type LocaleCode = (typeof LOCALE_CODES)[number];
 
@@ -24,9 +27,6 @@ const SHARED_ROOT_PATHS = ['/privacy', '/changelog', '/internal-testing'];
 
 /** English marketing paths that have a real French equivalent at /fr/<same>. */
 const FR_MIRRORED = ['/', '/about', '/careers', '/pricing', '/demo', '/getquote', '/blog'];
-
-/** The Swiss-French locale has explicit pages only for the conversion path; deep content is shared with /fr. */
-const FR_CH_LOCAL = ['/', '/pricing', '/demo', '/getquote', '/securite-donnees', '/mentions-legales'];
 
 /** Routes genuinely localized for de/nl/it (everything else is an EN fallback rewrite). */
 const DNI_LOCAL = ['/', '/pricing', '/demo', '/getquote'];
