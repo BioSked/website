@@ -46,6 +46,9 @@ assert.equal(
 assert.equal(leadEventForForm('unknown', '/demo/'), null);
 
 const baseHead = read('src/components/BaseHead.astro');
+assert.match(baseHead, /if \(gpc \|\| choice === 'denied'\) return;/);
+assert.match(baseHead, /if \(choice === 'granted'\) \{ window\.__bskLoadGA\(\); return; \}/);
+assert.doesNotMatch(baseHead, /if \(choice === 'granted'\)[\s\S]{0,120}choice === 'denied' \|\| gpc/);
 assert.match(baseHead, /define:vars=\{\{ pageLocale \}\}/);
 assert.match(baseHead, /site_language:\s*pageLocale/);
 assert.match(baseHead, /content_group:\s*pageLocale/);
@@ -61,7 +64,10 @@ assert.match(analyticsEvents, /classifyCtaPath/);
 assert.match(analyticsEvents, /leadEventForForm/);
 assert.match(analyticsEvents, /hs-form-event:on-submission:success/);
 assert.match(analyticsEvents, /bskTrackLead/);
+assert.match(analyticsEvents, /__bskGALoaded/);
 assert.match(analyticsEvents, /site_language/);
+assert.match(analyticsEvents, /event_callback/);
+assert.match(analyticsEvents, /event_timeout/);
 assert.match(analyticsEvents, /\{ capture: true \}/);
 
 for (const path of [
@@ -77,6 +83,17 @@ for (const path of [
   const formPage = read(path);
   assert.match(formPage, /window\.bskTrackLead/);
   assert.doesNotMatch(formPage, /forms\/embed\/v2\.js/);
+}
+
+for (const path of [
+  'src/pages/fr/demo.astro',
+  'src/pages/fr-ch/demo.astro',
+  'src/components/sections/intl/DemoPage.astro',
+  'src/pages/fr/getquote.astro',
+  'src/pages/fr-ch/getquote.astro',
+  'src/components/sections/intl/GetQuotePage.astro',
+]) {
+  assert.match(read(path), /bskTrackLead\([^;]+,\s*redirect\)/);
 }
 
 console.log('analytics unit and wiring tests passed');
