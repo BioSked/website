@@ -163,7 +163,7 @@ export const specialtyPages: Record<string, FrenchLandingPage> = {
       "des heures fiables transmises à la paie via le badgeage et l’export",
     ],
     proof:
-      "Momentum planifie plus de 250 organisations de santé, 1 000 sites et 50 000 utilisateurs quotidiens dans 9 pays, avec un hébergement dans l’Union européenne. Le CHU d’Angers (environ 6 700 hospitaliers) l’a étendu de l’anesthésie aux urgences ; le CHIREC, de la radiologie aux urgences.",
+      "Momentum planifie plus de 250 organisations de santé, 1 000 sites et 50 000 utilisateurs dans 9 pays, avec un hébergement dans l’Union européenne. Le CHU d’Angers (environ 6 700 hospitaliers) l’a étendu de l’anesthésie aux urgences ; le CHIREC, de la radiologie aux urgences.",
     related: [
       { label: "Rapports et statistiques", href: "/fr/fonctionnalites/rapports-et-statistiques/" },
       { label: "Badgeage et suivi RH", href: "/fr/fonctionnalites/badgeage-et-suivi-rh/" },

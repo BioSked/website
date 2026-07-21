@@ -2,7 +2,7 @@
  * Homepage copy for the de/nl/it market pages.
  * Terminology follows the official Momentum app-store copy (EN/FR/DE/NL/IT),
  * which is the approved vocabulary per language (see migration/materials/).
- * The published proof points (250+ organizations, 1,000+ sites, 50,000+ daily
+ * The published proof points (250+ organizations, 1,000+ sites, 50,000+
  * users, 9 countries) mirror the English reference homepage.
  */
 export interface HomeContent {
@@ -37,7 +37,7 @@ export const HOME_CONTENT: Record<'de' | 'nl' | 'it', HomeContent> = {
             lead: 'Dienste, Bereitschaften, Rufdienste: faire, regelkonforme Dienstpläne – automatisch generiert statt in Excel gepflegt.',
             demoLabel: 'Demo anfragen',
             tourLabel: '1-Minuten-Tour ansehen (EN)',
-            badges: ['15+ Jahre Dienstplanung', '250+ Einrichtungen', '50.000+ Nutzer/Tag'],
+            badges: ['15+ Jahre Dienstplanung', '250+ Einrichtungen', '50.000+ Nutzer'],
         },
         features: {
             heading: 'Gebaut für die schwierigsten Dienstpläne',
@@ -66,7 +66,7 @@ export const HOME_CONTENT: Record<'de' | 'nl' | 'it', HomeContent> = {
             lead: 'Wachtdiensten, bereikbaarheid, voorkeuren: eerlijke, regelconforme roosters – automatisch gegenereerd in plaats van handmatig in Excel.',
             demoLabel: 'Demo aanvragen',
             tourLabel: 'Bekijk de tour van 1 minuut (EN)',
-            badges: ['15+ jaar ervaring', '250+ zorgorganisaties', '50.000+ gebruikers/dag'],
+            badges: ['15+ jaar ervaring', '250+ zorgorganisaties', '50.000+ gebruikers'],
         },
         features: {
             heading: 'Van roostergeneratie tot loonexport',
