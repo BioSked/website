@@ -8,13 +8,13 @@ import {
 import AutoScroll from 'embla-carousel-auto-scroll';
 
 import QuoteSvg from '@/assets/layout/quote.svg';
-import rrhLogo from '@/assets/companies/rrh.png';
-import lakewoodLogo from '@/assets/companies/lakewood.webp';
-import washingtonLogo from '@/assets/companies/washington-medicine.png';
-import irimedLogo from '@/assets/companies/irimed.webp';
-import chuLogo from '@/assets/companies/chu.png';
-import imagirLogo from '@/assets/companies/imagir-or.png';
-import chirecLogo from '@/assets/companies/chirec-2015.png';
+import rrhLogo from '@/assets/companies/rrh-h160.webp';
+import lakewoodLogo from '@/assets/companies/lakewood-h160.webp';
+import washingtonLogo from '@/assets/companies/washington-medicine-h160.webp';
+import irimedLogo from '@/assets/companies/irimed-h160.webp';
+import chuLogo from '@/assets/companies/chu-h160.webp';
+import imagirLogo from '@/assets/companies/imagir-or-h160.webp';
+import chirecLogo from '@/assets/companies/chirec-2015-h160.webp';
 
 const testimonials = [
   {
@@ -25,7 +25,7 @@ const testimonials = [
     testimonial:
       "We didn't realize how much time we were spending on making schedules until we started using Momentum. We have so much free time now.",
     initials: 'ME',
-    logo: rrhLogo.src,
+    logo: rrhLogo,
   },
   {
     id: '2',
@@ -35,7 +35,7 @@ const testimonials = [
     testimonial:
       'I really like that Momentum gives me the ability to build and publish my schedule by individual professions in different layers.',
     initials: 'CS',
-    logo: lakewoodLogo.src,
+    logo: lakewoodLogo,
   },
   {
     id: '3',
@@ -45,7 +45,7 @@ const testimonials = [
     testimonial:
       "It's nice to be able to trust that the Momentum team will be available to address whatever needs we have.",
     initials: 'KB',
-    logo: washingtonLogo.src,
+    logo: washingtonLogo,
   },
   {
     id: '4',
@@ -55,7 +55,7 @@ const testimonials = [
     testimonial:
       'Choosing Momentum as an assisted scheduling tool quickly proved to be the right decision. Its pay-per-use business model is flexible and advantageous.',
     initials: 'BB',
-    logo: irimedLogo.src,
+    logo: irimedLogo,
   },
   {
     id: '5',
@@ -65,7 +65,7 @@ const testimonials = [
     testimonial:
       'Momentum is a highly comprehensive scheduling software, you can master it and meet all the scheduling needs of an emergency department.',
     initials: 'TB',
-    logo: chuLogo.src,
+    logo: chuLogo,
   },
   {
     id: '6',
@@ -75,7 +75,7 @@ const testimonials = [
     testimonial:
       'I am very satisfied with the tool and highly recommend it, especially for its integrations with other tools, which provide a real internal time-saving benefit. Momentum adapts to needs in a clear and simple way. Moreover, the BioSked team is always very supportive and responsive!',
     initials: 'AB',
-    logo: imagirLogo.src,
+    logo: imagirLogo,
   },
   {
     id: '7',
@@ -85,7 +85,7 @@ const testimonials = [
     testimonial:
       "I'm impressed by the tool's ability to generate highly optimized schedules while respecting almost all individual requests. Thanks to Momentum, I spend less time on schedule creation and can now devote more time to the medical management of the department.",
     initials: 'FC',
-    logo: chirecLogo.src,
+    logo: chirecLogo,
   },
 ];
 
@@ -114,7 +114,7 @@ export default function TestimonialsCarouselSection() {
           {testimonials.map((testimonial) => (
             <CarouselItem key={testimonial.id} className="pl-4 basis-auto">
               <Card className="max-w-60 sm:max-w-sm select-none p-5 sm:p-9 h-full bg-white/30 hover:bg-white/60 transition-all duration-200 border-top">
-                <img src={QuoteSvg.src} class="size-8 sm:size-12"/>
+                <img src={QuoteSvg.src} alt="" aria-hidden="true" width={32} height={32} className="size-8 sm:size-12"/>
                 <blockquote className="text-foreground italic leading-relaxed text-sm transition-color duration-200">
                   {testimonial.testimonial}"
                 </blockquote>
@@ -135,12 +135,13 @@ export default function TestimonialsCarouselSection() {
                   </div>
                   {testimonial.logo && (
                     <img
-                      src={testimonial.logo} 
+                      src={testimonial.logo.src}
                       alt={testimonial.hospital}
                       className="h-10 w-auto shrink-0 filter-[grayscale(1)] opacity-50"
                       loading="lazy"
                       decoding="async"
-                      height={40}
+                      width={testimonial.logo.width}
+                      height={testimonial.logo.height}
                       style={{ maxHeight: '40px', maxWidth: '120px', width: 'auto', objectFit: 'contain' }}
                     />
                   )}
