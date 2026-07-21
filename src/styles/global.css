@@ -524,8 +524,13 @@ html.theme-transition::view-transition-new(root) {
     }
 }
 
-/* Soft-fade the decorative cyan-dust texture so its 800px box never shows a hard edge. */
+/*
+ * Scale the bitmap to the mask width so its non-transparent right edge is faded.
+ * Keep its aspect ratio; this asset's remaining edges already fade to transparency.
+ */
 .dust-fade {
+  background-size: 100% auto;
+  background-position-x: center;
   -webkit-mask-image: radial-gradient(closest-side, black 50%, transparent 98%);
   mask-image: radial-gradient(closest-side, black 50%, transparent 98%);
 }
