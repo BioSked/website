@@ -82,7 +82,7 @@ const robotsFollow = noIndex ? false : SITE_METADATA.robots.follow;
 <meta name="publisher" content={SITE_METADATA.publisher} />
 
 <!-- Google tag (gtag.js) -->
-<script is:inline>
+<script is:inline define:vars={{ pageLocale }}>
     // Consent-gated Google Analytics (CNIL "basic" mode).
     // Outside EU/CH timezones: GA loads immediately (no banner shown).
     // Inside: nothing loads until the visitor accepts (ConsentBanner).
@@ -92,9 +92,11 @@ const robotsFollow = noIndex ? false : SITE_METADATA.robots.follow;
     window.gtag = gtag;
     gtag('js', new Date());
     gtag('consent', 'default', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'denied' });
+    gtag('set', { site_language: pageLocale, content_group: pageLocale });
 
+    var analyticsHost = location.hostname === 'biosked.com' || location.hostname === 'www.biosked.com';
     window.__bskLoadGA = function () {
-        if (window.__bskGALoaded) return;
+        if (!analyticsHost || window.__bskGALoaded) return;
         window.__bskGALoaded = true;
         gtag('consent', 'update', { analytics_storage: 'granted' });
         var s = document.createElement('script');
@@ -120,8 +122,8 @@ const robotsFollow = noIndex ? false : SITE_METADATA.robots.follow;
             var tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
             eu = /^Europe\//.test(tz) || /^Atlantic\/(Canary|Madeira|Azores|Reykjavik)$/.test(tz);
         } catch (e) {}
+        if (gpc || choice === 'denied') return;
         if (choice === 'granted') { window.__bskLoadGA(); return; }
-        if (choice === 'denied' || gpc) return;
         if (!eu) { window.__bskLoadGA(); return; }
         window.__bskConsentPending = true;
     })();
