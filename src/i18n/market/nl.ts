@@ -176,7 +176,11 @@ export const MARKET: MarketContent = {
         faq: [
             {
                 q: 'Hoe wordt onze offerte samengesteld?',
-                a: 'Op basis van drie factoren: het aantal medewerkers dat u inroostert, het aantal locaties en de modules die u kiest – zoals tijdregistratie of de dienstenbeurs. U betaalt alleen voor wat uw organisatie werkelijk gebruikt.',
+                a: 'Op basis van vier plannen (Starter, Plus, Pro, Enterprise) en drie factoren: het aantal medewerkers dat u inroostert, het aantal locaties en de modules die u kiest – zoals tijdregistratie of de dienstenbeurs. U betaalt alleen voor wat uw organisatie werkelijk gebruikt.',
+            },
+            {
+                q: 'Kunnen we klein beginnen en later opschalen?',
+                a: 'Ja. U wisselt op elk moment van plan en kunt plannen per team combineren — alles binnen één account.',
             },
             {
                 q: 'Wat levert Momentum concreet op?',
@@ -193,6 +197,10 @@ export const MARKET: MarketContent = {
             {
                 q: 'Waar worden onze gegevens gehost en hoe zit het met de AVG?',
                 a: 'Uw gegevens worden gehost in de Europese Unie. BioSked treedt op als verwerker conform de AVG (GDPR) en legt de afspraken over gegevensverwerking vast in een verwerkersovereenkomst.',
+            },
+            {
+                q: 'Hoe soeverein is Momentum?',
+                a: 'Uw contract sluit u met Bio-Optronics Sàrl, onze Zwitserse entiteit — uw contractpartner is Europees, geen Amerikaans bedrijf. En uw gegevens blijven gehost in de Europese Unie.',
             },
             {
                 q: 'Hoe gaan we van start?',

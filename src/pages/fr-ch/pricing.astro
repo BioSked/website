@@ -12,6 +12,8 @@ import {
 
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import CTA from "@/components/sections/fr/CTA.astro";
+import PricingPlans from "@/components/sections/intl/PricingPlans.astro";
+import { PRICING_PLANS } from "@/i18n/pricingPlans";
 import Button from "@/components/ui/Button.astro";
 import Card from "@/components/ui/Card.astro";
 import CardHeader from "@/components/ui/CardHeader.astro";
@@ -80,7 +82,13 @@ const faqData = [
     id: 'construction-tarif',
     question: 'Comment le tarif de Momentum est-il construit ?',
     answer:
-      'Les abonnements démarrent à CHF 5.99 par professionnel planifié et par mois. Le tarif final dépend de votre périmètre réel : nombre de professionnels planifiés, nombre de sites, spécialités, modules activés (gardes et astreintes, bourse aux services, badgeage…) et intégrations souhaitées. Après un cadrage avec nos équipes, vous recevez une proposition détaillée, sans surprise et sans coûts cachés.',
+      'Les abonnements démarrent à CHF 5.99 par professionnel planifié et par mois, en quatre formules (Starter, Plus, Pro, Enterprise). Le tarif final dépend de votre périmètre réel : nombre de professionnels planifiés, nombre de sites, spécialités, modules activés (gardes et astreintes, bourse aux services, badgeage…) et intégrations souhaitées. Après un cadrage avec nos équipes, vous recevez une proposition détaillée, sans surprise et sans coûts cachés.',
+  },
+  {
+    id: 'commencer-petit',
+    question: 'Peut-on commencer petit puis évoluer ?',
+    answer:
+      'Oui. Vous changez de formule à tout moment, et pouvez combiner plusieurs formules selon les équipes — le tout sur un même compte.',
   },
   {
     id: 'roi',
@@ -105,6 +113,12 @@ const faqData = [
     question: 'Où sont hébergées nos données ? Et le RGPD ?',
     answer:
       'Vos données sont hébergées dans l’Union européenne et leur traitement est aligné sur le RGPD. Momentum gère des données de planification — pas de dossiers médicaux de patients.',
+  },
+  {
+    id: 'souverainete',
+    question: 'Êtes-vous une solution souveraine ?',
+    answer:
+      'Votre contrat est signé avec Bio-Optronics Sàrl, notre entité suisse — votre partenaire contractuel est européen, pas américain. Et vos données restent hébergées dans l’Union européenne.',
   },
   {
     id: 'app-mobile',
@@ -171,6 +185,8 @@ const faqStructuredData = {
       </div>
     </div>
   </section>
+
+  <PricingPlans content={PRICING_PLANS['fr-ch']} />
 
   <!-- 2. Ce que comprend votre abonnement -->
   <section class="section-padding">

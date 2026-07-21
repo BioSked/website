@@ -176,7 +176,11 @@ export const MARKET: MarketContent = {
         faq: [
             {
                 q: 'Come viene calcolato il preventivo?',
-                a: 'Su tre elementi: il numero di collaboratori pianificati, il numero di sedi e i moduli che scegli — ad esempio scambio turni, timbrature o integrazioni. Paghi solo ciò che la tua organizzazione usa davvero.',
+                a: 'Su quattro piani (Starter, Plus, Pro, Enterprise) e tre elementi: il numero di collaboratori pianificati, il numero di sedi e i moduli che scegli — ad esempio scambio turni, timbrature o integrazioni. Paghi solo ciò che la tua organizzazione usa davvero.',
+            },
+            {
+                q: 'Possiamo iniziare in piccolo e crescere poi?',
+                a: 'Sì. Puoi cambiare piano in qualsiasi momento e combinare piani diversi per team — tutto in un unico account.',
             },
             {
                 q: 'Quanto tempo fa risparmiare, concretamente?',
@@ -193,6 +197,10 @@ export const MARKET: MarketContent = {
             {
                 q: 'Dove sono ospitati i nostri dati?',
                 a: 'Nell’Unione Europea. Il trattamento è allineato al GDPR e, su richiesta, forniamo la documentazione per la valutazione da parte del tuo team privacy o del DPO.',
+            },
+            {
+                q: 'Momentum è una soluzione sovrana?',
+                a: 'Il contratto è con Bio-Optronics Sàrl, la nostra entità svizzera — la tua controparte contrattuale è europea, non una società americana. E i tuoi dati restano ospitati nell’Unione Europea.',
             },
             {
                 q: 'Come si parte?',

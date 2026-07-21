@@ -24,11 +24,31 @@ interface PricingPlan {
   features: string[];
 }
 
-interface PricingCardsProps {
-  plans: PricingPlan[];
+interface PricingLabels {
+  includes: string;
+  everythingIn: string; // template, {base} is replaced by the base plan title
+  recommended: string;
+  request: string;      // template, {plan} is replaced by the plan title
+  letsTalk: string;
+  quoteHref: string;
 }
 
-export function PricingCards({ plans }: PricingCardsProps) {
+const DEFAULT_LABELS: PricingLabels = {
+  includes: 'Includes:',
+  everythingIn: 'Everything in {base}, and:',
+  recommended: 'Recommended',
+  request: 'Request {plan} plan',
+  letsTalk: "Let's talk",
+  quoteHref: '/getquote',
+};
+
+interface PricingCardsProps {
+  plans: PricingPlan[];
+  labels?: Partial<PricingLabels>;
+}
+
+export function PricingCards({ plans, labels }: PricingCardsProps) {
+  const t: PricingLabels = { ...DEFAULT_LABELS, ...(labels ?? {}) };
   const planLogos: Record<string, any> = {
     'starter': starterPlanLogo,
     'plus': plusPlanLogo,
@@ -42,14 +62,14 @@ export function PricingCards({ plans }: PricingCardsProps) {
       const basePlan = plans.find(p => p.id === plan.baseOn);
       if (basePlan) {
         allFeatures.push({
-          name: `Everything in ${basePlan.title}, and:`,
+          name: t.everythingIn.replace('{base}', basePlan.title),
           included: false,
         });
       }
     }
     else {
       allFeatures.push({
-        name: 'Includes:',
+        name: t.includes,
         isIncluded: false
       });
     }
@@ -86,7 +106,7 @@ export function PricingCards({ plans }: PricingCardsProps) {
                       />
                     )}
                     <h3 className="text-plan-title tracking-tight">{plan.title}</h3>
-                    {plan.popular && <div className="rounded-xl bg-blue-100 text-blue-700 px-3 text-sm py-1 ml-auto">Recommended</div>}
+                    {plan.popular && <div className="rounded-xl bg-blue-100 text-blue-700 px-3 text-sm py-1 ml-auto">{t.recommended}</div>}
                   </div>
 
                   <div className="font-normal text-sm text-muted-foreground">{plan.description}</div>
@@ -104,11 +124,11 @@ export function PricingCards({ plans }: PricingCardsProps) {
                     per user
                   </div>*/}
                   
-                  <a href="/getquote">
+                  <a href={t.quoteHref}>
                     <Button 
                       className="mt-4 h-10 w-full bg-primary-foreground hover:bg-primary-foreground/90 text-white font-semibold text-md"
                     >
-                      Request {plan.title} plan
+                      {t.request.replace('{plan}', plan.title)}
                     </Button>
                   </a>
               </CardHeader>
@@ -151,8 +171,8 @@ export function PricingCards({ plans }: PricingCardsProps) {
                   <h3 className="text-2xl sm:text-3xl font-bold text-white mt-2 mb-1">{enterprisePlan.title}</h3>
                   <div className="font-normal text-white/50">{enterprisePlan.description}</div>
                   <Button className="mt-5 px-6 h-10 text-md shadow-lg bg-white/70 hover:bg-white hover:shadow-xl shadow-blue-200/20 bg-white text-card-foreground font-bold" asChild>
-                    <a href="/getquote">
-                      Let's talk
+                    <a href={t.quoteHref}>
+                      {t.letsTalk}
                     </a>
                   </Button>
                 </div>

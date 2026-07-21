@@ -176,7 +176,11 @@ export const MARKET: MarketContent = {
         faq: [
             {
                 q: 'Wie setzt sich der Preis zusammen?',
-                a: 'Drei Faktoren bestimmen den Preis: die Größe Ihres Teams, die Zahl Ihrer Standorte und die Module, die Sie nutzen möchten – etwa automatische Planerstellung, Dienstbörse, Zeiterfassung oder Berichte. So zahlen Sie nur für das, was Ihre Organisation wirklich braucht.',
+                a: 'Die Basis sind vier Pläne (Starter, Plus, Pro, Enterprise); drei Faktoren bestimmen den Preis: die Größe Ihres Teams, die Zahl Ihrer Standorte und die Module, die Sie nutzen möchten – etwa automatische Planerstellung, Dienstbörse, Zeiterfassung oder Berichte. So zahlen Sie nur für das, was Ihre Organisation wirklich braucht.',
+            },
+            {
+                q: 'Können wir klein anfangen und später wachsen?',
+                a: 'Ja. Sie wechseln den Plan jederzeit und können Pläne je Team kombinieren — alles in einem Konto.',
             },
             {
                 q: 'Wie rechnet sich Momentum?',
@@ -193,6 +197,10 @@ export const MARKET: MarketContent = {
             {
                 q: 'Wo werden unsere Daten gehostet – und wie steht es um die DSGVO?',
                 a: 'Ihre Daten werden in der Europäischen Union gehostet und DSGVO-konform verarbeitet. Einen Auftragsverarbeitungsvertrag und Details zur Datenverarbeitung stellen wir Ihnen im Angebotsprozess zur Verfügung.',
+            },
+            {
+                q: 'Wie souverän ist Momentum?',
+                a: 'Ihr Vertrag wird mit Bio-Optronics Sàrl geschlossen, unserer Schweizer Gesellschaft — Ihr Vertragspartner ist europäisch, kein US-Unternehmen. Und Ihre Daten bleiben in der Europäischen Union gehostet.',
             },
             {
                 q: 'Wie starten wir am besten?',

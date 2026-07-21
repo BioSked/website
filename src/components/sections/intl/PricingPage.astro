@@ -4,6 +4,8 @@ import Card from '@/components/ui/Card.astro';
 import Button from '@/components/ui/Button.astro';
 import CTA from '@/components/sections/CTA.astro';
 import { FAQAccordion } from '@/components/sections/FAQAccordion';
+import PricingPlans from '@/components/sections/intl/PricingPlans.astro';
+import { PRICING_PLANS } from '@/i18n/pricingPlans';
 import type { MarketContent } from '@/i18n/market/types';
 import type { HomeContent } from '@/i18n/homeContent';
 import type { LocaleCode } from '@/i18n/locales';
@@ -53,6 +55,8 @@ const faqSchema = JSON.stringify({
             </div>
         </div>
     </section>
+
+    {PRICING_PLANS[locale] && <PricingPlans content={PRICING_PLANS[locale]} />}
 
     <section class="section-padding pt-0">
         <div class="container max-w-5xl">
