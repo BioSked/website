@@ -90,10 +90,11 @@ export function NavbarActions({ pagename, navLinks, demoCta, languages }: Navbar
         >
             <div className="container max-w-5xl flex items-center h-16">
                 <a href="/" className="flex flex-1 gap-2">
-                    <img 
-                        src={bioSkedLogo.src} 
-                        alt="BioSked" 
+                    <img
+                        src={bioSkedLogo.src}
+                        alt="BioSked"
                         width={125}
+                        height={Math.round((bioSkedLogo.height / bioSkedLogo.width) * 125)}
                     />
                 </a>
                 <div className="flex flex-1 justify-center hidden md:block">
