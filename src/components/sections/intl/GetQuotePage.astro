@@ -48,10 +48,16 @@ const thankYouPath = market.thankyou ? `/${locale}/demo/${market.thankyou.slug}/
           formId: formId,
           region: "eu1",
           locale: hsLocale,
-          redirectUrl: thankYouPath || undefined,
           target: "#hubspot-quote",
           onFormSubmitted: function () {
-            if (typeof window.bskTrackLead === 'function') window.bskTrackLead(formId);
+            const redirect = () => {
+              if (thankYouPath) window.location.assign(thankYouPath);
+            };
+            if (typeof window.bskTrackLead === 'function') {
+              window.bskTrackLead(formId, redirect);
+            } else {
+              redirect();
+            }
           }
         });
       </script>

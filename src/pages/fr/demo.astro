@@ -53,10 +53,14 @@ import { Quote } from "lucide-astro";
           formId: "a28f608c-a613-4fbe-a382-1fbc49b6885c",
           region: "eu1",
           locale: "fr",
-          redirectUrl: thankYouPath,
           target: "#hubspot-demo",
           onFormSubmitted: function () {
-            if (typeof window.bskTrackLead === 'function') window.bskTrackLead("a28f608c-a613-4fbe-a382-1fbc49b6885c");
+            const redirect = () => window.location.assign(thankYouPath);
+            if (typeof window.bskTrackLead === 'function') {
+              window.bskTrackLead("a28f608c-a613-4fbe-a382-1fbc49b6885c", redirect);
+            } else {
+              redirect();
+            }
           }
         });
       </script>

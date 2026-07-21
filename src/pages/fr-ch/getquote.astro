@@ -26,10 +26,14 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
           formId: "152f6973-10dd-42d4-af28-2df2f8f830e9",
           region: "eu1",
           locale: "fr",
-          redirectUrl: thankYouPath,
           target: "#hubspot-quote",
           onFormSubmitted: function () {
-            if (typeof window.bskTrackLead === 'function') window.bskTrackLead("152f6973-10dd-42d4-af28-2df2f8f830e9");
+            const redirect = () => window.location.assign(thankYouPath);
+            if (typeof window.bskTrackLead === 'function') {
+              window.bskTrackLead("152f6973-10dd-42d4-af28-2df2f8f830e9", redirect);
+            } else {
+              redirect();
+            }
           }
         });
       </script>
