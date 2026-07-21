@@ -8,6 +8,10 @@ import {
   leadEventForForm,
   normalizeSiteLanguage,
 } from '../src/lib/analytics.mjs';
+import {
+  buildHubSpotSubmission,
+  getCookieValue,
+} from '../src/lib/hubspotSubmission.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const read = (path) => readFileSync(resolve(root, path), 'utf8');
@@ -45,6 +49,43 @@ assert.equal(
   'whitepaper_unlock',
 );
 assert.equal(leadEventForForm('unknown', '/demo/'), null);
+
+assert.equal(getCookieValue('other=1; hubspotutk=contact%20token', 'hubspotutk'), 'contact token');
+assert.equal(getCookieValue('other=1', 'hubspotutk'), '');
+
+assert.deepEqual(
+  buildHubSpotSubmission({
+    values: {
+      firstname: '  Marie ',
+      lastname: 'Curie',
+      email: 'marie@example.fr',
+      company: 'Hôpital exemple',
+      numemployees: '120',
+      message: '',
+      ignored: 'not submitted',
+    },
+    pageUri: 'https://biosked.com/fr/ressources/',
+    pageName: 'Livres blancs',
+    hutk: 'contact-token',
+    submittedAt: 123456789,
+  }),
+  {
+    submittedAt: '123456789',
+    fields: [
+      { objectTypeId: '0-1', name: 'firstname', value: 'Marie' },
+      { objectTypeId: '0-1', name: 'lastname', value: 'Curie' },
+      { objectTypeId: '0-1', name: 'email', value: 'marie@example.fr' },
+      { objectTypeId: '0-1', name: 'company', value: 'Hôpital exemple' },
+      { objectTypeId: '0-1', name: 'numemployees', value: '120' },
+    ],
+    context: {
+      hutk: 'contact-token',
+      pageUri: 'https://biosked.com/fr/ressources/',
+      pageName: 'Livres blancs',
+    },
+  },
+);
+assert.throws(() => buildHubSpotSubmission({ values: null }), TypeError);
 
 let now = 1000;
 const sentEvents = [];
@@ -96,6 +137,35 @@ assert.match(analyticsEvents, /event_timeout/);
 assert.match(analyticsEvents, /\{ capture: true \}/);
 assert.match(analyticsEvents, /hasAttribute\(['"]data-locale-choice['"]\)/);
 
+const whitepaperPage = read('src/pages/fr/ressources.astro');
+for (const label of [
+  'Prénom',
+  'Nom',
+  'E-mail professionnel',
+  'Établissement ou organisation',
+  'Nombre de personnes à planifier',
+  'Informations complémentaires',
+  'Recevoir les livres blancs',
+]) {
+  assert.match(whitepaperPage, new RegExp(label));
+}
+assert.doesNotMatch(
+  whitepaperPage,
+  /First name|Last Name|Work Email|Company name|Number of staff to schedule|Any additional request|Request quote/,
+);
+assert.match(whitepaperPage, /api-eu1\.hsforms\.com\/submissions\/v3\/integration\/submit/);
+assert.match(whitepaperPage, /buildHubSpotSubmission/);
+assert.match(whitepaperPage, /try \{ analyticsWindow\.bskTrackLead\?\.\(HUBSPOT_FORM_ID\); \} catch \{\}/);
+assert.match(whitepaperPage, /<form[\s\S]*method="post"[\s\S]*api-eu1\.hsforms\.com/);
+assert.match(whitepaperPage, /<fieldset id="whitepaper-fields"[^>]*disabled>/);
+assert.match(whitepaperPage, /id="whitepaper-js-required"/);
+assert.match(whitepaperPage, /jsRequiredMessage\?\.classList\.add\('hidden'\)/);
+assert.match(whitepaperPage, /validateTrimmedRequiredFields/);
+assert.match(whitepaperPage, /submissionInFlight/);
+assert.match(whitepaperPage, /new AbortController\(\)/);
+assert.match(whitepaperPage, /id="whitepaper-success"/);
+assert.doesNotMatch(whitepaperPage, /bskHsForm|hbspt\.forms\.create/);
+
 for (const path of [
   'src/pages/demo.astro',
   'src/pages/fr/demo.astro',
@@ -107,7 +177,7 @@ for (const path of [
   'src/pages/fr/ressources.astro',
 ]) {
   const formPage = read(path);
-  assert.match(formPage, /window\.bskTrackLead/);
+  assert.match(formPage, /(?:window|analyticsWindow)\.bskTrackLead/);
   assert.doesNotMatch(formPage, /forms\/embed\/v2\.js/);
 }
 

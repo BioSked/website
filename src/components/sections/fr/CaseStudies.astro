@@ -9,6 +9,12 @@ import imagir from '@/assets/case-studies/imagir-bordeaux.jpg';
 import marseille from '@/assets/case-studies/hopital-europeen-marseille.png';
 import chirec from '@/assets/case-studies/chirec.jpg';
 
+interface Props {
+  demoHref?: string;
+}
+
+const { demoHref = '/fr/demo/' } = Astro.props;
+
 const caseStudies = [
   {
     title: 'CHIREC — Hôpital de Braine-l’Alleud',
@@ -127,7 +133,7 @@ const caseStudies = [
     </div>
 
     <div class="mt-10 flex justify-center">
-      <a href="/fr/demo/">
+      <a href={demoHref}>
         <Button size="lg" className="rounded-full px-5 font-bold">
           Demander une démo
         </Button>
