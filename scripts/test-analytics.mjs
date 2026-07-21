@@ -69,6 +69,7 @@ assert.match(analyticsEvents, /site_language/);
 assert.match(analyticsEvents, /event_callback/);
 assert.match(analyticsEvents, /event_timeout/);
 assert.match(analyticsEvents, /\{ capture: true \}/);
+assert.match(analyticsEvents, /hasAttribute\(['"]data-locale-choice['"]\)/);
 
 for (const path of [
   'src/pages/demo.astro',
