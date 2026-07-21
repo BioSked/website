@@ -1,0 +1,59 @@
+<script>
+    import {
+        classifyCtaPath,
+        leadEventForForm,
+        normalizeSiteLanguage,
+    } from '@/lib/analytics.mjs';
+
+    type AnalyticsWindow = Window & {
+        gtag?: (...args: unknown[]) => void;
+        bskTrackLead?: (formId: string) => void;
+    };
+
+    const analyticsWindow = window as AnalyticsWindow;
+    const siteLanguage = normalizeSiteLanguage(document.documentElement.lang);
+    const recentLeads = new Map<string, number>();
+
+    function track(eventName: string, parameters: Record<string, string> = {}) {
+        if (typeof analyticsWindow.gtag !== 'function') return;
+        analyticsWindow.gtag('event', eventName, {
+            site_language: siteLanguage,
+            content_group: siteLanguage,
+            ...parameters,
+        });
+    }
+
+    analyticsWindow.bskTrackLead = (formId: string) => {
+        const eventName = leadEventForForm(formId, location.pathname);
+        if (!eventName) return;
+
+        const dedupeKey = `${eventName}:${formId}:${location.pathname}`;
+        const now = Date.now();
+        if (now - (recentLeads.get(dedupeKey) || 0) < 2000) return;
+        recentLeads.set(dedupeKey, now);
+
+        track(eventName, { form_id: formId });
+    };
+
+    document.addEventListener('click', (event) => {
+        const target = event.target;
+        if (!(target instanceof Element)) return;
+        const anchor = target.closest<HTMLAnchorElement>('a[href]');
+        if (!anchor) return;
+
+        const destination = new URL(anchor.href, location.href);
+        if (destination.origin !== location.origin) return;
+        const eventName = classifyCtaPath(destination.pathname);
+        if (!eventName) return;
+
+        track(eventName, {
+            cta_path: destination.pathname,
+            cta_text: (anchor.textContent || '').trim().replace(/\s+/g, ' ').slice(0, 100),
+        });
+    }, { capture: true });
+
+    window.addEventListener('hs-form-event:on-submission:success', (event) => {
+        const detail = (event as CustomEvent<{ formId?: string }>).detail;
+        if (detail?.formId) analyticsWindow.bskTrackLead?.(detail.formId);
+    });
+</script>
