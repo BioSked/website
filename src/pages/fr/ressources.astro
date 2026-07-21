@@ -3,6 +3,7 @@ export const prerender = true;
 
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Card from "@/components/ui/Card.astro";
+import Button from "@/components/ui/Button.astro";
 
 const papers = [
   { file: "/livres-blancs/livre-blanc-etablissement-de-sante.pdf", title: "Planification dynamique en établissement de santé", desc: "Les bénéfices mesurables d’une planification automatisée à l’échelle d’un établissement : temps administratif, équité, continuité des soins." },
@@ -30,7 +31,7 @@ const papers = [
 
   <section class="section-padding pt-0">
     <div class="container max-w-5xl">
-      <div class="grid gap-4 sm:grid-cols-2">
+      <div id="whitepaper-downloads" class="grid gap-4 sm:grid-cols-2">
         {papers.map((p) => (
           <Card className="p-6 bg-white/15">
             <h2 class="font-semibold text-foreground mb-2">{p.title}</h2>
@@ -46,10 +47,121 @@ const papers = [
         ))}
       </div>
 
+      <div
+        id="whitepaper-success"
+        class="mt-10 max-w-xl mx-auto rounded-xl border border-emerald-700/30 bg-emerald-50 px-5 py-4 text-emerald-950 outline-none focus-visible:ring-2 focus-visible:ring-emerald-700"
+        role="status"
+        aria-live="polite"
+        tabindex="-1"
+        hidden
+      >
+        <h2 class="font-semibold">Vos livres blancs sont prêts.</h2>
+        <p class="mt-1 text-sm">Les quatre liens de téléchargement sont maintenant accessibles ci-dessus.</p>
+      </div>
+
       <div id="wp-form-card" class="mt-10 max-w-xl mx-auto bg-white/60 border border-primary/30 shadow-xl shadow-secondary/10 rounded-2xl px-4 sm:px-10 pb-10 pt-1">
         <h2 class="text-display-card text-secondary font-bold max-w-2xl mx-auto my-5">Recevoir les livres blancs</h2>
         <hr class="border-input">
-        <div id="hubspot-wp" class="mt-5"></div>
+        <form
+          id="whitepaper-form"
+          class="mt-6 space-y-5"
+          method="post"
+          action="https://api-eu1.hsforms.com/submissions/v3/integration/submit/25195055/152f6973-10dd-42d4-af28-2df2f8f830e9"
+        >
+          <fieldset id="whitepaper-fields" class="m-0 min-w-0 space-y-5 border-0 p-0" disabled>
+          <p class="text-muted-foreground text-sm">Les champs marqués d’un astérisque sont obligatoires.</p>
+
+          <div>
+            <label for="whitepaper-firstname" class="block font-medium">
+              Prénom <span class="text-red-700" aria-hidden="true">*</span>
+            </label>
+            <input
+              id="whitepaper-firstname"
+              name="firstname"
+              type="text"
+              autocomplete="given-name"
+              required
+              class="border-input bg-background focus-visible:ring-ring mt-2 w-full rounded-md border px-3 py-3 outline-none focus-visible:ring-2"
+            />
+          </div>
+
+          <div>
+            <label for="whitepaper-lastname" class="block font-medium">
+              Nom <span class="text-red-700" aria-hidden="true">*</span>
+            </label>
+            <input
+              id="whitepaper-lastname"
+              name="lastname"
+              type="text"
+              autocomplete="family-name"
+              required
+              class="border-input bg-background focus-visible:ring-ring mt-2 w-full rounded-md border px-3 py-3 outline-none focus-visible:ring-2"
+            />
+          </div>
+
+          <div>
+            <label for="whitepaper-email" class="block font-medium">
+              E-mail professionnel <span class="text-red-700" aria-hidden="true">*</span>
+            </label>
+            <input
+              id="whitepaper-email"
+              name="email"
+              type="email"
+              autocomplete="email"
+              required
+              class="border-input bg-background focus-visible:ring-ring mt-2 w-full rounded-md border px-3 py-3 outline-none focus-visible:ring-2"
+            />
+          </div>
+
+          <div>
+            <label for="whitepaper-company" class="block font-medium">
+              Établissement ou organisation <span class="text-red-700" aria-hidden="true">*</span>
+            </label>
+            <input
+              id="whitepaper-company"
+              name="company"
+              type="text"
+              autocomplete="organization"
+              required
+              class="border-input bg-background focus-visible:ring-ring mt-2 w-full rounded-md border px-3 py-3 outline-none focus-visible:ring-2"
+            />
+          </div>
+
+          <div>
+            <label for="whitepaper-staff-count" class="block font-medium">Nombre de personnes à planifier</label>
+            <input
+              id="whitepaper-staff-count"
+              name="numemployees"
+              type="number"
+              inputmode="numeric"
+              min="1"
+              step="1"
+              placeholder="Ex. 120"
+              class="border-input bg-background focus-visible:ring-ring mt-2 w-full rounded-md border px-3 py-3 outline-none focus-visible:ring-2"
+            />
+          </div>
+
+          <div>
+            <label for="whitepaper-message" class="block font-medium">Informations complémentaires</label>
+            <textarea
+              id="whitepaper-message"
+              name="message"
+              rows="3"
+              class="border-input bg-background focus-visible:ring-ring mt-2 w-full resize-y rounded-md border px-3 py-3 outline-none focus-visible:ring-2"
+            ></textarea>
+          </div>
+
+          <p id="whitepaper-form-status" class="min-h-5 text-sm text-red-700" role="status" aria-live="polite"></p>
+          <div class="flex justify-end">
+            <Button id="whitepaper-submit" type="submit" variant="secondary" size="lg" className="w-full sm:w-auto">
+              Recevoir les livres blancs
+            </Button>
+          </div>
+          </fieldset>
+          <p id="whitepaper-js-required" class="text-sm text-red-700">
+            Activez JavaScript pour envoyer le formulaire sans exposer vos informations dans l’adresse de la page.
+          </p>
+        </form>
       </div>
       <p class="text-muted-foreground text-xs mt-3 text-center">
         <a href="/fr/securite-donnees/" class="hover:text-foreground transition-colors">Hébergement dans l’Union européenne · RGPD · DPA sur demande</a>
@@ -57,31 +169,121 @@ const papers = [
     </div>
   </section>
 
-  <script is:inline>
-    (function () {
-      var KEY = 'biosked-wp-unlocked';
-      function unlock() {
-        document.querySelectorAll('.wp-download').forEach(function (a) { a.classList.remove('hidden'); });
-        document.querySelectorAll('.wp-locked').forEach(function (s) { s.remove(); });
-        var f = document.getElementById('wp-form-card');
-        if (f) f.classList.add('hidden');
+  <script>
+    import { buildHubSpotSubmission, getCookieValue } from '@/lib/hubspotSubmission.mjs';
+
+    const STORAGE_KEY = 'biosked-wp-unlocked';
+    const HUBSPOT_FORM_ID = '152f6973-10dd-42d4-af28-2df2f8f830e9';
+    const HUBSPOT_ENDPOINT = `https://api-eu1.hsforms.com/submissions/v3/integration/submit/25195055/${HUBSPOT_FORM_ID}`;
+    const SUBMISSION_TIMEOUT_MS = 15000;
+    const form = document.getElementById('whitepaper-form') as HTMLFormElement | null;
+    const formFields = document.getElementById('whitepaper-fields') as HTMLFieldSetElement | null;
+    const submitButton = document.getElementById('whitepaper-submit') as HTMLButtonElement | null;
+    const status = document.getElementById('whitepaper-form-status');
+    const jsRequiredMessage = document.getElementById('whitepaper-js-required');
+    const successMessage = document.getElementById('whitepaper-success');
+    const formCard = document.getElementById('wp-form-card');
+    const analyticsWindow = window as Window & { bskTrackLead?: (formId: string) => void };
+    let submissionInFlight = false;
+
+    function unlock(focusSuccess = false) {
+      document.querySelectorAll<HTMLElement>('.wp-download').forEach((link) => link.classList.remove('hidden'));
+      document.querySelectorAll<HTMLElement>('.wp-locked').forEach((label) => label.remove());
+      formCard?.classList.add('hidden');
+      if (successMessage) {
+        successMessage.hidden = false;
+        if (focusSuccess) successMessage.focus();
       }
-      try { if (localStorage.getItem(KEY)) unlock(); } catch (e) {}
-      /* TODO marketing: remplacer par un formulaire HubSpot dédié « livres blancs »
-         (avec workflow d'envoi par email) — le formulaire devis sert de collecte en attendant. */
-      window.bskHsForm({
-        formInstanceId: "3",
-        portalId: "25195055",
-        formId: "152f6973-10dd-42d4-af28-2df2f8f830e9",
-        region: "eu1",
-        locale: "fr",
-        target: "#hubspot-wp",
-        onFormSubmitted: function () {
-          try { localStorage.setItem(KEY, '1'); } catch (e) {}
-          if (typeof window.bskTrackLead === 'function') window.bskTrackLead("152f6973-10dd-42d4-af28-2df2f8f830e9");
-          unlock();
+    }
+
+    function showFailure() {
+      if (!submitButton || !status) return;
+      submissionInFlight = false;
+      status.textContent = 'L’envoi a échoué. Veuillez réessayer dans quelques instants.';
+      submitButton.disabled = false;
+      submitButton.removeAttribute('aria-busy');
+      submitButton.textContent = 'Recevoir les livres blancs';
+    }
+
+    function validateTrimmedRequiredFields() {
+      form?.querySelectorAll<HTMLInputElement>('input[required]').forEach((field) => {
+        if (!field.value.trim()) field.setCustomValidity('Ce champ est obligatoire.');
+      });
+    }
+
+    try {
+      if (localStorage.getItem(STORAGE_KEY)) unlock();
+    } catch {}
+
+    form?.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('input, textarea').forEach((field) => {
+      field.addEventListener('input', () => {
+        const isBlankRequiredField = field instanceof HTMLInputElement && field.required && !field.value.trim();
+        field.setCustomValidity(isBlankRequiredField ? 'Ce champ est obligatoire.' : '');
+      });
+      field.addEventListener('invalid', () => {
+        if (field.validity.customError) {
+          return;
+        } else if (field.validity.valueMissing) {
+          field.setCustomValidity('Ce champ est obligatoire.');
+        } else if (field.validity.typeMismatch) {
+          field.setCustomValidity('Saisissez une adresse e-mail valide.');
+        } else if (field.validity.rangeUnderflow || field.validity.badInput) {
+          field.setCustomValidity('Saisissez un nombre supérieur ou égal à 1.');
+        } else {
+          field.setCustomValidity('Vérifiez ce champ.');
         }
       });
-    })();
+    });
+
+    if (form && formFields && submitButton && status) {
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        if (submissionInFlight) return;
+        validateTrimmedRequiredFields();
+        if (!form.reportValidity()) return;
+
+        submissionInFlight = true;
+        submitButton.disabled = true;
+        submitButton.setAttribute('aria-busy', 'true');
+        submitButton.textContent = 'Envoi en cours…';
+        status.textContent = '';
+
+        const values = Object.fromEntries(new FormData(form).entries());
+        const payload = buildHubSpotSubmission({
+          values,
+          pageUri: window.location.href,
+          pageName: document.title,
+          hutk: getCookieValue(document.cookie, 'hubspotutk'),
+        });
+
+        const controller = new AbortController();
+        const timeout = window.setTimeout(() => controller.abort(), SUBMISSION_TIMEOUT_MS);
+        let response: Response;
+        try {
+          response = await fetch(HUBSPOT_ENDPOINT, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+            signal: controller.signal,
+          });
+        } catch {
+          showFailure();
+          return;
+        } finally {
+          window.clearTimeout(timeout);
+        }
+
+        if (!response.ok) {
+          showFailure();
+          return;
+        }
+        try { localStorage.setItem(STORAGE_KEY, '1'); } catch {}
+        try { analyticsWindow.bskTrackLead?.(HUBSPOT_FORM_ID); } catch {}
+        unlock(true);
+      });
+
+      jsRequiredMessage?.classList.add('hidden');
+      formFields.disabled = false;
+    }
   </script>
 </BaseLayout>

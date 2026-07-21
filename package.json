@@ -4,10 +4,11 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "prebuild": "npm run test:analytics",
+    "prebuild": "npm run test:analytics && npm run test:locales",
     "build": "astro build",
     "preview": "astro preview",
     "test:analytics": "node scripts/test-analytics.mjs",
+    "test:locales": "node scripts/test-locales.mjs",
     "astro": "astro"
   },
   "dependencies": {

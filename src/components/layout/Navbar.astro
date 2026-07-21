@@ -34,6 +34,7 @@ const demoCta = {
     label: t('cta.demo'),
     href: locale === 'en' ? '/demo' : `/${locale}/demo`,
 };
+const homeHref = locale === 'en' ? '/' : `/${locale}/`;
 
 const languages = LOCALE_CODES.map((code) => ({
     code,
@@ -44,5 +45,5 @@ const languages = LOCALE_CODES.map((code) => ({
 ---
 
 {!hideNavbar && (
-    <NavbarActions client:idle pathname={pathname} pagename={Astro.url.pathname} navLinks={navLinks} demoCta={demoCta} languages={languages}/>
+    <NavbarActions client:idle pathname={pathname} pagename={Astro.url.pathname} navLinks={navLinks} demoCta={demoCta} homeHref={homeHref} languages={languages}/>
 )}
