@@ -32,6 +32,10 @@ assert.equal(
   'demo_form_submit',
 );
 assert.equal(
+  leadEventForForm('86756c6e-ad74-4d9e-8f3a-68b36b459ba0', '/nl/demo/'),
+  'demo_form_submit',
+);
+assert.equal(
   leadEventForForm('152f6973-10dd-42d4-af28-2df2f8f830e9', '/getquote/'),
   'quote_form_submit',
 );
