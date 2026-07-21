@@ -3,6 +3,7 @@ const LOCALE_PREFIXES = new Set(['fr', 'fr-ch', 'de', 'nl', 'it']);
 const DEMO_FORM_IDS = new Set([
   'e937d75c-2dbc-4b77-8e53-1582aa472092',
   'a28f608c-a613-4fbe-a382-1fbc49b6885c',
+  '86756c6e-ad74-4d9e-8f3a-68b36b459ba0',
 ]);
 const QUOTE_FORM_ID = '152f6973-10dd-42d4-af28-2df2f8f830e9';
 
