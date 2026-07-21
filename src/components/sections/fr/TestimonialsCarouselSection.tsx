@@ -8,9 +8,9 @@ import {
 import AutoScroll from 'embla-carousel-auto-scroll';
 
 import QuoteSvg from '@/assets/layout/quote.svg';
-import chuLogo from '@/assets/companies/chu.png';
-import imagirLogo from '@/assets/companies/imagir-or.png';
-import chirecLogo from '@/assets/companies/chirec-2015.png';
+import chuLogo from '@/assets/companies/chu-h160.webp';
+import imagirLogo from '@/assets/companies/imagir-or-h160.webp';
+import chirecLogo from '@/assets/companies/chirec-2015-h160.webp';
 import imallianceLogo from '@/assets/case-studies/imalliance-hdf.jpg';
 import irisGrimLogo from '@/assets/case-studies/iris-grim.jpg';
 import cedresLogo from '@/assets/case-studies/cedres.jpg';
@@ -24,7 +24,7 @@ const testimonials = [
     testimonial:
       'Je suis très satisfait de l’outil et je le recommande vraiment, notamment pour ses interfaçages avec d’autres outils qui apportent un réel gain de temps interne.',
     initials: 'AB',
-    logo: imagirLogo.src,
+    logo: imagirLogo,
   },
   {
     id: '2',
@@ -34,7 +34,7 @@ const testimonials = [
     testimonial:
       'Aujourd’hui tout est au même endroit et accessible sur internet. Je n’ai rien à faire si ce n’est me connecter pour accéder aux demandes des praticiens et gérer mes plannings.',
     initials: 'TB',
-    logo: chuLogo.src,
+    logo: chuLogo,
   },
   {
     id: '3',
@@ -44,7 +44,7 @@ const testimonials = [
     testimonial:
       'Le planning est produit aujourd’hui très aisément, et en cas d’aléas, les possibilités de remplacement sont proposées pour un ajustement quasi immédiat.',
     initials: 'MD',
-    logo: imallianceLogo.src,
+    logo: imallianceLogo,
   },
   {
     id: '4',
@@ -54,7 +54,7 @@ const testimonials = [
     testimonial:
       'La gestion des plannings-types, la proposition de médecins pour des remplacements, l’application mobile et l’intégration aux calendriers personnels sont des fonctionnalités dont on ne peut plus se passer.',
     initials: 'BB',
-    logo: irisGrimLogo.src,
+    logo: irisGrimLogo,
   },
   {
     id: '5',
@@ -64,7 +64,7 @@ const testimonials = [
     testimonial:
       'Le produit a très bien évolué en peu de temps. Momentum s’adapte vraiment à notre organisation et c’est un vrai point fort de la solution.',
     initials: 'KD',
-    logo: cedresLogo.src,
+    logo: cedresLogo,
   },
   {
     id: '6',
@@ -74,7 +74,7 @@ const testimonials = [
     testimonial:
       'Avec Momentum, nous avons automatisé 95% de la planification des équipes. C’est réellement une source de stress en moins.',
     initials: 'DS',
-    logo: chuLogo.src,
+    logo: chuLogo,
   },
   {
     id: '7',
@@ -84,7 +84,7 @@ const testimonials = [
     testimonial:
       'Je suis impressionné par la capacité de l’outil à générer des plannings aussi optimisés en respectant presque tous les souhaits.',
     initials: 'FC',
-    logo: chirecLogo.src,
+    logo: chirecLogo,
   },
 ];
 
@@ -113,7 +113,7 @@ export default function TestimonialsCarouselSection() {
           {testimonials.map((testimonial) => (
             <CarouselItem key={testimonial.id} className="pl-4 basis-auto">
               <Card className="max-w-60 sm:max-w-sm select-none p-5 sm:p-9 h-full bg-white/30 hover:bg-white/60 transition-all duration-200 border-top">
-                <img src={QuoteSvg.src} class="size-8 sm:size-12"/>
+                <img src={QuoteSvg.src} alt="" aria-hidden="true" width={32} height={32} className="size-8 sm:size-12"/>
                 <blockquote className="text-foreground italic leading-relaxed text-sm transition-color duration-200">
                   {testimonial.testimonial}
                 </blockquote>
@@ -134,12 +134,13 @@ export default function TestimonialsCarouselSection() {
                   </div>
                   {testimonial.logo && (
                     <img
-                      src={testimonial.logo} 
+                      src={testimonial.logo.src}
                       alt={testimonial.hospital}
                       className="h-10 w-auto shrink-0 filter-[grayscale(1)] opacity-50"
                       loading="lazy"
                       decoding="async"
-                      height={40}
+                      width={testimonial.logo.width}
+                      height={testimonial.logo.height}
                       style={{ maxHeight: '40px', maxWidth: '120px', width: 'auto', objectFit: 'contain' }}
                     />
                   )}

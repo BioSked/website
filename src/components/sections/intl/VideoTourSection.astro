@@ -20,7 +20,7 @@ const uid = 'tour-' + Math.random().toString(36).slice(2, 8);
     <div class="container max-w-5xl">
         <h2 class="text-display-section tracking-tight text-center mb-8">{heading}</h2>
         <div id={`${uid}-box`} class="relative mx-auto w-full rounded-xl border border-border bg-background/45 p-1 shadow-[4px_2px_3rem_rgba(0,0,0,.15)] backdrop-blur-sm md:p-2">
-            <Image src={dateView} alt="" width={1000} height={563} format="webp" quality={80} class="w-full h-auto rounded-lg" />
+            <Image src={dateView} alt="" width={1000} height={563} widths={[640, 1000, 1600]} sizes="(min-width: 1024px) 976px, 100vw" format="webp" quality={80} class="w-full h-auto rounded-lg" />
             <button
                 type="button"
                 id={`${uid}-btn`}

@@ -131,6 +131,32 @@ const robotsFollow = noIndex ? false : SITE_METADATA.robots.follow;
 <!-- <GoogleTagmanagerPartytown id="GT-NB96M5G7" /> -->
 
 <script is:inline>
+    // HubSpot forms lazy loader. The 190KB embed script used to load
+    // render-blocking in <head> on EVERY page; now it loads async, once,
+    // and only on pages that actually create a form via window.bskHsForm().
+    (function () {
+        var queue = [];
+        var injected = false;
+        window.bskHsForm = function (cfg) {
+            queue.push(cfg);
+            if (injected) return;
+            injected = true;
+            var s = document.createElement('script');
+            s.src = 'https://js-eu1.hsforms.net/forms/embed/v2.js';
+            s.async = true;
+            s.charset = 'utf-8';
+            s.onload = function () {
+                if (!window.hbspt) return;
+                window.bskHsForm = function (c) { window.hbspt.forms.create(c); };
+                queue.forEach(window.bskHsForm);
+                queue = [];
+            };
+            document.head.appendChild(s);
+        };
+    })();
+</script>
+
+<script is:inline>
     (function() {
 // const theme = localStorage.getItem('theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
 // if (theme === 'dark') document.documentElement.classList.add('dark');
@@ -161,7 +187,7 @@ const robotsFollow = noIndex ? false : SITE_METADATA.robots.follow;
         ))
 }
 
-<link rel="manifest" href="/favicon/site.webmanifest/" />
+<link rel="manifest" href="/favicon/site.webmanifest" />
 <link rel="sitemap" href="/sitemap-index.xml" />
 <link
 rel="alternate"
