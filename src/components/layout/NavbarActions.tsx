@@ -24,6 +24,7 @@ interface NavbarActionsProps {
     pagename: string;
     navLinks: any[];
     demoCta?: { label: string; href: string };
+    homeHref?: string;
     languages?: LanguageOption[];
 }
 
@@ -65,7 +66,7 @@ function LanguageSwitcher({ languages, className }: { languages: LanguageOption[
     );
 }
 
-export function NavbarActions({ pagename, navLinks, demoCta, languages }: NavbarActionsProps)
+export function NavbarActions({ pagename, navLinks, demoCta, homeHref = '/', languages }: NavbarActionsProps)
 {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -89,7 +90,7 @@ export function NavbarActions({ pagename, navLinks, demoCta, languages }: Navbar
             className="sticky top-0 z-50 bg-linear-to-t from-background/0 to-white/80 border-b backdrop-blur-md supports-backdrop-filter:bg-background/60"
         >
             <div className="container max-w-5xl flex items-center h-16">
-                <a href="/" className="flex flex-1 gap-2">
+                <a href={homeHref} className="flex flex-1 gap-2">
                     <img 
                         src={bioSkedLogo.src} 
                         alt="BioSked" 
