@@ -523,3 +523,9 @@ html.theme-transition::view-transition-new(root) {
         display: none !important;
     }
 }
+
+/* Soft-fade the decorative cyan-dust texture so its 800px box never shows a hard edge. */
+.dust-fade {
+  -webkit-mask-image: radial-gradient(closest-side, black 50%, transparent 98%);
+  mask-image: radial-gradient(closest-side, black 50%, transparent 98%);
+}

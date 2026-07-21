@@ -34,10 +34,10 @@ export const HOME_CONTENT: Record<'de' | 'nl' | 'it', HomeContent> = {
             'Momentum von BioSked: Dienst-, Bereitschafts- und Rufdienstplanung für ärztliche Teams – standortübergreifend, unter Einhaltung der Arbeitszeitregeln automatisch generiert, fair verteilt mit nachvollziehbaren Zählern. Über 15 Jahre Erfahrung in der ärztlichen Dienstplanung.',
         hero: {
             title: 'Dienstplanung für ärztliche Teams',
-            lead: 'Dienste, Bereitschaften und Rufdienste – standortübergreifend, unter Einhaltung der Arbeitszeitregeln, mit fairer Verteilung und Zählern, die jedes Teammitglied einsehen kann. Automatisch generiert statt von Hand in Excel gepflegt.',
+            lead: 'Dienste, Bereitschaften, Rufdienste: faire, regelkonforme Dienstpläne – automatisch generiert statt in Excel gepflegt.',
             demoLabel: 'Demo anfragen',
             tourLabel: '1-Minuten-Tour ansehen (EN)',
-            badges: ['15+ Jahre ärztliche Dienstplanung', '250+ Gesundheitseinrichtungen', '50.000+ Nutzer täglich'],
+            badges: ['15+ Jahre Dienstplanung', '250+ Einrichtungen', '50.000+ Nutzer/Tag'],
         },
         features: {
             heading: 'Gebaut für die schwierigsten Dienstpläne',
@@ -63,10 +63,10 @@ export const HOME_CONTENT: Record<'de' | 'nl' | 'it', HomeContent> = {
             'Momentum van BioSked: roosterplanning voor artsenteams in de zorg. Automatische roostergeneratie volgens uw regels, wacht- en bereikbaarheidsdiensten, eerlijke verdeling en tijdregistratie in één platform. Meer dan 15 jaar medische roosterplanning.',
         hero: {
             title: 'Gebouwd voor de moeilijkste roosters in de zorg',
-            lead: 'Wachtdiensten en bereikbaarheid verdelen over artsen en campussen, binnen werktijdregels en contracten – elke maand opnieuw, vaak in Excel. Momentum genereert dat rooster automatisch volgens uw regels, maakt de verdeling aantoonbaar eerlijk en houdt de tijdregistratie in hetzelfde platform als het rooster.',
+            lead: 'Wachtdiensten, bereikbaarheid, voorkeuren: eerlijke, regelconforme roosters – automatisch gegenereerd in plaats van handmatig in Excel.',
             demoLabel: 'Demo aanvragen',
             tourLabel: 'Bekijk de tour van 1 minuut (EN)',
-            badges: ['15+ jaar medische roosterplanning', '250+ zorgorganisaties', '50.000+ dagelijkse gebruikers'],
+            badges: ['15+ jaar ervaring', '250+ zorgorganisaties', '50.000+ gebruikers/dag'],
         },
         features: {
             heading: 'Van roostergeneratie tot loonexport',
@@ -92,10 +92,10 @@ export const HOME_CONTENT: Record<'de' | 'nl' | 'it', HomeContent> = {
             'Momentum di BioSked: pianificazione dei turni per gruppi di radiologia, ospedali e team medici multi-sede. Generazione automatica sotto vincoli, guardie e reperibilità, contatori di equità, export paghe. Piattaforma collaudata in Europa da oltre 15 anni.',
         hero: {
             title: 'Pianificazione dei turni per gruppi di radiologia e team medici',
-            lead: "Momentum genera i turni nel rispetto di contratti e regole sull'orario di lavoro, con contatori di equità visibili a tutto il team — al posto di Excel e degli scambi informali. Al pronto soccorso del CHIREC (Belgio), la creazione dei turni di un mese è passata da 4 giorni a 4–5 ore.",
+            lead: 'Guardie, reperibilità, preferenze: turni equi e conformi alle regole – generati automaticamente, non gestiti a mano in Excel.',
             demoLabel: 'Richiedi una demo',
             tourLabel: 'Guarda il tour di 1 minuto (EN)',
-            badges: ['15+ anni di pianificazione dei turni medici', '250+ organizzazioni sanitarie', '1.000+ sedi pianificate'],
+            badges: ['15+ anni di esperienza', '250+ organizzazioni sanitarie', '1.000+ sedi'],
         },
         features: {
             heading: 'Costruito per i vincoli reali della pianificazione medica',
