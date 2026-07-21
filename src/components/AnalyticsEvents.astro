@@ -1,0 +1,90 @@
+<script>
+    import {
+        classifyCtaPath,
+        createDedupedEventDispatcher,
+        leadEventForForm,
+        normalizeSiteLanguage,
+    } from '@/lib/analytics.mjs';
+
+    type AnalyticsWindow = Window & {
+        gtag?: (...args: unknown[]) => void;
+        __bskGALoaded?: boolean;
+        bskTrackLead?: (formId: string, onComplete?: () => void) => void;
+    };
+
+    const analyticsWindow = window as AnalyticsWindow;
+    const siteLanguage = normalizeSiteLanguage(document.documentElement.lang);
+
+    function track(
+        eventName: string,
+        parameters: Record<string, unknown> = {},
+        onComplete?: () => void,
+    ) {
+        if (!analyticsWindow.__bskGALoaded || typeof analyticsWindow.gtag !== 'function') {
+            onComplete?.();
+            return;
+        }
+
+        let completed = false;
+        let fallbackTimer: number | undefined;
+        const finish = () => {
+            if (completed) return;
+            completed = true;
+            if (fallbackTimer) window.clearTimeout(fallbackTimer);
+            onComplete?.();
+        };
+        const eventParameters: Record<string, unknown> = {
+            site_language: siteLanguage,
+            content_group: siteLanguage,
+            ...parameters,
+        };
+        if (onComplete) {
+            eventParameters.event_callback = finish;
+            eventParameters.event_timeout = 1000;
+            fallbackTimer = window.setTimeout(finish, 1200);
+        }
+
+        analyticsWindow.gtag('event', eventName, eventParameters);
+    }
+
+    const dispatchLead = createDedupedEventDispatcher(
+        (
+            eventName: string,
+            parameters: Record<string, unknown>,
+            onComplete: () => void,
+        ) => track(eventName, parameters, onComplete),
+    );
+
+    analyticsWindow.bskTrackLead = (formId: string, onComplete?: () => void) => {
+        const eventName = leadEventForForm(formId, location.pathname);
+        if (!eventName) {
+            onComplete?.();
+            return;
+        }
+
+        const dedupeKey = `${eventName}:${formId}:${location.pathname}`;
+        dispatchLead(dedupeKey, eventName, { form_id: formId }, onComplete);
+    };
+
+    document.addEventListener('click', (event) => {
+        const target = event.target;
+        if (!(target instanceof Element)) return;
+        const anchor = target.closest<HTMLAnchorElement>('a[href]');
+        if (!anchor || anchor.hasAttribute('data-locale-choice')) return;
+
+        const destination = new URL(anchor.href, location.href);
+        if (destination.origin !== location.origin) return;
+        const eventName = classifyCtaPath(destination.pathname);
+        if (!eventName) return;
+
+        track(eventName, {
+            cta_path: destination.pathname,
+            cta_text: (anchor.textContent || '').trim().replace(/\s+/g, ' ').slice(0, 100),
+        });
+    }, { capture: true });
+
+    window.addEventListener('hs-form-event:on-submission:success', (event) => {
+        const detail = (event as CustomEvent<{ formId?: string }>).detail;
+        if (detail?.formId) analyticsWindow.bskTrackLead?.(detail.formId);
+    });
+</script>

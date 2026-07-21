@@ -4,8 +4,10 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
+    "prebuild": "npm run test:analytics",
     "build": "astro build",
     "preview": "astro preview",
+    "test:analytics": "node scripts/test-analytics.mjs",
     "astro": "astro"
   },
   "dependencies": {
