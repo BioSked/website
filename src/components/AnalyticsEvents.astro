@@ -69,7 +69,7 @@
         const target = event.target;
         if (!(target instanceof Element)) return;
         const anchor = target.closest<HTMLAnchorElement>('a[href]');
-        if (!anchor) return;
+        if (!anchor || anchor.hasAttribute('data-locale-choice')) return;
 
         const destination = new URL(anchor.href, location.href);
         if (destination.origin !== location.origin) return;
