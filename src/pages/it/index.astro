@@ -10,6 +10,8 @@ import QuoteBand from "@/components/sections/intl/QuoteBand.astro";
 import { MARKET } from "@/i18n/market/it";
 import { HOME_CONTENT } from "@/i18n/homeContent";
 import phoneImage from "@/assets/layout/mobilehand-it.webp";
+import MobileAppSection from "@/components/sections/intl/MobileAppSection.astro";
+import { MOBILE_APP } from "@/i18n/mobileAppContent";
 
 const c = HOME_CONTENT['it'];
 ---
@@ -29,6 +31,7 @@ const c = HOME_CONTENT['it'];
 	<QuoteBand text={MARKET.quote.text} author={MARKET.quote.author} role={MARKET.quote.role} stats={MARKET.quote.stats} moreHref="/it/referenze" moreLabel="Vedi tutte le referenze" />
 	<a id="momentum"></a>
 	<FeatureGrid heading={c.features.heading} sub={c.features.sub} items={c.features.items} />
+	<MobileAppSection content={MOBILE_APP['it']} />
 	<VideoTourSection heading={c.hero.tourLabel} buttonLabel={c.hero.tourLabel} />
 	<CTA heading={c.cta.heading} sub={c.cta.sub} buttonLabel={c.cta.buttonLabel} demoHref="/it/demo" />
 </BaseLayout>

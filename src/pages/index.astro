@@ -11,6 +11,8 @@ import CTA from "@/components/sections/CTA.astro";
 import Testimonials from "@/components/sections/Testimonials.astro";
 // import FullTimelineView from "@/components/sections/FullTimelineView.tsx";
 import RVU from "@/components/sections/RVU.astro";
+import MobileAppSection from "@/components/sections/intl/MobileAppSection.astro";
+import { MOBILE_APP } from "@/i18n/mobileAppContent";
 ---
 
 <BaseLayout
@@ -24,6 +26,7 @@ import RVU from "@/components/sections/RVU.astro";
 	<a id="momentum"/>
 	<FeatureShowcase />
 	<RVU />
+	<MobileAppSection content={MOBILE_APP['en']} />
 	<!-- <Logos/> -->
   <AIInno />
 	<CTA />
