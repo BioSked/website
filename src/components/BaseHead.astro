@@ -34,6 +34,15 @@ const openGraphLocales: Record<string, string> = {
     nl: 'nl_NL',
     it: 'it_IT',
 };
+const socialImageAlts: Record<string, string> = {
+    en: SITE_METADATA.openGraph.images[0].alt,
+    fr: 'Application Momentum de BioSked pour la planification du personnel de santé',
+    'fr-ch': 'Application Momentum de BioSked pour la planification du personnel de santé',
+    de: 'BioSked Momentum App für die Dienstplanung medizinischer Teams',
+    nl: 'BioSked Momentum-app voor roosterplanning van medische teams',
+    it: 'App BioSked Momentum per la pianificazione dei turni medici',
+};
+const socialImageAlt = socialImageAlts[canonicalLocale] ?? SITE_METADATA.openGraph.images[0].alt;
 ---
 
 <meta charset="utf-8" />
@@ -233,14 +242,14 @@ content={SITE_METADATA.openGraph.images[0].width.toString()}
 property="og:image:height"
 content={SITE_METADATA.openGraph.images[0].height.toString()}
 />
-<meta property="og:image:alt" content={SITE_METADATA.openGraph.images[0].alt} />
+<meta property="og:image:alt" content={socialImageAlt} />
 
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:url" content={socialURL} />
 <meta name="twitter:title" content={finalTitle} />
 <meta name="twitter:description" content={finalDescription} />
 <meta name="twitter:image" content={imageURL} />
-<meta name="twitter:image:alt" content={SITE_METADATA.openGraph.images[0].alt} />
+<meta name="twitter:image:alt" content={socialImageAlt} />
 
 
 <script type="application/ld+json" is:inline>
@@ -260,27 +269,13 @@ content={SITE_METADATA.openGraph.images[0].height.toString()}
                     "height": 512
                 },
                 "description": "Healthcare technology company specializing in AI-powered scheduling and workforce management solutions for hospitals, clinics, medical practices, and multi-specialty groups including radiology, emergency medicine, anesthesiology, and more.",
-                "location": [
-                    {
-                        "@type": "Place",
-                        "name": "Americas headquarters",
-                        "address": {
-                            "@type": "PostalAddress",
-                            "addressLocality": "Rochester",
-                            "addressRegion": "NY",
-                            "addressCountry": "US"
-                        }
-                    },
-                    {
-                        "@type": "Place",
-                        "name": "Europe headquarters",
-                        "address": {
-                            "@type": "PostalAddress",
-                            "addressLocality": "Geneva",
-                            "addressCountry": "CH"
-                        }
-                    }
-                ],
+                "address": {
+                    "@type": "PostalAddress",
+                    "addressLocality": "Fairport",
+                    "addressRegion": "NY",
+                    "postalCode": "14450",
+                    "addressCountry": "US"
+                },
                 "contactPoint": [
                     {
                         "@type": "ContactPoint",
