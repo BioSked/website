@@ -11,6 +11,8 @@ import { MARKET } from "@/i18n/market/nl";
 import { BE2027 } from "@/i18n/market/nl-be2027";
 import { HOME_CONTENT } from "@/i18n/homeContent";
 import phoneImage from "@/assets/layout/mobilehand-nl.webp";
+import MobileAppSection from "@/components/sections/intl/MobileAppSection.astro";
+import { MOBILE_APP } from "@/i18n/mobileAppContent";
 
 const c = HOME_CONTENT['nl'];
 ---
@@ -39,6 +41,7 @@ const c = HOME_CONTENT['nl'];
 	</section>
 	<a id="momentum"></a>
 	<FeatureGrid heading={c.features.heading} sub={c.features.sub} items={c.features.items} />
+	<MobileAppSection content={MOBILE_APP['nl']} />
 	<VideoTourSection heading={c.hero.tourLabel} buttonLabel={c.hero.tourLabel} />
 	<CTA heading={c.cta.heading} sub={c.cta.sub} buttonLabel={c.cta.buttonLabel} demoHref="/nl/demo" />
 </BaseLayout>

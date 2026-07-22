@@ -14,6 +14,8 @@ import CaseStudies from "@/components/sections/fr/CaseStudies.astro";
 import Specialties from "@/components/sections/fr/Specialties.astro";
 // import FullTimelineView from "@/components/sections/FullTimelineView.tsx";
 import RVU from "@/components/sections/fr/RVU.astro";
+import MobileAppSection from "@/components/sections/intl/MobileAppSection.astro";
+import { MOBILE_APP } from "@/i18n/mobileAppContent";
 ---
 
 <BaseLayout
@@ -29,6 +31,7 @@ import RVU from "@/components/sections/fr/RVU.astro";
 	<FeatureShowcase />
   <Specialties />
 	<RVU />
+	<MobileAppSection content={MOBILE_APP['fr']} />
 	<!-- <Logos/> -->
   <AIInno />
 	<VideoTourSection heading="La visite guidée en 1 minute (EN)" buttonLabel="Lancer la vidéo (EN)" />
