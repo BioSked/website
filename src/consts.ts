@@ -194,7 +194,7 @@ export const SITE_METADATA = {
                 url: '/images/og-image.jpg',
                 width: 1200,
                 height: 630,
-                alt: 'Momentum by BioSked - AI-Powered Healthcare Scheduling Software for Hospitals and Clinics',
+                alt: 'BioSked Momentum healthcare staff scheduling app with automated scheduling controls',
             },
         ],
     },

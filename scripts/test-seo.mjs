@@ -165,20 +165,33 @@ for (const file of htmlFiles) {
   await assertLocalUrlExists(twitterImage, `${relativePath} twitter:image`);
 }
 
-const homeHtml = await readFile(path.join(distDir, 'index.html'), 'utf8');
-const homeTitle = titleText(homeHtml);
-const homeDescription = metaContent(homeHtml, 'name', 'description');
-assert.ok(homeTitle.length >= 30 && homeTitle.length <= 60, `Home title must be 30-60 characters; found ${homeTitle.length}`);
-assert.ok(homeDescription.length >= 120 && homeDescription.length <= 160, `Home description must be 120-160 characters; found ${homeDescription.length}`);
-assert.equal(linkHref(homeHtml, 'canonical'), `${siteOrigin}/`, 'Home canonical URL is incorrect');
+const homepageRoutes = ['', 'fr', 'fr-ch', 'de', 'nl', 'it'];
+for (const route of homepageRoutes) {
+  const label = route || 'en';
+  const html = await readFile(path.join(distDir, route, 'index.html'), 'utf8');
+  const pageTitle = titleText(html);
+  const pageDescription = metaContent(html, 'name', 'description');
+  assert.ok(pageTitle.length >= 30 && pageTitle.length <= 60, `${label} home title must be 30-60 characters; found ${pageTitle.length}`);
+  assert.ok(pageDescription.length >= 120 && pageDescription.length <= 160, `${label} home description must be 120-160 characters; found ${pageDescription.length}`);
+  assert.equal(linkHref(html, 'canonical'), `${siteOrigin}/${route ? `${route}/` : ''}`, `${label} home canonical URL is incorrect`);
+}
 
 const llmsPath = path.join(distDir, 'llms.txt');
 const llmsText = await readFile(llmsPath, 'utf8');
 assert.match(llmsText, /^# Momentum by BioSked\s*$/m, 'llms.txt must contain the site H1');
 assert.match(llmsText, /^> \S.+$/m, 'llms.txt must contain a summary blockquote');
 assert.match(llmsText, /^## Product and company\s*$/m, 'llms.txt must contain the primary links section');
-for (const match of llmsText.matchAll(/\[[^\]]+\]\((https:\/\/biosked\.com\/[^)]*)\)/g)) {
-  await assertLocalUrlExists(match[1], 'llms.txt');
+const llmsLinkLines = llmsText.split('\n').filter((line) => /^-\s*\[/.test(line));
+assert.ok(llmsLinkLines.length > 0, 'llms.txt must contain at least one Markdown link');
+for (const line of llmsLinkLines) {
+  const match = line.match(/^-\s*\[[^\]]+\]\(([^)]+)\)(?::.*)?$/);
+  assert.ok(match, `llms.txt contains a malformed link: ${line}`);
+  const url = new URL(match[1]);
+  assert.equal(url.protocol, 'https:', `llms.txt link must use HTTPS: ${url}`);
+  assert.equal(url.origin, siteOrigin, `llms.txt link must stay on ${siteOrigin}: ${url}`);
+  assert.equal(url.search, '', `llms.txt link must not contain a query string: ${url}`);
+  assert.equal(url.hash, '', `llms.txt link must not contain a fragment: ${url}`);
+  await assertLocalUrlExists(url.toString(), 'llms.txt');
 }
 
 const robotsText = await readFile(path.join(distDir, 'robots.txt'), 'utf8');

@@ -31,7 +31,7 @@ export const HOME_CONTENT: Record<'de' | 'nl' | 'it', HomeContent> = {
     de: {
         metaTitle: 'Momentum – Dienstplanung für ärztliche Teams | BioSked',
         metaDescription:
-            'Momentum von BioSked: Dienst-, Bereitschafts- und Rufdienstplanung für ärztliche Teams – standortübergreifend, unter Einhaltung der Arbeitszeitregeln automatisch generiert, fair verteilt mit nachvollziehbaren Zählern. Über 15 Jahre Erfahrung in der ärztlichen Dienstplanung.',
+            'Momentum von BioSked automatisiert Dienst-, Bereitschafts- und Rufdienstplanung für ärztliche Teams: regelkonform, fair und standortübergreifend.',
         hero: {
             title: 'Dienstplanung für ärztliche Teams',
             lead: 'Dienste, Bereitschaften, Rufdienste: faire, regelkonforme Dienstpläne – automatisch generiert statt in Excel gepflegt.',
@@ -58,9 +58,9 @@ export const HOME_CONTENT: Record<'de' | 'nl' | 'it', HomeContent> = {
         },
     },
     nl: {
-        metaTitle: 'Momentum – Roosterplanning voor artsenteams in de zorg | BioSked',
+        metaTitle: 'Momentum: Roosterplanning voor artsenteams | BioSked',
         metaDescription:
-            'Momentum van BioSked: roosterplanning voor artsenteams in de zorg. Automatische roostergeneratie volgens uw regels, wacht- en bereikbaarheidsdiensten, eerlijke verdeling en tijdregistratie in één platform. Meer dan 15 jaar medische roosterplanning.',
+            'Momentum van BioSked automatiseert zorgroosters voor artsenteams, inclusief wacht- en bereikbaarheidsdiensten, eerlijke verdeling en tijdregistratie.',
         hero: {
             title: 'Gebouwd voor de moeilijkste roosters in de zorg',
             lead: 'Wachtdiensten, bereikbaarheid, voorkeuren: eerlijke, regelconforme roosters – automatisch gegenereerd in plaats van handmatig in Excel.',
@@ -87,9 +87,9 @@ export const HOME_CONTENT: Record<'de' | 'nl' | 'it', HomeContent> = {
         },
     },
     it: {
-        metaTitle: 'Momentum – Pianificazione dei turni per gruppi di radiologia e team medici | BioSked',
+        metaTitle: 'Momentum: pianificazione dei turni medici | BioSked',
         metaDescription:
-            'Momentum di BioSked: pianificazione dei turni per gruppi di radiologia, ospedali e team medici multi-sede. Generazione automatica sotto vincoli, guardie e reperibilità, contatori di equità, export paghe. Piattaforma collaudata in Europa da oltre 15 anni.',
+            'Momentum di BioSked automatizza i turni per ospedali, gruppi di radiologia e team medici multi-sede, con regole, reperibilità, equità e rilevazione ore.',
         hero: {
             title: 'Pianificazione dei turni per gruppi di radiologia e team medici',
             lead: 'Guardie, reperibilità, preferenze: turni equi e conformi alle regole – generati automaticamente, non gestiti a mano in Excel.',
