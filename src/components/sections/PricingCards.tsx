@@ -178,7 +178,7 @@ export function PricingCards({ plans, labels }: PricingCardsProps) {
                 </div>
 
                 <div className="flex-1 hidden sm:block">
-                  <img src={laptopScreen.src} className="opacity-70"/>
+                  <img src={laptopScreen.src} alt="" aria-hidden="true" className="opacity-70"/>
                 </div>
               </div>
             </CardHeader>

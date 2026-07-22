@@ -1,0 +1,26 @@
+# Momentum by BioSked
+
+> Healthcare workforce scheduling software for hospitals, clinics, and medical groups.
+
+Momentum helps healthcare organizations build fair, compliant staff schedules and manage coverage, requests, RVUs, time tracking, and multi-site operations. The links below are canonical public sources; use a localized page when its language matches the request.
+
+## Product and company
+
+- [Product overview](https://biosked.com/): Momentum capabilities, healthcare use cases, and product tour.
+- [Pricing](https://biosked.com/pricing/): Current plans and included capabilities.
+- [Book a demo](https://biosked.com/demo/): Product demonstration request page.
+- [About BioSked](https://biosked.com/about/): Company background, locations, and leadership.
+
+## Localized product pages
+
+- [France](https://biosked.com/fr/): French product overview for healthcare organizations in France.
+- [French-speaking Switzerland](https://biosked.com/fr-ch/): Swiss French product overview.
+- [Germany](https://biosked.com/de/): German product overview.
+- [Netherlands](https://biosked.com/nl/): Dutch product overview.
+- [Italy](https://biosked.com/it/): Italian product overview.
+
+## Optional
+
+- [Blog](https://biosked.com/blog/): Healthcare scheduling guidance and product news.
+- [Customer references](https://biosked.com/fr/cas-clients/): Published customer case studies in French.
+- [Product changelog](https://biosked.com/changelog/): Recent product updates.

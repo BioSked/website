@@ -4,9 +4,10 @@ import Button from '@/components/ui/Button.astro';
 import { Home, ArrowLeft, Mail, Book } from 'lucide-astro';
 ---
 
-<BaseLayout 
-  title="Page Not Found | Momentum by BioSked" 
+<BaseLayout
+  title="Page Not Found | Momentum by BioSked"
   description="The page you're looking for doesn't exist. Return to our homepage or contact us for help."
+  noIndex={true}
 >
   <section class="section-padding relative overflow-hidden">
     <div class="absolute inset-0 z-0 pointer-events-none opacity-20 dark:opacity-30">

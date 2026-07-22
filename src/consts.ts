@@ -1,8 +1,8 @@
 
 
-export const SITE_TITLE = 'Momentum - Healthcare Scheduling Software by BioSked';
+export const SITE_TITLE = 'Momentum: Healthcare Scheduling Software | BioSked';
 export const SITE_DESCRIPTION =
-'Momentum by BioSked: AI-powered healthcare scheduling software for hospitals, clinics, and medical practices. Automate physician scheduling, RVU tracking, shift management, and compliance for radiology, emergency medicine, anesthesiology, and specialty practices.';
+'AI-powered healthcare scheduling software for hospitals, clinics, and medical groups. Automate physician schedules, RVU tracking, shifts, and compliance.';
 
 export const NAV_LINKS = [
     {
