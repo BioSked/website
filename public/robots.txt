@@ -5,7 +5,11 @@ Allow: /
 # Sitemap
 Sitemap: https://biosked.com/sitemap-index.xml
 
-# Crawl-delay for aggressive bots
+# OpenAI search indexing
+User-agent: OAI-SearchBot
+Allow: /
+
+# AI Crawlers - Allow with reasonable crawl delay
 User-agent: GPTBot
 Crawl-delay: 10
 

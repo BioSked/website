@@ -3,10 +3,12 @@ import '@/styles/global.css';
 import { SITE_TITLE, SITE_METADATA } from '../consts';
 import { hreflangAlternates, canonicalPathFor, splitLocale } from '@/i18n/locales';
 
+const canonicalPath = canonicalPathFor(Astro.url.pathname);
 const canonicalURL = Astro.site
-? new URL(canonicalPathFor(Astro.url.pathname), Astro.site)
+? new URL(canonicalPath, Astro.site)
 : null;
 const pageLocale = splitLocale(Astro.url.pathname).locale;
+const canonicalLocale = splitLocale(canonicalPath).locale;
 
 // True localized equivalents of this page (never a fallback-EN-under-a-locale URL),
 // used by the instant locale-switch script below.
@@ -23,6 +25,15 @@ const finalImage = image || SITE_METADATA.openGraph.images[0].url;
 const imageURL = new URL(finalImage, Astro.url);
 const robotsIndex = noIndex ? false : SITE_METADATA.robots.index;
 const robotsFollow = noIndex ? false : SITE_METADATA.robots.follow;
+const socialURL = canonicalURL || Astro.url;
+const openGraphLocales: Record<string, string> = {
+    en: 'en_US',
+    fr: 'fr_FR',
+    'fr-ch': 'fr_CH',
+    de: 'de_DE',
+    nl: 'nl_NL',
+    it: 'it_IT',
+};
 ---
 
 <meta charset="utf-8" />
@@ -208,8 +219,9 @@ href={Astro.site ? new URL(pageLocale === 'fr' || pageLocale === 'fr-ch' ? 'fr/r
 <meta name="description" content={finalDescription} />
 
 <meta property="og:type" content="website" />
-<meta property="og:url" content={Astro.url} />
+<meta property="og:url" content={socialURL} />
 <meta property="og:site_name" content={SITE_METADATA.openGraph.siteName} />
+<meta property="og:locale" content={openGraphLocales[canonicalLocale] ?? 'en_US'} />
 <meta property="og:title" content={finalTitle} />
 <meta property="og:description" content={finalDescription} />
 <meta property="og:image" content={imageURL} />
@@ -223,11 +235,12 @@ content={SITE_METADATA.openGraph.images[0].height.toString()}
 />
 <meta property="og:image:alt" content={SITE_METADATA.openGraph.images[0].alt} />
 
-<meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:url" content={Astro.url} />
-<meta property="twitter:title" content={finalTitle} />
-<meta property="twitter:description" content={finalDescription} />
-<meta property="twitter:image" content={imageURL} />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:url" content={socialURL} />
+<meta name="twitter:title" content={finalTitle} />
+<meta name="twitter:description" content={finalDescription} />
+<meta name="twitter:image" content={imageURL} />
+<meta name="twitter:image:alt" content={SITE_METADATA.openGraph.images[0].alt} />
 
 
 <script type="application/ld+json" is:inline>
@@ -242,19 +255,30 @@ content={SITE_METADATA.openGraph.images[0].height.toString()}
                 "url": "https://biosked.com",
                 "logo": {
                     "@type": "ImageObject",
-                    "url": "https://biosked.com/images/logo.png",
+                    "url": "https://biosked.com/favicon/web-app-manifest-512x512.png",
                     "width": 512,
                     "height": 512
                 },
                 "description": "Healthcare technology company specializing in AI-powered scheduling and workforce management solutions for hospitals, clinics, medical practices, and multi-specialty groups including radiology, emergency medicine, anesthesiology, and more.",
-                "address": [
+                "location": [
                     {
-                        "@type": "PostalAddress",
-                        "addressCountry": "US"
+                        "@type": "Place",
+                        "name": "Americas headquarters",
+                        "address": {
+                            "@type": "PostalAddress",
+                            "addressLocality": "Rochester",
+                            "addressRegion": "NY",
+                            "addressCountry": "US"
+                        }
                     },
                     {
-                        "@type": "PostalAddress",
-                        "addressCountry": "EU"
+                        "@type": "Place",
+                        "name": "Europe headquarters",
+                        "address": {
+                            "@type": "PostalAddress",
+                            "addressLocality": "Geneva",
+                            "addressCountry": "CH"
+                        }
                     }
                 ],
                 "contactPoint": [
@@ -272,7 +296,8 @@ content={SITE_METADATA.openGraph.images[0].height.toString()}
                     }
                 ],
                 "sameAs": [
-                    "https://www.linkedin.com/company/biosked"
+                    "https://www.linkedin.com/company/biosked",
+                    "https://www.youtube.com/@BioSked-Inc"
                 ],
                 "areaServed": [
                     {
@@ -281,7 +306,7 @@ content={SITE_METADATA.openGraph.images[0].height.toString()}
                     },
                     {
                         "@type": "Place",
-                        "name": "European Union"
+                        "name": "Europe"
                     }
                 ]
             },
@@ -294,7 +319,7 @@ content={SITE_METADATA.openGraph.images[0].height.toString()}
                 "publisher": {
                     "@id": "https://biosked.com/#organization"
                 },
-                "inLanguage": ["en", "fr", "de", "nl", "it"]
+                "inLanguage": ["en", "fr", "fr-CH", "de", "nl", "it"]
             },
             {
                 "@type": "SoftwareApplication",
@@ -352,7 +377,7 @@ content={SITE_METADATA.openGraph.images[0].height.toString()}
                     "Real-time notifications",
                     "Specialty-specific templates"
                 ],
-                "screenshot": "https://biosked.com/images/screenshot.png"
+                "screenshot": "https://biosked.com/images/og-image.jpg"
             }
         ]
 }
