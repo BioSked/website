@@ -3,7 +3,7 @@ layout: "@layouts/ArticleLayout.astro"
 date: 2023-10-03
 author: BioSked
 title: "The Prescription for Efficient Healthcare"
-description: Why Hospitals Should Embrace Employee Scheduling Software?
+description: "Learn how healthcare scheduling software improves coverage, reduces administrative work, and gives clinical teams more predictable schedules."
 image: "../../../assets/images/prescription-healthcare-980x653.webp"
 
 ---

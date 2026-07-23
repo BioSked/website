@@ -11,9 +11,12 @@ import chirec from '@/assets/case-studies/chirec.jpg';
 
 interface Props {
   demoHref?: string;
+  headingLevel?: 'h1' | 'h2';
 }
 
-const { demoHref = '/fr/demo/' } = Astro.props;
+const { demoHref = '/fr/demo/', headingLevel = 'h2' } = Astro.props;
+const Heading = headingLevel;
+const CardHeading = headingLevel === 'h1' ? 'h2' : 'h3';
 
 const caseStudies = [
   {
@@ -24,7 +27,7 @@ const caseStudies = [
     quote:
       'Je ne m’attendais pas à ce que Momentum ait un tel impact. C’est clair, fluide, automatisé. Je suis impressionné par la capacité de l’outil à générer des plannings aussi optimisés en respectant presque tous les souhaits.',
     person: 'Dr Frédéric Cavallotto, chef du service des Urgences',
-    href: '/fr/cas-clients/chirec',
+    href: '/fr/cas-clients/chirec/',
   },
   {
     title: 'CHU Angers',
@@ -34,7 +37,7 @@ const caseStudies = [
     quote:
       'Aujourd’hui tout est au même endroit et accessible sur internet, en tant qu’administrateur de Momentum pour le DMU, je n’ai rien à faire si ce n’est à me connecter pour accéder à toutes les demandes des praticiens et gérer mes plannings.',
     person: 'Dr Thomas Boishardy, praticien hospitalier',
-    href: '/fr/cas-clients/chu-angers',
+    href: '/fr/cas-clients/chu-angers/',
   },
   {
     title: 'IMALLIANCE-HDF',
@@ -44,7 +47,7 @@ const caseStudies = [
     quote:
       'Le résultat est surprenant. Le planning est produit aujourd’hui très aisément, et en cas d’aléas (absence, modalité en panne, etc.), les possibilités de remplacement sont proposées pour un ajustement du planning quasi-immédiat.',
     person: 'Dominique Molmy, secrétaire référente',
-    href: '/fr/cas-clients/imalliance-hdf',
+    href: '/fr/cas-clients/imalliance-hdf/',
   },
   {
     title: 'IRIS GRIM',
@@ -54,7 +57,7 @@ const caseStudies = [
     quote:
       'Depuis Momentum, la planification automatique des vacations, les déplacements des médecins, autant sur leurs vacations que d’un site à un autre, sont beaucoup plus rapides et très faciles à intégrer.',
     person: 'Fabienne Tual et Marie-Aline Douceau, gestionnaires de planification',
-    href: '/fr/cas-clients/iris-grim',
+    href: '/fr/cas-clients/iris-grim/',
   },
   {
     title: 'Centre d’Imagerie Médicale Les Cèdres',
@@ -64,7 +67,7 @@ const caseStudies = [
     quote:
       'Momentum s’adapte vraiment à notre organisation et c’est un vrai point fort de la solution.',
     person: 'Karine Delaunay, cadre administrative',
-    href: '/fr/cas-clients/imagerie-medicale-les-cedres',
+    href: '/fr/cas-clients/imagerie-medicale-les-cedres/',
   },
   {
     title: 'IMAGIR',
@@ -74,7 +77,7 @@ const caseStudies = [
     quote:
       'Le trio Momentum, Easydoct et Kelio est indéniable et apporte une réelle plus-value. L’interconnexion de ces outils permet facilement le gain d’un ETP voire deux.',
     person: 'Anthony Bagot, responsable opérationnel',
-    href: '/fr/cas-clients/imagir-bordeaux',
+    href: '/fr/cas-clients/imagir-bordeaux/',
   },
   {
     title: 'Hôpital Européen de Marseille',
@@ -84,7 +87,7 @@ const caseStudies = [
     quote:
       'L’expertise du chef de projet était très intéressante et poussée. Cela m’a permis d’atteindre jusqu’à 95 % d’automatisation de la planification des anesthésistes-réanimateurs et des IADEs !',
     person: 'Dr Jean-Marc Stordeur, anesthésiste-réanimateur',
-    href: '/fr/cas-clients/hopital-europeen-marseille',
+    href: '/fr/cas-clients/hopital-europeen-marseille/',
   },
 ];
 ---
@@ -93,7 +96,7 @@ const caseStudies = [
   <div class="container max-w-5xl">
     <div class="mb-8 md:mb-12">
       <p class="font-mono text-sm font-semibold tracking-widest text-muted-foreground">ÉTUDES DE CAS</p>
-      <h2 class="text-display-section mt-3">Retours d’expérience Momentum</h2>
+      <Heading class="text-display-section mt-3">Retours d’expérience Momentum</Heading>
       <p class="text-muted-foreground text-lead mt-4 max-w-3xl">
         Des services d’urgences aux groupes d’imagerie, ces équipes détaillent comment Momentum réduit la charge de planification, sécurise les remplacements en cas d’aléas et améliore la visibilité des plannings.
       </p>
@@ -120,7 +123,7 @@ const caseStudies = [
                 <span>·</span>
                 <span>{study.fact}</span>
               </div>
-              <h3 class="text-display-card">{study.title}</h3>
+              <CardHeading class="text-display-card">{study.title}</CardHeading>
               <p class="mt-4 text-foreground/80">“{study.quote}”</p>
               <p class="mt-4 text-sm font-semibold text-secondary">{study.person}</p>
               <span class="mt-auto pt-6 text-sm font-semibold text-cyan-600 transition-colors group-hover:text-secondary">

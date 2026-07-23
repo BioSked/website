@@ -68,7 +68,7 @@ export const FR_CASE_STUDIES: FrCaseStudy[] = [
                 role: 'chef du service des Urgences, hôpital de Braine-l’Alleud (CHIREC)',
             },
         ],
-        relatedSectorHref: '/fr/secteurs-soins/urgences',
+        relatedSectorHref: '/fr/secteurs-soins/urgences/',
         relatedSectorLabel: 'Momentum pour les urgences',
     },
     {
@@ -115,7 +115,7 @@ export const FR_CASE_STUDIES: FrCaseStudy[] = [
                 role: 'praticien hospitalier, CHU d’Angers',
             },
         ],
-        relatedSectorHref: '/fr/secteurs-soins/urgences',
+        relatedSectorHref: '/fr/secteurs-soins/urgences/',
         relatedSectorLabel: 'Momentum pour les urgences',
     },
     {
@@ -167,7 +167,7 @@ export const FR_CASE_STUDIES: FrCaseStudy[] = [
                 role: 'directeur financier, IMALLIANCE-HDF',
             },
         ],
-        relatedSectorHref: '/fr/secteurs-soins/radiologie',
+        relatedSectorHref: '/fr/secteurs-soins/radiologie/',
         relatedSectorLabel: 'Momentum pour la radiologie',
     },
     {
@@ -219,7 +219,7 @@ export const FR_CASE_STUDIES: FrCaseStudy[] = [
                 role: 'gestionnaires de planification, IRIS GRIM',
             },
         ],
-        relatedSectorHref: '/fr/secteurs-soins/radiologie',
+        relatedSectorHref: '/fr/secteurs-soins/radiologie/',
         relatedSectorLabel: 'Momentum pour la radiologie',
     },
     {
@@ -266,7 +266,7 @@ export const FR_CASE_STUDIES: FrCaseStudy[] = [
                 role: 'radiologue associé, Centre d’Imagerie Médicale Les Cèdres',
             },
         ],
-        relatedSectorHref: '/fr/secteurs-soins/radiologie',
+        relatedSectorHref: '/fr/secteurs-soins/radiologie/',
         relatedSectorLabel: 'Momentum pour la radiologie',
     },
     {
@@ -316,7 +316,7 @@ export const FR_CASE_STUDIES: FrCaseStudy[] = [
                 role: 'responsable opérationnel, IMAGIR',
             },
         ],
-        relatedSectorHref: '/fr/secteurs-soins/radiologie',
+        relatedSectorHref: '/fr/secteurs-soins/radiologie/',
         relatedSectorLabel: 'Momentum pour la radiologie',
     },
     {
@@ -368,7 +368,7 @@ export const FR_CASE_STUDIES: FrCaseStudy[] = [
                 role: 'anesthésiste-réanimateur, en charge des plannings MAR et IADEs, Hôpital Européen de Marseille',
             },
         ],
-        relatedSectorHref: '/fr/secteurs-soins/anesthesie',
+        relatedSectorHref: '/fr/secteurs-soins/anesthesie/',
         relatedSectorLabel: 'Momentum pour l’anesthésie',
     },
 ];

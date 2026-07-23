@@ -2,8 +2,8 @@
 layout: "@layouts/ArticleLayout.astro"
 date: 2023-09-21
 author: BioSked
-title: "The Prescription for Efficient Healthcare"
-description: Why Hospitals Should Embrace Employee Scheduling Software?
+title: "Healthcare Staff Scheduling: A Game Changer"
+description: "See how automated healthcare staff scheduling reduces manual work, improves coverage visibility, and helps teams build fairer schedules."
 image: "../../../assets/images/healthcare-planning.webp"
 
 ---
@@ -57,4 +57,4 @@ Moreover, the intangible benefits, such as improved staff morale and patient sat
 ## Conclusion: The future of staff scheduling software in healthcare looks bright with Momentum Scheduling 
 As healthcare organizations continue to face staffing challenges, implementing staff scheduling software like Momentum can be a game changer. It not only simplifies the scheduling process but also empowers healthcare providers to deliver better care by ensuring the right staff members are in place when needed. Don’t just select any tool – be sure to look for a software that is tried and true. Momentum’s advanced features streamline operations, reduce costs, and enhance overall operational efficiency. 
 
-We’d love to show you how YOUR future can be brighter. Request a demonstration with us today! **[Here](/getquote)**
+We’d love to show you how YOUR future can be brighter. Request a demonstration with us today! **[Here](/getquote/)**

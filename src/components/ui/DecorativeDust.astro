@@ -1,0 +1,34 @@
+---
+import cyanDust from '@/assets/layout/cyan-dust_background.webp';
+
+interface Props {
+  class?: string;
+  style?: string;
+}
+
+const { class: className = '', style } = Astro.props;
+---
+
+<div
+  class={className}
+  style={style}
+  data-decorative-dust-src={cyanDust.src}
+  aria-hidden="true"
+></div>
+
+<script>
+  const decorativeDustMedia = window.matchMedia('(min-width: 768px)');
+
+  const syncDecorativeDust = () => {
+    document.querySelectorAll<HTMLElement>('[data-decorative-dust-src]').forEach((element) => {
+      if (decorativeDustMedia.matches) {
+        element.style.backgroundImage = `url("${element.dataset.decorativeDustSrc}")`;
+      } else {
+        element.style.removeProperty('background-image');
+      }
+    });
+  };
+
+  syncDecorativeDust();
+  decorativeDustMedia.addEventListener('change', syncDecorativeDust);
+</script>

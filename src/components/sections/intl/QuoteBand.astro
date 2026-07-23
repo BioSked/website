@@ -1,6 +1,7 @@
 ---
 import Card from '@/components/ui/Card.astro';
 import { Quote } from 'lucide-astro';
+import { canonicalInternalHref } from '@/lib/urls';
 
 /**
  * Homepage proof band for the de/nl/it markets: one translated customer quote
@@ -15,6 +16,7 @@ interface Props {
     moreLabel?: string;
 }
 const { text, author, role, stats, moreHref, moreLabel } = Astro.props;
+const canonicalMoreHref = moreHref ? canonicalInternalHref(moreHref) : undefined;
 ---
 
 <section class="section-padding pt-0">
@@ -30,8 +32,8 @@ const { text, author, role, stats, moreHref, moreLabel } = Astro.props;
                         <span class="font-semibold text-foreground">{author}</span>
                         <span class="text-muted-foreground"> — {role}</span>
                     </figcaption>
-                    {moreHref && moreLabel && (
-                        <a href={moreHref} class="mt-4 inline-block text-sm font-semibold text-cyan-600 transition-colors hover:text-secondary">{moreLabel}</a>
+                    {canonicalMoreHref && moreLabel && (
+                        <a href={canonicalMoreHref} class="mt-4 inline-block text-sm font-semibold text-cyan-600 transition-colors hover:text-secondary">{moreLabel}</a>
                     )}
                 </figure>
                 <div class="md:col-span-2 grid grid-cols-3 md:grid-cols-1 gap-6 md:border-l md:border-secondary/10 md:pl-10">

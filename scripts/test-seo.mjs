@@ -123,9 +123,12 @@ function collectStructuredAssets(value, key = '') {
 
 await access(distDir);
 const htmlFiles = (await walk(distDir)).filter((file) => file.endsWith('.html'));
+const sitemapText = await readFile(path.join(distDir, 'sitemap-0.xml'), 'utf8');
+const sitemapUrls = new Set([...sitemapText.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]));
 let checkedPages = 0;
 let checkedImages = 0;
 let checkedStructuredAssets = 0;
+const sitemapTitles = new Map();
 
 for (const file of htmlFiles) {
   const html = await readFile(file, 'utf8');
@@ -134,8 +137,31 @@ for (const file of htmlFiles) {
   if (isRedirect) continue;
 
   checkedPages += 1;
-  assert.ok(titleText(html), `${relativePath} is missing a title`);
-  assert.ok(metaContent(html, 'name', 'description'), `${relativePath} is missing a meta description`);
+  const pageTitle = titleText(html);
+  assert.ok(pageTitle, `${relativePath} is missing a title`);
+  const description = metaContent(html, 'name', 'description');
+  assert.ok(description, `${relativePath} is missing a meta description`);
+  const robots = metaContent(html, 'name', 'robots') ?? '';
+  const isIndexable = !/(^|\s|,)noindex(,|\s|$)/.test(robots);
+  const routePath = relativePath === 'index.html' ? '/' : `/${relativePath.replace(/index\.html$/, '')}`;
+  const isInSitemap = sitemapUrls.has(`${siteOrigin}${routePath}`);
+  if (isInSitemap && !routePath.startsWith('/fr-ch/')) {
+    sitemapTitles.set(pageTitle, [...(sitemapTitles.get(pageTitle) ?? []), routePath]);
+  }
+  if (isIndexable && isInSitemap) {
+    assert.ok(description.length >= 70, `${relativePath} meta description must be at least 70 characters; found ${description.length}`);
+    for (const match of html.matchAll(/<a\b[^>]*>/gsi)) {
+      const href = attributes(match[0]).href;
+      if (!href?.startsWith('/') || href.startsWith('//')) continue;
+      const pathname = new URL(href, siteOrigin).pathname;
+      if (pathname === '/' || path.posix.extname(pathname)) continue;
+      assert.ok(pathname.endsWith('/'), `${relativePath} links to a non-canonical directory URL: ${href}`);
+    }
+  }
+  const h1Count = [...html.matchAll(/<h1\b[^>]*>/gsi)].length;
+  if (isIndexable) {
+    assert.equal(h1Count, 1, `${relativePath} must contain exactly one h1; found ${h1Count}`);
+  }
   const canonicalUrl = linkHref(html, 'canonical');
   assert.ok(canonicalUrl, `${relativePath} is missing a canonical URL`);
 
@@ -192,6 +218,10 @@ for (const file of htmlFiles) {
   await assertLocalUrlExists(twitterImage, `${relativePath} twitter:image`);
 }
 
+for (const [pageTitle, routes] of sitemapTitles) {
+  assert.equal(routes.length, 1, `sitemap pages must have unique titles; "${pageTitle}" is used by ${routes.join(', ')}`);
+}
+
 const homepageRoutes = ['', 'fr', 'fr-ch', 'de', 'nl', 'it'];
 for (const route of homepageRoutes) {
   const label = route || 'en';
@@ -202,6 +232,51 @@ for (const route of homepageRoutes) {
   assert.ok(pageDescription.length >= 120 && pageDescription.length <= 160, `${label} home description must be 120-160 characters; found ${pageDescription.length}`);
   assert.equal(linkHref(html, 'canonical'), `${siteOrigin}/${route ? `${route}/` : ''}`, `${label} home canonical URL is incorrect`);
 }
+
+const englishHomepage = await readFile(path.join(distDir, 'index.html'), 'utf8');
+const phoneImageTag = [...englishHomepage.matchAll(/<img\b[^>]*>/gsi)]
+  .map((match) => attributes(match[0]))
+  .find((attrs) => attrs.alt === 'MM Mobile');
+assert.ok(phoneImageTag?.srcset, 'home mobile-app preview must use a responsive srcset');
+assert.ok(phoneImageTag?.sizes, 'home mobile-app preview must declare responsive sizes');
+assert.equal(phoneImageTag?.loading, 'lazy', 'hidden home mobile-app preview must not load eagerly on small screens');
+assert.equal(phoneImageTag?.fetchpriority, 'low', 'hidden home mobile-app preview must have low fetch priority');
+const frenchHomepage = await readFile(path.join(distDir, 'fr/index.html'), 'utf8');
+const frenchPhoneImageTag = [...frenchHomepage.matchAll(/<img\b[^>]*>/gsi)]
+  .map((match) => attributes(match[0]))
+  .find((attrs) => (attrs.alt ?? '').startsWith('Application mobile Momentum'));
+assert.equal(frenchPhoneImageTag?.loading, 'lazy', 'hidden French mobile-app preview must not load eagerly on small screens');
+assert.equal(frenchPhoneImageTag?.fetchpriority, 'low', 'hidden French mobile-app preview must have low fetch priority');
+const heroScreenshotTag = [...englishHomepage.matchAll(/<img\b[^>]*>/gsi)]
+  .map((match) => attributes(match[0]))
+  .find((attrs) => attrs.id === 'hero-image');
+assert.match(heroScreenshotTag?.sizes ?? '', /calc\(100vw - 3rem\)/, 'home hero screenshot sizes must reflect mobile container padding');
+assert.match(heroScreenshotTag?.srcset ?? '', /\s1280w(?:,|$)/, 'home hero screenshot must include a 1280px candidate');
+const decorativeDustTags = [...englishHomepage.matchAll(/<div\b[^>]*data-decorative-dust-src[^>]*>/gsi)]
+  .map((match) => attributes(match[0]));
+assert.ok(decorativeDustTags.length >= 4, 'home page must retain its desktop decorative dust layers');
+for (const dustTag of decorativeDustTags) {
+  assert.match(dustTag['data-decorative-dust-src'] ?? '', /cyan-dust_background/, 'decorative dust must retain its desktop image');
+  assert.ok(!(dustTag.style ?? '').includes('background-image'), 'decorative dust must not expose a preloadable inline background');
+}
+const heroDustTag = decorativeDustTags.find((attrs) => (attrs.class ?? '').includes('top-1/4') && (attrs.class ?? '').includes('right-0'));
+assert.ok(heroDustTag, 'home hero must retain its decorative dust layer');
+assert.match(heroDustTag.class ?? '', /(?:^|\s)hidden(?:\s|$)/, 'decorative hero dust must not render on small screens');
+assert.match(heroDustTag.class ?? '', /(?:^|\s)md:block(?:\s|$)/, 'decorative hero dust must remain visible on larger screens');
+const decorativeDustComponent = await readFile(path.join(projectRoot, 'src/components/ui/DecorativeDust.astro'), 'utf8');
+assert.ok(
+  decorativeDustComponent.includes("matchMedia('(min-width: 768px)')"),
+  'decorative dust must be loaded only after the desktop media query matches',
+);
+const languageButton = [...englishHomepage.matchAll(/<button\b[^>]*>([\s\S]*?)<\/button>/gsi)]
+  .map((match) => ({ attrs: attributes(match[0]), text: match[1].replace(/<[^>]+>/g, '').trim() }))
+  .find((button) => (button.attrs['aria-label'] ?? '').startsWith('Change language'));
+assert.ok(languageButton, 'home navbar must render the language selector');
+assert.match(
+  (languageButton.attrs['aria-label'] ?? '').toUpperCase(),
+  new RegExp(`\\b${languageButton.text.toUpperCase()}\\b`),
+  'language selector accessible name must include its visible language code',
+);
 
 for (const [route, helpLabel, supportLocale] of [
   ['', 'Help', 'en'],
@@ -252,7 +327,6 @@ assert.match(
   'robots.txt must explicitly allow OpenAI search indexing',
 );
 
-const sitemapText = await readFile(path.join(distDir, 'sitemap-0.xml'), 'utf8');
 assert.doesNotMatch(
   sitemapText,
   /https:\/\/biosked\.com\/(?:fr-ch-ch|fr-fr|de-de|nl-nl|it-it)\//,

@@ -1,6 +1,6 @@
 ---
 import { FAQAccordion } from './FAQAccordion.tsx';
-import cyanDust from '@/assets/layout/cyan-dust_background.webp';
+import DecorativeDust from '@/components/ui/DecorativeDust.astro';
 
 const faqData = [
   {
@@ -44,7 +44,7 @@ const faqData = [
 ---
 
 <section class="section-padding relative">
-  <div class="absolute top-1/4 right-0 size-[800px] bg-no-repeat dust-fade" style={'background-image: url("'+cyanDust.src+'");'}></div>
+  <DecorativeDust class="absolute top-1/4 right-0 size-[800px] bg-no-repeat dust-fade" />
   <div class="container relative">
     <h2 class="text-display-section text-center mb-12">
       Frequently asked questions

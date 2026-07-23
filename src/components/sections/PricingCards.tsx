@@ -38,16 +38,18 @@ const DEFAULT_LABELS: PricingLabels = {
   recommended: 'Recommended',
   request: 'Request {plan} plan',
   letsTalk: "Let's talk",
-  quoteHref: '/getquote',
+  quoteHref: '/getquote/',
 };
 
 interface PricingCardsProps {
   plans: PricingPlan[];
   labels?: Partial<PricingLabels>;
+  headingLevel?: 'h2' | 'h3';
 }
 
-export function PricingCards({ plans, labels }: PricingCardsProps) {
+export function PricingCards({ plans, labels, headingLevel = 'h3' }: PricingCardsProps) {
   const t: PricingLabels = { ...DEFAULT_LABELS, ...(labels ?? {}) };
+  const Heading = headingLevel;
   const planLogos: Record<string, any> = {
     'starter': starterPlanLogo,
     'plus': plusPlanLogo,
@@ -104,7 +106,7 @@ export function PricingCards({ plans, labels }: PricingCardsProps) {
                         className="h-7 w-auto text-cyan-500 text-green-500 text-orange-500"
                       />
                     )}
-                    <h3 className="text-plan-title tracking-tight">{plan.title}</h3>
+                    <Heading className="text-plan-title tracking-tight">{plan.title}</Heading>
                     {plan.popular && <div className="rounded-xl bg-blue-100 text-blue-700 px-3 text-sm py-1 ml-auto">{t.recommended}</div>}
                   </div>
 
@@ -167,7 +169,7 @@ export function PricingCards({ plans, labels }: PricingCardsProps) {
                     alt="Starter"
                     className="h-5 w-auto inline-block"
                   />
-                  <h3 className="text-2xl sm:text-3xl font-bold text-white mt-2 mb-1">{enterprisePlan.title}</h3>
+                  <Heading className="text-2xl sm:text-3xl font-bold text-white mt-2 mb-1">{enterprisePlan.title}</Heading>
                   <div className="font-normal text-white/50">{enterprisePlan.description}</div>
                   <Button className="mt-5 px-6 h-10 text-md shadow-lg bg-white/70 hover:bg-white hover:shadow-xl shadow-blue-200/20 bg-white text-card-foreground font-bold" asChild>
                     <a href={t.quoteHref}>

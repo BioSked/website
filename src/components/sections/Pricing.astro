@@ -1,6 +1,6 @@
 ---
 import { PricingCards } from './PricingCards.tsx';
-import cyanDust from '@/assets/layout/cyan-dust_background.webp';
+import DecorativeDust from '@/components/ui/DecorativeDust.astro';
 
 const pricingPlans = [
   {
@@ -84,7 +84,7 @@ const pricingPlans = [
 ---
 
 <section class="section-padding relative overflow-hidden">
-  <div class="absolute top-0 left-0 size-[800px] bg-no-repeat pointer-events-none dust-fade" style={'background-image: url("'+cyanDust.src+'"); background-position-y: 0%; transform:scaleX(-1);'}></div>
+  <DecorativeDust class="absolute top-0 left-0 size-[800px] bg-no-repeat pointer-events-none dust-fade" style="background-position-y: 0%; transform: scaleX(-1);" />
   <div
     class="text-orange-400 text-blue-500 from-background/30 to-background/30 pointer-events-none absolute inset-0 z-1 bg-linear-to-b"
   >
@@ -93,9 +93,9 @@ const pricingPlans = [
 
   <div class="container relative z-10">
     <div class="text-center">
-      <h2 class="text-display-section font-bold tracking-tight">
+      <h1 class="text-display-section font-bold tracking-tight">
         Different teams need different plans
-      </h2>
+      </h1>
       <p class="text-muted-foreground mx-auto mt-3 max-w-2xl text-md lg:text-lg">
         From quick-scheduling to full automation, your teams have different needs. Choose a single plan for all your staff or distribute according to the need of each team. It all stays under one flexible account.
       </p>
@@ -104,6 +104,6 @@ const pricingPlans = [
         <p class="text-muted-foreground text-sm">/ user / month</p>
       </div>
     </div>
-    <PricingCards client:load plans={pricingPlans} />
+    <PricingCards client:load plans={pricingPlans} headingLevel="h2" />
   </div>
 </section>

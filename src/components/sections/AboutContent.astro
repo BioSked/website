@@ -1,8 +1,8 @@
 ---
 import Card from '@/components/ui/Card.astro';
+import DecorativeDust from '@/components/ui/DecorativeDust.astro';
 import Linkedin from '@/assets/logos/linkedin.svg';
 import AIInno from "@/components/sections/AIInnovation.astro";
-import cyanDust from '@/assets/layout/cyan-dust_background.webp';
 import { Image } from 'astro:assets';
 import davidProfile from '@/assets/profile-photos/david_profile.png';
 import danProfile from '@/assets/profile-photos/dan_profile.png';
@@ -87,7 +87,7 @@ He has contributed to the success of companies like Nestlé Nespresso, SITA, and
 ---
 
 <section class="section-padding relative">
-  <div class="absolute top-1/4 left-0 size-[800px] bg-no-repeat dust-fade" style={'transform: scaleX(-1); background-image: url("'+cyanDust.src+'");'}></div>
+  <DecorativeDust class="absolute top-1/4 left-0 size-[800px] bg-no-repeat dust-fade" style="transform: scaleX(-1);" />
   <div class="container relative max-w-5xl">
     <div>
       <h1 class="text-display-hero">

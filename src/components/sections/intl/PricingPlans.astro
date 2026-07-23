@@ -1,6 +1,6 @@
 ---
 import { PricingCards } from '@/components/sections/PricingCards.tsx';
-import cyanDust from '@/assets/layout/cyan-dust_background.webp';
+import DecorativeDust from '@/components/ui/DecorativeDust.astro';
 import type { PricingPlansContent } from '@/i18n/pricingPlans';
 
 /** Localized version of the English pricing-tiers section (same cards, same layout). */
@@ -11,7 +11,7 @@ const { content } = Astro.props;
 ---
 
 <section class="section-padding relative overflow-hidden">
-    <div class="absolute top-0 left-0 size-[800px] bg-no-repeat pointer-events-none dust-fade" style={'background-image: url("' + cyanDust.src + '"); background-position-y: 0%; transform:scaleX(-1);'}></div>
+    <DecorativeDust class="absolute top-0 left-0 size-[800px] bg-no-repeat pointer-events-none dust-fade" style="background-position-y: 0%; transform: scaleX(-1);" />
     <div class="text-orange-400 text-blue-500 from-background/30 to-background/30 pointer-events-none absolute inset-0 z-1 bg-linear-to-b"></div>
 
     <div class="container relative z-10">

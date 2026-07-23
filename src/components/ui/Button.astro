@@ -1,5 +1,6 @@
 ---
 import { cn } from "@/lib/utils";
+import { canonicalInternalHref } from "@/lib/urls";
 import { cva } from "class-variance-authority";
 
 const {
@@ -45,8 +46,9 @@ const buttonVariants = cva(
 
 const classes = cn(buttonVariants({ variant, size }), className);
 const Element = href ? 'a' : 'button';
+const canonicalHref = typeof href === 'string' ? canonicalInternalHref(href) : href;
 ---
 
-<Element class={classes} href={href} {...props}>
+<Element class={classes} href={canonicalHref} {...props}>
   <slot />
 </Element>
