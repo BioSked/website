@@ -66,6 +66,10 @@ function titleText(html) {
   return html.match(/<title>([\s\S]*?)<\/title>/i)?.[1]?.trim();
 }
 
+function navbarIsland(html) {
+  return html.match(/<astro-island\b[^>]*component-export=["']NavbarActions["'][^>]*>/i)?.[0];
+}
+
 function localOutputPath(urlString) {
   const url = new URL(urlString, siteOrigin);
   if (url.origin !== siteOrigin) return null;
@@ -197,6 +201,29 @@ for (const route of homepageRoutes) {
   assert.ok(pageTitle.length >= 30 && pageTitle.length <= 60, `${label} home title must be 30-60 characters; found ${pageTitle.length}`);
   assert.ok(pageDescription.length >= 120 && pageDescription.length <= 160, `${label} home description must be 120-160 characters; found ${pageDescription.length}`);
   assert.equal(linkHref(html, 'canonical'), `${siteOrigin}/${route ? `${route}/` : ''}`, `${label} home canonical URL is incorrect`);
+}
+
+for (const [route, helpLabel, supportLocale] of [
+  ['', 'Help', 'en'],
+  ['fr', 'Aide', 'fr'],
+  ['fr-ch', 'Aide', 'fr'],
+  ['de', 'Hilfe', 'en'],
+  ['nl', 'Hulp', 'en'],
+  ['it', 'Aiuto', 'en'],
+]) {
+  const locale = route || 'en';
+  const html = await readFile(path.join(distDir, route, 'index.html'), 'utf8');
+  const navbar = navbarIsland(html);
+  const helpUrl = `https://kb.biosked.com/${supportLocale}/knowledge/kb-tickets/new`;
+  assert.ok(navbar, `${locale} home must render the interactive navbar`);
+  assert.ok(
+    navbar.includes(`&quot;label&quot;:[0,&quot;${helpLabel}&quot;]`),
+    `${locale} Resources menu must contain the localized Help label`,
+  );
+  assert.ok(
+    navbar.includes(`&quot;href&quot;:[0,&quot;${helpUrl}&quot;],&quot;showDesktop&quot;:[0,true],&quot;showMobile&quot;:[0,true]`),
+    `${locale} Resources menu must expose ${helpUrl} on desktop and mobile`,
+  );
 }
 
 const llmsPath = path.join(distDir, 'llms.txt');

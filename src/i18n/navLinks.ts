@@ -71,6 +71,7 @@ const FR_NAV_LINKS: NavLink[] = [
             { label: 'nav.whitepapers', alt: 'nav.whitepapers-subtitle', href: '/fr/ressources/', showDesktop: true, showMobile: true },
             { label: 'nav.about', alt: 'nav.about-subtitle', href: '/fr/about/', showDesktop: true, showMobile: true },
             { label: 'nav.careers', alt: 'nav.careers-subtitle', href: '/fr/careers/', showDesktop: true, showMobile: true },
+            { label: 'nav.help', alt: 'nav.help-subtitle', href: 'https://kb.biosked.com/fr/knowledge/kb-tickets/new', showDesktop: true, showMobile: true },
         ],
     },
 ];
