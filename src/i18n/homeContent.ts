@@ -1,7 +1,6 @@
 /**
  * Homepage copy for the de/nl/it market pages.
- * Terminology follows the official Momentum app-store copy (EN/FR/DE/NL/IT),
- * which is the approved vocabulary per language (see migration/materials/).
+ * Terminology follows the approved Momentum app-store copy for each language.
  * The published proof points (250+ organizations, 1,000+ sites, 50,000+
  * users, 9 countries) mirror the English reference homepage.
  */

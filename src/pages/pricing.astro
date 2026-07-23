@@ -7,7 +7,7 @@ import FAQ from "@/components/sections/FAQ.astro";
 import CTA from "@/components/sections/CTA.astro";
 import { GetStartedModal } from "@/components/sections/GetStartedModal";
 
-const hubspot = '';
+
 const pricingStructuredData = {
   "@context": "https://schema.org",
   "@type": "Product",
@@ -85,7 +85,7 @@ const pricingStructuredData = {
   title="Pricing | Momentum Healthcare Scheduling Plans | BioSked" 
   description="Transparent pricing for Momentum healthcare scheduling software that scales from small practices to large hospital groups. Compare plans for radiology, emergency medicine, and multi-specialty clinics. Free trial available. No credit card required."
 >
-  <script type="application/ld+json" set:html={JSON.stringify(pricingStructuredData)} />
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(pricingStructuredData)} />
   
   <PricingSection />
   <FAQ />

@@ -1,9 +1,6 @@
 ---
 import Logo from '@/components/elements/Logo.astro';
 import { Image } from 'astro:assets';
-import { siteConfig } from '@/consts';
-import appStoreLogo from '@/assets/download-buttons/app-store.svg';
-import googlePlayLogo from '@/assets/download-buttons/google-play.svg';
 import linkedInLogo from '@/assets/logos/linkedin.svg';
 import cyanDust from '@/assets/layout/cyan-dust_background.webp';
 
@@ -25,14 +22,6 @@ const FOOTER_SECTIONS = footer.sections.map((section) => ({
     ...section,
     links: section.links.map((link) => ({ ...link, isModal: false })),
 }));
-
-const SOCIAL_LINKS = [
-    {
-        name: 'Follow on LinkedIn',
-        href: 'https://www.linkedin.com/company/biosked/',
-    },
-
-];
 
 const hideFooter = [
     '/signin',
@@ -100,6 +89,5 @@ const currentYear = new Date().getFullYear();
                             ))}
                         </div>
                     </div>
-                </div>
             </footer>
             )}

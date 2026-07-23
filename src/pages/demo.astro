@@ -17,14 +17,26 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
         <div id="hubspot-demo" class="mt-5"></div>
       </div>
       <script>
-        window.bskHsForm({
+        const analyticsWindow = window as unknown as Window & {
+          bskHsForm: (options: {
+            formInstanceId: string;
+            portalId: string;
+            formId: string;
+            region: string;
+            target: string;
+            onFormSubmitted: () => void;
+          }) => void;
+          bskTrackLead?: (formId: string) => void;
+        };
+
+        analyticsWindow.bskHsForm({
           formInstanceId: "1",
           portalId: "25195055",
           formId: "e937d75c-2dbc-4b77-8e53-1582aa472092",
           region: "eu1",
           target: "#hubspot-demo",
           onFormSubmitted: function () {
-            if (typeof window.bskTrackLead === 'function') window.bskTrackLead("e937d75c-2dbc-4b77-8e53-1582aa472092");
+            analyticsWindow.bskTrackLead?.("e937d75c-2dbc-4b77-8e53-1582aa472092");
           }
         });
       </script>

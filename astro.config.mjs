@@ -1,11 +1,11 @@
 import { defineConfig } from 'astro/config';
 import { readdirSync } from 'node:fs';
 
-import mdx from '@astrojs/mdx';
 import react from '@astrojs/react';
+import { unified } from '@astrojs/markdown-remark';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
-import rehypeAddClasses from 'rehype-add-classes';
+import rehypeAddClasses from './src/lib/rehypeAddClasses.mjs';
 import rehypeUnwrapImages from 'rehype-unwrap-images';
 
 // Legacy biosked.fr blog URLs lived at /blog/<fr-slug>. The posts now live at
@@ -46,8 +46,8 @@ export default defineConfig({
     site: 'https://biosked.com',
     output: 'static',
 
-    experimental: {
-        svgo: true,
+    image: {
+        dangerouslyProcessSVG: true,
     },
 
     prefetch: {
@@ -74,12 +74,14 @@ export default defineConfig({
     },
 
     integrations: [
-        mdx(),
         react(),
         sitemap({
             filter: (page) => {
                 if (page === 'https://biosked.com/privacy/') return false;
-                if (page.includes('/changelog/') || page.includes('/internal-testing/')) return false;
+                if (page.includes('/changelog/')) return false;
+                // Astro's fr-ch -> fr fallback can surface synthetic /fr-ch-ch/
+                // routes to the sitemap integration. They are not real pages.
+                if (page.includes('/fr-ch-ch/')) return false;
                 if (/\/demo\/(merci|danke|bedankt|grazie)\//.test(page)) return false;
                 // de/nl/it: only genuinely localized routes; EN-fallback rewrites stay out
                 const m = page.match(/^https:\/\/biosked\.com\/(de|nl|it|fr-ch)\/(.*)$/);
@@ -110,14 +112,6 @@ export default defineConfig({
         plugins: [tailwindcss()],
         build: {
             cssCodeSplit: true,
-            rollupOptions: {
-                output: {
-                    manualChunks: {
-                        'react-vendor': ['react', 'react-dom'],
-                        'form-vendor': ['react-hook-form', '@hookform/resolvers'],
-                    },
-                },
-            },
         },
         server: {
             watch: {
@@ -127,7 +121,7 @@ export default defineConfig({
     },
 
     // Legacy redirects, three families:
-    //  1. inherited biosked.com slugs (mirrors BioSked/website) -> EN pages
+    //  1. inherited biosked.com slugs -> EN pages
     //  2. legacy biosked.fr WordPress URLs -> /fr/ pages
     //  3. generated: old FR blog + landing-page paths -> /fr/ equivalents
     redirects: {
@@ -196,25 +190,27 @@ export default defineConfig({
     },
 
     markdown: {
-        rehypePlugins: [
-            rehypeUnwrapImages,
-            [rehypeAddClasses, {
-                h1: 'text-display-section font-bold text-center max-w-xl mx-auto mb-6',
-                h2: 'text-display-card font-bolder mt-8 sm:mt-12 mb-4 sm:mb-6',
-                h3: 'text-xl font-bold mt-6 sm:mt-8 mb-2 sm:mb-4',
-                h4: 'font-semibold mt-4 sm:mt-6',
-                p: 'mb-3 sm:mb-4 text-foreground/85 [&>img]:border-none [&>img]:shadow-none [&>img]:mb-0 [&>img]:bg-secondary/5',
-                img: 'mb-8 rounded sm:mb-12 border border-secondary/15 shadow-xl shadow-secondary/10',
-                strong: 'text-foreground font-semibold',
-                ul: "mb-6 list-none pl-5 text-foreground/85 [&>li]:before:content-['—'] [&>li]:before:-ml-6 [&>li]:before:mr-2",
-                ol: "mb-6 list-[upper-roman] pl-5 text-foreground/85 [&>li]:pl-2",
-                li: "my-2 pl-2 before:text-secondary/25 marker:text-accent",
-                hr: 'my-6 md:my-10',
-                a: 'text-accent hover:underline',
-                blockquote: 'py-4 [&>p]:bg-primary/10 [&>p]:rounded-r [&>p]:p-4 [&>p]:pl-6 [&>p]:border-l [&>p]:border-cyan-500 [&>p]:border-l-2',
-                pre: 'mb-3 sm:mb-4 text-foreground/85 !bg-secondary/10 !text-secondary rounded-sm p-3 text-sm',
-                code: 'text-sm bg-secondary/5 border border-secondary/10 text-secondary rounded-sm px-1.5 py-0.5 font-medium'
-            }]
-        ]
-    }
+        processor: unified({
+            rehypePlugins: [
+                rehypeUnwrapImages,
+                [rehypeAddClasses, {
+                    h1: 'text-display-section font-bold text-center max-w-xl mx-auto mb-6',
+                    h2: 'text-display-card font-bolder mt-8 sm:mt-12 mb-4 sm:mb-6',
+                    h3: 'text-xl font-bold mt-6 sm:mt-8 mb-2 sm:mb-4',
+                    h4: 'font-semibold mt-4 sm:mt-6',
+                    p: 'mb-3 sm:mb-4 text-foreground/85 [&>img]:border-none [&>img]:shadow-none [&>img]:mb-0 [&>img]:bg-secondary/5',
+                    img: 'mb-8 rounded sm:mb-12 border border-secondary/15 shadow-xl shadow-secondary/10',
+                    strong: 'text-foreground font-semibold',
+                    ul: "mb-6 list-none pl-5 text-foreground/85 [&>li]:before:content-['—'] [&>li]:before:-ml-6 [&>li]:before:mr-2",
+                    ol: "mb-6 list-[upper-roman] pl-5 text-foreground/85 [&>li]:pl-2",
+                    li: "my-2 pl-2 before:text-secondary/25 marker:text-accent",
+                    hr: 'my-6 md:my-10',
+                    a: 'text-accent hover:underline',
+                    blockquote: 'py-4 [&>p]:bg-primary/10 [&>p]:rounded-r [&>p]:p-4 [&>p]:pl-6 [&>p]:border-l [&>p]:border-cyan-500 [&>p]:border-l-2',
+                    pre: 'mb-3 sm:mb-4 text-foreground/85 !bg-secondary/10 !text-secondary rounded-sm p-3 text-sm',
+                    code: 'text-sm bg-secondary/5 border border-secondary/10 text-secondary rounded-sm px-1.5 py-0.5 font-medium',
+                }],
+            ],
+        }),
+    },
 });

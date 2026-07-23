@@ -185,7 +185,7 @@ export default function FullTimelineView() {
               ))}
             </TabsList>
             <div className="bg-card text-card-foreground border-input mt-8 rounded-xl border p-10 relative min-h-[450px] shadow-sm">
-              {features.map((feature, index) => (
+              {features.map((feature) => (
                 <TabsContent key={feature.id} value={feature.id} className="absolute inset-0 p-10">
                   <div className="grid lg:grid-cols-2 gap-10 items-start animate-in fade-in slide-in-from-bottom-4 duration-500 h-full">
                     <div className="flex flex-col gap-5">
