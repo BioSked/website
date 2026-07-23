@@ -100,7 +100,7 @@ export const NAV_LINKS = [
                 alt: 'nav.help-subtitle',
                 href: 'https://kb.biosked.com/en/knowledge/kb-tickets/new',
                 showDesktop: true,
-                showMobile: false,
+                showMobile: true,
             },
         ],
     },
