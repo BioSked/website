@@ -45,5 +45,5 @@ const languages = LOCALE_CODES.map((code) => ({
 ---
 
 {!hideNavbar && (
-    <NavbarActions client:idle pathname={pathname} pagename={Astro.url.pathname} navLinks={navLinks} demoCta={demoCta} homeHref={homeHref} languages={languages}/>
+    <NavbarActions client:idle pagename={Astro.url.pathname} navLinks={navLinks} demoCta={demoCta} homeHref={homeHref} languages={languages}/>
 )}

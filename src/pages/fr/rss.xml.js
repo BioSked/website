@@ -3,7 +3,9 @@ import { getCollection } from 'astro:content';
 const esc = (s) => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
 export async function GET(context) {
-    const posts = (await getCollection('frPosts')).sort((a, b) => b.data.date - a.data.date);
+    const posts = (await getCollection('frPosts')).sort(
+        (a, b) => b.data.date.valueOf() - a.data.date.valueOf() || a.id.localeCompare(b.id)
+    );
     const site = context.site ?? 'https://biosked.com';
     const items = posts.map((p) => `  <item>
     <title>${esc(p.data.title)}</title>

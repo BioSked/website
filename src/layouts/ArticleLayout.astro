@@ -43,7 +43,7 @@ const isFrench = locale === 'fr' || locale === 'fr-ch';
 ---
 
 <BaseLayout title={frontmatter.title} description={frontmatter.description} author={frontmatter.author}>
-	<script type="application/ld+json" set:html={articleSchema} />
+	<script is:inline type="application/ld+json" set:html={articleSchema} />
 	<div class="container max-w-5xl section-padding text-sm md:text-base mb-10 md:mb-20 group redacted">
 		<div class="text-muted-foreground text-sm font-medium text-center mb-4"><a href={blogHref} class="transition-all hover:text-foreground">Blog</a> <span class="mx-1 font-light">/</span> {BREADCRUMB_LABEL[locale] ?? 'News'}</div>
 		<h1 class="text-display-section font-bold text-center max-w-xl mx-auto mb-6">

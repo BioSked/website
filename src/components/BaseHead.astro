@@ -176,7 +176,7 @@ const analyticsPageLocation = pageType === 'not-found'
             var s = document.createElement('script');
             s.src = 'https://js-eu1.hsforms.net/forms/embed/v2.js';
             s.async = true;
-            s.charset = 'utf-8';
+            s.setAttribute('charset', 'utf-8');
             s.onload = function () {
                 if (!window.hbspt) return;
                 window.bskHsForm = function (c) { window.hbspt.forms.create(c); };

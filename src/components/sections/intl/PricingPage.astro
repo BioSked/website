@@ -38,7 +38,7 @@ const faqSchema = JSON.stringify({
 ---
 
 <BaseLayout title={p.metaTitle} description={p.metaDescription}>
-    <script type="application/ld+json" set:html={faqSchema} />
+    <script is:inline type="application/ld+json" set:html={faqSchema} />
     <section class="section-padding">
         <div class="container max-w-4xl">
             <p class="font-mono text-sm font-semibold uppercase tracking-widest text-muted-foreground">{p.kicker}</p>

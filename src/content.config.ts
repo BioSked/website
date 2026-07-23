@@ -1,5 +1,5 @@
 import { defineCollection } from "astro:content";
-import { glob, file } from 'astro/loaders';
+import { glob } from 'astro/loaders';
 import { z } from "astro/zod";
 
 const enPosts = defineCollection({
@@ -10,6 +10,7 @@ const enPosts = defineCollection({
         image: image(),
         author: z.string(),
         date: z.date(),
+        sortOrder: z.number().default(0),
     }),
 });
 
