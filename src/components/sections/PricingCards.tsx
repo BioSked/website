@@ -1,5 +1,4 @@
 import { Check } from 'lucide-react';
-import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
@@ -70,7 +69,7 @@ export function PricingCards({ plans, labels }: PricingCardsProps) {
     else {
       allFeatures.push({
         name: t.includes,
-        isIncluded: false
+        included: false,
       });
     }
     
@@ -95,8 +94,8 @@ export function PricingCards({ plans, labels }: PricingCardsProps) {
               key={plan.id}
               className={'h-full gap-6 p-4 shadow-none bg-transparent transition-all duration-100 rounded-none border-none mm-card relative '+(plan.popular ? 'bg-blue-600/6 shadow-lg shadow-secondary/15 hover:bg-blue-500/5':'hover:bg-white/25')}
             >
-              <div class="cornecross"></div>
-              <CardHeader className={'mt-0.5 rounded-md p-4 md:px-6 bg-white shadow-sm b order border-'+plan.color+'-600/20'}>
+              <div className="cornecross"></div>
+              <CardHeader className="mt-0.5 rounded-md p-4 md:px-6 bg-white shadow-sm">
                   <div className="flex items-center gap-2">
                     {planLogos[plan.id] && (
                       <img 
@@ -136,7 +135,7 @@ export function PricingCards({ plans, labels }: PricingCardsProps) {
               <CardContent className="grid gap-3 pb-4">
                 {features.map((feature, index) => (
                   <div key={index} className="flex items-start">
-                    <div class={'mt-0.5 text-'+plan.color+'-500'}>
+                    <div className="mt-0.5">
                       {feature.included && <Check className="size-4 stroke-current mr-3" />}
                     </div>
                     <span

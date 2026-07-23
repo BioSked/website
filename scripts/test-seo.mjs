@@ -222,6 +222,13 @@ assert.match(
   'robots.txt must explicitly allow OpenAI search indexing',
 );
 
+const sitemapText = await readFile(path.join(distDir, 'sitemap-0.xml'), 'utf8');
+assert.doesNotMatch(
+  sitemapText,
+  /https:\/\/biosked\.com\/(?:fr-ch-ch|fr-fr|de-de|nl-nl|it-it)\//,
+  'sitemap must not contain duplicated locale prefixes',
+);
+
 for (const route of Object.keys(config.redirects ?? {})) {
   const html = await readFile(path.join(distDir, ...route.split('/'), 'index.html'), 'utf8');
   assert.match(html, /location\.search/, `${route} redirect must preserve query parameters`);

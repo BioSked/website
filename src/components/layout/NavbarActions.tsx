@@ -3,6 +3,7 @@ import { cn } from '@/lib/utils';
 import { Globe, ChevronDown } from 'lucide-react';
 import bioSkedLogo from '@/assets/logos/biosked-logo.svg';
 import { Button } from '@/components/ui/button';
+import type { NavLink } from '@/i18n/navLinks';
 import {
     NavigationMenu,
     NavigationMenuContent,
@@ -22,7 +23,7 @@ interface LanguageOption {
 
 interface NavbarActionsProps {
     pagename: string;
-    navLinks: any[];
+    navLinks: NavLink[];
     demoCta?: { label: string; href: string };
     homeHref?: string;
     languages?: LanguageOption[];
