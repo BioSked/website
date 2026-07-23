@@ -47,6 +47,18 @@
         analyticsWindow.gtag('event', eventName, eventParameters);
     }
 
+    if (document.body.dataset.pageType === 'not-found') {
+        const trackPageNotFound = () => track('page_not_found', {
+            page_location: 'https://biosked.com/__404__',
+            page_referrer: '',
+        });
+        if (analyticsWindow.__bskGALoaded) {
+            trackPageNotFound();
+        } else {
+            window.addEventListener('bsk:analytics-ready', trackPageNotFound, { once: true });
+        }
+    }
+
     const dispatchLead = createDedupedEventDispatcher(
         (
             eventName: string,

@@ -2,6 +2,8 @@ import assert from 'node:assert/strict';
 import { access, readFile, readdir } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { runInNewContext } from 'node:vm';
+import config from '../astro.config.mjs';
 
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const distDir = path.join(projectRoot, 'dist');
@@ -37,6 +39,24 @@ function linkHref(html, rel) {
     .map((match) => attributes(match[0]))
     .find((attrs) => (attrs.rel ?? '').split(/\s+/).includes(rel));
   return tag?.href;
+}
+
+function executeRedirect(html, search, hash) {
+  const script = html.match(/<script>([\s\S]*?)<\/script>/)?.[1];
+  assert.ok(script, 'redirect page must contain an executable redirect script');
+  let redirectedTo = null;
+  runInNewContext(script, {
+    URLSearchParams,
+    Set,
+    location: {
+      search,
+      hash,
+      replace(value) {
+        redirectedTo = value;
+      },
+    },
+  });
+  return redirectedTo;
 }
 
 function titleText(html) {
@@ -200,6 +220,63 @@ assert.match(
   robotsText,
   /^User-agent: OAI-SearchBot\s*\nAllow: \/$/m,
   'robots.txt must explicitly allow OpenAI search indexing',
+);
+
+for (const route of Object.keys(config.redirects ?? {})) {
+  const html = await readFile(path.join(distDir, ...route.split('/'), 'index.html'), 'utf8');
+  assert.match(html, /location\.search/, `${route} redirect must preserve query parameters`);
+  assert.match(html, /location\.hash/, `${route} redirect must preserve fragments`);
+  assert.match(html, /new URLSearchParams\(location\.search\)/, `${route} redirect must filter attribution parameters`);
+  assert.match(html, /utm_source/, `${route} redirect must allow standard UTM attribution`);
+  assert.doesNotMatch(html, /target\s*\+\s*location\.search/, `${route} redirect must not forward raw query data`);
+  assert.doesNotMatch(html, /fixedHash\s*\|\|\s*location\.hash/, `${route} redirect must not forward arbitrary fragments`);
+  assert.match(html, /location\.replace/, `${route} redirect must replace browser history`);
+  assert.match(metaContent(html, 'name', 'robots') ?? '', /noindex/, `${route} redirect must be noindex`);
+  assert.equal(metaContent(html, 'name', 'referrer'), 'no-referrer', `${route} redirect must not leak the source URL as a referrer`);
+  assert.ok(linkHref(html, 'canonical'), `${route} redirect must declare its canonical destination`);
+}
+
+for (const [route, destination] of [
+  ['contact', '/demo/'],
+  ['demander-une-demonstration', '/fr/demo/'],
+]) {
+  const html = await readFile(path.join(distDir, route, 'index.html'), 'utf8');
+  assert.match(html, /location\.search/, `${route} redirect must preserve query parameters`);
+  assert.match(html, /location\.hash/, `${route} redirect must preserve fragments`);
+  assert.match(html, /location\.replace/, `${route} redirect must replace browser history`);
+  assert.match(html, new RegExp(`const target=${JSON.stringify(destination).replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}`));
+  assert.equal(linkHref(html, 'canonical'), `${siteOrigin}${destination}`, `${route} redirect canonical must match its destination`);
+}
+
+const supportRedirectHtml = await readFile(path.join(distDir, 'support', 'index.html'), 'utf8');
+assert.equal(
+  linkHref(supportRedirectHtml, 'canonical'),
+  'https://kb.biosked.com/fr/knowledge/kb-tickets/new',
+  'external support redirect must not add a redirect-chain trailing slash',
+);
+
+const contactRedirectHtml = await readFile(path.join(distDir, 'contact', 'index.html'), 'utf8');
+assert.equal(
+  executeRedirect(contactRedirectHtml, '?utm_source=qa&email=john%40example.com&token=secret', '#contact'),
+  '/demo/?utm_source=qa#contact',
+  'contact redirect must retain allowed attribution and drop PII-like query data',
+);
+assert.equal(
+  executeRedirect(contactRedirectHtml, '?email=john%40example.com', '#john%40example.com'),
+  '/demo/',
+  'contact redirect must drop non-attribution query data and unsafe fragments',
+);
+assert.equal(
+  executeRedirect(contactRedirectHtml, '', '#patient-Jane-Doe'),
+  '/demo/',
+  'contact redirect must drop arbitrary text fragments that could contain private data',
+);
+
+const fixedFragmentRedirectHtml = await readFile(path.join(distDir, 'la-societe-biosked', 'lequipe', 'index.html'), 'utf8');
+assert.equal(
+  executeRedirect(fixedFragmentRedirectHtml, '?utm_medium=organic', '#ignored'),
+  '/fr/about/?utm_medium=organic#equipe',
+  'configured destination fragment must override an incoming fragment',
 );
 
 console.log(`SEO checks passed: ${checkedPages} pages, ${checkedImages} images, ${checkedStructuredAssets} structured-data assets, llms.txt, and robots.txt.`);
