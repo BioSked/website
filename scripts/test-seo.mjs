@@ -42,8 +42,11 @@ function linkHref(html, rel) {
 }
 
 function executeRedirect(html, search, hash) {
-  const script = html.match(/<script>([\s\S]*?)<\/script>/)?.[1];
-  assert.ok(script, 'redirect page must contain an executable redirect script');
+  const openingTag = '<script>';
+  const start = html.indexOf(openingTag);
+  const end = html.indexOf('</script>', start + openingTag.length);
+  assert.ok(start >= 0 && end > start, 'redirect page must contain an executable redirect script');
+  const script = html.slice(start + openingTag.length, end);
   let redirectedTo = null;
   runInNewContext(script, {
     URLSearchParams,
