@@ -3,15 +3,11 @@ export const prerender = true;
 
 import BaseLayout from "@/layouts/BaseLayout.astro";
 
-import { currentLocale } from 'astro:i18n';
-import { useTranslations } from '@/i18n/i18n';
-import { ArrowRight } from 'lucide-react';
-import { Image } from 'astro:assets';
 import { getCollection, render } from 'astro:content';
 
 // Sort by date - newest first
 const allPosts = (await getCollection('enChangelogs'))
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf() || a.id.localeCompare(b.id));
 
 const posts = await Promise.all(
   allPosts.map(async (post) => {
@@ -20,23 +16,22 @@ const posts = await Promise.all(
   })
 );
 
-const dateOptions = {
+const dateOptions: Intl.DateTimeFormatOptions = {
     year: 'numeric',
     month: 'long',
     day: 'numeric'
 };
 
-const t = useTranslations(Astro.currentLocale);
 ---
 
 <BaseLayout
     title="Momentum Changelog | BioSked | Healthcare Scheduling Innovation"
     description="Momentum updates and improvements"
-    noIndex="true"
+    noIndex={true}
 >
     <div class="container section-padding max-w-5xl">
         <h1 class="text-display-hero mb-12 md:mb-25">Changelog</h1>
-        {posts.map((post, index) => 
+        {posts.map((post) =>
             <div class="md:flex pb-15 md:pb-40 md:not-last:border-l md:not-last:border-gray-300/90 ml-2">
                 <div class="flex-2 relative">
                     <a href={`/changelog/${post.id}`} class="sticky top-26">
@@ -57,6 +52,5 @@ const t = useTranslations(Astro.currentLocale);
             </div>
             <hr class="sm:hidden last:hidden pb-15">
         )}
-        </div>
     </div>
 </BaseLayout>

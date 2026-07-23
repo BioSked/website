@@ -3,17 +3,14 @@ export const prerender = true;
 
 import BaseLayout from "@/layouts/BaseLayout.astro";
 
-import { currentLocale } from 'astro:i18n';
-import { useTranslations } from '@/i18n/i18n';
-import { ArrowRight } from 'lucide-react';
 import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 
 // Sort by date - newest first
 const posts = (await getCollection('enPosts'))
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf() || b.data.sortOrder - a.data.sortOrder || a.id.localeCompare(b.id));
 
-const dateOptions = {
+const dateOptions: Intl.DateTimeFormatOptions = {
     year: 'numeric',
     month: 'long',
     day: 'numeric'
@@ -26,8 +23,7 @@ const dateOptions = {
 // );
 
 const lastPost = posts[0];
-
-const t = useTranslations(Astro.currentLocale);
+if (!lastPost) throw new Error('The English blog collection is empty.');
 ---
 
 <BaseLayout

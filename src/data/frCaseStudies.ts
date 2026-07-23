@@ -1,8 +1,6 @@
 /**
  * Full French case-study pages, served at /fr/cas-clients/<slug>.
- * Content is drawn ONLY from the published case-study PDFs archived in
- * migration/materials/case-studies/ (plain-text extractions provided to the
- * content agents). Quotes verbatim; numbers only as published.
+ * Content, quotes and figures are based on BioSked's published case studies.
  */
 export interface FrCaseStudy {
     slug: string;

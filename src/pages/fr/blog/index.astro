@@ -8,15 +8,16 @@ import { getCollection } from 'astro:content';
 
 // Sort by date - newest first
 const posts = (await getCollection('frPosts'))
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf() || a.id.localeCompare(b.id));
 
-const dateOptions = {
+const dateOptions: Intl.DateTimeFormatOptions = {
     year: 'numeric',
     month: 'long',
     day: 'numeric'
 };
 
 const lastPost = posts[0];
+if (!lastPost) throw new Error('The French blog collection is empty.');
 ---
 
 <BaseLayout
