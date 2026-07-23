@@ -269,9 +269,17 @@ assert.ok(
   'decorative dust must be loaded only after the desktop media query matches',
 );
 const languageButton = [...englishHomepage.matchAll(/<button\b[^>]*>([\s\S]*?)<\/button>/gsi)]
-  .map((match) => ({ attrs: attributes(match[0]), text: match[1].replace(/<[^>]+>/g, '').trim() }))
+  .map((match) => ({
+    attrs: attributes(match[0]),
+    text: match[1].match(/<span\b[^>]*class="[^"]*\buppercase\b[^"]*"[^>]*>([^<]+)<\/span>/i)?.[1].trim() ?? '',
+  }))
   .find((button) => (button.attrs['aria-label'] ?? '').startsWith('Change language'));
 assert.ok(languageButton, 'home navbar must render the language selector');
+assert.match(
+  languageButton.text,
+  /^[a-z]{2}(?:-[a-z]{2})?$/i,
+  'language selector must expose a visible language code before testing its accessible name',
+);
 assert.match(
   (languageButton.attrs['aria-label'] ?? '').toUpperCase(),
   new RegExp(`\\b${languageButton.text.toUpperCase()}\\b`),
