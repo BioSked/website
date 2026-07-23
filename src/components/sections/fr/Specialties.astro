@@ -22,7 +22,7 @@ const featured = [
     </div>
     <div class="grid gap-4 md:grid-cols-3">
       {featured.map((page) => (
-        <a href={`/fr/secteurs-soins/${page.slug}`} class="group border border-secondary/10 bg-white/25 p-5 transition-all hover:bg-white/60">
+        <a href={`/fr/secteurs-soins/${page.slug}/`} class="group border border-secondary/10 bg-white/25 p-5 transition-all hover:bg-white/60">
           <p class="text-sm font-semibold text-cyan-600">{page.eyebrow}</p>
           <h3 class="text-display-card mt-3">{page.title}</h3>
           <p class="mt-4 text-sm text-muted-foreground">{page.description}</p>

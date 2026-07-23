@@ -38,7 +38,7 @@ function LanguageSwitcher({ languages, className }: { languages: LanguageOption[
                 type="button"
                 onClick={() => setOpen(!open)}
                 onBlur={() => setTimeout(() => setOpen(false), 150)}
-                aria-label="Change language"
+                aria-label={`Change language, current language ${current?.code.toUpperCase() ?? 'unknown'}`}
                 className="flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer h-9 px-2"
             >
                 <Globe className="size-4" />

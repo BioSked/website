@@ -38,7 +38,7 @@ Impact on Revenue Cycle Management: In the context of revenue cycle management, 
 
 Investing in Employee Retention: Retaining existing talent is as crucial as recruitment. Offering competitive benefits, professional development opportunities, and a positive work environment can contribute to higher employee retention rates. For example, providing your staff with autonomy in scheduling, fair shift allocation and improved communication, your staff will feel valued and more inclined to stay onboard.
 
-Utilizing AI and Technology: Embracing AI and technology solutions, such as automated healthcare staff scheduling software offered by [Momentum Scheduling](/getquote)
+Utilizing AI and Technology: Embracing AI and technology solutions, such as automated healthcare staff scheduling software offered by [Momentum Scheduling](/getquote/)
 , can enhance staff satisfaction and mitigate turnover.
 
 In Conclusion, the rising costs and extended timelines associated with job vacancies in healthcare organizations present a multifaceted challenge. By understanding the specific costs at different levels and implementing strategic solutions, healthcare leaders can work towards minimizing the impact of job vacancies on their organizations, ensuring sustained operational efficiency and optimal patient care delivery.

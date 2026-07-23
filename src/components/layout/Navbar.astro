@@ -3,6 +3,7 @@ import { NavbarActions } from "@/components/layout/NavbarActions"
 import { useTranslations } from "@/i18n/i18n";
 import { navLinksFor } from "@/i18n/navLinks";
 import { LOCALE_CODES, LOCALE_LABELS, altPathFor, type LocaleCode } from "@/i18n/locales";
+import { canonicalInternalHref } from "@/lib/urls";
 
 interface Props {
     currentPage: string;
@@ -21,10 +22,12 @@ const locale = (Astro.currentLocale ?? 'en') as LocaleCode;
 const t = useTranslations(locale);
 const navLinks = navLinksFor(locale).map(link => ({
     ...link,
+    href: canonicalInternalHref(link.href),
     label: t(link.label),
     alt: t(link.alt),
     subitems: link.subitems ? link.subitems.map(subitem => ({
         ...subitem,
+        href: canonicalInternalHref(subitem.href),
         label: t(subitem.label),
         alt: t(subitem.alt),
     })) : link.subitems
@@ -32,7 +35,7 @@ const navLinks = navLinksFor(locale).map(link => ({
 
 const demoCta = {
     label: t('cta.demo'),
-    href: locale === 'en' ? '/demo' : `/${locale}/demo`,
+    href: canonicalInternalHref(locale === 'en' ? '/demo' : `/${locale}/demo`),
 };
 const homeHref = locale === 'en' ? '/' : `/${locale}/`;
 
