@@ -23,7 +23,7 @@ export function GetStartedModal({}: GetStartedModalProps) {
     return () => window.removeEventListener('open-get-started' as any, handleOpen);
   }, []);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
     setMessage({ type: '', text: '' });

@@ -21,7 +21,7 @@ export function ContactSalesModal() {
     return () => window.removeEventListener('open-contact-sales', handleOpen);
   }, []);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
     setError('');
