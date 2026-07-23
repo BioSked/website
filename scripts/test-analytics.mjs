@@ -115,15 +115,22 @@ const baseHead = read('src/components/BaseHead.astro');
 assert.match(baseHead, /if \(gpc \|\| choice === 'denied'\) return;/);
 assert.match(baseHead, /if \(choice === 'granted'\) \{ window\.__bskLoadGA\(\); return; \}/);
 assert.doesNotMatch(baseHead, /if \(choice === 'granted'\)[\s\S]{0,120}choice === 'denied' \|\| gpc/);
-assert.match(baseHead, /define:vars=\{\{ pageLocale \}\}/);
+assert.match(baseHead, /define:vars=\{\{ pageLocale, analyticsPageLocation \}\}/);
 assert.match(baseHead, /site_language:\s*pageLocale/);
 assert.match(baseHead, /content_group:\s*pageLocale/);
 assert.match(baseHead, /location\.hostname\s*===\s*['"]biosked\.com['"]/);
 assert.match(baseHead, /location\.hostname\s*===\s*['"]www\.biosked\.com['"]/);
+assert.match(baseHead, /dispatchEvent\(new Event\(['"]bsk:analytics-ready['"]\)\)/);
+assert.match(baseHead, /pageType\s*===\s*['"]not-found['"]/);
+assert.match(baseHead, /page_location:\s*analyticsPageLocation/);
+assert.match(baseHead, /page_referrer:\s*['"]['"]/);
+assert.match(baseHead, /pageType\s*===\s*['"]not-found['"][^\n]*<meta name=['"]referrer['"] content=['"]no-referrer['"]/);
 
 const baseLayout = read('src/layouts/BaseLayout.astro');
 assert.match(baseLayout, /import AnalyticsEvents from ['"]@\/components\/AnalyticsEvents\.astro['"]/);
 assert.match(baseLayout, /<AnalyticsEvents\s*\/>/);
+assert.match(baseLayout, /data-page-type=\{pageType\}/);
+assert.match(baseLayout, /<BaseHead[^>]*pageType=\{pageType\}/s);
 
 const analyticsEvents = read('src/components/AnalyticsEvents.astro');
 assert.match(analyticsEvents, /classifyCtaPath/);
@@ -136,6 +143,33 @@ assert.match(analyticsEvents, /event_callback/);
 assert.match(analyticsEvents, /event_timeout/);
 assert.match(analyticsEvents, /\{ capture: true \}/);
 assert.match(analyticsEvents, /hasAttribute\(['"]data-locale-choice['"]\)/);
+assert.match(analyticsEvents, /document\.body\.dataset\.pageType\s*===\s*['"]not-found['"]/);
+assert.match(analyticsEvents, /track\(['"]page_not_found['"]/);
+assert.match(analyticsEvents, /addEventListener\(['"]bsk:analytics-ready['"]/);
+assert.match(analyticsEvents, /page_location:\s*['"]https:\/\/biosked\.com\/__404__['"]/);
+assert.match(analyticsEvents, /page_referrer:\s*['"]['"]/);
+
+const notFoundPage = read('src/pages/404.astro');
+assert.match(notFoundPage, /pageType=['"]not-found['"]/);
+
+const astroConfig = read('astro.config.mjs');
+assert.match(astroConfig, /['"]contact['"]:\s*\{\s*destination:\s*['"]\/demo['"]/);
+assert.match(astroConfig, /['"]demander-une-demonstration['"]:\s*\{\s*destination:\s*['"]\/fr\/demo['"]/);
+
+const generatedRedirects = read('public/_redirects');
+assert.match(generatedRedirects, /^\/contact\/ \/demo\/ 301$/m);
+assert.match(generatedRedirects, /^\/demander-une-demonstration\/ \/fr\/demo\/ 301$/m);
+
+const packageJson = JSON.parse(read('package.json'));
+assert.equal(
+  packageJson.scripts.postbuild,
+  'node scripts/generate-static-redirect-pages.mjs && npm run test:seo',
+);
+
+const staticRedirectGenerator = read('scripts/generate-static-redirect-pages.mjs');
+assert.match(staticRedirectGenerator, /location\.search/);
+assert.match(staticRedirectGenerator, /location\.hash/);
+assert.match(staticRedirectGenerator, /location\.replace/);
 
 const whitepaperPage = read('src/pages/fr/ressources.astro');
 for (const label of [

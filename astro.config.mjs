@@ -138,6 +138,7 @@ export default defineConfig({
         "bookdemo": { destination: "/demo", status: 301 },
         "schedule-a-demo": { destination: "/demo", status: 301 },
         "contact-sales": { destination: "/demo", status: 301 },
+        "contact": { destination: "/demo", status: 301 },
         "about-biosked/leadership-team": { destination: "/about", status: 301 },
         "the-first-rvu-based-multi-time-zone-scheduling-platform-for-radiology-teams": { destination: "/blog/posts/2025-11-05-rvu-based-scheduling", status: 301 },
         "momentum-update-a-shift-based-view-for-better-on-the-ground-coordination": { destination: "/blog/posts/2025-07-03-shift-view", status: 301 },
@@ -165,6 +166,7 @@ export default defineConfig({
         "blog/posts/fr/2025-07-03-shift-view": { destination: "/fr/blog/nouveaute-momentum-une-vue-par-shift-pour-une-meilleure-coordination-sur-le-terrain", status: 301 },
         "accueil-biosked": { destination: "/fr/", status: 301 },
         "demander-une-demo": { destination: "/fr/demo", status: 301 },
+        "demander-une-demonstration": { destination: "/fr/demo", status: 301 },
         // Legacy biosked.nl slug (host-level 301s forward the path here;
         // the .nl legal-page slug is identical to the .fr one, already mapped)
         "een-demonstratie-aanvragen": { destination: "/nl/demo", status: 301 },

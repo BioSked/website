@@ -17,7 +17,7 @@ for (const a of hreflangAlternates(Astro.url.pathname)) {
     if (a.code !== 'x-default') localeAlts[a.code] = a.path;
 }
 
-const { title, description, image, author, noIndex } = Astro.props;
+const { title, description, image, author, noIndex, pageType } = Astro.props;
 const finalTitle = title || SITE_METADATA.title.default;
 const finalDescription = description || SITE_METADATA.description;
 const finalAuthor = author || SITE_METADATA.authors[0].name;
@@ -43,6 +43,9 @@ const socialImageAlts: Record<string, string> = {
     it: 'App BioSked Momentum per la pianificazione dei turni medici',
 };
 const socialImageAlt = socialImageAlts[canonicalLocale] ?? SITE_METADATA.openGraph.images[0].alt;
+const analyticsPageLocation = pageType === 'not-found'
+    ? new URL('/__404__', Astro.site ?? 'https://biosked.com').toString()
+    : null;
 ---
 
 <meta charset="utf-8" />
@@ -96,13 +99,14 @@ const socialImageAlt = socialImageAlts[canonicalLocale] ?? SITE_METADATA.openGra
     name="robots"
     content={`${robotsIndex ? 'index' : 'noindex'}, ${robotsFollow ? 'follow' : 'nofollow'}`}
 />
+{pageType === 'not-found' && <meta name="referrer" content="no-referrer" />}
 <meta name="keywords" content={SITE_METADATA.keywords.join(', ')} />
 <meta name="author" content={finalAuthor} />
 <meta name="creator" content={SITE_METADATA.creator} />
 <meta name="publisher" content={SITE_METADATA.publisher} />
 
 <!-- Google tag (gtag.js) -->
-<script is:inline define:vars={{ pageLocale }}>
+<script is:inline define:vars={{ pageLocale, analyticsPageLocation }}>
     // Consent-gated Google Analytics (CNIL "basic" mode).
     // Outside EU/CH timezones: GA loads immediately (no banner shown).
     // Inside: nothing loads until the visitor accepts (ConsentBanner).
@@ -123,7 +127,15 @@ const socialImageAlt = socialImageAlts[canonicalLocale] ?? SITE_METADATA.openGra
         s.async = true;
         s.src = 'https://www.googletagmanager.com/gtag/js?id=GT-NB96M5G7';
         document.head.appendChild(s);
-        gtag('config', 'GT-NB96M5G7');
+        if (analyticsPageLocation) {
+            gtag('config', 'GT-NB96M5G7', {
+                page_location: analyticsPageLocation,
+                page_referrer: '',
+            });
+        } else {
+            gtag('config', 'GT-NB96M5G7');
+        }
+        window.dispatchEvent(new Event('bsk:analytics-ready'));
     };
 
     (function () {
