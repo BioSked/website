@@ -16,12 +16,12 @@ Crawl-delay: 10
 User-agent: ChatGPT-User
 Crawl-delay: 10
 
-# Block common bad bots
+# Permit reputable SEO research crawlers while limiting request frequency.
 User-agent: AhrefsBot
-Disallow: /
+Crawl-delay: 10
 
 User-agent: SemrushBot
 Crawl-delay: 10
 
 User-agent: DotBot
-Disallow: /
+Crawl-delay: 10

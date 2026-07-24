@@ -8,12 +8,12 @@ import {
 import AutoScroll from 'embla-carousel-auto-scroll';
 
 import QuoteSvg from '@/assets/layout/quote.svg';
-import chuLogo from '@/assets/companies/chu-h160.webp';
-import imagirLogo from '@/assets/companies/imagir-or-h160.webp';
-import chirecLogo from '@/assets/companies/chirec-2015-h160.webp';
-import imallianceLogo from '@/assets/case-studies/imalliance-hdf.jpg';
-import irisGrimLogo from '@/assets/case-studies/iris-grim.jpg';
-import cedresLogo from '@/assets/case-studies/cedres.jpg';
+import chuLogo from '@/assets/companies/carousel/chu.webp';
+import imagirLogo from '@/assets/companies/carousel/imagir-or.webp';
+import chirecLogo from '@/assets/companies/carousel/chirec-2015.webp';
+import imallianceLogo from '@/assets/case-studies/carousel/imalliance-hdf.webp';
+import irisGrimLogo from '@/assets/case-studies/carousel/iris-grim.webp';
+import cedresLogo from '@/assets/case-studies/carousel/cedres.webp';
 
 const testimonials = [
   {
@@ -74,7 +74,6 @@ const testimonials = [
     testimonial:
       'Avec Momentum, nous avons automatisé 95% de la planification des équipes. C’est réellement une source de stress en moins.',
     initials: 'DS',
-    logo: chuLogo,
   },
   {
     id: '7',
@@ -113,7 +112,7 @@ export default function TestimonialsCarouselSection() {
           {testimonials.map((testimonial) => (
             <CarouselItem key={testimonial.id} className="pl-4 basis-auto">
               <Card className="max-w-60 sm:max-w-sm select-none p-5 sm:p-9 h-full bg-white/30 hover:bg-white/60 transition-all duration-200 border-top">
-                <img src={QuoteSvg.src} alt="" aria-hidden="true" width={32} height={32} className="size-8 sm:size-12"/>
+                <img src={QuoteSvg.src} alt="" aria-hidden="true" width={35} height={31} className="w-8 h-auto sm:w-12"/>
                 <blockquote className="text-foreground italic leading-relaxed text-sm transition-color duration-200">
                   {testimonial.testimonial}
                 </blockquote>
@@ -136,12 +135,11 @@ export default function TestimonialsCarouselSection() {
                     <img
                       src={testimonial.logo.src}
                       alt={testimonial.hospital}
-                      className="h-10 w-auto shrink-0 filter-[grayscale(1)] opacity-50"
+                      className="h-auto w-auto max-h-10 max-w-[120px] shrink-0 object-contain filter-[grayscale(1)] opacity-50"
                       loading="lazy"
                       decoding="async"
                       width={testimonial.logo.width}
                       height={testimonial.logo.height}
-                      style={{ maxHeight: '40px', maxWidth: '120px', width: 'auto', objectFit: 'contain' }}
                     />
                   )}
                 </div>

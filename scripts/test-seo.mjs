@@ -1,8 +1,9 @@
 import assert from 'node:assert/strict';
-import { access, readFile, readdir } from 'node:fs/promises';
+import { access, readFile, readdir, stat } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { runInNewContext } from 'node:vm';
+import sharp from 'sharp';
 import config from '../astro.config.mjs';
 
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -234,6 +235,8 @@ for (const route of homepageRoutes) {
 }
 
 const englishHomepage = await readFile(path.join(distDir, 'index.html'), 'utf8');
+const englishHomepageImages = [...englishHomepage.matchAll(/<img\b[^>]*>/gsi)]
+  .map((match) => attributes(match[0]));
 const phoneImageTag = [...englishHomepage.matchAll(/<img\b[^>]*>/gsi)]
   .map((match) => attributes(match[0]))
   .find((attrs) => attrs.alt === 'MM Mobile');
@@ -251,7 +254,118 @@ const heroScreenshotTag = [...englishHomepage.matchAll(/<img\b[^>]*>/gsi)]
   .map((match) => attributes(match[0]))
   .find((attrs) => attrs.id === 'hero-image');
 assert.match(heroScreenshotTag?.sizes ?? '', /calc\(100vw - 3rem\)/, 'home hero screenshot sizes must reflect mobile container padding');
+assert.match(heroScreenshotTag?.srcset ?? '', /\s400w(?:,|$)/, 'home hero screenshot must include a 400px candidate');
 assert.match(heroScreenshotTag?.srcset ?? '', /\s1280w(?:,|$)/, 'home hero screenshot must include a 1280px candidate');
+const rvuImageTag = englishHomepageImages.find((attrs) => attrs.alt === 'RVU Scheduling');
+assert.match(rvuImageTag?.srcset ?? '', /\s240w(?:,|$)/, 'home RVU image must include a 240px candidate');
+assert.match(rvuImageTag?.srcset ?? '', /\s320w(?:,|$)/, 'home RVU image must include a 320px candidate');
+assert.match(rvuImageTag?.srcset ?? '', /\s640w(?:,|$)/, 'home RVU image must include a 640px candidate');
+const expectedRvuSizes = '(min-width: 640px) 384px, (min-width: 494px) 256px, calc(66.667vw - 4.583rem)';
+assert.equal(rvuImageTag?.sizes, expectedRvuSizes, 'home RVU sizes must reflect its mobile width and 256px cap');
+for (const relativePath of [
+  'src/components/sections/RVU.astro',
+  'src/components/sections/fr/RVU.astro',
+]) {
+  const component = await readFile(path.join(projectRoot, relativePath), 'utf8');
+  assert.match(
+    component,
+    /class="[^"]*\bw-full\b[^"]*\bmax-w-sm\b[^"]*"/,
+    `${relativePath} must give the responsive image wrapper an explicit width`,
+  );
+}
+const quoteImageTags = englishHomepageImages.filter((attrs) => (attrs.src ?? '').includes('/quote.'));
+assert.ok(quoteImageTags.length > 0, 'home testimonials must render decorative quote marks');
+for (const quoteImageTag of quoteImageTags) {
+  assert.equal(quoteImageTag.alt, '', 'decorative quote marks must retain an empty alt attribute');
+  assert.equal(quoteImageTag.width, '35', 'decorative quote marks must retain their intrinsic width');
+  assert.equal(quoteImageTag.height, '31', 'decorative quote marks must retain their intrinsic height');
+  assert.match(quoteImageTag.class ?? '', /(?:^|\s)h-auto(?:\s|$)/, 'decorative quote marks must preserve their aspect ratio');
+}
+for (const [alt, assetStem] of [
+  ['Rochester Regional Health', 'rrh'],
+  ['Lakewood Health System', 'lakewood'],
+  ['Washington Medical Center', 'washington-medicine'],
+  ['CHU Angers', 'chu'],
+  ['Imagir', 'imagir-or'],
+  ['CHIREC — Hôpital de Braine-l’Alleud', 'chirec-2015'],
+]) {
+  const matchingImage = englishHomepageImages.find(
+    (attrs) => attrs.alt === alt && new RegExp(`/${assetStem}\\.`).test(attrs.src ?? ''),
+  );
+  assert.ok(matchingImage, `home page must pair ${alt} with its matching customer asset`);
+  assert.match(matchingImage.src ?? '', /\.webp$/, `${alt} carousel logo must use WebP`);
+}
+assert.equal(
+  englishHomepageImages.filter((attrs) => attrs.alt === 'IRIS GRIM' && /\/irimed\./.test(attrs.src ?? '')).length,
+  0,
+  'IRIS GRIM must never be paired with an unrelated IRIMED logo',
+);
+assert.match(englishHomepage, />\s*IRIS GRIM\s*</, 'IRIS GRIM customer name must remain visible');
+const frenchHomepageImages = [...frenchHomepage.matchAll(/<img\b[^>]*>/gsi)]
+  .map((match) => attributes(match[0]));
+const frenchRvuImageTag = frenchHomepageImages.find((attrs) => attrs.alt === 'Planification avec volumes RVU');
+assert.match(frenchRvuImageTag?.srcset ?? '', /\s240w(?:,|$)/, 'French RVU image must include a 240px candidate');
+assert.match(frenchRvuImageTag?.srcset ?? '', /\s320w(?:,|$)/, 'French RVU image must include a 320px candidate');
+assert.match(frenchRvuImageTag?.srcset ?? '', /\s640w(?:,|$)/, 'French RVU image must include a 640px candidate');
+assert.equal(frenchRvuImageTag?.sizes, expectedRvuSizes, 'French RVU sizes must match the English responsive geometry');
+for (const [alt, assetStem] of [
+  ['IMAGIR Bordeaux', 'imagir-or'],
+  ['CHU Angers', 'chu'],
+  ['IMALLIANCE HDF', 'imalliance-hdf'],
+  ['IRIS GRIM', 'iris-grim'],
+  ['Imagerie Médicale Les Cèdres', 'cedres'],
+  ['CHIREC', 'chirec-2015'],
+]) {
+  const matchingImage = frenchHomepageImages.find(
+    (attrs) => attrs.alt === alt && new RegExp(`/${assetStem}\\.`).test(attrs.src ?? ''),
+  );
+  assert.ok(matchingImage, `French homepage must pair ${alt} with its matching customer asset`);
+  assert.match(matchingImage.src ?? '', /\.webp$/, `${alt} testimonial image must use WebP`);
+}
+assert.equal(
+  frenchHomepageImages.filter(
+    (attrs) => attrs.alt === 'Hôpital Européen de Marseille' && /\/chu\./.test(attrs.src ?? ''),
+  ).length,
+  0,
+  'Hôpital Européen de Marseille must never be paired with a CHU Angers logo',
+);
+assert.match(
+  frenchHomepage,
+  />\s*Hôpital Européen de Marseille\s*</,
+  'Hôpital Européen de Marseille customer name must remain visible',
+);
+const carouselAssetBudgets = [
+  ...['chirec-2015', 'chu', 'imagir-or', 'lakewood', 'rrh', 'washington-medicine'].map((name) => ({
+    relativePath: `src/assets/companies/carousel/${name}.webp`,
+    maxWidth: 320,
+    maxHeight: 96,
+    maxBytes: 20_000,
+  })),
+  ...['cedres', 'imalliance-hdf', 'iris-grim'].map((name) => ({
+    relativePath: `src/assets/case-studies/carousel/${name}.webp`,
+    maxWidth: 240,
+    maxHeight: 80,
+    maxBytes: 10_000,
+  })),
+];
+for (const budget of carouselAssetBudgets) {
+  const assetPath = path.join(projectRoot, budget.relativePath);
+  const [metadata, file] = await Promise.all([sharp(assetPath).metadata(), stat(assetPath)]);
+  assert.equal(metadata.format, 'webp', `${budget.relativePath} must remain WebP`);
+  assert.ok((metadata.width ?? Infinity) <= budget.maxWidth, `${budget.relativePath} exceeds its width budget`);
+  assert.ok((metadata.height ?? Infinity) <= budget.maxHeight, `${budget.relativePath} exceeds its height budget`);
+  assert.ok(file.size <= budget.maxBytes, `${budget.relativePath} exceeds its byte budget`);
+}
+const englishStructuredData = [...englishHomepage.matchAll(/<script\b[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gsi)]
+  .map((match) => JSON.parse(match[1]));
+const organization = englishStructuredData
+  .flatMap((data) => data['@graph'] ?? [data])
+  .find((item) => item['@type'] === 'Organization');
+assert.equal(
+  organization?.address?.streetAddress,
+  'Suite 93, 770 Ayrault Road',
+  'Organization structured data must include the complete public mailing address',
+);
 const decorativeDustTags = [...englishHomepage.matchAll(/<div\b[^>]*data-decorative-dust-src[^>]*>/gsi)]
   .map((match) => attributes(match[0]));
 assert.ok(decorativeDustTags.length >= 4, 'home page must retain its desktop decorative dust layers');
@@ -334,6 +448,14 @@ assert.match(
   /^User-agent: OAI-SearchBot\s*\nAllow: \/$/m,
   'robots.txt must explicitly allow OpenAI search indexing',
 );
+for (const bot of ['AhrefsBot', 'DotBot']) {
+  const block = robotsText
+    .split(/(?=^User-agent:)/m)
+    .find((entry) => entry.startsWith(`User-agent: ${bot}`));
+  assert.ok(block, `robots.txt must define a rate-limited ${bot} policy`);
+  assert.doesNotMatch(block, /^Disallow:/m, `robots.txt must not block reputable SEO crawler ${bot}`);
+  assert.match(block, /^Crawl-delay: 10$/m, `robots.txt must rate-limit ${bot}`);
+}
 
 assert.doesNotMatch(
   sitemapText,
