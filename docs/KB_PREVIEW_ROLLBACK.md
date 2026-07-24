@@ -20,7 +20,14 @@ The current HubSpot knowledge base stays live throughout the preview. There is n
 
 To remove the preview:
 
-1. Revert the knowledge-base preview release commit on `main`.
+1. Revert the two knowledge-base preview release commits on `main` without touching later work:
+
+   ```bash
+   git revert --no-commit 9a8c785 cfda44f
+   git commit -m "revert: remove knowledge base preview"
+   git push origin main
+   ```
+
 2. Let the standard GitHub Pages workflow deploy the revert.
 3. Confirm `/kb-preview/` returns 404 and `https://kb.biosked.com/en/knowledge` still returns 200.
 
