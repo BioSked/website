@@ -22,7 +22,7 @@ The new date-based view redefines the user’s experience with a clean, function
 
 ## Features Designed to Meet Your Needs 
 
-Momentum’s redesign isn’t just about speed—every detail has been crafted to simplify the user experience. 
+Momentum’s redesign isn’t just about speed. Every detail has been crafted to simplify the user experience.
 
 Intuitive Navigation: Accessible to everyone, even the least tech-savvy users. 
 Unified Experience: Fewer clicks, with more automation for repetitive tasks. 

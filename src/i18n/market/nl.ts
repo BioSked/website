@@ -27,13 +27,13 @@ export const MARKET: MarketContent = {
         heading: 'Bekijk hoe Momentum bij uw organisatie past',
         sub: 'We laten u zien hoe Momentum het rooster volgens uw regels genereert, wacht- en bereikbaarheidsdiensten over uw locaties verdeelt en verlof en voorkeuren ordent – aan de hand van voorbeelden uit uw specialisme. De applicatie is beschikbaar in het Nederlands; de demo wordt in het Engels of het Frans gegeven.',
         steps: [
-            'Persoonlijke demo — aan de hand van uw eigen roosterpraktijk',
-            'Behoefteanalyse — teams, locaties, modules, integraties',
-            'Voorstel op maat — transparant onderbouwd',
+            'Persoonlijke demo: aan de hand van uw eigen roosterpraktijk',
+            'Behoefteanalyse: teams, locaties, modules, integraties',
+            'Voorstel op maat, transparant onderbouwd',
         ],
         privacyNote: 'Hosting in de Europese Unie · AVG · verwerkersovereenkomst op aanvraag',
         formTitle: 'Demo aanvragen',
-        formId: '86756c6e-ad74-4d9e-8f3a-68b36b459ba0', // "EN- One page Dutch Request a demo" — sizing (numemployees) + city fields; notifies marketing@, MQL lifecycle
+        formId: '86756c6e-ad74-4d9e-8f3a-68b36b459ba0', // "EN- One page Dutch Request a demo"; sizing (numemployees) + city fields; notifies marketing@, MQL lifecycle
     },
     getquote: {
         metaTitle: 'Offerte aanvragen | BioSked Momentum',
@@ -133,7 +133,7 @@ export const MARKET: MarketContent = {
     thankyou: {
         slug: 'bedankt',
         title: 'Aanvraag ontvangen | BioSked Momentum',
-        heading: 'Bedankt — uw aanvraag is ontvangen.',
+        heading: 'Bedankt, uw aanvraag is ontvangen.',
         body: 'We nemen persoonlijk contact met u op om een afspraak in te plannen. Wilt u vooraf details delen over teams, locaties of uw huidige planningsproces? Mail dan naar info@biosked.com.',
         back: 'Terug naar de startpagina',
     },
@@ -180,7 +180,7 @@ export const MARKET: MarketContent = {
             },
             {
                 q: 'Kunnen we klein beginnen en later opschalen?',
-                a: 'Ja. U wisselt op elk moment van plan en kunt plannen per team combineren — alles binnen één account.',
+                a: 'Ja. U wisselt op elk moment van plan en kunt plannen per team combineren. Alles blijft binnen één account.',
             },
             {
                 q: 'Wat levert Momentum concreet op?',
@@ -200,7 +200,7 @@ export const MARKET: MarketContent = {
             },
             {
                 q: 'Hoe soeverein is Momentum?',
-                a: 'Uw contract sluit u met Bio-Optronics Sàrl, onze Zwitserse entiteit — uw contractpartner is Europees, geen Amerikaans bedrijf. En uw gegevens blijven gehost in de Europese Unie.',
+                a: 'Uw contract sluit u met Bio-Optronics Sàrl, onze Zwitserse entiteit. Uw contractpartner is Europees, geen Amerikaans bedrijf. En uw gegevens blijven gehost in de Europese Unie.',
             },
             {
                 q: 'Hoe gaan we van start?',

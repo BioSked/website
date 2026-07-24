@@ -4,7 +4,7 @@ import { splitLocale } from '@/i18n/locales';
 /**
  * Minimal consent UI, shown ONLY when the visitor is in an EU/CH timezone
  * and has made no choice yet (see BaseHead: GA loads immediately outside
- * the EU, never before consent inside it — CNIL "basic" consent mode).
+ * the EU and only after consent inside it, consistent with CNIL "basic" consent mode).
  * Equal-weight Accept/Decline, choice stored 12 months, GPC honored.
  */
 const { locale } = splitLocale(Astro.url.pathname);

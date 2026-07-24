@@ -17,18 +17,18 @@ Les outils de planification ont été conçus pour les administrateurs derrière
 
 ## Momentum Assistant : le planning accessible depuis le terrain
 
-BioSked lance Momentum Assistant, un assistant IA intégré à l’application mobile Momentum. En langage naturel, par message écrit ou à la voix, chaque praticien accède à son planning, formule ses demandes et reçoit une réponse en temps réel — sans portail, sans appel, sans intermédiaire.
+BioSked lance Momentum Assistant, un assistant IA intégré à l’application mobile Momentum. En langage naturel, par message écrit ou à la voix, chaque praticien accède à son planning, formule ses demandes et reçoit une réponse en temps réel, sans portail, appel ni intermédiaire.
 
 Concrètement :
 
 - **Consulter son planning** : « Est-ce que je travaille ce week-end ? » Réponse immédiate depuis le téléphone
-- **Demander un échange de garde** : la demande est formalisée, transmise au circuit de validation et tracée — sans échange WhatsApp informel
+- **Demander un échange de garde** : la demande est formalisée, transmise au circuit de validation et tracée, sans passer par un échange WhatsApp informel
 - **Vérifier la couverture** : « Qui est disponible demain matin en SMUR ? » L’assistant analyse le planning en temps réel et présente les compétences et les disponibilités
 - **Identifier le temps de travail additionnel (TTA) disponible** : liste des quotas restants par praticien, pour une sollicitation équitable et traçable en quelques secondes
 
 ## Ce qui change pour le chef de service
 
-Moins d’appels entrants, moins d’interruptions, moins de canaux informels non tracés. Les demandes d’échange, les vérifications de disponibilité, les questions sur les TTA transitent désormais par un canal unique et structuré. Le chef de service reste décisionnaire — l’assistant ne valide rien sans confirmation humaine — mais il n’est plus le passage obligé pour chaque question opérationnelle.
+Moins d’appels entrants, moins d’interruptions, moins de canaux informels non tracés. Les demandes d’échange, les vérifications de disponibilité, les questions sur les TTA transitent désormais par un canal unique et structuré. Le chef de service reste décisionnaire : l’assistant ne valide rien sans confirmation humaine, mais le chef de service n’est plus le passage obligé pour chaque question opérationnelle.
 
 ## Un assistant conçu pour le cadre hospitalier
 
@@ -36,7 +36,7 @@ Momentum Assistant est connecté aux données réelles de Momentum, aux droits d
 
 Momentum Assistant entre actuellement en phase de bêta contrôlée, au sein de la nouvelle application mobile Momentum qui remplace progressivement l’ancienne.
 
-## Découvrez Momentum Assistant au Congrès des Urgences 2026 — Stand n°75 | 3-5 juin, Paris
+## Découvrez Momentum Assistant au Congrès des Urgences 2026 : stand n°75 | 3-5 juin, Paris
 
 Testez l’assistant en démonstration live sur des scénarios de planning d’urgences réels : demande d’échange par message ou à la voix, visualisation des TTA en temps réel.
 

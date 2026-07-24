@@ -9,7 +9,7 @@ import { FR_CH_LOCAL, splitLocale } from '@/i18n/locales';
  * - Swiss stickiness: explicit /fr-ch/ pages repair any reused French conversion
  *   links, and shared /fr/ pages retain those Swiss links until another locale is chosen.
  *
- * The old "this page is available in X" suggestion banner was removed — first-time
+ * The old "this page is available in X" suggestion banner was removed. First-time
  * language selection is now handled silently and instantly in <head>.
  */
 const { locale: current } = splitLocale(Astro.url.pathname);

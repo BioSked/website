@@ -16,7 +16,7 @@ export async function GET(context) {
   </item>`).join('\n');
     const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0"><channel>
-  <title>BioSked Momentum — Blog France</title>
+  <title>BioSked Momentum, blog France</title>
   <link>${new URL('/fr/', site)}</link>
   <description>Planification médicale : gardes, désidératas, équité, IA. Articles BioSked en français.</description>
   <language>fr</language>

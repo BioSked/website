@@ -10,7 +10,7 @@ export interface FrCaseStudy {
     metaDescription: string;
     specialty: string;
     factsLine: string; // e.g. "40 000 passages/an · 25–30 médecins · Belgique"
-    year: string; // publication year of the case study, e.g. "Étude de cas — mai 2025"
+    year: string; // publication year of the case study, e.g. "Étude de cas, mai 2025"
     intro: string; // 1-2 sentence summary
     context: string[]; // the organization, as published
     challenge: string[]; // before Momentum
@@ -25,14 +25,14 @@ export interface FrCaseStudy {
 export const FR_CASE_STUDIES: FrCaseStudy[] = [
     {
         slug: 'chirec',
-        org: 'CHIREC — Hôpital de Braine-l’Alleud',
+        org: 'CHIREC, Hôpital de Braine-l’Alleud',
         title: 'Aux urgences du CHIREC, la construction du planning mensuel passe de 4 jours à 4–5 heures',
         metaTitle: 'CHIREC (urgences) : le planning mensuel passe de 4 jours à 4–5 heures | BioSked Momentum',
         metaDescription:
             '40 000 passages par an, 25 à 30 médecins : comment le service des urgences de l’hôpital de Braine-l’Alleud (groupe CHIREC) a réduit la construction de son planning mensuel de 4 jours à 4–5 heures avec Momentum. Étude de cas, mai 2025.',
         specialty: 'Urgences',
         factsLine: '40 000 passages/an · 25–30 médecins · Belgique',
-        year: 'Étude de cas — mai 2025',
+        year: 'Étude de cas, mai 2025',
         intro: 'Le Dr Frédéric Cavallotto, chef du service des urgences de l’hôpital de Braine-l’Alleud (groupe CHIREC), revient sur le déploiement de Momentum fin 2024 : une construction du planning mensuel réduite de 4 jours à 4–5 heures, et jusqu’à 90 % de temps d’administration des horaires en moins.',
         context: [
             'L’hôpital de Braine-l’Alleud appartient au groupe belge CHIREC, qui regroupe trois hôpitaux ainsi que plusieurs cliniques associées. L’établissement dispose d’une capacité d’accueil de 300 lits.',
@@ -43,7 +43,7 @@ export const FR_CASE_STUDIES: FrCaseStudy[] = [
             'Il fallait 4 jours pour établir un planning d’un mois, sans automatisation ni visibilité en temps réel. Les désidératas et les congés étaient difficiles à intégrer et généraient parfois des sureffectifs. Un outil automatisé et équitable était devenu indispensable.',
         ],
         solution: [
-            'Le service des urgences a comparé plusieurs solutions, dont Momentum, déjà en place dans le service de radiologie du CHIREC. Trois raisons ont conduit au choix : l’adaptabilité à la complexité médicale — gestion multi-contrats, spécialités multiples, rotations, gardes et désidératas —, l’automatisation avancée — intégration des contraintes, calcul automatique des heures, export pour les RH, alertes de dépassements — et l’accessibilité, avec un planning consultable en ligne sur tous supports et mis à jour en temps réel pour toute l’équipe.',
+            'Le service des urgences a comparé plusieurs solutions, dont Momentum, déjà en place dans le service de radiologie du CHIREC. Trois raisons ont conduit au choix : l’adaptabilité à la complexité médicale (gestion multi-contrats, spécialités multiples, rotations, gardes et désidératas), l’automatisation avancée (intégration des contraintes, calcul automatique des heures, export pour les RH, alertes de dépassements) et l’accessibilité, avec un planning consultable en ligne sur tous supports et mis à jour en temps réel pour toute l’équipe.',
             'L’implémentation s’est faite par étapes : formation du chef de service et de deux référents pour la gestion quotidienne, mise en place progressive de la consultation en ligne des plannings et du dépôt des désidératas via l’application mobile et web, puis accompagnement spécifique des praticiens les moins familiers avec le numérique, notamment pour la saisie des désidératas sur mobile.',
         ],
         results: [
@@ -80,7 +80,7 @@ export const FR_CASE_STUDIES: FrCaseStudy[] = [
             'Comment le département de médecine d’urgence du CHU d’Angers a automatisé la planification de 52 praticiens partagés entre urgences et Samu avec Momentum : centralisation des comptes d’heures, désidératas sur mobile, équité des gardes et des week-ends. Étude de cas, 2023.',
         specialty: 'Urgences',
         factsLine: '52 praticiens · urgences + Samu · +99 000 passages/an',
-        year: 'Étude de cas — 2023',
+        year: 'Étude de cas, 2023',
         intro: 'Le Dr Thomas Boishardy, praticien hospitalier et administrateur des plannings du département de médecine d’urgence, revient sur l’automatisation de la planification de 52 praticiens dont l’activité est partagée entre les urgences et le Samu.',
         context: [
             'Avec près de 6 700 hospitaliers, le CHU d’Angers est l’un des premiers opérateurs de santé de sa région ; il comporte plusieurs centres de référence et de ressources pour des pathologies complexes.',
@@ -88,7 +88,7 @@ export const FR_CASE_STUDIES: FrCaseStudy[] = [
         ],
         challenge: [
             'Le planning était initialement géré sur un fichier Excel conçu par les précédents responsables plannings, très contraignant à remplir pour la construction des plannings. Avec la croissance de l’activité, il était devenu évident pour les responsables plannings qu’un logiciel était nécessaire pour combler les manques d’automatisation sur les tâches répétitives et faciliter les prises de décision.',
-            'La tâche était complexe : 52 praticiens avec leurs particularités propres et des activités partagées entre les urgences et le Samu, une bonne distribution des gardes et des week-ends à garantir pour satisfaire l’ensemble des médecins, et une équité difficile à obtenir manuellement — elle demandait de nombreuses vérifications qui n’étaient pas faciles à suivre.',
+            'La tâche était complexe : 52 praticiens avec leurs particularités propres et des activités partagées entre les urgences et le Samu, une bonne distribution des gardes et des week-ends à garantir pour satisfaire l’ensemble des médecins, et une équité difficile à obtenir manuellement. Elle demandait de nombreuses vérifications qui n’étaient pas faciles à suivre.',
         ],
         solution: [
             'Momentum était déjà présent dans le service d’anesthésie du CHU d’Angers ; l’opportunité s’est présentée de collaborer une nouvelle fois. L’objectif principal : automatiser la création de tous les plannings afin de réduire au minimum le temps dédié à leur gestion, et libérer l’administrateur du suivi de toutes les particularités individuelles.',
@@ -130,7 +130,7 @@ export const FR_CASE_STUDIES: FrCaseStudy[] = [
         year: 'Étude de cas',
         intro: 'Dominique Molmy, secrétaire référente, et Alain Bizjak, directeur financier du groupe d’imagerie médicale IMALLIANCE-HDF, témoignent d’un planning passé d’Excel à une automatisation complète sous Momentum, intégré au RIS NGI.',
         context: [
-            'Le Groupe Imagerie Médicale Artois-Lys (IMALYS), situé à Beuvry, regroupe 34 médecins radiologues et 145 salariés répartis sur 12 sites — cabinets indépendants, hôpitaux et cliniques des régions béthunoise et douaisis. En janvier 2021, IMALYS est devenu IMALLIANCE-HDF.',
+            'Le Groupe Imagerie Médicale Artois-Lys (IMALYS), situé à Beuvry, regroupe 34 médecins radiologues et 145 salariés répartis sur 12 sites : cabinets indépendants, hôpitaux et cliniques des régions béthunoise et douaisis. En janvier 2021, IMALYS est devenu IMALLIANCE-HDF.',
             'Utilisateur depuis quelques années du RIS NGI, le groupe s’est doté de Momentum, intégré à ce RIS.',
         ],
         challenge: [
@@ -143,12 +143,12 @@ export const FR_CASE_STUDIES: FrCaseStudy[] = [
         ],
         results: [
             { value: '34', label: 'médecins radiologues planifiés' },
-            { value: '12', label: 'sites — cabinets, hôpitaux et cliniques' },
+            { value: '12', label: 'sites (cabinets, hôpitaux et cliniques)' },
             { value: '145', label: 'salariés' },
         ],
         resultsNarrative: [
             'La mise en place de Momentum a permis au groupe de faire évoluer ses règles de fonctionnement et d’uniformiser la gestion du temps de travail sur l’ensemble des sites. La continuité des soins est toujours garantie pour les patients, avec un confort de travail et une meilleure gestion tant au niveau humain qu’économique.',
-            'Le médecin sait que, quel que soit le site où il arrive, il pourra réaliser sa vacation : le manipulateur, la secrétaire et les patients seront là. Il peut se concentrer sur son travail de médecin sans se soucier de la planification — les compétences du personnel, sa mobilité et les souhaits du médecin sont intégrés dans le planning.',
+            'Le médecin sait que, quel que soit le site où il arrive, il pourra réaliser sa vacation : le manipulateur, la secrétaire et les patients seront là. Il peut se concentrer sur son travail de médecin sans se soucier de la planification. Les compétences du personnel, sa mobilité et les souhaits du médecin sont intégrés dans le planning.',
         ],
         quotes: [
             {
@@ -179,7 +179,7 @@ export const FR_CASE_STUDIES: FrCaseStudy[] = [
             'Le groupement nantais IRIS GRIM (45 radiologues, 240 professionnels de santé dont 120 manipulateurs) a remplacé son outil de planification développé en interne par Momentum : moins d’actions manuelles, remplacements proposés, plannings sur mobile et calendriers personnels. Étude de cas, 2022.',
         specialty: 'Radiologie',
         factsLine: '45 radiologues · 240 professionnels de santé · Nantes',
-        year: 'Étude de cas — 2022',
+        year: 'Étude de cas, 2022',
         intro: 'Fabienne Tual et Marie-Aline Douceau, gestionnaires de planification, et Bernard Bensadoun, directeur d’IRIS GRIM, reviennent sur le remplacement d’un outil de planification développé en interne par Momentum, à l’échelle d’un groupement en croissance.',
         context: [
             'IRIS GRIM est un groupement de radiologues nantais créé il y a près de 20 ans, qui poursuit son développement sur et autour de l’agglomération nantaise en agrégeant régulièrement de nouveaux cabinets.',
@@ -199,7 +199,7 @@ export const FR_CASE_STUDIES: FrCaseStudy[] = [
             { value: '15', label: 'modalités d’imagerie en coupe exploitées en propre' },
         ],
         resultsNarrative: [
-            'La diminution des retraitements divers et des interventions manuelles est significative, avec une baisse considérable du temps passé sur la répartition des vacations — notamment via la réduction des heures supplémentaires.',
+            'La diminution des retraitements divers et des interventions manuelles est significative, avec une baisse considérable du temps passé sur la répartition des vacations, notamment grâce à la réduction des heures supplémentaires.',
             'La gestion des plannings-types, la proposition de médecins pour des remplacements, l’application mobile et l’intégration aux calendriers personnels se sont imposées comme des fonctionnalités indispensables. Momentum a apporté une simplification de la communication et une meilleure visibilité des plannings.',
         ],
         quotes: [
@@ -232,13 +232,13 @@ export const FR_CASE_STUDIES: FrCaseStudy[] = [
         specialty: 'Radiologie multisites',
         factsLine: '18 radiologues · 5 implantations · client depuis 2014',
         year: 'Étude de cas',
-        intro: 'Le Dr Jérôme Poirier, radiologue associé, et Karine Delaunay, cadre administrative, témoignent de plus de dix ans d’utilisation de Momentum pour les plannings des médecins et des salariés du centre — au point de ne générer les plannings que trois fois par an.',
+        intro: 'Le Dr Jérôme Poirier, radiologue associé, et Karine Delaunay, cadre administrative, témoignent de plus de dix ans d’utilisation de Momentum pour les plannings des médecins et des salariés du centre, au point de ne générer les plannings que trois fois par an.',
         context: [
             'Le Centre d’Imagerie Médicale Les Cèdres regroupe plusieurs cabinets périphériques situés à Plancoët, Dinard, Combourg et Saint-Malo. Il est également implanté au sein de la Clinique de la Côte d’Émeraude.',
             'Son équipe est constituée de 18 radiologues, épaulés par du personnel administratif, des secrétaires médicales, des Agents en Cabinet d’Imagerie Médicale (ACIM) et des manipulateurs en radiologie.',
         ],
         challenge: [
-            'Le centre gère deux planifications distinctes : Karine Delaunay est en charge des plannings des salariés — secrétaires et manipulateurs —, le Dr Poirier et le Dr Jean-François Brunet de ceux des médecins.',
+            'Le centre gère deux planifications distinctes : Karine Delaunay est en charge des plannings des salariés (secrétaires et manipulateurs), tandis que le Dr Poirier et le Dr Jean-François Brunet gèrent ceux des médecins.',
             'Dans une entreprise où les règles de vie salariale peuvent être modifiées régulièrement, l’outil de planification doit suivre le rythme de l’organisation : plannings médecins et salariés, sites multiples, équité des astreintes et des jours fériés travaillés, pénibilité des postes.',
         ],
         solution: [
@@ -278,10 +278,10 @@ export const FR_CASE_STUDIES: FrCaseStudy[] = [
             'Le groupe bordelais IMAGIR (une quarantaine de radiologues associés, 9 sites de production) planifie ses équipes avec Momentum, interconnecté à la prise de rendez-vous EasyDoct et à la gestion RH Kelio : « le gain d’un ETP voire deux ». Étude de cas, juin 2021.',
         specialty: 'Radiologie',
         factsLine: '~40 radiologues associés · 9 sites · Bordeaux',
-        year: 'Étude de cas — juin 2021',
-        intro: 'Anthony Bagot, responsable opérationnel du groupe IMAGIR à Bordeaux, fort de vingt ans d’expérience dans l’administration de centres d’imagerie, revient sur l’utilisation de Momentum pour les radiologues et les salariés — et sur ce que rapporte l’interconnexion avec la prise de rendez-vous et la gestion RH.',
+        year: 'Étude de cas, juin 2021',
+        intro: 'Anthony Bagot, responsable opérationnel du groupe IMAGIR à Bordeaux, fort de vingt ans d’expérience dans l’administration de centres d’imagerie, revient sur l’utilisation de Momentum pour les radiologues et les salariés, ainsi que sur les bénéfices de l’interconnexion avec la prise de rendez-vous et la gestion RH.',
         context: [
-            'Le groupe IMAGIR voit le jour en mars 2020 par la fusion de deux groupes bordelais : les groupes de la Rive Gauche et de la Rive Droite. Il représente aujourd’hui une quarantaine de radiologues associés sur 9 sites de production — dont quatre cliniques ou cabinets de ville — et 1 site administratif.',
+            'Le groupe IMAGIR voit le jour en mars 2020 par la fusion de deux groupes bordelais : les groupes de la Rive Gauche et de la Rive Droite. Il représente aujourd’hui une quarantaine de radiologues associés sur 9 sites de production (dont quatre cliniques ou cabinets de ville) et 1 site administratif.',
         ],
         challenge: [
             'Avant l’arrivée de Momentum, la construction des plannings et leur gestion se faisaient sur Excel : des tâches répétitives et très localisées par site, avec une diffusion sur un intranet. La fusion des deux groupes imposait de faciliter la mutualisation des ressources entre les sites.',
@@ -296,7 +296,7 @@ export const FR_CASE_STUDIES: FrCaseStudy[] = [
             { value: 'fin 2012', label: 'début de la relation entre Anthony Bagot et Momentum' },
         ],
         resultsNarrative: [
-            'La personnalisation de l’affichage selon les préférences de chacun permet à tous de s’y retrouver. Face à des exigences fortes — désidératas, contraintes de chacun, remplissage des activités —, Momentum s’adapte aux besoins de façon claire et simple.',
+            'La personnalisation de l’affichage selon les préférences de chacun permet à tous de s’y retrouver. Face à des exigences fortes (désidératas, contraintes de chacun, remplissage des activités), Momentum s’adapte aux besoins de façon claire et simple.',
             'Le gain le plus net vient des interfaçages : l’interconnexion de la planification avec la prise de rendez-vous et la gestion RH se traduit, selon le groupe, par le gain d’un ETP, voire deux.',
         ],
         quotes: [
@@ -328,14 +328,14 @@ export const FR_CASE_STUDIES: FrCaseStudy[] = [
             'Comment le Dr Jean-Marc Stordeur a automatisé jusqu’à 95 % de la planification d’environ 20 anesthésistes-réanimateurs et 10 IADEs de l’Hôpital Européen de Marseille avec Momentum, à partir des plannings types des blocs. Étude de cas, 2023.',
         specialty: 'Anesthésie',
         factsLine: 'env. 20 MAR · 10 IADEs · Marseille',
-        year: 'Étude de cas — 2023',
+        year: 'Étude de cas, 2023',
         intro: 'Le Dr Jean-Marc Stordeur, anesthésiste-réanimateur en charge des plannings des médecins et des IADEs depuis 2013, revient sur l’automatisation de la planification du service : jusqu’à 95 % du planning des MAR et des IADEs est désormais construit automatiquement, à partir des plannings types des blocs.',
         context: [
             'L’Hôpital Européen est né le 19 août 2013 de la fusion des hôpitaux Ambroise Paré et Paul Desbief, deux établissements de santé marseillais réputés pour la qualité des soins et des relations humaines, fondés respectivement en 1846 et 1914 et rapprochés à partir de 2004.',
             'Le service d’anesthésie-réanimation se compose d’environ 20 médecins et 10 IADEs.',
         ],
         challenge: [
-            'Depuis une dizaine d’années, le Dr Stordeur construisait manuellement le planning de l’ensemble des MAR et des IADEs sous Excel, sur une vacation administrative hebdomadaire dédiée — et sur son temps personnel. Avec l’évolution du groupe, passé de quelques anesthésistes à près d’une vingtaine, les changements de plannings de dernière minute, les fermetures de salles en raison d’absences et les changements de blocs des chirurgiens, la planification manuelle débordait de 4 à 6 heures par semaine sur son temps personnel.',
+            'Depuis une dizaine d’années, le Dr Stordeur construisait manuellement le planning de l’ensemble des MAR et des IADEs sous Excel, sur une vacation administrative hebdomadaire dédiée ainsi que sur son temps personnel. Avec l’évolution du groupe, passé de quelques anesthésistes à près d’une vingtaine, les changements de plannings de dernière minute, les fermetures de salles en raison d’absences et les changements de blocs des chirurgiens, la planification manuelle débordait de 4 à 6 heures par semaine sur son temps personnel.',
             'L’équité était l’élément de base de la génération du planning, à laquelle s’ajoutaient les désidératas de chacun et les règles de l’établissement. Plutôt que de dédier une deuxième vacation administrative, le groupe a décidé d’investir dans une solution de planification automatique afin de libérer du temps médical et, par conséquent, de réduire et d’optimiser ses coûts.',
         ],
         solution: [
@@ -348,7 +348,7 @@ export const FR_CASE_STUDIES: FrCaseStudy[] = [
             { value: '4–6 h', label: 'de temps personnel par semaine consacrées au planning, avant Momentum' },
         ],
         resultsNarrative: [
-            'Après plusieurs semaines d’utilisation, la lecture des vacations est devenue très rapide grâce aux vues par spécialité et aux filtres d’affichage des plannings. Momentum détecte par ailleurs les erreurs de planification lors des changements manuels : un médecin ne peut plus être positionné sur deux vacations non compatibles sans que l’administrateur soit alerté — la réduction des doublons était l’un des objectifs initiaux.',
+            'Après plusieurs semaines d’utilisation, la lecture des vacations est devenue très rapide grâce aux vues par spécialité et aux filtres d’affichage des plannings. Momentum détecte par ailleurs les erreurs de planification lors des changements manuels : un médecin ne peut plus être positionné sur deux vacations non compatibles sans que l’administrateur soit alerté. La réduction des doublons était l’un des objectifs initiaux.',
             'Après un mois, les équipes se sont elles aussi habituées à la planification automatique et à l’application mobile : elles utilisent la bourse aux activités et déposent leurs requêtes de congés, leurs disponibilités ou encore les heures supplémentaires effectuées depuis le mobile.',
         ],
         quotes: [

@@ -4,7 +4,7 @@ import type { MarketContent } from './types';
  * German (DACH) market content: homepage quote band, demo page, pricing page,
  * security/data page (/de/sicherheit-und-daten) and references page (/de/referenzen).
  * Positioning per messaging brief (DE/CH): physician/specialist scheduling
- * depth — Dienst-, Bereitschafts- und Rufdienstplanung under Arbeitszeitregeln,
+ * depth: Dienst-, Bereitschafts- und Rufdienstplanung under Arbeitszeitregeln,
  * multi-standort, fairness with traceable counters. Sober B2B register, Sie-Form.
  * Terminology follows the approved Momentum app-store copy (Dienstplan, Dienste,
  * Dienstbörse, Bereitschaft/Pikett, Planungswünsche, Abwesenheiten).
@@ -180,7 +180,7 @@ export const MARKET: MarketContent = {
             },
             {
                 q: 'Können wir klein anfangen und später wachsen?',
-                a: 'Ja. Sie wechseln den Plan jederzeit und können Pläne je Team kombinieren — alles in einem Konto.',
+                a: 'Ja. Sie wechseln den Plan jederzeit und können Pläne je Team kombinieren. Alles bleibt in einem Konto.',
             },
             {
                 q: 'Wie rechnet sich Momentum?',
@@ -200,7 +200,7 @@ export const MARKET: MarketContent = {
             },
             {
                 q: 'Wie souverän ist Momentum?',
-                a: 'Ihr Vertrag wird mit Bio-Optronics Sàrl geschlossen, unserer Schweizer Gesellschaft — Ihr Vertragspartner ist europäisch, kein US-Unternehmen. Und Ihre Daten bleiben in der Europäischen Union gehostet.',
+                a: 'Ihr Vertrag wird mit Bio-Optronics Sàrl geschlossen, unserer Schweizer Gesellschaft. Ihr Vertragspartner ist europäisch, kein US-Unternehmen. Und Ihre Daten bleiben in der Europäischen Union gehostet.',
             },
             {
                 q: 'Wie starten wir am besten?',

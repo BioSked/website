@@ -23,7 +23,7 @@ export const specialtyPages: Record<string, FrenchLandingPage> = {
       "Momentum construit les vacations par site et par modalité, applique vos règles de mutualisation et vos compteurs d’équité, et se couple à votre RIS. Les groupes d’imagerie français s’appuient dessus depuis plus de quinze ans.",
     metaTitle: "Planning radiologues multi-sites | Momentum BioSked",
     metaDescription:
-      "Vacations par modalité, mutualisation multi-sites, remplacements, couplage RIS NGI : Momentum planifie les groupes d’imagerie français — études de cas publiées.",
+      "Vacations par modalité, mutualisation multi-sites, remplacements, couplage RIS NGI : Momentum planifie les groupes d’imagerie français, avec des études de cas publiées.",
     primaryPain:
       "Répartir 30 ou 40 radiologues sur une dizaine de sites, entre scanner, IRM, mammographie et échographie, avec les gardes, les désidératas et les absences : sur un tableur, chaque version coûte des journées de travail et repose sur des arbitrages que personne ne peut retracer.",
     pains: [
@@ -56,7 +56,7 @@ export const specialtyPages: Record<string, FrenchLandingPage> = {
     metaDescription:
       "Blocs opératoires, gardes, repos de sécurité, IADEs : Momentum génère le planning d’anesthésie sous contraintes. Étude de cas Hôpital Européen de Marseille.",
     primaryPain:
-      "Un planning d’anesthésie tient ensemble le programme opératoire, les gardes, les astreintes, les consultations et les repos de sécurité — pour deux populations liées, médecins et IADEs. À l’Hôpital Européen de Marseille, cette construction coûtait une vacation administrative plus 4 à 6 heures personnelles par semaine, sur Excel.",
+      "Un planning d’anesthésie tient ensemble le programme opératoire, les gardes, les astreintes, les consultations et les repos de sécurité pour deux populations liées : les médecins et les IADEs. À l’Hôpital Européen de Marseille, cette construction coûtait une vacation administrative plus 4 à 6 heures personnelles par semaine, sur Excel.",
     pains: [
       "affecter MAR et IADEs sur les salles selon les compétences et les spécialités chirurgicales",
       "enchaîner garde, descente de garde et repos de sécurité sans erreur",
@@ -65,12 +65,12 @@ export const specialtyPages: Record<string, FrenchLandingPage> = {
     ],
     outcomes: [
       "les repos de sécurité vérifiés à la génération, avant publication",
-      "un seul planning pour blocs, consultations, gardes et astreintes — médecins et IADEs",
+      "un seul planning pour les blocs, les consultations, les gardes et les astreintes des médecins comme des IADEs",
       "des remplacements recalculés en tenant compte des compétences et des compteurs",
       "des compteurs de gardes et de pénibilité opposables, qui objectivent les arbitrages",
     ],
     proof:
-      "À l’Hôpital Européen de Marseille, le Dr Stordeur — MAR, responsable des plannings médecins et IADEs depuis 2013 — planifie une vingtaine de MAR et une dizaine d’IADEs avec Momentum ; l’étude de cas publiée décrit le temps repris sur la construction manuelle sous Excel.",
+      "À l’Hôpital Européen de Marseille, le Dr Stordeur, MAR et responsable des plannings médecins et IADEs depuis 2013, planifie une vingtaine de MAR et une dizaine d’IADEs avec Momentum ; l’étude de cas publiée décrit le temps repris sur la construction manuelle sous Excel.",
     related: [
       { label: "Lire le cas Hôpital Européen de Marseille", href: "/fr/cas-clients/hopital-europeen-marseille/" },
       { label: "Planning de garde", href: "/fr/fonctionnalites/plannings-de-garde-centralises/" },
@@ -87,7 +87,7 @@ export const specialtyPages: Record<string, FrenchLandingPage> = {
     metaDescription:
       "Consultations, plateaux techniques, astreintes, compétences non interchangeables : Momentum génère le planning de cardiologie avec compteurs d’équité traçables.",
     primaryPain:
-      "En cardiologie, la même semaine mêle consultations, échographies, épreuves d’effort, salle de cathétérisme et astreintes de soins intensifs — avec des praticiens dont les compétences ne sont pas interchangeables. Sur un tableur, chaque absence déclenche une renégociation informelle que personne ne peut auditer.",
+      "En cardiologie, la même semaine mêle consultations, échographies, épreuves d’effort, salle de cathétérisme et astreintes de soins intensifs, avec des praticiens dont les compétences ne sont pas interchangeables. Sur un tableur, chaque absence déclenche une renégociation informelle que personne ne peut auditer.",
     pains: [
       "affecter chaque activité selon les compétences réelles : écho, rythmologie, interventionnel",
       "assurer la continuité des soins intensifs et les astreintes sans surcharger toujours les mêmes",
@@ -113,7 +113,7 @@ export const specialtyPages: Record<string, FrenchLandingPage> = {
     eyebrow: "Urgences",
     title: "Gardes couvertes, imprévus absorbés, équité mesurable",
     description:
-      "Momentum construit les lignes de garde jour, nuit et week-end, centralise les désidératas et recalcule la couverture quand un arrêt tombe — repos et compteurs vérifiés avant publication.",
+      "Momentum construit les lignes de garde jour, nuit et week-end, centralise les désidératas et recalcule la couverture quand un arrêt tombe. Repos et compteurs sont vérifiés avant publication.",
     metaTitle: "Planning médecins urgentistes | Momentum BioSked",
     metaDescription:
       "Lignes de garde, continuité, remplacements en urgence, renforts territoriaux : Momentum planifie les services d’urgences. CHIREC : de 4 jours à 4-5 h par mois.",
@@ -132,7 +132,7 @@ export const specialtyPages: Record<string, FrenchLandingPage> = {
       "toutes les demandes des praticiens au même endroit (CHU d’Angers, 52 praticiens urgences-Samu)",
     ],
     proof:
-      "Le Dr Boishardy, administrateur Momentum du DMU au CHU d’Angers, le dit dans l’étude de cas : le planning d’un service d’urgences est l’un des plus compliqués d’un hôpital — et tout est désormais au même endroit, accessible en ligne. Le CHIREC a mesuré le sien : 4 jours devenus 4–5 heures par mois.",
+      "Le Dr Boishardy, administrateur Momentum du DMU au CHU d’Angers, le dit dans l’étude de cas : le planning d’un service d’urgences est l’un des plus compliqués d’un hôpital. Tout est désormais au même endroit, accessible en ligne. Le CHIREC a mesuré le sien : 4 jours devenus 4–5 heures par mois.",
     related: [
       { label: "Cas CHU Angers", href: "/fr/cas-clients/chu-angers/" },
       { label: "Plannings de garde", href: "/fr/fonctionnalites/plannings-de-garde-centralises/" },
@@ -144,7 +144,7 @@ export const specialtyPages: Record<string, FrenchLandingPage> = {
     eyebrow: "Établissements de santé",
     title: "Piloter les plannings médicaux à l’échelle d’un établissement ou d’un GHT",
     description:
-      "Momentum harmonise les règles de temps de travail entre services et sites, consolide compteurs et couverture, et relie badgeage, RH et export paie — sans écraser le fonctionnement propre de chaque service.",
+      "Momentum harmonise les règles de temps de travail entre services et sites, consolide compteurs et couverture, et relie badgeage, RH et export paie sans écraser le fonctionnement propre de chaque service.",
     metaTitle: "Planification médicale multisites | Momentum BioSked",
     metaDescription:
       "Harmonisation des règles, compteurs consolidés, mutualisation territoriale, badgeage et export paie : Momentum pilote les plannings médicaux multisites et GHT.",
@@ -159,7 +159,7 @@ export const specialtyPages: Record<string, FrenchLandingPage> = {
     outcomes: [
       "une vision consolidée de la couverture et des compteurs, service par service et site par site",
       "des règles paramétrées par service, appliquées et tracées automatiquement",
-      "un déploiement progressif, service après service — la voie suivie au CHU d’Angers, de l’anesthésie aux urgences",
+      "un déploiement progressif, service après service, comme au CHU d’Angers, de l’anesthésie aux urgences",
       "des heures fiables transmises à la paie via le badgeage et l’export",
     ],
     proof:
@@ -175,7 +175,7 @@ export const specialtyPages: Record<string, FrenchLandingPage> = {
     eyebrow: "Autres spécialités",
     title: "Un moteur de contraintes qui se paramètre sur les règles de votre service",
     description:
-      "Ophtalmologie, pathologie, pédiatrie, biologie ou équipes mixtes : Momentum formalise vos règles — contrats, compétences, présence, équité — au lieu de vous demander de changer d’organisation.",
+      "Ophtalmologie, pathologie, pédiatrie, biologie ou équipes mixtes : Momentum formalise vos règles (contrats, compétences, présence, équité) au lieu de vous demander de changer d’organisation.",
     metaTitle: "Planning médical autres spécialités | Momentum BioSked",
     metaDescription:
       "Contrats, compétences, obligations de présence, équité : Momentum paramètre la planification automatique sur les règles propres à chaque spécialité médicale.",
@@ -194,7 +194,7 @@ export const specialtyPages: Record<string, FrenchLandingPage> = {
       "un socle commun prêt pour l’extension à d’autres services",
     ],
     proof:
-      "BioSked construit des plannings médicaux depuis plus de quinze ans — la plus ancienne étude de cas publiée date de 2010 — pour plus de 250 organisations de santé dans 9 pays. La méthode ne change pas avec la spécialité : vos règles d’abord, la génération ensuite.",
+      "BioSked construit des plannings médicaux depuis plus de quinze ans (la plus ancienne étude de cas publiée date de 2010) pour plus de 250 organisations de santé dans 9 pays. La méthode ne change pas avec la spécialité : vos règles d’abord, la génération ensuite.",
     related: [
       { label: "Demander une démo", href: "/fr/demo/" },
       { label: "Voir les cas clients", href: "/fr/cas-clients/" },
@@ -214,7 +214,7 @@ export const featurePages: Record<string, FrenchLandingPage> = {
     metaDescription:
       "Génération de plannings médicaux sous contraintes : contrats, repos, compétences, équité. CHIREC : de 4 jours à 4-5 heures par mois, jusqu’à 90 % de temps en moins.",
     primaryPain:
-      "Construire un planning à la main, c’est vérifier chaque affectation contre des dizaines de règles — repos, contrats, compétences, équité — et recommencer à chaque absence. Au CHIREC, ce travail prenait 4 jours par mois ; à l’Hôpital Européen de Marseille, une vacation hebdomadaire plus 4 à 6 heures personnelles sur Excel.",
+      "Construire un planning à la main, c’est vérifier chaque affectation contre des dizaines de règles (repos, contrats, compétences, équité) et recommencer à chaque absence. Au CHIREC, ce travail prenait 4 jours par mois ; à l’Hôpital Européen de Marseille, une vacation hebdomadaire plus 4 à 6 heures personnelles sur Excel.",
     pains: [
       "encoder contrats, temps de travail, compétences et disponibilités comme des règles vérifiables",
       "répartir gardes, nuits et week-ends avec des compteurs d’équité et de pénibilité",
@@ -228,7 +228,7 @@ export const featurePages: Record<string, FrenchLandingPage> = {
       "des règles d’équité appliquées automatiquement et traçables face à l’équipe",
     ],
     proof:
-      "Au centre d’imagerie Les Cèdres (client depuis 2014), le Dr Poirier le résume dans l’étude de cas publiée : rapports, listes d’équité et calcul de pénibilité sortent du système — et les plannings ne se génèrent plus que trois fois par an.",
+      "Au centre d’imagerie Les Cèdres (client depuis 2014), le Dr Poirier le résume dans l’étude de cas publiée : rapports, listes d’équité et calcul de pénibilité sortent du système. Les plannings ne se génèrent plus que trois fois par an.",
     related: [
       { label: "Radiologie", href: "/fr/secteurs-soins/radiologie/" },
       { label: "Anesthésie", href: "/fr/secteurs-soins/anesthesie/" },
@@ -259,7 +259,7 @@ export const featurePages: Record<string, FrenchLandingPage> = {
       "une satisfaction du personnel mesurée entre 90 et 100 % aux urgences du CHIREC",
     ],
     proof:
-      "Aux urgences du CHIREC (40 000 passages par an, 25 à 30 médecins), la construction du planning — gardes comprises — est passée de 4 jours à 4–5 heures par mois. Au CHU d’Angers, 52 praticiens urgences-Samu sont planifiés dans Momentum.",
+      "Aux urgences du CHIREC (40 000 passages par an, 25 à 30 médecins), la construction du planning, gardes comprises, est passée de 4 jours à 4–5 heures par mois. Au CHU d’Angers, 52 praticiens urgences-Samu sont planifiés dans Momentum.",
     related: [
       { label: "Urgences", href: "/fr/secteurs-soins/urgences/" },
       { label: "Anesthésie", href: "/fr/secteurs-soins/anesthesie/" },
@@ -284,13 +284,13 @@ export const featurePages: Record<string, FrenchLandingPage> = {
       "réduire relances, oublis et contestations après publication",
     ],
     outcomes: [
-      "toutes les demandes des praticiens accessibles au même endroit — le bénéfice cité par le CHU d’Angers",
+      "toutes les demandes des praticiens accessibles au même endroit, un bénéfice cité par le CHU d’Angers",
       "des arbitrages traçables, adossés aux compteurs d’équité",
       "moins de contestations après publication : la règle appliquée est visible",
       "du temps de coordination rendu au responsable de planning",
     ],
     proof:
-      "« Tout est au même endroit et accessible sur internet […] je n’ai rien à faire si ce n’est à me connecter pour accéder à toutes les demandes des praticiens et gérer mes plannings. » — Dr Thomas Boishardy, administrateur Momentum pour le DMU, CHU d’Angers (52 praticiens urgences-Samu).",
+      "« Tout est au même endroit et accessible sur internet […] je n’ai rien à faire si ce n’est à me connecter pour accéder à toutes les demandes des praticiens et gérer mes plannings. » (Dr Thomas Boishardy, administrateur Momentum pour le DMU au CHU d’Angers ; 52 praticiens urgences-Samu).",
     related: [
       { label: "Cas CHU Angers", href: "/fr/cas-clients/chu-angers/" },
       { label: "Communication et diffusion", href: "/fr/fonctionnalites/communication-et-diffusion/" },
@@ -321,7 +321,7 @@ export const featurePages: Record<string, FrenchLandingPage> = {
       "l’intégration aux calendriers personnels, citée comme indispensable par IRIS GRIM",
     ],
     proof:
-      "Chez IRIS GRIM (45 radiologues, 13 sites nantais), les gestionnaires de planification citent l’application mobile et l’intégration aux calendriers personnels parmi les fonctionnalités dont l’équipe ne peut plus se passer — étude de cas publiée.",
+      "Chez IRIS GRIM (45 radiologues, 13 sites nantais), les gestionnaires de planification citent l’application mobile et l’intégration aux calendriers personnels parmi les fonctionnalités dont l’équipe ne peut plus se passer, selon l’étude de cas publiée.",
     related: [
       { label: "Cas IRIS GRIM", href: "/fr/cas-clients/iris-grim/" },
       { label: "Gestion des requêtes", href: "/fr/fonctionnalites/gestion-des-requetes-des-equipes/" },
@@ -338,7 +338,7 @@ export const featurePages: Record<string, FrenchLandingPage> = {
     metaDescription:
       "Listes d’équité, gardes, astreintes, jours fériés, pénibilité, temps réalisé : des rapports générés depuis le planning validé, sans reconstruction manuelle.",
     primaryPain:
-      "Dans beaucoup de services, le reporting se reconstruit à la main dans un tableur à partir du planning — avec les écarts et les contestations qui vont avec. Les données existent déjà : elles doivent découler des affectations validées, pas être ressaisies.",
+      "Dans beaucoup de services, le reporting se reconstruit à la main dans un tableur à partir du planning, avec les écarts et les contestations qui vont avec. Les données existent déjà : elles doivent découler des affectations validées, pas être ressaisies.",
     pains: [
       "sortir des listes d’équité que les praticiens ne peuvent pas contester",
       "compter gardes, astreintes et jours fériés travaillés sans ressaisie",
@@ -352,7 +352,7 @@ export const featurePages: Record<string, FrenchLandingPage> = {
       "un gain de temps documenté par Les Cèdres sur rapports, listes d’équité, jours fériés et astreintes",
     ],
     proof:
-      "« L’utilisation de Momentum nous fait gagner du temps pour les générations de rapports, la sortie des listes d’équité, de jours fériés travaillés et d’astreintes. Il y a aussi le calcul de pénibilité des postes. » — Dr Jérôme Poirier, radiologue associé, Les Cèdres (client depuis 2014).",
+      "« L’utilisation de Momentum nous fait gagner du temps pour les générations de rapports, la sortie des listes d’équité, de jours fériés travaillés et d’astreintes. Il y a aussi le calcul de pénibilité des postes. » (Dr Jérôme Poirier, radiologue associé, Les Cèdres ; client depuis 2014).",
     related: [
       { label: "Établissements de santé", href: "/fr/secteurs-soins/etablissements-de-sante/" },
       { label: "Badgeage et suivi RH", href: "/fr/fonctionnalites/badgeage-et-suivi-rh/" },

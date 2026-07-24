@@ -1,5 +1,5 @@
 # Hosting-level 301 redirects for Cloudflare Pages/Netlify.
-# GENERATED from astro.config.mjs by scripts/generate-redirects.mjs — do not edit by hand.
+# GENERATED from astro.config.mjs by scripts/generate-redirects.mjs: do not edit by hand.
 # Astro static redirects also create fallback meta-refresh pages; SEO launch should use real 301s.
 
 /blog/10-raisons-pour-passer-sur-un-logiciel-de-planification-automatique-des-medecins/ /fr/blog/10-raisons-pour-passer-sur-un-logiciel-de-planification-automatique-des-medecins/ 301

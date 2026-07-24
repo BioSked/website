@@ -163,7 +163,7 @@ assert.match(generatedRedirects, /^\/demander-une-demonstration\/ \/fr\/demo\/ 3
 const packageJson = JSON.parse(read('package.json'));
 assert.equal(
   packageJson.scripts.postbuild,
-  'node scripts/generate-static-redirect-pages.mjs && npm run test:seo',
+  'node scripts/generate-static-redirect-pages.mjs && npm run test:seo && node scripts/test-style.mjs dist',
 );
 
 const staticRedirectGenerator = read('scripts/generate-static-redirect-pages.mjs');

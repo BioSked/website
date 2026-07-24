@@ -1,5 +1,5 @@
 /**
- * Localized plan tiers for the pricing pages — mirrors the English
+ * Localized plan tiers for the pricing pages, matching the English
  * Pricing section (same four tiers, no per-card prices; the per-locale
  * price anchor lives in the page hero). Plan NAMES stay in English
  * (product tier names), descriptions/features are localized.
@@ -44,7 +44,7 @@ function plans(
 
 const FR: PricingPlansContent = {
     heading: 'Des formules adaptées à chaque équipe',
-    sub: 'De la planification simple à l’automatisation complète, chaque équipe a ses besoins. Choisissez une formule unique pour tout l’effectif ou combinez-les selon les services — le tout sur un même compte.',
+    sub: 'De la planification simple à l’automatisation complète, chaque équipe a ses besoins. Choisissez une formule unique pour tout l’effectif ou combinez-les selon les services, le tout sur un même compte.',
     plans: plans(
         {
             starter: 'Pour les petites équipes aux rotations simples',
@@ -71,7 +71,7 @@ const FR: PricingPlansContent = {
 
 const DE: PricingPlansContent = {
     heading: 'Für jedes Team der passende Plan',
-    sub: 'Von der einfachen Dienstplanung bis zur vollständigen Automatisierung: Wählen Sie einen Plan für alle oder kombinieren Sie Pläne je Team — alles in einem Konto.',
+    sub: 'Von der einfachen Dienstplanung bis zur vollständigen Automatisierung: Wählen Sie einen Plan für alle oder kombinieren Sie Pläne je Team; alles bleibt in einem Konto.',
     plans: plans(
         {
             starter: 'Für kleine Teams mit einfachen Rotationen',
@@ -98,7 +98,7 @@ const DE: PricingPlansContent = {
 
 const NL: PricingPlansContent = {
     heading: 'Voor elk team een passend plan',
-    sub: 'Van eenvoudige roosterplanning tot volledige automatisering: kies één plan voor iedereen of combineer plannen per team — alles binnen één account.',
+    sub: 'Van eenvoudige roosterplanning tot volledige automatisering: kies één plan voor iedereen of combineer plannen per team; alles blijft binnen één account.',
     plans: plans(
         {
             starter: 'Voor kleine teams met eenvoudige roosters',
@@ -125,7 +125,7 @@ const NL: PricingPlansContent = {
 
 const IT: PricingPlansContent = {
     heading: 'Un piano per ogni team',
-    sub: 'Dalla pianificazione semplice all’automazione completa: scegliete un unico piano per tutti o combinate piani diversi per team — tutto in un unico account.',
+    sub: 'Dalla pianificazione semplice all’automazione completa: scegliete un unico piano per tutti o combinate piani diversi per team; tutto resta in un unico account.',
     plans: plans(
         {
             starter: 'Per piccoli team con rotazioni semplici',

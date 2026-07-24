@@ -131,7 +131,7 @@ export function altPathFor(pathname: string, target: LocaleCode): string {
 }
 
 /**
- * hreflang alternates for the current page — ONLY true equivalents.
+ * hreflang alternates for the current page (ONLY true equivalents).
  * - Shared root pages (privacy/changelog) and FR-only pages: no alternates.
  * - English-shaped paths: en + de/nl/it (locale URLs deliberately serve these
  *   routes) + fr only when a real mirrored French page exists.

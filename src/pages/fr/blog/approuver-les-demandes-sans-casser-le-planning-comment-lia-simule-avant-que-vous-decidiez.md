@@ -33,7 +33,7 @@ Si le scénario révèle une fragilité, le périmètre est ajusté et l’IA re
 
 La simulation des plannings n’élimine pas la décision humaine, elle l’éclaire. Les refus sont justifiables, les validations sont sécurisées, et la charge mentale sur les arbitrages difficiles diminue sensiblement. Pour le chef de service, les décisions sont traçables, les plannings finalisés arrivent avec moins d’imprévus, et la couverture du service est mieux protégée, sans temps de gestion supplémentaire.
 
-## Découvrez la simulation des plannings au Congrès des Urgences 2026 — Stand n°75 | 3-5 juin, Paris
+## Découvrez la simulation des plannings au Congrès des Urgences 2026 : stand n°75 | 3-5 juin, Paris
 
 BioSked sera présent du 3 au 5 juin 2026 à Paris (stand n°75). Venez voir la simulation des plannings en démonstration live : soumettez une demande réelle, regardez l’IA générer le planning test en temps réel, et mesurez l’impact avant de valider.
 

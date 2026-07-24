@@ -3,14 +3,14 @@ layout: "@layouts/ArticleLayout.astro"
 date: 2025-11-05
 author: Doug Nicholson
 title: First RVU-Based Scheduling Platform
-description: Radiology has evolved — but scheduling hasn’t kept up. As imaging volumes grow and teleradiology networks expand across regions, many departments still rely on templates and spreadsheets built for a different era.
+description: Radiology has evolved, but scheduling hasn’t kept up. As imaging volumes grow and teleradiology networks expand across regions, many departments still rely on templates and spreadsheets built for a different era.
 image: "../../../assets/images/rvu-time.png"
 
 ---
 
 ![Alt text](../../../assets/images/rvu-time.png)
 
-Radiology has evolved — but scheduling hasn’t kept up.
+Radiology has evolved, but scheduling hasn’t kept up.
 
 As imaging volumes grow and teleradiology networks expand across regions, many departments still rely on templates and spreadsheets built for a different era. The result: inefficiency, fatigue, and an uneven distribution of work.
 
@@ -30,7 +30,7 @@ Radiology leaders face rising case volumes, workforce shortages, burnouts, and t
 Momentum brings operational balance: matching the right expertise to the right workload, wherever teams are located.
 
 “Scheduling shouldn’t be an afterthought. It’s the operational backbone of how care gets delivered.”
-— David Dudok de Wit, CEO, BioSked
+<cite>David Dudok de Wit, CEO, BioSked</cite>
 
 ## See It First at RSNA 2025
 

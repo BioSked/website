@@ -516,7 +516,7 @@ for (const [alt, assetStem, extension = 'webp'] of [
   ['IRIS GRIM', 'iris-grim', 'svg'],
   ['CHU Angers', 'chu'],
   ['Imagir', 'imagir-or'],
-  ['CHIREC — Hôpital de Braine-l’Alleud', 'chirec-2015'],
+  ['CHIREC, Hôpital de Braine-l’Alleud', 'chirec-2015'],
 ]) {
   const matchingImage = englishHomepageImages.find(
     (attrs) => attrs.alt === alt && new RegExp(`/${assetStem}\\.`).test(attrs.src ?? ''),

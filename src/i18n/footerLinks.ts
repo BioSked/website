@@ -1,7 +1,7 @@
 import { frChLocalPathFor, type LocaleCode } from './locales';
 
 /**
- * Per-locale footer content. Kept as literal strings (no t() layer) — the
+ * Per-locale footer content. Kept as literal strings (no t() layer); the
  * footer is simple enough that one structure per locale reads clearer.
  * Support links point at the market's knowledge base.
  */

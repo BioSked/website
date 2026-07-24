@@ -20,7 +20,7 @@ export interface NavLink extends NavSubitem {
  *
  * - en: the biosked.com reference nav (from consts), untouched.
  * - fr: the French-market nav (specialties + cas clients), hrefs under /fr/.
- * - de/nl/it: the English structure with locale-prefixed hrefs — those URLs
+ * - de/nl/it: the English structure with locale-prefixed hrefs; those URLs
  *   all exist thanks to the i18n fallback rewrites.
  */
 

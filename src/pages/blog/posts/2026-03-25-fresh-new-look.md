@@ -18,7 +18,7 @@ Fewer clicks, smoother workflows. Here’s what the latest Momentum update chang
 Choose the interface that suits you: dark, light, or automatic based on your system preferences. Less eye strain during long sessions, especially on night shifts. 
 
 **⚡ One-click assignment creation**
-Add an assignment directly from the calendar. Date, role, staff, location — everything is pre-filled based on your active filters. What used to take several steps now takes just one. 
+Add an assignment directly from the calendar. Date, role, staff, and location are all pre-filled based on your active filters. What used to take several steps now takes just one.
 
 **🔍 Instant search**
 Type a name, date, or location: Momentum finds the assignment instantly. No more switching between views. 
@@ -34,6 +34,6 @@ For advanced users:
 - `Ctrl+K / CMD+K`: Quick search 
 
 **🏥 Already deployed at scale**
-Over 1,000 hospital sites use Momentum daily. The result: up to 90% of administrative time saved — freeing up time for quality care and staff well-being. 
+Over 1,000 hospital sites use Momentum daily. The result: up to 90% of administrative time saved, freeing up time for quality care and staff well-being.
 
 → [Discover how it works](/demo/)

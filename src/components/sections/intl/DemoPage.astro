@@ -5,7 +5,7 @@ import type { MarketContent } from '@/i18n/market/types';
 import type { LocaleCode } from '@/i18n/locales';
 
 /**
- * Shared demo-request page for the de/nl/it markets — a closing page, not a
+ * Shared demo-request page for the de/nl/it markets. It is a closing page, not a
  * bare form: proof beside the form, what-happens-next, GDPR reassurance.
  * HubSpot embed is locale-aware and redirects to the locale thank-you page.
  */
@@ -57,7 +57,7 @@ const thankYouPath = market.thankyou ? `/${locale}/demo/${market.thankyou.slug}/
             <blockquote class="text-foreground/90 text-sm">{q.text}</blockquote>
             <figcaption class="mt-2 text-xs">
               <span class="font-semibold text-foreground">{q.author}</span>
-              <span class="text-muted-foreground"> — {q.role}</span>
+              <span class="text-muted-foreground">, {q.role}</span>
             </figcaption>
           </figure>
           <div class="grid grid-cols-3 gap-4">

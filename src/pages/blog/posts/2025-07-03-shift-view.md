@@ -3,7 +3,7 @@ layout: "@layouts/ArticleLayout.astro"
 date: 2025-07-03
 author: David Dudok de Wit
 title: Shift-Based View for Better On-the-Ground Coordination
-description: Radiology has evolved — but scheduling hasn’t kept up. As imaging volumes grow and teleradiology networks expand across regions, many departments still rely on templates and spreadsheets built for a different era
+description: Radiology has evolved, but scheduling hasn’t kept up. As imaging volumes grow and teleradiology networks expand across regions, many departments still rely on templates and spreadsheets built for a different era
 image: "../../../assets/images/shift-view.png"
 ---
 
@@ -16,7 +16,7 @@ Whether it’s a public hospital, an imaging center, or a surgical unit, day-to-
 
 To better support frontline teams, Momentum now introduces **a new shift-based schedule view**, directly aligned with the daily rhythms of care facilities.
 
-*“We are very satisfied, this is exactly what we were waiting for. It gives us better visibility and significantly reduces errors from manual changes. The process is much faster, and the sidebar display of assignment settings when clicking on a cell is a real bonus. The planning remains very clear and easy to read.”*<br>— Axelle Braun, Radiology Planning Administrator at CHU Brugmann
+*“We are very satisfied, this is exactly what we were waiting for. It gives us better visibility and significantly reduces errors from manual changes. The process is much faster, and the sidebar display of assignment settings when clicking on a cell is a real bonus. The planning remains very clear and easy to read.”*<br><cite>Axelle Braun, Radiology Planning Administrator at CHU Brugmann</cite>
 
 ## A More Intuitive View, Built for Everyday Hospital Use
 No more hard-to-read linear schedules during peak activity. With this update, teams gain instant access to a clear and structured view:

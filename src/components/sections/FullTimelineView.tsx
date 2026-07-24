@@ -85,7 +85,7 @@ const features = [
     number: "6",
     title: "Integrate",
     problem:
-      "Schedules don't sync to payroll, RIS, EHR, T&A — leading to double entry and mismatched data.",
+      "Schedules don't sync to payroll, RIS, EHR, and T&A, leading to double entry and mismatched data.",
     solution:
       "Momentum syncs automatically with payroll, practice management, RIS/EHR, Snowflake, calendars, etc.",
     outcome:
@@ -131,7 +131,7 @@ export default function FullTimelineView() {
             Schedule smarter, not harder
           </h2>
           <p className="text-muted-foreground text-lead">
-            From policy definition to automated scheduling to system integration—everything you need to reclaim <span className="text-foreground font-semibold">80% of your admin time</span>.
+            From policy definition to automated scheduling to system integration: everything you need to reclaim <span className="text-foreground font-semibold">80% of your admin time</span>.
           </p>
         </div>
         <div className="hidden lg:block" onMouseLeave={handleContainerMouseLeave}>

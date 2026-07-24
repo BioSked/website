@@ -1,7 +1,7 @@
 /**
  * Dutch (Belgium) content for the working-time-registration page.
  * Context: Belgian healthcare employers face tightening working-time
- * registration obligations toward 2027. Framing is strictly factual —
+ * registration obligations toward 2027. Framing is strictly factual:
  * no statute names, no date-of-force promises, no certified-compliance
  * claims; the legal assessment stays with the customer (mirrors the
  * pricing FAQ in nl.ts). Momentum capabilities named are LIVE today:

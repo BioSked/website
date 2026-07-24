@@ -24,13 +24,13 @@ export const MARKET: MarketContent = {
     demo: {
         metaTitle: 'Richiedi una demo | BioSked Momentum Italia',
         metaDescription:
-            'Prenota una demo di Momentum: la piattaforma applicata ai tuoi turni, alle guardie e reperibilità, ai contatori di equità e alle tue sedi — con i risultati misurati nei casi pubblicati.',
+            'Prenota una demo di Momentum: la piattaforma applicata ai tuoi turni, alle guardie e reperibilità, ai contatori di equità e alle tue sedi, con i risultati misurati nei casi pubblicati.',
         heading: 'Vedi Momentum applicato alla tua organizzazione',
         sub: 'Prepariamo la demo sul tuo contesto: regole di pianificazione e contratti, guardie e reperibilità, contatori di equità, gestione multi-sede e integrazioni con i sistemi che già usi.',
         steps: [
-            'Demo personalizzata — su esempi tratti dalla tua pianificazione reale',
-            'Analisi del perimetro — team, sedi, moduli, integrazioni',
-            'Proposta su misura — trasparente e verificabile',
+            'Demo personalizzata: esempi tratti dalla tua pianificazione reale',
+            'Analisi del perimetro: team, sedi, moduli, integrazioni',
+            'Proposta su misura, trasparente e verificabile',
         ],
         privacyNote: 'Hosting nell’Unione Europea · GDPR · accordo sul trattamento dei dati su richiesta',
         formTitle: 'Richiedi una demo',
@@ -39,7 +39,7 @@ export const MARKET: MarketContent = {
         metaTitle: 'Richiedi un preventivo | BioSked Momentum',
         metaDescription: 'Richiedi un preventivo Momentum costruito su collaboratori pianificati, sedi e moduli effettivamente utilizzati dalla tua struttura.',
         heading: 'Inizia con Momentum',
-        sub: 'Descrivici in breve la tua organizzazione — professionisti pianificati, sedi, sistemi da collegare — e ti ricontattiamo con una proposta e un piano di implementazione.',
+        sub: 'Descrivici in breve la tua organizzazione (professionisti pianificati, sedi e sistemi da collegare) e ti ricontattiamo con una proposta e un piano di implementazione.',
         formTitle: 'Richiedi un preventivo',
     },
     security: {
@@ -48,11 +48,11 @@ export const MARKET: MarketContent = {
             'Come Momentum tratta i dati di pianificazione: hosting nell’Unione Europea, GDPR e accordo sul trattamento dei dati su richiesta, crittografia, accessi basati sui ruoli, nessuna sorveglianza individuale.',
         kicker: 'Sicurezza e dati',
         heading: 'Impegni verificabili, non slogan',
-        lead: 'Responsabili IT e DPO fanno domande precise. Queste sono le nostre risposte, nei limiti di ciò che documentiamo contrattualmente — il dettaglio si esamina con il tuo team durante la fase di analisi.',
+        lead: 'Responsabili IT e DPO fanno domande precise. Queste sono le nostre risposte, nei limiti di ciò che documentiamo contrattualmente. Il dettaglio si esamina con il tuo team durante la fase di analisi.',
         points: [
             {
                 title: 'Hosting nell’Unione Europea',
-                text: 'I dati di produzione Momentum dei nostri clienti europei sono ospitati nell’Unione Europea. Le modalità precise — localizzazione, sub-responsabili — sono documentate contrattualmente.',
+                text: 'I dati di produzione Momentum dei nostri clienti europei sono ospitati nell’Unione Europea. Le modalità precise, incluse la localizzazione e l’elenco dei sub-responsabili, sono documentate contrattualmente.',
             },
             {
                 title: 'GDPR e accordo sul trattamento dei dati',
@@ -68,7 +68,7 @@ export const MARKET: MarketContent = {
             },
             {
                 title: 'Accessi e tracciabilità',
-                text: 'I diritti di accesso in Momentum sono definiti per ruoli e privilegi, amministrati dalla tua organizzazione. Le richieste — ferie, scambi, desiderata — sono tracciate nell’applicazione.',
+                text: 'I diritti di accesso in Momentum sono definiti per ruoli e privilegi, amministrati dalla tua organizzazione. Le richieste (ferie, scambi e desiderata) sono tracciate nell’applicazione.',
             },
             {
                 title: 'Cosa Momentum non fa',
@@ -83,9 +83,9 @@ export const MARKET: MarketContent = {
             'Casi pubblicati Momentum: pronto soccorso CHIREC (creazione dei turni mensili da 4 giorni a 4–5 ore), CHU di Angers, IRIS GRIM, IMAGIR, CIM Les Cèdres. Risultati misurati nella pianificazione di équipe mediche.',
         kicker: 'Referenze',
         heading: 'Casi pubblicati, risultati misurati',
-        lead: 'Oltre 250 organizzazioni sanitarie pianificano con Momentum. Qui trovi una selezione dei casi pubblicati — pronto soccorso, radiologia multi-sede, équipe mediche — con i numeri dichiarati dai clienti stessi.',
+        lead: 'Oltre 250 organizzazioni sanitarie pianificano con Momentum. Qui trovi una selezione dei casi pubblicati (pronto soccorso, radiologia multi-sede ed équipe mediche), con i numeri dichiarati dai clienti stessi.',
         featured: {
-            org: 'CHIREC — Ospedale di Braine-l’Alleud',
+            org: 'CHIREC, Ospedale di Braine-l’Alleud',
             specialty: 'Pronto soccorso',
             factsLine: 'Belgio · 40.000 accessi all’anno · 25–30 medici',
             paragraphs: [
@@ -111,17 +111,17 @@ export const MARKET: MarketContent = {
                 line: '52 medici con attività condivisa tra pronto soccorso e SAMU, pianificati con Momentum dal 2021: guardie e weekend ripartiti con criteri di equità, desiderata e scambi gestiti nell’app.',
             },
             {
-                org: 'IRIS GRIM — Nantes',
+                org: 'IRIS GRIM, Nantes',
                 specialty: 'Radiologia',
                 line: '45 radiologi e 240 professionisti; nel 2020 il gruppo ha sostituito lo strumento di pianificazione sviluppato internamente con Momentum.',
             },
             {
-                org: 'IMAGIR — Bordeaux',
+                org: 'IMAGIR, Bordeaux',
                 specialty: 'Radiologia multi-sede',
                 line: 'Circa 40 radiologi su 9 sedi; secondo il caso di studio pubblicato, l’interconnessione tra Momentum, EasyDoct e Kelio «permette il recupero di un equivalente a tempo pieno, se non due».',
             },
             {
-                org: 'CIM Les Cèdres — Saint-Malo',
+                org: 'CIM Les Cèdres, Saint-Malo',
                 specialty: 'Radiologia',
                 line: '18 radiologi; cliente dal 2014: turni collegati al RIS di NGI, timbrature e gestione delle ferie nella stessa piattaforma.',
             },
@@ -133,7 +133,7 @@ export const MARKET: MarketContent = {
     thankyou: {
         slug: 'grazie',
         title: 'Richiesta ricevuta | BioSked Momentum',
-        heading: 'Grazie — abbiamo ricevuto la tua richiesta.',
+        heading: 'Grazie, abbiamo ricevuto la tua richiesta.',
         body: 'Ti ricontatteremo personalmente per fissare un appuntamento. Se vuoi anticiparci qualche dettaglio su team, sedi o processo di pianificazione attuale, scrivici a info@biosked.com.',
         back: 'Torna alla homepage',
     },
@@ -143,7 +143,7 @@ export const MARKET: MarketContent = {
             'Momentum per ospedali, gruppi di radiologia e cliniche: piattaforma, app mobile, implementazione guidata e supporto inclusi. L’offerta si costruisce su collaboratori, sedi e moduli. Richiedi un preventivo.',
         kicker: 'Prezzi',
         heading: 'Un’offerta costruita sulla tua organizzazione',
-        lead: 'Ogni struttura sanitaria pianifica in modo diverso: per questo l’offerta è definita su misura. Si basa su collaboratori pianificati, sedi e moduli effettivamente usati, con implementazione guidata e supporto inclusi fin dal primo giorno. Il metro per valutarla è il ritorno: nei casi pubblicati, la creazione dei turni mensili passa da 4 giorni a 4–5 ore (CHIREC, 2025) — fino al 90% di tempo amministrativo in meno.',
+        lead: 'Ogni struttura sanitaria pianifica in modo diverso: per questo l’offerta è definita su misura. Si basa su collaboratori pianificati, sedi e moduli effettivamente usati, con implementazione guidata e supporto inclusi fin dal primo giorno. Il metro per valutarla è il ritorno: nei casi pubblicati, la creazione dei turni mensili passa da 4 giorni a 4–5 ore (CHIREC, 2025); il tempo amministrativo si riduce fino al 90%.',
         anchor: 'A partire da <strong>5,99 €</strong> per professionista pianificato al mese.',
         includedTitle: 'Sempre incluso nell’abbonamento',
         included: [
@@ -157,7 +157,7 @@ export const MARKET: MarketContent = {
             },
             {
                 title: 'Implementazione guidata e formazione',
-                text: 'Configuriamo insieme regole di pianificazione, guardie, reperibilità e contatori, e formiamo pianificatori e team. Dopo oltre 15 anni di progetti di pianificazione medica, sappiamo dove un avvio si blocca — e come evitarlo.',
+                text: 'Configuriamo insieme regole di pianificazione, guardie, reperibilità e contatori, e formiamo pianificatori e team. Dopo oltre 15 anni di progetti di pianificazione medica, sappiamo dove un avvio si blocca e come evitarlo.',
             },
             {
                 title: 'Integrazioni',
@@ -176,15 +176,15 @@ export const MARKET: MarketContent = {
         faq: [
             {
                 q: 'Come viene calcolato il preventivo?',
-                a: 'Su quattro piani (Starter, Plus, Pro, Enterprise) e tre elementi: il numero di collaboratori pianificati, il numero di sedi e i moduli che scegli — ad esempio scambio turni, timbrature o integrazioni. Paghi solo ciò che la tua organizzazione usa davvero.',
+                a: 'Su quattro piani (Starter, Plus, Pro, Enterprise) e tre elementi: il numero di collaboratori pianificati, il numero di sedi e i moduli che scegli (ad esempio scambio turni, timbrature o integrazioni). Paghi solo ciò che la tua organizzazione usa davvero.',
             },
             {
                 q: 'Possiamo iniziare in piccolo e crescere poi?',
-                a: 'Sì. Puoi cambiare piano in qualsiasi momento e combinare piani diversi per team — tutto in un unico account.',
+                a: 'Sì. Puoi cambiare piano in qualsiasi momento e combinare piani diversi per team, mantenendo tutto in un unico account.',
             },
             {
                 q: 'Quanto tempo fa risparmiare, concretamente?',
-                a: 'Dipende dal punto di partenza — spesso Excel, email e scambi informali. Nei casi pubblicati: creazione dei turni mensili da 4 giorni a 4–5 ore e fino al 90% di tempo in meno sulla gestione degli orari (CHIREC, 2025); con le integrazioni, «il recupero di un equivalente a tempo pieno, se non due» (IMAGIR).',
+                a: 'Dipende dal punto di partenza: spesso si tratta di Excel, email e scambi informali. Nei casi pubblicati: creazione dei turni mensili da 4 giorni a 4–5 ore e fino al 90% di tempo in meno sulla gestione degli orari (CHIREC, 2025); con le integrazioni, «il recupero di un equivalente a tempo pieno, se non due» (IMAGIR).',
             },
             {
                 q: 'Come funziona l’implementazione?',
@@ -200,7 +200,7 @@ export const MARKET: MarketContent = {
             },
             {
                 q: 'Momentum è una soluzione sovrana?',
-                a: 'Il contratto è con Bio-Optronics Sàrl, la nostra entità svizzera — la tua controparte contrattuale è europea, non una società americana. E i tuoi dati restano ospitati nell’Unione Europea.',
+                a: 'Il contratto è con Bio-Optronics Sàrl, la nostra entità svizzera. La tua controparte contrattuale è europea, non una società americana. E i tuoi dati restano ospitati nell’Unione Europea.',
             },
             {
                 q: 'Come si parte?',

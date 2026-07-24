@@ -15,7 +15,7 @@ export async function GET(context) {
   </item>`).join('\n');
     const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0"><channel>
-  <title>Momentum by BioSked — Blog</title>
+  <title>Momentum by BioSked: Blog</title>
   <link>${site}</link>
   <description>Healthcare staff scheduling: product news and practice insights from BioSked.</description>
   <language>en</language>

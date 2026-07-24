@@ -4,12 +4,13 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "prebuild": "npm run test:analytics && npm run test:locales",
+    "prebuild": "npm run test:analytics && npm run test:locales && npm run test:style",
     "build": "astro build",
-    "postbuild": "node scripts/generate-static-redirect-pages.mjs && npm run test:seo",
+    "postbuild": "node scripts/generate-static-redirect-pages.mjs && npm run test:seo && node scripts/test-style.mjs dist",
     "preview": "astro preview",
     "test:analytics": "node scripts/test-analytics.mjs",
     "test:locales": "node scripts/test-locales.mjs",
+    "test:style": "node scripts/test-style.mjs",
     "test:seo": "node scripts/test-seo.mjs",
     "astro": "astro",
     "check": "astro check"

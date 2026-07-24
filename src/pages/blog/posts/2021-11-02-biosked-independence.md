@@ -32,7 +32,7 @@ Thus, BioSked will continue to develop Momentum in the healthcare field to bette
 
 **BioSked** follows along the path forged by Bio-Optronics as the American and European teams of that company pursue their missions within BioSked.
 
-> *“We are delighted to create our own company, focused on Momentum, for better healthcare human resource organization. We look forward to providing you the best healthcare scheduling solution and helping to improve your workflow,”*<br>— Thomas Le Dall
+> *“We are delighted to create our own company, focused on Momentum, for better healthcare human resource organization. We look forward to providing you the best healthcare scheduling solution and helping to improve your workflow,”*<br><cite>Thomas Le Dall</cite>
 
 ## About BioSked
 

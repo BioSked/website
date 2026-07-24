@@ -11,7 +11,7 @@ import config from '../astro.config.mjs';
 const redirects = config.redirects ?? {};
 const lines = [
     '# Hosting-level 301 redirects for Cloudflare Pages/Netlify.',
-    '# GENERATED from astro.config.mjs by scripts/generate-redirects.mjs — do not edit by hand.',
+    '# GENERATED from astro.config.mjs by scripts/generate-redirects.mjs: do not edit by hand.',
     '# Astro static redirects also create fallback meta-refresh pages; SEO launch should use real 301s.',
     '',
 ];

@@ -201,7 +201,7 @@ export default defineConfig({
                     p: 'mb-3 sm:mb-4 text-foreground/85 [&>img]:border-none [&>img]:shadow-none [&>img]:mb-0 [&>img]:bg-secondary/5',
                     img: 'mb-8 rounded sm:mb-12 border border-secondary/15 shadow-xl shadow-secondary/10',
                     strong: 'text-foreground font-semibold',
-                    ul: "mb-6 list-none pl-5 text-foreground/85 [&>li]:before:content-['—'] [&>li]:before:-ml-6 [&>li]:before:mr-2",
+                    ul: "mb-6 list-none pl-5 text-foreground/85 [&>li]:before:content-['•'] [&>li]:before:-ml-6 [&>li]:before:mr-2",
                     ol: "mb-6 list-[upper-roman] pl-5 text-foreground/85 [&>li]:pl-2",
                     li: "my-2 pl-2 before:text-secondary/25 marker:text-accent",
                     hr: 'my-6 md:my-10',
