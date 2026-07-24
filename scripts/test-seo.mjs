@@ -9,6 +9,36 @@ import config from '../astro.config.mjs';
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const distDir = path.join(projectRoot, 'dist');
 const siteOrigin = 'https://biosked.com';
+const blogSourceDirs = [
+  path.join(projectRoot, 'src/pages/blog/posts'),
+  path.join(projectRoot, 'src/pages/fr/blog'),
+];
+const forbiddenBlogSourcePatterns = [
+  { pattern: /\[\/?et_pb_[^\]]*\]/i, label: 'Divi shortcode' },
+  { pattern: /\bet_pb_[\w-]*/i, label: 'Divi builder markup' },
+  { pattern: /@ET-DC@|\b(?:fb_built|_builder_version|theme_builder_area|global_colors_info)\s*=/i, label: 'Divi builder token' },
+  { pattern: /<!--\s*\/?wp:/i, label: 'WordPress block marker' },
+  { pattern: /\[\/?(?:vc_|fusion_|elementor)[^\]]*\]/i, label: 'legacy page-builder shortcode' },
+  { pattern: /(?:[?&]|&amp;)_gl=/i, label: 'historical Google Analytics linker token' },
+  {
+    pattern: /^(?:\t| {4,})<\/?(?:a|article|blockquote|br|code|div|em|figure|figcaption|h[1-6]|iframe|img|li|ol|p|picture|pre|section|span|strong|table|tbody|td|th|thead|tr|ul|video)\b/im,
+    label: 'indented HTML that Markdown would expose as code',
+  },
+];
+const visibleBlogLeakPatterns = [
+  {
+    pattern: /\[\/?(?:et_pb_|vc_|fusion_|elementor)[^\]]*\]/i,
+    label: 'page-builder shortcode',
+  },
+  {
+    pattern: /@ET-DC@|\b(?:fb_built|_builder_version|theme_builder_area|global_colors_info)\s*=/i,
+    label: 'page-builder token',
+  },
+  {
+    pattern: /(?:&(?:amp;)*lt;|&#0*60;|&#x0*3c;)\s*\/?\s*(?:a|article|blockquote|br|code|div|em|figure|figcaption|h[1-6]|iframe|img|li|ol|p|picture|pre|section|span|strong|table|tbody|td|th|thead|tr|ul|video)\b/i,
+    label: 'escaped structural HTML',
+  },
+];
 
 async function walk(directory) {
   const entries = await readdir(directory, { withFileTypes: true });
@@ -89,6 +119,18 @@ function expectedOpenGraphLocale(canonicalUrl) {
   return 'en_US';
 }
 
+function withoutNonVisibleMarkup(html) {
+  return html
+    .replace(/<(?:script|style|noscript|template|svg)\b[^>]*>[\s\S]*?<\/(?:script|style|noscript|template|svg)>/gi, '')
+    .replace(/<!--([\s\S]*?)-->/g, '');
+}
+
+function mainContent(html, context) {
+  const content = html.match(/<main\b[^>]*>([\s\S]*?)<\/main>/i)?.[1];
+  assert.ok(content, `${context} must contain a main content landmark`);
+  return content;
+}
+
 async function assertLocalUrlExists(urlString, context) {
   const outputPath = localOutputPath(urlString);
   if (!outputPath) return;
@@ -124,18 +166,58 @@ function collectStructuredAssets(value, key = '') {
 
 await access(distDir);
 const htmlFiles = (await walk(distDir)).filter((file) => file.endsWith('.html'));
+const blogSourceFiles = (await Promise.all(blogSourceDirs.map((directory) => walk(directory))))
+  .flat()
+  .filter((file) => file.endsWith('.md'));
+const expectedBlogOutputPaths = new Set(blogSourceFiles.map((file) => {
+  const relativeSourcePath = path.relative(projectRoot, file).split(path.sep).join('/');
+  const outputStem = relativeSourcePath
+    .replace(/^src\/pages\//, '')
+    .replace(/\.md$/, '');
+  return `${outputStem}/index.html`;
+}));
+assert.equal(
+  expectedBlogOutputPaths.size,
+  blogSourceFiles.length,
+  'blog source files must map to unique output routes',
+);
+for (const file of blogSourceFiles) {
+  const source = await readFile(file, 'utf8');
+  const relativePath = path.relative(projectRoot, file);
+  for (const { pattern, label } of forbiddenBlogSourcePatterns) {
+    assert.doesNotMatch(source, pattern, `${relativePath} contains ${label} that can leak into rendered content`);
+  }
+}
 const sitemapText = await readFile(path.join(distDir, 'sitemap-0.xml'), 'utf8');
 const sitemapUrls = new Set([...sitemapText.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]));
 let checkedPages = 0;
 let checkedImages = 0;
 let checkedStructuredAssets = 0;
+let checkedBlogPages = 0;
+const builtBlogOutputPaths = new Set();
 const sitemapTitles = new Map();
 
 for (const file of htmlFiles) {
   const html = await readFile(file, 'utf8');
   const relativePath = path.relative(distDir, file);
+  const relativePathPosix = relativePath.split(path.sep).join('/');
   const isRedirect = /<meta\b[^>]*http-equiv=["']refresh["']/i.test(html);
   if (isRedirect) continue;
+
+  const isBlogArticle = /^(?:blog\/posts|fr\/blog)\/.+\/index\.html$/.test(relativePathPosix);
+  if (isBlogArticle) {
+    const visibleMarkup = withoutNonVisibleMarkup(html);
+    for (const { pattern, label } of visibleBlogLeakPatterns) {
+      assert.doesNotMatch(visibleMarkup, pattern, `${relativePath} exposes ${label} to readers`);
+    }
+    assert.doesNotMatch(
+      html,
+      /(?:[?&]|&amp;)_gl=/i,
+      `${relativePath} contains a historical Google Analytics linker token`,
+    );
+    checkedBlogPages += 1;
+    builtBlogOutputPaths.add(relativePathPosix);
+  }
 
   checkedPages += 1;
   const pageTitle = titleText(html);
@@ -218,6 +300,141 @@ for (const file of htmlFiles) {
   assert.ok(twitterImage, `${relativePath} is missing twitter:image`);
   await assertLocalUrlExists(twitterImage, `${relativePath} twitter:image`);
 }
+
+assert.equal(
+  checkedBlogPages,
+  blogSourceFiles.length,
+  `built blog coverage must match source inventory; checked ${checkedBlogPages}, found ${blogSourceFiles.length} sources`,
+);
+assert.deepEqual(
+  [...builtBlogOutputPaths].sort(),
+  [...expectedBlogOutputPaths].sort(),
+  'non-redirect blog output routes must exactly match their source files',
+);
+
+const aiRadiologyArticle = await readFile(
+  path.join(distDir, 'fr/blog/lintelligence-artificielle-peut-elle-remplacer-a-terme-lactivite-du-radiologue/index.html'),
+  'utf8',
+);
+assert.match(
+  aiRadiologyArticle,
+  /<em>« La spécialité n’est pas en concurrence avec l’IA\.[\s\S]{0,1800}»,<\/em>\s+finit par conclure Alexandre Nérot\./,
+  'AI radiology article must render the quotation as emphasis without exposing Markdown delimiters',
+);
+
+const replacementArticle = await readFile(
+  path.join(distDir, 'fr/blog/comment-gerer-les-remplacements-en-centre-de-radiologie/index.html'),
+  'utf8',
+);
+assert.match(
+  replacementArticle,
+  /prévues par<\/em>\s+<a\b[^>]*>\s*<em>l’article L\.4131-2<\/em><\/a>/,
+  'replacement article must retain a visible word boundary before its legal link',
+);
+
+const emergencySchedulingArticle = await readFile(
+  path.join(distDir, 'fr/blog/optimiser-les-plannings-dequipes-dans-les-services-durgence/index.html'),
+  'utf8',
+);
+assert.match(
+  emergencySchedulingArticle,
+  /href="\/fr\/cas-clients\/chu-angers\/"[^>]*>Télécharger l’étude<\/a>\s*<\/p>\s*<p\b[\s\S]{0,300}?En conclusion, Momentum/,
+  'emergency scheduling CTA and conclusion must remain separate paragraphs',
+);
+
+const expectedHardBreaks = [
+  {
+    outputPath: 'fr/blog/etat-des-lieux-de-la-medecine-en-cardiologie-et-des-maladies-cardiovasculaires-en-france/index.html',
+    associations: [
+      /France \?<br>\s*Prévalence/,
+      /graves\.<br>\s*Cartographie/,
+      /France<br>\s*Tout d’abord/,
+      /hommes\)\.<br>\s*De plus/,
+    ],
+  },
+  {
+    outputPath: 'fr/blog/momentum-pour-les-anesthesistes/index.html',
+    associations: [/opératoires\.<br>\s*En quelques clics/],
+  },
+  {
+    outputPath: 'fr/blog/nouveaute-momentum-une-vue-par-shift-pour-une-meilleure-coordination-sur-le-terrain/index.html',
+    associations: [
+      /<strong\b[^>]*>shifts<\/strong> :<br>\s*☀️/,
+      /terrain\.<br>\s*✅/,
+      /moment\.<br>\s*✅/,
+      /privés<br>\s*📸/,
+      /médicale<br>\s*🚑/,
+      /d’urgence<br>\s*💉/,
+      /opératoires<br>\s*…/,
+      /personnalisée\.<br>\s*Contactez-nous/,
+    ],
+  },
+  {
+    outputPath: 'fr/blog/optimisez-vos-plannings-dequipes-durgence-avec-lia-decouvrez-momentum-au-congres-des-urgences-2025/index.html',
+    associations: [/optimisés\.<br>\s*<strong\b[^>]*>Résultat/],
+  },
+  {
+    outputPath: 'fr/blog/pourquoi-prioriser-et-optimiser-la-planification-de-son-etablissement-de-sante/index.html',
+    associations: [
+      /prouver\.<br>\s*Les logiciels/,
+      /médicales\.<br>\s*Ces logiciels/,
+    ],
+  },
+];
+for (const { outputPath, associations } of expectedHardBreaks) {
+  const html = await readFile(path.join(distDir, outputPath), 'utf8');
+  const content = mainContent(html, outputPath);
+  assert.equal(
+    [...content.matchAll(/<br\b/g)].length,
+    associations.length,
+    `${outputPath} must retain exactly ${associations.length} editorial hard break(s)`,
+  );
+  for (const association of associations) {
+    assert.match(content, association, `${outputPath} must retain its original line-break association`);
+  }
+}
+
+const expectedNewTabAnchors = [
+  ['fr/blog/biosked-reinvente-la-planification-des-equipes-medicales-avec-la-nouvelle-version-de-momentum/index.html', '/fr/demo/', 'Demander une démo'],
+  ['fr/blog/maitriser-la-planification-des-equipes-anesthesistes-et-iades-avec-momentum/index.html', '/fr/secteurs-soins/anesthesie/', 'Lire la suite'],
+  ['fr/blog/momentum-pour-les-anesthesistes/index.html', '/fr/ressources/', 'Demandez votre démo personnalisée'],
+  ['fr/blog/optimiser-la-planification-en-radiologie/index.html', '/fr/cas-clients/imagir-bordeaux/', 'Téléchargez l’étude de cas'],
+  ['fr/blog/optimiser-les-plannings-dequipes-dans-les-services-durgence/index.html', '/fr/cas-clients/chu-angers/', 'Télécharger l’étude'],
+  ['fr/blog/optimiser-les-plannings-dequipes-dans-les-services-durgence/index.html', '/fr/secteurs-soins/urgences/', 'Lire la suite'],
+  ['fr/blog/pourquoi-prioriser-et-optimiser-la-planification-de-son-etablissement-de-sante/index.html', '/fr/ressources/', 'Télécharger notre Livre Blanc'],
+];
+for (const [outputPath, href, text] of expectedNewTabAnchors) {
+  const html = await readFile(path.join(distDir, outputPath), 'utf8');
+  const content = mainContent(html, outputPath);
+  const anchor = [...content.matchAll(/<a\b[^>]*>([\s\S]*?)<\/a>/gsi)]
+    .find((match) => match[1].replace(/<[^>]+>/g, '').trim() === text);
+  assert.ok(anchor, `${outputPath} must retain the “${text}” link`);
+  const attrs = attributes(anchor[0]);
+  assert.equal(attrs.href, href, `${outputPath} “${text}” href changed`);
+  assert.equal(attrs.target, '_blank', `${outputPath} “${text}” must retain target=_blank`);
+  const rel = new Set((attrs.rel ?? '').split(/\s+/));
+  assert.ok(rel.has('noopener') && rel.has('noreferrer'), `${outputPath} “${text}” must secure its new tab`);
+}
+
+const anesthesiaLaunchArticle = await readFile(
+  path.join(distDir, 'fr/blog/momentum-pour-les-anesthesistes/index.html'),
+  'utf8',
+);
+const anesthesiaLaunchContent = mainContent(
+  anesthesiaLaunchArticle,
+  'fr/blog/momentum-pour-les-anesthesistes/index.html',
+);
+const anesthesiaLaunchVisibleText = anesthesiaLaunchContent.replace(/<[^>]+>/g, '');
+assert.match(
+  anesthesiaLaunchVisibleText,
+  /contactez-nous sur info@biosked\.com ou demandez/,
+  'anesthesia launch article must keep the visible info@biosked.com address',
+);
+assert.doesNotMatch(
+  anesthesiaLaunchContent,
+  /href=["']mailto:info@biosked\.com/i,
+  'anesthesia launch article must keep info@biosked.com as plain text',
+);
 
 for (const [pageTitle, routes] of sitemapTitles) {
   assert.equal(routes.length, 1, `sitemap pages must have unique titles; "${pageTitle}" is used by ${routes.join(', ')}`);
@@ -718,4 +935,4 @@ assert.equal(
   'configured destination fragment must override an incoming fragment',
 );
 
-console.log(`SEO checks passed: ${checkedPages} pages, ${checkedImages} images, ${checkedStructuredAssets} structured-data assets, llms.txt, and robots.txt.`);
+console.log(`SEO checks passed: ${checkedPages} pages, ${checkedBlogPages} blog articles, ${checkedImages} images, ${checkedStructuredAssets} structured-data assets, llms.txt, and robots.txt.`);
