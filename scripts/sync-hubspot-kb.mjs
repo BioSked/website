@@ -24,13 +24,16 @@ function replaceForbiddenPunctuation(value) {
   return value.replaceAll('\u2014', ' - ');
 }
 
+const XML_ENTITIES = Object.freeze({
+  amp: '&',
+  lt: '<',
+  gt: '>',
+  quot: '"',
+  apos: "'",
+});
+
 function decodeXml(value) {
-  return value
-    .replaceAll('&amp;', '&')
-    .replaceAll('&lt;', '<')
-    .replaceAll('&gt;', '>')
-    .replaceAll('&quot;', '"')
-    .replaceAll('&apos;', "'");
+  return value.replace(/&(amp|lt|gt|quot|apos);/g, (_entity, name) => XML_ENTITIES[name]);
 }
 
 function attr(node, name) {
