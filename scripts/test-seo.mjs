@@ -281,10 +281,21 @@ for (const quoteImageTag of quoteImageTags) {
   assert.equal(quoteImageTag.height, '31', 'decorative quote marks must retain their intrinsic height');
   assert.match(quoteImageTag.class ?? '', /(?:^|\s)h-auto(?:\s|$)/, 'decorative quote marks must preserve their aspect ratio');
 }
-for (const [alt, assetStem] of [
+for (const relativePath of [
+  'src/components/sections/TestimonialsCarouselSection.tsx',
+  'src/components/sections/fr/TestimonialsCarouselSection.tsx',
+]) {
+  const component = await readFile(path.join(projectRoot, relativePath), 'utf8');
+  const footerClass = component.match(/<div className="([^"]*\bmt-auto\b[^"]*)">/)?.[1] ?? '';
+  assert.ok(footerClass, `${relativePath} must pin every testimonial identity row to the card bottom`);
+  assert.match(footerClass, /(?:^|\s)sm:items-end(?:\s|$)/, `${relativePath} must bottom-align identity and logo content on card rows`);
+  assert.doesNotMatch(footerClass, /(?:^|\s)mb-4(?:\s|$)/, `${relativePath} must not float identity rows above the card padding`);
+}
+for (const [alt, assetStem, extension = 'webp'] of [
   ['Rochester Regional Health', 'rrh'],
   ['Lakewood Health System', 'lakewood'],
   ['Washington Medical Center', 'washington-medicine'],
+  ['IRIS GRIM', 'iris-grim', 'svg'],
   ['CHU Angers', 'chu'],
   ['Imagir', 'imagir-or'],
   ['CHIREC — Hôpital de Braine-l’Alleud', 'chirec-2015'],
@@ -293,14 +304,14 @@ for (const [alt, assetStem] of [
     (attrs) => attrs.alt === alt && new RegExp(`/${assetStem}\\.`).test(attrs.src ?? ''),
   );
   assert.ok(matchingImage, `home page must pair ${alt} with its matching customer asset`);
-  assert.match(matchingImage.src ?? '', /\.webp$/, `${alt} carousel logo must use WebP`);
+  assert.match(matchingImage.src ?? '', new RegExp(`\\.${extension}$`), `${alt} carousel logo must use ${extension.toUpperCase()}`);
 }
 assert.equal(
   englishHomepageImages.filter((attrs) => attrs.alt === 'IRIS GRIM' && /\/irimed\./.test(attrs.src ?? '')).length,
   0,
   'IRIS GRIM must never be paired with an unrelated IRIMED logo',
 );
-assert.match(englishHomepage, />\s*IRIS GRIM\s*</, 'IRIS GRIM customer name must remain visible');
+assert.doesNotMatch(englishHomepage, />\s*IRIS GRIM\s*</, 'IRIS GRIM must render its logo instead of a text fallback');
 const frenchHomepageImages = [...frenchHomepage.matchAll(/<img\b[^>]*>/gsi)]
   .map((match) => attributes(match[0]));
 const frenchRvuImageTag = frenchHomepageImages.find((attrs) => attrs.alt === 'Planification avec volumes RVU');
@@ -308,11 +319,11 @@ assert.match(frenchRvuImageTag?.srcset ?? '', /\s240w(?:,|$)/, 'French RVU image
 assert.match(frenchRvuImageTag?.srcset ?? '', /\s320w(?:,|$)/, 'French RVU image must include a 320px candidate');
 assert.match(frenchRvuImageTag?.srcset ?? '', /\s640w(?:,|$)/, 'French RVU image must include a 640px candidate');
 assert.equal(frenchRvuImageTag?.sizes, expectedRvuSizes, 'French RVU sizes must match the English responsive geometry');
-for (const [alt, assetStem] of [
+for (const [alt, assetStem, extension = 'webp'] of [
   ['IMAGIR Bordeaux', 'imagir-or'],
   ['CHU Angers', 'chu'],
   ['IMALLIANCE HDF', 'imalliance-hdf'],
-  ['IRIS GRIM', 'iris-grim'],
+  ['IRIS GRIM', 'iris-grim', 'svg'],
   ['Imagerie Médicale Les Cèdres', 'cedres'],
   ['CHIREC', 'chirec-2015'],
 ]) {
@@ -320,7 +331,16 @@ for (const [alt, assetStem] of [
     (attrs) => attrs.alt === alt && new RegExp(`/${assetStem}\\.`).test(attrs.src ?? ''),
   );
   assert.ok(matchingImage, `French homepage must pair ${alt} with its matching customer asset`);
-  assert.match(matchingImage.src ?? '', /\.webp$/, `${alt} testimonial image must use WebP`);
+  assert.match(matchingImage.src ?? '', new RegExp(`\\.${extension}$`), `${alt} testimonial logo must use ${extension.toUpperCase()}`);
+}
+const irisGrimCarouselImages = [englishHomepageImages, frenchHomepageImages]
+  .map((images) => images.find((attrs) => attrs.alt === 'IRIS GRIM' && /\/iris-grim\.[^/]+\.svg$/.test(attrs.src ?? '')));
+for (const irisGrimCarouselImage of irisGrimCarouselImages) {
+  assert.ok(irisGrimCarouselImage, 'both homepages must render the authentic IRIS GRIM SVG');
+  assert.match(irisGrimCarouselImage.class ?? '', /(?:^|\s)filter-\[grayscale\(1\)\](?:\s|$)/, 'IRIS GRIM logo must use the shared grayscale treatment');
+  assert.match(irisGrimCarouselImage.class ?? '', /(?:^|\s)opacity-50(?:\s|$)/, 'IRIS GRIM logo must use the shared muted contrast');
+  assert.match(irisGrimCarouselImage.class ?? '', /(?:^|\s)max-h-10(?:\s|$)/, 'IRIS GRIM logo must use the shared height limit');
+  assert.match(irisGrimCarouselImage.class ?? '', /(?:^|\s)max-w-\[120px\](?:\s|$)/, 'IRIS GRIM logo must use the shared width limit');
 }
 assert.equal(
   frenchHomepageImages.filter(
@@ -341,7 +361,7 @@ const carouselAssetBudgets = [
     maxHeight: 96,
     maxBytes: 20_000,
   })),
-  ...['cedres', 'imalliance-hdf', 'iris-grim'].map((name) => ({
+  ...['cedres', 'imalliance-hdf'].map((name) => ({
     relativePath: `src/assets/case-studies/carousel/${name}.webp`,
     maxWidth: 240,
     maxHeight: 80,
@@ -356,6 +376,14 @@ for (const budget of carouselAssetBudgets) {
   assert.ok((metadata.height ?? Infinity) <= budget.maxHeight, `${budget.relativePath} exceeds its height budget`);
   assert.ok(file.size <= budget.maxBytes, `${budget.relativePath} exceeds its byte budget`);
 }
+const irisGrimLogoPath = path.join(projectRoot, 'src/assets/companies/carousel/iris-grim.svg');
+const [irisGrimLogoSource, irisGrimLogoFile] = await Promise.all([
+  readFile(irisGrimLogoPath, 'utf8'),
+  stat(irisGrimLogoPath),
+]);
+assert.match(irisGrimLogoSource, /<svg\b[^>]*viewBox="0 0 273\.72 113\.68"/, 'IRIS GRIM logo must retain its complete intrinsic viewBox');
+assert.doesNotMatch(irisGrimLogoSource, /<(?:script|foreignObject)\b/i, 'IRIS GRIM logo must not contain executable or embedded foreign content');
+assert.ok(irisGrimLogoFile.size <= 10_000, 'IRIS GRIM SVG exceeds its carousel byte budget');
 const englishStructuredData = [...englishHomepage.matchAll(/<script\b[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gsi)]
   .map((match) => JSON.parse(match[1]));
 const organization = englishStructuredData

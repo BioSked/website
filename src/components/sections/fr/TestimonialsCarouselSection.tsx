@@ -12,7 +12,7 @@ import chuLogo from '@/assets/companies/carousel/chu.webp';
 import imagirLogo from '@/assets/companies/carousel/imagir-or.webp';
 import chirecLogo from '@/assets/companies/carousel/chirec-2015.webp';
 import imallianceLogo from '@/assets/case-studies/carousel/imalliance-hdf.webp';
-import irisGrimLogo from '@/assets/case-studies/carousel/iris-grim.webp';
+import irisGrimLogo from '@/assets/companies/carousel/iris-grim.svg';
 import cedresLogo from '@/assets/case-studies/carousel/cedres.webp';
 
 const testimonials = [
@@ -116,7 +116,7 @@ export default function TestimonialsCarouselSection() {
                 <blockquote className="text-foreground italic leading-relaxed text-sm transition-color duration-200">
                   {testimonial.testimonial}
                 </blockquote>
-                <div className="mt-6 mb-4 flex flex-col sm:flex-row gap-3 items-center text-center sm:text-left">
+                <div className="mt-auto flex flex-col gap-3 items-center pt-4 text-center sm:flex-row sm:items-end sm:text-left">
                   <div className="hidden text-white md:flex size-10 bg-secondary/90 shrink-0 items-center justify-center rounded-full bg-mute text-sm font-medium">
                     {testimonial.initials}
                   </div>
