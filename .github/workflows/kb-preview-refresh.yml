@@ -1,10 +1,8 @@
-name: Deploy to GitHub Pages
+name: Refresh Knowledge Base Preview
 
 on:
-  pull_request:
-    branches: [main]
-  push:
-    branches: [main]
+  schedule:
+    - cron: '17 * * * *'
   workflow_dispatch:
 
 permissions:
@@ -37,17 +35,15 @@ jobs:
       - name: Check source
         run: npm run check
 
-      - name: Build
+      - name: Build and verify
         run: npm run build
 
       - name: Upload Pages artifact
-        if: github.event_name != 'pull_request'
         uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
         with:
           path: dist
 
   deploy:
-    if: github.event_name != 'pull_request'
     needs: build
     runs-on: ubuntu-latest
     timeout-minutes: 10

@@ -1,0 +1,68 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import KbHero from '@/components/kb/KbHero.astro';
+import KbSupportForm from '@/components/kb/KbSupportForm.astro';
+import {
+  KB_LOCALES,
+  kbCopy,
+  kbHomePath,
+  kbSourceSupportUrl,
+  kbSupportPath,
+  languageLinks,
+  type KbLocale,
+} from '@/lib/kb';
+
+export function getStaticPaths() {
+  return KB_LOCALES.map((locale) => ({ params: { lang: locale }, props: { locale } }));
+}
+
+const { locale } = Astro.props as { locale: KbLocale };
+const copy = kbCopy[locale];
+const languages = languageLinks(locale, {
+  en: '/en/knowledge/kb-tickets/new',
+  fr: '/fr/knowledge/kb-tickets/new',
+});
+const localeAlternates = { en: kbSupportPath('en'), fr: kbSupportPath('fr') };
+---
+
+<BaseLayout
+  title={`${copy.supportFormTitle} | BioSked`}
+  description={copy.supportFormDescription}
+  locale={locale}
+  languageLinks={languages}
+  localeAlternates={localeAlternates}
+  canonicalUrl={kbSourceSupportUrl(locale)}
+  noIndex={true}
+  pageType="knowledge-base-support"
+>
+  <KbHero
+    locale={locale}
+    title={copy.supportFormTitle}
+    description={copy.supportFormDescription}
+    compact={true}
+  />
+
+  <section class="py-12 md:py-18">
+    <div class="container max-w-5xl">
+      <nav aria-label="Breadcrumb" class="mb-7 text-sm text-slate-500">
+        <ol class="flex flex-wrap items-center gap-2">
+          <li><a href={kbHomePath(locale)} class="font-medium text-[#137b83] hover:underline">{copy.backToHome}</a></li>
+          <li aria-hidden="true">/</li>
+          <li aria-current="page" class="text-slate-700">{copy.support}</li>
+        </ol>
+      </nav>
+      <div class="grid items-start gap-8 lg:grid-cols-[minmax(0,1fr)_18rem]">
+        <KbSupportForm locale={locale} />
+        <aside class="rounded-3xl bg-[#edf9f8] p-6 text-sm text-slate-600 lg:sticky lg:top-24">
+          <p class="text-xs font-bold uppercase tracking-[0.13em] text-[#0f6f76]">BioSked Help Desk</p>
+          <h2 class="mt-3 font-heading text-xl font-semibold text-[#102f46]">{copy.supportTitle}</h2>
+          <p class="mt-3 leading-relaxed">{copy.supportDescription}</p>
+          <div class="mt-5 border-t border-[#cce6e5] pt-5">
+            <p class="font-semibold text-[#102f46]">{copy.sourceLabel}</p>
+            <a href={kbSourceSupportUrl(locale)} class="mt-2 inline-flex text-[#137b83] underline decoration-[#7dd4d3] underline-offset-4">{copy.formFallbackLink}</a>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

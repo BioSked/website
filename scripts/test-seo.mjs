@@ -59,18 +59,24 @@ function attributes(tag) {
 }
 
 function metaContent(html, attribute, value) {
-  const tag = [...html.matchAll(/<meta\b[^>]*>/gsi)]
+  const tag = [...html.matchAll(/<meta\b(?:[^>"']|"[^"]*"|'[^']*')*>/gsi)]
     .map((match) => attributes(match[0]))
     .find((attrs) => attrs[attribute] === value);
   return tag?.content;
 }
 
 function linkHref(html, rel) {
-  const tag = [...html.matchAll(/<link\b[^>]*>/gsi)]
+  const tag = [...html.matchAll(/<link\b(?:[^>"']|"[^"]*"|'[^']*')*>/gsi)]
     .map((match) => attributes(match[0]))
     .find((attrs) => (attrs.rel ?? '').split(/\s+/).includes(rel));
   return tag?.href;
 }
+
+assert.equal(
+  metaContent('<meta name="description" content="Open Setup > Roles > Candidates">', 'name', 'description'),
+  'Open Setup > Roles > Candidates',
+  'metadata parser must preserve greater-than characters inside quoted attributes',
+);
 
 function executeRedirect(html, search, hash) {
   const openingTag = '<script>';

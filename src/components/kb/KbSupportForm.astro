@@ -1,0 +1,242 @@
+---
+import { kbCopy, kbSnapshot, kbSourceSupportUrl, type KbLocale } from '@/lib/kb';
+
+interface Props {
+  locale: KbLocale;
+}
+
+const { locale } = Astro.props;
+const form = kbSnapshot.forms[locale];
+const copy = kbCopy[locale];
+const sourceUrl = kbSourceSupportUrl(locale);
+---
+
+<div class="rounded-3xl border border-slate-200 bg-white p-6 shadow-[0_24px_70px_-48px_rgba(15,54,71,0.55)] sm:p-9">
+  <div
+    id="kb-support-form"
+    data-kb-support-form
+    data-portal-id={form.portalId}
+    data-form-id={form.formId}
+    data-region={form.region}
+    data-locale={locale}
+  ></div>
+  <p class="flex items-center gap-3 py-6 text-sm text-slate-500" data-kb-form-loading>
+    <span class="size-4 animate-spin rounded-full border-2 border-[#31bdc0] border-t-transparent" aria-hidden="true"></span>
+    {copy.formLoading}
+  </p>
+  <div class="hidden rounded-2xl border border-amber-200 bg-amber-50 p-5 text-sm text-amber-950" data-kb-form-fallback>
+    <p>{copy.formFallback}</p>
+    <a href={sourceUrl} class="mt-3 inline-flex font-semibold underline decoration-amber-400 underline-offset-4">{copy.formFallbackLink}</a>
+  </div>
+  <noscript>
+    <p class="rounded-2xl border border-amber-200 bg-amber-50 p-5 text-sm text-amber-950">
+      {copy.formFallback} <a href={sourceUrl} class="font-semibold underline">{copy.formFallbackLink}</a>
+    </p>
+  </noscript>
+</div>
+
+<script is:inline define:vars={{ form, locale }}>
+  (function () {
+    var target = '#kb-support-form';
+    var loading = document.querySelector('[data-kb-form-loading]');
+    var fallback = document.querySelector('[data-kb-form-fallback]');
+    var ready = false;
+    var frameTitle = locale === 'fr' ? 'Formulaire de support BioSked' : 'BioSked support form';
+    var phonePrefixLabel = locale === 'fr' ? 'Indicatif téléphonique' : 'Phone country code';
+    var embeddedFormCss = [
+      'html{color-scheme:light}body{margin:0!important;background:transparent!important;color:#102f46!important;font-family:Inter,Arial,sans-serif!important}',
+      'form.hs-form{display:grid!important;gap:1.15rem!important}fieldset{max-width:none!important}',
+      '.form-columns-2{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:1rem!important}',
+      '.form-columns-2 .hs-form-field,.form-columns-1 .hs-form-field{float:none!important;width:100%!important;padding:0!important}',
+      '.hs-form-field>label,.hs-fieldtype-checkbox>label,.hs-fieldtype-radio>label{display:block!important;margin:0 0 .45rem!important;color:#102f46!important;font-size:.875rem!important;font-weight:700!important}',
+      '.hs-input:not([type=checkbox]):not([type=radio]),textarea,select{box-sizing:border-box!important;width:100%!important;min-height:3rem!important;border:1px solid #cbd5e1!important;border-radius:.8rem!important;background:#fff!important;padding:.75rem .9rem!important;color:#102f46!important;font:inherit!important}',
+      'select.is-placeholder{color:#475569!important}textarea{min-height:9rem!important;resize:vertical!important}',
+      '.hs-input:focus,textarea:focus,select:focus{border-color:#0f6f76!important;box-shadow:0 0 0 4px rgb(15 111 118 / 15%)!important;outline:none!important}',
+      '.inputs-list{margin:.5rem 0 0!important;padding:0!important;list-style:none!important}.inputs-list label{display:flex!important;align-items:flex-start!important;gap:.55rem!important;color:#475569!important;font-size:.875rem!important;font-weight:500!important}',
+      '.hs-error-msgs{margin:.4rem 0 0!important;padding:0!important;list-style:none!important;color:#b42318!important;font-size:.8rem!important}',
+      '.hs-button{min-height:3rem!important;border:0!important;border-radius:999px!important;background:#007b83!important;padding:.75rem 1.5rem!important;color:#fff!important;font:inherit!important;font-weight:800!important;cursor:pointer!important}',
+      '.hs-button:hover,.hs-button:focus{background:#006d75!important;box-shadow:0 0 0 4px rgb(15 111 118 / 18%)!important;outline:none!important}',
+      '.submitted-message{border-radius:1rem!important;background:#edf9f8!important;padding:1.25rem!important;color:#102f46!important;line-height:1.65!important}',
+      '@media(max-width:640px){.form-columns-2{grid-template-columns:1fr!important}}'
+    ].join('');
+    var revealFallback = window.setTimeout(function () {
+      if (ready) return;
+      if (loading) loading.classList.add('hidden');
+      if (fallback) fallback.classList.remove('hidden');
+    }, 12000);
+
+    if (typeof window.bskHsForm !== 'function') {
+      window.clearTimeout(revealFallback);
+      if (loading) loading.classList.add('hidden');
+      if (fallback) fallback.classList.remove('hidden');
+      return;
+    }
+
+    window.bskHsForm({
+      region: form.region,
+      portalId: form.portalId,
+      formId: form.formId,
+      target: target,
+      css: '',
+      locale: locale,
+      onFormReady: function (renderedForm) {
+        ready = true;
+        window.clearTimeout(revealFallback);
+        if (loading) loading.classList.add('hidden');
+        if (fallback) fallback.classList.add('hidden');
+        var targetNode = document.querySelector(target);
+        var iframe = targetNode && targetNode.querySelector('iframe.hs-form-iframe');
+        var formElement = renderedForm && typeof renderedForm.get === 'function'
+          ? renderedForm.get(0)
+          : renderedForm && renderedForm.nodeType
+            ? renderedForm
+            : renderedForm && renderedForm[0];
+        var formDocument = formElement && formElement.ownerDocument;
+        if (!formDocument && iframe) {
+          try { formDocument = iframe.contentDocument; } catch (error) { formDocument = null; }
+        }
+        if (iframe) iframe.setAttribute('title', frameTitle);
+        if (formDocument) {
+          formDocument.documentElement.setAttribute('lang', locale);
+          formDocument.title = frameTitle;
+          var phonePrefix = formDocument.querySelector('select[id^="phone_ext"]');
+          if (phonePrefix) phonePrefix.setAttribute('aria-label', phonePrefixLabel);
+          if (!formDocument.querySelector('style[data-bsk-kb-form]')) {
+            var style = formDocument.createElement('style');
+            style.setAttribute('data-bsk-kb-form', 'true');
+            style.textContent = embeddedFormCss;
+            formDocument.head.appendChild(style);
+          }
+        }
+      },
+      onFormSubmit: function () {
+        if (typeof window.gtag === 'function') {
+          window.gtag('event', 'kb_support_form_submit', { language: locale });
+        }
+      }
+    });
+  })();
+</script>
+
+<style is:global>
+  #kb-support-form .hs-form {
+    display: grid;
+    gap: 1.15rem;
+  }
+
+  #kb-support-form fieldset {
+    max-width: none;
+  }
+
+  #kb-support-form .form-columns-2 {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  #kb-support-form .form-columns-2 .hs-form-field,
+  #kb-support-form .form-columns-1 .hs-form-field {
+    float: none;
+    width: 100%;
+    padding: 0;
+  }
+
+  #kb-support-form .hs-form-field > label,
+  #kb-support-form .hs-fieldtype-checkbox > label,
+  #kb-support-form .hs-fieldtype-radio > label {
+    display: block;
+    margin-bottom: 0.45rem;
+    color: #102f46;
+    font-size: 0.875rem;
+    font-weight: 700;
+  }
+
+  #kb-support-form .hs-input:not([type='checkbox']):not([type='radio']),
+  #kb-support-form textarea,
+  #kb-support-form select {
+    width: 100% !important;
+    min-height: 3rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 0.8rem;
+    background: #fff;
+    padding: 0.75rem 0.9rem;
+    color: #102f46;
+    font: inherit;
+    transition: border-color 150ms ease, box-shadow 150ms ease;
+  }
+
+  #kb-support-form textarea {
+    min-height: 9rem;
+    resize: vertical;
+  }
+
+  #kb-support-form .hs-input:focus,
+  #kb-support-form textarea:focus,
+  #kb-support-form select:focus {
+    border-color: #31bdc0;
+    box-shadow: 0 0 0 4px rgb(49 189 192 / 15%);
+    outline: none;
+  }
+
+  #kb-support-form .inputs-list {
+    margin: 0.5rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  #kb-support-form .inputs-list label {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.55rem;
+    color: #475569;
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+
+  #kb-support-form input[type='checkbox'],
+  #kb-support-form input[type='radio'] {
+    margin-top: 0.2rem;
+    accent-color: #15979b;
+  }
+
+  #kb-support-form .hs-error-msgs {
+    margin: 0.4rem 0 0;
+    padding: 0;
+    list-style: none;
+    color: #b42318;
+    font-size: 0.8rem;
+  }
+
+  #kb-support-form .hs-button {
+    min-height: 3rem;
+    border: 0;
+    border-radius: 999px;
+    background: #31bdc0;
+    padding: 0.75rem 1.5rem;
+    color: #082f3e;
+    font: inherit;
+    font-weight: 800;
+    cursor: pointer;
+    transition: transform 150ms ease, background 150ms ease, box-shadow 150ms ease;
+  }
+
+  #kb-support-form .hs-button:hover {
+    transform: translateY(-1px);
+    background: #50d0d0;
+    box-shadow: 0 12px 24px -16px rgb(15 54 71 / 70%);
+  }
+
+  #kb-support-form .submitted-message {
+    border-radius: 1rem;
+    background: #edf9f8;
+    padding: 1.25rem;
+    color: #102f46;
+    line-height: 1.65;
+  }
+
+  @media (max-width: 640px) {
+    #kb-support-form .form-columns-2 {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,383 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import KbHero from '@/components/kb/KbHero.astro';
+import KbArticleCard from '@/components/kb/KbArticleCard.astro';
+import {
+  articleLanguageLinks,
+  articlesInCategory,
+  categoriesFor,
+  categoryLanguageLinks,
+  formatKbDate,
+  kbCopy,
+  kbHomePath,
+  kbSnapshot,
+  kbSupportPath,
+  previewPathFor,
+  routeSlug,
+  type KbArticle,
+  type KbCategory,
+  type KbLocale,
+} from '@/lib/kb';
+
+type PageProps =
+  | { kind: 'article'; article: KbArticle; locale: KbLocale }
+  | { kind: 'category'; category: KbCategory; locale: KbLocale };
+
+export function getStaticPaths() {
+  const routes: Array<{ params: { lang: KbLocale; slug: string }; props: PageProps }> = [];
+  const occupied = new Set<string>();
+
+  for (const article of kbSnapshot.articles) {
+    const slug = routeSlug(article.sourcePath, article.locale);
+    occupied.add(`${article.locale}:${slug}`);
+    routes.push({
+      params: { lang: article.locale, slug },
+      props: { kind: 'article', article, locale: article.locale },
+    });
+  }
+
+  for (const category of kbSnapshot.categories) {
+    const slug = routeSlug(category.path, category.locale);
+    if (occupied.has(`${category.locale}:${slug}`)) continue;
+    routes.push({
+      params: { lang: category.locale, slug },
+      props: { kind: 'category', category, locale: category.locale },
+    });
+  }
+
+  return routes;
+}
+
+const props = Astro.props as PageProps;
+const locale = props.locale;
+const copy = kbCopy[locale];
+const allCategories = categoriesFor(locale);
+const isArticle = props.kind === 'article';
+const article = isArticle ? props.article : null;
+const category = props.kind === 'category' ? props.category : null;
+const categoryArticles = category ? articlesInCategory(category) : [];
+const currentCategory = article?.primaryCategory
+  ? allCategories.find((candidate) => candidate.path === article.primaryCategory?.path) ?? null
+  : category;
+const related = currentCategory
+  ? articlesInCategory(currentCategory).filter((candidate) => candidate.sourcePath !== article?.sourcePath).slice(0, 4)
+  : [];
+const languages = article ? articleLanguageLinks(article) : categoryLanguageLinks(category as KbCategory);
+const localeAlternates = Object.fromEntries(languages.map((language) => [language.code, language.href]));
+const title = article?.title ?? category?.title ?? copy.siteTitle;
+const description = article?.description ?? `${copy.categoryCount(categoryArticles.length)}. ${copy.siteDescription}`;
+const canonicalUrl = article?.sourceUrl ?? `https://kb.biosked.com${category?.path}`;
+const updated = article ? formatKbDate(article.lastModified, locale) : null;
+const articleSchema = article
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'TechArticle',
+      headline: article.title,
+      description: article.description,
+      dateModified: article.lastModified,
+      inLanguage: locale,
+      mainEntityOfPage: article.sourceUrl,
+      author: { '@type': 'Organization', name: 'BioSked' },
+      publisher: { '@type': 'Organization', name: 'BioSked', url: 'https://biosked.com' },
+    }
+  : null;
+---
+
+<BaseLayout
+  title={`${title} | BioSked Support`}
+  description={description}
+  locale={locale}
+  languageLinks={languages}
+  localeAlternates={localeAlternates}
+  canonicalUrl={canonicalUrl}
+  noIndex={true}
+  pageType={article ? 'knowledge-base-article' : 'knowledge-base-category'}
+>
+  {articleSchema && <script is:inline type="application/ld+json" set:html={JSON.stringify(articleSchema)}></script>}
+
+  <KbHero
+    locale={locale}
+    title={title}
+    description={description}
+    compact={true}
+  />
+
+  {article ? (
+    <section class="py-10 md:py-14">
+      <div class="container max-w-5xl">
+        <nav aria-label="Breadcrumb" class="mb-7 overflow-x-auto text-sm text-slate-500">
+          <ol class="flex min-w-max items-center gap-2">
+            <li><a href={kbHomePath(locale)} class="font-medium text-[#137b83] hover:underline">{copy.backToHome}</a></li>
+            {article.breadcrumbs.slice(1).map((crumb) => (
+              <>
+                <li aria-hidden="true">/</li>
+                <li><a href={`${previewPathFor(crumb.path)}/`} class="font-medium text-[#137b83] hover:underline">{crumb.title}</a></li>
+              </>
+            ))}
+            <li aria-hidden="true">/</li>
+            <li aria-current="page" class="max-w-[18rem] truncate text-slate-700">{article.title}</li>
+          </ol>
+        </nav>
+
+        <div class="grid items-start gap-8 lg:grid-cols-[14rem_minmax(0,1fr)]">
+          <aside class="hidden lg:sticky lg:top-24 lg:block">
+            <p class="mb-3 text-xs font-bold uppercase tracking-[0.14em] text-[#0f6f76]">{copy.categoriesTitle}</p>
+            <nav aria-label={copy.categoriesTitle}>
+              <ul class="space-y-1">
+                {allCategories.map((item) => (
+                  <li>
+                    <a
+                      href={`${item.previewPath}/`}
+                      aria-current={item.path === currentCategory?.path ? 'page' : undefined}
+                      class:list={[
+                        'block rounded-xl px-3 py-2.5 text-sm font-medium transition',
+                        item.path === currentCategory?.path
+                          ? 'bg-[#e5f7f6] text-[#116e75]'
+                          : 'text-slate-600 hover:bg-slate-100 hover:text-[#102f46]',
+                      ]}
+                    >
+                      {item.title}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+            <a href={kbSupportPath(locale)} class="mt-5 flex items-center justify-between rounded-xl bg-[#102f46] px-4 py-3 text-sm font-semibold text-white transition hover:bg-[#17445e]">
+              {copy.support}<span aria-hidden="true">→</span>
+            </a>
+          </aside>
+
+          <article class="min-w-0 rounded-3xl border border-slate-200 bg-white p-6 shadow-[0_24px_60px_-48px_rgba(15,54,71,0.6)] sm:p-9 md:p-11">
+            <div class="mb-8 flex flex-wrap items-center gap-3 border-b border-slate-200 pb-5 text-xs text-slate-500">
+              {updated && <span>{copy.articleUpdated} {updated}</span>}
+              {article.primaryCategory && <><span aria-hidden="true">•</span><a href={`${previewPathFor(article.primaryCategory.path)}/`} class="font-semibold text-[#137b83] hover:underline">{article.primaryCategory.title}</a></>}
+              <span aria-hidden="true">•</span>
+              <span>{copy.sourceLabel}</span>
+            </div>
+
+            <div class="kb-article-body" set:html={article.bodyHtml}></div>
+
+            <div class="mt-10 rounded-2xl border border-[#c9e8e7] bg-[#edf9f8] p-5 sm:flex sm:items-center sm:justify-between sm:gap-5" data-kb-feedback data-article-id={article.articleId} data-locale={locale}>
+              <p class="font-semibold text-[#102f46]" data-kb-feedback-question>{copy.helpfulQuestion}</p>
+              <div class="mt-4 flex gap-2 sm:mt-0" data-kb-feedback-actions>
+                <button type="button" data-answer="yes" class="rounded-full border border-[#8dd8d7] bg-white px-4 py-2 text-sm font-semibold text-[#116e75] transition hover:bg-[#dff4f3]">{copy.helpfulYes}</button>
+                <button type="button" data-answer="no" class="rounded-full border border-[#8dd8d7] bg-white px-4 py-2 text-sm font-semibold text-[#116e75] transition hover:bg-[#dff4f3]">{copy.helpfulNo}</button>
+              </div>
+              <p class="hidden font-semibold text-[#116e75]" data-kb-feedback-thanks>{copy.feedbackThanks}</p>
+            </div>
+          </article>
+        </div>
+
+        {related.length > 0 && (
+          <div class="mt-14 lg:ml-[16rem]">
+            <h2 class="mb-6 font-heading text-2xl font-semibold text-[#102f46]">{copy.relatedArticles}</h2>
+            <div class="grid gap-4 sm:grid-cols-2">
+              {related.map((item) => <KbArticleCard article={item} locale={locale} compact={true} />)}
+            </div>
+          </div>
+        )}
+      </div>
+    </section>
+  ) : category ? (
+    <section class="py-12 md:py-18">
+      <div class="container max-w-5xl">
+        <nav aria-label="Breadcrumb" class="mb-7 text-sm text-slate-500">
+          <ol class="flex items-center gap-2">
+            <li><a href={kbHomePath(locale)} class="font-medium text-[#137b83] hover:underline">{copy.backToHome}</a></li>
+            <li aria-hidden="true">/</li>
+            <li aria-current="page" class="text-slate-700">{category.title}</li>
+          </ol>
+        </nav>
+        {category.subcategories.length > 0 && (
+          <div class="mb-8 flex flex-wrap gap-2">
+            {category.subcategories.map((subcategory) => <span class="rounded-full bg-[#e6f8f7] px-3 py-1.5 text-xs font-semibold text-[#116e75]">{subcategory}</span>)}
+          </div>
+        )}
+        <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {categoryArticles.map((item) => <KbArticleCard article={item} locale={locale} />)}
+        </div>
+      </div>
+    </section>
+  ) : null}
+</BaseLayout>
+
+<script is:inline>
+  document.querySelectorAll('[data-kb-feedback]').forEach(function (root) {
+    root.querySelectorAll('button[data-answer]').forEach(function (button) {
+      button.addEventListener('click', function () {
+        var actions = root.querySelector('[data-kb-feedback-actions]');
+        var question = root.querySelector('[data-kb-feedback-question]');
+        var thanks = root.querySelector('[data-kb-feedback-thanks]');
+        if (actions) actions.classList.add('hidden');
+        if (question) question.classList.add('hidden');
+        if (thanks) thanks.classList.remove('hidden');
+        if (typeof window.gtag === 'function') {
+          window.gtag('event', 'kb_article_feedback', {
+            answer: button.dataset.answer,
+            article_id: root.dataset.articleId,
+            language: root.dataset.locale
+          });
+        }
+      }, { once: true });
+    });
+  });
+</script>
+
+<style is:global>
+  .kb-article-body {
+    color: #334155;
+    font-size: 1rem;
+    line-height: 1.8;
+    overflow-wrap: anywhere;
+  }
+
+  .kb-article-body > :first-child {
+    margin-top: 0;
+  }
+
+  .kb-article-body > :last-child {
+    margin-bottom: 0;
+  }
+
+  .kb-article-body h2,
+  .kb-article-body h3,
+  .kb-article-body h4 {
+    color: #102f46;
+    font-family: var(--font-heading);
+    font-weight: 650;
+    line-height: 1.25;
+    scroll-margin-top: 6rem;
+  }
+
+  .kb-article-body h2 {
+    margin: 2.25rem 0 0.85rem;
+    font-size: 1.65rem;
+  }
+
+  .kb-article-body h3 {
+    margin: 1.8rem 0 0.7rem;
+    font-size: 1.3rem;
+  }
+
+  .kb-article-body h4 {
+    margin: 1.5rem 0 0.6rem;
+    font-size: 1.08rem;
+  }
+
+  .kb-article-body p,
+  .kb-article-body ul,
+  .kb-article-body ol,
+  .kb-article-body blockquote,
+  .kb-article-body table,
+  .kb-article-body figure,
+  .kb-article-body iframe,
+  .kb-article-body video {
+    margin: 1rem 0;
+  }
+
+  .kb-article-body ul,
+  .kb-article-body ol {
+    padding-left: 1.45rem;
+  }
+
+  .kb-article-body ul {
+    list-style: disc;
+  }
+
+  .kb-article-body ol {
+    list-style: decimal;
+  }
+
+  .kb-article-body li + li {
+    margin-top: 0.35rem;
+  }
+
+  .kb-article-body a {
+    color: #0c7e87;
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-color: #74d2d2;
+    text-underline-offset: 0.2em;
+  }
+
+  .kb-article-body a:hover {
+    color: #102f46;
+  }
+
+  .kb-article-body img {
+    display: block;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    margin: 1.5rem auto;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.85rem;
+    box-shadow: 0 18px 45px -35px rgb(15 54 71 / 65%);
+  }
+
+  .kb-article-body iframe,
+  .kb-article-body video {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    min-height: 20rem;
+    border: 0;
+    border-radius: 0.85rem;
+  }
+
+  .kb-article-body blockquote {
+    border-left: 4px solid #38c3c5;
+    border-radius: 0 0.8rem 0.8rem 0;
+    background: #edf9f8;
+    padding: 1rem 1.25rem;
+    color: #164e63;
+  }
+
+  .kb-article-body table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    border-collapse: collapse;
+  }
+
+  .kb-article-body th,
+  .kb-article-body td {
+    border: 1px solid #dbe4ea;
+    padding: 0.7rem 0.8rem;
+    text-align: left;
+    vertical-align: top;
+  }
+
+  .kb-article-body th {
+    background: #edf9f8;
+    color: #102f46;
+    font-weight: 700;
+  }
+
+  .kb-article-body code {
+    border-radius: 0.3rem;
+    background: #eef2f5;
+    padding: 0.15rem 0.35rem;
+    font-size: 0.9em;
+  }
+
+  .kb-article-body pre {
+    overflow-x: auto;
+    border-radius: 0.85rem;
+    background: #102f46;
+    padding: 1rem;
+    color: #f8fafc;
+  }
+
+  .kb-article-body pre code {
+    background: transparent;
+    padding: 0;
+  }
+
+  @media (max-width: 640px) {
+    .kb-article-body iframe,
+    .kb-article-body video {
+      min-height: 12rem;
+    }
+  }
+</style>

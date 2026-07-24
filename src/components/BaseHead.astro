@@ -3,21 +3,41 @@ import '@/styles/global.css';
 import { SITE_TITLE, SITE_METADATA } from '../consts';
 import { hreflangAlternates, canonicalPathFor, splitLocale } from '@/i18n/locales';
 
+const {
+    title,
+    description,
+    image,
+    author,
+    noIndex,
+    pageType,
+    locale: localeOverride,
+    localeAlternates: localeAlternatesOverride,
+    localeRedirects: localeRedirectsOverride,
+    canonicalUrl,
+} = Astro.props;
 const canonicalPath = canonicalPathFor(Astro.url.pathname);
-const canonicalURL = Astro.site
-? new URL(canonicalPath, Astro.site)
-: null;
-const pageLocale = splitLocale(Astro.url.pathname).locale;
-const canonicalLocale = splitLocale(canonicalPath).locale;
+const canonicalURL = canonicalUrl
+    ? new URL(canonicalUrl, Astro.site ?? Astro.url)
+    : Astro.site
+      ? new URL(canonicalPath, Astro.site)
+      : null;
+const pageLocale = localeOverride ?? splitLocale(Astro.url.pathname).locale;
+const canonicalLocale = canonicalUrl
+    ? splitLocale(new URL(canonicalUrl, Astro.site ?? Astro.url).pathname).locale
+    : splitLocale(canonicalPath).locale;
+const hreflangEntries = localeAlternatesOverride
+    ? Object.entries(localeAlternatesOverride).map(([code, href]) => ({ code, path: String(href) }))
+    : hreflangAlternates(Astro.url.pathname);
+const localeRedirectEntries = localeRedirectsOverride
+    ? Object.entries(localeRedirectsOverride).map(([code, href]) => ({ code, path: String(href) }))
+    : hreflangEntries;
 
 // True localized equivalents of this page (never a fallback-EN-under-a-locale URL),
 // used by the instant locale-switch script below.
 const localeAlts: Record<string, string> = {};
-for (const a of hreflangAlternates(Astro.url.pathname)) {
+for (const a of localeRedirectEntries) {
     if (a.code !== 'x-default') localeAlts[a.code] = a.path;
 }
-
-const { title, description, image, author, noIndex, pageType } = Astro.props;
 const finalTitle = title || SITE_METADATA.title.default;
 const finalDescription = description || SITE_METADATA.description;
 const finalAuthor = author || SITE_METADATA.authors[0].name;
@@ -227,7 +247,7 @@ type="application/rss+xml"
 title={SITE_TITLE}
 href={Astro.site ? new URL(pageLocale === 'fr' || pageLocale === 'fr-ch' ? 'fr/rss.xml' : 'rss.xml', Astro.site).toString() : '/rss.xml'}
 />
-{hreflangAlternates(Astro.url.pathname).map((alt) => (
+{hreflangEntries.map((alt) => (
     <link rel="alternate" hreflang={alt.code === 'fr-ch' ? 'fr-CH' : alt.code} href={new URL(alt.path, Astro.site ?? 'https://biosked.com').toString()} />
 ))}
 <meta name="generator" content={Astro.generator} />

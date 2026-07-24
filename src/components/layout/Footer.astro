@@ -6,16 +6,17 @@ import DecorativeDust from '@/components/ui/DecorativeDust.astro';
 
 interface Props {
     currentPage: string;
+    locale?: LocaleCode;
 }
 
-const { currentPage } = Astro.props;
+const { currentPage, locale: localeOverride } = Astro.props;
 
 const pathname = currentPage?.replace(/\/$/, '') || '';
 
 import { footerFor } from '@/i18n/footerLinks';
 import type { LocaleCode } from '@/i18n/locales';
 
-const locale = (Astro.currentLocale ?? 'en') as LocaleCode;
+const locale = localeOverride ?? (Astro.currentLocale ?? 'en') as LocaleCode;
 const footer = footerFor(locale);
 
 const FOOTER_SECTIONS = footer.sections.map((section) => ({

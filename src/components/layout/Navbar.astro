@@ -5,10 +5,19 @@ import { navLinksFor } from "@/i18n/navLinks";
 import { LOCALE_CODES, LOCALE_LABELS, altPathFor, type LocaleCode } from "@/i18n/locales";
 import { canonicalInternalHref } from "@/lib/urls";
 
+interface LanguageOption {
+    code: string;
+    label: string;
+    href: string;
+    active: boolean;
+}
+
 interface Props {
     currentPage: string;
+    locale?: LocaleCode;
+    languages?: LanguageOption[];
 }
-const { currentPage } = Astro.props;
+const { currentPage, locale: localeOverride, languages: languagesOverride } = Astro.props;
 
 const pathname = currentPage?.replace(/\/$/, '') || '';
 
@@ -16,7 +25,7 @@ const hideNavbar = ['/signin', '/signup', '/docs', '/not-found', '/forgot-passwo
     pathname.includes(route)
 );
 
-const locale = (Astro.currentLocale ?? 'en') as LocaleCode;
+const locale = localeOverride ?? (Astro.currentLocale ?? 'en') as LocaleCode;
 
 // Translate link labels
 const t = useTranslations(locale);
@@ -39,7 +48,7 @@ const demoCta = {
 };
 const homeHref = locale === 'en' ? '/' : `/${locale}/`;
 
-const languages = LOCALE_CODES.map((code) => ({
+const languages = languagesOverride ?? LOCALE_CODES.map((code) => ({
     code,
     label: LOCALE_LABELS[code],
     href: altPathFor(Astro.url.pathname, code),

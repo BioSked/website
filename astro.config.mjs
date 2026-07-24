@@ -79,6 +79,8 @@ export default defineConfig({
             filter: (page) => {
                 if (page === 'https://biosked.com/privacy/') return false;
                 if (page.includes('/changelog/')) return false;
+                // Rollback-safe KB preview pages are deliberately noindex and must not enter the public sitemap.
+                if (page.includes('/kb-preview/')) return false;
                 // Astro's fr-ch -> fr fallback can surface synthetic /fr-ch-ch/
                 // routes to the sitemap integration. They are not real pages.
                 if (page.includes('/fr-ch-ch/')) return false;
