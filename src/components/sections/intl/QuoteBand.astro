@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 import Card from '@/components/ui/Card.astro';
 import { Quote } from 'lucide-astro';
 import { canonicalInternalHref } from '@/lib/urls';
@@ -14,8 +16,10 @@ interface Props {
     stats: { value: string; label: string }[];
     moreHref?: string;
     moreLabel?: string;
+    logo?: ImageMetadata;
+    logoAlt?: string;
 }
-const { text, author, role, stats, moreHref, moreLabel } = Astro.props;
+const { text, author, role, stats, moreHref, moreLabel, logo, logoAlt = 'Customer logo' } = Astro.props;
 const canonicalMoreHref = moreHref ? canonicalInternalHref(moreHref) : undefined;
 ---
 
@@ -28,13 +32,25 @@ const canonicalMoreHref = moreHref ? canonicalInternalHref(moreHref) : undefined
                     <blockquote class="text-foreground text-lg md:text-xl leading-relaxed">
                         {text}
                     </blockquote>
-                    <figcaption class="mt-5 text-sm">
-                        <span class="font-semibold text-foreground">{author}</span>
-                        <span class="text-muted-foreground"> — {role}</span>
+                    <figcaption class="mt-5">
+                        <div class="flex items-center gap-4">
+                            {logo && (
+                                <Image
+                                    src={logo}
+                                    alt={logoAlt}
+                                    class="h-auto max-h-12 w-auto max-w-28 object-contain grayscale opacity-75"
+                                    loading="lazy"
+                                />
+                            )}
+                            <span class="text-sm">
+                                <span class="font-semibold text-foreground">{author}</span>
+                                <span class="text-muted-foreground"> — {role}</span>
+                            </span>
+                        </div>
+                        {canonicalMoreHref && moreLabel && (
+                            <a href={canonicalMoreHref} class="mt-4 inline-block text-sm font-semibold text-cyan-600 transition-colors hover:text-secondary">{moreLabel}</a>
+                        )}
                     </figcaption>
-                    {canonicalMoreHref && moreLabel && (
-                        <a href={canonicalMoreHref} class="mt-4 inline-block text-sm font-semibold text-cyan-600 transition-colors hover:text-secondary">{moreLabel}</a>
-                    )}
                 </figure>
                 <div class="md:col-span-2 grid grid-cols-3 md:grid-cols-1 gap-6 md:border-l md:border-secondary/10 md:pl-10">
                     {stats.map((s) => (

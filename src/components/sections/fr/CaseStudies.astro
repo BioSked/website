@@ -3,7 +3,7 @@ import { Image } from 'astro:assets';
 import Button from '@/components/ui/Button.astro';
 import chuAngers from '@/assets/case-studies/chu-angers.jpg';
 import imalliance from '@/assets/case-studies/imalliance-hdf.jpg';
-import irisGrim from '@/assets/case-studies/iris-grim.jpg';
+import irisGrim from '@/assets/case-studies/iris-grim-clinique-jules-verne.webp';
 import cedres from '@/assets/case-studies/cedres.jpg';
 import imagir from '@/assets/case-studies/imagir-bordeaux.jpg';
 import marseille from '@/assets/case-studies/hopital-europeen-marseille.png';
@@ -54,6 +54,14 @@ const caseStudies = [
     specialty: 'Radiologie',
     fact: '45 radiologues · Nantes',
     image: irisGrim,
+    imageAlt: 'Clinique Jules Verne à Nantes, site d’imagerie IRIS GRIM',
+    imageCredit: {
+      title: 'Clinique Jules Verne',
+      author: 'Kalepom',
+      sourceUrl: 'https://commons.wikimedia.org/wiki/File:Clinique_Jules_Verne.jpg',
+      license: 'CC BY-SA 3.0',
+      licenseUrl: 'https://creativecommons.org/licenses/by-sa/3.0/',
+    },
     quote:
       'Depuis Momentum, la planification automatique des vacations, les déplacements des médecins, autant sur leurs vacations que d’un site à un autre, sont beaucoup plus rapides et très faciles à intégrer.',
     person: 'Fabienne Tual et Marie-Aline Douceau, gestionnaires de planification',
@@ -104,34 +112,55 @@ const caseStudies = [
 
     <div class="grid gap-4 md:grid-cols-2">
       {caseStudies.map((study, index) => (
-        <a
-          href={study.href}
-          class={`group border border-secondary/10 bg-white/30 transition-all duration-200 hover:bg-white/60 ${index === 0 ? 'md:col-span-2' : ''}`}
+        <div
+          class={`flex h-full flex-col border border-secondary/10 ${index === 0 ? 'md:col-span-2' : ''}`}
         >
-          <article class={`grid h-full gap-5 p-5 ${index === 0 ? 'md:grid-cols-[260px_1fr] md:p-6' : ''}`}>
-            <Image
-              src={study.image}
-              alt={study.title}
-              class={`w-full rounded-sm object-cover shadow-lg shadow-secondary/10 ${index === 0 ? 'h-40 md:h-full' : 'aspect-[16/10] h-auto'}`}
-              loading="lazy"
-              quality={82}
-              format="webp"
-            />
-            <div class="flex h-full flex-col">
-              <div class="mb-4 flex flex-wrap items-center gap-2 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-                <span>{study.specialty}</span>
-                <span>·</span>
-                <span>{study.fact}</span>
+          <a
+            href={study.href}
+            class="group flex flex-1 bg-white/30 transition-all duration-200 hover:bg-white/60"
+          >
+            <article class={`grid w-full gap-5 p-5 ${index === 0 ? 'md:grid-cols-[260px_1fr] md:p-6' : ''}`}>
+              <Image
+                src={study.image}
+                alt={study.imageAlt ?? study.title}
+                class={`w-full rounded-sm object-cover shadow-lg shadow-secondary/10 ${index === 0 ? 'h-40 md:h-full' : 'aspect-[16/10] h-auto'}`}
+                loading="lazy"
+                quality={82}
+                format="webp"
+              />
+              <div class="flex h-full flex-col">
+                <div class="mb-4 flex flex-wrap items-center gap-2 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+                  <span>{study.specialty}</span>
+                  <span>·</span>
+                  <span>{study.fact}</span>
+                </div>
+                <CardHeading class="text-display-card">{study.title}</CardHeading>
+                <p class="mt-4 text-foreground/80">“{study.quote}”</p>
+                <p class="mt-4 text-sm font-semibold text-secondary">{study.person}</p>
+                <span class="mt-auto pt-6 text-sm font-semibold text-cyan-600 transition-colors group-hover:text-secondary">
+                  Lire l’étude de cas
+                </span>
               </div>
-              <CardHeading class="text-display-card">{study.title}</CardHeading>
-              <p class="mt-4 text-foreground/80">“{study.quote}”</p>
-              <p class="mt-4 text-sm font-semibold text-secondary">{study.person}</p>
-              <span class="mt-auto pt-6 text-sm font-semibold text-cyan-600 transition-colors group-hover:text-secondary">
-                Lire l’étude de cas
-              </span>
-            </div>
-          </article>
-        </a>
+            </article>
+          </a>
+          {study.imageCredit && (
+            <p class="border-t border-secondary/10 bg-white/25 px-5 py-2 text-[11px] text-muted-foreground">
+              Photo « {study.imageCredit.title} » : <a
+                href={study.imageCredit.sourceUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="underline decoration-secondary/30 underline-offset-2 hover:text-foreground"
+              >{study.imageCredit.author} / Wikimedia Commons</a>
+              {' · '}
+              <a
+                href={study.imageCredit.licenseUrl}
+                target="_blank"
+                rel="license noopener noreferrer"
+                class="underline decoration-secondary/30 underline-offset-2 hover:text-foreground"
+              >adaptation recadrée sous {study.imageCredit.license}</a>
+            </p>
+          )}
+        </div>
       ))}
     </div>
 

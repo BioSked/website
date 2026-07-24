@@ -11,9 +11,10 @@ import QuoteSvg from '@/assets/layout/quote.svg';
 import chuLogo from '@/assets/companies/carousel/chu.webp';
 import imagirLogo from '@/assets/companies/carousel/imagir-or.webp';
 import chirecLogo from '@/assets/companies/carousel/chirec-2015.webp';
-import imallianceLogo from '@/assets/case-studies/carousel/imalliance-hdf.webp';
+import imallianceLogo from '@/assets/companies/carousel/imalliance-hdf.png';
 import irisGrimLogo from '@/assets/companies/carousel/iris-grim.svg';
-import cedresLogo from '@/assets/case-studies/carousel/cedres.webp';
+import cedresLogo from '@/assets/companies/carousel/cedres.png';
+import hopitalEuropeenLogo from '@/assets/companies/carousel/hopital-europeen.svg';
 
 const testimonials = [
   {
@@ -44,7 +45,7 @@ const testimonials = [
     testimonial:
       'Le planning est produit aujourd’hui très aisément, et en cas d’aléas, les possibilités de remplacement sont proposées pour un ajustement quasi immédiat.',
     initials: 'MD',
-    logo: imallianceLogo,
+    logo: imallianceLogo, // Official artwork normalized to monochrome so its white header wordmark remains legible on the light card.
   },
   {
     id: '4',
@@ -74,6 +75,7 @@ const testimonials = [
     testimonial:
       'Avec Momentum, nous avons automatisé 95% de la planification des équipes. C’est réellement une source de stress en moins.',
     initials: 'DS',
+    logo: hopitalEuropeenLogo,
   },
   {
     id: '7',

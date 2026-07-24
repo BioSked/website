@@ -7,6 +7,7 @@ import FeatureGrid from "@/components/sections/intl/FeatureGrid.astro";
 import CTA from "@/components/sections/CTA.astro";
 import VideoTourSection from "@/components/sections/intl/VideoTourSection.astro";
 import QuoteBand from "@/components/sections/intl/QuoteBand.astro";
+import chirecLogo from "@/assets/companies/carousel/chirec-2015.webp";
 import { MARKET } from "@/i18n/market/nl";
 import { BE2027 } from "@/i18n/market/nl-be2027";
 import { HOME_CONTENT } from "@/i18n/homeContent";
@@ -29,7 +30,7 @@ const c = HOME_CONTENT['nl'];
 		phoneAlt="Momentum mobiele app — 90% minder administratietijd, AI-assistent"
 		screenshotAlt="Momentum roosterinterface: maandoverzicht met diensten, wachtdiensten en tellers voor artsenteams"
 	/>
-	<QuoteBand text={MARKET.quote.text} author={MARKET.quote.author} role={MARKET.quote.role} stats={MARKET.quote.stats} moreHref="/nl/referenties" moreLabel="Bekijk alle referenties" />
+	<QuoteBand text={MARKET.quote.text} author={MARKET.quote.author} role={MARKET.quote.role} stats={MARKET.quote.stats} moreHref="/nl/referenties" moreLabel="Bekijk alle referenties" logo={chirecLogo} logoAlt="Logo van de CHIREC-ziekenhuisgroep" />
 	<section class="section-padding pt-0">
 		<div class="container max-w-5xl">
 			<div class="rounded-lg border border-secondary/15 bg-white/40 p-6 md:p-8">

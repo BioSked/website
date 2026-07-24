@@ -245,6 +245,7 @@ assert.ok(phoneImageTag?.sizes, 'home mobile-app preview must declare responsive
 assert.equal(phoneImageTag?.loading, 'lazy', 'hidden home mobile-app preview must not load eagerly on small screens');
 assert.equal(phoneImageTag?.fetchpriority, 'low', 'hidden home mobile-app preview must have low fetch priority');
 const frenchHomepage = await readFile(path.join(distDir, 'fr/index.html'), 'utf8');
+const frenchSwissHomepage = await readFile(path.join(distDir, 'fr-ch/index.html'), 'utf8');
 const frenchPhoneImageTag = [...frenchHomepage.matchAll(/<img\b[^>]*>/gsi)]
   .map((match) => attributes(match[0]))
   .find((attrs) => (attrs.alt ?? '').startsWith('Application mobile Momentum'));
@@ -314,29 +315,70 @@ assert.equal(
 assert.doesNotMatch(englishHomepage, />\s*IRIS GRIM\s*</, 'IRIS GRIM must render its logo instead of a text fallback');
 const frenchHomepageImages = [...frenchHomepage.matchAll(/<img\b[^>]*>/gsi)]
   .map((match) => attributes(match[0]));
+const frenchSwissHomepageImages = [...frenchSwissHomepage.matchAll(/<img\b[^>]*>/gsi)]
+  .map((match) => attributes(match[0]));
 const frenchRvuImageTag = frenchHomepageImages.find((attrs) => attrs.alt === 'Planification avec volumes RVU');
 assert.match(frenchRvuImageTag?.srcset ?? '', /\s240w(?:,|$)/, 'French RVU image must include a 240px candidate');
 assert.match(frenchRvuImageTag?.srcset ?? '', /\s320w(?:,|$)/, 'French RVU image must include a 320px candidate');
 assert.match(frenchRvuImageTag?.srcset ?? '', /\s640w(?:,|$)/, 'French RVU image must include a 640px candidate');
 assert.equal(frenchRvuImageTag?.sizes, expectedRvuSizes, 'French RVU sizes must match the English responsive geometry');
-for (const [alt, assetStem, extension = 'webp'] of [
-  ['IMAGIR Bordeaux', 'imagir-or'],
-  ['CHU Angers', 'chu'],
-  ['IMALLIANCE HDF', 'imalliance-hdf'],
+const frenchTestimonialLogos = [
+  ['IMAGIR Bordeaux', 'imagir-or', 'webp'],
+  ['CHU Angers', 'chu', 'webp'],
+  ['IMALLIANCE HDF', 'imalliance-hdf', 'png'],
   ['IRIS GRIM', 'iris-grim', 'svg'],
-  ['Imagerie Médicale Les Cèdres', 'cedres'],
-  ['CHIREC', 'chirec-2015'],
+  ['Imagerie Médicale Les Cèdres', 'cedres', 'png'],
+  ['Hôpital Européen de Marseille', 'hopital-europeen', 'svg'],
+  ['CHIREC', 'chirec-2015', 'webp'],
+];
+const frenchTestimonialSource = await readFile(
+  path.join(projectRoot, 'src/components/sections/fr/TestimonialsCarouselSection.tsx'),
+  'utf8',
+);
+const frenchTestimonialData = frenchTestimonialSource.slice(
+  frenchTestimonialSource.indexOf('const testimonials = ['),
+  frenchTestimonialSource.indexOf('export default function'),
+);
+const frenchTestimonialRecords = [...frenchTestimonialData.matchAll(/\{\s*id:\s*'[^']+'[\s\S]*?\n\s*\},/g)]
+  .map((match) => match[0]);
+for (const [name, hospital, logoVariable] of [
+  ['Anthony Bagot', 'IMAGIR Bordeaux', 'imagirLogo'],
+  ['Thomas Boishardy', 'CHU Angers', 'chuLogo'],
+  ['Dominique Molmy', 'IMALLIANCE HDF', 'imallianceLogo'],
+  ['Équipe de planification', 'IRIS GRIM', 'irisGrimLogo'],
+  ['Karine Delaunay', 'Imagerie Médicale Les Cèdres', 'cedresLogo'],
+  ['Docteur Stordeur', 'Hôpital Européen de Marseille', 'hopitalEuropeenLogo'],
+  ['Frédéric Cavallotto', 'CHIREC', 'chirecLogo'],
 ]) {
-  const matchingImage = frenchHomepageImages.find(
-    (attrs) => attrs.alt === alt && new RegExp(`/${assetStem}\\.`).test(attrs.src ?? ''),
-  );
-  assert.ok(matchingImage, `French homepage must pair ${alt} with its matching customer asset`);
-  assert.match(matchingImage.src ?? '', new RegExp(`\\.${extension}$`), `${alt} testimonial logo must use ${extension.toUpperCase()}`);
+  const record = frenchTestimonialRecords.find((candidate) => candidate.includes(`hospital: '${hospital}'`));
+  assert.ok(record, `French testimonial data must contain the ${hospital} record`);
+  assert.ok(record.includes(`name: '${name}'`), `${hospital} must remain associated with ${name}`);
+  assert.ok(record.includes(`logo: ${logoVariable}`), `${hospital} must remain associated with ${logoVariable}`);
 }
-const irisGrimCarouselImages = [englishHomepageImages, frenchHomepageImages]
+for (const [locale, homepageImages] of [
+  ['French', frenchHomepageImages],
+  ['French-Swiss', frenchSwissHomepageImages],
+]) {
+  const testimonialImages = homepageImages.filter((attrs) =>
+    /(?:^|\s)filter-\[grayscale\(1\)\](?:\s|$)/.test(attrs.class ?? ''),
+  );
+  for (const [alt, assetStem, extension] of frenchTestimonialLogos) {
+    const matchingImage = testimonialImages.find(
+      (attrs) => attrs.alt === alt && new RegExp(`/${assetStem}\\.`).test(attrs.src ?? ''),
+    );
+    assert.ok(matchingImage, `${locale} homepage must pair ${alt} with its matching customer logo`);
+    assert.match(matchingImage.src ?? '', new RegExp(`\\.${extension}$`), `${locale} ${alt} testimonial logo must use ${extension.toUpperCase()}`);
+  }
+  assert.equal(
+    testimonialImages.filter((attrs) => frenchTestimonialLogos.some(([alt]) => attrs.alt === alt)).length,
+    frenchTestimonialLogos.length,
+    `${locale} homepage must render one customer logo for every testimonial`,
+  );
+}
+const irisGrimCarouselImages = [englishHomepageImages, frenchHomepageImages, frenchSwissHomepageImages]
   .map((images) => images.find((attrs) => attrs.alt === 'IRIS GRIM' && /\/iris-grim\.[^/]+\.svg$/.test(attrs.src ?? '')));
 for (const irisGrimCarouselImage of irisGrimCarouselImages) {
-  assert.ok(irisGrimCarouselImage, 'both homepages must render the authentic IRIS GRIM SVG');
+  assert.ok(irisGrimCarouselImage, 'English, French, and French-Swiss homepages must render the authentic IRIS GRIM SVG');
   assert.match(irisGrimCarouselImage.class ?? '', /(?:^|\s)filter-\[grayscale\(1\)\](?:\s|$)/, 'IRIS GRIM logo must use the shared grayscale treatment');
   assert.match(irisGrimCarouselImage.class ?? '', /(?:^|\s)opacity-50(?:\s|$)/, 'IRIS GRIM logo must use the shared muted contrast');
   assert.match(irisGrimCarouselImage.class ?? '', /(?:^|\s)max-h-10(?:\s|$)/, 'IRIS GRIM logo must use the shared height limit');
@@ -349,41 +391,143 @@ assert.equal(
   0,
   'Hôpital Européen de Marseille must never be paired with a CHU Angers logo',
 );
-assert.match(
-  frenchHomepage,
-  />\s*Hôpital Européen de Marseille\s*</,
-  'Hôpital Européen de Marseille customer name must remain visible',
-);
 const carouselAssetBudgets = [
   ...['chirec-2015', 'chu', 'imagir-or', 'lakewood', 'rrh', 'washington-medicine'].map((name) => ({
     relativePath: `src/assets/companies/carousel/${name}.webp`,
+    format: 'webp',
     maxWidth: 320,
     maxHeight: 96,
     maxBytes: 20_000,
   })),
   ...['cedres', 'imalliance-hdf'].map((name) => ({
-    relativePath: `src/assets/case-studies/carousel/${name}.webp`,
-    maxWidth: 240,
-    maxHeight: 80,
-    maxBytes: 10_000,
+    relativePath: `src/assets/companies/carousel/${name}.png`,
+    format: 'png',
+    maxWidth: 320,
+    maxHeight: 100,
+    maxBytes: 30_000,
   })),
 ];
 for (const budget of carouselAssetBudgets) {
   const assetPath = path.join(projectRoot, budget.relativePath);
   const [metadata, file] = await Promise.all([sharp(assetPath).metadata(), stat(assetPath)]);
-  assert.equal(metadata.format, 'webp', `${budget.relativePath} must remain WebP`);
+  assert.equal(metadata.format, budget.format, `${budget.relativePath} must remain ${budget.format.toUpperCase()}`);
   assert.ok((metadata.width ?? Infinity) <= budget.maxWidth, `${budget.relativePath} exceeds its width budget`);
   assert.ok((metadata.height ?? Infinity) <= budget.maxHeight, `${budget.relativePath} exceeds its height budget`);
   assert.ok(file.size <= budget.maxBytes, `${budget.relativePath} exceeds its byte budget`);
 }
-const irisGrimLogoPath = path.join(projectRoot, 'src/assets/companies/carousel/iris-grim.svg');
-const [irisGrimLogoSource, irisGrimLogoFile] = await Promise.all([
-  readFile(irisGrimLogoPath, 'utf8'),
-  stat(irisGrimLogoPath),
+const { data: imalliancePixels } = await sharp(
+  path.join(projectRoot, 'src/assets/companies/carousel/imalliance-hdf.png'),
+)
+  .ensureAlpha()
+  .raw()
+  .toBuffer({ resolveWithObject: true });
+let imallianceVisiblePixels = 0;
+let imallianceMaxChannel = 0;
+for (let offset = 0; offset < imalliancePixels.length; offset += 4) {
+  if (imalliancePixels[offset + 3] === 0) continue;
+  imallianceVisiblePixels += 1;
+  imallianceMaxChannel = Math.max(
+    imallianceMaxChannel,
+    imalliancePixels[offset],
+    imalliancePixels[offset + 1],
+    imalliancePixels[offset + 2],
+  );
+}
+assert.ok(imallianceVisiblePixels > 8_000, 'IMALLIANCE HDF mark must retain its full visible geometry');
+assert.ok(
+  imallianceMaxChannel <= 8,
+  'IMALLIANCE HDF mark must remain a dark monochrome adaptation so the official white header wordmark stays legible on light testimonial cards',
+);
+for (const obsoleteLandscape of ['cedres.webp', 'imalliance-hdf.webp']) {
+  await assert.rejects(
+    stat(path.join(projectRoot, 'src/assets/case-studies/carousel', obsoleteLandscape)),
+    (error) => error?.code === 'ENOENT',
+    `${obsoleteLandscape} must not survive as a testimonial logo`,
+  );
+}
+
+const irisCaseStudyAsset = 'src/assets/case-studies/iris-grim-clinique-jules-verne.webp';
+const irisCaseStudyPath = path.join(projectRoot, irisCaseStudyAsset);
+const [irisCaseStudyStats, irisCaseStudyMeta] = await Promise.all([
+  stat(irisCaseStudyPath),
+  sharp(irisCaseStudyPath).metadata(),
 ]);
+assert.equal(irisCaseStudyMeta.format, 'webp', `${irisCaseStudyAsset} must stay WebP`);
+assert.equal(irisCaseStudyMeta.width, 1600, `${irisCaseStudyAsset} width drifted`);
+assert.equal(irisCaseStudyMeta.height, 1000, `${irisCaseStudyAsset} height drifted`);
+assert.ok(irisCaseStudyStats.size <= 200_000, `${irisCaseStudyAsset} exceeds 200 KB`);
+await assert.rejects(
+  stat(path.join(projectRoot, 'src/assets/case-studies/iris-grim.jpg')),
+  (error) => error?.code === 'ENOENT',
+  'Legacy Nantes landmark should be removed after the licensed clinic photo replacement',
+);
+for (const [locale, html, homepageImages] of [
+  ['French', frenchHomepage, frenchHomepageImages],
+  ['French-Swiss', frenchSwissHomepage, frenchSwissHomepageImages],
+]) {
+  assert.match(
+    html,
+    /iris-grim-clinique-jules-verne\.[^"'\s>]*\.webp/i,
+    `${locale} case-study card must render the licensed Clinique Jules Verne photo`,
+  );
+  const irisCaseStudyImage = homepageImages.find((attrs) =>
+    /\/iris-grim-clinique-jules-verne\./.test(attrs.src ?? ''),
+  );
+  assert.equal(
+    irisCaseStudyImage?.alt,
+    'Clinique Jules Verne à Nantes, site d’imagerie IRIS GRIM',
+    `${locale} case-study photo must describe the actual IRIS GRIM site`,
+  );
+  assert.match(
+    html,
+    /https:\/\/commons\.wikimedia\.org\/wiki\/File:Clinique_Jules_Verne\.jpg/,
+    `${locale} page must credit the photo source`,
+  );
+  assert.match(
+    html,
+    /https:\/\/creativecommons\.org\/licenses\/by-sa\/3\.0\//,
+    `${locale} page must link the CC BY-SA 3.0 license`,
+  );
+  assert.match(html, /Photo « Clinique Jules Verne »/, `${locale} page must name the licensed photograph`);
+  assert.match(
+    html,
+    /adaptation recadrée sous CC BY-SA 3\.0/,
+    `${locale} page must disclose the crop and retain the derivative license`,
+  );
+}
+
+const svgLogoBudgets = [
+  { name: 'iris-grim', maxBytes: 10_000 },
+  { name: 'hopital-europeen', maxBytes: 16_000 },
+];
+for (const { name, maxBytes } of svgLogoBudgets) {
+  const assetPath = path.join(projectRoot, `src/assets/companies/carousel/${name}.svg`);
+  const [source, file, metadata] = await Promise.all([
+    readFile(assetPath, 'utf8'),
+    stat(assetPath),
+    sharp(assetPath).metadata(),
+  ]);
+  assert.equal(metadata.format, 'svg', `${name} logo must remain parseable SVG`);
+  assert.match(source, /<svg\b[^>]*viewBox=/, `${name} logo must retain a scalable viewBox`);
+  assert.doesNotMatch(
+    source,
+    /<(?:script|foreignObject|iframe|object|embed)\b|javascript:|\son\w+\s*=/i,
+    `${name} logo must not contain executable or embedded foreign content`,
+  );
+  assert.doesNotMatch(
+    source,
+    /\b(?:href|src)\s*=\s*["']\s*(?:https?:|\/\/|data:|javascript:)/i,
+    `${name} logo must not load external or data-URI resources`,
+  );
+  assert.doesNotMatch(
+    source,
+    /@import\b|url\(\s*["']?\s*(?:https?:|\/\/|data:|javascript:)/i,
+    `${name} logo must not import external CSS resources`,
+  );
+  assert.ok(file.size <= maxBytes, `${name} SVG exceeds its carousel byte budget`);
+}
+const irisGrimLogoSource = await readFile(path.join(projectRoot, 'src/assets/companies/carousel/iris-grim.svg'), 'utf8');
 assert.match(irisGrimLogoSource, /<svg\b[^>]*viewBox="0 0 273\.72 113\.68"/, 'IRIS GRIM logo must retain its complete intrinsic viewBox');
-assert.doesNotMatch(irisGrimLogoSource, /<(?:script|foreignObject)\b/i, 'IRIS GRIM logo must not contain executable or embedded foreign content');
-assert.ok(irisGrimLogoFile.size <= 10_000, 'IRIS GRIM SVG exceeds its carousel byte budget');
 const englishStructuredData = [...englishHomepage.matchAll(/<script\b[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gsi)]
   .map((match) => JSON.parse(match[1]));
 const organization = englishStructuredData
@@ -449,6 +593,32 @@ for (const [route, helpLabel, supportLocale] of [
     navbar.includes(`&quot;href&quot;:[0,&quot;${helpUrl}&quot;],&quot;showDesktop&quot;:[0,true],&quot;showMobile&quot;:[0,true]`),
     `${locale} Resources menu must expose ${helpUrl} on desktop and mobile`,
   );
+}
+
+const quoteBandSource = await readFile(
+  path.join(projectRoot, 'src/components/sections/intl/QuoteBand.astro'),
+  'utf8',
+);
+assert.match(
+  quoteBandSource,
+  /<\/blockquote>\s*<figcaption class="mt-5">[\s\S]*?<\/figcaption>\s*<\/figure>/,
+  'international quote attribution must remain the direct final figcaption child of its figure',
+);
+
+for (const [route, logoAlt] of [
+  ['de', 'Logo der CHIREC-Krankenhausgruppe'],
+  ['nl', 'Logo van de CHIREC-ziekenhuisgroep'],
+  ['it', 'Logo del gruppo ospedaliero CHIREC'],
+]) {
+  const html = await readFile(path.join(distDir, route, 'index.html'), 'utf8');
+  const images = [...html.matchAll(/<img\b[^>]*>/gsi)].map((match) => attributes(match[0]));
+  const chirecLogo = images.find(
+    (attrs) => attrs.alt === logoAlt && /\/chirec-2015\./.test(attrs.src ?? ''),
+  );
+  assert.ok(chirecLogo, `${route} homepage testimonial must render the matching CHIREC customer logo`);
+  assert.match(chirecLogo.class ?? '', /(?:^|\s)grayscale(?:\s|$)/, `${route} CHIREC logo must use the shared grayscale treatment`);
+  assert.match(chirecLogo.class ?? '', /(?:^|\s)opacity-75(?:\s|$)/, `${route} CHIREC logo must use the shared muted contrast`);
+  assert.match(chirecLogo.class ?? '', /(?:^|\s)max-h-12(?:\s|$)/, `${route} CHIREC logo must use the shared height limit`);
 }
 
 const llmsPath = path.join(distDir, 'llms.txt');

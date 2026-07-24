@@ -7,6 +7,7 @@ import FeatureGrid from "@/components/sections/intl/FeatureGrid.astro";
 import CTA from "@/components/sections/CTA.astro";
 import VideoTourSection from "@/components/sections/intl/VideoTourSection.astro";
 import QuoteBand from "@/components/sections/intl/QuoteBand.astro";
+import chirecLogo from "@/assets/companies/carousel/chirec-2015.webp";
 import { MARKET } from "@/i18n/market/de";
 import { HOME_CONTENT } from "@/i18n/homeContent";
 import phoneImage from "@/assets/layout/mobilehand-de.webp";
@@ -28,7 +29,7 @@ const c = HOME_CONTENT['de'];
 		phoneAlt="Momentum Mobile-App — 90 % weniger Admin-Zeit, KI-Assistent"
 		screenshotAlt="Momentum Dienstplan-Oberfläche: Monatsansicht mit Diensten, Bereitschaften und Zählern für ärztliche Teams"
 	/>
-	<QuoteBand text={MARKET.quote.text} author={MARKET.quote.author} role={MARKET.quote.role} stats={MARKET.quote.stats} moreHref="/de/referenzen" moreLabel="Alle Referenzen ansehen" />
+	<QuoteBand text={MARKET.quote.text} author={MARKET.quote.author} role={MARKET.quote.role} stats={MARKET.quote.stats} moreHref="/de/referenzen" moreLabel="Alle Referenzen ansehen" logo={chirecLogo} logoAlt="Logo der CHIREC-Krankenhausgruppe" />
 	<a id="momentum"></a>
 	<FeatureGrid heading={c.features.heading} sub={c.features.sub} items={c.features.items} />
 	<MobileAppSection content={MOBILE_APP['de']} />
