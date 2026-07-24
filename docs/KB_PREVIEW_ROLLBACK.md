@@ -20,10 +20,11 @@ The current HubSpot knowledge base stays live throughout the preview. There is n
 
 To remove the preview:
 
-1. Revert the two knowledge-base preview release commits on `main` without touching later work:
+1. Revert the runbook-only follow-ups first, then the two knowledge-base preview code commits, without touching unrelated later work:
 
    ```bash
-   git revert --no-commit 9a8c785 cfda44f
+   runbook_updates=$(git log --format=%H -- docs/KB_PREVIEW_ROLLBACK.md | head -n -1)
+   git revert --no-commit $runbook_updates 9a8c785 cfda44f
    git commit -m "revert: remove knowledge base preview"
    git push origin main
    ```
