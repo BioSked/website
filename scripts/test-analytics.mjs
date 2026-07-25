@@ -263,6 +263,8 @@ assert.match(baseHead, /site_language:\s*pageLocale/);
 assert.match(baseHead, /content_group:\s*pageLocale/);
 assert.match(baseHead, /location\.hostname\s*===\s*['"]biosked\.com['"]/);
 assert.match(baseHead, /location\.hostname\s*===\s*['"]www\.biosked\.com['"]/);
+assert.match(baseHead, /location\.hostname\s*===\s*['"]kb\.biosked\.com['"]/);
+assert.match(baseHead, /location\.hostname\s*===\s*['"]kb\.biosked\.fr['"]/);
 assert.match(baseHead, /dispatchEvent\(new Event\(['"]bsk:analytics-ready['"]\)\)/);
 assert.match(baseHead, /addEventListener\(['"]storage['"]/);
 assert.equal((baseHead.match(/addEventListener\(['"]storage['"]/g) || []).length, 1);
@@ -420,12 +422,22 @@ const previewRuntime = runConsentRuntime(consentSource, {
 assert.equal(previewRuntime.appendedScripts.length, 0);
 assert.notEqual(previewRuntime.context.__bskGALoaded, true);
 
+for (const hostname of ['kb.biosked.com', 'kb.biosked.fr']) {
+  const kbHostRuntime = runConsentRuntime(consentSource, {
+    timeZone: 'America/New_York',
+    hostname,
+  });
+  assert.equal(kbHostRuntime.appendedScripts.length, 1, `${hostname} must be an analytics host`);
+  assert.equal(kbHostRuntime.context.__bskGALoaded, true);
+}
+
 const optOutRuntime = runConsentRuntime(consentSource, { timeZone: 'America/New_York' });
 const scriptsBeforeOptOut = optOutRuntime.appendedScripts.length;
 optOutRuntime.context.__bskDisableGA();
 assert.equal(optOutRuntime.context.__bskGALoaded, false);
 assert.equal(optOutRuntime.context['ga-disable-G-8BGTQK1QD9'], true);
 assert.equal(optOutRuntime.cookieWrites.some((value) => value.startsWith('_ga=')), true);
+assert.equal(optOutRuntime.cookieWrites.some((value) => value.includes('domain=.biosked.fr')), true);
 optOutRuntime.context.__bskLoadGA();
 assert.equal(optOutRuntime.context.__bskGALoaded, true);
 assert.equal(optOutRuntime.context['ga-disable-G-8BGTQK1QD9'], false);
@@ -437,6 +449,9 @@ assert.equal(configCommands[0][2].allow_google_signals, false);
 assert.equal(configCommands[0][2].allow_ad_personalization_signals, false);
 assert.equal(configCommands[0][2].cookie_expires, 34128000);
 assert.equal(configCommands[0][2].cookie_update, false);
+
+const kbArticlePage = read('src/pages/kb-preview/[lang]/knowledge/[...slug].astro');
+assert.match(kbArticlePage, /window\.__bskGALoaded\s*===\s*true[\s\S]{0,120}window\.gtag\('event',\s*'kb_article_feedback'/);
 
 const consentBanner = read('src/components/ConsentBanner.astro');
 assert.doesNotMatch(consentBanner, /\bGoogle\b/i);
@@ -452,7 +467,7 @@ assert.match(consentBanner, /mobileChoices\.addEventListener\(['"]click['"], sho
 const footer = read('src/components/layout/Footer.astro');
 assert.match(footer, /bsk:open-privacy-choices/);
 assert.match(footer, /privacyChoicesLabel/);
-assert.match(footer, /\{hideFooter\s*&&\s*\(/);
+assert.doesNotMatch(footer, /\{hideFooter\s*&&\s*\(/);
 
 const privacyPage = read('src/pages/privacy.astro');
 assert.match(privacyPage, /Google Analytics 4/);

@@ -211,7 +211,7 @@ const articleSchema = article
         if (actions) actions.classList.add('hidden');
         if (question) question.classList.add('hidden');
         if (thanks) thanks.classList.remove('hidden');
-        if (typeof window.gtag === 'function') {
+        if (window.__bskGALoaded === true && typeof window.gtag === 'function') {
           window.gtag('event', 'kb_article_feedback', {
             answer: button.dataset.answer,
             article_id: root.dataset.articleId,

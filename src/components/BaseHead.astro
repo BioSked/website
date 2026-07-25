@@ -149,7 +149,10 @@ const priorConsentTimeZones = [...PRIOR_CONSENT_TIME_ZONES];
     });
     gtag('js', new Date());
 
-    var analyticsHost = location.hostname === 'biosked.com' || location.hostname === 'www.biosked.com';
+    var analyticsHost = location.hostname === 'biosked.com'
+        || location.hostname === 'www.biosked.com'
+        || location.hostname === 'kb.biosked.com'
+        || location.hostname === 'kb.biosked.fr';
     var attributionQueryParameters = [
         'utm_source', 'utm_medium', 'utm_campaign', 'utm_id', 'utm_term', 'utm_content',
         'utm_source_platform', 'utm_creative_format', 'utm_marketing_tactic',
@@ -214,7 +217,14 @@ const priorConsentTimeZones = [...PRIOR_CONSENT_TIME_ZONES];
         } catch (e) {}
         cookieNames.forEach(function (name) {
             var removal = '=; Expires=Thu, 01 Jan 1970 00:00:00 GMT; Max-Age=0; path=/; SameSite=Lax';
-            var domains = ['', '; domain=' + location.hostname, '; domain=biosked.com', '; domain=.biosked.com'];
+            var domains = [
+                '',
+                '; domain=' + location.hostname,
+                '; domain=biosked.com',
+                '; domain=.biosked.com',
+                '; domain=biosked.fr',
+                '; domain=.biosked.fr',
+            ];
             domains.forEach(function (domain) {
                 document.cookie = name + removal + domain;
                 document.cookie = name + removal + domain + '; Secure';
