@@ -18,6 +18,9 @@ const forbiddenBlogSourcePatterns = [
   { pattern: /\bet_pb_[\w-]*/i, label: 'Divi builder markup' },
   { pattern: /@ET-DC@|\b(?:fb_built|_builder_version|theme_builder_area|global_colors_info)\s*=/i, label: 'Divi builder token' },
   { pattern: /<!--\s*\/?wp:/i, label: 'WordPress block marker' },
+  { pattern: /\bwp-image-\d+\b/i, label: 'WordPress image markup' },
+  { pattern: /\b(?:data-ccp-props|data-contrast|data-list-defn-props)=/i, label: 'Word editor markup' },
+  { pattern: /class=["'](?:TextRun|NormalTextRun)\b/i, label: 'Word editor class' },
   { pattern: /\[\/?(?:vc_|fusion_|elementor)[^\]]*\]/i, label: 'legacy page-builder shortcode' },
   { pattern: /(?:[?&]|&amp;)_gl=/i, label: 'historical Google Analytics linker token' },
   {
@@ -56,6 +59,17 @@ function attributes(tag) {
     parsed[name] = match[2] ?? match[3] ?? match[4] ?? '';
   }
   return parsed;
+}
+
+function decodeHtmlText(value) {
+  return value
+    .replace(/&#x([0-9a-f]+);/gi, (_, codePoint) => String.fromCodePoint(Number.parseInt(codePoint, 16)))
+    .replace(/&#([0-9]+);/g, (_, codePoint) => String.fromCodePoint(Number.parseInt(codePoint, 10)))
+    .replace(/&lt;/gi, '<')
+    .replace(/&gt;/gi, '>')
+    .replace(/&quot;/gi, '"')
+    .replace(/&#39;|&apos;/gi, "'")
+    .replace(/&amp;/gi, '&');
 }
 
 function metaContent(html, attribute, value) {
@@ -402,6 +416,8 @@ for (const { outputPath, associations } of expectedHardBreaks) {
 
 const expectedNewTabAnchors = [
   ['fr/blog/biosked-reinvente-la-planification-des-equipes-medicales-avec-la-nouvelle-version-de-momentum/index.html', '/fr/demo/', 'Demander une démo'],
+  ['fr/blog/lautomatisation-de-la-planification-dequipes-dans-le-service-danesthesie/index.html', '/fr/ressources/', '>>ICI<<'],
+  ['fr/blog/lautomatisation-de-la-planification-dequipes-dans-le-service-danesthesie/index.html', '/fr/secteurs-soins/anesthesie/', '>>ICI<<.'],
   ['fr/blog/maitriser-la-planification-des-equipes-anesthesistes-et-iades-avec-momentum/index.html', '/fr/secteurs-soins/anesthesie/', 'Lire la suite'],
   ['fr/blog/momentum-pour-les-anesthesistes/index.html', '/fr/ressources/', 'Demandez votre démo personnalisée'],
   ['fr/blog/optimiser-la-planification-en-radiologie/index.html', '/fr/cas-clients/imagir-bordeaux/', 'Téléchargez l’étude de cas'],
@@ -413,7 +429,7 @@ for (const [outputPath, href, text] of expectedNewTabAnchors) {
   const html = await readFile(path.join(distDir, outputPath), 'utf8');
   const content = mainContent(html, outputPath);
   const anchor = [...content.matchAll(/<a\b[^>]*>([\s\S]*?)<\/a>/gsi)]
-    .find((match) => match[1].replace(/<[^>]+>/g, '').trim() === text);
+    .find((match) => decodeHtmlText(match[1].replace(/<[^>]+>/g, '')).trim() === text);
   assert.ok(anchor, `${outputPath} must retain the “${text}” link`);
   const attrs = attributes(anchor[0]);
   assert.equal(attrs.href, href, `${outputPath} “${text}” href changed`);
