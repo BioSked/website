@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { cn } from '@/lib/utils';
 import { Globe, ChevronDown } from 'lucide-react';
 import bioSkedLogo from '@/assets/logos/biosked-logo.svg';
@@ -28,6 +28,8 @@ interface NavbarActionsProps {
     homeHref?: string;
     languages?: LanguageOption[];
 }
+
+const MOBILE_MENU_ID = 'mobile-main-navigation';
 
 function LanguageSwitcher({ languages, className }: { languages: LanguageOption[]; className?: string }) {
     const [open, setOpen] = useState(false);
@@ -70,6 +72,70 @@ function LanguageSwitcher({ languages, className }: { languages: LanguageOption[
 export function NavbarActions({ pagename, navLinks, demoCta, homeHref = '/', languages }: NavbarActionsProps)
 {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const menuButtonRef = useRef<HTMLButtonElement>(null);
+    const menuScrollRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        if (!isMenuOpen) return;
+
+        const html = document.documentElement;
+        const body = document.body;
+        const previousHtmlOverflow = html.style.overflow;
+        const previousHtmlOverscroll = html.style.overscrollBehavior;
+        const previousBodyOverflow = body.style.overflow;
+        const previousBodyOverscroll = body.style.overscrollBehavior;
+        const mobileViewport = window.matchMedia('(max-width: 767px)');
+
+        document.documentElement.style.overflow = 'hidden';
+        document.documentElement.style.overscrollBehavior = 'none';
+        document.body.style.overflow = 'hidden';
+        document.body.style.overscrollBehavior = 'none';
+
+        const closeAtDesktop = (event: MediaQueryListEvent) => {
+            if (!event.matches) setIsMenuOpen(false);
+        };
+
+        const onKeyDown = (event: KeyboardEvent) => {
+            if (event.key === 'Escape') {
+                event.preventDefault();
+                setIsMenuOpen(false);
+                window.requestAnimationFrame(() => menuButtonRef.current?.focus({ preventScroll: true }));
+                return;
+            }
+
+            if (event.key !== 'Tab') return;
+
+            const panelLinks = Array.from(
+                menuScrollRef.current?.querySelectorAll<HTMLElement>('a[href], button:not([disabled])') ?? [],
+            );
+            const focusable = [menuButtonRef.current, ...panelLinks].filter(
+                (element): element is HTMLElement => element !== null,
+            );
+            if (focusable.length === 0) return;
+
+            const first = focusable[0];
+            const last = focusable[focusable.length - 1];
+            if (event.shiftKey && document.activeElement === first) {
+                event.preventDefault();
+                last.focus();
+            } else if (!event.shiftKey && document.activeElement === last) {
+                event.preventDefault();
+                first.focus();
+            }
+        };
+
+        mobileViewport.addEventListener('change', closeAtDesktop);
+        document.addEventListener('keydown', onKeyDown);
+
+        return () => {
+            mobileViewport.removeEventListener('change', closeAtDesktop);
+            document.removeEventListener('keydown', onKeyDown);
+            html.style.overflow = previousHtmlOverflow;
+            html.style.overscrollBehavior = previousHtmlOverscroll;
+            body.style.overflow = previousBodyOverflow;
+            body.style.overscrollBehavior = previousBodyOverscroll;
+        };
+    }, [isMenuOpen]);
 
     const ACTION_BUTTONS = [
         { label: demoCta?.label ?? 'Book a Demo', href: demoCta?.href ?? '/demo', variant: 'default' as const, isModal: false },
@@ -166,11 +232,15 @@ export function NavbarActions({ pagename, navLinks, demoCta, homeHref = '/', lan
 
                     <div className="flex items-center gap-2 md:hidden lg:gap-4">
                         <button
+                            ref={menuButtonRef}
+                            type="button"
                             className="text-foreground relative flex size-8 rounded-sm lg:hidden z-50 ml-4"
                             onClick={() => setIsMenuOpen(!isMenuOpen)}
-                            aria-label="Toggle menu"
+                            aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+                            aria-expanded={isMenuOpen}
+                            aria-controls={MOBILE_MENU_ID}
                         >
-                            <span className="sr-only">Open main menu</span>
+                            <span className="sr-only">{isMenuOpen ? 'Close main menu' : 'Open main menu'}</span>
                             <div className={cn(
                                 'absolute top-1/2 left-1/2 block w-5 -translate-x-1/2 -translate-y-1/2 transition-all ease-out duration-400',
                                 isMenuOpen ? 'rotate-180' : '',
@@ -203,15 +273,27 @@ export function NavbarActions({ pagename, navLinks, demoCta, homeHref = '/', lan
             </div>
         </header>
         <div
+            id={MOBILE_MENU_ID}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Main navigation"
+            aria-hidden={!isMenuOpen}
+            inert={!isMenuOpen}
             className={cn(
-                'text-accent-foreground fixed top-0 inset-0 z-40 flex flex-col justify-between tracking-normal transition-all duration-300 ease-out lg:hidden will-change-opacity bg-background/80 backdrop-blur',
+                'text-accent-foreground fixed inset-0 z-40 h-dvh tracking-normal transition-all duration-300 ease-out md:hidden will-change-opacity bg-background/80 backdrop-blur',
                 isMenuOpen
                 ? 'opacity-100 pointer-events-auto'
                 : '-translate-y-2 opacity-0 pointer-events-none',
                 )}
         >
-            <div className="container mt-16">
-                <nav className="inline-block w-full max-w-none pt-6 font-semibold text-muted-foreground">
+            <div
+                ref={menuScrollRef}
+                data-mobile-menu-scroll
+                className="mt-16 h-[calc(100dvh-4rem)] overflow-y-auto overscroll-contain touch-pan-y [-webkit-overflow-scrolling:touch]"
+                style={{ paddingBottom: 'max(2rem, env(safe-area-inset-bottom))' }}
+            >
+                <div className="container">
+                <nav aria-label="Mobile navigation" className="inline-block w-full max-w-none pt-6 font-semibold text-muted-foreground">
                     {MOBILE_LINK.map((item) => (
                         <div key={item.label}>
                             {item.subitems ? <div className="text-sm mt-8 mb-4">{item.label}</div> : ''}
@@ -256,6 +338,7 @@ export function NavbarActions({ pagename, navLinks, demoCta, homeHref = '/', lan
                         </div>
                     )}
                 </nav>
+                </div>
             </div>
         </div>
     </>
