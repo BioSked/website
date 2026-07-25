@@ -22,7 +22,6 @@ const q = market.getquote ?? {
 };
 
 const SECURITY_PATH: Record<string, string> = { de: '/de/sicherheit-und-daten/', nl: '/nl/beveiliging-en-gegevens/', it: '/it/sicurezza-e-dati/' };
-const HS_LOCALE: Record<string, string> = { de: 'de', nl: 'nl', it: 'it' };
 const formId = (market.getquote && market.getquote.formId) || '152f6973-10dd-42d4-af28-2df2f8f830e9';
 const thankYouPath = market.thankyou ? `/${locale}/demo/${market.thankyou.slug}/` : undefined;
 ---
@@ -34,32 +33,19 @@ const thankYouPath = market.thankyou ? `/${locale}/demo/${market.thankyou.slug}/
       <div class="max-w-xl mx-auto bg-white/60 border border-primary/30 transition-all duration-400 shadow-xl shadow-secondary/10 rounded-2xl px-4 sm:px-10 pb-10 pt-1">
         <h2 class="text-display-card text-secondary font-bold max-w-2xl mx-auto my-5">{q.formTitle}</h2>
         <hr class="border-input">
-        <div id="hubspot-quote" class="mt-5"></div>
+        <script is:inline src="https://js-eu1.hsforms.net/forms/embed/25195055.js" defer></script>
+        <div
+          class="hs-form-frame mt-5"
+          data-region="eu1"
+          data-form-id={formId}
+          data-portal-id="25195055"
+          data-success-redirect={thankYouPath}
+        ></div>
       </div>
       {d.privacyNote && (
         <p class="text-muted-foreground text-xs mt-3 text-center">
           <a href={SECURITY_PATH[locale] ?? '/'} class="hover:text-foreground transition-colors">{d.privacyNote}</a>
         </p>
       )}
-      <script is:inline define:vars={{ formId, hsLocale: HS_LOCALE[locale] ?? 'en', thankYouPath }}>
-        window.bskHsForm({
-          formInstanceId: "2",
-          portalId: "25195055",
-          formId: formId,
-          region: "eu1",
-          locale: hsLocale,
-          target: "#hubspot-quote",
-          onFormSubmitted: function () {
-            const redirect = () => {
-              if (thankYouPath) window.location.assign(thankYouPath);
-            };
-            if (typeof window.bskTrackLead === 'function') {
-              window.bskTrackLead(formId, redirect);
-            } else {
-              redirect();
-            }
-          }
-        });
-      </script>
     </div>
 </BaseLayout>

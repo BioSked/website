@@ -97,6 +97,30 @@
 
     window.addEventListener('hs-form-event:on-submission:success', (event) => {
         const detail = (event as CustomEvent<{ formId?: string }>).detail;
-        if (detail?.formId) analyticsWindow.bskTrackLead?.(detail.formId);
+        if (!detail?.formId) return;
+
+        const frame = Array.from(
+            document.querySelectorAll<HTMLElement>('.hs-form-frame[data-form-id]'),
+        ).find((candidate) => candidate.dataset.formId === detail.formId);
+        if (!frame) return;
+
+        const configuredRedirect = frame.dataset.successRedirect;
+        let successRedirect: string | undefined;
+        if (configuredRedirect) {
+            try {
+                const redirectDestination = new URL(configuredRedirect, location.href);
+                if (redirectDestination.origin === location.origin) {
+                    successRedirect = `${redirectDestination.pathname}${redirectDestination.search}${redirectDestination.hash}`;
+                }
+            } catch {}
+        }
+        const redirect = successRedirect
+            ? () => window.location.assign(successRedirect)
+            : undefined;
+        if (analyticsWindow.bskTrackLead) {
+            analyticsWindow.bskTrackLead(detail.formId, redirect);
+        } else {
+            redirect?.();
+        }
     });
 </script>

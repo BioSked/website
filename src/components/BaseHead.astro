@@ -2,6 +2,7 @@
 import '@/styles/global.css';
 import { SITE_TITLE, SITE_METADATA } from '../consts';
 import { hreflangAlternates, canonicalPathFor, splitLocale } from '@/i18n/locales';
+import { PRIOR_CONSENT_TIME_ZONES } from '@/lib/analytics.mjs';
 
 const {
     title,
@@ -66,6 +67,7 @@ const socialImageAlt = socialImageAlts[canonicalLocale] ?? SITE_METADATA.openGra
 const analyticsPageLocation = pageType === 'not-found'
     ? new URL('/__404__', Astro.site ?? 'https://biosked.com').toString()
     : null;
+const priorConsentTimeZones = [...PRIOR_CONSENT_TIME_ZONES];
 ---
 
 <meta charset="utf-8" />
@@ -126,34 +128,125 @@ const analyticsPageLocation = pageType === 'not-found'
 <meta name="publisher" content={SITE_METADATA.publisher} />
 
 <!-- Google tag (gtag.js) -->
-<script is:inline define:vars={{ pageLocale, analyticsPageLocation }}>
-    // Consent-gated Google Analytics (CNIL "basic" mode).
-    // Outside EU/CH timezones: GA loads immediately (no banner shown).
-    // Inside: nothing loads until the visitor accepts (ConsentBanner).
-    // Global Privacy Control is honored as a standing refusal.
+<script is:inline define:vars={{ pageLocale, analyticsPageLocation, priorConsentTimeZones }}>
+    // Basic consent mode: no analytics library or request loads before opt-in
+    // in prior-consent jurisdictions. Elsewhere audience measurement defaults
+    // on, with a persistent footer control for opt-out. The static site has no
+    // country header, so a browser-only time-zone list is the coarse geo signal.
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     window.gtag = gtag;
+    gtag('consent', 'default', {
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        analytics_storage: 'denied',
+    });
+    gtag('set', {
+        site_language: pageLocale,
+        content_group: pageLocale,
+        ads_data_redaction: true,
+    });
     gtag('js', new Date());
-    gtag('consent', 'default', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'denied' });
-    gtag('set', { site_language: pageLocale, content_group: pageLocale });
 
     var analyticsHost = location.hostname === 'biosked.com' || location.hostname === 'www.biosked.com';
+    var attributionQueryParameters = [
+        'utm_source', 'utm_medium', 'utm_campaign', 'utm_id', 'utm_term', 'utm_content',
+        'utm_source_platform', 'utm_creative_format', 'utm_marketing_tactic',
+        'gclid', 'dclid', 'wbraid', 'gbraid',
+    ];
+
+    function attributionValueLooksSafe(parameterValue) {
+        if (!parameterValue || parameterValue.length > 200 || parameterValue.indexOf('@') !== -1) return false;
+        if (/[\u0000-\u001F\u007F?&=]/.test(parameterValue)) return false;
+        if (/(?:\+?\d[\s().-]*){7,}/.test(parameterValue)) return false;
+        // Drop obvious person-name-shaped values while retaining ordinary campaign slugs.
+        if (/^[A-ZÀ-ÖØ-Þ][A-Za-zÀ-ÖØ-öø-ÿ'’]{1,39}(?:[ _-]+[A-ZÀ-ÖØ-Þ][A-Za-zÀ-ÖØ-öø-ÿ'’]{1,39})+$/.test(parameterValue)) return false;
+        return true;
+    }
+
+    function sanitizedPageLocation(value) {
+        try {
+            var source = new URL(value, location.origin);
+            var sanitized = new URL(source.origin + source.pathname);
+            attributionQueryParameters.forEach(function (name) {
+                source.searchParams.getAll(name).forEach(function (parameterValue) {
+                    if (attributionValueLooksSafe(parameterValue)) {
+                        sanitized.searchParams.append(name, parameterValue);
+                    }
+                });
+            });
+            return sanitized.href;
+        } catch (e) {
+            return location.origin + location.pathname;
+        }
+    }
+
+    function sanitizedReferrer(value) {
+        if (!value) return '';
+        try {
+            var referrer = new URL(value);
+            return referrer.origin === location.origin
+                ? referrer.origin + referrer.pathname
+                : referrer.origin + '/';
+        } catch (e) {
+            return '';
+        }
+    }
+
+    var analyticsConfig = {
+        allow_google_signals: false,
+        allow_ad_personalization_signals: false,
+        cookie_expires: 34128000,
+        cookie_update: false,
+        page_location: sanitizedPageLocation(analyticsPageLocation || location.href),
+        page_referrer: analyticsPageLocation ? '' : sanitizedReferrer(document.referrer),
+    };
+
+    function deleteAnalyticsCookies() {
+        var cookieNames = [];
+        try {
+            cookieNames = document.cookie.split(';').map(function (part) {
+                return part.split('=')[0].trim();
+            }).filter(function (name) {
+                return /^_ga(?:_|$)|^_gid$|^_gat(?:_|$)|^_gac_|^_gcl_/.test(name);
+            });
+        } catch (e) {}
+        cookieNames.forEach(function (name) {
+            var removal = '=; Expires=Thu, 01 Jan 1970 00:00:00 GMT; Max-Age=0; path=/; SameSite=Lax';
+            var domains = ['', '; domain=' + location.hostname, '; domain=biosked.com', '; domain=.biosked.com'];
+            domains.forEach(function (domain) {
+                document.cookie = name + removal + domain;
+                document.cookie = name + removal + domain + '; Secure';
+            });
+        });
+    }
+
+    window.__bskDisableGA = function () {
+        window['ga-disable-G-8BGTQK1QD9'] = true;
+        window['ga-disable-GT-NB96M5G7'] = true;
+        window.__bskGALoaded = false;
+        gtag('consent', 'update', { analytics_storage: 'denied' });
+        deleteAnalyticsCookies();
+        window.dispatchEvent(new Event('bsk:analytics-disabled'));
+    };
+
     window.__bskLoadGA = function () {
         if (!analyticsHost || window.__bskGALoaded) return;
+        window['ga-disable-G-8BGTQK1QD9'] = false;
+        window['ga-disable-GT-NB96M5G7'] = false;
         window.__bskGALoaded = true;
         gtag('consent', 'update', { analytics_storage: 'granted' });
-        var s = document.createElement('script');
-        s.async = true;
-        s.src = 'https://www.googletagmanager.com/gtag/js?id=GT-NB96M5G7';
-        document.head.appendChild(s);
-        if (analyticsPageLocation) {
-            gtag('config', 'GT-NB96M5G7', {
-                page_location: analyticsPageLocation,
-                page_referrer: '',
-            });
-        } else {
-            gtag('config', 'GT-NB96M5G7');
+        if (!window.__bskGAScriptLoaded) {
+            window.__bskGAScriptLoaded = true;
+            var s = document.createElement('script');
+            s.async = true;
+            s.src = 'https://www.googletagmanager.com/gtag/js?id=GT-NB96M5G7';
+            document.head.appendChild(s);
+        }
+        if (!window.__bskGAConfigured) {
+            window.__bskGAConfigured = true;
+            gtag('config', 'GT-NB96M5G7', analyticsConfig);
         }
         window.dispatchEvent(new Event('bsk:analytics-ready'));
     };
@@ -164,19 +257,54 @@ const analyticsPageLocation = pageType === 'not-found'
             var raw = localStorage.getItem('biosked-consent');
             if (raw) {
                 var parsed = JSON.parse(raw);
-                // Choices older than 12 months are re-asked.
-                choice = (Date.now() - (parsed.t || 0) < 31536000000) ? parsed.v : null;
+                var age = Date.now() - (parsed.t || 0);
+                // A refusal persists until the visitor changes it. Positive
+                // consent is reconfirmed after six months where required.
+                if (parsed.v === 'denied') choice = 'denied';
+                else if (parsed.v === 'granted' && age >= 0 && age < 15768000000) choice = 'granted';
+                if (!choice) localStorage.removeItem('biosked-consent');
             }
         } catch (e) {}
         var gpc = navigator.globalPrivacyControl === true;
-        var eu = false;
-        try {
-            var tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
-            eu = /^Europe\//.test(tz) || /^Atlantic\/(Canary|Madeira|Azores|Reykjavik)$/.test(tz);
-        } catch (e) {}
-        if (gpc || choice === 'denied') return;
+        var timeZone = '';
+        try { timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) {}
+        var requiresPriorConsent = !timeZone
+            || timeZone.indexOf('/') === -1
+            || timeZone.indexOf('Etc/') === 0
+            || timeZone.indexOf('Europe/') === 0
+            || priorConsentTimeZones.indexOf(timeZone) !== -1;
+
+        window.addEventListener('storage', function (event) {
+            if (event.key !== 'biosked-consent') return;
+            var syncedChoice = null;
+            try {
+                if (event.newValue) {
+                    var synced = JSON.parse(event.newValue);
+                    if (synced.v === 'denied') syncedChoice = 'denied';
+                    else if (
+                        synced.v === 'granted'
+                        && Date.now() - (synced.t || 0) >= 0
+                        && Date.now() - (synced.t || 0) < 15768000000
+                    ) syncedChoice = 'granted';
+                }
+            } catch (e) {}
+
+            var syncedGpc = navigator.globalPrivacyControl === true;
+            var syncedPending = !syncedChoice && requiresPriorConsent;
+            window.__bskConsentPending = syncedPending;
+            if (syncedGpc || syncedChoice === 'denied' || syncedPending) window.__bskDisableGA();
+            else window.__bskLoadGA();
+            window.dispatchEvent(new CustomEvent('bsk:consent-synced', {
+                detail: { choice: syncedChoice, pending: syncedPending },
+            }));
+        });
+
+        if (gpc || choice === 'denied') {
+            window.__bskDisableGA();
+            return;
+        }
         if (choice === 'granted') { window.__bskLoadGA(); return; }
-        if (!eu) { window.__bskLoadGA(); return; }
+        if (!requiresPriorConsent) { window.__bskLoadGA(); return; }
         window.__bskConsentPending = true;
     })();
 </script>

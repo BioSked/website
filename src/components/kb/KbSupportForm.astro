@@ -109,9 +109,9 @@ const sourceUrl = kbSourceSupportUrl(locale);
           }
         }
       },
-      onFormSubmit: function () {
-        if (typeof window.gtag === 'function') {
-          window.gtag('event', 'kb_support_form_submit', { language: locale });
+      onFormSubmitted: function () {
+        if (typeof window.bskTrackLead === 'function') {
+          window.bskTrackLead(form.formId);
         }
       }
     });
