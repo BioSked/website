@@ -82,9 +82,9 @@ const DE: FooterLocale = {
         {
             title: 'Unternehmen',
             links: [
-                { name: 'Blog', href: '/de/blog/' },
-                { name: 'Über uns', href: '/de/about/' },
-                { name: 'Karriere', href: '/de/careers/' },
+                { name: 'Blog', href: '/blog/' },
+                { name: 'Über uns', href: '/about/' },
+                { name: 'Karriere', href: '/careers/' },
                 { name: 'Sicherheit & Daten', href: '/de/sicherheit-und-daten/' },
                 { name: 'LinkedIn', href: 'https://www.linkedin.com/company/biosked/' },
             ],
@@ -110,9 +110,9 @@ const NL: FooterLocale = {
         {
             title: 'Bedrijf',
             links: [
-                { name: 'Blog', href: '/nl/blog/' },
-                { name: 'Over ons', href: '/nl/about/' },
-                { name: 'Vacatures', href: '/nl/careers/' },
+                { name: 'Blog', href: '/blog/' },
+                { name: 'Over ons', href: '/about/' },
+                { name: 'Vacatures', href: '/careers/' },
                 { name: 'Beveiliging & gegevens', href: '/nl/beveiliging-en-gegevens/' },
                 { name: 'LinkedIn', href: 'https://www.linkedin.com/company/biosked/' },
             ],
@@ -137,9 +137,9 @@ const IT: FooterLocale = {
         {
             title: 'Azienda',
             links: [
-                { name: 'Blog', href: '/it/blog/' },
-                { name: 'Chi siamo', href: '/it/about/' },
-                { name: 'Carriere', href: '/it/careers/' },
+                { name: 'Blog', href: '/blog/' },
+                { name: 'Chi siamo', href: '/about/' },
+                { name: 'Carriere', href: '/careers/' },
                 { name: 'Sicurezza e dati', href: '/it/sicurezza-e-dati/' },
                 { name: 'LinkedIn', href: 'https://www.linkedin.com/company/biosked/' },
             ],

@@ -4,8 +4,9 @@
  * URL scheme: English is the default locale and lives unprefixed at the root.
  * fr/de/nl/it live under their prefix. French has its own page tree
  * (market-specific pages like /fr/cas-clients, /fr/secteurs-soins/...);
- * de/nl/it mirror every English route via Astro's i18n fallback (rewrite)
- * until they get localized pages of their own.
+ * de/nl/it expose only pages that have actually been localized. When a
+ * requested equivalent is unavailable, the locale switcher uses that
+ * locale's home page instead of publishing duplicate English content.
  */
 import { FR_CH_LOCAL } from './frChPaths.mjs';
 export { FR_CH_LOCAL, frChLocalPathFor } from './frChPaths.mjs';
@@ -28,7 +29,7 @@ const SHARED_ROOT_PATHS = ['/privacy', '/changelog', '/internal-testing'];
 /** English marketing paths that have a real French equivalent at /fr/<same>. */
 const FR_MIRRORED = ['/', '/about', '/careers', '/pricing', '/demo', '/getquote', '/blog'];
 
-/** Routes genuinely localized for de/nl/it (everything else is an EN fallback rewrite). */
+/** Routes genuinely localized for de/nl/it. */
 const DNI_LOCAL = ['/', '/pricing', '/demo', '/getquote'];
 
 /** Locale-exclusive pages with no equivalent anywhere else. */
@@ -125,9 +126,11 @@ export function altPathFor(pathname: string, target: LocaleCode): string {
         return '/fr/';
     }
 
-    // de / nl / it mirror every English route via fallback rewrites.
+    // Only publish real translations. For unavailable equivalents, send the
+    // language switcher to the target locale's home page.
     const base = enRest ?? '/';
-    return trail(`/${target}` + (base === '/' ? '' : base));
+    if (DNI_LOCAL.includes(base)) return trail(`/${target}` + (base === '/' ? '' : base));
+    return trail(`/${target}`);
 }
 
 /**

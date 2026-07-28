@@ -1,5 +1,5 @@
 import { NAV_LINKS } from '@/consts';
-import { frChLocalPathFor, type LocaleCode } from './locales';
+import { altPathFor, frChLocalPathFor, type LocaleCode } from './locales';
 
 export interface NavSubitem {
     label: string;
@@ -20,8 +20,8 @@ export interface NavLink extends NavSubitem {
  *
  * - en: the biosked.com reference nav (from consts), untouched.
  * - fr: the French-market nav (specialties + cas clients), hrefs under /fr/.
- * - de/nl/it: the English structure with locale-prefixed hrefs; those URLs
- *   all exist thanks to the i18n fallback rewrites.
+ * - de/nl/it: the English structure, localized where a translated page exists.
+ *   Links without a translation point to the canonical English page.
  */
 
 const FR_NAV_LINKS: NavLink[] = [
@@ -76,10 +76,11 @@ const FR_NAV_LINKS: NavLink[] = [
     },
 ];
 
-function prefixHrefs(links: readonly NavLink[], prefix: string): NavLink[] {
+function localizeHrefs(links: readonly NavLink[], locale: LocaleCode): NavLink[] {
     const fix = (href: string) => {
-        if (!href || href === '#' || href.startsWith('http') || href.startsWith(prefix + '/')) return href;
-        return href === '/' ? prefix + '/' : prefix + href;
+        if (!href || href === '#' || href.startsWith('http')) return href;
+        const localized = altPathFor(href, locale);
+        return localized === `/${locale}/` && href !== '/' ? href : localized;
     };
     return links.map((link) => ({
         ...link,
@@ -104,7 +105,7 @@ export function navLinksFor(locale: LocaleCode): NavLink[] {
     if (locale === 'en') return NAV_LINKS;
     if (locale === 'fr') return FR_NAV_LINKS;
     if (locale === 'fr-ch') return reprefixFrNav();
-    const links = prefixHrefs(NAV_LINKS, `/${locale}`);
+    const links = localizeHrefs(NAV_LINKS, locale);
     // Insert the references page after the first item (Product)
     return [
         links[0],

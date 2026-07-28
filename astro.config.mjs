@@ -61,15 +61,6 @@ export default defineConfig({
         routing: {
             prefixDefaultLocale: false,
             redirectToDefaultLocale: false,
-            fallbackType: 'rewrite',
-        },
-        // de/nl/it pages that are not localized yet serve the English content
-        // at their own URL. French is fully localized, so no fallback.
-        fallback: {
-            'fr-ch': 'fr',
-            de: 'en',
-            nl: 'en',
-            it: 'en',
         },
     },
 
@@ -85,7 +76,7 @@ export default defineConfig({
                 // routes to the sitemap integration. They are not real pages.
                 if (page.includes('/fr-ch-ch/')) return false;
                 if (/\/demo\/(merci|danke|bedankt|grazie)\//.test(page)) return false;
-                // de/nl/it: only genuinely localized routes; EN-fallback rewrites stay out
+                // de/nl/it: only genuinely localized routes
                 const m = page.match(/^https:\/\/biosked\.com\/(de|nl|it|fr-ch)\/(.*)$/);
                 const allowed = {
                     de: ['', 'demo/', 'pricing/', 'getquote/', 'referenzen/', 'sicherheit-und-daten/'],

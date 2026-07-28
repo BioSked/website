@@ -259,6 +259,7 @@ for (const file of htmlFiles) {
       const pathname = new URL(href, siteOrigin).pathname;
       if (pathname === '/' || path.posix.extname(pathname)) continue;
       assert.ok(pathname.endsWith('/'), `${relativePath} links to a non-canonical directory URL: ${href}`);
+      await assertLocalUrlExists(href, `${relativePath} internal link`);
     }
   }
   const h1Count = [...html.matchAll(/<h1\b[^>]*>/gsi)].length;
@@ -267,6 +268,13 @@ for (const file of htmlFiles) {
   }
   const canonicalUrl = linkHref(html, 'canonical');
   assert.ok(canonicalUrl, `${relativePath} is missing a canonical URL`);
+  if (isIndexable) {
+    assert.equal(
+      canonicalUrl,
+      new URL(routePath, siteOrigin).href,
+      `${relativePath} is indexable but canonicalizes to another URL`,
+    );
+  }
 
   const isNotFoundPage = relativePath === '404.html' || /(^|\/)404\/index\.html$/.test(relativePath);
   if (isNotFoundPage) {
