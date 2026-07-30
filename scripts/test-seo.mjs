@@ -184,6 +184,26 @@ function collectStructuredAssets(value, key = '') {
   return direct;
 }
 
+function collectStructuredTypes(value) {
+  if (Array.isArray(value)) {
+    return value.flatMap(collectStructuredTypes);
+  }
+  if (value && typeof value === 'object') {
+    const rawTypes = Array.isArray(value['@type']) ? value['@type'] : [value['@type']];
+    const currentTypes = rawTypes
+      .filter((type) => typeof type === 'string')
+      .map((type) => type.replace(/^https?:\/\/schema\.org\//u, ''));
+
+    return [
+      ...currentTypes,
+      ...Object.entries(value)
+        .filter(([key]) => key !== '@type')
+        .flatMap(([, nestedValue]) => collectStructuredTypes(nestedValue)),
+    ];
+  }
+  return [];
+}
+
 await access(distDir);
 const htmlFiles = (await walk(distDir)).filter((file) => file.endsWith('.html'));
 const blogSourceFiles = (await Promise.all(blogSourceDirs.map((directory) => walk(directory))))
@@ -317,6 +337,14 @@ for (const file of htmlFiles) {
     for (const assetUrl of collectStructuredAssets(data)) {
       await assertLocalUrlExists(assetUrl, `${relativePath} JSON-LD`);
       checkedStructuredAssets += 1;
+    }
+
+    if (relativePathPosix === 'pricing/index.html') {
+      const structuredTypes = collectStructuredTypes(data);
+      assert.ok(
+        !structuredTypes.includes('Product'),
+        'pricing/index.html must use software schema, not Product merchant markup',
+      );
     }
   }
 
