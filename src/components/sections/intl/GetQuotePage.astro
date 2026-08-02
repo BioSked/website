@@ -2,10 +2,11 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import type { MarketContent } from '@/i18n/market/types';
 import type { LocaleCode } from '@/i18n/locales';
+import SwissGermanLeadForm from '@/components/forms/SwissGermanLeadForm.astro';
 
 /**
- * Shared quote-request page for the de/nl/it markets, with the same closing-page
- * treatment as the demo page (steps, GDPR note, locale-aware embed).
+ * Shared quote-request page for the de/de-ch/nl/it markets, with the same closing-page
+ * treatment as the demo page. De-CH uses a native localized HubSpot submission form.
  */
 interface Props {
     market: MarketContent;
@@ -21,9 +22,10 @@ const q = market.getquote ?? {
     formTitle: d.formTitle,
 };
 
-const SECURITY_PATH: Record<string, string> = { de: '/de/sicherheit-und-daten/', nl: '/nl/beveiliging-en-gegevens/', it: '/it/sicurezza-e-dati/' };
+const SECURITY_PATH: Record<string, string> = { de: '/de/sicherheit-und-daten/', 'de-ch': '/de-ch/sicherheit-und-daten/', nl: '/nl/beveiliging-en-gegevens/', it: '/it/sicurezza-e-dati/' };
 const formId = (market.getquote && market.getquote.formId) || '152f6973-10dd-42d4-af28-2df2f8f830e9';
 const thankYouPath = market.thankyou ? `/${locale}/demo/${market.thankyou.slug}/` : undefined;
+const nativeSwissForm = locale === 'de-ch';
 ---
 
 <BaseLayout title={q.metaTitle} description={q.metaDescription}>
@@ -33,14 +35,20 @@ const thankYouPath = market.thankyou ? `/${locale}/demo/${market.thankyou.slug}/
       <div class="max-w-xl mx-auto bg-white/60 border border-primary/30 transition-all duration-400 shadow-xl shadow-secondary/10 rounded-2xl px-4 sm:px-10 pb-10 pt-1">
         <h2 class="text-display-card text-secondary font-bold max-w-2xl mx-auto my-5">{q.formTitle}</h2>
         <hr class="border-input">
-        <script is:inline src="https://js-eu1.hsforms.net/forms/embed/25195055.js" defer></script>
-        <div
-          class="hs-form-frame mt-5"
-          data-region="eu1"
-          data-form-id={formId}
-          data-portal-id="25195055"
-          data-success-redirect={thankYouPath}
-        ></div>
+        {nativeSwissForm ? (
+          <SwissGermanLeadForm kind="quote" formId={formId} successPath={thankYouPath ?? '/de-ch/demo/danke/'} />
+        ) : (
+          <>
+            <script is:inline src="https://js-eu1.hsforms.net/forms/embed/25195055.js" defer></script>
+            <div
+              class="hs-form-frame mt-5"
+              data-region="eu1"
+              data-form-id={formId}
+              data-portal-id="25195055"
+              data-success-redirect={thankYouPath}
+            ></div>
+          </>
+        )}
       </div>
       {d.privacyNote && (
         <p class="text-muted-foreground text-xs mt-3 text-center">

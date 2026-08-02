@@ -4,6 +4,7 @@
  * price anchor lives in the page hero). Plan NAMES stay in English
  * (product tier names), descriptions/features are localized.
  */
+import { toSwissGerman } from './swissGerman';
 
 export interface LocalizedPlan {
     id: string;
@@ -151,11 +152,16 @@ const IT: PricingPlansContent = {
 };
 
 const FR_CH: PricingPlansContent = { ...FR, labels: { ...FR.labels, quoteHref: '/fr-ch/getquote/' } };
+export const DE_CH_PRICING_PLANS: PricingPlansContent = toSwissGerman({
+    ...DE,
+    labels: { ...DE.labels, quoteHref: '/de-ch/getquote/' },
+});
 
 export const PRICING_PLANS: Record<string, PricingPlansContent> = {
     fr: FR,
     'fr-ch': FR_CH,
     de: DE,
+    'de-ch': DE_CH_PRICING_PLANS,
     nl: NL,
     it: IT,
 };

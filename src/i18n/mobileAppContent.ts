@@ -1,3 +1,5 @@
+import { toSwissGerman } from './swissGerman';
+
 /**
  * Home-page mobile-app section, with copy per locale.
  * Headings reuse the approved App Store subtitles (Momentum App Store Copy
@@ -17,7 +19,7 @@ export interface MobileAppContent {
     imageVariant: 'en' | 'fr';
 }
 
-export const MOBILE_APP: Record<'en' | 'fr' | 'fr-ch' | 'de' | 'nl' | 'it', MobileAppContent> = {
+const MOBILE_APP_BASE: Record<'en' | 'fr' | 'fr-ch' | 'de' | 'nl' | 'it', MobileAppContent> = {
     en: {
         eyebrow: 'The Momentum mobile app',
         heading: 'Your schedule, in your pocket',
@@ -114,4 +116,9 @@ export const MOBILE_APP: Record<'en' | 'fr' | 'fr-ch' | 'de' | 'nl' | 'it', Mobi
         imageAlt: 'App Momentum per la pianificazione dei turni sanitari su iPhone: vista settimanale con turni e ferie',
         imageVariant: 'en',
     },
+};
+
+export const MOBILE_APP: Record<'en' | 'fr' | 'fr-ch' | 'de' | 'de-ch' | 'nl' | 'it', MobileAppContent> = {
+    ...MOBILE_APP_BASE,
+    'de-ch': toSwissGerman(MOBILE_APP_BASE.de),
 };

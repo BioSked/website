@@ -1,4 +1,5 @@
 import { frChLocalPathFor, type LocaleCode } from './locales';
+import { toSwissGerman } from './swissGerman';
 
 /**
  * Per-locale footer content. Kept as literal strings (no t() layer); the
@@ -155,7 +156,33 @@ const FR_CH: FooterLocale = {
     })),
 };
 
-const FOOTER_BY_LOCALE: Record<LocaleCode, FooterLocale> = { en: EN, fr: FR, 'fr-ch': FR_CH, de: DE, nl: NL, it: IT };
+const SWISS_DE = toSwissGerman(DE);
+
+const DE_CH: FooterLocale = {
+    ...SWISS_DE,
+    sections: SWISS_DE.sections.map((section, sectionIndex) => ({
+        ...section,
+        links: section.links.flatMap((link) => [
+            ...(sectionIndex === 1 && link.href.includes('linkedin.com')
+                ? [{ name: 'Impressum', href: '/de-ch/impressum/' }]
+                : []),
+            {
+                ...link,
+                href: link.href.replace(/^\/de(?=\/)/, '/de-ch'),
+            },
+        ]),
+    })),
+};
+
+const FOOTER_BY_LOCALE: Record<LocaleCode, FooterLocale> = {
+    en: EN,
+    fr: FR,
+    'fr-ch': FR_CH,
+    de: DE,
+    'de-ch': DE_CH,
+    nl: NL,
+    it: IT,
+};
 
 export function footerFor(locale: LocaleCode): FooterLocale {
     return FOOTER_BY_LOCALE[locale] ?? EN;

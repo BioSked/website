@@ -20,7 +20,7 @@ export interface NavLink extends NavSubitem {
  *
  * - en: the biosked.com reference nav (from consts), untouched.
  * - fr: the French-market nav (specialties + cas clients), hrefs under /fr/.
- * - de/nl/it: the English structure, localized where a translated page exists.
+ * - de/de-ch/nl/it: the English structure, localized where a translated page exists.
  *   Links without a translation point to the canonical English page.
  */
 
@@ -89,7 +89,12 @@ function localizeHrefs(links: readonly NavLink[], locale: LocaleCode): NavLink[]
     }));
 }
 
-const REFERENCES_PATH: Record<string, string> = { de: '/de/referenzen', nl: '/nl/referenties', it: '/it/referenze' };
+const REFERENCES_PATH: Record<string, string> = {
+    de: '/de/referenzen',
+    'de-ch': '/de-ch/referenzen',
+    nl: '/nl/referenties',
+    it: '/it/referenze',
+};
 
 function reprefixFrNav(): NavLink[] {
     // Only the pages that exist in the Swiss locale are re-prefixed; deep

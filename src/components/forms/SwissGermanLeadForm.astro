@@ -1,0 +1,214 @@
+---
+import Button from '@/components/ui/Button.astro';
+
+interface Props {
+  kind: 'demo' | 'quote';
+  formId: string;
+  successPath: string;
+  theme?: 'light' | 'dark';
+}
+
+const { kind, formId, successPath, theme = 'light' } = Astro.props;
+const isDemo = kind === 'demo';
+const formIdAttr = `swiss-${kind}-form`;
+const endpoint = `https://api-eu1.hsforms.com/submissions/v3/integration/submit/25195055/${formId}`;
+const inputClass = 'border-input bg-background focus-visible:ring-ring mt-2 w-full rounded-md border px-3 py-3 outline-none focus-visible:ring-2';
+const labelClass = theme === 'dark' ? 'block font-medium text-white' : 'block font-medium';
+const errorClass = theme === 'dark' ? 'min-h-5 text-sm text-red-200' : 'min-h-5 text-sm text-red-700';
+const requiredClass = theme === 'dark' ? 'text-red-200' : 'text-red-700';
+---
+
+<form
+  id={formIdAttr}
+  data-swiss-lead-form
+  data-form-id={formId}
+  data-success-path={successPath}
+  class="mt-5 space-y-5"
+  method="post"
+  action={endpoint}
+>
+  <fieldset data-lead-fields class="m-0 min-w-0 space-y-5 border-0 p-0" disabled>
+    <div class="grid gap-5 sm:grid-cols-2">
+      <div>
+        <label for={`${formIdAttr}-firstname`} class={labelClass}>
+          Vorname <span class={requiredClass} aria-hidden="true">*</span>
+        </label>
+        <input id={`${formIdAttr}-firstname`} name="firstname" type="text" autocomplete="given-name" required class={inputClass} />
+      </div>
+      <div>
+        <label for={`${formIdAttr}-lastname`} class={labelClass}>
+          Nachname <span class={requiredClass} aria-hidden="true">*</span>
+        </label>
+        <input id={`${formIdAttr}-lastname`} name="lastname" type="text" autocomplete="family-name" required class={inputClass} />
+      </div>
+    </div>
+
+    <div>
+      <label for={`${formIdAttr}-email`} class={labelClass}>
+        Geschäftliche E-Mail-Adresse <span class={requiredClass} aria-hidden="true">*</span>
+      </label>
+      <input id={`${formIdAttr}-email`} name="email" type="email" autocomplete="email" required class={inputClass} />
+    </div>
+
+    {isDemo ? (
+      <>
+        <div class="grid gap-5 sm:grid-cols-2">
+          <div>
+            <label for={`${formIdAttr}-phone`} class={labelClass}>
+              Telefonnummer <span class={requiredClass} aria-hidden="true">*</span>
+            </label>
+            <input id={`${formIdAttr}-phone`} name="phone" type="tel" autocomplete="tel" required class={inputClass} />
+          </div>
+          <div>
+            <label for={`${formIdAttr}-jobtitle`} class={labelClass}>
+              Funktion / Position <span class={requiredClass} aria-hidden="true">*</span>
+            </label>
+            <input id={`${formIdAttr}-jobtitle`} name="jobtitle" type="text" autocomplete="organization-title" required class={inputClass} />
+          </div>
+        </div>
+        <div>
+          <label for={`${formIdAttr}-company`} class={labelClass}>
+            Name der Gesundheitsorganisation <span class={requiredClass} aria-hidden="true">*</span>
+          </label>
+          <input id={`${formIdAttr}-company`} name="company" type="text" autocomplete="organization" required class={inputClass} />
+        </div>
+        <div>
+          <label for={`${formIdAttr}-notes`} class={labelClass}>Welche Abläufe möchten Sie verbessern?</label>
+          <textarea id={`${formIdAttr}-notes`} name="hs_content_membership_notes" rows="4" class={`${inputClass} resize-y`}></textarea>
+        </div>
+      </>
+    ) : (
+      <>
+        <div>
+          <label for={`${formIdAttr}-company`} class={labelClass}>
+            Name der Organisation <span class={requiredClass} aria-hidden="true">*</span>
+          </label>
+          <input id={`${formIdAttr}-company`} name="company" type="text" autocomplete="organization" required class={inputClass} />
+        </div>
+        <div>
+          <label for={`${formIdAttr}-staff-count`} class={labelClass}>Anzahl zu planender Mitarbeitender</label>
+          <input
+            id={`${formIdAttr}-staff-count`}
+            name="numemployees"
+            type="number"
+            inputmode="numeric"
+            min="1"
+            step="1"
+            placeholder="z. B. 120"
+            class={inputClass}
+          />
+        </div>
+        <div>
+          <label for={`${formIdAttr}-message`} class={labelClass}>Weitere Angaben</label>
+          <textarea id={`${formIdAttr}-message`} name="message" rows="4" class={`${inputClass} resize-y`}></textarea>
+        </div>
+      </>
+    )}
+
+    <p data-form-status class={errorClass} role="status" aria-live="polite" tabindex="-1"></p>
+    <Button type="submit" variant={theme === 'dark' ? 'default' : 'secondary'} size="lg" className="w-full" data-lead-submit>
+      {isDemo ? 'Demo anfragen' : 'Angebot anfragen'}
+    </Button>
+  </fieldset>
+
+  <p data-js-required class={errorClass}>
+    Aktivieren Sie JavaScript, um dieses Formular sicher zu senden.
+  </p>
+</form>
+
+<script>
+  import { buildHubSpotSubmission, getCookieValue } from '@/lib/hubspotSubmission.mjs';
+
+  const SUBMISSION_TIMEOUT_MS = 15000;
+  const errorMessages = {
+    required: 'Dieses Feld ist erforderlich.',
+    email: 'Geben Sie eine gültige E-Mail-Adresse ein.',
+    number: 'Geben Sie eine Zahl grösser oder gleich 1 ein.',
+    invalid: 'Prüfen Sie dieses Feld.',
+    failed: 'Das Formular konnte nicht gesendet werden. Bitte versuchen Sie es in einigen Minuten erneut.',
+  };
+
+  function enhanceSwissLeadForms() {
+    document.querySelectorAll<HTMLFormElement>('[data-swiss-lead-form]').forEach((form) => {
+      if (form.dataset.enhanced === 'true') return;
+      form.dataset.enhanced = 'true';
+
+      const fieldset = form.querySelector<HTMLFieldSetElement>('[data-lead-fields]');
+      const submitButton = form.querySelector<HTMLButtonElement>('[data-lead-submit]');
+      const status = form.querySelector<HTMLElement>('[data-form-status]');
+      const jsRequired = form.querySelector<HTMLElement>('[data-js-required]');
+      const formId = form.dataset.formId ?? '';
+      const successPath = form.dataset.successPath ?? '/de-ch/';
+      let submissionInFlight = false;
+
+      if (!fieldset || !submitButton || !status || !formId) return;
+      fieldset.disabled = false;
+      jsRequired?.classList.add('hidden');
+
+      form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('input, textarea').forEach((field) => {
+        field.addEventListener('input', () => field.setCustomValidity(''));
+        field.addEventListener('invalid', () => {
+          if (field.validity.valueMissing) field.setCustomValidity(errorMessages.required);
+          else if (field.validity.typeMismatch) field.setCustomValidity(errorMessages.email);
+          else if (field.validity.rangeUnderflow || field.validity.badInput) field.setCustomValidity(errorMessages.number);
+          else field.setCustomValidity(errorMessages.invalid);
+        });
+      });
+
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        if (submissionInFlight) return;
+
+        form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('[required]').forEach((field) => {
+          if (!field.value.trim()) field.setCustomValidity(errorMessages.required);
+        });
+        if (!form.reportValidity()) return;
+
+        submissionInFlight = true;
+        submitButton.disabled = true;
+        submitButton.setAttribute('aria-busy', 'true');
+        const originalButtonText = submitButton.textContent ?? '';
+        submitButton.textContent = 'Wird gesendet…';
+        status.textContent = '';
+
+        const payload = buildHubSpotSubmission({
+          values: Object.fromEntries(new FormData(form).entries()),
+          pageUri: window.location.href,
+          pageName: document.title,
+          hutk: getCookieValue(document.cookie, 'hubspotutk'),
+        });
+        const controller = new AbortController();
+        const timeout = window.setTimeout(() => controller.abort(), SUBMISSION_TIMEOUT_MS);
+
+        try {
+          const response = await fetch(form.action, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+            signal: controller.signal,
+          });
+          if (!response.ok) throw new Error(`HubSpot returned ${response.status}`);
+
+          const redirect = () => window.location.assign(successPath);
+          const analyticsWindow = window as Window & {
+            bskTrackLead?: (submittedFormId: string, onComplete?: () => void) => void;
+          };
+          if (analyticsWindow.bskTrackLead) analyticsWindow.bskTrackLead(formId, redirect);
+          else redirect();
+        } catch {
+          submissionInFlight = false;
+          status.textContent = errorMessages.failed;
+          submitButton.disabled = false;
+          submitButton.removeAttribute('aria-busy');
+          submitButton.textContent = originalButtonText;
+          status.focus();
+        } finally {
+          window.clearTimeout(timeout);
+        }
+      });
+    });
+  }
+
+  enhanceSwissLeadForms();
+  document.addEventListener('astro:page-load', enhanceSwissLeadForms);
+</script>

@@ -1,0 +1,51 @@
+---
+export const prerender = true;
+import BaseLayout from '@/layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Impressum & Datenschutz Schweiz | BioSked"
+  description="Rechtliche Angaben zur Schweizer BioSked-Gesellschaft Bio-Optronics Sàrl sowie Informationen zu Hosting, Datenschutz, Urheberrecht und Kontakt."
+>
+  <section class="section-padding">
+    <div class="container max-w-3xl">
+      <p class="font-mono text-sm font-semibold uppercase tracking-widest text-muted-foreground">Rechtliche Angaben</p>
+      <h1 class="text-display-hero mt-4">Impressum und Datenschutz</h1>
+
+      <div class="prose prose-slate mt-10 max-w-none text-muted-foreground">
+        <h2 class="text-foreground">Herausgeber der Website</h2>
+        <p>
+          <strong>Bio-Optronics Sàrl</strong><br />
+          Route de Chavannes 9<br />
+          1007 Lausanne<br />
+          Schweiz
+        </p>
+        <p>
+          Gesellschaft mit beschränkter Haftung nach Schweizer Recht<br />
+          Unternehmens-Identifikationsnummer (UID): CHE-113.971.330<br />
+          Handelsregister: <a href="https://www.uid.admin.ch/Detail.aspx?uid_id=CHE113971330" target="_blank" rel="noopener noreferrer" class="text-accent hover:underline">Eidgenössisches Amt für das Handelsregister</a>
+        </p>
+        <p>Präsident: David Dudok de Wit</p>
+        <p>Kontakt: <a href="mailto:info@biosked.com" class="text-accent hover:underline">info@biosked.com</a></p>
+
+        <h2 class="text-foreground">Hosting</h2>
+        <p>Diese Website wird auf der Google Cloud Platform in einer europäischen Region gehostet.</p>
+
+        <h2 class="text-foreground">Schutz personenbezogener Daten</h2>
+        <p>
+          Die auf dieser Website erhobenen Daten werden ausschliesslich zur Bearbeitung Ihrer Anfragen verwendet. Sie werden nicht zu kommerziellen Zwecken an Dritte weitergegeben. Gemäss dem anwendbaren Datenschutzrecht haben Sie das Recht auf Auskunft, Berichtigung und Löschung Ihrer personenbezogenen Daten. Schreiben Sie dafür an <a href="mailto:info@biosked.com" class="text-accent hover:underline">info@biosked.com</a>.
+        </p>
+
+        <h2 class="text-foreground">Haftung</h2>
+        <p>
+          Bio-Optronics Sàrl bemüht sich um korrekte und aktuelle Inhalte, kann deren Vollständigkeit und Fehlerfreiheit jedoch nicht garantieren. Die Website kann Links zu externen Websites enthalten, für deren Inhalt Bio-Optronics Sàrl nicht verantwortlich ist.
+        </p>
+
+        <h2 class="text-foreground">Urheberrecht</h2>
+        <p>
+          Sämtliche Inhalte dieser Website, insbesondere Texte, Bilder, Grafiken, Logos und Software, sind durch das Urheberrecht geschützt. Jede Vervielfältigung oder Verwendung bedarf der vorherigen schriftlichen Zustimmung von Bio-Optronics Sàrl.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

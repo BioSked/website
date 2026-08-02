@@ -86,6 +86,13 @@ function linkHref(html, rel) {
   return tag?.href;
 }
 
+function alternateHref(html, hreflang) {
+  const tag = [...html.matchAll(/<link\b(?:[^>"']|"[^"]*"|'[^']*')*>/gsi)]
+    .map((match) => attributes(match[0]))
+    .find((attrs) => (attrs.rel ?? '').split(/\s+/).includes('alternate') && attrs.hreflang === hreflang);
+  return tag?.href;
+}
+
 assert.equal(
   metaContent('<meta name="description" content="Open Setup > Roles > Candidates">', 'name', 'description'),
   'Open Setup > Roles > Candidates',
@@ -132,6 +139,7 @@ function localOutputPath(urlString) {
 function expectedOpenGraphLocale(canonicalUrl) {
   const pathname = new URL(canonicalUrl).pathname;
   if (pathname === '/fr-ch' || pathname.startsWith('/fr-ch/')) return 'fr_CH';
+  if (pathname === '/de-ch' || pathname.startsWith('/de-ch/')) return 'de_CH';
   if (pathname === '/fr' || pathname.startsWith('/fr/')) return 'fr_FR';
   if (pathname === '/de' || pathname.startsWith('/de/')) return 'de_DE';
   if (pathname === '/nl' || pathname.startsWith('/nl/')) return 'nl_NL';
@@ -257,6 +265,22 @@ for (const file of htmlFiles) {
     );
     checkedBlogPages += 1;
     builtBlogOutputPaths.add(relativePathPosix);
+  }
+
+  if (relativePathPosix.startsWith('de-ch/')) {
+    const htmlTag = html.match(/<html\b[^>]*>/i)?.[0];
+    assert.ok(htmlTag, `${relativePath} is missing an html element`);
+    assert.equal(attributes(htmlTag).lang, 'de-CH', `${relativePath} must declare lang="de-CH"`);
+    assert.doesNotMatch(
+      decodeHtmlText(withoutNonVisibleMarkup(html)),
+      /ß/,
+      `${relativePath} must use Swiss Standard German orthography (ss, not ß)`,
+    );
+    assert.doesNotMatch(
+      html,
+      /\b(?:nav|cta|switcher)\.[a-z-]+/,
+      `${relativePath} must not leak untranslated locale keys`,
+    );
   }
 
   checkedPages += 1;
@@ -498,7 +522,7 @@ for (const [pageTitle, routes] of sitemapTitles) {
   assert.equal(routes.length, 1, `sitemap pages must have unique titles; "${pageTitle}" is used by ${routes.join(', ')}`);
 }
 
-const homepageRoutes = ['', 'fr', 'fr-ch', 'de', 'nl', 'it'];
+const homepageRoutes = ['', 'fr', 'fr-ch', 'de', 'de-ch', 'nl', 'it'];
 for (const route of homepageRoutes) {
   const label = route || 'en';
   const html = await readFile(path.join(distDir, route, 'index.html'), 'utf8');
@@ -521,6 +545,19 @@ assert.equal(phoneImageTag?.loading, 'lazy', 'hidden home mobile-app preview mus
 assert.equal(phoneImageTag?.fetchpriority, 'low', 'hidden home mobile-app preview must have low fetch priority');
 const frenchHomepage = await readFile(path.join(distDir, 'fr/index.html'), 'utf8');
 const frenchSwissHomepage = await readFile(path.join(distDir, 'fr-ch/index.html'), 'utf8');
+const germanSwissHomepage = await readFile(path.join(distDir, 'de-ch/index.html'), 'utf8');
+assert.equal(
+  alternateHref(germanSwissHomepage, 'de-CH'),
+  `${siteOrigin}/de-ch/`,
+  'Deutsch (Schweiz) home must expose a self-referencing de-CH hreflang URL',
+);
+const germanSwissPricing = await readFile(path.join(distDir, 'de-ch/pricing/index.html'), 'utf8');
+assert.match(germanSwissPricing, /CHF 5\.99/, 'Deutsch (Schweiz) pricing must show CHF 5.99');
+assert.doesNotMatch(
+  decodeHtmlText(withoutNonVisibleMarkup(germanSwissPricing)),
+  /(?:€|\bEUR\b)/,
+  'Deutsch (Schweiz) pricing must not display euro-denominated pricing',
+);
 const frenchPhoneImageTag = [...frenchHomepage.matchAll(/<img\b[^>]*>/gsi)]
   .map((match) => attributes(match[0]))
   .find((attrs) => (attrs.alt ?? '').startsWith('Application mobile Momentum'));
@@ -852,6 +889,7 @@ for (const [route, helpLabel, supportLocale] of [
   ['fr', 'Aide', 'fr'],
   ['fr-ch', 'Aide', 'fr'],
   ['de', 'Hilfe', 'en'],
+  ['de-ch', 'Hilfe', 'en'],
   ['nl', 'Hulp', 'en'],
   ['it', 'Aiuto', 'en'],
 ]) {
@@ -882,6 +920,7 @@ assert.match(
 
 for (const [route, logoAlt] of [
   ['de', 'Logo der CHIREC-Krankenhausgruppe'],
+  ['de-ch', 'Logo der CHIREC-Krankenhausgruppe'],
   ['nl', 'Logo van de CHIREC-ziekenhuisgroep'],
   ['it', 'Logo del gruppo ospedaliero CHIREC'],
 ]) {
@@ -932,7 +971,7 @@ for (const bot of ['AhrefsBot', 'DotBot']) {
 
 assert.doesNotMatch(
   sitemapText,
-  /https:\/\/biosked\.com\/(?:fr-ch-ch|fr-fr|de-de|nl-nl|it-it)\//,
+  /https:\/\/biosked\.com\/(?:fr-ch-ch|de-ch-ch|fr-fr|de-de|nl-nl|it-it)\//,
   'sitemap must not contain duplicated locale prefixes',
 );
 

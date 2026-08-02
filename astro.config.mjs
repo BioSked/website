@@ -56,7 +56,7 @@ export default defineConfig({
     },
 
     i18n: {
-        locales: ['en', 'fr', 'fr-ch', 'de', 'nl', 'it'],
+        locales: ['en', 'fr', 'fr-ch', 'de', 'de-ch', 'nl', 'it'],
         defaultLocale: 'en',
         routing: {
             prefixDefaultLocale: false,
@@ -74,12 +74,13 @@ export default defineConfig({
                 if (page.includes('/kb-preview/')) return false;
                 // Astro's fr-ch -> fr fallback can surface synthetic /fr-ch-ch/
                 // routes to the sitemap integration. They are not real pages.
-                if (page.includes('/fr-ch-ch/')) return false;
+                if (page.includes('/fr-ch-ch/') || page.includes('/de-ch-ch/')) return false;
                 if (/\/demo\/(merci|danke|bedankt|grazie)\//.test(page)) return false;
-                // de/nl/it: only genuinely localized routes
-                const m = page.match(/^https:\/\/biosked\.com\/(de|nl|it|fr-ch)\/(.*)$/);
+                // de/de-ch/nl/it/fr-ch: only genuinely localized routes
+                const m = page.match(/^https:\/\/biosked\.com\/(de|de-ch|nl|it|fr-ch)\/(.*)$/);
                 const allowed = {
                     de: ['', 'demo/', 'pricing/', 'getquote/', 'referenzen/', 'sicherheit-und-daten/'],
+                    'de-ch': ['', 'demo/', 'pricing/', 'getquote/', 'referenzen/', 'sicherheit-und-daten/', 'impressum/'],
                     nl: ['', 'demo/', 'pricing/', 'getquote/', 'referenties/', 'beveiliging-en-gegevens/', 'arbeidstijdregistratie-2027/'],
                     it: ['', 'demo/', 'pricing/', 'getquote/', 'referenze/', 'sicurezza-e-dati/'],
                     'fr-ch': ['', 'pricing/', 'demo/', 'getquote/', 'securite-donnees/', 'mentions-legales/'],
@@ -94,6 +95,7 @@ export default defineConfig({
                     fr: 'fr',
                     'fr-ch': 'fr-CH',
                     de: 'de',
+                    'de-ch': 'de-CH',
                     nl: 'nl',
                     it: 'it',
                 },

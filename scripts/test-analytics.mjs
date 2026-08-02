@@ -106,6 +106,7 @@ function runConsentRuntime(source, {
 assert.equal(normalizeSiteLanguage('en'), 'en');
 assert.equal(normalizeSiteLanguage('fr-CH'), 'fr-ch');
 assert.equal(normalizeSiteLanguage('de-DE'), 'de');
+assert.equal(normalizeSiteLanguage('de-CH'), 'de-ch');
 assert.equal(normalizeSiteLanguage('unknown'), 'en');
 
 for (const timeZone of [
@@ -143,6 +144,7 @@ assert.ok(PRIOR_CONSENT_TIME_ZONES.length > 60);
 assert.equal(classifyCtaPath('/demo/'), 'demo_cta_click');
 assert.equal(classifyCtaPath('/fr/demo/'), 'demo_cta_click');
 assert.equal(classifyCtaPath('/fr-ch/demo'), 'demo_cta_click');
+assert.equal(classifyCtaPath('/de-ch/demo/'), 'demo_cta_click');
 assert.equal(classifyCtaPath('/nl/getquote/'), 'quote_cta_click');
 assert.equal(classifyCtaPath('/blog/demo/'), null);
 assert.equal(classifyCtaPath('/demo/thank-you/'), null);
@@ -617,5 +619,37 @@ for (const path of [
 ]) {
   assert.match(read(path), /bskTrackLead\([^;]+,\s*redirect\)/);
 }
+
+const swissLeadForm = read('src/components/forms/SwissGermanLeadForm.astro');
+assert.match(swissLeadForm, /data-swiss-lead-form/);
+assert.match(swissLeadForm, /api-eu1\.hsforms\.com\/submissions\/v3\/integration\/submit/);
+assert.match(swissLeadForm, /buildHubSpotSubmission/);
+assert.match(swissLeadForm, /bskTrackLead\(formId, redirect\)/);
+assert.match(swissLeadForm, /data-success-path=\{successPath\}/);
+assert.match(swissLeadForm, /Geschäftliche E-Mail-Adresse/);
+assert.match(swissLeadForm, /Anzahl zu planender Mitarbeitender/);
+assert.match(swissLeadForm, /hs_content_membership_notes/);
+assert.doesNotMatch(swissLeadForm, /First Name|Work Email|Request quote/);
+assert.match(intlQuotePage, /nativeSwissForm[\s\S]*SwissGermanLeadForm/);
+const intlDemoPage = read('src/components/sections/intl/DemoPage.astro');
+assert.match(intlDemoPage, /nativeSwissForm[\s\S]*SwissGermanLeadForm/);
+
+const swissDemoPayload = buildHubSpotSubmission({
+  values: {
+    phone: '+41 22 000 00 00',
+    jobtitle: 'Leitung Planung',
+    hs_content_membership_notes: 'Pikettplanung',
+  },
+  pageUri: 'https://biosked.com/de-ch/demo/',
+  pageName: 'Demo anfragen',
+});
+assert.deepEqual(
+  swissDemoPayload.fields.map(({ name, value }) => [name, value]),
+  [
+    ['phone', '+41 22 000 00 00'],
+    ['jobtitle', 'Leitung Planung'],
+    ['hs_content_membership_notes', 'Pikettplanung'],
+  ],
+);
 
 console.log('analytics unit and wiring tests passed');

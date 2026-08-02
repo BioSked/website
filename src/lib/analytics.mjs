@@ -1,5 +1,5 @@
-const SITE_LANGUAGES = new Set(['en', 'fr', 'fr-ch', 'de', 'nl', 'it']);
-const LOCALE_PREFIXES = new Set(['fr', 'fr-ch', 'de', 'nl', 'it']);
+const SITE_LANGUAGES = new Set(['en', 'fr', 'fr-ch', 'de', 'de-ch', 'nl', 'it']);
+const LOCALE_PREFIXES = new Set(['fr', 'fr-ch', 'de', 'de-ch', 'nl', 'it']);
 const DEMO_FORM_IDS = new Set([
   'e937d75c-2dbc-4b77-8e53-1582aa472092',
   'a28f608c-a613-4fbe-a382-1fbc49b6885c',

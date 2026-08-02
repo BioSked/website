@@ -4,8 +4,8 @@ import Button from '@/components/ui/Button.astro';
 const { frontmatter } = Astro.props;
 
 const locale = Astro.currentLocale ?? 'en';
-const DATE_LOCALES: Record<string, string> = { en: 'en-US', fr: 'fr-FR', 'fr-ch': 'fr-CH', de: 'de-DE', nl: 'nl-NL', it: 'it-IT' };
-const BREADCRUMB_LABEL: Record<string, string> = { en: 'News', fr: 'Article', 'fr-ch': 'Article', de: 'Artikel', nl: 'Artikel', it: 'Articolo' };
+const DATE_LOCALES: Record<string, string> = { en: 'en-US', fr: 'fr-FR', 'fr-ch': 'fr-CH', de: 'de-DE', 'de-ch': 'de-CH', nl: 'nl-NL', it: 'it-IT' };
+const BREADCRUMB_LABEL: Record<string, string> = { en: 'News', fr: 'Article', 'fr-ch': 'Article', de: 'Artikel', 'de-ch': 'Artikel', nl: 'Artikel', it: 'Articolo' };
 const blogHref = locale === 'en' ? '/blog/' : `/${locale}/blog/`;
 
 const postDate = new Date(frontmatter.date);
@@ -27,7 +27,7 @@ const articleSchema = JSON.stringify({
             author: { '@type': 'Organization', name: 'BioSked' },
             publisher: { '@id': 'https://biosked.com/#organization' },
             mainEntityOfPage: canonical,
-            inLanguage: locale === 'en' ? 'en' : locale === 'fr' || locale === 'fr-ch' ? 'fr' : locale,
+            inLanguage: locale === 'en' ? 'en' : locale === 'fr' || locale === 'fr-ch' ? 'fr' : locale === 'de-ch' ? 'de-CH' : locale,
         },
         {
             '@type': 'BreadcrumbList',

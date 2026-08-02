@@ -74,6 +74,7 @@ function scriptLiteral(value) {
 function languageFor(destination) {
   const locale = destination.split('/').filter(Boolean)[0];
   if (locale === 'fr-ch') return 'fr-CH';
+  if (locale === 'de-ch') return 'de-CH';
   if (['fr', 'de', 'nl', 'it'].includes(locale)) return locale;
   return 'en';
 }

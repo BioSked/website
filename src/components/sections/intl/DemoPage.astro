@@ -3,11 +3,12 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import { Quote } from 'lucide-astro';
 import type { MarketContent } from '@/i18n/market/types';
 import type { LocaleCode } from '@/i18n/locales';
+import SwissGermanLeadForm from '@/components/forms/SwissGermanLeadForm.astro';
 
 /**
- * Shared demo-request page for the de/nl/it markets. It is a closing page, not a
+ * Shared demo-request page for the de/de-ch/nl/it markets. It is a closing page, not a
  * bare form: proof beside the form, what-happens-next, GDPR reassurance.
- * HubSpot embed is locale-aware and redirects to the locale thank-you page.
+ * De-CH uses a native localized HubSpot submission form; other markets use the embed.
  */
 interface Props {
     market: MarketContent;
@@ -17,10 +18,11 @@ const { market, locale } = Astro.props;
 const d = market.demo;
 const q = market.quote;
 
-const SECURITY_PATH: Record<string, string> = { de: '/de/sicherheit-und-daten/', nl: '/nl/beveiliging-en-gegevens/', it: '/it/sicurezza-e-dati/' };
-const HS_LOCALE: Record<string, string> = { de: 'de', nl: 'nl', it: 'it' };
+const SECURITY_PATH: Record<string, string> = { de: '/de/sicherheit-und-daten/', 'de-ch': '/de-ch/sicherheit-und-daten/', nl: '/nl/beveiliging-en-gegevens/', it: '/it/sicurezza-e-dati/' };
+const HS_LOCALE: Record<string, string> = { de: 'de', 'de-ch': 'de', nl: 'nl', it: 'it' };
 const formId = d.formId ?? 'e937d75c-2dbc-4b77-8e53-1582aa472092';
 const thankYouPath = market.thankyou ? `/${locale}/demo/${market.thankyou.slug}/` : undefined;
+const nativeSwissForm = locale === 'de-ch';
 ---
 
 <BaseLayout title={d.metaTitle} description={d.metaDescription}>
@@ -33,7 +35,11 @@ const thankYouPath = market.thankyou ? `/${locale}/demo/${market.thankyou.slug}/
           <div class="bg-card-foreground transition-all duration-400 shadow-xl shadow-card-foreground/30 rounded-2xl px-4 sm:px-10 pb-10 pt-1">
             <h2 class="text-display-card text-center font-bold max-w-2xl mx-auto text-white my-5">{d.formTitle}</h2>
             <hr class="border-white/10">
-            <div id="hubspot-demo" class="mt-5"></div>
+            {nativeSwissForm ? (
+              <SwissGermanLeadForm kind="demo" formId={formId} successPath={thankYouPath ?? '/de-ch/demo/danke/'} theme="dark" />
+            ) : (
+              <div id="hubspot-demo" class="mt-5"></div>
+            )}
           </div>
           {d.privacyNote && (
             <p class="text-muted-foreground text-xs mt-3 text-center">
@@ -71,8 +77,8 @@ const thankYouPath = market.thankyou ? `/${locale}/demo/${market.thankyou.slug}/
         </aside>
       </div>
 
-      <script is:inline define:vars={{ formId, hsLocale: HS_LOCALE[locale] ?? 'en', thankYouPath }}>
-        window.bskHsForm({
+      <script is:inline define:vars={{ formId, hsLocale: HS_LOCALE[locale] ?? 'en', thankYouPath, nativeSwissForm }}>
+        if (!nativeSwissForm) window.bskHsForm({
           formInstanceId: "1",
           portalId: "25195055",
           formId: formId,

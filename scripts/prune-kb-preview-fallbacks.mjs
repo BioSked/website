@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url';
 
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const distRoot = path.join(projectRoot, 'dist');
-const fallbackLocales = ['de', 'nl', 'it'];
+const fallbackLocales = ['de', 'de-ch', 'nl', 'it'];
 let removed = 0;
 
 for (const locale of fallbackLocales) {

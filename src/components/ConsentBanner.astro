@@ -1,5 +1,6 @@
 ---
 import { splitLocale } from '@/i18n/locales';
+import { toSwissGerman } from '@/i18n/swissGerman';
 
 /**
  * First-layer audience-measurement choice. BaseHead shows it automatically only
@@ -72,7 +73,8 @@ const STRINGS: Record<string, ConsentStrings> = {
         gpc: 'Il browser invia un segnale Global Privacy Control, quindi la misurazione dell’audience è bloccata.',
     },
 };
-const s = STRINGS[locale] ?? STRINGS.en;
+const baseStrings = STRINGS[locale] ?? STRINGS[locale.split('-')[0]] ?? STRINGS.en;
+const s = locale === 'de-ch' ? toSwissGerman(baseStrings) : baseStrings;
 const privacyHref = locale === 'fr' || locale === 'fr-ch' ? '/privacy/#cookies-fr' : '/privacy/#cookies';
 const fixedChoicesOnDesktop = [
     '/signin',

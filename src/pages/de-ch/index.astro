@@ -1,0 +1,38 @@
+---
+export const prerender = true;
+
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Hero from "@/components/sections/Hero.astro";
+import FeatureGrid from "@/components/sections/intl/FeatureGrid.astro";
+import CTA from "@/components/sections/CTA.astro";
+import VideoTourSection from "@/components/sections/intl/VideoTourSection.astro";
+import QuoteBand from "@/components/sections/intl/QuoteBand.astro";
+import chirecLogo from "@/assets/companies/carousel/chirec-2015.webp";
+import { MARKET } from "@/i18n/market/de-ch";
+import { HOME_CONTENT } from "@/i18n/homeContent";
+import phoneImage from "@/assets/layout/mobilehand-de.webp";
+import MobileAppSection from "@/components/sections/intl/MobileAppSection.astro";
+import { MOBILE_APP } from "@/i18n/mobileAppContent";
+
+const c = HOME_CONTENT['de-ch'];
+---
+
+<BaseLayout title={c.metaTitle} description={c.metaDescription}>
+	<Hero
+		title={c.hero.title}
+		lead={c.hero.lead}
+		demoLabel={c.hero.demoLabel}
+		demoHref="/de-ch/demo/"
+		tourLabel=""
+		badges={c.hero.badges}
+		phoneImage={phoneImage}
+		phoneAlt="Momentum Mobile-App: 90 % weniger Administrationsaufwand, KI-Assistent"
+		screenshotAlt="Momentum Dienstplan-Oberfläche: Monatsansicht mit Diensten, Pikett und Zählern für ärztliche Teams"
+	/>
+	<QuoteBand text={MARKET.quote.text} author={MARKET.quote.author} role={MARKET.quote.role} stats={MARKET.quote.stats} moreHref="/de-ch/referenzen/" moreLabel="Alle Referenzen ansehen" logo={chirecLogo} logoAlt="Logo der CHIREC-Krankenhausgruppe" />
+	<a id="momentum"></a>
+	<FeatureGrid heading={c.features.heading} sub={c.features.sub} items={c.features.items} />
+	<MobileAppSection content={MOBILE_APP['de-ch']} />
+	<VideoTourSection heading={c.hero.tourLabel} buttonLabel={c.hero.tourLabel} />
+	<CTA heading={c.cta.heading} sub={c.cta.sub} buttonLabel={c.cta.buttonLabel} demoHref="/de-ch/demo/" />
+</BaseLayout>

@@ -31,11 +31,16 @@ assert.deepEqual(FR_CH_LOCAL, [
   '/mentions-legales',
 ]);
 
-const [navSource, footerSource, prefsSource, navbarActionsSource] = await Promise.all([
+const [navSource, footerSource, prefsSource, navbarActionsSource, pricingCardsSource, localesSource, pricingPlansSource, deChMarketSource, baseHeadSource] = await Promise.all([
   readFile(new URL('../src/i18n/navLinks.ts', import.meta.url), 'utf8'),
   readFile(new URL('../src/i18n/footerLinks.ts', import.meta.url), 'utf8'),
   readFile(new URL('../src/components/LocalePrefs.astro', import.meta.url), 'utf8'),
   readFile(new URL('../src/components/layout/NavbarActions.tsx', import.meta.url), 'utf8'),
+  readFile(new URL('../src/components/sections/PricingCards.tsx', import.meta.url), 'utf8'),
+  readFile(new URL('../src/i18n/locales.ts', import.meta.url), 'utf8'),
+  readFile(new URL('../src/i18n/pricingPlans.ts', import.meta.url), 'utf8'),
+  readFile(new URL('../src/i18n/market/de-ch.ts', import.meta.url), 'utf8'),
+  readFile(new URL('../src/components/BaseHead.astro', import.meta.url), 'utf8'),
 ]);
 
 assert.match(navSource, /href:\s*frChLocalPathFor\(link\.href\)/, 'FR-CH navbar must use the shared mapper');
@@ -62,5 +67,22 @@ assert.match(
   /document\.body\.style\.overflow\s*=\s*'hidden'/,
   'mobile menu must lock body scrolling',
 );
+
+assert.match(
+  pricingCardsSource,
+  /lg:row-span-4\s+lg:grid\s+lg:grid-rows-\[subgrid\]/,
+  'pricing cards must share title, description, CTA, and feature rows through CSS subgrid',
+);
+assert.match(
+  pricingCardsSource,
+  /data-pricing-card-header[\s\S]*lg:row-span-3\s+lg:grid-rows-\[subgrid\]/,
+  'pricing card headers must share title, description, and CTA rows across cards',
+);
+assert.match(pricingCardsSource, /asChild[\s\S]*href=\{t\.quoteHref\}/, 'pricing CTAs must render as accessible links, not nested button links');
+assert.match(localesSource, /LOCALE_CODES[^;]*'de-ch'/, 'Deutsch (Schweiz) must be a selectable locale');
+assert.match(baseHeadSource, /alt\.code === 'de-ch' \? 'de-CH'/, 'Deutsch (Schweiz) must publish de-CH hreflang');
+assert.match(baseHeadSource, /'de-ch':\s*'de_CH'/, 'Deutsch (Schweiz) must publish de_CH Open Graph locale');
+assert.match(pricingPlansSource, /DE_CH_PRICING_PLANS/, 'Deutsch (Schweiz) must define localized pricing plans');
+assert.match(deChMarketSource, /CHF\s*5\.99/, 'Deutsch (Schweiz) pricing must be denominated in CHF');
 
 console.log('locale navigation tests passed');

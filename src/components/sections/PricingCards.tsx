@@ -87,17 +87,24 @@ export function PricingCards({ plans, labels, headingLevel = 'h3' }: PricingCard
 
   return (
     <>
-      <div className="mx-auto mt-12 grid gap-4 lg:grid-cols-3 bg-cyan-100/50 bg-green-100/50 bg-orange-100/50 bg-transparent">
+      <div
+        data-pricing-grid
+        className="mx-auto mt-12 grid items-stretch gap-x-4 gap-y-8 bg-cyan-100/50 bg-green-100/50 bg-orange-100/50 bg-transparent lg:grid-cols-3 lg:gap-y-4"
+      >
         {standardPlans.map((plan) => {
           const features = buildFeatureList(plan);
           
           return (
             <Card
               key={plan.id}
-              className={'h-full gap-6 p-4 shadow-none bg-transparent transition-all duration-100 rounded-none border-none mm-card relative '+(plan.popular ? 'bg-blue-600/6 shadow-lg shadow-secondary/15 hover:bg-blue-500/5':'hover:bg-white/25')}
+              data-pricing-card
+              className={'h-full gap-6 p-4 shadow-none bg-transparent transition-all duration-100 rounded-none border-none mm-card relative lg:row-span-4 lg:grid lg:grid-rows-[subgrid] '+(plan.popular ? 'bg-blue-600/6 shadow-lg shadow-secondary/15 hover:bg-blue-500/5':'hover:bg-white/25')}
             >
               <div className="cornecross"></div>
-              <CardHeader className="mt-0.5 rounded-md p-4 md:px-6 bg-white shadow-sm">
+              <div
+                data-pricing-card-header
+                className="mt-0.5 grid h-full auto-rows-min items-start gap-1.5 rounded-md bg-white p-4 shadow-sm md:px-6 lg:row-span-3 lg:grid-rows-[subgrid]"
+              >
                   <div className="flex items-center gap-2">
                     {planLogos[plan.id] && (
                       <img 
@@ -125,14 +132,15 @@ export function PricingCards({ plans, labels, headingLevel = 'h3' }: PricingCard
                     per user
                   </div>*/}
                   
-                  <a href={t.quoteHref}>
-                    <Button 
-                      className="mt-4 h-10 w-full bg-primary-foreground hover:bg-primary-foreground/90 text-white font-semibold text-md"
-                    >
+                  <Button
+                    asChild
+                    className="mt-4 h-auto min-h-10 w-full self-stretch bg-primary-foreground hover:bg-primary-foreground/90 py-2 text-center text-white font-semibold whitespace-normal text-md"
+                  >
+                    <a href={t.quoteHref}>
                       {t.request.replace('{plan}', plan.title)}
-                    </Button>
-                  </a>
-              </CardHeader>
+                    </a>
+                  </Button>
+              </div>
 
               <CardContent className="grid gap-3 pb-4">
                 {features.map((feature, index) => (
@@ -166,7 +174,7 @@ export function PricingCards({ plans, labels, headingLevel = 'h3' }: PricingCard
                 <div className="flex-2">
                   <img 
                     src={entPlanLogo.src} 
-                    alt="Starter"
+                    alt={`${enterprisePlan.title} logo`}
                     className="h-5 w-auto inline-block"
                   />
                   <Heading className="text-2xl sm:text-3xl font-bold text-white mt-2 mb-1">{enterprisePlan.title}</Heading>

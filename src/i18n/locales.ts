@@ -2,16 +2,16 @@
  * Locale metadata + cross-locale path mapping for the multilingual site.
  *
  * URL scheme: English is the default locale and lives unprefixed at the root.
- * fr/de/nl/it live under their prefix. French has its own page tree
+ * fr/fr-ch/de/de-ch/nl/it live under their prefix. French has its own page tree
  * (market-specific pages like /fr/cas-clients, /fr/secteurs-soins/...);
- * de/nl/it expose only pages that have actually been localized. When a
+ * de/de-ch/nl/it expose only pages that have actually been localized. When a
  * requested equivalent is unavailable, the locale switcher uses that
  * locale's home page instead of publishing duplicate English content.
  */
 import { FR_CH_LOCAL } from './frChPaths.mjs';
 export { FR_CH_LOCAL, frChLocalPathFor } from './frChPaths.mjs';
 
-export const LOCALE_CODES = ['en', 'fr', 'fr-ch', 'de', 'nl', 'it'] as const;
+export const LOCALE_CODES = ['en', 'fr', 'fr-ch', 'de', 'de-ch', 'nl', 'it'] as const;
 export type LocaleCode = (typeof LOCALE_CODES)[number];
 
 export const LOCALE_LABELS: Record<LocaleCode, string> = {
@@ -19,6 +19,7 @@ export const LOCALE_LABELS: Record<LocaleCode, string> = {
     fr: 'Français',
     'fr-ch': 'Français (Suisse)',
     de: 'Deutsch',
+    'de-ch': 'Deutsch (Schweiz)',
     nl: 'Nederlands',
     it: 'Italiano',
 };
@@ -29,13 +30,14 @@ const SHARED_ROOT_PATHS = ['/privacy', '/changelog', '/internal-testing'];
 /** English marketing paths that have a real French equivalent at /fr/<same>. */
 const FR_MIRRORED = ['/', '/about', '/careers', '/pricing', '/demo', '/getquote', '/blog'];
 
-/** Routes genuinely localized for de/nl/it. */
+/** Routes genuinely localized for de/de-ch/nl/it. */
 const DNI_LOCAL = ['/', '/pricing', '/demo', '/getquote'];
 
 /** Locale-exclusive pages with no equivalent anywhere else. */
 const LOCALE_ONLY_PAGES: Partial<Record<LocaleCode, string[]>> = {
     nl: ['/arbeidstijdregistratie-2027', '/demo/bedankt'],
     de: ['/demo/danke'],
+    'de-ch': ['/demo/danke', '/impressum'],
     it: ['/demo/grazie'],
     fr: ['/demo/merci'],
     'fr-ch': ['/demo/merci'],
@@ -50,8 +52,8 @@ function isLocaleOnly(cur: LocaleCode, rest: string): boolean {
  * (no English page exists). Keys are canonical group names.
  */
 const PAGE_EQUIV: Record<string, Partial<Record<LocaleCode, string>>> = {
-    references: { fr: '/fr/cas-clients', de: '/de/referenzen', nl: '/nl/referenties', it: '/it/referenze' },
-    security: { fr: '/fr/securite-donnees', 'fr-ch': '/fr-ch/securite-donnees', de: '/de/sicherheit-und-daten', nl: '/nl/beveiliging-en-gegevens', it: '/it/sicurezza-e-dati' },
+    references: { fr: '/fr/cas-clients', de: '/de/referenzen', 'de-ch': '/de-ch/referenzen', nl: '/nl/referenties', it: '/it/referenze' },
+    security: { fr: '/fr/securite-donnees', 'fr-ch': '/fr-ch/securite-donnees', de: '/de/sicherheit-und-daten', 'de-ch': '/de-ch/sicherheit-und-daten', nl: '/nl/beveiliging-en-gegevens', it: '/it/sicurezza-e-dati' },
 };
 
 function equivGroupFor(pathname: string): Partial<Record<LocaleCode, string>> | null {
@@ -136,7 +138,7 @@ export function altPathFor(pathname: string, target: LocaleCode): string {
 /**
  * hreflang alternates for the current page (ONLY true equivalents).
  * - Shared root pages (privacy/changelog) and FR-only pages: no alternates.
- * - English-shaped paths: en + de/nl/it (locale URLs deliberately serve these
+ * - English-shaped paths: en + de/de-ch/nl/it (locale URLs deliberately serve these
  *   routes) + fr only when a real mirrored French page exists.
  * - EN blog posts/changelog entries have no French equivalent: no fr entry.
  */
@@ -170,7 +172,7 @@ export function hreflangAlternates(pathname: string): { code: LocaleCode | 'x-de
         out.push({ code: 'fr', path: trail('/fr' + (rest === '/' ? '' : rest)) });
         if (FR_CH_LOCAL.includes(rest)) out.push({ code: 'fr-ch', path: trail('/fr-ch' + (rest === '/' ? '' : rest)) });
     }
-    for (const l of ['de', 'nl', 'it'] as LocaleCode[]) {
+    for (const l of ['de', 'de-ch', 'nl', 'it'] as LocaleCode[]) {
         if (DNI_LOCAL.includes(rest)) out.push({ code: l, path: trail(`/${l}` + (rest === '/' ? '' : rest)) });
     }
     out.push({ code: 'x-default', path: trail(rest) });
@@ -178,14 +180,14 @@ export function hreflangAlternates(pathname: string): { code: LocaleCode | 'x-de
 }
 
 /**
- * Canonical path for the current URL. Untranslated de/nl/it fallback routes
+ * Canonical path for the current URL. Untranslated de/de-ch/nl/it fallback routes
  * (EN content served at a locale URL) canonicalize to the English page;
  * everything else canonicalizes to itself.
  */
 export function canonicalPathFor(pathname: string): string {
     const { locale: cur, rest } = splitLocale(pathname);
     const trail = (p: string) => (p === '/' ? '/' : p + '/');
-    if (cur === 'de' || cur === 'nl' || cur === 'it') {
+    if (cur === 'de' || cur === 'de-ch' || cur === 'nl' || cur === 'it') {
         if (!DNI_LOCAL.includes(rest) && !equivGroupFor(pathname) && !isLocaleOnly(cur, rest)) return trail(rest);
     }
     if (cur === 'fr-ch') {

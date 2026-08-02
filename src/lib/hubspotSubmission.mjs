@@ -3,9 +3,12 @@ const CONTACT_FIELDS = [
   'firstname',
   'lastname',
   'email',
+  'phone',
+  'jobtitle',
   'company',
   'numemployees',
   'message',
+  'hs_content_membership_notes',
 ];
 
 export function getCookieValue(cookieString, name) {

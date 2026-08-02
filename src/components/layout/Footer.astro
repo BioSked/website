@@ -38,13 +38,14 @@ const privacyChoicesLabel: Record<LocaleCode, string> = {
     fr: 'Choix de confidentialité',
     'fr-ch': 'Choix de confidentialité',
     de: 'Datenschutzeinstellungen',
+    'de-ch': 'Datenschutzeinstellungen',
     nl: 'Privacykeuzes',
     it: 'Scelte sulla privacy',
 };
 ---
 
 {!hideFooter && (
-    <footer class="relative pt-12 pb-30">
+    <footer class="relative overflow-hidden pt-12 pb-30">
         <DecorativeDust class="absolute bottom-0 left-0 size-[800px] bg-no-repeat pointer-events-none dust-fade" style="background-position-y: 300%; transform: scaleX(-1);" />
         <div class="container flex mb-15 flex-col-reverse md:flex-row gap-12 relative sm:max-w-2xl lg:max-w-5xl">
             <div class="flex-2 flex flex-col gap-1">

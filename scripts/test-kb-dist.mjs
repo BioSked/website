@@ -22,7 +22,7 @@ const exists = async (target) => {
   }
 };
 
-for (const locale of ['de', 'nl', 'it']) {
+for (const locale of ['de', 'de-ch', 'nl', 'it']) {
   assert.equal(
     await exists(path.join(distRoot, locale, 'kb-preview')),
     false,

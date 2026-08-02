@@ -52,6 +52,7 @@ const openGraphLocales: Record<string, string> = {
     fr: 'fr_FR',
     'fr-ch': 'fr_CH',
     de: 'de_DE',
+    'de-ch': 'de_CH',
     nl: 'nl_NL',
     it: 'it_IT',
 };
@@ -60,6 +61,7 @@ const socialImageAlts: Record<string, string> = {
     fr: 'Application Momentum de BioSked pour la planification du personnel de santé',
     'fr-ch': 'Application Momentum de BioSked pour la planification du personnel de santé',
     de: 'BioSked Momentum App für die Dienstplanung medizinischer Teams',
+    'de-ch': 'BioSked Momentum App für die Dienstplanung medizinischer Teams',
     nl: 'BioSked Momentum-app voor roosterplanning van medische teams',
     it: 'App BioSked Momentum per la pianificazione dei turni medici',
 };
@@ -99,7 +101,12 @@ const priorConsentTimeZones = [...PRIOR_CONSENT_TIME_ZONES];
                         try { if (Intl.DateTimeFormat().resolvedOptions().timeZone === 'Europe/Zurich') want = 'fr-ch'; } catch (e) {}
                         break;
                     }
-                    if (l.indexOf('de') === 0) { want = 'de'; break; }
+                    if (l === 'de-ch') { want = 'de-ch'; break; }
+                    if (l.indexOf('de') === 0) {
+                        want = 'de';
+                        try { if (Intl.DateTimeFormat().resolvedOptions().timeZone === 'Europe/Zurich') want = 'de-ch'; } catch (e) {}
+                        break;
+                    }
                     if (l.indexOf('nl') === 0) { want = 'nl'; break; }
                     if (l.indexOf('it') === 0) { want = 'it'; break; }
                     if (l.indexOf('en') === 0) { want = 'en'; break; }
@@ -386,7 +393,7 @@ title={SITE_TITLE}
 href={Astro.site ? new URL(pageLocale === 'fr' || pageLocale === 'fr-ch' ? 'fr/rss.xml' : 'rss.xml', Astro.site).toString() : '/rss.xml'}
 />
 {hreflangEntries.map((alt) => (
-    <link rel="alternate" hreflang={alt.code === 'fr-ch' ? 'fr-CH' : alt.code} href={new URL(alt.path, Astro.site ?? 'https://biosked.com').toString()} />
+    <link rel="alternate" hreflang={alt.code === 'fr-ch' ? 'fr-CH' : alt.code === 'de-ch' ? 'de-CH' : alt.code} href={new URL(alt.path, Astro.site ?? 'https://biosked.com').toString()} />
 ))}
 <meta name="generator" content={Astro.generator} />
 
@@ -485,7 +492,7 @@ content={SITE_METADATA.openGraph.images[0].height.toString()}
                 "publisher": {
                     "@id": "https://biosked.com/#organization"
                 },
-                "inLanguage": ["en", "fr", "fr-CH", "de", "nl", "it"]
+                "inLanguage": ["en", "fr", "fr-CH", "de", "de-CH", "nl", "it"]
             },
             {
                 "@type": "SoftwareApplication",

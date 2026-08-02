@@ -1,3 +1,5 @@
+import { toSwissGerman } from './swissGerman';
+
 /**
  * Homepage copy for the de/nl/it market pages.
  * Terminology follows the approved Momentum app-store copy for each language.
@@ -26,7 +28,7 @@ export interface HomeContent {
     };
 }
 
-export const HOME_CONTENT: Record<'de' | 'nl' | 'it', HomeContent> = {
+const HOME_CONTENT_BASE: Record<'de' | 'nl' | 'it', HomeContent> = {
     de: {
         metaTitle: 'Momentum – Dienstplanung für ärztliche Teams | BioSked',
         metaDescription:
@@ -113,5 +115,15 @@ export const HOME_CONTENT: Record<'de' | 'nl' | 'it', HomeContent> = {
             sub: 'Più di 1.000 sedi in 9 paesi, da oltre 15 anni: radiologia, pronto soccorso, anestesia e team ospedalieri. Una demo mostra Momentum applicato ai tuoi turni, alle tue regole e alle tue sedi.',
             buttonLabel: 'Richiedi una demo',
         },
+    },
+};
+
+export const HOME_CONTENT: Record<'de' | 'de-ch' | 'nl' | 'it', HomeContent> = {
+    ...HOME_CONTENT_BASE,
+    'de-ch': {
+        ...toSwissGerman(HOME_CONTENT_BASE.de),
+        metaTitle: 'Momentum: Dienstplanung für Schweizer Ärzteteams | BioSked',
+        metaDescription:
+            'Momentum automatisiert Dienstpläne, Pikett, Planungswünsche, Zeiterfassung und Reporting für Spitäler, Kliniken und Teams an mehreren Standorten in der Schweiz.',
     },
 };
