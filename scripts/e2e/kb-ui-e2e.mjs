@@ -1,6 +1,6 @@
 /**
  * KB preview end-to-end browser tests (desktop + responsive).
- * Drives a real Chrome via CDP — no external deps beyond the bundled puppeteer-core
+ * Drives a real Chrome via CDP, no external deps beyond the bundled puppeteer-core
  * used by lighthouse, so it runs offline.
  */
 import { launch } from 'chrome-launcher';
