@@ -38,6 +38,12 @@ def check(src, tr, lang, aid):
     urls = lambda s: sorted(re.findall(r'(?:href|src)="([^"]+)"', s))
     if urls(src) != urls(tr):
         problems.append(f'{lang}/{aid}: URL set changed')
+    # catch a batch that was copied instead of translated: compare the words that
+    # are not inside markup, ignoring articles that are almost entirely media
+    strip = lambda s: re.sub(r'\s+', ' ', re.sub(r'<[^>]+>', ' ', s)).strip()
+    a, b = strip(src), strip(tr)
+    if len(a.split()) >= 12 and a == b:
+        problems.append(f'{lang}/{aid}: text identical to source (not translated?)')
     return problems
 
 translations, problems, counts = {}, [], {}

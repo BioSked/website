@@ -51,6 +51,28 @@ hospital scheduler will read it.
 7. Keep the meaning strictly. Do not add, remove, summarise or "improve"
    content, and invent nothing. If the source is ambiguous, translate literally.
 
+
+## Pinned terms (use these exactly, they are already fixed by earlier batches)
+
+Parallel batches must agree, so these renderings are decided. Do not substitute
+synonyms even if another word feels better.
+
+| English | de | nl | it |
+|---|---|---|---|
+| assignment | Zuweisung (die) | toewijzing | assegnazione |
+| shift | Dienst | opdracht (the shipped app string) | turno |
+| Setup (admin menu) | Einrichtung | Configuratie | Configurazione |
+| Scheduling (menu) | Planung | Planning | Pianificazione |
+| layer | Ebene | laag | livello |
+| Prime Date | Referenzdatum | Speciale datum | Data di riferimento |
+| Job Board | Job Board (kept) | Vacaturebank | Job Board (kept) |
+| provider | Leistungserbringende | zorgverlener | professionista |
+| staff | Mitarbeitende | Personeel | Personale |
+| equity | Ausgleich | billijkheid | equità |
+| fiscal period | Fiskalperiode | boekhoudperiode | periodo fiscale |
+
+German orthography: follow the app and use ss, never the eszett.
+
 ## What to produce
 
 For every input article, produce an object with exactly these keys:
