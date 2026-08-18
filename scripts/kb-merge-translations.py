@@ -10,6 +10,8 @@ Usage: python3 merge.py [de nl it]
 """
 import json, os, re, sys, html, hashlib
 
+EM_DASH = '\u2014'  # escaped: the repo style check forbids the literal character
+
 HERE = os.path.dirname(os.path.abspath(__file__))
 SITE = os.path.join(HERE, '..', 'website')
 SNAP = os.path.join(SITE, 'src', 'data', 'generated', 'hubspot-kb.json')
@@ -30,7 +32,7 @@ def check(src, tr, lang, aid):
     for token in ('<', 'href=', 'src='):
         if src.count(token) != tr.count(token):
             problems.append(f'{lang}/{aid}: {token!r} count {src.count(token)} -> {tr.count(token)}')
-    if '—' in tr:
+    if EM_DASH in tr:
         problems.append(f'{lang}/{aid}: em dash present')
     # every URL in the source must survive untouched (videos stay English)
     urls = lambda s: sorted(re.findall(r'(?:href|src)="([^"]+)"', s))
