@@ -39,9 +39,34 @@ const resultsId = `${searchId}-results`;
     />
   </form>
   <p class="sr-only" aria-live="polite" data-kb-search-status>{copy.searchHint}</p>
-  <div id={resultsId} role="listbox" class="absolute inset-x-0 top-full z-40 mt-2 hidden max-h-[28rem] overflow-y-auto rounded-2xl border border-slate-200 bg-white p-2 shadow-2xl" data-kb-search-results></div>
+  <!--
+    popover="manual" renders the result list in the browser's top layer, so it can
+    never be clipped by an ancestor's overflow (the hero section, the layout's
+    overflow-x-clip main, or the scrolling body all used to cut it off).
+    Positioning is computed from the input rect; the absolute/z-40 classes remain
+    as the fallback for browsers without popover support.
+  -->
+  <div
+    id={resultsId}
+    role="listbox"
+    popover="manual"
+    class="kb-search-results absolute inset-x-0 top-full z-40 mt-2 hidden max-h-[28rem] overflow-y-auto rounded-2xl border border-slate-200 bg-white p-2 text-left shadow-2xl"
+    data-kb-search-results
+  ></div>
   <template data-kb-search-copy data-no-results={copy.noResults} data-open-article={copy.openArticle}></template>
 </div>
+
+<style>
+  /* Neutralise the UA popover defaults (centred, auto margins, own border/padding)
+     so the list keeps the design-system look while living in the top layer. */
+  .kb-search-results:popover-open {
+    position: fixed;
+    margin: 0;
+    inset: auto;
+    overflow-y: auto;
+    border-width: 1px;
+  }
+</style>
 
 <script is:inline>
   const normalizeKbSearch = (value) => String(value || '')
@@ -73,12 +98,50 @@ const resultsId = `${searchId}-results`;
     const copy = root.querySelector('[data-kb-search-copy]');
     let matches = [];
     let activeIndex = -1;
+    const canPopover = typeof results.showPopover === 'function' && typeof HTMLElement !== 'undefined'
+      && HTMLElement.prototype.hasOwnProperty('popover');
+
+    // Anchor the top-layer list to the input and keep it inside the viewport.
+    const position = () => {
+      if (!canPopover) return;
+      const rect = input.getBoundingClientRect();
+      const gap = 8;
+      const below = window.innerHeight - rect.bottom - gap - 12;
+      const above = rect.top - gap - 12;
+      // Keep the list below the input (expected behaviour) and only flip when the
+      // space there is genuinely cramped and there is clearly more room above.
+      const flip = below < 240 && above > below + 60;
+      const space = Math.max(180, Math.min(448, flip ? above : below));
+      results.style.left = `${Math.round(rect.left)}px`;
+      results.style.width = `${Math.round(rect.width)}px`;
+      results.style.maxHeight = `${Math.round(space)}px`;
+      if (flip) {
+        results.style.top = 'auto';
+        results.style.bottom = `${Math.round(window.innerHeight - rect.top + gap)}px`;
+      } else {
+        results.style.bottom = 'auto';
+        results.style.top = `${Math.round(rect.bottom + gap)}px`;
+      }
+    };
+
+    const open = () => {
+      if (canPopover) {
+        if (!results.matches(':popover-open')) results.showPopover();
+        position();
+      }
+      results.classList.remove('hidden');
+      input.setAttribute('aria-expanded', 'true');
+    };
 
     const close = () => {
+      if (canPopover && results.matches(':popover-open')) results.hidePopover();
       results.classList.add('hidden');
       input.setAttribute('aria-expanded', 'false');
       activeIndex = -1;
     };
+
+    window.addEventListener('resize', () => { if (!results.classList.contains('hidden')) position(); });
+    window.addEventListener('scroll', () => { if (!results.classList.contains('hidden')) position(); }, true);
 
     const setActive = (nextIndex) => {
       const links = [...results.querySelectorAll('a')];
@@ -121,8 +184,7 @@ const resultsId = `${searchId}-results`;
         results.append(list);
         status.textContent = `${items.length} result${items.length === 1 ? '' : 's'}`;
       }
-      results.classList.remove('hidden');
-      input.setAttribute('aria-expanded', 'true');
+      open();
     };
 
     const search = async () => {

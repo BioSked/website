@@ -48,12 +48,22 @@ const sourceUrl = kbSourceSupportUrl(locale);
       'form.hs-form{display:grid!important;gap:1.15rem!important}fieldset{max-width:none!important}',
       '.form-columns-2{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:1rem!important}',
       '.form-columns-2 .hs-form-field,.form-columns-1 .hs-form-field{float:none!important;width:100%!important;padding:0!important}',
-      '.hs-form-field>label,.hs-fieldtype-checkbox>label,.hs-fieldtype-radio>label{display:block!important;margin:0 0 .45rem!important;color:#102f46!important;font-size:.875rem!important;font-weight:700!important}',
+      '.hs-form-field>label,.hs-fieldtype-checkbox>label,.hs-fieldtype-radio>label{display:block!important;margin:0 0 .3rem!important;color:#102f46!important;font-size:.9rem!important;font-weight:650!important;letter-spacing:-.005em!important}',
+      '.hs-form-required{margin-left:.15rem!important;color:#94a3b8!important;font-weight:600!important}',
+      '.hs-field-desc{margin:0 0 .5rem!important;color:#64748b!important;font-size:.8125rem!important;line-height:1.5!important}',
+      '.hs-form-field{margin:0!important}',
       '.hs-input:not([type=checkbox]):not([type=radio]),textarea,select{box-sizing:border-box!important;width:100%!important;min-height:3rem!important;border:1px solid #cbd5e1!important;border-radius:.8rem!important;background:#fff!important;padding:.75rem .9rem!important;color:#102f46!important;font:inherit!important}',
-      'select.is-placeholder{color:#475569!important}textarea{min-height:9rem!important;resize:vertical!important}',
+      'select.is-placeholder{color:#475569!important}',
+      // .hs-input (0,1,0) outranked a bare `textarea` (0,0,1) selector, so the
+      // description box collapsed to the 3rem input height and clipped its
+      // multi-line placeholder. Match the class to win the cascade.
+      'textarea.hs-input,textarea{min-height:9.5rem!important;line-height:1.55!important;resize:vertical!important}',
+      'textarea.hs-input::placeholder,textarea::placeholder{color:#94a3b8!important;line-height:1.55!important}',
       '.hs-input:focus,textarea:focus,select:focus{border-color:#0f6f76!important;box-shadow:0 0 0 4px rgb(15 111 118 / 15%)!important;outline:none!important}',
       '.inputs-list{margin:.5rem 0 0!important;padding:0!important;list-style:none!important}.inputs-list label{display:flex!important;align-items:flex-start!important;gap:.55rem!important;color:#475569!important;font-size:.875rem!important;font-weight:500!important}',
       '.hs-error-msgs{margin:.4rem 0 0!important;padding:0!important;list-style:none!important;color:#b42318!important;font-size:.8rem!important}',
+      'input[type=file]{padding:.6rem .7rem!important;background:#f8fafc!important;font-size:.875rem!important}',
+      '.hs_submit{margin-top:.35rem!important}',
       '.hs-button{min-height:3rem!important;border:0!important;border-radius:999px!important;background:#007b83!important;padding:.75rem 1.5rem!important;color:#fff!important;font:inherit!important;font-weight:800!important;cursor:pointer!important}',
       '.hs-button:hover,.hs-button:focus{background:#006d75!important;box-shadow:0 0 0 4px rgb(15 111 118 / 18%)!important;outline:none!important}',
       '.submitted-message{border-radius:1rem!important;background:#edf9f8!important;padding:1.25rem!important;color:#102f46!important;line-height:1.65!important}',
@@ -101,6 +111,20 @@ const sourceUrl = kbSourceSupportUrl(locale);
           formDocument.title = frameTitle;
           var phonePrefix = formDocument.querySelector('select[id^="phone_ext"]');
           if (phonePrefix) phonePrefix.setAttribute('aria-label', phonePrefixLabel);
+          // HubSpot ships its own cross-origin stylesheet inside the iframe, so a
+          // CSS rule alone cannot reliably win: the description box kept the 3rem
+          // input height and clipped its multi-line placeholder. Size the boxes
+          // from their own content instead.
+          var textAreas = formDocument.querySelectorAll('textarea');
+          for (var i = 0; i < textAreas.length; i += 1) {
+            var textArea = textAreas[i];
+            if ((textArea.className || '').indexOf('recaptcha') !== -1) continue;
+            var lines = String(textArea.placeholder || '').split('\n').length;
+            textArea.rows = Math.max(3, Math.min(lines + 1, 9));
+            textArea.style.setProperty('min-height', lines > 2 ? '10rem' : '6rem', 'important');
+            textArea.style.setProperty('line-height', '1.55', 'important');
+          }
+
           if (!formDocument.querySelector('style[data-bsk-kb-form]')) {
             var style = formDocument.createElement('style');
             style.setAttribute('data-bsk-kb-form', 'true');
@@ -147,8 +171,9 @@ const sourceUrl = kbSourceSupportUrl(locale);
     display: block;
     margin-bottom: 0.45rem;
     color: #102f46;
-    font-size: 0.875rem;
-    font-weight: 700;
+    font-size: 0.9rem;
+    font-weight: 650;
+    letter-spacing: -0.005em;
   }
 
   #kb-support-form .hs-input:not([type='checkbox']):not([type='radio']),
@@ -165,9 +190,31 @@ const sourceUrl = kbSourceSupportUrl(locale);
     transition: border-color 150ms ease, box-shadow 150ms ease;
   }
 
+  /* Must out-specify `#kb-support-form .hs-input` above, which also matches
+     textareas, otherwise the description box collapses to the input height. */
+  #kb-support-form textarea.hs-input,
   #kb-support-form textarea {
-    min-height: 9rem;
+    min-height: 9.5rem;
+    line-height: 1.55;
     resize: vertical;
+  }
+
+  #kb-support-form textarea::placeholder {
+    color: #94a3b8;
+    line-height: 1.55;
+  }
+
+  #kb-support-form .hs-form-required {
+    margin-left: 0.15rem;
+    color: #94a3b8;
+    font-weight: 600;
+  }
+
+  #kb-support-form .hs-field-desc {
+    margin: 0 0 0.5rem;
+    color: #64748b;
+    font-size: 0.8125rem;
+    line-height: 1.5;
   }
 
   #kb-support-form .hs-input:focus,
