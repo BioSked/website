@@ -1,8 +1,28 @@
 import snapshotJson from '@/data/generated/hubspot-kb.json';
+import translationsJson from '@/data/generated/kb-translations.json';
 
 export const KB_PREVIEW_PREFIX = '/kb-preview';
-export const KB_LOCALES = ['en', 'fr'] as const;
+
+/** en and fr come from HubSpot; de, nl and it are translated from those. */
+export const KB_LOCALES = ['en', 'fr', 'de', 'nl', 'it'] as const;
 export type KbLocale = (typeof KB_LOCALES)[number];
+
+/** Translated locales, kept in a separate file so a HubSpot re-sync cannot drop them. */
+export const KB_TRANSLATED_LOCALES = ['de', 'nl', 'it'] as const;
+export type KbTranslatedLocale = (typeof KB_TRANSLATED_LOCALES)[number];
+
+/**
+ * Site locales that reuse another locale's knowledge base rather than having
+ * their own translation: Swiss French reads the French KB, Swiss German the
+ * German one.
+ */
+export const KB_LOCALE_ALIASES: Record<string, KbLocale> = { 'fr-ch': 'fr', 'de-ch': 'de' };
+
+/** Resolve any site locale (including fr-ch / de-ch) to the KB locale that serves it. */
+export function kbLocaleFor(siteLocale: string): KbLocale {
+  if (KB_LOCALE_ALIASES[siteLocale]) return KB_LOCALE_ALIASES[siteLocale];
+  return (KB_LOCALES as readonly string[]).includes(siteLocale) ? (siteLocale as KbLocale) : 'en';
+}
 
 export interface KbBreadcrumb {
   title: string;
@@ -62,9 +82,148 @@ export interface KbLanguageLink {
   active: boolean;
 }
 
-export const kbSnapshot = snapshotJson as unknown as KbSnapshot;
+interface KbTranslationEntry {
+  title: string;
+  description: string;
+  bodyHtml: string;
+  searchText: string;
+}
 
-export const kbCopy = {
+interface KbTranslations {
+  schemaVersion: number;
+  generatedFrom: string;
+  languages: string[];
+  categories: Record<string, Record<string, string>>;
+  subcategories: Record<string, Record<string, string>>;
+  copy: Record<string, Record<string, string>>;
+  articles: Record<string, Record<string, KbTranslationEntry>>;
+}
+
+const kbTranslations = translationsJson as unknown as KbTranslations;
+const baseSnapshot = snapshotJson as unknown as KbSnapshot;
+
+const KB_SOURCE_HOST = 'https://kb.biosked.com';
+const slugOf = (sourcePath: string): string => sourcePath.split('/knowledge/')[1] ?? '';
+const translate = (dictionary: Record<string, Record<string, string>>, value: string | null, locale: string): string =>
+  (value && dictionary[value]?.[locale]) || value || '';
+
+/**
+ * Build the de/nl/it articles and categories by overlaying the translation file
+ * on their source article (English when one exists, otherwise French).
+ * Slugs are reused from the source: the KB is noindex, so stable ASCII URLs are
+ * worth more than translated ones, and it keeps every locale one to one.
+ * sourceUrl still points at the real HubSpot article, which only exists in en/fr.
+ */
+function buildMergedSnapshot(): KbSnapshot {
+  const articles = [...baseSnapshot.articles];
+  const categories = [...baseSnapshot.categories];
+  const sourceById = new Map(baseSnapshot.articles.map((article) => [article.articleId, article]));
+  const pathByLocaleAndId = new Map<string, string>();
+
+  for (const locale of KB_TRANSLATED_LOCALES) {
+    const entries = kbTranslations.articles?.[locale] ?? {};
+    for (const [articleId, entry] of Object.entries(entries)) {
+      const source = sourceById.get(articleId);
+      if (!source) continue;
+      pathByLocaleAndId.set(`${locale}:${articleId}`, `/${locale}/knowledge/${slugOf(source.sourcePath)}`);
+    }
+  }
+
+  for (const locale of KB_TRANSLATED_LOCALES) {
+    const entries = kbTranslations.articles?.[locale] ?? {};
+    const homeTitle = kbTranslations.copy?.[locale]?.siteTitle ?? 'Momentum Knowledge Base';
+    const localeArticles: KbArticle[] = [];
+
+    for (const [articleId, entry] of Object.entries(entries)) {
+      const source = sourceById.get(articleId);
+      if (!source) continue;
+      const sourcePath = `/${locale}/knowledge/${slugOf(source.sourcePath)}`;
+      const categoryTitle = translate(kbTranslations.categories, source.primaryCategory?.title ?? null, locale);
+      const categoryPath = source.primaryCategory
+        ? `/${locale}/knowledge/${slugOf(source.primaryCategory.path)}`
+        : null;
+      const subcategory = source.subcategory
+        ? translate(kbTranslations.subcategories, source.subcategory, locale)
+        : null;
+
+      const alternates: Partial<Record<KbLocale, string>> = { ...source.alternates };
+      alternates[source.locale] = source.sourcePath;
+      for (const other of KB_TRANSLATED_LOCALES) {
+        const path = pathByLocaleAndId.get(`${other}:${articleId}`);
+        if (path) alternates[other] = path;
+      }
+
+      const breadcrumbs: KbBreadcrumb[] = [
+        { title: homeTitle, sourceUrl: `${KB_SOURCE_HOST}/${locale}/knowledge`, path: `/${locale}/knowledge` },
+      ];
+      if (categoryPath && categoryTitle) {
+        breadcrumbs.push({ title: categoryTitle, sourceUrl: `${KB_SOURCE_HOST}${categoryPath}`, path: categoryPath });
+      }
+      if (subcategory) {
+        breadcrumbs.push({ title: subcategory, sourceUrl: `${KB_SOURCE_HOST}${sourcePath}`, path: sourcePath });
+      }
+
+      const article: KbArticle = {
+        articleId: `${articleId}-${locale}`,
+        locale,
+        title: entry.title,
+        description: entry.description,
+        // The translated pages are generated, so the canonical source stays the
+        // HubSpot article they were translated from.
+        sourceUrl: source.sourceUrl,
+        sourcePath,
+        previewPath: `${KB_PREVIEW_PREFIX}${sourcePath}`,
+        lastModified: source.lastModified,
+        breadcrumbs,
+        primaryCategory: categoryPath && categoryTitle ? { title: categoryTitle, path: categoryPath } : null,
+        subcategory,
+        alternates,
+        bodyHtml: entry.bodyHtml,
+        searchText: entry.searchText,
+      };
+      localeArticles.push(article);
+      articles.push(article);
+    }
+
+    const byCategoryPath = new Map<string, KbArticle[]>();
+    for (const article of localeArticles) {
+      const path = article.primaryCategory?.path;
+      if (!path) continue;
+      const list = byCategoryPath.get(path) ?? [];
+      list.push(article);
+      byCategoryPath.set(path, list);
+    }
+    for (const [path, list] of byCategoryPath) {
+      categories.push({
+        locale,
+        title: list[0].primaryCategory?.title ?? '',
+        path,
+        previewPath: `${KB_PREVIEW_PREFIX}${path}`,
+        articlePaths: list.map((article) => article.sourcePath),
+        subcategories: [...new Set(list.map((article) => article.subcategory).filter(Boolean) as string[])].sort(),
+      });
+    }
+  }
+
+  // de/nl/it have no localised HubSpot support form, so they use the English one.
+  const forms = { ...baseSnapshot.forms } as Record<KbLocale, KbFormConfig>;
+  for (const locale of KB_TRANSLATED_LOCALES) forms[locale] = baseSnapshot.forms.en;
+
+  return { ...baseSnapshot, articles, categories, forms };
+}
+
+export const kbSnapshot = buildMergedSnapshot();
+
+/**
+ * Locales that actually have content. A translated locale only appears once its
+ * articles are in kb-translations.json, so the site never ships an empty
+ * knowledge base language.
+ */
+export const KB_ACTIVE_LOCALES: KbLocale[] = KB_LOCALES.filter((locale) =>
+  kbSnapshot.articles.some((article) => article.locale === locale),
+);
+
+const baseCopy = {
   en: {
     siteTitle: 'Momentum Knowledge Base',
     siteDescription: 'Practical guides, product answers and direct access to BioSked support.',
@@ -133,10 +292,39 @@ export const kbCopy = {
     english: 'English',
     french: 'Français',
   },
-} satisfies Record<KbLocale, Record<string, string | ((count: number) => string)>>;
+};
+
+/**
+ * de/nl/it interface copy lives in the translations file so the wording can be
+ * refreshed without touching code. categoryCount is rebuilt here because a
+ * function cannot be stored in JSON.
+ */
+const translatedCopy = Object.fromEntries(
+  KB_TRANSLATED_LOCALES.map((locale) => {
+    const copy = kbTranslations.copy?.[locale] ?? {};
+    const { articleCountOne, articleCountMany, ...rest } = copy;
+    return [
+      locale,
+      {
+        ...rest,
+        english: 'English',
+        french: 'Français',
+        categoryCount: (count: number) =>
+          count === 1
+            ? articleCountOne ?? '1'
+            : (articleCountMany ?? '{count}').replace('{count}', String(count)),
+      },
+    ];
+  }),
+) as Record<KbTranslatedLocale, (typeof baseCopy)['en']>;
+
+export const kbCopy = { ...baseCopy, ...translatedCopy } satisfies Record<
+  KbLocale,
+  Record<string, string | ((count: number) => string)>
+>;
 
 export function isKbLocale(value: string | undefined): value is KbLocale {
-  return value === 'en' || value === 'fr';
+  return typeof value === 'string' && (KB_LOCALES as readonly string[]).includes(value);
 }
 
 export function previewPathFor(sourcePath: string): string {
@@ -185,7 +373,10 @@ export function formatKbDate(value: string | null, locale: KbLocale): string | n
   if (!value) return null;
   const date = new Date(`${value}T12:00:00Z`);
   if (Number.isNaN(date.getTime())) return null;
-  return new Intl.DateTimeFormat(locale === 'fr' ? 'fr-FR' : 'en-US', {
+  const dateLocales: Record<KbLocale, string> = {
+    en: 'en-US', fr: 'fr-FR', de: 'de-DE', nl: 'nl-NL', it: 'it-IT',
+  };
+  return new Intl.DateTimeFormat(dateLocales[locale] ?? 'en-US', {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
@@ -197,7 +388,9 @@ export function languageLinks(
   currentLocale: KbLocale,
   paths: Partial<Record<KbLocale, string>> = {},
 ): KbLanguageLink[] {
-  const labels: Record<KbLocale, string> = { en: 'English', fr: 'Français' };
+  const labels: Record<KbLocale, string> = {
+    en: 'English', fr: 'Français', de: 'Deutsch', nl: 'Nederlands', it: 'Italiano',
+  };
   return KB_LOCALES.map((code) => ({
     code,
     label: labels[code],
@@ -212,10 +405,9 @@ export function articleLanguageLinks(article: KbArticle): KbLanguageLink[] {
 
 export function categoryLanguageLinks(category: KbCategory): KbLanguageLink[] {
   const paths: Partial<Record<KbLocale, string>> = { [category.locale]: category.path };
-  const article = articlesInCategory(category).find((candidate) => {
-    const otherLocale = category.locale === 'en' ? 'fr' : 'en';
-    return Boolean(candidate.alternates[otherLocale]);
-  });
+  const article = articlesInCategory(category).find((candidate) =>
+    KB_LOCALES.some((code) => code !== category.locale && Boolean(candidate.alternates[code])),
+  );
   if (article) {
     for (const locale of KB_LOCALES) {
       const alternateArticlePath = article.alternates[locale];

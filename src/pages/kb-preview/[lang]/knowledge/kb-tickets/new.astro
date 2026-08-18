@@ -3,7 +3,7 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import KbHero from '@/components/kb/KbHero.astro';
 import KbSupportForm from '@/components/kb/KbSupportForm.astro';
 import {
-  KB_LOCALES,
+  KB_ACTIVE_LOCALES,
   kbCopy,
   kbHomePath,
   kbSourceSupportUrl,
@@ -13,7 +13,7 @@ import {
 } from '@/lib/kb';
 
 export function getStaticPaths() {
-  return KB_LOCALES.map((locale) => ({ params: { lang: locale }, props: { locale } }));
+  return KB_ACTIVE_LOCALES.map((locale) => ({ params: { lang: locale }, props: { locale } }));
 }
 
 const { locale } = Astro.props as { locale: KbLocale };

@@ -7,6 +7,8 @@ import { launch } from 'chrome-launcher';
 import CDP from 'chrome-remote-interface';
 
 const BASE = process.env.KB_BASE || 'http://localhost:8899';
+// KB_LOCALES=fr,de,nl,it to sweep several knowledge base languages in one run.
+const LOCALES = (process.env.KB_LOCALES || 'fr').split(',').map((code) => code.trim()).filter(Boolean);
 const VIEWPORTS = [
   { name: 'desktop', width: 1440, height: 900, mobile: false },
   { name: 'tablet', width: 768, height: 1024, mobile: true },
@@ -14,8 +16,9 @@ const VIEWPORTS = [
 ];
 
 const results = [];
+let currentLocale = '';
 const record = (viewport, page, check, pass, detail = '') =>
-  results.push({ viewport, page, check, pass, detail });
+  results.push({ viewport, page: currentLocale ? `${currentLocale}/${page}` : page, check, pass, detail });
 
 async function withPage(fn) {
   const chrome = await launch({ chromeFlags: ['--headless=new', '--no-first-run', '--disable-gpu'] });
@@ -61,8 +64,10 @@ await withPage(async ({ Page, Runtime, Emulation, consoleErrors, failedRequests 
       width: vp.width, height: vp.height, deviceScaleFactor: 2, mobile: vp.mobile,
     });
 
-    // ---------- KB home (fr) ----------
-    await goto(Page, Runtime, `${BASE}/kb-preview/fr/knowledge/`);
+    for (const locale of LOCALES) {
+    // ---------- KB home ----------
+    currentLocale = locale;
+    await goto(Page, Runtime, `${BASE}/kb-preview/${locale}/knowledge/`);
 
     // 1. Search dropdown must not be clipped by any ancestor
     const clip = await evalJs(Runtime, `(() => {
@@ -230,9 +235,11 @@ await withPage(async ({ Page, Runtime, Emulation, consoleErrors, failedRequests 
           `reachable ${artClip.visible}/2 of ${artClip.count} results`);
       }
     }
+    }
   }
 
   // console / network health (collected across the whole run)
+  currentLocale = '';
   record('all', 'global', 'no console errors', consoleErrors.length === 0, consoleErrors.slice(0, 3).join(' | '));
   const realFails = failedRequests.filter((f) => !f.includes('favicon'));
   record('all', 'global', 'no failed requests', realFails.length === 0, realFails.slice(0, 3).join(' | '));

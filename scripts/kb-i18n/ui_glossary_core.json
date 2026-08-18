@@ -1,0 +1,562 @@
+[
+ {
+  "en": "Assign",
+  "fr": "Assigner",
+  "de": "Zuweisen",
+  "nl": "Toewijzen",
+  "it": "Assegna",
+  "hits": 239
+ },
+ {
+  "en": "Role",
+  "fr": "Rôle",
+  "de": "Rolle",
+  "nl": "Rol",
+  "it": "Ruolo",
+  "hits": 194
+ },
+ {
+  "en": "View",
+  "fr": "Vue",
+  "de": "Ansicht",
+  "nl": "Weergave",
+  "it": "Vista",
+  "hits": 160
+ },
+ {
+  "en": "Staff",
+  "fr": "Personnel",
+  "de": "Mitarbeitende",
+  "nl": "Personeel",
+  "it": "Personale",
+  "hits": 158
+ },
+ {
+  "en": "Schedule",
+  "fr": "Planning",
+  "de": "Plan",
+  "nl": "Planning",
+  "it": "Pianificazione",
+  "hits": 146
+ },
+ {
+  "en": "request",
+  "fr": "demande",
+  "de": "Anfrage",
+  "nl": "verzoek",
+  "it": "richiesta",
+  "hits": 117
+ },
+ {
+  "en": "All",
+  "fr": "Toutes",
+  "de": "Alle",
+  "nl": "Alle",
+  "it": "Tutte",
+  "hits": 109
+ },
+ {
+  "en": "Day",
+  "fr": "Jour",
+  "de": "Tag",
+  "nl": "Dag",
+  "it": "Giorno",
+  "hits": 94
+ },
+ {
+  "en": "Off",
+  "fr": "Absent",
+  "de": "Frei",
+  "nl": "Vrij",
+  "it": "Assente",
+  "hits": 74
+ },
+ {
+  "en": "Time off",
+  "fr": "Congé",
+  "de": "Abwesenheit",
+  "nl": "Verlof",
+  "it": "Tempo libero",
+  "hits": 68
+ },
+ {
+  "en": "List",
+  "fr": "Liste",
+  "de": "Listenansicht",
+  "nl": "Lijst",
+  "it": "Elenco",
+  "hits": 68
+ },
+ {
+  "en": "Change",
+  "fr": "Échange",
+  "de": "Änderung",
+  "nl": "Wijziging",
+  "it": "Scambio",
+  "hits": 54
+ },
+ {
+  "en": "Save",
+  "fr": "Enregistrer",
+  "de": "Speichern",
+  "nl": "Opslaan",
+  "it": "Salva",
+  "hits": 53
+ },
+ {
+  "en": "Note",
+  "fr": "Note",
+  "de": "Notiz",
+  "nl": "Notitie",
+  "it": "Nota",
+  "hits": 49
+ },
+ {
+  "en": "Edit",
+  "fr": "Modifier",
+  "de": "Bearbeiten",
+  "nl": "Bewerken",
+  "it": "Modifica",
+  "hits": 46
+ },
+ {
+  "en": "Calendar",
+  "fr": "Calendrier",
+  "de": "Kalenderansicht",
+  "nl": "Kalender",
+  "it": "Calendario",
+  "hits": 46
+ },
+ {
+  "en": "Dates",
+  "fr": "Dates",
+  "de": "Daten",
+  "nl": "Datums",
+  "it": "Date",
+  "hits": 45
+ },
+ {
+  "en": "Low",
+  "fr": "Faible",
+  "de": "Niedrig",
+  "nl": "Laag",
+  "it": "Bassa",
+  "hits": 40
+ },
+ {
+  "en": "Requests",
+  "fr": "Demandes",
+  "de": "Anfragen",
+  "nl": "Verzoeken",
+  "it": "Richieste",
+  "hits": 40
+ },
+ {
+  "en": "days",
+  "fr": "jours",
+  "de": "Tage",
+  "nl": "dagen",
+  "it": "giorni",
+  "hits": 34
+ },
+ {
+  "en": "Hours",
+  "fr": "Heures",
+  "de": "Stunden",
+  "nl": "Uren",
+  "it": "Ore",
+  "hits": 33
+ },
+ {
+  "en": "Month",
+  "fr": "Mois",
+  "de": "Monat",
+  "nl": "Maand",
+  "it": "Mese",
+  "hits": 32
+ },
+ {
+  "en": "Notification",
+  "fr": "Notification",
+  "de": "Benachrichtigung",
+  "nl": "Kennisgeving",
+  "it": "Notifica",
+  "hits": 30
+ },
+ {
+  "en": "End date",
+  "fr": "Date de fin",
+  "de": "Enddatum",
+  "nl": "Einddatum",
+  "it": "Data di fine",
+  "hits": 30
+ },
+ {
+  "en": "Delete",
+  "fr": "Supprimer",
+  "de": "Löschen",
+  "nl": "Verwijderen",
+  "it": "Elimina",
+  "hits": 30
+ },
+ {
+  "en": "Week",
+  "fr": "Semaine",
+  "de": "Woche",
+  "nl": "Week",
+  "it": "Settimana",
+  "hits": 28
+ },
+ {
+  "en": "Next",
+  "fr": "Suivant",
+  "de": "Weiter",
+  "nl": "Volgende",
+  "it": "Successivo",
+  "hits": 27
+ },
+ {
+  "en": "Notifications",
+  "fr": "Notifications",
+  "de": "Benachrichtigungen",
+  "nl": "Kennisgevingen",
+  "it": "Notifiche",
+  "hits": 20
+ },
+ {
+  "en": "Job Board",
+  "fr": "Job Board",
+  "de": "Job Board",
+  "nl": "Vacaturebank",
+  "it": "Pannello lavoro",
+  "hits": 20
+ },
+ {
+  "en": "Period",
+  "fr": "Période",
+  "de": "Zeitraum",
+  "nl": "Periode",
+  "it": "Periodo",
+  "hits": 19
+ },
+ {
+  "en": "Date range",
+  "fr": "Plage de dates",
+  "de": "Datumsbereich",
+  "nl": "Datumbereik",
+  "it": "Intervallo di date",
+  "hits": 19
+ },
+ {
+  "en": "Submit",
+  "fr": "Soumettre",
+  "de": "Senden",
+  "nl": "Verzenden",
+  "it": "Invia",
+  "hits": 18
+ },
+ {
+  "en": "Available",
+  "fr": "Disponible",
+  "de": "Verfügbar",
+  "nl": "Beschikbaar",
+  "it": "Disponibile",
+  "hits": 18
+ },
+ {
+  "en": "Security",
+  "fr": "Sécurité",
+  "de": "Sicherheit",
+  "nl": "Beveiliging",
+  "it": "Sicurezza",
+  "hits": 17
+ },
+ {
+  "en": "High",
+  "fr": "Élevée",
+  "de": "Hoch",
+  "nl": "Hoog",
+  "it": "Alta",
+  "hits": 17
+ },
+ {
+  "en": "Approve",
+  "fr": "Approuver",
+  "de": "Genehmigen",
+  "nl": "Goedkeuren",
+  "it": "Approva",
+  "hits": 17
+ },
+ {
+  "en": "Filters",
+  "fr": "Filtres",
+  "de": "Filter",
+  "nl": "Filters",
+  "it": "Filtri",
+  "hits": 16
+ },
+ {
+  "en": "Role groups",
+  "fr": "Groupes de rôles",
+  "de": "Rollengruppen",
+  "nl": "Rolgroepen",
+  "it": "Gruppi di ruoli",
+  "hits": 16
+ },
+ {
+  "en": "REPORTS",
+  "fr": "RAPPORTS",
+  "de": "BERICHTE",
+  "nl": "RAPPORTEN",
+  "it": "RAPPORTI",
+  "hits": 15
+ },
+ {
+  "en": "Light",
+  "fr": "Clair",
+  "de": "Hell",
+  "nl": "Licht",
+  "it": "Chiaro",
+  "hits": 15
+ },
+ {
+  "en": "Other",
+  "fr": "Autre",
+  "de": "Andere",
+  "nl": "Overig",
+  "it": "Altro",
+  "hits": 15
+ },
+ {
+  "en": "Work On",
+  "fr": "Travailler",
+  "de": "Arbeiten",
+  "nl": "Werken",
+  "it": "Lavorare",
+  "hits": 14
+ },
+ {
+  "en": "PASSWORD",
+  "fr": "MOT DE PASSE",
+  "de": "PASSWORT",
+  "nl": "WACHTWOORD",
+  "it": "PASSWORD",
+  "hits": 12
+ },
+ {
+  "en": "Call",
+  "fr": "Appeler",
+  "de": "Anrufen",
+  "nl": "Bellen",
+  "it": "Chiama",
+  "hits": 11
+ },
+ {
+  "en": "USER",
+  "fr": "UTILISATEUR",
+  "de": "BENUTZER",
+  "nl": "GEBRUIKER",
+  "it": "UTENTE",
+  "hits": 10
+ },
+ {
+  "en": "Swap",
+  "fr": "Échanger",
+  "de": "Tauschen",
+  "nl": "Wisselen",
+  "it": "Scambia",
+  "hits": 10
+ },
+ {
+  "en": "Apply",
+  "fr": "Appliquer",
+  "de": "Anwenden",
+  "nl": "Toepassen",
+  "it": "Applica",
+  "hits": 9
+ },
+ {
+  "en": "Settings",
+  "fr": "Paramètres",
+  "de": "Einstellungen",
+  "nl": "Instellingen",
+  "it": "Impostazioni",
+  "hits": 9
+ },
+ {
+  "en": "System",
+  "fr": "Système",
+  "de": "System",
+  "nl": "Systeem",
+  "it": "Sistema",
+  "hits": 9
+ },
+ {
+  "en": "Full day",
+  "fr": "Journée",
+  "de": "Ganzer Tag",
+  "nl": "Hele dag",
+  "it": "Giornata intera",
+  "hits": 9
+ },
+ {
+  "en": "Pending",
+  "fr": "En attente",
+  "de": "Ausstehend",
+  "nl": "In behandeling",
+  "it": "In attesa",
+  "hits": 8
+ },
+ {
+  "en": "View schedule",
+  "fr": "Voir le planning",
+  "de": "Plan anzeigen",
+  "nl": "Planning bekijken",
+  "it": "Vedi la pianificazione",
+  "hits": 8
+ },
+ {
+  "en": "Location",
+  "fr": "Lieu",
+  "de": "Standort",
+  "nl": "Locatie",
+  "it": "Luogo",
+  "hits": 8
+ },
+ {
+  "en": "Types",
+  "fr": "Types",
+  "de": "Typen",
+  "nl": "Types",
+  "it": "Tipi",
+  "hits": 8
+ },
+ {
+  "en": "Close",
+  "fr": "Fermer",
+  "de": "Schliessen",
+  "nl": "Sluiten",
+  "it": "Chiudi",
+  "hits": 7
+ },
+ {
+  "en": "Start date",
+  "fr": "Date de début",
+  "de": "Startdatum",
+  "nl": "Begindatum",
+  "it": "Data di inizio",
+  "hits": 7
+ },
+ {
+  "en": "Reject",
+  "fr": "Refuser",
+  "de": "Ablehnen",
+  "nl": "Afwijzen",
+  "it": "Rifiuta",
+  "hits": 7
+ },
+ {
+  "en": "Sent",
+  "fr": "Envoyées",
+  "de": "Gesendet",
+  "nl": "Verzonden",
+  "it": "Inviate",
+  "hits": 7
+ },
+ {
+  "en": "My schedule",
+  "fr": "Mon planning",
+  "de": "Mein Plan",
+  "nl": "Mijn planning",
+  "it": "La mia pianificazione",
+  "hits": 6
+ },
+ {
+  "en": "Previous",
+  "fr": "Précédent",
+  "de": "Zurück",
+  "nl": "Vorige",
+  "it": "Precedente",
+  "hits": 6
+ },
+ {
+  "en": "Total hours",
+  "fr": "Heures totales",
+  "de": "Gesamtstunden",
+  "nl": "Totaal aantal uren",
+  "it": "Ore totali",
+  "hits": 6
+ },
+ {
+  "en": "Approved",
+  "fr": "Approuvées",
+  "de": "Genehmigt",
+  "nl": "Goedgekeurd",
+  "it": "Approvate",
+  "hits": 6
+ },
+ {
+  "en": "Give",
+  "fr": "Don",
+  "de": "Geben",
+  "nl": "Geven",
+  "it": "Concessione",
+  "hits": 6
+ },
+ {
+  "en": "Notes",
+  "fr": "Notes",
+  "de": "Notizen",
+  "nl": "Notities",
+  "it": "Note",
+  "hits": 6
+ },
+ {
+  "en": "Confirm",
+  "fr": "Confirmer",
+  "de": "Bestätigen",
+  "nl": "Bevestigen",
+  "it": "Conferma",
+  "hits": 5
+ },
+ {
+  "en": "shifts",
+  "fr": "services",
+  "de": "Dienste",
+  "nl": "opdrachten",
+  "it": "turni",
+  "hits": 5
+ },
+ {
+  "en": "New request",
+  "fr": "Nouvelle demande",
+  "de": "Neue Anfrage",
+  "nl": "Nieuw verzoek",
+  "it": "Nuova richiesta",
+  "hits": 5
+ },
+ {
+  "en": "Changing…",
+  "fr": "Modification…",
+  "de": "Wird geändert…",
+  "nl": "Wijzigen…",
+  "it": "Modifica…",
+  "hits": 4
+ },
+ {
+  "en": "Clocking",
+  "fr": "Pointage",
+  "de": "Zeitbuchung",
+  "nl": "Klokken",
+  "it": "Timbratura",
+  "hits": 4
+ },
+ {
+  "en": "Reset",
+  "fr": "Réinitialiser",
+  "de": "Zurücksetzen",
+  "nl": "Resetten",
+  "it": "Reimposta",
+  "hits": 4
+ }
+]
