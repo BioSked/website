@@ -12,15 +12,23 @@ import json, os, re, sys, html, hashlib
 
 EM_DASH = '\u2014'  # escaped: the repo style check forbids the literal character
 
+# This script lives at scripts/kb-merge-translations.py inside the website
+# repo itself (not a sibling checkout), so every path below is relative to
+# that: ROOT is the repo root, KB_I18N holds the durable pipeline definition
+# (shell.json, glossary, instructions), WIP holds the per-run working files
+# (work_items.json, batches/, out/) that a translation pass produces and this
+# script consumes then merges away.
 HERE = os.path.dirname(os.path.abspath(__file__))
-SITE = os.path.join(HERE, '..', 'website')
-SNAP = os.path.join(SITE, 'src', 'data', 'generated', 'hubspot-kb.json')
-OUT = os.path.join(SITE, 'src', 'data', 'generated', 'kb-translations.json')
+ROOT = os.path.join(HERE, '..')
+KB_I18N = os.path.join(HERE, 'kb-i18n')
+WIP = os.path.join(KB_I18N, 'wip')
+SNAP = os.path.join(ROOT, 'src', 'data', 'generated', 'hubspot-kb.json')
+OUT = os.path.join(ROOT, 'src', 'data', 'generated', 'kb-translations.json')
 
 langs = sys.argv[1:] or ['de', 'nl', 'it']
 snapshot = json.load(open(SNAP, encoding='utf-8'))
-work = {w['id']: w for w in json.load(open(os.path.join(HERE, 'work_items.json'), encoding='utf-8'))}
-shell = json.load(open(os.path.join(HERE, 'shell.json'), encoding='utf-8'))
+work = {w['id']: w for w in json.load(open(os.path.join(WIP, 'work_items.json'), encoding='utf-8'))}
+shell = json.load(open(os.path.join(KB_I18N, 'shell.json'), encoding='utf-8'))
 
 def text_of(body):
     t = re.sub(r'<(script|style)[^>]*>.*?</\1>', ' ', body or '', flags=re.S | re.I)
@@ -50,7 +58,7 @@ translations, problems, counts = {}, [], {}
 for lang in langs:
     entries, seen = {}, set()
     for n in range(1, 5):
-        path = os.path.join(HERE, 'out', f'{lang}_batch{n}.json')
+        path = os.path.join(WIP, 'out', f'{lang}_batch{n}.json')
         if not os.path.exists(path):
             problems.append(f'{lang}: MISSING out/{lang}_batch{n}.json')
             continue

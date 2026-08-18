@@ -63,8 +63,18 @@ for (const category of snapshot.categories) {
   );
 }
 
+const translations = JSON.parse(await readFile(path.join(projectRoot, 'src/data/generated/kb-translations.json'), 'utf8'));
+const translatedArticleCount = (translations.languages ?? []).reduce(
+  (sum, locale) => sum + Object.keys(translations.articles?.[locale] ?? {}).length,
+  0,
+);
+
 const searchIndex = JSON.parse(await readFile(path.join(distRoot, 'kb-preview/search-index.json'), 'utf8'));
-assert.equal(searchIndex.length, snapshot.articles.length, 'search index must contain every article');
+assert.equal(
+  searchIndex.length,
+  snapshot.articles.length + translatedArticleCount,
+  'search index must contain every source article plus every translated article',
+);
 assert.equal(new Set(searchIndex.map((item) => item.path)).size, searchIndex.length, 'search paths must be unique');
 
 const previewTargets = new Set([

@@ -9,6 +9,10 @@ import CDP from 'chrome-remote-interface';
 const BASE = process.env.KB_BASE || 'http://localhost:8899';
 // KB_LOCALES=fr,de,nl,it to sweep several knowledge base languages in one run.
 const LOCALES = (process.env.KB_LOCALES || 'fr').split(',').map((code) => code.trim()).filter(Boolean);
+// The search probe query must be a word that actually occurs in that locale's
+// KB content (title/category/body) — "guide" is only a real word in en/fr/it.
+const SEARCH_QUERY_BY_LOCALE = { en: 'assignment', fr: 'guide', de: 'Zuweisung', nl: 'toewijzing', it: 'assegnazione' };
+const searchQueryFor = (locale) => SEARCH_QUERY_BY_LOCALE[locale] || 'guide';
 const VIEWPORTS = [
   { name: 'desktop', width: 1440, height: 900, mobile: false },
   { name: 'tablet', width: 768, height: 1024, mobile: true },
@@ -95,7 +99,7 @@ await withPage(async ({ Page, Runtime, Emulation, consoleErrors, failedRequests 
       const input = document.querySelector('[data-kb-search-input]');
       const results = document.querySelector('[data-kb-search-results]');
       input.focus();
-      input.value = 'guide';
+      input.value = '${searchQueryFor(locale)}';
       input.dispatchEvent(new Event('input', { bubbles: true }));
       await new Promise(r => setTimeout(r, 500));
       const links = [...results.querySelectorAll('a')];
@@ -212,7 +216,7 @@ await withPage(async ({ Page, Runtime, Emulation, consoleErrors, failedRequests 
         const artClip = await evalJs(Runtime, `(async () => {
           const input = document.querySelector('[data-kb-search-input]');
           const results = document.querySelector('[data-kb-search-results]');
-          input.focus(); input.value = 'guide';
+          input.focus(); input.value = '${searchQueryFor(locale)}';
           input.dispatchEvent(new Event('input', { bubbles: true }));
           await new Promise(r => setTimeout(r, 500));
           const links = [...results.querySelectorAll('a')];

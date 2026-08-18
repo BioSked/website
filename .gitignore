@@ -4,6 +4,12 @@ dist/
 # Generated types
 .astro/
 
+# Per-run working files for a KB translation pass (source batches, raw agent
+# output). kb-merge-translations.py consumes these and writes the durable
+# artifact at src/data/generated/kb-translations.json; the wip files themselves
+# aren't needed once merged.
+scripts/kb-i18n/wip/
+
 # dependencies
 node_modules/
 
