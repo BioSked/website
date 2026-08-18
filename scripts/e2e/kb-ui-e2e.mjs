@@ -10,7 +10,7 @@ const BASE = process.env.KB_BASE || 'http://localhost:8899';
 // KB_LOCALES=fr,de,nl,it to sweep several knowledge base languages in one run.
 const LOCALES = (process.env.KB_LOCALES || 'fr').split(',').map((code) => code.trim()).filter(Boolean);
 // The search probe query must be a word that actually occurs in that locale's
-// KB content (title/category/body) — "guide" is only a real word in en/fr/it.
+// KB content (title/category/body): "guide" is only a real word in en/fr/it.
 const SEARCH_QUERY_BY_LOCALE = { en: 'assignment', fr: 'guide', de: 'Zuweisung', nl: 'toewijzing', it: 'assegnazione' };
 const searchQueryFor = (locale) => SEARCH_QUERY_BY_LOCALE[locale] || 'guide';
 const VIEWPORTS = [
