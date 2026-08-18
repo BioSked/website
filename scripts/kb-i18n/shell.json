@@ -1,138 +1,258 @@
 {
-  "_note": "KB interface copy and taxonomy for de/nl/it. Vocabulary follows the shipped app strings (mobile/src/intl) and the existing biosked.com market pages (Dienstboerse / dienstenbeurs, Mitarbeitende / Personeel / Personale). Registers: de=Sie, nl=u, it=tu.",
-  "categories": {
-    "Admin Guides": { "de": "Administrationsleitfäden", "nl": "Beheerdersgidsen", "it": "Guide per amministratori" },
-    "Getting started": { "de": "Erste Schritte", "nl": "Aan de slag", "it": "Per iniziare" },
-    "New Date View": { "de": "Neue Datumsansicht", "nl": "Nieuwe datumweergave", "it": "Nuova vista per data" },
-    "New Mobile App is here!": { "de": "Die neue Mobile-App ist da!", "nl": "De nieuwe mobiele app is er!", "it": "La nuova app mobile è arrivata!" },
-    "Video Guides": { "de": "Videoanleitungen", "nl": "Videogidsen", "it": "Guide video" },
-    "Guides vidéo": { "de": "Videoanleitungen", "nl": "Videogidsen", "it": "Guide video" }
+ "_note": "KB interface copy and taxonomy for de/nl/it. Vocabulary follows the shipped app strings (mobile/src/intl) and the existing biosked.com market pages (Dienstboerse / dienstenbeurs, Mitarbeitende / Personeel / Personale). Registers: de=Sie, nl=u, it=tu.",
+ "categories": {
+  "Admin Guides": {
+   "de": "Administrationsleitfäden",
+   "nl": "Beheerdersgidsen",
+   "it": "Guide per amministratori"
   },
-  "subcategories": {
-    "Build Schedule": { "de": "Plan erstellen", "nl": "Planning maken", "it": "Creare la pianificazione" },
-    "Calendar Integration": { "de": "Kalenderintegration", "nl": "Agenda-integratie", "it": "Integrazione con il calendario" },
-    "Contracts": { "de": "Verträge", "nl": "Contracten", "it": "Contratti" },
-    "Edit Schedule": { "de": "Plan bearbeiten", "nl": "Planning bewerken", "it": "Modificare la pianificazione" },
-    "Edit Schedules": { "de": "Pläne bearbeiten", "nl": "Planningen bewerken", "it": "Modificare le pianificazioni" },
-    "Fiscal Periods": { "de": "Abrechnungsperioden", "nl": "Boekhoudperiodes", "it": "Periodi fiscali" },
-    "Mobile Application": { "de": "Mobile App", "nl": "Mobiele app", "it": "App mobile" },
-    "Multiselect & Smart-cloning": { "de": "Mehrfachauswahl und Smart-Cloning", "nl": "Multiselectie en Smart-cloning", "it": "Multi-selezione e Smart-cloning" },
-    "Notifications": { "de": "Benachrichtigungen", "nl": "Kennisgevingen", "it": "Notifiche" },
-    "Passwords": { "de": "Passwörter", "nl": "Wachtwoorden", "it": "Password" },
-    "Published Schedules": { "de": "Veröffentlichte Pläne", "nl": "Gepubliceerde planningen", "it": "Pianificazioni pubblicate" },
-    "Reporting": { "de": "Berichte", "nl": "Rapportage", "it": "Report" },
-    "Requests": { "de": "Anfragen", "nl": "Verzoeken", "it": "Richieste" },
-    "Role Groups": { "de": "Rollengruppen", "nl": "Rolgroepen", "it": "Gruppi di ruoli" },
-    "Roles": { "de": "Rollen", "nl": "Rollen", "it": "Ruoli" },
-    "Schedules": { "de": "Pläne", "nl": "Planningen", "it": "Pianificazioni" },
-    "Shift-view": { "de": "Dienstansicht", "nl": "Dienstweergave", "it": "Vista per turno" },
-    "Site Features": { "de": "Standortfunktionen", "nl": "Locatiefuncties", "it": "Funzioni della sede" },
-    "Staff": { "de": "Mitarbeitende", "nl": "Personeel", "it": "Personale" },
-    "Staff Accounts": { "de": "Mitarbeiterkonten", "nl": "Personeelsaccounts", "it": "Account del personale" },
-    "Swapping and Job Board": { "de": "Tausch und Dienstbörse", "nl": "Ruilen en dienstenbeurs", "it": "Scambi e bacheca dei turni" },
-    "Gestion des demandes": { "de": "Anfragenverwaltung", "nl": "Verzoeken beheren", "it": "Gestione delle richieste" },
-    "Modifier le calendrier": { "de": "Kalender bearbeiten", "nl": "Kalender bewerken", "it": "Modificare il calendario" },
-    "Rapports": { "de": "Berichte", "nl": "Rapportage", "it": "Report" }
+  "Getting started": {
+   "de": "Erste Schritte",
+   "nl": "Aan de slag",
+   "it": "Per iniziare"
   },
-  "copy": {
-    "de": {
-      "siteTitle": "Momentum Wissensdatenbank",
-      "siteDescription": "Praktische Anleitungen, Antworten zum Produkt und direkter Zugang zum BioSked Support.",
-      "searchPlaceholder": "Wissensdatenbank durchsuchen",
-      "searchLabel": "Hilfeartikel durchsuchen",
-      "searchHint": "Tippen Sie los, um Titel, Kategorien und Artikelinhalte zu durchsuchen.",
-      "noResults": "Keine passenden Artikel gefunden.",
-      "categoriesTitle": "Nach Kategorie suchen",
-      "latestTitle": "Zuletzt aktualisiert",
-      "allArticles": "Alle Artikel ansehen",
-      "backToHome": "Startseite der Wissensdatenbank",
-      "support": "Support kontaktieren",
-      "supportTitle": "Brauchen Sie weitere Hilfe?",
-      "supportDescription": "Schicken Sie dem BioSked Support die Details, wir leiten Ihre Anfrage an die richtige Person weiter.",
-      "supportFormTitle": "Supportanfrage senden",
-      "supportFormDescription": "Nutzen Sie das bestehende BioSked Supportformular. Ihre Anfrage folgt dem aktuellen Help-Desk-Routing.",
-      "formLoading": "Das sichere Supportformular wird geladen...",
-      "formFallback": "Das Formular wurde nicht geladen. Öffnen Sie stattdessen das ursprüngliche Supportformular.",
-      "formFallbackLink": "Supportformular öffnen",
-      "articleUpdated": "Aktualisiert",
-      "relatedArticles": "Weitere Artikel in dieser Kategorie",
-      "helpfulQuestion": "War dieser Artikel hilfreich?",
-      "helpfulYes": "Ja",
-      "helpfulNo": "Nein",
-      "feedbackThanks": "Danke für Ihr Feedback.",
-      "sourceLabel": "In HubSpot verwaltet",
-      "previewLabel": "Vorschau",
-      "previewNotice": "Dies ist die jederzeit umkehrbare Vorschau. Die aktuelle HubSpot-Wissensdatenbank bleibt online.",
-      "openArticle": "Artikel lesen",
-      "chooseLanguage": "Sprache der Wissensdatenbank wählen",
-      "articleCountOne": "1 Artikel",
-      "articleCountMany": "{count} Artikel"
-    },
-    "nl": {
-      "siteTitle": "Momentum kennisbank",
-      "siteDescription": "Praktische handleidingen, antwoorden over het product en direct contact met BioSked-support.",
-      "searchPlaceholder": "Zoek in de kennisbank",
-      "searchLabel": "Zoek in helpartikelen",
-      "searchHint": "Begin met typen om titels, categorieën en artikelinhoud te doorzoeken.",
-      "noResults": "Geen passende artikelen gevonden.",
-      "categoriesTitle": "Bladeren per categorie",
-      "latestTitle": "Onlangs bijgewerkt",
-      "allArticles": "Alle artikelen bekijken",
-      "backToHome": "Startpagina kennisbank",
-      "support": "Contact met support",
-      "supportTitle": "Toch nog hulp nodig?",
-      "supportDescription": "Stuur het BioSked-supportteam de details, dan sturen wij uw verzoek door naar de juiste persoon.",
-      "supportFormTitle": "Een supportverzoek indienen",
-      "supportFormDescription": "Gebruik het bestaande BioSked-supportformulier. Uw verzoek volgt de huidige Help Desk-routering.",
-      "formLoading": "Het beveiligde supportformulier wordt geladen...",
-      "formFallback": "Het formulier is niet geladen. Open in plaats daarvan het oorspronkelijke supportformulier.",
-      "formFallbackLink": "Supportformulier openen",
-      "articleUpdated": "Bijgewerkt",
-      "relatedArticles": "Meer in deze categorie",
-      "helpfulQuestion": "Was dit artikel nuttig?",
-      "helpfulYes": "Ja",
-      "helpfulNo": "Nee",
-      "feedbackThanks": "Bedankt voor uw feedback.",
-      "sourceLabel": "Beheerd in HubSpot",
-      "previewLabel": "Voorbeeld",
-      "previewNotice": "Dit is het omkeerbare voorbeeld. De huidige HubSpot-kennisbank blijft online.",
-      "openArticle": "Artikel lezen",
-      "chooseLanguage": "Kies de taal van de kennisbank",
-      "articleCountOne": "1 artikel",
-      "articleCountMany": "{count} artikelen"
-    },
-    "it": {
-      "siteTitle": "Base di conoscenza Momentum",
-      "siteDescription": "Guide pratiche, risposte sul prodotto e accesso diretto al supporto BioSked.",
-      "searchPlaceholder": "Cerca nella base di conoscenza",
-      "searchLabel": "Cerca tra gli articoli di aiuto",
-      "searchHint": "Inizia a digitare per cercare tra titoli, categorie e contenuti degli articoli.",
-      "noResults": "Nessun articolo corrispondente.",
-      "categoriesTitle": "Sfoglia per categoria",
-      "latestTitle": "Aggiornati di recente",
-      "allArticles": "Vedi tutti gli articoli",
-      "backToHome": "Home della base di conoscenza",
-      "support": "Contatta il supporto",
-      "supportTitle": "Ti serve ancora aiuto?",
-      "supportDescription": "Invia i dettagli al team di supporto BioSked: indirizzeremo la tua richiesta alla persona giusta.",
-      "supportFormTitle": "Invia una richiesta di supporto",
-      "supportFormDescription": "Usa il modulo di supporto BioSked esistente. La tua richiesta segue l'instradamento attuale dell'Help Desk.",
-      "formLoading": "Caricamento del modulo di supporto sicuro...",
-      "formFallback": "Il modulo non si è caricato. Apri il modulo di supporto originale.",
-      "formFallbackLink": "Apri il modulo di supporto",
-      "articleUpdated": "Aggiornato",
-      "relatedArticles": "Altri articoli di questa categoria",
-      "helpfulQuestion": "Questo articolo ti è stato utile?",
-      "helpfulYes": "Sì",
-      "helpfulNo": "No",
-      "feedbackThanks": "Grazie per il tuo riscontro.",
-      "sourceLabel": "Gestito in HubSpot",
-      "previewLabel": "Anteprima",
-      "previewNotice": "Questa è l'anteprima reversibile. L'attuale base di conoscenza HubSpot resta online.",
-      "openArticle": "Leggi l'articolo",
-      "chooseLanguage": "Scegli la lingua della base di conoscenza",
-      "articleCountOne": "1 articolo",
-      "articleCountMany": "{count} articoli"
-    }
+  "New Date View": {
+   "de": "Neue Datumsansicht",
+   "nl": "Nieuwe datumweergave",
+   "it": "Nuova vista per data"
+  },
+  "New Mobile App is here!": {
+   "de": "Die neue Mobile-App ist da!",
+   "nl": "De nieuwe mobiele app is er!",
+   "it": "La nuova app mobile è arrivata!"
+  },
+  "Video Guides": {
+   "de": "Videoanleitungen",
+   "nl": "Videogidsen",
+   "it": "Guide video"
+  },
+  "Guides vidéo": {
+   "de": "Videoanleitungen",
+   "nl": "Videogidsen",
+   "it": "Guide video"
   }
+ },
+ "subcategories": {
+  "Build Schedule": {
+   "de": "Plan erstellen",
+   "nl": "Planning maken",
+   "it": "Creare la pianificazione"
+  },
+  "Calendar Integration": {
+   "de": "Kalenderintegration",
+   "nl": "Agenda-integratie",
+   "it": "Integrazione con il calendario"
+  },
+  "Contracts": {
+   "de": "Verträge",
+   "nl": "Contracten",
+   "it": "Contratti"
+  },
+  "Edit Schedule": {
+   "de": "Plan bearbeiten",
+   "nl": "Planning bewerken",
+   "it": "Modificare la pianificazione"
+  },
+  "Edit Schedules": {
+   "de": "Pläne bearbeiten",
+   "nl": "Planningen bewerken",
+   "it": "Modificare le pianificazioni"
+  },
+  "Fiscal Periods": {
+   "de": "Abrechnungsperioden",
+   "nl": "Boekhoudperiodes",
+   "it": "Periodi fiscali"
+  },
+  "Mobile Application": {
+   "de": "Mobile App",
+   "nl": "Mobiele app",
+   "it": "App mobile"
+  },
+  "Multiselect & Smart-cloning": {
+   "de": "Mehrfachauswahl und Smart-Cloning",
+   "nl": "Multiselectie en Smart-cloning",
+   "it": "Multi-selezione e Smart-cloning"
+  },
+  "Notifications": {
+   "de": "Benachrichtigungen",
+   "nl": "Kennisgevingen",
+   "it": "Notifiche"
+  },
+  "Passwords": {
+   "de": "Passwörter",
+   "nl": "Wachtwoorden",
+   "it": "Password"
+  },
+  "Published Schedules": {
+   "de": "Veröffentlichte Pläne",
+   "nl": "Gepubliceerde planningen",
+   "it": "Pianificazioni pubblicate"
+  },
+  "Reporting": {
+   "de": "Berichte",
+   "nl": "Rapportage",
+   "it": "Report"
+  },
+  "Requests": {
+   "de": "Anfragen",
+   "nl": "Verzoeken",
+   "it": "Richieste"
+  },
+  "Role Groups": {
+   "de": "Rollengruppen",
+   "nl": "Rolgroepen",
+   "it": "Gruppi di ruoli"
+  },
+  "Roles": {
+   "de": "Rollen",
+   "nl": "Rollen",
+   "it": "Ruoli"
+  },
+  "Schedules": {
+   "de": "Pläne",
+   "nl": "Planningen",
+   "it": "Pianificazioni"
+  },
+  "Shift-view": {
+   "de": "Dienstansicht",
+   "nl": "Dienstweergave",
+   "it": "Vista per turno"
+  },
+  "Site Features": {
+   "de": "Standortfunktionen",
+   "nl": "Locatiefuncties",
+   "it": "Funzioni della sede"
+  },
+  "Staff": {
+   "de": "Mitarbeitende",
+   "nl": "Personeel",
+   "it": "Personale"
+  },
+  "Staff Accounts": {
+   "de": "Mitarbeiterkonten",
+   "nl": "Personeelsaccounts",
+   "it": "Account del personale"
+  },
+  "Swapping and Job Board": {
+   "de": "Tausch und Dienstbörse",
+   "nl": "Ruilen en dienstenbeurs",
+   "it": "Scambi e bacheca dei turni"
+  },
+  "Gestion des demandes": {
+   "de": "Anfragenverwaltung",
+   "nl": "Verzoeken beheren",
+   "it": "Gestione delle richieste"
+  },
+  "Modifier le calendrier": {
+   "de": "Kalender bearbeiten",
+   "nl": "Kalender bewerken",
+   "it": "Modificare il calendario"
+  },
+  "Rapports": {
+   "de": "Berichte",
+   "nl": "Rapportage",
+   "it": "Report"
+  }
+ },
+ "copy": {
+  "de": {
+   "siteTitle": "Momentum Wissensdatenbank",
+   "siteDescription": "Praktische Anleitungen, Antworten zum Produkt und direkter Zugang zum BioSked Support.",
+   "searchPlaceholder": "Wissensdatenbank durchsuchen",
+   "searchLabel": "Hilfeartikel durchsuchen",
+   "searchHint": "Tippen Sie los, um Titel, Kategorien und Artikelinhalte zu durchsuchen.",
+   "noResults": "Keine passenden Artikel gefunden.",
+   "categoriesTitle": "Nach Kategorie suchen",
+   "latestTitle": "Zuletzt aktualisiert",
+   "allArticles": "Alle Artikel ansehen",
+   "backToHome": "Startseite der Wissensdatenbank",
+   "support": "Support kontaktieren",
+   "supportTitle": "Brauchen Sie weitere Hilfe?",
+   "supportDescription": "Schicken Sie dem BioSked Support die Details, wir leiten Ihre Anfrage an die richtige Person weiter.",
+   "supportFormTitle": "Supportanfrage senden",
+   "supportFormDescription": "Beschreiben Sie unten, worum es geht. Unser Support-Team meldet sich anschließend per E-Mail bei Ihnen.",
+   "formLoading": "Das sichere Supportformular wird geladen...",
+   "formFallback": "Das Formular wurde nicht geladen. Öffnen Sie stattdessen das ursprüngliche Supportformular.",
+   "formFallbackLink": "Supportformular öffnen",
+   "articleUpdated": "Aktualisiert",
+   "relatedArticles": "Weitere Artikel in dieser Kategorie",
+   "helpfulQuestion": "War dieser Artikel hilfreich?",
+   "helpfulYes": "Ja",
+   "helpfulNo": "Nein",
+   "feedbackThanks": "Danke für Ihr Feedback.",
+   "sourceLabel": "In HubSpot verwaltet",
+   "previewLabel": "Vorschau",
+   "previewNotice": "Dies ist die jederzeit umkehrbare Vorschau. Die aktuelle HubSpot-Wissensdatenbank bleibt online.",
+   "openArticle": "Artikel lesen",
+   "chooseLanguage": "Sprache der Wissensdatenbank wählen",
+   "articleCountOne": "1 Artikel",
+   "articleCountMany": "{count} Artikel"
+  },
+  "nl": {
+   "siteTitle": "Momentum kennisbank",
+   "siteDescription": "Praktische handleidingen, antwoorden over het product en direct contact met BioSked-support.",
+   "searchPlaceholder": "Zoek in de kennisbank",
+   "searchLabel": "Zoek in helpartikelen",
+   "searchHint": "Begin met typen om titels, categorieën en artikelinhoud te doorzoeken.",
+   "noResults": "Geen passende artikelen gevonden.",
+   "categoriesTitle": "Bladeren per categorie",
+   "latestTitle": "Onlangs bijgewerkt",
+   "allArticles": "Alle artikelen bekijken",
+   "backToHome": "Startpagina kennisbank",
+   "support": "Contact met support",
+   "supportTitle": "Toch nog hulp nodig?",
+   "supportDescription": "Stuur het BioSked-supportteam de details, dan sturen wij uw verzoek door naar de juiste persoon.",
+   "supportFormTitle": "Een supportverzoek indienen",
+   "supportFormDescription": "Beschrijf hieronder wat er aan de hand is. Ons supportteam neemt per e-mail contact met u op.",
+   "formLoading": "Het beveiligde supportformulier wordt geladen...",
+   "formFallback": "Het formulier is niet geladen. Open in plaats daarvan het oorspronkelijke supportformulier.",
+   "formFallbackLink": "Supportformulier openen",
+   "articleUpdated": "Bijgewerkt",
+   "relatedArticles": "Meer in deze categorie",
+   "helpfulQuestion": "Was dit artikel nuttig?",
+   "helpfulYes": "Ja",
+   "helpfulNo": "Nee",
+   "feedbackThanks": "Bedankt voor uw feedback.",
+   "sourceLabel": "Beheerd in HubSpot",
+   "previewLabel": "Voorbeeld",
+   "previewNotice": "Dit is het omkeerbare voorbeeld. De huidige HubSpot-kennisbank blijft online.",
+   "openArticle": "Artikel lezen",
+   "chooseLanguage": "Kies de taal van de kennisbank",
+   "articleCountOne": "1 artikel",
+   "articleCountMany": "{count} artikelen"
+  },
+  "it": {
+   "siteTitle": "Base di conoscenza Momentum",
+   "siteDescription": "Guide pratiche, risposte sul prodotto e accesso diretto al supporto BioSked.",
+   "searchPlaceholder": "Cerca nella base di conoscenza",
+   "searchLabel": "Cerca tra gli articoli di aiuto",
+   "searchHint": "Inizia a digitare per cercare tra titoli, categorie e contenuti degli articoli.",
+   "noResults": "Nessun articolo corrispondente.",
+   "categoriesTitle": "Sfoglia per categoria",
+   "latestTitle": "Aggiornati di recente",
+   "allArticles": "Vedi tutti gli articoli",
+   "backToHome": "Home della base di conoscenza",
+   "support": "Contatta il supporto",
+   "supportTitle": "Ti serve ancora aiuto?",
+   "supportDescription": "Invia i dettagli al team di supporto BioSked: indirizzeremo la tua richiesta alla persona giusta.",
+   "supportFormTitle": "Invia una richiesta di supporto",
+   "supportFormDescription": "Descrivi qui sotto cosa succede. Il nostro team di supporto ti risponderà via e-mail.",
+   "formLoading": "Caricamento del modulo di supporto sicuro...",
+   "formFallback": "Il modulo non si è caricato. Apri il modulo di supporto originale.",
+   "formFallbackLink": "Apri il modulo di supporto",
+   "articleUpdated": "Aggiornato",
+   "relatedArticles": "Altri articoli di questa categoria",
+   "helpfulQuestion": "Questo articolo ti è stato utile?",
+   "helpfulYes": "Sì",
+   "helpfulNo": "No",
+   "feedbackThanks": "Grazie per il tuo riscontro.",
+   "sourceLabel": "Gestito in HubSpot",
+   "previewLabel": "Anteprima",
+   "previewNotice": "Questa è l'anteprima reversibile. L'attuale base di conoscenza HubSpot resta online.",
+   "openArticle": "Leggi l'articolo",
+   "chooseLanguage": "Scegli la lingua della base di conoscenza",
+   "articleCountOne": "1 articolo",
+   "articleCountMany": "{count} articoli"
+  }
+ }
 }
