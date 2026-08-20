@@ -53,7 +53,7 @@ const resultsId = `${searchId}-results`;
     class="kb-search-results absolute inset-x-0 top-full z-40 mt-2 hidden max-h-[28rem] overflow-y-auto rounded-2xl border border-slate-200 bg-white p-2 text-left shadow-2xl"
     data-kb-search-results
   ></div>
-  <template data-kb-search-copy data-no-results={copy.noResults} data-open-article={copy.openArticle}></template>
+  <template data-kb-search-copy data-no-results={copy.noResults} data-open-article={copy.openArticle} data-filter-all={copy.filterAll} data-filter-label={copy.filterLabel}></template>
 </div>
 
 <style>
@@ -98,6 +98,10 @@ const resultsId = `${searchId}-results`;
     const copy = root.querySelector('[data-kb-search-copy]');
     let matches = [];
     let activeIndex = -1;
+    // Category filter: null = all. The old HubSpot KB's results page shows
+    // filter checkboxes that stopped filtering anything, so the preview grew
+    // a working replacement.
+    let activeCategory = null;
     const canPopover = typeof results.showPopover === 'function' && typeof HTMLElement !== 'undefined'
       && HTMLElement.prototype.hasOwnProperty('popover');
 
@@ -154,10 +158,46 @@ const resultsId = `${searchId}-results`;
       links[activeIndex].focus();
     };
 
-    const render = (items) => {
+    const renderChips = (categories) => {
+      if (categories.length < 2) return null;
+      const bar = document.createElement('div');
+      bar.className = 'sticky top-0 z-10 flex flex-wrap gap-1.5 border-b border-slate-100 bg-white px-2 pb-2 pt-1';
+      bar.setAttribute('role', 'group');
+      bar.setAttribute('aria-label', copy.dataset.filterLabel);
+      const makeChip = (label, value) => {
+        const chip = document.createElement('button');
+        chip.type = 'button';
+        const active = value === activeCategory;
+        // min-h keeps every chip a comfortable touch target (the e2e suite
+        // flags anything under 32px on mobile viewports).
+        chip.className = active
+          ? 'min-h-[34px] rounded-full bg-[#0f6f76] px-3.5 py-1 text-xs font-semibold text-white'
+          : 'min-h-[34px] rounded-full bg-slate-100 px-3.5 py-1 text-xs font-semibold text-slate-600 transition hover:bg-[#d9f2f1] hover:text-[#0f6f76]';
+        chip.setAttribute('aria-pressed', active ? 'true' : 'false');
+        chip.textContent = label;
+        chip.addEventListener('click', (event) => {
+          event.preventDefault();
+          // The re-render detaches this chip before the click reaches the
+          // document's outside-click handler, which would then read it as an
+          // outside click and close the list.
+          event.stopPropagation();
+          activeCategory = value;
+          search();
+          input.focus();
+        });
+        return chip;
+      };
+      bar.append(makeChip(copy.dataset.filterAll, null));
+      categories.forEach((category) => bar.append(makeChip(category, category)));
+      return bar;
+    };
+
+    const render = (items, categories) => {
       results.replaceChildren();
       matches = items;
       activeIndex = -1;
+      const chips = renderChips(categories || []);
+      if (chips) results.append(chips);
       if (!items.length) {
         const empty = document.createElement('p');
         empty.className = 'px-4 py-5 text-sm text-slate-500';
@@ -190,6 +230,7 @@ const resultsId = `${searchId}-results`;
     const search = async () => {
       const query = normalizeKbSearch(input.value);
       if (query.length < 2) {
+        activeCategory = null;
         close();
         status.textContent = '';
         return;
@@ -217,12 +258,16 @@ const resultsId = `${searchId}-results`;
             return { ...item, score };
           })
           .filter(Boolean)
-          .sort((left, right) => right.score - left.score || left.title.localeCompare(right.title, locale))
-          .slice(0, 8);
-        render(scored);
+          .sort((left, right) => right.score - left.score || left.title.localeCompare(right.title, locale));
+        // Chips come from the full match set; the cap applies after filtering so
+        // a narrowed category still shows up to 8 of its own results.
+        const categories = [...new Set(scored.map((item) => item.category).filter(Boolean))];
+        if (activeCategory && !categories.includes(activeCategory)) activeCategory = null;
+        const visible = (activeCategory ? scored.filter((item) => item.category === activeCategory) : scored).slice(0, 8);
+        render(visible, categories);
       } catch (error) {
         console.error(error);
-        render([]);
+        render([], []);
       }
     };
 

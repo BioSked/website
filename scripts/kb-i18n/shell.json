@@ -186,7 +186,9 @@
    "openArticle": "Artikel lesen",
    "chooseLanguage": "Sprache der Wissensdatenbank wählen",
    "articleCountOne": "1 Artikel",
-   "articleCountMany": "{count} Artikel"
+   "articleCountMany": "{count} Artikel",
+   "filterAll": "Alle",
+   "filterLabel": "Nach Kategorie filtern"
   },
   "nl": {
    "siteTitle": "Momentum kennisbank",
@@ -219,7 +221,9 @@
    "openArticle": "Artikel lezen",
    "chooseLanguage": "Kies de taal van de kennisbank",
    "articleCountOne": "1 artikel",
-   "articleCountMany": "{count} artikelen"
+   "articleCountMany": "{count} artikelen",
+   "filterAll": "Alle",
+   "filterLabel": "Filteren op categorie"
   },
   "it": {
    "siteTitle": "Base di conoscenza Momentum",
@@ -252,7 +256,9 @@
    "openArticle": "Leggi l'articolo",
    "chooseLanguage": "Scegli la lingua della base di conoscenza",
    "articleCountOne": "1 articolo",
-   "articleCountMany": "{count} articoli"
+   "articleCountMany": "{count} articoli",
+   "filterAll": "Tutte",
+   "filterLabel": "Filtra per categoria"
   }
  }
 }
