@@ -100,6 +100,16 @@ for (const file of requiredFrontendFiles) {
 const searchSource = frontendSources.get('src/components/kb/KbSearch.astro');
 assert.match(searchSource, /role="combobox"/, 'KB search must expose combobox semantics');
 assert.match(searchSource, /aria-controls=\{resultsId\}/, 'KB search must associate the input with its results');
+assert.match(
+  searchSource,
+  /CSS\.supports\(['"]selector\(:popover-open\)['"]\)/,
+  'KB search must verify :popover-open selector support before calling Element.matches',
+);
+assert.match(
+  searchSource,
+  /document\.body\.append(?:Child)?\(results\)/,
+  'KB search must portal its fixed-position fallback outside clipping ancestors',
+);
 
 assert.match(
   frontendSources.get('src/components/BaseHead.astro'),

@@ -43,8 +43,8 @@ const resultsId = `${searchId}-results`;
     popover="manual" renders the result list in the browser's top layer, so it can
     never be clipped by an ancestor's overflow (the hero section, the layout's
     overflow-x-clip main, or the scrolling body all used to cut it off).
-    Positioning is computed from the input rect; the absolute/z-40 classes remain
-    as the fallback for browsers without popover support.
+    Positioning is computed from the input rect. Browsers with incomplete popover
+    support use a fixed-position body portal instead of the clipped inline list.
   -->
   <div
     id={resultsId}
@@ -102,12 +102,24 @@ const resultsId = `${searchId}-results`;
     // filter checkboxes that stopped filtering anything, so the preview grew
     // a working replacement.
     let activeCategory = null;
-    const canPopover = typeof results.showPopover === 'function' && typeof HTMLElement !== 'undefined'
+    // Chrome 113 exposes showPopover()/HTMLElement.popover but does not support
+    // :popover-open. Calling matches(':popover-open') there throws and aborts the
+    // search completely, so selector support is part of the capability check.
+    const canPopover = typeof CSS !== 'undefined' && typeof CSS.supports === 'function'
+      && CSS.supports('selector(:popover-open)')
+      && typeof results.showPopover === 'function' && typeof HTMLElement !== 'undefined'
       && HTMLElement.prototype.hasOwnProperty('popover');
+
+    if (!canPopover) {
+      results.removeAttribute('popover');
+      document.body.append(results);
+      results.style.position = 'fixed';
+      results.style.margin = '0';
+      results.style.right = 'auto';
+    }
 
     // Anchor the top-layer list to the input and keep it inside the viewport.
     const position = () => {
-      if (!canPopover) return;
       const rect = input.getBoundingClientRect();
       const gap = 8;
       const below = window.innerHeight - rect.bottom - gap - 12;
@@ -129,11 +141,11 @@ const resultsId = `${searchId}-results`;
     };
 
     const open = () => {
+      results.classList.remove('hidden');
       if (canPopover) {
         if (!results.matches(':popover-open')) results.showPopover();
-        position();
       }
-      results.classList.remove('hidden');
+      position();
       input.setAttribute('aria-expanded', 'true');
     };
 
@@ -294,7 +306,7 @@ const resultsId = `${searchId}-results`;
       if (first) window.location.assign(first.href);
     });
     document.addEventListener('click', (event) => {
-      if (!root.contains(event.target)) close();
+      if (!root.contains(event.target) && !results.contains(event.target)) close();
     });
   };
 
