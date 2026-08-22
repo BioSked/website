@@ -5,14 +5,18 @@ import { fileURLToPath } from 'node:url';
 
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const distRoot = path.join(projectRoot, 'dist');
+const siteOrigin = 'https://biosked.com';
 const snapshot = JSON.parse(await readFile(path.join(projectRoot, 'src/data/generated/hubspot-kb.json'), 'utf8'));
+const translations = JSON.parse(await readFile(path.join(projectRoot, 'src/data/generated/kb-translations.json'), 'utf8'));
 
-const htmlPathFor = (previewPath) => {
-  const decoded = decodeURIComponent(new URL(previewPath, 'https://biosked.com').pathname);
+// English lives at the site root like every other English page, the rest is prefixed.
+const kbPath = (locale, rest = '/') => (locale === 'en' ? `/help${rest}` : `/${locale}/help${rest}`);
+const escapeRegExp = (value) => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+const htmlPathFor = (sitePath) => {
+  const decoded = decodeURIComponent(new URL(sitePath, siteOrigin).pathname);
   return path.join(distRoot, decoded.replace(/^\//, ''), 'index.html');
 };
-
-const readHtml = async (previewPath) => readFile(htmlPathFor(previewPath), 'utf8');
+const readHtml = async (sitePath) => readFile(htmlPathFor(sitePath), 'utf8');
 const exists = async (target) => {
   try {
     await access(target);
@@ -21,87 +25,119 @@ const exists = async (target) => {
     return false;
   }
 };
-
-for (const locale of ['de', 'de-ch', 'nl', 'it']) {
-  assert.equal(
-    await exists(path.join(distRoot, locale, 'kb-preview')),
-    false,
-    `synthetic ${locale}/kb-preview fallback tree must be pruned`,
+const assertLive = (html, label) => {
+  assert.match(html, /<meta name="robots" content="index, follow">/, `${label}: knowledge base pages must be indexable`);
+  assert.doesNotMatch(html, /kb\.biosked\.(?:com|fr)\/(?:en|fr)\/knowledge|content\.biosked\.com/, `${label}: must not link to the HubSpot-hosted knowledge base`);
+};
+const assertCanonical = (html, sitePath, label) => {
+  assert.match(
+    html,
+    new RegExp(`<link rel="canonical" href="${escapeRegExp(siteOrigin + sitePath.replace(/\/$/, ''))}/?">`),
+    `${label}: canonical must be the page itself`,
   );
+};
+
+const translatedLocales = (translations.languages ?? []).filter((locale) => Object.keys(translations.articles?.[locale] ?? {}).length > 0);
+const activeLocales = ['en', 'fr', ...translatedLocales];
+
+// The preview is gone for good, and the Swiss locales read de/fr instead of getting copies.
+assert.equal(await exists(path.join(distRoot, 'kb-preview')), false, 'the /kb-preview tree must no longer be generated');
+for (const locale of ['de', 'de-ch', 'nl', 'it', 'fr-ch']) {
+  assert.equal(await exists(path.join(distRoot, locale, 'kb-preview')), false, `${locale}/kb-preview must not exist`);
+}
+for (const locale of ['de-ch', 'fr-ch']) {
+  assert.equal(await exists(path.join(distRoot, locale, 'help')), false, `${locale}/help must not be generated (it reads the de/fr knowledge base)`);
 }
 
-for (const locale of ['en', 'fr']) {
-  const homePath = `/kb-preview/${locale}/knowledge`;
+for (const locale of activeLocales) {
+  const homePath = kbPath(locale);
   const home = await readHtml(homePath);
-  assert.match(home, /<meta name="robots" content="noindex, nofollow">/);
-  assert.match(home, new RegExp(`<link rel="canonical" href="https://kb\\.biosked\\.com/${locale}/knowledge">`));
+  assertLive(home, homePath);
+  assertCanonical(home, homePath, homePath);
+  for (const other of activeLocales) {
+    assert.ok(
+      home.includes(`hreflang="${other}" href="${siteOrigin}${kbPath(other)}"`),
+      `${homePath}: hreflang must list the ${other} knowledge base`,
+    );
+  }
 
-  const supportPath = `/kb-preview/${locale}/knowledge/kb-tickets/new`;
+  const supportPath = kbPath(locale, '/kb-tickets/new/');
   const support = await readHtml(supportPath);
-  const form = snapshot.forms[locale];
-  assert.ok(support.includes(form.portalId), `${locale} support page is missing portal ID`);
-  assert.ok(support.includes(form.formId), `${locale} support page is missing form ID`);
-  assert.ok(support.includes(form.region), `${locale} support page is missing HubSpot region`);
-}
+  assertLive(support, supportPath);
+  const form = snapshot.forms[locale] ?? snapshot.forms.en;
+  assert.ok(support.includes(form.portalId), `${supportPath} is missing the HubSpot portal ID`);
+  assert.ok(support.includes(form.formId), `${supportPath} is missing the HubSpot form ID`);
+  assert.ok(support.includes(form.region), `${supportPath} is missing the HubSpot region`);
+  assert.ok(support.includes('mailto:support@biosked.com'), `${supportPath} must offer the email fallback`);
 
-for (const article of snapshot.articles) {
-  const html = await readHtml(article.previewPath);
-  assert.match(html, /<meta name="robots" content="noindex, nofollow">/, `${article.previewPath}: preview must remain noindex`);
-  assert.ok(
-    html.includes(`<link rel="canonical" href="${article.sourceUrl}">`),
-    `${article.previewPath}: canonical must point at its live HubSpot source`,
-  );
-  assert.ok(html.includes(`data-article-id="${article.articleId}"`), `${article.previewPath}: article feedback ID missing`);
-}
-
-for (const category of snapshot.categories) {
-  const html = await readHtml(category.previewPath);
-  assert.match(html, /<meta name="robots" content="noindex, nofollow">/, `${category.previewPath}: category must remain noindex`);
-  assert.ok(
-    html.includes(`<link rel="canonical" href="https://kb.biosked.com${category.path}">`),
-    `${category.previewPath}: category canonical is wrong`,
-  );
-}
-
-const translations = JSON.parse(await readFile(path.join(projectRoot, 'src/data/generated/kb-translations.json'), 'utf8'));
-const translatedArticleCount = (translations.languages ?? []).reduce(
-  (sum, locale) => sum + Object.keys(translations.articles?.[locale] ?? {}).length,
-  0,
-);
-
-const searchIndex = JSON.parse(await readFile(path.join(distRoot, 'kb-preview/search-index.json'), 'utf8'));
-assert.equal(
-  searchIndex.length,
-  snapshot.articles.length + translatedArticleCount,
-  'search index must contain every source article plus every translated article',
-);
-assert.equal(new Set(searchIndex.map((item) => item.path)).size, searchIndex.length, 'search paths must be unique');
-
-const previewTargets = new Set([
-  '/kb-preview',
-  '/kb-preview/en/knowledge',
-  '/kb-preview/fr/knowledge',
-  '/kb-preview/en/knowledge/kb-tickets/new',
-  '/kb-preview/fr/knowledge/kb-tickets/new',
-  ...snapshot.articles.map((article) => article.previewPath.replace(/\/$/, '')),
-  ...snapshot.categories.map((category) => category.previewPath.replace(/\/$/, '')),
-]);
-
-for (const article of snapshot.articles) {
-  for (const match of article.bodyHtml.matchAll(/href="(\/kb-preview\/[^"#?]+)(?:[?#][^"]*)?"/g)) {
-    const target = decodeURIComponent(match[1]).replace(/\/$/, '');
-    assert.ok(previewTargets.has(target), `${article.sourcePath}: internal link has no generated target: ${target}`);
+  const index = JSON.parse(await readFile(path.join(distRoot, 'help', `search-index-${locale}.json`), 'utf8'));
+  const expectedCount = locale === 'en' || locale === 'fr'
+    ? snapshot.articles.filter((article) => article.locale === locale).length
+    : Object.keys(translations.articles[locale]).length;
+  assert.equal(index.length, expectedCount, `${locale} search index must contain every ${locale} article`);
+  assert.equal(new Set(index.map((item) => item.path)).size, index.length, `${locale} search paths must be unique`);
+  for (const item of index) {
+    assert.ok(item.path.startsWith(kbPath(locale)), `${locale} search index must stay inside its locale: ${item.path}`);
   }
 }
 
-const sitemapFiles = ['sitemap-index.xml', 'sitemap-0.xml'];
-for (const file of sitemapFiles) {
+const sourceById = new Map(snapshot.articles.map((article) => [article.articleId, article]));
+const expectedTargets = new Set([
+  ...activeLocales.map((locale) => kbPath(locale).replace(/\/$/, '')),
+  ...activeLocales.map((locale) => kbPath(locale, '/kb-tickets/new')),
+  ...snapshot.articles.map((article) => article.sitePath),
+  ...snapshot.categories.map((category) => category.sitePath),
+]);
+
+for (const article of snapshot.articles) {
+  const html = await readHtml(article.sitePath);
+  assertLive(html, article.sitePath);
+  assertCanonical(html, article.sitePath, article.sitePath);
+  assert.ok(html.includes(`data-article-id="${article.articleId}"`), `${article.sitePath}: article feedback ID missing`);
+}
+
+for (const locale of translatedLocales) {
+  for (const [articleId] of Object.entries(translations.articles[locale])) {
+    const source = sourceById.get(articleId);
+    assert.ok(source, `${locale}: translated article ${articleId} has no source article`);
+    const slug = source.sourcePath.split('/knowledge/')[1];
+    const sitePath = kbPath(locale, `/${slug}`);
+    expectedTargets.add(sitePath);
+    const html = await readHtml(sitePath);
+    assertLive(html, sitePath);
+    assertCanonical(html, sitePath, sitePath);
+  }
+  // Translated categories reuse the slug of the source category (English or French).
+  for (const category of snapshot.categories) {
+    expectedTargets.add(kbPath(locale, `/${category.path.split('/knowledge/')[1]}`));
+  }
+}
+
+for (const category of snapshot.categories) {
+  const html = await readHtml(category.sitePath);
+  assertLive(html, category.sitePath);
+  assertCanonical(html, category.sitePath, category.sitePath);
+}
+
+for (const article of snapshot.articles) {
+  for (const match of article.bodyHtml.matchAll(/href="(\/(?:[a-z]{2}\/)?help\/[^"#?]+)(?:[?#][^"]*)?"/g)) {
+    const target = decodeURIComponent(match[1]).replace(/\/$/, '');
+    assert.ok(expectedTargets.has(target), `${article.sourcePath}: internal link has no generated target: ${target}`);
+  }
+}
+
+for (const file of ['sitemap-index.xml', 'sitemap-0.xml']) {
   const target = path.join(distRoot, file);
   if (!(await exists(target))) continue;
   const xml = await readFile(target, 'utf8');
-  assert.equal(xml.includes('/kb-preview/'), false, `${file}: preview pages must not be indexed`);
+  assert.equal(xml.includes('/kb-preview/'), false, `${file}: preview paths must never be published`);
+  if (file === 'sitemap-0.xml') {
+    for (const locale of activeLocales) {
+      assert.ok(xml.includes(`<loc>${siteOrigin}${kbPath(locale)}</loc>`), `${file}: must list the ${locale} knowledge base home`);
+    }
+  }
 }
 
 console.log(
-  `KB dist OK: ${snapshot.articles.length} articles, ${snapshot.categories.length} categories, both live HubSpot forms wired`,
+  `KB dist OK: ${snapshot.articles.length} source articles, ${translatedLocales.length} translated locales, ${snapshot.categories.length} categories, live HubSpot forms wired`,
 );

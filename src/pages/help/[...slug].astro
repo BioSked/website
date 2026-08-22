@@ -1,0 +1,12 @@
+---
+import KbEntryPage from '@/components/kb/pages/KbEntryPage.astro';
+import { kbEntryRoutes, type KbEntryProps } from '@/lib/kb';
+
+export function getStaticPaths() {
+  return kbEntryRoutes(['en']).map(({ slug, props }) => ({ params: { slug }, props }));
+}
+
+const props = Astro.props as KbEntryProps;
+---
+
+<KbEntryPage {...props} />

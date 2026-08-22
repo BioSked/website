@@ -170,17 +170,17 @@ assert.equal(
   'whitepaper_unlock',
 );
 assert.equal(
-  leadEventForForm('d6e6cae7-b838-40b9-b84b-bbfb1a46ec1e', '/kb-preview/en/knowledge/kb-tickets/new/'),
+  leadEventForForm('d6e6cae7-b838-40b9-b84b-bbfb1a46ec1e', '/help/kb-tickets/new/'),
   'kb_support_form_submit',
 );
 assert.equal(
-  leadEventForForm('894f4e34-0e56-402f-9092-b09cc9876473', '/kb-preview/fr/knowledge/kb-tickets/new/'),
+  leadEventForForm('894f4e34-0e56-402f-9092-b09cc9876473', '/fr/help/kb-tickets/new/'),
   'kb_support_form_submit',
 );
 const kbSnapshot = JSON.parse(read('src/data/generated/hubspot-kb.json'));
 for (const [name, form] of Object.entries(kbSnapshot.forms)) {
   assert.equal(
-    leadEventForForm(form.formId, `/kb-preview/${form.locale}/knowledge/kb-tickets/new/`),
+    leadEventForForm(form.formId, name === 'en' ? '/help/kb-tickets/new/' : `/${name}/help/kb-tickets/new/`),
     'kb_support_form_submit',
     `${name} analytics mapping`,
   );
@@ -452,7 +452,7 @@ assert.equal(configCommands[0][2].allow_ad_personalization_signals, false);
 assert.equal(configCommands[0][2].cookie_expires, 34128000);
 assert.equal(configCommands[0][2].cookie_update, false);
 
-const kbArticlePage = read('src/pages/kb-preview/[lang]/knowledge/[...slug].astro');
+const kbArticlePage = read('src/components/kb/pages/KbEntryPage.astro');
 assert.match(kbArticlePage, /window\.__bskGALoaded\s*===\s*true[\s\S]{0,120}window\.gtag\('event',\s*'kb_article_feedback'/);
 
 const consentBanner = read('src/components/ConsentBanner.astro');
@@ -519,7 +519,7 @@ assert.match(generatedRedirects, /^\/demander-une-demonstration\/ \/fr\/demo\/ 3
 const packageJson = JSON.parse(read('package.json'));
 assert.equal(
   packageJson.scripts.postbuild,
-  'node scripts/generate-static-redirect-pages.mjs && node scripts/prune-kb-preview-fallbacks.mjs && npm run test:seo && npm run test:kb:dist && node scripts/test-style.mjs dist',
+  'node scripts/generate-static-redirect-pages.mjs && npm run test:seo && npm run test:kb:dist && node scripts/kb-translation-staleness.mjs && node scripts/test-style.mjs dist',
 );
 
 const staticRedirectGenerator = read('scripts/generate-static-redirect-pages.mjs');

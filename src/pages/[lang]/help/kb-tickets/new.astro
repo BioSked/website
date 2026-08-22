@@ -1,0 +1,12 @@
+---
+import KbSupportPage from '@/components/kb/pages/KbSupportPage.astro';
+import { KB_ACTIVE_LOCALES, type KbLocale } from '@/lib/kb';
+
+export function getStaticPaths() {
+  return KB_ACTIVE_LOCALES.filter((locale) => locale !== 'en').map((locale) => ({ params: { lang: locale }, props: { locale } }));
+}
+
+const { locale } = Astro.props as { locale: KbLocale };
+---
+
+<KbSupportPage locale={locale} />

@@ -6,7 +6,7 @@
     "dev": "astro dev",
     "prebuild": "npm run test:analytics && npm run test:locales && npm run test:style && npm run test:kb",
     "build": "astro build",
-    "postbuild": "node scripts/generate-static-redirect-pages.mjs && node scripts/prune-kb-preview-fallbacks.mjs && npm run test:seo && npm run test:kb:dist && node scripts/test-style.mjs dist",
+    "postbuild": "node scripts/generate-static-redirect-pages.mjs && npm run test:seo && npm run test:kb:dist && node scripts/kb-translation-staleness.mjs && node scripts/test-style.mjs dist",
     "preview": "astro preview",
     "sync:kb": "node scripts/sync-hubspot-kb.mjs",
     "test:kb": "node scripts/test-kb.mjs",

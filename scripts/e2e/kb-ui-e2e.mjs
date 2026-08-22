@@ -1,5 +1,5 @@
 /**
- * KB preview end-to-end browser tests (desktop + responsive).
+ * Knowledge base end-to-end browser tests (desktop + responsive).
  * Drives a real Chrome via CDP, no external deps beyond the bundled puppeteer-core
  * used by lighthouse, so it runs offline.
  */
@@ -71,7 +71,7 @@ await withPage(async ({ Page, Runtime, Emulation, consoleErrors, failedRequests 
     for (const locale of LOCALES) {
     // ---------- KB home ----------
     currentLocale = locale;
-    await goto(Page, Runtime, `${BASE}/kb-preview/${locale}/knowledge/`);
+    await goto(Page, Runtime, `${BASE}${locale === 'en' ? '/help/' : `/${locale}/help/`}`);
 
     // 1. Search dropdown must not be clipped by any ancestor
     const clip = await evalJs(Runtime, `(() => {
@@ -183,7 +183,10 @@ await withPage(async ({ Page, Runtime, Emulation, consoleErrors, failedRequests 
 
     // ---------- Article page ----------
     const articleUrl = await evalJs(Runtime, `(() => {
-      const a = document.querySelector('a[href*="/knowledge/"][href$="/"]:not([href$="/knowledge/"])');
+      const a = [...document.querySelectorAll('a[href*="/help/"][href$="/"]')].find((el) => {
+        const href = el.getAttribute('href');
+        return !href.endsWith('/help/') && !href.includes('/kb-tickets/');
+      });
       return a ? a.href : null;
     })()`);
     if (articleUrl) {

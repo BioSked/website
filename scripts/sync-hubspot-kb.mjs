@@ -4,10 +4,19 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { parse, parseFragment, serializeOuter } from 'parse5';
 
-const SOURCE_ORIGIN = 'https://kb.biosked.com';
-const SOURCE_HOST = 'kb.biosked.com';
+// The HubSpot knowledge base is read from a host that is never redirected, so
+// the public addresses can 301 to biosked.com without starving the sync.
+// Interim: kb.biosked.fr (a legacy HubSpot host that still serves the full KB).
+// Target: content.biosked.com, once HubSpot routes the knowledge base to it.
+const SOURCE_ORIGIN = 'https://kb.biosked.fr';
+const SOURCE_HOST = 'kb.biosked.fr';
 const SITEMAP_URL = `${SOURCE_ORIGIN}/sitemap.xml`;
-const PREVIEW_PREFIX = '/kb-preview';
+// HubSpot serves the same uploaded images on every connected domain. Keep them on
+// the long-standing public host: its certificate is established, the article
+// redirects only match /{lang}/knowledge/ paths, and the sync host stays invisible.
+const ASSET_HOST = 'kb.biosked.com';
+const KB_SITE_SEGMENT = 'help';
+const OLD_KB_HOSTS = new Set(['kb.biosked.com', 'kb.biosked.fr', SOURCE_HOST]);
 const SUPPORTED_LOCALES = new Set(['en', 'fr']);
 const ALLOWED_IFRAME_HOSTS = new Set(['www.guidejar.com']);
 const USER_AGENT = 'BioSked knowledge-base synchronizer/1.0 (+https://biosked.com)';
@@ -116,12 +125,20 @@ function sourcePathFromHref(value, baseUrl) {
   return url.pathname.replace(/\/$/, '') || '/';
 }
 
-function previewHrefFor(value, baseUrl) {
+/** /en/knowledge/slug -> /help/slug, /fr/knowledge/slug -> /fr/help/slug (mirrors kbPathForSource in src/lib/kb.ts). */
+function sitePathFor(sourcePath) {
+  const match = sourcePath.match(/^\/([a-z]{2})\/knowledge(\/.*)?$/);
+  if (!match) return sourcePath;
+  const rest = match[2] && match[2] !== '/' ? match[2] : '';
+  return match[1] === 'en' ? `/${KB_SITE_SEGMENT}${rest}` : `/${match[1]}/${KB_SITE_SEGMENT}${rest}`;
+}
+
+function siteHrefFor(value, baseUrl) {
   const url = new URL(value, baseUrl);
-  if (url.hostname !== SOURCE_HOST || !/^\/(?:en|fr)\/knowledge(?:\/|$)/.test(url.pathname)) return value;
+  if (!OLD_KB_HOSTS.has(url.hostname) || !/^\/(?:en|fr)\/knowledge(?:\/|$)/.test(url.pathname)) return value;
   url.searchParams.delete('hsLang');
   const search = url.searchParams.toString();
-  return `${PREVIEW_PREFIX}${url.pathname}${search ? `?${search}` : ''}${url.hash}`;
+  return `${sitePathFor(url.pathname.replace(/\/$/, ''))}${search ? `?${search}` : ''}${url.hash}`;
 }
 
 function sanitizeTree(node, baseUrl) {
@@ -164,7 +181,7 @@ function sanitizeTree(node, baseUrl) {
           removeAttr(node, 'href');
           return true;
         }
-        setAttr(node, 'href', previewHrefFor(href, baseUrl));
+        setAttr(node, 'href', siteHrefFor(href, baseUrl));
         if (target.hostname !== SOURCE_HOST) setAttr(node, 'rel', 'noopener noreferrer');
       } catch {
         removeAttr(node, 'href');
@@ -176,7 +193,9 @@ function sanitizeTree(node, baseUrl) {
     const src = attr(node, 'src');
     if (src) {
       try {
-        setAttr(node, 'src', new URL(src, baseUrl).toString());
+        const url = new URL(src, baseUrl);
+        if (url.hostname === SOURCE_HOST) url.hostname = ASSET_HOST;
+        setAttr(node, 'src', url.toString());
       } catch {
         removeAttr(node, 'src');
       }
@@ -319,7 +338,7 @@ function extractArticle(html, entry) {
     description,
     sourceUrl: canonicalUrl,
     sourcePath,
-    previewPath: `${PREVIEW_PREFIX}${sourcePath}`,
+    sitePath: sitePathFor(sourcePath),
     lastModified: entry.lastmod,
     breadcrumbs,
     primaryCategory: primaryCategory ? { title: primaryCategory.title, path: primaryCategory.path } : null,
@@ -372,7 +391,7 @@ function extractBrowserArticle(record) {
     description,
     sourceUrl,
     sourcePath,
-    previewPath: `${PREVIEW_PREFIX}${sourcePath}`,
+    sitePath: sitePathFor(sourcePath),
     lastModified: record.lastmod || null,
     breadcrumbs,
     primaryCategory: primaryCategory ? { title: primaryCategory.title, path: primaryCategory.path } : null,
@@ -412,7 +431,7 @@ function buildCategories(articles) {
         locale: article.locale,
         title: category.title,
         path: category.path,
-        previewPath: `${PREVIEW_PREFIX}${category.path}`,
+        sitePath: sitePathFor(category.path),
         articlePaths: [],
         subcategories: [],
       });

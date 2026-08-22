@@ -884,19 +884,20 @@ assert.match(
   'language selector accessible name must include its visible language code',
 );
 
-for (const [route, helpLabel, supportLocale] of [
-  ['', 'Help', 'en'],
-  ['fr', 'Aide', 'fr'],
-  ['fr-ch', 'Aide', 'fr'],
-  ['de', 'Hilfe', 'en'],
-  ['de-ch', 'Hilfe', 'en'],
-  ['nl', 'Hulp', 'en'],
-  ['it', 'Aiuto', 'en'],
+// The knowledge base lives on the site now: English at /help/, the rest prefixed.
+// Swiss French reads the French KB and Swiss German the German one.
+for (const [route, helpLabel, helpUrl] of [
+  ['', 'Help', '/help/kb-tickets/new/'],
+  ['fr', 'Aide', '/fr/help/kb-tickets/new/'],
+  ['fr-ch', 'Aide', '/fr/help/kb-tickets/new/'],
+  ['de', 'Hilfe', '/de/help/kb-tickets/new/'],
+  ['de-ch', 'Hilfe', '/de/help/kb-tickets/new/'],
+  ['nl', 'Hulp', '/nl/help/kb-tickets/new/'],
+  ['it', 'Aiuto', '/it/help/kb-tickets/new/'],
 ]) {
   const locale = route || 'en';
   const html = await readFile(path.join(distDir, route, 'index.html'), 'utf8');
   const navbar = navbarIsland(html);
-  const helpUrl = `https://kb.biosked.com/${supportLocale}/knowledge/kb-tickets/new`;
   assert.ok(navbar, `${locale} home must render the interactive navbar`);
   assert.ok(
     navbar.includes(`&quot;label&quot;:[0,&quot;${helpLabel}&quot;]`),
@@ -1004,8 +1005,8 @@ for (const [route, destination] of [
 const supportRedirectHtml = await readFile(path.join(distDir, 'support', 'index.html'), 'utf8');
 assert.equal(
   linkHref(supportRedirectHtml, 'canonical'),
-  'https://kb.biosked.com/fr/knowledge/kb-tickets/new',
-  'external support redirect must not add a redirect-chain trailing slash',
+  'https://biosked.com/fr/help/kb-tickets/new/',
+  'legacy /support slug must land on the French support page of the knowledge base',
 );
 
 const contactRedirectHtml = await readFile(path.join(distDir, 'contact', 'index.html'), 'utf8');

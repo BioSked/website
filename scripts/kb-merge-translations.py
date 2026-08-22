@@ -89,6 +89,7 @@ for lang in langs:
 payload = {
     'schemaVersion': 1,
     'generatedFrom': snapshot.get('contentHash'),
+    'generatedAt': __import__('datetime').datetime.now(__import__('datetime').timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'),
     'sourceArticleCount': len(work),
     'languages': langs,
     'categories': shell['categories'],

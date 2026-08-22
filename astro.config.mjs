@@ -70,8 +70,6 @@ export default defineConfig({
             filter: (page) => {
                 if (page === 'https://biosked.com/privacy/') return false;
                 if (page.includes('/changelog/')) return false;
-                // Rollback-safe KB preview pages are deliberately noindex and must not enter the public sitemap.
-                if (page.includes('/kb-preview/')) return false;
                 // Astro's fr-ch -> fr fallback can surface synthetic /fr-ch-ch/
                 // routes to the sitemap integration. They are not real pages.
                 if (page.includes('/fr-ch-ch/') || page.includes('/de-ch-ch/')) return false;
@@ -85,6 +83,8 @@ export default defineConfig({
                     it: ['', 'demo/', 'pricing/', 'getquote/', 'referenze/', 'sicurezza-e-dati/'],
                     'fr-ch': ['', 'pricing/', 'demo/', 'getquote/', 'securite-donnees/', 'mentions-legales/'],
                 };
+                // The knowledge base is fully translated for de/nl/it; de-ch and fr-ch read de/fr.
+                if (m && m[2].startsWith('help/')) return ['de', 'nl', 'it'].includes(m[1]);
                 if (m) return allowed[m[1]].includes(m[2]);
                 return true;
             },
@@ -172,7 +172,7 @@ export default defineConfig({
         "mentions-legales-politique-de-confidentialite": { destination: "/fr/mentions-legales", status: 301 },
         "note-de-version": { destination: "/changelog", status: 301 },
         "note-de-version-momentum": { destination: "/changelog", status: 301 },
-        "support": { destination: "https://kb.biosked.com/fr/knowledge/kb-tickets/new", status: 301 },
+        "support": { destination: "/fr/help/kb-tickets/new", status: 301 },
         "theme/actualites": { destination: "/fr/blog", status: 301 },
         "theme/biosked": { destination: "/fr/blog", status: 301 },
         "theme/anesthesie": { destination: "/fr/secteurs-soins/anesthesie", status: 301 },

@@ -1,6 +1,6 @@
 ---
 import type { KbLocale } from '@/lib/kb';
-import { kbCopy } from '@/lib/kb';
+import { KB_SITE_SEGMENT, kbCopy } from '@/lib/kb';
 
 interface Props {
   locale: KbLocale;
@@ -13,7 +13,7 @@ const searchId = `kb-search-${locale}-${compact ? 'compact' : 'full'}`;
 const resultsId = `${searchId}-results`;
 ---
 
-<div class:list={['kb-search relative mx-auto w-full', compact ? 'max-w-2xl' : 'max-w-3xl']} data-kb-search data-locale={locale} data-index-url="/kb-preview/search-index.json">
+<div class:list={['kb-search relative mx-auto w-full', compact ? 'max-w-2xl' : 'max-w-3xl']} data-kb-search data-locale={locale} data-index-url={`/${KB_SITE_SEGMENT}/search-index-${locale}.json`}>
   <form role="search" class="relative" data-kb-search-form>
     <label for={searchId} class="sr-only" data-kb-search-label>{copy.searchLabel}</label>
     <svg aria-hidden="true" class="pointer-events-none absolute left-5 top-1/2 size-5 -translate-y-1/2 text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">

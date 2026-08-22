@@ -9,46 +9,15 @@ import {
   categoryLanguageLinks,
   formatKbDate,
   kbCopy,
+  kbDocumentTitle,
   kbHomePath,
-  kbSnapshot,
+  kbPathForSource,
   kbSupportPath,
-  previewPathFor,
-  routeSlug,
-  type KbArticle,
   type KbCategory,
-  type KbLocale,
+  type KbEntryProps,
 } from '@/lib/kb';
 
-type PageProps =
-  | { kind: 'article'; article: KbArticle; locale: KbLocale }
-  | { kind: 'category'; category: KbCategory; locale: KbLocale };
-
-export function getStaticPaths() {
-  const routes: Array<{ params: { lang: KbLocale; slug: string }; props: PageProps }> = [];
-  const occupied = new Set<string>();
-
-  for (const article of kbSnapshot.articles) {
-    const slug = routeSlug(article.sourcePath, article.locale);
-    occupied.add(`${article.locale}:${slug}`);
-    routes.push({
-      params: { lang: article.locale, slug },
-      props: { kind: 'article', article, locale: article.locale },
-    });
-  }
-
-  for (const category of kbSnapshot.categories) {
-    const slug = routeSlug(category.path, category.locale);
-    if (occupied.has(`${category.locale}:${slug}`)) continue;
-    routes.push({
-      params: { lang: category.locale, slug },
-      props: { kind: 'category', category, locale: category.locale },
-    });
-  }
-
-  return routes;
-}
-
-const props = Astro.props as PageProps;
+const props = Astro.props as KbEntryProps;
 const locale = props.locale;
 const copy = kbCopy[locale];
 const allCategories = categoriesFor(locale);
@@ -65,8 +34,16 @@ const related = currentCategory
 const languages = article ? articleLanguageLinks(article) : categoryLanguageLinks(category as KbCategory);
 const localeAlternates = Object.fromEntries(languages.map((language) => [language.code, language.href]));
 const title = article?.title ?? category?.title ?? copy.siteTitle;
-const description = article?.description ?? `${copy.categoryCount(categoryArticles.length)}. ${copy.siteDescription}`;
-const canonicalUrl = article?.sourceUrl ?? `https://kb.biosked.com${category?.path}`;
+const rawDescription = article?.description ?? `${copy.categoryCount(categoryArticles.length)}. ${copy.siteDescription}`;
+// HubSpot descriptions are often just the title repeated. Give search engines
+// the category context and the knowledge base tagline when the source is thin.
+const context = [currentCategory?.title, article?.subcategory].filter(Boolean).join(', ');
+const description = rawDescription.trim().length >= 70
+  ? rawDescription.trim().slice(0, 158)
+  : `${rawDescription.trim().replace(/[.!?:]+$/, '')}. ${context ? `${context}. ` : ''}${copy.siteDescription}`.slice(0, 158);
+// What the visitor reads under the heading: the source description, or the
+// knowledge base tagline when HubSpot only repeated the title.
+const heroDescription = rawDescription.trim().toLowerCase() === title.trim().toLowerCase() ? copy.siteDescription : rawDescription;
 const updated = article ? formatKbDate(article.lastModified, locale) : null;
 const articleSchema = article
   ? {
@@ -76,7 +53,7 @@ const articleSchema = article
       description: article.description,
       dateModified: article.lastModified,
       inLanguage: locale,
-      mainEntityOfPage: article.sourceUrl,
+      mainEntityOfPage: new URL(`${article.sitePath}/`, Astro.site ?? 'https://biosked.com').toString(),
       author: { '@type': 'Organization', name: 'BioSked' },
       publisher: { '@type': 'Organization', name: 'BioSked', url: 'https://biosked.com' },
     }
@@ -84,13 +61,12 @@ const articleSchema = article
 ---
 
 <BaseLayout
-  title={`${title} | BioSked Support`}
+  title={`${article ? kbDocumentTitle(article) : title} | BioSked Support`}
   description={description}
   locale={locale}
   languageLinks={languages}
   localeAlternates={localeAlternates}
-  canonicalUrl={canonicalUrl}
-  noIndex={true}
+  canonicalUrl={`${article?.sitePath ?? category?.sitePath}/`}
   pageType={article ? 'knowledge-base-article' : 'knowledge-base-category'}
 >
   {articleSchema && <script is:inline type="application/ld+json" set:html={JSON.stringify(articleSchema)}></script>}
@@ -98,7 +74,7 @@ const articleSchema = article
   <KbHero
     locale={locale}
     title={title}
-    description={description}
+    description={heroDescription}
     compact={true}
   />
 
@@ -111,7 +87,7 @@ const articleSchema = article
             {article.breadcrumbs.slice(1).map((crumb) => (
               <>
                 <li aria-hidden="true">/</li>
-                <li><a href={`${previewPathFor(crumb.path)}/`} class="font-medium text-[#137b83] hover:underline">{crumb.title}</a></li>
+                <li><a href={`${kbPathForSource(crumb.path)}/`} class="font-medium text-[#137b83] hover:underline">{crumb.title}</a></li>
               </>
             ))}
             <li aria-hidden="true">/</li>
@@ -127,7 +103,7 @@ const articleSchema = article
                 {allCategories.map((item) => (
                   <li>
                     <a
-                      href={`${item.previewPath}/`}
+                      href={`${item.sitePath}/`}
                       aria-current={item.path === currentCategory?.path ? 'page' : undefined}
                       class:list={[
                         'block rounded-xl px-3 py-2.5 text-sm font-medium transition',
@@ -150,9 +126,7 @@ const articleSchema = article
           <article class="min-w-0 rounded-3xl border border-slate-200 bg-white p-6 shadow-[0_24px_60px_-48px_rgba(15,54,71,0.6)] sm:p-9 md:p-11">
             <div class="mb-8 flex flex-wrap items-center gap-3 border-b border-slate-200 pb-5 text-xs text-slate-500">
               {updated && <span>{copy.articleUpdated} {updated}</span>}
-              {article.primaryCategory && <><span aria-hidden="true">•</span><a href={`${previewPathFor(article.primaryCategory.path)}/`} class="font-semibold text-[#137b83] hover:underline">{article.primaryCategory.title}</a></>}
-              <span aria-hidden="true">•</span>
-              <span>{copy.sourceLabel}</span>
+              {article.primaryCategory && <><span aria-hidden="true">•</span><a href={`${kbPathForSource(article.primaryCategory.path)}/`} class="font-semibold text-[#137b83] hover:underline">{article.primaryCategory.title}</a></>}
             </div>
 
             <div class="kb-article-body" set:html={article.bodyHtml}></div>

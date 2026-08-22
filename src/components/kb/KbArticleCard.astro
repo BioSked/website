@@ -13,7 +13,7 @@ const copy = kbCopy[locale];
 const updated = formatKbDate(article.lastModified, locale);
 ---
 
-<a href={`${article.previewPath}/`} class:list={[
+<a href={`${article.sitePath}/`} class:list={[
   'group flex h-full min-w-0 flex-col rounded-2xl border border-slate-200 bg-white transition duration-200 hover:-translate-y-0.5 hover:border-[#78d4d4] hover:shadow-[0_20px_50px_-34px_rgba(15,54,71,0.65)]',
   compact ? 'p-5' : 'p-6',
 ]}>

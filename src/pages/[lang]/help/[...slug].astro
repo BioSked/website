@@ -1,0 +1,13 @@
+---
+import KbEntryPage from '@/components/kb/pages/KbEntryPage.astro';
+import { KB_ACTIVE_LOCALES, kbEntryRoutes, type KbEntryProps } from '@/lib/kb';
+
+export function getStaticPaths() {
+  const locales = KB_ACTIVE_LOCALES.filter((locale) => locale !== 'en');
+  return kbEntryRoutes(locales).map(({ locale, slug, props }) => ({ params: { lang: locale, slug }, props }));
+}
+
+const props = Astro.props as KbEntryProps;
+---
+
+<KbEntryPage {...props} />

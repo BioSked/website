@@ -11,7 +11,7 @@ import CDP from 'chrome-remote-interface';
 
 const LOCALE = (process.argv[2] || 'fr').toLowerCase();
 const BASE = process.env.KB_BASE || 'http://localhost:8899';
-const URL = `${BASE}/kb-preview/${LOCALE}/knowledge/kb-tickets/new/`;
+const URL = `${BASE}${LOCALE === 'en' ? '/help' : `/${LOCALE}/help`}/kb-tickets/new/`;
 
 const STAMP = new Date().toISOString().replace(/[-:T.]/g, '').slice(0, 14);
 const SUBJECT = `[TEST KB E2E ${STAMP}] ${LOCALE.toUpperCase()} routing check`;

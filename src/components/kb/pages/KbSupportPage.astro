@@ -3,26 +3,22 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import KbHero from '@/components/kb/KbHero.astro';
 import KbSupportForm from '@/components/kb/KbSupportForm.astro';
 import {
-  KB_ACTIVE_LOCALES,
   kbCopy,
   kbHomePath,
-  kbSourceSupportUrl,
   kbSupportPath,
   languageLinks,
   type KbLocale,
 } from '@/lib/kb';
 
-export function getStaticPaths() {
-  return KB_ACTIVE_LOCALES.map((locale) => ({ params: { lang: locale }, props: { locale } }));
+interface Props {
+  locale: KbLocale;
 }
 
-const { locale } = Astro.props as { locale: KbLocale };
+const { locale } = Astro.props;
 const copy = kbCopy[locale];
-const languages = languageLinks(locale, {
-  en: '/en/knowledge/kb-tickets/new',
-  fr: '/fr/knowledge/kb-tickets/new',
-});
-const localeAlternates = { en: kbSupportPath('en'), fr: kbSupportPath('fr') };
+// The support page exists in every knowledge base locale.
+const languages = languageLinks(locale).map((language) => ({ ...language, href: kbSupportPath(language.code) }));
+const localeAlternates = Object.fromEntries(languages.map((language) => [language.code, language.href]));
 ---
 
 <BaseLayout
@@ -31,8 +27,7 @@ const localeAlternates = { en: kbSupportPath('en'), fr: kbSupportPath('fr') };
   locale={locale}
   languageLinks={languages}
   localeAlternates={localeAlternates}
-  canonicalUrl={kbSourceSupportUrl(locale)}
-  noIndex={true}
+  canonicalUrl={kbSupportPath(locale)}
   pageType="knowledge-base-support"
 >
   <KbHero

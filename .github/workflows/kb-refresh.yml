@@ -1,4 +1,4 @@
-name: Refresh Knowledge Base Preview
+name: Refresh Knowledge Base
 
 on:
   schedule:

@@ -1,7 +1,26 @@
 import snapshotJson from '@/data/generated/hubspot-kb.json';
 import translationsJson from '@/data/generated/kb-translations.json';
 
-export const KB_PREVIEW_PREFIX = '/kb-preview';
+/**
+ * Public URL shape of the knowledge base on biosked.com. English lives at the
+ * site root like every other English page, the other locales are prefixed.
+ */
+export const KB_SITE_SEGMENT = 'help';
+
+/** Site path for a knowledge base locale, e.g. kbPathFor('fr', '/slug/') -> /fr/help/slug/ */
+export function kbPathFor(locale: KbLocale, rest = '/'): string {
+  const tail = rest.startsWith('/') ? rest : `/${rest}`;
+  return locale === 'en' ? `/${KB_SITE_SEGMENT}${tail}` : `/${locale}/${KB_SITE_SEGMENT}${tail}`;
+}
+
+/** Map a HubSpot-shaped source path (/fr/knowledge/slug) to its site path (/fr/help/slug). */
+export function kbPathForSource(sourcePath: string): string {
+  const match = sourcePath.match(/^\/([a-z]{2})\/knowledge(\/.*)?$/);
+  if (!match) return sourcePath;
+  const locale = match[1] as KbLocale;
+  const rest = match[2] && match[2] !== '/' ? match[2] : '';
+  return locale === 'en' ? `/${KB_SITE_SEGMENT}${rest}` : `/${locale}/${KB_SITE_SEGMENT}${rest}`;
+}
 
 /** en and fr come from HubSpot; de, nl and it are translated from those. */
 export const KB_LOCALES = ['en', 'fr', 'de', 'nl', 'it'] as const;
@@ -37,7 +56,7 @@ export interface KbArticle {
   description: string;
   sourceUrl: string;
   sourcePath: string;
-  previewPath: string;
+  sitePath: string;
   lastModified: string | null;
   breadcrumbs: KbBreadcrumb[];
   primaryCategory: { title: string; path: string } | null;
@@ -51,7 +70,7 @@ export interface KbCategory {
   locale: KbLocale;
   title: string;
   path: string;
-  previewPath: string;
+  sitePath: string;
   articlePaths: string[];
   subcategories: string[];
 }
@@ -102,7 +121,7 @@ interface KbTranslations {
 const kbTranslations = translationsJson as unknown as KbTranslations;
 const baseSnapshot = snapshotJson as unknown as KbSnapshot;
 
-const KB_SOURCE_HOST = 'https://kb.biosked.com';
+const KB_SOURCE_HOST = 'https://content.biosked.com';
 const slugOf = (sourcePath: string): string => sourcePath.split('/knowledge/')[1] ?? '';
 const translate = (dictionary: Record<string, Record<string, string>>, value: string | null, locale: string): string =>
   (value && dictionary[value]?.[locale]) || value || '';
@@ -110,9 +129,9 @@ const translate = (dictionary: Record<string, Record<string, string>>, value: st
 /**
  * Build the de/nl/it articles and categories by overlaying the translation file
  * on their source article (English when one exists, otherwise French).
- * Slugs are reused from the source: the KB is noindex, so stable ASCII URLs are
- * worth more than translated ones, and it keeps every locale one to one.
- * sourceUrl still points at the real HubSpot article, which only exists in en/fr.
+ * Slugs are reused from the source so every locale stays one to one and the
+ * HubSpot-era URLs redirect cleanly. sourceUrl still points at the HubSpot
+ * article the translation came from, which only exists in en/fr.
  */
 function buildMergedSnapshot(): KbSnapshot {
   const articles = [...baseSnapshot.articles];
@@ -122,7 +141,7 @@ function buildMergedSnapshot(): KbSnapshot {
 
   for (const locale of KB_TRANSLATED_LOCALES) {
     const entries = kbTranslations.articles?.[locale] ?? {};
-    for (const [articleId, entry] of Object.entries(entries)) {
+    for (const articleId of Object.keys(entries)) {
       const source = sourceById.get(articleId);
       if (!source) continue;
       pathByLocaleAndId.set(`${locale}:${articleId}`, `/${locale}/knowledge/${slugOf(source.sourcePath)}`);
@@ -172,7 +191,7 @@ function buildMergedSnapshot(): KbSnapshot {
         // HubSpot article they were translated from.
         sourceUrl: source.sourceUrl,
         sourcePath,
-        previewPath: `${KB_PREVIEW_PREFIX}${sourcePath}`,
+        sitePath: kbPathForSource(sourcePath),
         lastModified: source.lastModified,
         breadcrumbs,
         primaryCategory: categoryPath && categoryTitle ? { title: categoryTitle, path: categoryPath } : null,
@@ -198,7 +217,7 @@ function buildMergedSnapshot(): KbSnapshot {
         locale,
         title: list[0].primaryCategory?.title ?? '',
         path,
-        previewPath: `${KB_PREVIEW_PREFIX}${path}`,
+        sitePath: kbPathForSource(path),
         articlePaths: list.map((article) => article.sourcePath),
         subcategories: [...new Set(list.map((article) => article.subcategory).filter(Boolean) as string[])].sort(),
       });
@@ -252,7 +271,7 @@ const baseCopy = {
     helpfulYes: 'Yes',
     helpfulNo: 'No',
     feedbackThanks: 'Thanks for the feedback.',
-    sourceLabel: 'Managed in HubSpot',
+    sourceLabel: 'Help article',
     previewLabel: 'Preview',
     previewNotice: 'This is the rollback-safe preview. The current HubSpot knowledge base remains live.',
     openArticle: 'Read article',
@@ -288,7 +307,7 @@ const baseCopy = {
     helpfulYes: 'Oui',
     helpfulNo: 'Non',
     feedbackThanks: 'Merci pour votre retour.',
-    sourceLabel: 'Géré dans HubSpot',
+    sourceLabel: 'Article d’aide',
     previewLabel: 'Aperçu',
     previewNotice: 'Ceci est l’aperçu réversible. La base de connaissances HubSpot actuelle reste en ligne.',
     openArticle: 'Lire l’article',
@@ -331,20 +350,12 @@ export function isKbLocale(value: string | undefined): value is KbLocale {
   return typeof value === 'string' && (KB_LOCALES as readonly string[]).includes(value);
 }
 
-export function previewPathFor(sourcePath: string): string {
-  return `${KB_PREVIEW_PREFIX}${sourcePath}`;
-}
-
 export function kbHomePath(locale: KbLocale): string {
-  return `${KB_PREVIEW_PREFIX}/${locale}/knowledge/`;
+  return kbPathFor(locale, '/');
 }
 
 export function kbSupportPath(locale: KbLocale): string {
-  return `${KB_PREVIEW_PREFIX}/${locale}/knowledge/kb-tickets/new/`;
-}
-
-export function kbSourceSupportUrl(locale: KbLocale): string {
-  return `https://kb.biosked.com/${locale}/knowledge/kb-tickets/new`;
+  return kbPathFor(locale, '/kb-tickets/new/');
 }
 
 export function articlesFor(locale: KbLocale): KbArticle[] {
@@ -398,7 +409,7 @@ export function languageLinks(
   return KB_LOCALES.map((code) => ({
     code,
     label: labels[code],
-    href: paths[code] ? previewPathFor(paths[code] as string) : kbHomePath(code),
+    href: paths[code] ? `${kbPathForSource(paths[code] as string)}/` : kbHomePath(code),
     active: code === currentLocale,
   }));
 }
@@ -422,6 +433,55 @@ export function categoryLanguageLinks(category: KbCategory): KbLanguageLink[] {
   return languageLinks(category.locale, paths);
 }
 
+const titleCounts = new Map<string, number>();
+for (const article of kbSnapshot.articles) {
+  const key = `${article.locale}|${article.title.trim().toLowerCase()}`;
+  titleCounts.set(key, (titleCounts.get(key) ?? 0) + 1);
+}
+
+/**
+ * Document title for an article. HubSpot allows two articles in one language to
+ * share a title (for example an admin and a user variant of the same guide);
+ * search engines need them told apart, so the subcategory or category is
+ * appended when a locale has a collision. The on-page heading is unchanged.
+ */
+export function kbDocumentTitle(article: KbArticle): string {
+  const key = `${article.locale}|${article.title.trim().toLowerCase()}`;
+  if ((titleCounts.get(key) ?? 0) < 2) return article.title;
+  const context = article.subcategory ?? article.primaryCategory?.title;
+  return context ? `${article.title} (${context})` : article.title;
+}
+
 export function routeSlug(sourcePath: string, locale: KbLocale): string {
   return decodeURIComponent(sourcePath.replace(`/${locale}/knowledge/`, ''));
+}
+
+export type KbEntryProps =
+  | { kind: 'article'; article: KbArticle; locale: KbLocale }
+  | { kind: 'category'; category: KbCategory; locale: KbLocale };
+
+/**
+ * Article and category routes for the given locales. Categories whose slug
+ * collides with an article slug yield to the article, as the HubSpot KB does.
+ */
+export function kbEntryRoutes(locales: readonly KbLocale[]): Array<{ locale: KbLocale; slug: string; props: KbEntryProps }> {
+  const wanted = new Set<KbLocale>(locales);
+  const routes: Array<{ locale: KbLocale; slug: string; props: KbEntryProps }> = [];
+  const occupied = new Set<string>();
+
+  for (const article of kbSnapshot.articles) {
+    if (!wanted.has(article.locale)) continue;
+    const slug = routeSlug(article.sourcePath, article.locale);
+    occupied.add(`${article.locale}:${slug}`);
+    routes.push({ locale: article.locale, slug, props: { kind: 'article', article, locale: article.locale } });
+  }
+
+  for (const category of kbSnapshot.categories) {
+    if (!wanted.has(category.locale)) continue;
+    const slug = routeSlug(category.path, category.locale);
+    if (occupied.has(`${category.locale}:${slug}`)) continue;
+    routes.push({ locale: category.locale, slug, props: { kind: 'category', category, locale: category.locale } });
+  }
+
+  return routes;
 }

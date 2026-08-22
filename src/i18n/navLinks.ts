@@ -1,5 +1,6 @@
 import { NAV_LINKS } from '@/consts';
 import { altPathFor, frChLocalPathFor, type LocaleCode } from './locales';
+import { kbSupportHref } from './kbPaths';
 
 export interface NavSubitem {
     label: string;
@@ -71,7 +72,7 @@ const FR_NAV_LINKS: NavLink[] = [
             { label: 'nav.whitepapers', alt: 'nav.whitepapers-subtitle', href: '/fr/ressources/', showDesktop: true, showMobile: true },
             { label: 'nav.about', alt: 'nav.about-subtitle', href: '/fr/about/', showDesktop: true, showMobile: true },
             { label: 'nav.careers', alt: 'nav.careers-subtitle', href: '/fr/careers/', showDesktop: true, showMobile: true },
-            { label: 'nav.help', alt: 'nav.help-subtitle', href: 'https://kb.biosked.com/fr/knowledge/kb-tickets/new', showDesktop: true, showMobile: true },
+            { label: 'nav.help', alt: 'nav.help-subtitle', href: '/fr/help/kb-tickets/new/', showDesktop: true, showMobile: true },
         ],
     },
 ];
@@ -110,7 +111,12 @@ export function navLinksFor(locale: LocaleCode): NavLink[] {
     if (locale === 'en') return NAV_LINKS;
     if (locale === 'fr') return FR_NAV_LINKS;
     if (locale === 'fr-ch') return reprefixFrNav();
-    const links = localizeHrefs(NAV_LINKS, locale);
+    // The knowledge base exists in de/nl/it (and de-ch reads the German one), so
+    // the Help entry goes to the localized support page instead of the English one.
+    const links = localizeHrefs(NAV_LINKS, locale).map((link) => ({
+        ...link,
+        subitems: link.subitems?.map((sub) => (sub.label === 'nav.help' ? { ...sub, href: kbSupportHref(locale) } : sub)),
+    }));
     // Insert the references page after the first item (Product)
     return [
         links[0],
