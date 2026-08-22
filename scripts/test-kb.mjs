@@ -59,7 +59,7 @@ for (const article of snapshot.articles) {
     `unrewritten internal link in ${article.sourcePath}`,
   );
   // The sync host is never meant to be visible: images stay on the public asset host.
-  assert.doesNotMatch(article.bodyHtml, /content\.biosked\.com/i, `sync host leaked into ${article.sourcePath}`);
+  assert.doesNotMatch(article.bodyHtml, /content\.biosked\.com|kb\.biosked\.fr/i, `sync host leaked into ${article.sourcePath}`);
   assert.doesNotMatch(JSON.stringify(article), /\u2014/, `forbidden em dash in ${article.sourcePath}`);
 }
 

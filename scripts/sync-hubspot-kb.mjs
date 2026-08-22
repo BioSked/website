@@ -133,6 +133,13 @@ function sitePathFor(sourcePath) {
   return match[1] === 'en' ? `/${KB_SITE_SEGMENT}${rest}` : `/${match[1]}/${KB_SITE_SEGMENT}${rest}`;
 }
 
+/** Absolute asset URL, moved from the sync host to the public asset host. */
+function assetUrl(value, baseUrl) {
+  const url = new URL(value, baseUrl);
+  if (url.hostname === SOURCE_HOST) url.hostname = ASSET_HOST;
+  return url.toString();
+}
+
 function siteHrefFor(value, baseUrl) {
   const url = new URL(value, baseUrl);
   if (!OLD_KB_HOSTS.has(url.hostname) || !/^\/(?:en|fr)\/knowledge(?:\/|$)/.test(url.pathname)) return value;
@@ -193,11 +200,21 @@ function sanitizeTree(node, baseUrl) {
     const src = attr(node, 'src');
     if (src) {
       try {
-        const url = new URL(src, baseUrl);
-        if (url.hostname === SOURCE_HOST) url.hostname = ASSET_HOST;
-        setAttr(node, 'src', url.toString());
+        setAttr(node, 'src', assetUrl(src, baseUrl));
       } catch {
         removeAttr(node, 'src');
+      }
+    }
+    // Responsive candidates carry the same host as src and must move with it.
+    const srcset = attr(node, 'srcset');
+    if (srcset) {
+      try {
+        setAttr(node, 'srcset', srcset.split(',').map((candidate) => {
+          const [url, descriptor] = candidate.trim().split(/\s+/, 2);
+          return [assetUrl(url, baseUrl), descriptor].filter(Boolean).join(' ');
+        }).join(', '));
+      } catch {
+        removeAttr(node, 'srcset');
       }
     }
     if (!node.attrs?.some((item) => item.name === 'alt')) setAttr(node, 'alt', '');
