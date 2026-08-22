@@ -6,17 +6,21 @@ import { parse, parseFragment, serializeOuter } from 'parse5';
 
 // The HubSpot knowledge base is read from a host that is never redirected, so
 // the public addresses can 301 to biosked.com without starving the sync.
-// Interim: kb.biosked.fr (a legacy HubSpot host that still serves the full KB).
-// Target: content.biosked.com, once HubSpot routes the knowledge base to it.
-const SOURCE_ORIGIN = 'https://kb.biosked.fr';
-const SOURCE_HOST = 'kb.biosked.fr';
-const SITEMAP_URL = `${SOURCE_ORIGIN}/sitemap.xml`;
+// content.biosked.com is the knowledge base's primary HubSpot domain; kb.biosked.fr
+// is a legacy HubSpot host that keeps serving the full KB. The first candidate
+// whose sitemap is complete wins, so a HubSpot-side sitemap regeneration lag or
+// a routing change never silently produces an empty or partial snapshot.
+const SOURCE_CANDIDATES = ['content.biosked.com', 'kb.biosked.fr'];
+const MIN_SITEMAP_ENTRIES = 150;
+let SOURCE_HOST = SOURCE_CANDIDATES[0];
+let SOURCE_ORIGIN = `https://${SOURCE_HOST}`;
+let SITEMAP_URL = `${SOURCE_ORIGIN}/sitemap.xml`;
 // HubSpot serves the same uploaded images on every connected domain. Keep them on
 // the long-standing public host: its certificate is established, the article
 // redirects only match /{lang}/knowledge/ paths, and the sync host stays invisible.
 const ASSET_HOST = 'kb.biosked.com';
 const KB_SITE_SEGMENT = 'help';
-const OLD_KB_HOSTS = new Set(['kb.biosked.com', 'kb.biosked.fr', SOURCE_HOST]);
+const OLD_KB_HOSTS = new Set(['kb.biosked.com', 'kb.biosked.fr', ...SOURCE_CANDIDATES]);
 const SUPPORTED_LOCALES = new Set(['en', 'fr']);
 const ALLOWED_IFRAME_HOSTS = new Set(['www.guidejar.com']);
 const USER_AGENT = 'BioSked knowledge-base synchronizer/1.0 (+https://biosked.com)';
@@ -482,10 +486,27 @@ if (exportPath) {
   extracted = browserExport.records.map(extractBrowserArticle);
 } else {
   sourceMode = 'public-sitemap-incremental';
-  const sitemapXml = await fetchText(SITEMAP_URL);
-  const entries = parseSitemap(sitemapXml);
+  let entries = [];
+  const attempts = [];
+  for (const host of SOURCE_CANDIDATES) {
+    SOURCE_HOST = host;
+    SOURCE_ORIGIN = `https://${host}`;
+    SITEMAP_URL = `${SOURCE_ORIGIN}/sitemap.xml`;
+    try {
+      entries = parseSitemap(await fetchText(SITEMAP_URL));
+    } catch (error) {
+      attempts.push(`${host}: ${error.message}`);
+      continue;
+    }
+    attempts.push(`${host}: ${entries.length} entries`);
+    if (entries.length >= MIN_SITEMAP_ENTRIES) break;
+    entries = [];
+  }
   sourceCandidateCount = entries.length;
-  if (entries.length < 150) throw new Error(`Sitemap exposed only ${entries.length} KB candidates; refusing an incomplete snapshot`);
+  if (entries.length < MIN_SITEMAP_ENTRIES) {
+    throw new Error(`No source host exposed a complete KB sitemap (${attempts.join('; ')}); refusing an incomplete snapshot`);
+  }
+  console.log(`Source host: ${SOURCE_HOST} (${attempts.join('; ')})`);
 
   let previousSnapshot = null;
   try {
