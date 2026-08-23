@@ -936,6 +936,128 @@ for (const [route, logoAlt] of [
   assert.match(chirecLogo.class ?? '', /(?:^|\s)max-h-12(?:\s|$)/, `${route} CHIREC logo must use the shared height limit`);
 }
 
+const [frenchSecurityPage, swissFrenchSecurityPage] = await Promise.all([
+  readFile(path.join(distDir, 'fr/securite-donnees/index.html'), 'utf8'),
+  readFile(path.join(distDir, 'fr-ch/securite-donnees/index.html'), 'utf8'),
+]);
+const visibleMainText = (html, context) => decodeHtmlText(
+  withoutNonVisibleMarkup(mainContent(html, context)).replace(/<[^>]+>/g, ' '),
+).replace(/\s+/g, ' ').trim();
+const shingleJaccard = (left, right, width = 8) => {
+  const shingles = (text) => {
+    const words = text.toLocaleLowerCase('fr').match(/[\p{L}\p{N}]+/gu) ?? [];
+    return new Set(words.slice(0, Math.max(0, words.length - width + 1)).map((_, index) => (
+      words.slice(index, index + width).join(' ')
+    )));
+  };
+  const leftShingles = shingles(left);
+  const rightShingles = shingles(right);
+  const intersection = [...leftShingles].filter((value) => rightShingles.has(value)).length;
+  const union = new Set([...leftShingles, ...rightShingles]).size;
+  return union === 0 ? 1 : intersection / union;
+};
+
+const [frenchLegalPage, swissFrenchLegalPage] = await Promise.all([
+  readFile(path.join(distDir, 'fr/mentions-legales/index.html'), 'utf8'),
+  readFile(path.join(distDir, 'fr-ch/mentions-legales/index.html'), 'utf8'),
+]);
+const localePairPages = [
+  {
+    route: 'fr/securite-donnees/index.html',
+    html: frenchSecurityPage,
+    lang: 'fr',
+    canonical: `${siteOrigin}/fr/securite-donnees/`,
+    frenchAlternate: `${siteOrigin}/fr/securite-donnees/`,
+    swissFrenchAlternate: `${siteOrigin}/fr-ch/securite-donnees/`,
+  },
+  {
+    route: 'fr-ch/securite-donnees/index.html',
+    html: swissFrenchSecurityPage,
+    lang: 'fr-CH',
+    canonical: `${siteOrigin}/fr-ch/securite-donnees/`,
+    frenchAlternate: `${siteOrigin}/fr/securite-donnees/`,
+    swissFrenchAlternate: `${siteOrigin}/fr-ch/securite-donnees/`,
+  },
+  {
+    route: 'fr/mentions-legales/index.html',
+    html: frenchLegalPage,
+    lang: 'fr',
+    canonical: `${siteOrigin}/fr/mentions-legales/`,
+    frenchAlternate: `${siteOrigin}/fr/mentions-legales/`,
+    swissFrenchAlternate: `${siteOrigin}/fr-ch/mentions-legales/`,
+  },
+  {
+    route: 'fr-ch/mentions-legales/index.html',
+    html: swissFrenchLegalPage,
+    lang: 'fr-CH',
+    canonical: `${siteOrigin}/fr-ch/mentions-legales/`,
+    frenchAlternate: `${siteOrigin}/fr/mentions-legales/`,
+    swissFrenchAlternate: `${siteOrigin}/fr-ch/mentions-legales/`,
+  },
+];
+for (const page of localePairPages) {
+  const htmlTag = page.html.match(/<html\b[^>]*>/i)?.[0];
+  assert.ok(htmlTag, `${page.route} is missing an html element`);
+  assert.equal(attributes(htmlTag).lang, page.lang, `${page.route} must declare lang="${page.lang}"`);
+  assert.equal(linkHref(page.html, 'canonical'), page.canonical, `${page.route} must keep its self-canonical`);
+  assert.equal(alternateHref(page.html, 'fr'), page.frenchAlternate, `${page.route} must link to the France alternate`);
+  assert.equal(alternateHref(page.html, 'fr-CH'), page.swissFrenchAlternate, `${page.route} must link to the Swiss-French alternate`);
+}
+
+assert.notEqual(
+  titleText(frenchSecurityPage),
+  titleText(swissFrenchSecurityPage),
+  'French and Swiss-French security pages must have market-specific titles',
+);
+assert.notEqual(
+  metaContent(frenchSecurityPage, 'name', 'description'),
+  metaContent(swissFrenchSecurityPage, 'name', 'description'),
+  'French and Swiss-French security pages must have market-specific descriptions',
+);
+const frenchSecurityText = visibleMainText(frenchSecurityPage, 'fr/securite-donnees/index.html');
+const swissFrenchSecurityText = visibleMainText(swissFrenchSecurityPage, 'fr-ch/securite-donnees/index.html');
+assert.match(frenchSecurityText, /loi Informatique et Libertés/i, 'French security page must explain its France-specific legal framework');
+assert.match(frenchSecurityText, /CNIL/i, 'French security page must identify the French supervisory authority');
+assert.match(swissFrenchSecurityText, /LPD/i, 'Swiss-French security page must explain its Swiss legal framework');
+assert.match(swissFrenchSecurityText, /PFPDT/i, 'Swiss-French security page must identify the Swiss supervisory authority');
+assert.ok(
+  shingleJaccard(frenchSecurityText, swissFrenchSecurityText) < 0.45,
+  'French and Swiss-French security pages must remain substantively differentiated',
+);
+
+assert.notEqual(
+  titleText(frenchLegalPage),
+  titleText(swissFrenchLegalPage),
+  'French and Swiss-French legal notices must have market-specific titles',
+);
+assert.notEqual(
+  metaContent(frenchLegalPage, 'name', 'description'),
+  metaContent(swissFrenchLegalPage, 'name', 'description'),
+  'French and Swiss-French legal notices must have market-specific descriptions',
+);
+const frenchLegalText = visibleMainText(frenchLegalPage, 'fr/mentions-legales/index.html');
+const swissFrenchLegalText = visibleMainText(swissFrenchLegalPage, 'fr-ch/mentions-legales/index.html');
+assert.match(frenchLegalText, /traceurs|cookies/i, 'French legal notice must explain the France-facing analytics choice');
+assert.match(frenchLegalText, /CNIL/i, 'French legal notice must identify the French supervisory authority');
+assert.match(swissFrenchLegalText, /LPD/i, 'Swiss-French legal notice must explain its Swiss legal framework');
+assert.match(swissFrenchLegalText, /PFPDT/i, 'Swiss-French legal notice must identify the Swiss supervisory authority');
+assert.match(frenchLegalText, /dpo@biosked\.com/i, 'French legal notice must provide the privacy contact');
+assert.match(swissFrenchLegalText, /dpo@biosked\.com/i, 'Swiss-French legal notice must provide the privacy contact');
+assert.ok(
+  shingleJaccard(frenchLegalText, swissFrenchLegalText) < 0.45,
+  'French and Swiss-French legal notices must remain substantively differentiated',
+);
+for (const [route, html] of [
+  ['fr/mentions-legales/index.html', frenchLegalPage],
+  ['fr-ch/mentions-legales/index.html', swissFrenchLegalPage],
+]) {
+  assert.match(
+    mainContent(html, route),
+    /dans la\s+<a\b[^>]*>politique de confidentialité<\/a>\s+et sur la page/,
+    `${route} must preserve spaces around the privacy-policy link`,
+  );
+}
+
 const llmsPath = path.join(distDir, 'llms.txt');
 const llmsText = await readFile(llmsPath, 'utf8');
 assert.match(llmsText, /^# Momentum by BioSked\s*$/m, 'llms.txt must contain the site H1');

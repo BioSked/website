@@ -7,43 +7,44 @@ import Button from "@/components/ui/Button.astro";
 
 const points = [
   {
-    title: "Hébergement dans l'Union européenne",
-    text: "Les données de production Momentum de nos clients européens sont hébergées dans l'Union européenne. Les modalités précises (localisation, sous-traitants) sont documentées contractuellement.",
+    title: "Responsabilités sous le RGPD",
+    text: "Pour les données de planning, l'établissement client détermine les finalités et agit généralement comme responsable du traitement. Bio-Optronics Sàrl traite ces données sur ses instructions, en qualité de sous-traitant et dans le cadre du contrat et du DPA.",
   },
   {
-    title: "RGPD et contrat de sous-traitance",
-    text: "Bio-Optronics Sàrl intervient comme sous-traitant au sens du RGPD pour les données de planification de ses clients. Un accord de traitement des données (DPA) est fourni sur demande, avec la liste des sous-traitants ultérieurs.",
+    title: "Cadre français et droits des personnes",
+    text: "Le RGPD et la loi Informatique et Libertés encadrent les traitements en France. Les personnes peuvent exercer leurs droits auprès de leur organisation ou du DPO de BioSked selon le traitement concerné, et saisir la CNIL.",
   },
   {
-    title: "Des données de planification, pas de dossiers patients",
-    text: "Momentum traite les données nécessaires à la planification des équipes : identités professionnelles, affectations, compteurs, temps de travail. La solution n'a pas vocation à héberger de dossiers médicaux de patients.",
+    title: "Hébergement et transferts européens",
+    text: "Les données Momentum des clients français sont hébergées en Europe. Lorsqu'un accès depuis un autre pays est nécessaire, des garanties appropriées sont prévues, notamment des clauses contractuelles types ou une décision d'adéquation reconnue.",
   },
   {
-    title: "Chiffrement",
-    text: "Les échanges avec la plateforme sont chiffrés en transit (TLS) et les données sont chiffrées au repos chez notre fournisseur d'infrastructure.",
+    title: "Données limitées à la planification",
+    text: "Momentum utilise les identités professionnelles, rôles, affectations, demandes, compteurs et temps de travail nécessaires au planning. La solution n'est pas un système clinique et n'héberge pas les dossiers médicaux des patients.",
   },
   {
-    title: "Accès et traçabilité",
-    text: "Les droits d'accès dans Momentum sont définis par rôles et par privilèges, administrés par votre organisation. Les demandes (congés, échanges, désidératas) sont tracées dans l'application.",
+    title: "Chiffrement et contrôle d'accès",
+    text: "Les connexions sont chiffrées en transit par TLS et les données sont chiffrées au repos. Les autorisations sont attribuées par rôles et privilèges, puis administrées par l'organisation cliente.",
   },
   {
-    title: "Ce que Momentum ne fait pas",
-    text: "Momentum n'est pas un outil de surveillance des employés : pas de notation individuelle des personnes, pas de détection comportementale. Les compteurs servent l'équité de la répartition, visibles des équipes elles-mêmes.",
+    title: "Traçabilité sans profilage des salariés",
+    text: "Les demandes de congé, échanges et désidératas sont tracés pour faire fonctionner le planning. Momentum ne note pas les personnes, n'infère ni leur comportement ni leur santé, et ne sert pas à surveiller leur performance.",
   },
 ];
 ---
 
 <BaseLayout
-  title="Sécurité & données | BioSked Momentum"
-  description="Comment Momentum traite les données de planification : hébergement dans l'Union européenne, RGPD et DPA sur demande, chiffrement, accès par rôles, pas de surveillance individuelle."
+  title="Sécurité & données en France | BioSked Momentum"
+  description="Protection des données Momentum en France : rôles RGPD, loi Informatique et Libertés, DPA, hébergement européen, chiffrement et droits auprès de la CNIL."
 >
   <section class="section-padding">
     <div class="container max-w-4xl">
-      <p class="font-mono text-sm font-semibold uppercase tracking-widest text-muted-foreground">Sécurité &amp; données</p>
-      <h1 class="text-display-hero mt-4">Des engagements vérifiables, pas des slogans</h1>
+      <p class="font-mono text-sm font-semibold uppercase tracking-widest text-muted-foreground">France | Sécurité &amp; données</p>
+      <h1 class="text-display-hero mt-4">Protection des plannings dans le cadre français</h1>
       <p class="text-lead text-muted-foreground mt-5 max-w-2xl">
-        Les DSI et DPO ont des questions précises. Voici nos réponses, dans les limites de ce que
-        nous documentons contractuellement. Le détail s'examine avec votre équipe lors du cadrage.
+        Pour un établissement en France, la sécurité ne se limite pas au chiffrement. Elle suppose
+        aussi des rôles RGPD clairs, un traitement limité aux besoins du planning et des engagements
+        vérifiables dans le contrat et le DPA.
       </p>
     </div>
   </section>
@@ -58,7 +59,7 @@ const points = [
         ))}
       </div>
       <p class="text-muted-foreground text-sm mt-8">
-        Questions RGPD, DPA, sous-traitants : <a href="mailto:info@biosked.com" class="text-accent hover:underline">info@biosked.com</a> ·
+        Pour une question relative aux données personnelles : <a href="mailto:dpo@biosked.com" class="text-accent hover:underline">dpo@biosked.com</a> ·
         Voir aussi les <a href="/fr/mentions-legales/" class="text-accent hover:underline">mentions légales</a> et la
         <a href="/privacy/" class="text-accent hover:underline">politique de confidentialité</a>.
       </p>

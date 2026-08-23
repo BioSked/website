@@ -5,38 +5,60 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 ---
 
 <BaseLayout
-  title="Mentions légales | BioSked Momentum"
-  description="Mentions légales du site biosked.com pour le marché français : éditeur, direction de la publication, contact."
+  title="Mentions légales - France | BioSked Momentum"
+  description="Informations légales de biosked.com pour la France : éditeur, publication, hébergement, données personnelles, DPO, CNIL et choix des traceurs."
 >
   <section class="section-padding">
     <div class="container max-w-2xl">
-      <h1 class="text-display-section mb-8">Mentions légales</h1>
+      <h1 class="text-display-section mb-4">Mentions légales pour la France</h1>
+      <p class="text-foreground/85 mb-8">
+        Cette notice identifie l'éditeur de la version de biosked.com destinée au public français et
+        précise les points de contact applicables au site.
+      </p>
 
       <h2 class="text-display-card mt-8 mb-3">Éditeur du site</h2>
       <p class="text-foreground/85 mb-3">
-        Bio-Optronics Sàrl, société à responsabilité limitée de droit suisse, Nyon (Suisse),
-        entité européenne de BioSked, Inc., Fairport, New York (États-Unis).
+        Bio-Optronics Sàrl, société à responsabilité limitée de droit suisse établie à Nyon,
+        entité européenne de BioSked, Inc., Fairport, New York, États-Unis.
       </p>
       <p class="text-foreground/85 mb-3">
-        Contact : <a href="mailto:info@biosked.com" class="text-accent hover:underline">info@biosked.com</a>
+        Contact général : <a href="mailto:info@biosked.com" class="text-accent hover:underline">info@biosked.com</a>
       </p>
 
-      <h2 class="text-display-card mt-8 mb-3">Directeur de la publication</h2>
+      <h2 class="text-display-card mt-8 mb-3">Direction de la publication</h2>
       <p class="text-foreground/85 mb-3">David Dudok de Wit, directeur général.</p>
 
-      <h2 class="text-display-card mt-8 mb-3">Hébergement</h2>
-      <!-- TODO au lancement public : renseigner l'hébergeur définitif du site (nom, adresse, contact). -->
+      <h2 class="text-display-card mt-8 mb-3">Hébergement du site et du service</h2>
       <p class="text-foreground/85 mb-3">
-        Les coordonnées de l'hébergeur du site seront précisées lors de la mise en ligne publique.
-        Les données de l'application Momentum sont hébergées dans l'Union européenne
-        (voir <a href="/fr/securite-donnees/" class="text-accent hover:underline">Sécurité &amp; données</a>).
+        Le site statique biosked.com est publié au moyen du service GitHub Pages. Cette publication
+        est distincte des environnements clients Momentum. Pour les clients français, les données de
+        production Momentum sont hébergées en Europe; les précisions contractuelles figurent sur la
+        page <a href="/fr/securite-donnees/" class="text-accent hover:underline">Sécurité &amp; données</a>.
       </p>
 
-      <h2 class="text-display-card mt-8 mb-3">Données personnelles</h2>
+      <h2 class="text-display-card mt-8 mb-3">Responsable du traitement et demandes</h2>
       <p class="text-foreground/85 mb-3">
-        Le traitement des données personnelles est décrit dans la
-        <a href="/privacy/" class="text-accent hover:underline">politique de confidentialité</a>
+        Pour le site, les formulaires et la relation commerciale, Bio-Optronics Sàrl agit comme
+        responsable du traitement. Pour les données de planning Momentum, l'organisation cliente
+        détermine généralement les finalités et Bio-Optronics Sàrl agit comme sous-traitant sur ses
+        instructions. Une demande concernant ces données doit alors être adressée en priorité à
+        l'organisation concernée.
+      </p>
+      <p class="text-foreground/85 mb-3">
+        Le traitement est détaillé dans la{' '}
+        <a href="/privacy/" class="text-accent hover:underline">politique de confidentialité</a>{' '}
         et sur la page <a href="/fr/securite-donnees/" class="text-accent hover:underline">Sécurité &amp; données</a>.
+        Pour exercer un droit ou contacter le DPO : <a href="mailto:dpo@biosked.com" class="text-accent hover:underline">dpo@biosked.com</a>.
+        Les personnes en France peuvent introduire une réclamation auprès de la
+        <a href="https://www.cnil.fr/" class="text-accent hover:underline">Commission nationale de l'informatique et des libertés (CNIL)</a>.
+      </p>
+
+      <h2 class="text-display-card mt-8 mb-3">Traceurs et mesure d'audience en France</h2>
+      <p class="text-foreground/85 mb-3">
+        Les traceurs nécessaires au fonctionnement restent actifs. Lorsque le consentement préalable
+        est requis, la mesure d'audience reste désactivée jusqu'au choix « Autoriser ». Le contrôle
+        « Choix de confidentialité », accessible en bas de page, permet ensuite de modifier ce choix.
+        BioSked n'utilise pas les données du site pour de la publicité comportementale inter-sites.
       </p>
     </div>
   </section>
