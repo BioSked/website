@@ -25,6 +25,10 @@ const SUPPORTED_LOCALES = new Set(['en', 'fr']);
 const ALLOWED_IFRAME_HOSTS = new Set(['www.guidejar.com']);
 const USER_AGENT = 'BioSked knowledge-base synchronizer/1.0 (+https://biosked.com)';
 const CONCURRENCY = 3;
+// HubSpot can serve a newly published article hours before adding it to the
+// cached sitemap. Keep a recent cached article only while its public page is
+// still valid, giving the sitemap time to catch up without retaining deletions.
+const RECENT_SITEMAP_LAG_MS = 48 * 60 * 60 * 1_000;
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const outputPath = path.join(projectRoot, 'src/data/generated/hubspot-kb.json');
 
@@ -122,6 +126,12 @@ function normalizeSourceUrl(value, baseUrl) {
   url.searchParams.delete('hsLang');
   const search = url.searchParams.toString();
   return `${url.origin}${url.pathname}${search ? `?${search}` : ''}${url.hash}`;
+}
+
+function sourceIdentityUrl(value, baseUrl) {
+  const url = new URL(normalizeSourceUrl(value, baseUrl));
+  if (OLD_KB_HOSTS.has(url.hostname)) url.hostname = SOURCE_HOST;
+  return url.toString();
 }
 
 function sourcePathFromHref(value, baseUrl) {
@@ -515,13 +525,13 @@ if (exportPath) {
     if (error?.code !== 'ENOENT') throw error;
   }
   const previousByUrl = new Map(
-    (previousSnapshot?.articles ?? []).map((article) => [normalizeSourceUrl(article.sourceUrl, article.sourceUrl), article]),
+    (previousSnapshot?.articles ?? []).map((article) => [sourceIdentityUrl(article.sourceUrl, article.sourceUrl), article]),
   );
   let completed = 0;
   let fetched = 0;
   let reused = 0;
   extracted = await mapConcurrent(entries, CONCURRENCY, async (entry) => {
-    const normalizedUrl = normalizeSourceUrl(entry.url, entry.url);
+    const normalizedUrl = sourceIdentityUrl(entry.url, entry.url);
     const previous = previousByUrl.get(normalizedUrl);
     let article;
     if (previous && previous.lastModified === entry.lastmod) {
@@ -536,7 +546,32 @@ if (exportPath) {
     if (completed % 25 === 0 || completed === entries.length) process.stdout.write(`Processed ${completed}/${entries.length}\n`);
     return article;
   });
+  const sitemapUrls = new Set(entries.map((entry) => sourceIdentityUrl(entry.url, entry.url)));
+  const recentCutoff = Date.now() - RECENT_SITEMAP_LAG_MS;
+  let retainedDuringSitemapLag = 0;
+  for (const previous of previousSnapshot?.articles ?? []) {
+    const normalizedUrl = normalizeSourceUrl(previous.sourceUrl, previous.sourceUrl);
+    const identityUrl = sourceIdentityUrl(previous.sourceUrl, previous.sourceUrl);
+    const lastModified = Date.parse(previous.lastModified ?? '');
+    if (sitemapUrls.has(identityUrl) || !Number.isFinite(lastModified) || lastModified < recentCutoff) continue;
+    try {
+      const html = await fetchText(normalizedUrl, 1);
+      const live = extractArticle(html, {
+        url: normalizedUrl,
+        lastmod: previous.lastModified,
+        locale: previous.locale,
+      });
+      if (!live || live.articleId !== previous.articleId || live.sourcePath !== previous.sourcePath) continue;
+      extracted.push(previous);
+      retainedDuringSitemapLag += 1;
+    } catch {
+      // The page is no longer public, so omission from the sitemap is honored.
+    }
+  }
   console.log(`Incremental sync: reused ${reused}, fetched ${fetched}.`);
+  if (retainedDuringSitemapLag > 0) {
+    console.log(`Retained ${retainedDuringSitemapLag} recent live article(s) while the HubSpot sitemap catches up.`);
+  }
 }
 
 const articles = extracted
