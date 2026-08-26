@@ -887,13 +887,13 @@ assert.match(
 // The knowledge base lives on the site now: English at /help/, the rest prefixed.
 // Swiss French reads the French KB and Swiss German the German one.
 for (const [route, helpLabel, helpUrl] of [
-  ['', 'Help', '/help/kb-tickets/new/'],
-  ['fr', 'Aide', '/fr/help/kb-tickets/new/'],
-  ['fr-ch', 'Aide', '/fr/help/kb-tickets/new/'],
-  ['de', 'Hilfe', '/de/help/kb-tickets/new/'],
-  ['de-ch', 'Hilfe', '/de/help/kb-tickets/new/'],
-  ['nl', 'Hulp', '/nl/help/kb-tickets/new/'],
-  ['it', 'Aiuto', '/it/help/kb-tickets/new/'],
+  ['', 'Help', '/help/'],
+  ['fr', 'Aide', '/fr/help/'],
+  ['fr-ch', 'Aide', '/fr/help/'],
+  ['de', 'Hilfe', '/de/help/'],
+  ['de-ch', 'Hilfe', '/de/help/'],
+  ['nl', 'Hulp', '/nl/help/'],
+  ['it', 'Aiuto', '/it/help/'],
 ]) {
   const locale = route || 'en';
   const html = await readFile(path.join(distDir, route, 'index.html'), 'utf8');

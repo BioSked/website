@@ -98,7 +98,7 @@ export const NAV_LINKS = [
             {
                 label: 'nav.help',
                 alt: 'nav.help-subtitle',
-                href: '/help/kb-tickets/new/',
+                href: '/help/',
                 showDesktop: true,
                 showMobile: true,
             },
