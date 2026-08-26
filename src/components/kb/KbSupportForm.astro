@@ -47,9 +47,11 @@ const contextNotices: Record<KbLocale, string> = {
 
 <script>
   import {
+    applyMomentumSupportFormData,
     clearMomentumSupportContext,
     prefillMomentumSupportForm,
     readMomentumSupportContext,
+    verifyMomentumSupportForm,
   } from '@/lib/momentum-support-context.mjs';
 
   type RenderedForm = HTMLElement | { get?: (index: number) => HTMLElement | undefined; 0?: HTMLElement };
@@ -204,6 +206,28 @@ const contextNotices: Record<KbLocale, string> = {
             applyMomentumContext();
             [250, 1000, 2500].forEach(function (delay) {
               window.setTimeout(applyMomentumContext, delay);
+            });
+            window.setTimeout(function () {
+              var verification = verifyMomentumSupportForm(
+                formDocument,
+                momentumContext,
+                lastKnowledgeBasePath,
+              );
+              targetNode.dataset.momentumContextConfirmed = verification.confirmed.join(',');
+              targetNode.dataset.momentumContextMismatched = verification.mismatched.join(',');
+            }, 3500);
+
+            // HubSpot may reconcile hidden inputs back to their schema defaults
+            // after onFormReady. The native formdata event is the last safe
+            // point before the existing submission continues, so refresh only
+            // app-owned ticket fields there. This leaves CS routing, validation,
+            // contact fields, and the form's POST behavior untouched.
+            formElement?.addEventListener('formdata', function (event) {
+              applyMomentumSupportFormData(
+                (event as FormDataEvent).formData,
+                momentumContext,
+                lastKnowledgeBasePath,
+              );
             });
           }
         }

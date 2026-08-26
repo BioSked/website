@@ -173,14 +173,21 @@ export function momentumHubSpotFieldValues(context, lastKnowledgeBasePath = '') 
 }
 
 function setElementValue(element, value) {
-  // HubSpot's embedded form uses controlled inputs. Calling the native setter
-  // keeps its framework state in sync; a plain assignment can be reverted on
-  // the next render even though the DOM briefly contained the value.
-  const prototype = Object.getPrototypeOf(element);
-  const nativeSetter = prototype && Object.getOwnPropertyDescriptor(prototype, 'value')?.set;
-  if (nativeSetter) nativeSetter.call(element, value);
-  else element.value = value;
-  element.dispatchEvent(new Event('input', { bubbles: true }));
+  // HubSpot's classic v2 embed does not keep hidden fields in the same
+  // controlled state as visible inputs. Dispatching input/change on a hidden
+  // field makes HubSpot reconcile it back to its blank default. Attribute
+  // mutations can also trigger a re-render, so update only the native value;
+  // the formdata hook below refreshes ticket fields at submission time.
+  const isHidden = element?.type === 'hidden' || element?.getAttribute?.('type') === 'hidden';
+  if (isHidden) {
+    element.value = value;
+    return;
+  }
+
+  // HubSpot's supported legacy-form prefill pattern is equivalent to jQuery's
+  // .val(value).change(): assign through the control's own value path, then
+  // notify the embed with a change event.
+  element.value = value;
   element.dispatchEvent(new Event('change', { bubbles: true }));
 }
 
@@ -196,9 +203,50 @@ export function prefillMomentumSupportForm(root, context, lastKnowledgeBasePath 
       missing.push(field.key);
       continue;
     }
-    for (const control of matches) setElementValue(control, field.value);
+    for (const control of matches) {
+      // Do not overwrite a correction the user has already made while a later
+      // HubSpot fieldset is still rendering. Blank controls still receive the
+      // app context on each bounded retry.
+      if (!control.value) setElementValue(control, field.value);
+    }
     applied.push(field.key);
   }
 
   return { applied, missing };
+}
+
+export function verifyMomentumSupportForm(root, context, lastKnowledgeBasePath = '') {
+  const controls = Array.from(root?.querySelectorAll?.('input[name], select[name], textarea[name]') ?? []);
+  const confirmed = [];
+  const missing = [];
+  const mismatched = [];
+
+  for (const field of momentumHubSpotFieldValues(context, lastKnowledgeBasePath)) {
+    if (!field.value) continue;
+    const matches = controls.filter((control) => field.names.includes(control.getAttribute('name')));
+    if (matches.length === 0) missing.push(field.key);
+    else if (matches.every((control) => control.value === field.value)) confirmed.push(field.key);
+    else mismatched.push(field.key);
+  }
+
+  return { confirmed, missing, mismatched };
+}
+
+export function applyMomentumSupportFormData(formData, context, lastKnowledgeBasePath = '') {
+  if (!formData?.set) return [];
+
+  const applied = [];
+  for (const field of momentumHubSpotFieldValues(context, lastKnowledgeBasePath)) {
+    if (!field.value) continue;
+    for (const name of field.names) {
+      // Contact fields and the French company-level instance field are visible
+      // and user-correctable. Preserve the values shown in the form. The
+      // app-only ticket context remains authoritative for this submission and
+      // is refreshed after HubSpot has constructed the native FormData object.
+      if (!name.startsWith('TICKET.') && !name.startsWith('mm_')) continue;
+      formData.set(name, field.value);
+      applied.push(name);
+    }
+  }
+  return applied;
 }

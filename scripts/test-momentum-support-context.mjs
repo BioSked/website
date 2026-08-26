@@ -3,9 +3,11 @@ import {
   MOMENTUM_SUPPORT_MAX_ENCODED_LENGTH,
   MOMENTUM_SUPPORT_STORAGE_KEY,
   MOMENTUM_SUPPORT_TTL_MS,
+  applyMomentumSupportFormData,
   decodeMomentumSupportContext,
   prefillMomentumSupportForm,
   readMomentumSupportContext,
+  verifyMomentumSupportForm,
 } from '../src/lib/momentum-support-context.mjs';
 
 const now = Date.UTC(2026, 7, 26, 12, 0, 0);
@@ -75,12 +77,20 @@ assert.equal(readMomentumSupportContext(expiredStorage, now), null, 'expired ses
 assert.equal(expiredStorage.getItem(MOMENTUM_SUPPORT_STORAGE_KEY), null, 'expired session context must be removed');
 assert.equal(readMomentumSupportContext({ getItem() { throw new Error('blocked'); } }, now), null, 'blocked storage must fail closed');
 
-function control(name) {
+function control(name, type = 'text') {
   return {
     name,
+    type,
     value: '',
+    defaultValue: '',
     events: [],
-    getAttribute(attribute) { return attribute === 'name' ? this.name : null; },
+    attributes: new Map(),
+    getAttribute(attribute) {
+      if (attribute === 'name') return this.name;
+      if (attribute === 'type') return this.type;
+      return this.attributes.get(attribute) ?? null;
+    },
+    setAttribute(attribute, value) { this.attributes.set(attribute, value); },
     dispatchEvent(event) { this.events.push(event.type); },
   };
 }
@@ -89,15 +99,15 @@ const controls = [
   control('firstname'),
   control('lastname'),
   control('email'),
-  control('TICKET.mm_instance'),
+  control('TICKET.mm_instance', 'hidden'),
   control('0-2/mm_instances'),
-  control('TICKET.mm_orig_release'),
-  control('TICKET.mm_product'),
-  control('TICKET.mm_momentum_page_path'),
-  control('TICKET.mm_momentum_user_id'),
-  control('TICKET.mm_momentum_enterprise_id'),
-  control('TICKET.mm_momentum_language'),
-  control('TICKET.mm_kb_article_path'),
+  control('TICKET.mm_orig_release', 'hidden'),
+  control('TICKET.mm_product', 'hidden'),
+  control('TICKET.mm_momentum_page_path', 'hidden'),
+  control('TICKET.mm_momentum_user_id', 'hidden'),
+  control('TICKET.mm_momentum_enterprise_id', 'hidden'),
+  control('TICKET.mm_momentum_language', 'hidden'),
+  control('TICKET.mm_kb_article_path', 'hidden'),
 ];
 const root = { querySelectorAll: () => controls };
 const result = prefillMomentumSupportForm(root, validContext, '/fr/help/edit-a-schedule/');
@@ -109,22 +119,56 @@ assert.equal(controls.find((item) => item.name === '0-2/mm_instances').value, va
 assert.equal(controls.find((item) => item.name === 'TICKET.mm_product').value, 'Momentum Staff Scheduler');
 assert.equal(controls.find((item) => item.name === 'TICKET.mm_momentum_page_path').value, '/frmMain.aspx');
 assert.equal(controls.find((item) => item.name === 'TICKET.mm_kb_article_path').value, '/fr/help/edit-a-schedule/');
-assert.ok(controls.every((item) => item.events.join(',') === 'input,change'), 'prefill must notify HubSpot of every populated field');
-
+assert.deepEqual(
+  verifyMomentumSupportForm(root, validContext, '/fr/help/edit-a-schedule/'),
+  {
+    confirmed: ['firstName', 'lastName', 'email', 'instance', 'appVersion', 'product', 'pagePath', 'userId', 'enterpriseId', 'language', 'lastKbPath'],
+    missing: [],
+    mismatched: [],
+  },
+  'verification must report only physical controls whose current values still match the context',
+);
+assert.ok(
+  controls.filter((item) => item.type !== 'hidden').every((item) => item.events.join(',') === 'change'),
+  'prefill must notify HubSpot when visible fields change',
+);
+assert.ok(
+  controls.filter((item) => item.type === 'hidden').every((item) => item.events.length === 0),
+  'hidden HubSpot fields must not dispatch events that reset their values',
+);
 let controlledValue = '';
 const controlledInput = Object.create({
   get value() { return controlledValue; },
   set value(value) { controlledValue = value; },
 });
 Object.assign(controlledInput, {
-  name: 'email',
+  name: 'firstname',
   events: [],
   getAttribute(attribute) { return attribute === 'name' ? this.name : null; },
   dispatchEvent(event) { this.events.push(event.type); },
 });
 prefillMomentumSupportForm({ querySelectorAll: () => [controlledInput] }, validContext);
-assert.equal(controlledValue, validContext.email, 'controlled HubSpot inputs must use their native value setter');
-assert.deepEqual(controlledInput.events, ['input', 'change']);
+assert.equal(controlledValue, validContext.firstName, 'controlled HubSpot inputs must use their value setter');
+assert.deepEqual(controlledInput.events, ['change']);
+
+const submittedValues = new Map();
+const formData = {
+  set(name, value) { submittedValues.set(name, value); },
+};
+const submittedNames = applyMomentumSupportFormData(formData, validContext, '/fr/help/edit-a-schedule/');
+assert.equal(submittedValues.get('TICKET.mm_instance'), validContext.instance);
+assert.equal(submittedValues.get('TICKET.mm_orig_release'), validContext.appVersion);
+assert.equal(submittedValues.get('TICKET.mm_product'), 'Momentum Staff Scheduler');
+assert.equal(submittedValues.get('TICKET.mm_kb_article_path'), '/fr/help/edit-a-schedule/');
+assert.equal(submittedValues.has('firstname'), false, 'submission refresh must preserve visible contact fields');
+assert.equal(submittedValues.has('email'), false, 'submission refresh must preserve user-correctable email');
+assert.equal(submittedValues.has('0-2/mm_instances'), false, 'submission refresh must preserve the French company instance field');
+assert.ok(submittedNames.every((name) => name.startsWith('TICKET.') || name.startsWith('mm_')));
+
+const alreadyEditedEmail = control('email');
+alreadyEditedEmail.value = 'corrected@example.com';
+prefillMomentumSupportForm({ querySelectorAll: () => [alreadyEditedEmail] }, validContext);
+assert.equal(alreadyEditedEmail.value, 'corrected@example.com', 'retries must not overwrite user corrections');
 
 const partialResult = prefillMomentumSupportForm({ querySelectorAll: () => [control('firstname')] }, validContext);
 assert.ok(partialResult.missing.includes('instance'), 'missing form fields must be reported');
