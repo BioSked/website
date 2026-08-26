@@ -75,6 +75,37 @@ const priorConsentTimeZones = [...PRIOR_CONSENT_TIME_ZONES];
 <meta charset="utf-8" />
 
 <!--
+  Momentum opens the KB with a short-lived, base64url-encoded fragment. Capture
+  it before locale redirects or analytics run, then remove it from the address
+  bar. The payload stays in this tab only and is validated again before use.
+-->
+<script is:inline>
+    (function () {
+        var PREFIX = '#momentum-support=';
+        var STORAGE_KEY = 'biosked-momentum-support-context-v1';
+        var MAX_LENGTH = 8192;
+        if (location.hash.indexOf(PREFIX) !== 0) return;
+
+        window.bskMomentumSupportHandoff = true;
+        var payload = location.hash.slice(PREFIX.length);
+        try {
+            history.replaceState(null, '', location.pathname + location.search);
+        } catch (e) {}
+
+        // An attempted handoff must replace, never inherit, older tab context.
+        // Clear first so malformed, stale or oversized payloads fail closed.
+        try { sessionStorage.removeItem(STORAGE_KEY); } catch (e) {}
+        if (!payload || payload.length > MAX_LENGTH || !/^[A-Za-z0-9_-]+$/.test(payload)) return;
+        try {
+            sessionStorage.setItem(STORAGE_KEY, JSON.stringify({
+                receivedAt: Date.now(),
+                payload: payload,
+            }));
+        } catch (e) {}
+    })();
+</script>
+
+<!--
   Instant locale switch. First-time visitors on the English tree are sent to the
   page in their browser's language before paint (no flash, no banner). Rules:
   - Only redirects FROM the default English tree; a visitor who deep-linked into
@@ -87,6 +118,7 @@ const priorConsentTimeZones = [...PRIOR_CONSENT_TIME_ZONES];
 <script is:inline define:vars={{ localeCurrent: pageLocale, localeAlts }}>
     (function () {
         try {
+            if (window.bskMomentumSupportHandoff) return;
             if (localeCurrent !== 'en') return;
             var KEY = 'biosked-locale-pref';
             var want = null;

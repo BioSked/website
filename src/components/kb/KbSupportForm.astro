@@ -9,6 +9,13 @@ const { locale } = Astro.props;
 const form = kbSnapshot.forms[locale];
 const copy = kbCopy[locale];
 const supportEmail = 'mailto:support@biosked.com';
+const contextNotices: Record<KbLocale, string> = {
+  en: 'Your Momentum account and instance details will be attached when you submit. Do not include patient-identifying information.',
+  fr: 'Les informations de votre compte et de votre instance Momentum seront jointes lors de l’envoi. N’incluez aucune information permettant d’identifier un patient.',
+  de: 'Ihre Momentum Konto- und Instanzdaten werden beim Absenden angefügt. Geben Sie keine patientenbezogenen Daten ein.',
+  nl: 'Uw Momentum-account- en instantiegegevens worden bij het verzenden toegevoegd. Vermeld geen gegevens waarmee een patiënt kan worden geïdentificeerd.',
+  it: 'I dati dell’account e dell’istanza Momentum verranno allegati all’invio. Non includere dati che identificano i pazienti.',
+};
 ---
 
 <div class="rounded-3xl border border-slate-200 bg-white p-4 shadow-[0_24px_70px_-48px_rgba(15,54,71,0.55)] sm:p-9">
@@ -20,6 +27,9 @@ const supportEmail = 'mailto:support@biosked.com';
     data-region={form.region}
     data-locale={locale}
   ></div>
+  <p class="mb-4 hidden rounded-2xl border border-teal-200 bg-teal-50 p-4 text-sm text-slate-700" data-kb-context-notice>
+    {contextNotices[locale]}
+  </p>
   <p class="flex items-center gap-3 py-6 text-sm text-slate-500" data-kb-form-loading>
     <span class="size-4 animate-spin rounded-full border-2 border-[#31bdc0] border-t-transparent" aria-hidden="true"></span>
     {copy.formLoading}
@@ -35,11 +45,53 @@ const supportEmail = 'mailto:support@biosked.com';
   </noscript>
 </div>
 
-<script is:inline define:vars={{ form, locale }}>
+<script>
+  import {
+    clearMomentumSupportContext,
+    prefillMomentumSupportForm,
+    readMomentumSupportContext,
+  } from '@/lib/momentum-support-context.mjs';
+
+  type RenderedForm = HTMLElement | { get?: (index: number) => HTMLElement | undefined; 0?: HTMLElement };
+  type HubSpotOptions = {
+    region: string;
+    portalId: string;
+    formId: string;
+    target: string;
+    css: string;
+    locale: string;
+    onFormReady: (renderedForm: RenderedForm) => void;
+    onFormSubmitted: () => void;
+  };
+  const supportWindow = window as Window & {
+    bskHsForm?: (options: HubSpotOptions) => void;
+    bskTrackLead?: (formId: string) => void;
+  };
+
   (function () {
     var target = '#kb-support-form';
-    var loading = document.querySelector('[data-kb-form-loading]');
-    var fallback = document.querySelector('[data-kb-form-fallback]');
+    const targetNode = document.querySelector<HTMLElement>('[data-kb-support-form]');
+    if (!targetNode) return;
+    var form = {
+      region: targetNode.dataset.region || '',
+      portalId: targetNode.dataset.portalId || '',
+      formId: targetNode.dataset.formId || '',
+    };
+    var locale = targetNode.dataset.locale || 'en';
+    var loading = document.querySelector<HTMLElement>('[data-kb-form-loading]');
+    var fallback = document.querySelector<HTMLElement>('[data-kb-form-fallback]');
+    var contextNotice = document.querySelector<HTMLElement>('[data-kb-context-notice]');
+    var momentumContext: ReturnType<typeof readMomentumSupportContext> = null;
+    try { momentumContext = readMomentumSupportContext(window.sessionStorage); } catch (error) {}
+    var lastKnowledgeBasePath = '';
+    try {
+      var referrer = new URL(document.referrer);
+      if (referrer.origin === location.origin
+        && referrer.pathname.indexOf('/help/') !== -1
+        && referrer.pathname.indexOf('/kb-tickets/new') === -1) {
+        lastKnowledgeBasePath = referrer.pathname;
+      }
+    } catch (error) {}
     var ready = false;
     var frameTitle = locale === 'fr' ? 'Formulaire de support BioSked' : 'BioSked support form';
     var phonePrefixLabel = locale === 'fr' ? 'Indicatif téléphonique' : 'Phone country code';
@@ -76,32 +128,30 @@ const supportEmail = 'mailto:support@biosked.com';
       if (fallback) fallback.classList.remove('hidden');
     }, 12000);
 
-    if (typeof window.bskHsForm !== 'function') {
+    if (typeof supportWindow.bskHsForm !== 'function') {
       window.clearTimeout(revealFallback);
       if (loading) loading.classList.add('hidden');
       if (fallback) fallback.classList.remove('hidden');
       return;
     }
 
-    window.bskHsForm({
+    supportWindow.bskHsForm({
       region: form.region,
       portalId: form.portalId,
       formId: form.formId,
       target: target,
       css: '',
       locale: locale,
-      onFormReady: function (renderedForm) {
+      onFormReady: function (renderedForm: RenderedForm) {
         ready = true;
         window.clearTimeout(revealFallback);
         if (loading) loading.classList.add('hidden');
         if (fallback) fallback.classList.add('hidden');
-        var targetNode = document.querySelector(target);
-        var iframe = targetNode && targetNode.querySelector('iframe.hs-form-iframe');
-        var formElement = renderedForm && typeof renderedForm.get === 'function'
-          ? renderedForm.get(0)
-          : renderedForm && renderedForm.nodeType
-            ? renderedForm
-            : renderedForm && renderedForm[0];
+        var iframe = targetNode.querySelector<HTMLIFrameElement>('iframe.hs-form-iframe');
+        var renderedFormWrapper = renderedForm as { get?: (index: number) => HTMLElement | undefined; 0?: HTMLElement };
+        var formElement = renderedForm instanceof HTMLElement
+          ? renderedForm
+          : renderedFormWrapper.get?.(0) || renderedFormWrapper[0] || null;
         var formDocument = formElement && formElement.ownerDocument;
         if (!formDocument && iframe) {
           try { formDocument = iframe.contentDocument; } catch (error) { formDocument = null; }
@@ -132,11 +182,36 @@ const supportEmail = 'mailto:support@biosked.com';
             style.textContent = embeddedFormCss;
             formDocument.head.appendChild(style);
           }
+
+          if (momentumContext) {
+            // HubSpot can invoke onFormReady while later fieldsets are still
+            // being appended. Retry briefly so email and hidden ticket fields
+            // are not missed, then expose any true schema gaps for UAT.
+            var applyMomentumContext = function () {
+              var prefillResult = prefillMomentumSupportForm(
+                // HubSpot appends later fieldsets outside its initial wrapper.
+                // Re-query the entire iframe document on every retry.
+                formDocument,
+                momentumContext,
+                lastKnowledgeBasePath,
+              );
+              targetNode.dataset.momentumContextApplied = prefillResult.applied.join(',');
+              targetNode.dataset.momentumContextMissing = prefillResult.missing.join(',');
+              if (prefillResult.applied.length > 0 && contextNotice) {
+                contextNotice.classList.remove('hidden');
+              }
+            };
+            applyMomentumContext();
+            [250, 1000, 2500].forEach(function (delay) {
+              window.setTimeout(applyMomentumContext, delay);
+            });
+          }
         }
       },
       onFormSubmitted: function () {
-        if (typeof window.bskTrackLead === 'function') {
-          window.bskTrackLead(form.formId);
+        try { clearMomentumSupportContext(window.sessionStorage); } catch (error) {}
+        if (typeof supportWindow.bskTrackLead === 'function') {
+          supportWindow.bskTrackLead(form.formId);
         }
       }
     });

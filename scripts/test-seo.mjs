@@ -1063,7 +1063,7 @@ const llmsText = await readFile(llmsPath, 'utf8');
 assert.match(llmsText, /^# Momentum by BioSked\s*$/m, 'llms.txt must contain the site H1');
 assert.match(llmsText, /^> \S.+$/m, 'llms.txt must contain a summary blockquote');
 assert.match(llmsText, /^## Product and company\s*$/m, 'llms.txt must contain the primary links section');
-const llmsLinkLines = llmsText.split('\n').filter((line) => /^-\s*\[/.test(line));
+const llmsLinkLines = llmsText.split(/\r?\n/).filter((line) => /^-\s*\[/.test(line));
 assert.ok(llmsLinkLines.length > 0, 'llms.txt must contain at least one Markdown link');
 for (const line of llmsLinkLines) {
   const match = line.match(/^-\s*\[[^\]]+\]\(([^)]+)\)(?::.*)?$/);
