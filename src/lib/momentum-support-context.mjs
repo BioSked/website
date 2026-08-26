@@ -1,5 +1,6 @@
 export const MOMENTUM_SUPPORT_FRAGMENT_PREFIX = '#momentum-support=';
 export const MOMENTUM_SUPPORT_STORAGE_KEY = 'biosked-momentum-support-context-v1';
+export const MOMENTUM_SUPPORT_LAST_KB_STORAGE_KEY = 'biosked-momentum-support-last-kb-v1';
 export const MOMENTUM_SUPPORT_MAX_ENCODED_LENGTH = 8192;
 export const MOMENTUM_SUPPORT_TTL_MS = 4 * 60 * 60 * 1000;
 
@@ -156,6 +157,61 @@ export function clearMomentumSupportContext(storage) {
   }
 }
 
+function isKnowledgeBaseArticlePath(value) {
+  return isSafePagePath(value)
+    && /^\/(?:fr\/)?help\/[^/]+(?:\/[^/]+)*\/?$/.test(value)
+    && !/^\/(?:fr\/)?help\/kb-tickets\/new\/?$/.test(value);
+}
+
+export function storeLastKnowledgeBasePath(storage, path, now = Date.now()) {
+  if (!storage || !isKnowledgeBaseArticlePath(path) || !Number.isFinite(now)) return false;
+  try {
+    storage.setItem(MOMENTUM_SUPPORT_LAST_KB_STORAGE_KEY, JSON.stringify({ viewedAt: now, path }));
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+export function readLastKnowledgeBasePath(storage, now = Date.now()) {
+  if (!storage) return '';
+
+  let raw;
+  try {
+    raw = storage.getItem(MOMENTUM_SUPPORT_LAST_KB_STORAGE_KEY);
+  } catch {
+    return '';
+  }
+  if (!raw) return '';
+
+  let value;
+  try {
+    value = JSON.parse(raw);
+  } catch {
+    clearLastKnowledgeBasePath(storage);
+    return '';
+  }
+
+  if (!value
+    || !Number.isFinite(value.viewedAt)
+    || value.viewedAt > now + MAX_FUTURE_CLOCK_SKEW_MS
+    || value.viewedAt < now - MOMENTUM_SUPPORT_TTL_MS
+    || !isKnowledgeBaseArticlePath(value.path)) {
+    clearLastKnowledgeBasePath(storage);
+    return '';
+  }
+
+  return value.path;
+}
+
+export function clearLastKnowledgeBasePath(storage) {
+  try {
+    storage?.removeItem(MOMENTUM_SUPPORT_LAST_KB_STORAGE_KEY);
+  } catch {
+    // Browsers can block storage. Article attribution remains optional.
+  }
+}
+
 export function momentumHubSpotFieldValues(context, lastKnowledgeBasePath = '') {
   return [
     { key: 'firstName', names: ['firstname'], value: context.firstName },
@@ -184,11 +240,14 @@ function setElementValue(element, value) {
     return;
   }
 
-  // HubSpot's supported legacy-form prefill pattern is equivalent to jQuery's
-  // .val(value).change(): assign through the control's own value path, then
-  // notify the embed with a change event.
+  // HubSpot reads visible fields through both its native input validation and
+  // its legacy change handlers. Signal both so a value that is visibly present
+  // is also present in HubSpot's submission state.
+  element.focus?.();
   element.value = value;
+  element.dispatchEvent(new Event('input', { bubbles: true }));
   element.dispatchEvent(new Event('change', { bubbles: true }));
+  element.blur?.();
 }
 
 export function prefillMomentumSupportForm(root, context, lastKnowledgeBasePath = '') {

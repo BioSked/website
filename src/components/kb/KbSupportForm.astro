@@ -47,9 +47,11 @@ const contextNotices: Record<KbLocale, string> = {
 
 <script>
   import {
+    clearLastKnowledgeBasePath,
     applyMomentumSupportFormData,
     clearMomentumSupportContext,
     prefillMomentumSupportForm,
+    readLastKnowledgeBasePath,
     readMomentumSupportContext,
     verifyMomentumSupportForm,
   } from '@/lib/momentum-support-context.mjs';
@@ -94,6 +96,9 @@ const contextNotices: Record<KbLocale, string> = {
         lastKnowledgeBasePath = referrer.pathname;
       }
     } catch (error) {}
+    if (!lastKnowledgeBasePath) {
+      try { lastKnowledgeBasePath = readLastKnowledgeBasePath(window.sessionStorage); } catch (error) {}
+    }
     var ready = false;
     var frameTitle = locale === 'fr' ? 'Formulaire de support BioSked' : 'BioSked support form';
     var phonePrefixLabel = locale === 'fr' ? 'Indicatif téléphonique' : 'Phone country code';
@@ -186,6 +191,7 @@ const contextNotices: Record<KbLocale, string> = {
           }
 
           if (momentumContext) {
+            var resolvedMomentumContext = momentumContext;
             // HubSpot can invoke onFormReady while later fieldsets are still
             // being appended. Retry briefly so email and hidden ticket fields
             // are not missed, then expose any true schema gaps for UAT.
@@ -194,7 +200,7 @@ const contextNotices: Record<KbLocale, string> = {
                 // HubSpot appends later fieldsets outside its initial wrapper.
                 // Re-query the entire iframe document on every retry.
                 formDocument,
-                momentumContext,
+                resolvedMomentumContext,
                 lastKnowledgeBasePath,
               );
               targetNode.dataset.momentumContextApplied = prefillResult.applied.join(',');
@@ -210,7 +216,7 @@ const contextNotices: Record<KbLocale, string> = {
             window.setTimeout(function () {
               var verification = verifyMomentumSupportForm(
                 formDocument,
-                momentumContext,
+                resolvedMomentumContext,
                 lastKnowledgeBasePath,
               );
               targetNode.dataset.momentumContextConfirmed = verification.confirmed.join(',');
@@ -225,7 +231,7 @@ const contextNotices: Record<KbLocale, string> = {
             formElement?.addEventListener('formdata', function (event) {
               applyMomentumSupportFormData(
                 (event as FormDataEvent).formData,
-                momentumContext,
+                resolvedMomentumContext,
                 lastKnowledgeBasePath,
               );
             });
@@ -233,7 +239,10 @@ const contextNotices: Record<KbLocale, string> = {
         }
       },
       onFormSubmitted: function () {
-        try { clearMomentumSupportContext(window.sessionStorage); } catch (error) {}
+        try {
+          clearMomentumSupportContext(window.sessionStorage);
+          clearLastKnowledgeBasePath(window.sessionStorage);
+        } catch (error) {}
         if (typeof supportWindow.bskTrackLead === 'function') {
           supportWindow.bskTrackLead(form.formId);
         }

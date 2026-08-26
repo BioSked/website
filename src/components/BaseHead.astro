@@ -83,6 +83,7 @@ const priorConsentTimeZones = [...PRIOR_CONSENT_TIME_ZONES];
     (function () {
         var PREFIX = '#momentum-support=';
         var STORAGE_KEY = 'biosked-momentum-support-context-v1';
+        var LAST_KB_KEY = 'biosked-momentum-support-last-kb-v1';
         var MAX_LENGTH = 8192;
         if (location.hash.indexOf(PREFIX) !== 0) return;
 
@@ -94,7 +95,10 @@ const priorConsentTimeZones = [...PRIOR_CONSENT_TIME_ZONES];
 
         // An attempted handoff must replace, never inherit, older tab context.
         // Clear first so malformed, stale or oversized payloads fail closed.
-        try { sessionStorage.removeItem(STORAGE_KEY); } catch (e) {}
+        try {
+            sessionStorage.removeItem(STORAGE_KEY);
+            sessionStorage.removeItem(LAST_KB_KEY);
+        } catch (e) {}
         if (!payload || payload.length > MAX_LENGTH || !/^[A-Za-z0-9_-]+$/.test(payload)) return;
         try {
             sessionStorage.setItem(STORAGE_KEY, JSON.stringify({

@@ -1,12 +1,15 @@
 import assert from 'node:assert/strict';
 import {
   MOMENTUM_SUPPORT_MAX_ENCODED_LENGTH,
+  MOMENTUM_SUPPORT_LAST_KB_STORAGE_KEY,
   MOMENTUM_SUPPORT_STORAGE_KEY,
   MOMENTUM_SUPPORT_TTL_MS,
   applyMomentumSupportFormData,
   decodeMomentumSupportContext,
   prefillMomentumSupportForm,
+  readLastKnowledgeBasePath,
   readMomentumSupportContext,
+  storeLastKnowledgeBasePath,
   verifyMomentumSupportForm,
 } from '../src/lib/momentum-support-context.mjs';
 
@@ -77,6 +80,30 @@ assert.equal(readMomentumSupportContext(expiredStorage, now), null, 'expired ses
 assert.equal(expiredStorage.getItem(MOMENTUM_SUPPORT_STORAGE_KEY), null, 'expired session context must be removed');
 assert.equal(readMomentumSupportContext({ getItem() { throw new Error('blocked'); } }, now), null, 'blocked storage must fail closed');
 
+function mutableStorage() {
+  const values = new Map();
+  return {
+    getItem: (key) => values.get(key) ?? null,
+    setItem: (key, value) => values.set(key, value),
+    removeItem: (key) => values.delete(key),
+  };
+}
+
+const articleStorage = mutableStorage();
+assert.equal(storeLastKnowledgeBasePath(articleStorage, '/help/edit-a-schedule/', now), true);
+assert.equal(readLastKnowledgeBasePath(articleStorage, now), '/help/edit-a-schedule/');
+assert.equal(storeLastKnowledgeBasePath(articleStorage, '/fr/help/modifier-un-planning/', now), true);
+assert.equal(readLastKnowledgeBasePath(articleStorage, now), '/fr/help/modifier-un-planning/');
+assert.equal(storeLastKnowledgeBasePath(articleStorage, '/help/kb-tickets/new/', now), false, 'support form must never be recorded as an article');
+assert.equal(storeLastKnowledgeBasePath(articleStorage, '/pricing/', now), false, 'non-KB paths must be rejected');
+assert.equal(storeLastKnowledgeBasePath(articleStorage, '/help/article/?token=secret', now), false, 'query strings must be rejected');
+articleStorage.setItem(MOMENTUM_SUPPORT_LAST_KB_STORAGE_KEY, JSON.stringify({
+  viewedAt: now - MOMENTUM_SUPPORT_TTL_MS - 1,
+  path: '/help/expired-article/',
+}));
+assert.equal(readLastKnowledgeBasePath(articleStorage, now), '', 'expired article attribution must be rejected');
+assert.equal(articleStorage.getItem(MOMENTUM_SUPPORT_LAST_KB_STORAGE_KEY), null, 'expired article attribution must be removed');
+
 function control(name, type = 'text') {
   return {
     name,
@@ -129,8 +156,8 @@ assert.deepEqual(
   'verification must report only physical controls whose current values still match the context',
 );
 assert.ok(
-  controls.filter((item) => item.type !== 'hidden').every((item) => item.events.join(',') === 'change'),
-  'prefill must notify HubSpot when visible fields change',
+  controls.filter((item) => item.type !== 'hidden').every((item) => item.events.join(',') === 'input,change'),
+  'prefill must notify HubSpot input validation and legacy change handlers for visible fields',
 );
 assert.ok(
   controls.filter((item) => item.type === 'hidden').every((item) => item.events.length === 0),
@@ -149,7 +176,7 @@ Object.assign(controlledInput, {
 });
 prefillMomentumSupportForm({ querySelectorAll: () => [controlledInput] }, validContext);
 assert.equal(controlledValue, validContext.firstName, 'controlled HubSpot inputs must use their value setter');
-assert.deepEqual(controlledInput.events, ['change']);
+assert.deepEqual(controlledInput.events, ['input', 'change']);
 
 const submittedValues = new Map();
 const formData = {
