@@ -175,7 +175,30 @@ const articleSchema = article
   ) : null}
 </BaseLayout>
 
-<script is:inline>
+<script>
+  import {
+    readMomentumSupportContext,
+    storeLastKnowledgeBasePath,
+  } from '@/lib/momentum-support-context.mjs';
+
+  // Astro can keep the same document across client-side page transitions, so
+  // document.referrer alone cannot reliably identify the article read before
+  // opening support. Store only the path while a validated Momentum handoff is
+  // active. The shared helper enforces the same four-hour TTL at read time.
+  function rememberMomentumKnowledgeBaseArticle() {
+    try {
+      if (document.querySelector('[data-kb-feedback]')
+        && readMomentumSupportContext(window.sessionStorage)) {
+        storeLastKnowledgeBasePath(window.sessionStorage, window.location.pathname);
+      }
+    } catch (error) {}
+  }
+
+  rememberMomentumKnowledgeBaseArticle();
+  document.addEventListener('astro:page-load', rememberMomentumKnowledgeBaseArticle);
+</script>
+
+<script is:inline data-astro-rerun>
   document.querySelectorAll('[data-kb-feedback]').forEach(function (root) {
     root.querySelectorAll('button[data-answer]').forEach(function (button) {
       button.addEventListener('click', function () {

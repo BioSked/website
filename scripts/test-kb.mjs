@@ -142,6 +142,22 @@ const supportFormSource = frontendSources.get('src/components/kb/KbSupportForm.a
 assert.match(supportFormSource, /select\[id\^="phone_ext"\]/, 'embedded phone prefix must receive an accessible name');
 assert.match(supportFormSource, /background:#007b83!important/, 'embedded form submit button must use accessible contrast');
 assert.match(supportFormSource, /data-bsk-kb-form/, 'embedded form styles must be injected into the HubSpot iframe');
+assert.match(supportFormSource, /prefillMomentumSupportForm/, 'support form must prefill validated Momentum context');
+assert.match(supportFormSource, /clearMomentumSupportContext/, 'support context must be removed after submission');
+
+const baseHeadSource = frontendSources.get('src/components/BaseHead.astro');
+const handoffPosition = baseHeadSource.indexOf("#momentum-support=");
+const localeRedirectPosition = baseHeadSource.indexOf('Instant locale switch');
+const analyticsPosition = baseHeadSource.indexOf('Google tag (gtag.js)');
+assert.ok(handoffPosition > -1, 'head must capture the Momentum support fragment');
+assert.ok(handoffPosition < localeRedirectPosition, 'support fragment must be captured before locale redirects');
+assert.ok(handoffPosition < analyticsPosition, 'support fragment must be stripped before analytics');
+assert.match(baseHeadSource, /history\.replaceState\(null, '', location\.pathname \+ location\.search\)/, 'support fragment must be removed immediately');
+const clearPriorContextPosition = baseHeadSource.indexOf('sessionStorage.removeItem(STORAGE_KEY)');
+const validateHandoffPosition = baseHeadSource.indexOf("if (!payload || payload.length > MAX_LENGTH");
+assert.ok(clearPriorContextPosition > handoffPosition, 'an attempted handoff must clear older tab context');
+assert.ok(clearPriorContextPosition < validateHandoffPosition, 'malformed handoffs must fail closed instead of inheriting older context');
+assert.match(baseHeadSource, /window\.bskMomentumSupportHandoff/, 'Momentum locale must override browser auto-redirects');
 assert.match(
   frontendSources.get('src/components/kb/KbArticleCard.astro'),
   /h-full min-w-0 flex-col/,
