@@ -22,6 +22,7 @@ const validContext = {
   instance: 'customer.momentum.example',
   enterpriseId: 'enterprise-42',
   userId: 'staff-123',
+  username: 'zdupont',
   firstName: 'Zoë',
   lastName: 'Dùpont',
   email: 'zoe@example.com',
@@ -46,6 +47,21 @@ function storageFor(payload, receivedAt = now) {
 
 const encoded = encode(validContext);
 assert.deepEqual(decodeMomentumSupportContext(encoded, now), validContext, 'valid Unicode context must round-trip');
+
+// A Momentum build older than the username field must keep working: the handoff
+// stays valid and the field reads as absent, rather than the whole context
+// being rejected and every prefill silently disappearing.
+const { username: _omitted, ...withoutUsername } = validContext;
+assert.deepEqual(
+  decodeMomentumSupportContext(encode(withoutUsername), now),
+  { ...validContext, username: '' },
+  'a handoff without a username must stay valid',
+);
+assert.equal(
+  decodeMomentumSupportContext(encode({ ...validContext, username: 'x'.repeat(101) }), now),
+  null,
+  'an oversized username must fail closed',
+);
 assert.equal(decodeMomentumSupportContext('not+base64', now), null, 'non-base64url payload must be rejected');
 assert.equal(decodeMomentumSupportContext('a'.repeat(MOMENTUM_SUPPORT_MAX_ENCODED_LENGTH + 1), now), null, 'oversize payload must be rejected');
 assert.equal(decodeMomentumSupportContext(encode({ ...validContext, iat: Math.floor((now - MOMENTUM_SUPPORT_TTL_MS - 1) / 1000) }), now), null, 'expired payload must be rejected');
@@ -132,6 +148,7 @@ const controls = [
   control('TICKET.mm_product', 'hidden'),
   control('TICKET.mm_momentum_page_path', 'hidden'),
   control('TICKET.mm_momentum_user_id', 'hidden'),
+  control('TICKET.mm_momentum_username', 'hidden'),
   control('TICKET.mm_momentum_enterprise_id', 'hidden'),
   control('TICKET.mm_momentum_language', 'hidden'),
   control('TICKET.mm_kb_article_path', 'hidden'),
@@ -149,7 +166,7 @@ assert.equal(controls.find((item) => item.name === 'TICKET.mm_kb_article_path').
 assert.deepEqual(
   verifyMomentumSupportForm(root, validContext, '/fr/help/edit-a-schedule/'),
   {
-    confirmed: ['firstName', 'lastName', 'email', 'instance', 'appVersion', 'product', 'pagePath', 'userId', 'enterpriseId', 'language', 'lastKbPath'],
+    confirmed: ['firstName', 'lastName', 'email', 'instance', 'appVersion', 'product', 'pagePath', 'userId', 'username', 'enterpriseId', 'language', 'lastKbPath'],
     missing: [],
     mismatched: [],
   },

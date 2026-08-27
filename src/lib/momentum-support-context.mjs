@@ -17,6 +17,7 @@ const FIELD_LIMITS = {
   instance: 253,
   enterpriseId: 100,
   userId: 100,
+  username: 100,
   appVersion: 80,
   pagePath: 500,
 };
@@ -95,6 +96,11 @@ export function decodeMomentumSupportContext(encoded, now = Date.now()) {
   if (!isSafePagePath(value.pagePath)) return null;
   if (!isBoundedText(value.enterpriseId, FIELD_LIMITS.enterpriseId, { allowEmpty: false })) return null;
   if (!isBoundedText(value.userId, FIELD_LIMITS.userId, { allowEmpty: false })) return null;
+  // Momentum builds that predate the username field omit it. Read a missing
+  // value as absent rather than rejecting the handoff, so an older client still
+  // prefills everything else instead of silently losing all of its context.
+  const username = value.username === undefined ? '' : value.username;
+  if (!isBoundedText(username, FIELD_LIMITS.username)) return null;
   if (!isBoundedText(value.firstName, FIELD_LIMITS.firstName)) return null;
   if (!isBoundedText(value.lastName, FIELD_LIMITS.lastName)) return null;
   if (!isBoundedText(value.email, FIELD_LIMITS.email)) return null;
@@ -109,6 +115,7 @@ export function decodeMomentumSupportContext(encoded, now = Date.now()) {
     instance: value.instance,
     enterpriseId: value.enterpriseId,
     userId: value.userId,
+    username,
     firstName: value.firstName,
     lastName: value.lastName,
     email: value.email,
@@ -222,6 +229,7 @@ export function momentumHubSpotFieldValues(context, lastKnowledgeBasePath = '') 
     { key: 'product', names: ['TICKET.mm_product', 'mm_product'], value: 'Momentum Staff Scheduler' },
     { key: 'pagePath', names: ['TICKET.mm_momentum_page_path', 'mm_momentum_page_path'], value: context.pagePath },
     { key: 'userId', names: ['TICKET.mm_momentum_user_id', 'mm_momentum_user_id'], value: context.userId },
+    { key: 'username', names: ['TICKET.mm_momentum_username', 'mm_momentum_username'], value: context.username },
     { key: 'enterpriseId', names: ['TICKET.mm_momentum_enterprise_id', 'mm_momentum_enterprise_id'], value: context.enterpriseId },
     { key: 'language', names: ['TICKET.mm_momentum_language', 'mm_momentum_language'], value: context.language },
     { key: 'lastKbPath', names: ['TICKET.mm_kb_article_path', 'mm_kb_article_path'], value: lastKnowledgeBasePath },
