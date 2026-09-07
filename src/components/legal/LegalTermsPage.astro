@@ -1,0 +1,66 @@
+---
+// Renders the Momentum General Terms and Conditions for one locale.
+// The contract text comes from terms-en.html / terms-fr.html, generated from the
+// signed-off Word files with scripts/legal/clean-terms-html.mjs (see README.md).
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import type { LocaleCode } from "@/i18n/locales";
+import { LEGAL_STRINGS, termsBodyLang } from "./legalStrings";
+import { LEGAL_VERSION } from "./legalVersion";
+import termsEn from "./terms-en.html?raw";
+import termsFr from "./terms-fr.html?raw";
+
+interface Props {
+    locale: LocaleCode;
+}
+const { locale } = Astro.props;
+const s = LEGAL_STRINGS[locale];
+const bodyLang = termsBodyLang(locale);
+const body = bodyLang === "fr" ? termsFr : termsEn;
+const toc = [...body.matchAll(/<h2 id="([^"]+)">([^<]+)<\/h2>/g)].map((m) => ({
+    id: m[1],
+    text: m[2].replace(/&nbsp;/g, " ").replace(/&mdash;/g, ":"),
+}));
+const prefix = locale === "en" ? "" : `/${locale}`;
+const status = LEGAL_VERSION.status === "in-force" ? s.statusInForce : s.statusDraft;
+const effective = LEGAL_VERSION.effectiveDate ?? s.effectiveTbd;
+---
+
+<BaseLayout title={s.metaTitle} description={s.metaDescription} noIndex={true} locale={locale}>
+    <section class="container max-w-3xl section-padding">
+        <h1 class="mb-3 text-3xl font-bold text-foreground">{s.heading}</h1>
+        <p class="mb-6 text-foreground/85">{s.lead}</p>
+
+        <dl class="mb-6 grid grid-cols-1 gap-x-8 gap-y-2 rounded-lg border border-secondary/15 bg-white/15 p-4 text-sm sm:grid-cols-2">
+            <div><dt class="font-semibold text-foreground">{s.version}</dt><dd class="text-foreground/85">{LEGAL_VERSION.version}</dd></div>
+            <div><dt class="font-semibold text-foreground">{s.issued}</dt><dd class="text-foreground/85">{LEGAL_VERSION.issueDate}</dd></div>
+            <div><dt class="font-semibold text-foreground">{s.status}</dt><dd class="text-foreground/85">{status}</dd></div>
+            <div><dt class="font-semibold text-foreground">{s.effective}</dt><dd class="text-foreground/85">{effective}</dd></div>
+        </dl>
+
+        <ul class="mb-6 list-disc space-y-1 pl-6 text-sm text-foreground/85">
+            <li><a href="/legal/Momentum_General_Terms_and_Conditions_v2026-07_EN.pdf" class="text-accent hover:underline">{s.downloadEn}</a></li>
+            <li><a href="/legal/Momentum_Conditions_Generales_v2026-07_FR.pdf" class="text-accent hover:underline">{s.downloadFr}</a></li>
+            <li><a href={`${prefix}/legal/subprocessors/`} class="text-accent hover:underline">{s.subprocessorsLink}</a></li>
+        </ul>
+
+        <p class="mb-8 text-sm text-muted-foreground">{s.contractLanguage}</p>
+
+        <nav aria-label={s.toc} class="mb-10 rounded-lg border border-secondary/15 p-4 text-sm">
+            <p class="mb-2 font-semibold text-foreground">{s.toc}</p>
+            <ol class="columns-1 space-y-1 sm:columns-2">
+                {toc.map((h) => (
+                    <li><a href={`#${h.id}`} class="text-accent hover:underline">{h.text}</a></li>
+                ))}
+            </ol>
+        </nav>
+
+        <div class="legal-body prose max-w-none text-foreground/85" lang={bodyLang} set:html={body} />
+    </section>
+</BaseLayout>
+
+<style>
+    .legal-body :global(h2) { scroll-margin-top: 5rem; }
+    .legal-body :global(h3) { scroll-margin-top: 5rem; }
+    .legal-body :global(table) { font-size: 0.85rem; }
+    .legal-body :global(td), .legal-body :global(th) { vertical-align: top; }
+</style>

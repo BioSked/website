@@ -11,6 +11,8 @@ const cases = [
   ['/fr/demo?source=nav#form', '/fr-ch/demo?source=nav#form'],
   ['/fr/securite-donnees/', '/fr-ch/securite-donnees/'],
   ['/fr/mentions-legales/', '/fr-ch/mentions-legales/'],
+  ['/fr/legal/', '/fr-ch/legal/'],
+  ['/fr/legal/subprocessors/', '/fr-ch/legal/subprocessors/'],
   ['/fr/cas-clients/', '/fr/cas-clients/'],
   ['/fr/blog/', '/fr/blog/'],
   ['/fr-ch/pricing/', '/fr-ch/pricing/'],
@@ -29,6 +31,8 @@ assert.deepEqual(FR_CH_LOCAL, [
   '/getquote',
   '/securite-donnees',
   '/mentions-legales',
+  '/legal',
+  '/legal/subprocessors',
 ]);
 
 const [navSource, footerSource, prefsSource, navbarActionsSource, pricingCardsSource, localesSource, pricingPlansSource, deChMarketSource, baseHeadSource] = await Promise.all([

@@ -1,0 +1,33 @@
+---
+// Renders Annex 2, Schedule D (authorised subprocessors) for one locale.
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import type { LocaleCode } from "@/i18n/locales";
+import { LEGAL_STRINGS, termsBodyLang } from "./legalStrings";
+import { LEGAL_VERSION } from "./legalVersion";
+import scheduleEn from "./subprocessors-en.html?raw";
+import scheduleFr from "./subprocessors-fr.html?raw";
+
+interface Props {
+    locale: LocaleCode;
+}
+const { locale } = Astro.props;
+const s = LEGAL_STRINGS[locale];
+const bodyLang = termsBodyLang(locale);
+const body = (bodyLang === "fr" ? scheduleFr : scheduleEn).replace(/<h3[^>]*>[^<]*<\/h3>\s*/, "");
+const prefix = locale === "en" ? "" : `/${locale}`;
+---
+
+<BaseLayout title={s.spMetaTitle} description={s.spMetaDescription} noIndex={true} locale={locale}>
+    <section class="container max-w-3xl section-padding">
+        <h1 class="mb-3 text-3xl font-bold text-foreground">{s.spTitle}</h1>
+        <p class="mb-2 text-sm text-muted-foreground">{s.version} {LEGAL_VERSION.version}</p>
+        <p class="mb-6 text-foreground/85">{s.spLead}</p>
+        <div class="legal-body prose max-w-none text-foreground/85" lang={bodyLang} set:html={body} />
+        <p class="mt-8 text-sm"><a href={`${prefix}/legal/`} class="text-accent hover:underline">{s.back}</a></p>
+    </section>
+</BaseLayout>
+
+<style>
+    .legal-body :global(table) { font-size: 0.85rem; }
+    .legal-body :global(td), .legal-body :global(th) { vertical-align: top; }
+</style>
