@@ -37,7 +37,7 @@ Stapsgewijs uitgerold vanaf 17 augustus en op 25 augustus 2026 naar alle Europes
 
 ### 🪲 Correcties
 
-- **Urentelling en verlofwaarden:** de moderne berekening reproduceert de vorige nu exact. Vóór de overstap hebben we 4,3 miljoen waarden uit het verlofoverzicht op 325 productiedatabases opnieuw doorgerekend: nul verschillen. Overlappende werkperiodes wisselen niet meer tussen schermen, en het detailvenster van de urentelling geeft geen fout meer.
+- **Urentelling en verlofwaarden:** de moderne berekening reproduceert de vorige nu exact. Vóór de overstap hebben we ze getoetst aan elke bestaande waarde uit het verlofoverzicht: nul verschillen. Overlappende werkperiodes wisselen niet meer tussen schermen, en het detailvenster van de urentelling geeft geen fout meer.
 - Een verzoek twee keer goedkeuren of vooraf goedkeuren verdubbelt de dagen in de planning niet meer, en personeel krijgt niet meer twee kennisgevingen.
 - De totaalrij van de datumweergave telt vooraf goedgekeurde verzoeken mee.
 - Bulkpublicatie vanuit de nieuwe datumweergave mislukt niet meer in zijn geheel: rijen die niet gepubliceerd kunnen worden, worden overgeslagen, de rest gaat door.

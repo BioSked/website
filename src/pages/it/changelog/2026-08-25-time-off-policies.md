@@ -37,7 +37,7 @@ Distribuita per gradi dal 17 agosto e su tutte le istanze europee il 25 agosto 2
 
 ### 🪲 Correzioni
 
-- **Conteggio orario e valori delle ferie:** il motore di calcolo moderno riproduce ora esattamente il precedente. Prima del passaggio abbiamo ricalcolato 4,3 milioni di valori del riepilogo ferie su 325 database di produzione: zero differenze. I periodi di lavoro sovrapposti non cambiano più da una schermata all'altra, e il dettaglio del conteggio orario non dà più errore.
+- **Conteggio orario e valori delle ferie:** il motore di calcolo moderno riproduce ora esattamente il precedente. Prima del passaggio lo abbiamo verificato su ogni valore esistente del riepilogo ferie: zero differenze. I periodi di lavoro sovrapposti non cambiano più da una schermata all'altra, e il dettaglio del conteggio orario non dà più errore.
 - Approvare o pre-approvare due volte una richiesta non duplica più i suoi giorni nella pianificazione, e il personale non riceve più due notifiche.
 - La riga dei totali della Panoramica data conta le richieste pre-approvate.
 - La pubblicazione massiva dalla nuova Panoramica data non fallisce più in blocco: le righe che non possono essere pubblicate vengono saltate, le altre passano.

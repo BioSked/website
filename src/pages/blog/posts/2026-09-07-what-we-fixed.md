@@ -2,25 +2,25 @@
 layout: "@layouts/ArticleLayout.astro"
 date: 2026-09-07
 author: David Dudok de Wit
-title: "257 improvements later: what your tickets taught us this summer"
-description: Between April and September we deployed 257 improvements to Momentum, 131 of them fixes and 83 of them straight from your tickets. Here is the full account, in plain language.
+title: "257 improvements later: everything we fixed in Momentum since April"
+description: Between April and September we deployed 257 improvements to Momentum, 131 of them fixes and 83 of them straight from what you told us. Here is the full account, in plain language.
 image: "../../../assets/images/momentum-2026-09-what-we-fixed.png"
 
 ---
 
 ![257 improvements shipped since April](../../../assets/images/momentum-2026-09-what-we-fixed.png)
 
-In March, one of you answered our satisfaction survey with an 8 out of 10 and a remark we have not forgotten. The update was good, simpler, but there were "no usage notes I can consult to know what all the features do."
+Every morning, thousands of people open Momentum to check one thing: is my schedule right? Between April and September, that question drove most of what we built.
 
-Fair point. We have been fixing and shipping all spring and summer, and telling you about it through support answers, a webinar and an occasional email. That is not the same as writing it down in one place. So here it is.
+You felt some of it in your own schedule: counts that add up again, a faster build, a new mobile app. Few of you saw the whole picture, because we told you about it one support answer, one webinar and one email at a time. That is not the same as writing it down in one place. So here it is.
 
 ## The numbers, and where they come from
 
 Between 1 April and 6 September we deployed 257 improvements to Momentum. We did not round that up. It is the number of items our engineering tracker marks as deployed in that window, from the fixes you can see to the plumbing behind them. Of those:
 
 - 131 were fixes for things that were broken or behaving wrongly.
-- 83 came straight from a support ticket or a request one of you sent us.
-- 124, nearly half, were opened by our own support and customer team, often on your behalf after a call. Most of the 83 are among them.
+- 83 came straight from something one of you told us: a support conversation, a request, a remark after a call.
+- 124, nearly half, were raised by our own support and customer team, often on your behalf. Most of the 83 are among them.
 - 1,106 code changes were merged to make it happen.
 
 They went out in three main releases (4.5 in April and May, 4.6 in June, 4.7 in August), two patch releases, a brand-new mobile app and, since late August, small releases most weeks. The release-by-release summary is on our [changelog page](/changelog/).
@@ -29,13 +29,13 @@ They went out in three main releases (4.5 in April and May, 4.6 in June, 4.7 in 
 
 We grouped the highlights by the problem they solve, because that is how you sent them to us.
 
-**Your hours and time-off counts add up.** This was the biggest family of tickets, and the one that mattered most: a day off valued at 24 hours instead of 7, overlapping time-off counted twice, a time-off allowance you could not track without distorting the hours count. Contract terms now count time-off days separately from worked hours. And when we replaced the counting engine underneath, we made sure it changed none of the numbers you already see: we replayed 4.3 million time-off summary figures across all 325 production databases, zero differences. The fixes are what make the numbers add up; the replay is what makes the engine change invisible. If yours still does not add up, tell us.
+**Your hours and time-off counts add up.** This is what you told us about most, and what mattered most: a day off valued at 24 hours instead of 7, overlapping time-off counted twice, a time-off allowance you could not track without distorting the hours count. Contract terms now count time-off days separately from worked hours. And when we replaced the counting engine underneath, we made sure it changed none of the numbers you already see: before it went live, the new engine had to reproduce every existing figure exactly, and it did. Zero differences. The fixes are what make the numbers add up; that check is what makes the engine change invisible. If yours still does not add up, tell us.
 
 **Time-off policies live in one place.** Time-off rights used to accrue once a year, and everything else, from seniority days to sick-leave rules, meant manual adjustments. The new Time-off Policy Center holds those rules on one screen, and a contract can point at several policies. It sits behind a per-instance switch, because it touches numbers that feed payroll, and we are turning it on instance by instance.
 
 **Approve requests with the schedule in front of you.** An approved request is a promise made. Two things changed. Pending requests can now show directly in the date view, next to the assignments they affect. And you can pre-approve a set of requests, run a test build, look at the coverage, then confirm or roll back before anyone is notified. Both are behind a per-instance switch. We are turning them on in stages, most active instances first; tell your customer success contact if you want to be early.
 
-**Building schedules is fast again, and repeatable.** On our reference customer build, the classic scheduler went from about 43 minutes to 45 seconds. We also found that two identical runs could produce different schedules, because nothing decided which of several identical template lines counted as filled. On one schedule, 245 of 695 assignments moved between two runs. That is fixed and verified on ten customer databases. Bulk edits of a whole month now complete instead of failing halfway: 200 assignments used to take 324 round trips to the database, now they take 6.
+**Building schedules is fast again, and repeatable.** On our reference customer build, the classic scheduler went from about 43 minutes to 45 seconds. We also found that two identical runs could produce different schedules, because nothing decided which of several identical template lines counted as filled. On one schedule, 245 of 695 assignments moved between two runs. That is fixed and verified on real schedules. Bulk edits of a whole month now complete instead of failing halfway: 200 assignments used to take 324 round trips to the database, now they take 6.
 
 **Notifications you can trust.**
 
@@ -64,7 +64,7 @@ All fixed, and admin notifications now respect their checkboxes.
 - Scheduled SFTP exports that now contain exactly what a manual run contains, with an explicit port.
 - Calendar exports that no longer error, and assignments created from approved requests now reaching Outlook calendars.
 
-**A new mobile app.** Rebuilt from scratch and in the App Store and on Google Play since July: a "today" screen, sign-in with Face ID or fingerprint, encrypted offline access to your schedule, one-tap Microsoft sign-in (and SAML for other identity providers), faster push notifications, dark mode, five languages. Your first tickets on it (note visibility settings, submitted requests not showing, custom hours on iPhone) are fixed, and updates now go to a small group first, then to everyone.
+**A new mobile app.** Rebuilt from scratch and in the App Store and on Google Play since July: a "today" screen, sign-in with Face ID or fingerprint, encrypted offline access to your schedule, one-tap Microsoft sign-in (and SAML for other identity providers), faster push notifications, dark mode, five languages. Your first remarks on it (note visibility settings, submitted requests not showing, custom hours on iPhone) are fixed, and updates now go to a small group first, then to everyone.
 
 ![The new Momentum mobile app](../../../assets/images/momentum-mobile-app-2026-en.png)
 
@@ -80,9 +80,9 @@ The June update rebuilt 250,000 lines of legacy code on modern foundations. The 
 
 *“I built the schedule out through the end of the year and it was 90% perfect. Now I know what the issues are, so I can easily correct them.”*<br><cite>Practice manager, community health network, California, May 2026</cite>
 
-*“Since the update, the feature is really quite good, simpler.”*<br><cite>The person who asked for usage notes, March 2026, translated from French</cite>
+*“Since the update, the feature is really quite good, simpler.”*<br><cite>Momentum user, satisfaction survey, March 2026, translated from French</cite>
 
-This post is a first answer.
+The same answer asked for usage notes to know what all the features do. This post, and the [knowledge base](/help/), are our answer.
 
 ## What we are working on next
 

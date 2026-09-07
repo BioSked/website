@@ -123,6 +123,7 @@ export default defineConfig({
     redirects: {
         ...frBlogRedirects,
         ...frLandingRedirects,
+        "fr/blog/257-ameliorations-plus-tard-ce-que-vos-tickets-nous-ont-appris": { destination: "/fr/blog/257-ameliorations-plus-tard-tout-ce-que-nous-avons-corrige", status: 301 },
 
         // --- inherited biosked.com legacy slugs (EN) ---
         "bookdemo": { destination: "/demo", status: 301 },

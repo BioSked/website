@@ -37,7 +37,7 @@ Schrittweise ab dem 17. August und am 25. August 2026 auf allen europäischen In
 
 ### 🪲 Korrekturen
 
-- **Stundenzählung und Abwesenheitswerte:** Die moderne Berechnung reproduziert die bisherige jetzt exakt. Vor der Umstellung haben wir 4,3 Millionen Werte der Abwesenheitsübersicht auf 325 Produktionsdatenbanken nachgerechnet: null Abweichungen. Überlappende Arbeitsperioden wechseln nicht mehr zwischen Bildschirmen, und das Detailfenster der Stundenzählung liefert keinen Fehler mehr.
+- **Stundenzählung und Abwesenheitswerte:** Die moderne Berechnung reproduziert die bisherige jetzt exakt. Vor der Umstellung haben wir sie gegen jeden vorhandenen Wert der Abwesenheitsübersicht geprüft: null Abweichungen. Überlappende Arbeitsperioden wechseln nicht mehr zwischen Bildschirmen, und das Detailfenster der Stundenzählung liefert keinen Fehler mehr.
 - Eine Anfrage zweimal zu genehmigen oder vorab zu genehmigen verdoppelt ihre Tage im Plan nicht mehr, und Mitarbeitende erhalten keine zwei Benachrichtigungen mehr.
 - Die Summenzeile der Tagesansicht zählt vorab genehmigte Anfragen.
 - Das Massenveröffentlichen aus der neuen Tagesansicht scheitert nicht mehr komplett: Zeilen, die nicht veröffentlicht werden können, werden übersprungen, der Rest geht durch.

@@ -37,7 +37,7 @@ Déployée par étapes à partir du 17 août et sur toutes les instances europé
 
 ### 🪲 Corrections
 
-- **Compte d'heures et valeurs de congés :** le moteur de calcul moderne reproduit désormais exactement le précédent. Avant de basculer, nous avons rejoué 4,3 millions de valeurs du rapport de synthèse des absences sur 325 bases de production : zéro différence. Les périodes de travail qui se chevauchent ne changent plus d'un écran à l'autre, et le détail du compte d'heures ne renvoie plus d'erreur.
+- **Compte d'heures et valeurs de congés :** le moteur de calcul moderne reproduit désormais exactement le précédent. Avant de basculer, nous l'avons vérifié sur chaque valeur existante du rapport de synthèse des absences : zéro différence. Les périodes de travail qui se chevauchent ne changent plus d'un écran à l'autre, et le détail du compte d'heures ne renvoie plus d'erreur.
 - Approuver ou pré-approuver deux fois une demande ne duplique plus ses jours sur le planning, et le personnel ne reçoit plus deux notifications.
 - La ligne des totaux de la vue par date compte les demandes pré-approuvées.
 - La publication en masse depuis la nouvelle vue par date n'échoue plus en bloc : les lignes qui ne peuvent pas être publiées sont ignorées, les autres passent.

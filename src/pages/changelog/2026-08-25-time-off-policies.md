@@ -36,7 +36,7 @@ Rolled out in stages from 17 August and to all European instances on 25 August 2
 
 ### 🪲 Fixes
 
-- **Hours count and time-off values:** the modern counting engine now reproduces the previous one exactly. Before switching, we replayed 4.3 million time-off summary figures across 325 production databases: zero differences. Overlapping work periods no longer flip between screens, and the hours count details popup no longer errors.
+- **Hours count and time-off values:** the modern counting engine now reproduces the previous one exactly. Before switching, we checked it against every existing time-off summary figure: zero differences. Overlapping work periods no longer flip between screens, and the hours count details popup no longer errors.
 - Approving or pre-approving a request twice no longer duplicates its days on the schedule, and staff no longer receive two notifications.
 - The date-view totals row counts pre-approved requests.
 - Bulk publish from the new date view no longer fails outright: rows that cannot be published are skipped, the rest go through.
