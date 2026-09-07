@@ -69,7 +69,6 @@ export default defineConfig({
         sitemap({
             filter: (page) => {
                 if (page === 'https://biosked.com/privacy/') return false;
-                if (page.includes('/changelog/')) return false;
                 // Astro's fr-ch -> fr fallback can surface synthetic /fr-ch-ch/
                 // routes to the sitemap integration. They are not real pages.
                 if (page.includes('/fr-ch-ch/') || page.includes('/de-ch-ch/')) return false;
@@ -85,6 +84,8 @@ export default defineConfig({
                 };
                 // The knowledge base is fully translated for de/nl/it; de-ch and fr-ch read de/fr.
                 if (m && m[2].startsWith('help/')) return ['de', 'nl', 'it'].includes(m[1]);
+                // The changelog is published in en, fr, de, nl and it; de-ch and fr-ch read de/fr.
+                if (m && m[2].startsWith('changelog/')) return ['de', 'nl', 'it'].includes(m[1]);
                 if (m) return allowed[m[1]].includes(m[2]);
                 return true;
             },
