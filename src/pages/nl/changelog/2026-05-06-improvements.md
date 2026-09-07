@@ -4,7 +4,7 @@ date: 2026-05-07
 version: "4.5.0"
 author: BioSked
 title: 🛠️ Correcties en verbeteringen
-description: Changelog Momentum 4.5
+description: "Momentum 4.5 scheidt de tellers voor werk en verlof in de contractbepalingen en verbetert de nieuwe datumweergave, exports en prestaties."
 image: "../../../assets/images/momentum4-5-nl.png"
 lang: nl
 

@@ -4,7 +4,7 @@ date: 2026-05-07
 version: "4.5.0"
 author: BioSked
 title: 🛠️ Correzioni e miglioramenti
-description: Changelog Momentum 4.5
+description: "Momentum 4.5 separa i contatori di lavoro e ferie nei termini di contratto e migliora la nuova Panoramica data, le esportazioni e le prestazioni."
 image: "../../../assets/images/momentum4-5-it.png"
 lang: it
 

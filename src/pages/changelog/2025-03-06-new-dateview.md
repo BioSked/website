@@ -4,7 +4,7 @@ date: 2025-03-06
 version: "4.0.0"
 author: ALex Kerpelman
 title: Momentum 4 is here!
-description: Introducing a new and more modern version of Momentum.
+description: "Momentum 4.0 introduced the new date view for building and editing schedules faster, with the first set of improvements and fixes."
 image: "../../assets/images/momentum4-0.png"
 
 ---

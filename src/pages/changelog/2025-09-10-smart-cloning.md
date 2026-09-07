@@ -4,7 +4,7 @@ date: 2025-09-10
 version: "4.1.0"
 author: Frédéric Andreae
 title: Smart-cloning and multi-select
-description: New Smart cloning feature to easily duplicate an existing schedule.
+description: "Momentum 4.1 brought smart cloning and multi-select to duplicate and edit assignments in bulk, with filtered staff and role lists."
 image: "../../assets/images/scheduling-myths.webp"
 
 ---

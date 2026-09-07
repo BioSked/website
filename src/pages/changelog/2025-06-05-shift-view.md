@@ -4,7 +4,7 @@ date: 2025-06-05
 version: "4.0.1"
 author: Frédéric Andreae
 title: Display per Shift
-description: New Shift-view display option.
+description: "Momentum 4.0.1 added the shift view, a schedule layout that follows the morning, afternoon and night rhythm of care teams."
 image: "../../assets/images/momentum4-0-1.png"
 
 ---

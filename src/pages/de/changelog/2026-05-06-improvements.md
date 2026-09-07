@@ -4,7 +4,7 @@ date: 2026-05-07
 version: "4.5.0"
 author: BioSked
 title: 🛠️ Korrekturen und Verbesserungen
-description: Änderungsprotokoll Momentum 4.5
+description: "Momentum 4.5 trennt in den Vertragsinhalten die Zähler für Arbeit und Abwesenheiten und verbessert die neue Tagesansicht, Exporte und Leistung."
 image: "../../../assets/images/momentum4-5-de.png"
 lang: de
 

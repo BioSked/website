@@ -4,7 +4,7 @@ date: 2026-05-07
 version: "4.5.0"
 author: BioSked
 title: 🛠️ Corrections et améliorations
-description: Notes de version Momentum 4.5
+description: "Momentum 4.5 sépare les compteurs de travail et de congés dans les termes de contrat et améliore la nouvelle vue par date, les exports et les performances."
 image: "../../../assets/images/momentum4-5-fr.png"
 lang: fr
 

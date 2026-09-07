@@ -4,7 +4,7 @@ date: 2026-01-12
 version: "4.4.0"
 author: Frédéric Andreae
 title: Major Scheduling, Analytics and Performance Improvements
-description: Version 4.4 introduces powerful new scheduling workflows, real-time analytics, and major performance improvements to help teams plan faster, scale confidently, and gain immediate operational insight.
+description: "Momentum 4.4 simplified the new date view, added instant analytics and a timeline view, and made large schedules faster to load."
 image: "../../assets/images/momentum4-4.png"
 
 ---

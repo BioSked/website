@@ -25,8 +25,8 @@ const dateOptions: Intl.DateTimeFormatOptions = {
 ---
 
 <BaseLayout
-    title="Changelog Momentum | BioSked"
-    description="Les nouveautés et corrections de Momentum, version par version."
+    title="Changelog Momentum | Nouveautés et corrections | BioSked"
+    description="Toutes les versions de Momentum, version par version : nouveautés, améliorations et corrections de l'application web et de l'application mobile."
     locale="fr"
 >
     <div class="container section-padding max-w-5xl">
@@ -35,7 +35,7 @@ const dateOptions: Intl.DateTimeFormatOptions = {
         {posts.map((post) =>
             <div class="md:flex pb-15 md:pb-40 md:not-last:border-l md:not-last:border-gray-300/90 ml-2">
                 <div class="flex-2 relative">
-                    <a href={`/fr/changelog/${post.id}`} class="sticky top-26">
+                    <a href={`/fr/changelog/${post.id}/`} class="sticky top-26">
                         <span class="text-foreground/70 relative md:-top-6 md:-left-3">
                             <span class="hidden md:inline text-accent text-2xl relative top-1">▪︎</span>
                             <span class="relative md:ml-1 top-0.5">{post.data.date.toLocaleDateString('fr-FR', dateOptions)}</span>

@@ -4,7 +4,7 @@ date: 2026-05-07
 version: "4.5.0"
 author: Frédéric Andreae
 title: 🛠️ Fixes and improvements
-description: Momentum 4.5 changelog
+description: "Momentum 4.5 separated work and time-off counters in contract terms and improved the new date view, exports and performance."
 image: "../../assets/images/momentum4-5.png"
 
 ---

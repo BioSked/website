@@ -4,7 +4,7 @@ date: 2025-11-18
 version: "2.9.0 (Mobile)"
 author: Frédéric Andreae
 title: 📱 Mobile App update
-description: Momentum mobile app received a quick coat of paint along with a few background improvements.
+description: "Momentum mobile app 2.9 refreshed the design with an agenda landing page, inline assignments in the month view and a new theme."
 image: "../../assets/images/scheduling-myths.webp"
 
 ---
