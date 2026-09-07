@@ -2,7 +2,7 @@
 layout: "@layouts/ArticleLayout.astro"
 date: 2026-09-07
 author: David Dudok de Wit
-title: "257 improvements later: everything we fixed in Momentum since April"
+title: "257 improvements later: everything we brought to Momentum since April"
 description: Between April and September we deployed 257 improvements to Momentum, 131 of them fixes and 83 of them straight from what you told us. Here is the full account, in plain language.
 image: "../../../assets/images/momentum-2026-09-what-we-fixed.png"
 
