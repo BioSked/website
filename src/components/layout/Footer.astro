@@ -18,6 +18,7 @@ import type { LocaleCode } from '@/i18n/locales';
 
 const locale = localeOverride ?? (Astro.currentLocale ?? 'en') as LocaleCode;
 const footer = footerFor(locale);
+const termsHref = locale === 'en' ? '/legal/' : `/${locale}/legal/`;
 
 const FOOTER_SECTIONS = footer.sections.map((section) => ({
     ...section,
@@ -57,6 +58,9 @@ const privacyChoicesLabel: Record<LocaleCode, string> = {
                 <div class="text-muted-foreground text-sm">Copyright © {currentYear} BioSked, Inc.</div>
                 <div class="text-muted-foreground text-sm mt-1">
                     <a href="/privacy/" class="hover:text-card-foreground transition-colors">{footer.privacyLabel}</a>
+                </div>
+                <div class="text-muted-foreground text-sm mt-1">
+                    <a href={termsHref} class="hover:text-card-foreground transition-colors">{footer.termsLabel}</a>
                 </div>
                 <div class="text-muted-foreground text-sm mt-1">
                     <button

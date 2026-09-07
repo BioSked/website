@@ -6,6 +6,8 @@ export const FR_CH_LOCAL = [
   '/getquote',
   '/securite-donnees',
   '/mentions-legales',
+  '/legal',
+  '/legal/subprocessors',
 ];
 
 /**
