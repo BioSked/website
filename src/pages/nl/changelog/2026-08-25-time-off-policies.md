@@ -5,12 +5,12 @@ version: "4.7.0"
 author: BioSked
 title: 🗓️ Verlofbeleid, vooraf goedgekeurde verzoeken, sneller aanmaken
 description: Momentum 4.7 brengt verlofbeleid, het vooraf goedkeuren van verzoeken, aantallen in de datumweergave en een veel snellere klassieke planningsopbouw, gevolgd door kleinere releases op 26 augustus en 1 september 2026.
-image: "../../../assets/images/momentum4-7.png"
+image: "../../../assets/images/momentum4-7-nl.png"
 lang: nl
 
 ---
 
-![Momentum 4.7](../../../assets/images/momentum4-7.png)
+![Momentum 4.7](../../../assets/images/momentum4-7-nl.png)
 
 Stapsgewijs uitgerold vanaf 17 augustus en op 25 augustus 2026 naar alle Europese instanties, gevolgd door kleinere releases op 26 augustus en 1 september. Drie van de nieuwe functies zitten achter een schakelaar per instantie: we schakelen ze stapsgewijs in, meest actieve instanties eerst. Laat het uw BioSked-contactpersoon weten als u er vroeg bij wilt zijn.
 

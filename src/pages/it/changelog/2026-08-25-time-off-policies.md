@@ -5,12 +5,12 @@ version: "4.7.0"
 author: BioSked
 title: 🗓️ Politiche per le ferie, richieste pre-approvate, costruzioni più rapide
 description: Momentum 4.7 porta le politiche per le ferie, la pre-approvazione delle richieste, i conteggi nella Panoramica data e una costruzione classica molto più rapida, seguita da release più piccole il 26 agosto e il 1° settembre 2026.
-image: "../../../assets/images/momentum4-7.png"
+image: "../../../assets/images/momentum4-7-it.png"
 lang: it
 
 ---
 
-![Momentum 4.7](../../../assets/images/momentum4-7.png)
+![Momentum 4.7](../../../assets/images/momentum4-7-it.png)
 
 Distribuita per gradi dal 17 agosto e su tutte le istanze europee il 25 agosto 2026, seguita da release più piccole il 26 agosto e il 1° settembre. Tre delle nuove funzionalità sono dietro un interruttore per istanza: le attiviamo per gradi, istanze più attive per prime. Dillo al tuo referente BioSked se vuoi essere tra i primi.
 

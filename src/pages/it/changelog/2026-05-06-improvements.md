@@ -5,12 +5,12 @@ version: "4.5.0"
 author: BioSked
 title: 🛠️ Correzioni e miglioramenti
 description: Changelog Momentum 4.5
-image: "../../../assets/images/momentum4-5.png"
+image: "../../../assets/images/momentum4-5-it.png"
 lang: it
 
 ---
 
-![Momentum 4.5](../../../assets/images/momentum4-5.png)
+![Momentum 4.5](../../../assets/images/momentum4-5-it.png)
 
 ### ✨ Novità
 

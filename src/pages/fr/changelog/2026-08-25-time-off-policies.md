@@ -5,12 +5,12 @@ version: "4.7.0"
 author: BioSked
 title: 🗓️ Politiques de congés, demandes pré-approuvées, constructions plus rapides
 description: Momentum 4.7 apporte les politiques de congés, la pré-approbation des demandes, des comptages dans la vue par date et un moteur de construction classique bien plus rapide, suivi de mises en production plus petites les 26 août et 1er septembre 2026.
-image: "../../../assets/images/momentum4-7.png"
+image: "../../../assets/images/momentum4-7-fr.png"
 lang: fr
 
 ---
 
-![Momentum 4.7](../../../assets/images/momentum4-7.png)
+![Momentum 4.7](../../../assets/images/momentum4-7-fr.png)
 
 Déployée par étapes à partir du 17 août et sur toutes les instances européennes le 25 août 2026, suivie de mises en production plus petites les 26 août et 1er septembre. Trois des nouveautés sont derrière un interrupteur par instance : nous les activons par étapes, instances les plus actives d'abord. Dites-le à votre référent BioSked si vous voulez en être tôt.
 

@@ -5,12 +5,12 @@ version: "4.6.0"
 author: BioSked
 title: 🧱 Nuove fondamenta
 description: Momentum 4.6 ha rinnovato la sala macchine, introdotto interruttori per istanza per le nuove funzionalità e aperto la strada alla nuova app mobile.
-image: "../../../assets/images/momentum4-6.png"
+image: "../../../assets/images/momentum4-6-it.png"
 lang: it
 
 ---
 
-![Momentum 4.6](../../../assets/images/momentum4-6.png)
+![Momentum 4.6](../../../assets/images/momentum4-6-it.png)
 
 Momentum 4.6 è la versione che avresti dovuto quasi non notare. Sotto la superficie, 250 000 righe di codice storico sono state convertite in un linguaggio moderno, e le nuove funzionalità possono ora essere attivate istanza per istanza invece che per tutti in una volta. È ciò che ha reso possibili la nuova app mobile e le funzionalità della 4.7.
 

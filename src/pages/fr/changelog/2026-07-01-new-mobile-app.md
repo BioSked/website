@@ -5,12 +5,12 @@ version: "3.0.0 (Mobile)"
 author: BioSked
 title: 📱 Une nouvelle application mobile Momentum
 description: L'application mobile Momentum a été reconstruite de zéro, avec un écran du jour, la connexion biométrique, l'accès hors ligne et cinq langues. Même compte, même connexion, une application plus rapide.
-image: "../../../assets/images/momentum-mobile-3-0.png"
+image: "../../../assets/images/momentum-mobile-3-0-fr.png"
 lang: fr
 
 ---
 
-![La nouvelle application mobile Momentum](../../../assets/images/momentum-mobile-3-0.png)
+![La nouvelle application mobile Momentum](../../../assets/images/momentum-mobile-3-0-fr.png)
 
 L'application mobile Momentum a été reconstruite de zéro sur la plateforme Momentum moderne. Même compte, même connexion, une application plus rapide et plus claire. Elle remplace l'application précédente sur iOS et Android et est disponible sur l'App Store et Google Play.
 

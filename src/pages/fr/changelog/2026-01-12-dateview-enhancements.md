@@ -5,10 +5,10 @@ version: "4.4.0"
 author: Frédéric Andreae
 title: Vue-par-date et Performances améliorées
 description: Momentum 4.4 introduit de nouveaux flux de travail pour la planification et l'analyses en temps réel et d'importantes améliorations de performances pour aider les équipes à planifier plus rapidement.
-image: "../../../assets/images/momentum4-4.png"
+image: "../../../assets/images/momentum4-4-fr.png"
 ---
 
-![Momentum 4.4](../../../assets/images/momentum4-4.png)
+![Momentum 4.4](../../../assets/images/momentum4-4-fr.png)
 
 Cette version se concentre sur la nouvelle application Momentum introduite en 2025. Elle inclut une simplification de l'interface utilisateur avec un accès plus clair aux actions principales pour une manipulation plus facile de vos plannings.
 

@@ -5,12 +5,12 @@ version: "4.7.0"
 author: BioSked
 title: 🗓️ Abwesenheitsrichtlinien, vorab genehmigte Anfragen, schnellere Planerstellung
 description: Momentum 4.7 bringt Abwesenheitsrichtlinien, die Vorabgenehmigung von Anfragen, Anzahlen in der Tagesansicht und eine deutlich schnellere klassische Planerstellung, gefolgt von kleineren Releases am 26. August und 1. September 2026.
-image: "../../../assets/images/momentum4-7.png"
+image: "../../../assets/images/momentum4-7-de.png"
 lang: de
 
 ---
 
-![Momentum 4.7](../../../assets/images/momentum4-7.png)
+![Momentum 4.7](../../../assets/images/momentum4-7-de.png)
 
 Schrittweise ab dem 17. August und am 25. August 2026 auf allen europäischen Instanzen ausgerollt, gefolgt von kleineren Releases am 26. August und 1. September. Drei der neuen Funktionen liegen hinter einem Schalter pro Instanz: Wir aktivieren sie schrittweise, aktivste Instanzen zuerst. Sagen Sie Ihrer Ansprechperson bei BioSked Bescheid, wenn Sie früh dabei sein möchten.
 
