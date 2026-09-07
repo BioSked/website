@@ -39,4 +39,19 @@ const enChangelogs = defineCollection({
     }),
 });
 
-export const collections = { enPosts, frPosts, enChangelogs };
+const changelogSchema = ({ image }: { image: () => any }) => z.object({
+    title: z.string(),
+    description: z.string(),
+    image: image(),
+    author: z.string(),
+    version: z.string(),
+    date: z.date(),
+    lang: z.string().optional(),
+});
+
+const frChangelogs = defineCollection({ loader: glob({ pattern: "*.md", base: "./src/pages/fr/changelog" }), schema: changelogSchema });
+const deChangelogs = defineCollection({ loader: glob({ pattern: "*.md", base: "./src/pages/de/changelog" }), schema: changelogSchema });
+const nlChangelogs = defineCollection({ loader: glob({ pattern: "*.md", base: "./src/pages/nl/changelog" }), schema: changelogSchema });
+const itChangelogs = defineCollection({ loader: glob({ pattern: "*.md", base: "./src/pages/it/changelog" }), schema: changelogSchema });
+
+export const collections = { enPosts, frPosts, enChangelogs, frChangelogs, deChangelogs, nlChangelogs, itChangelogs };

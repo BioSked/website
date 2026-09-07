@@ -3,18 +3,22 @@ import BaseLayout from './BaseLayout.astro';
 
 const { frontmatter } = Astro.props;
 
+const lang: string = frontmatter.lang ?? Astro.currentLocale ?? 'en';
+const dateLocales: Record<string, string> = { en: 'en-US', fr: 'fr-FR', 'fr-ch': 'fr-CH', de: 'de-DE', 'de-ch': 'de-CH', nl: 'nl-NL', it: 'it-IT' };
+const indexHref = lang === 'en' ? '/changelog/' : `/${lang}/changelog/`;
+
 const postDate = new Date(frontmatter.date);
-const pubDate = postDate.toLocaleDateString('en-US', {
+const pubDate = postDate.toLocaleDateString(dateLocales[lang] ?? 'en-US', {
     year: 'numeric',
     month: 'long',
     day: 'numeric'
 });
 ---
 
-<BaseLayout title={frontmatter.title} description={frontmatter.description} author={frontmatter.author} noIndex={frontmatter.noindex}>
+<BaseLayout title={frontmatter.title} description={frontmatter.description} author={frontmatter.author} noIndex={frontmatter.noindex} locale={lang as any}>
 	<div class="container max-w-5xl section-padding text-sm md:text-base mb-10 md:mb-20 redacted">
 		<div class="text-muted-foreground font-medium text-center text-sm">
-			<a href="/changelog/" class="transition-all hover:text-foreground">Changelog</a>
+			<a href={indexHref} class="transition-all hover:text-foreground">Changelog</a>
 			<span class="mx-1 font-light">/</span>
 			{pubDate}
 			<span class="ml-2 bg-primary/25 border border-accent/15 py-0.5 px-1 rounded-sm text-accent">V.{frontmatter.version}</span>

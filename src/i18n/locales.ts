@@ -25,13 +25,37 @@ export const LOCALE_LABELS: Record<LocaleCode, string> = {
 };
 
 /** Pages that exist at the root for every locale (not translated per-locale). */
-const SHARED_ROOT_PATHS = ['/privacy', '/changelog', '/internal-testing'];
+const SHARED_ROOT_PATHS = ['/privacy', '/internal-testing'];
 
 /** English marketing paths that have a real French equivalent at /fr/<same>. */
 const FR_MIRRORED = ['/', '/about', '/careers', '/pricing', '/demo', '/getquote', '/blog'];
 
 /** Routes genuinely localized for de/de-ch/nl/it. */
 const DNI_LOCAL = ['/', '/pricing', '/demo', '/getquote'];
+
+/** Changelog: an index per locale, and entries with identical slugs across locales. */
+const CHANGELOG_LOCALES: LocaleCode[] = ['en', 'fr', 'de', 'nl', 'it'];
+const CHANGELOG_ENTRIES: Record<string, LocaleCode[]> = {
+    '2026-08-25-time-off-policies': ['en', 'fr', 'de', 'nl', 'it'],
+    '2026-07-01-new-mobile-app': ['en', 'fr', 'de', 'nl', 'it'],
+    '2026-06-24-new-foundations': ['en', 'fr', 'de', 'nl', 'it'],
+    '2026-05-20-patch-4-5-1': ['en', 'fr', 'de', 'nl', 'it'],
+    '2026-05-06-improvements': ['en', 'fr', 'de', 'nl', 'it'],
+    '2026-01-12-dateview-enhancements': ['en', 'fr'],
+};
+
+function isChangelog(rest: string): boolean {
+    return rest === '/changelog' || rest.startsWith('/changelog/');
+}
+
+/** Same changelog page in the target locale, or that locale's changelog index when the entry is not translated. */
+function changelogPathFor(rest: string, target: LocaleCode): string {
+    const t: LocaleCode = target === 'fr-ch' ? 'fr' : target === 'de-ch' ? 'de' : target;
+    const prefix = t === 'en' ? '' : `/${t}`;
+    const slug = rest.slice('/changelog/'.length);
+    if (slug && (CHANGELOG_ENTRIES[slug] ?? ['en']).includes(t)) return `${prefix}/changelog/${slug}/`;
+    return `${prefix}/changelog/`;
+}
 
 /** Locale-exclusive pages with no equivalent anywhere else. */
 const LOCALE_ONLY_PAGES: Partial<Record<LocaleCode, string[]>> = {
@@ -94,6 +118,8 @@ export function altPathFor(pathname: string, target: LocaleCode): string {
         return target === 'en' ? '/' : `/${target}/`;
     }
 
+    if (isChangelog(rest)) return changelogPathFor(rest, target);
+
     if (isLocaleOnly(cur, rest)) {
         if (target === cur) return trail(`/${cur}` + rest);
         return target === 'en' ? '/' : `/${target}/`;
@@ -137,10 +163,10 @@ export function altPathFor(pathname: string, target: LocaleCode): string {
 
 /**
  * hreflang alternates for the current page (ONLY true equivalents).
- * - Shared root pages (privacy/changelog) and FR-only pages: no alternates.
+ * - Shared root pages (privacy) and FR-only pages: no alternates; changelog pages list the locales they exist in.
  * - English-shaped paths: en + de/de-ch/nl/it (locale URLs deliberately serve these
  *   routes) + fr only when a real mirrored French page exists.
- * - EN blog posts/changelog entries have no French equivalent: no fr entry.
+ * - EN blog posts have no French equivalent: no fr entry.
  */
 export function hreflangAlternates(pathname: string): { code: LocaleCode | 'x-default'; path: string }[] {
     const { locale: cur, rest } = splitLocale(pathname);
@@ -150,6 +176,13 @@ export function hreflangAlternates(pathname: string): { code: LocaleCode | 'x-de
         return (Object.entries(equiv) as [LocaleCode, string][]).map(([code, path]) => ({ code, path: path + '/' }));
     }
     if (isShared(rest)) return [];
+    if (isChangelog(rest)) {
+        const slug = rest.slice('/changelog/'.length);
+        const langs: LocaleCode[] = slug ? (CHANGELOG_ENTRIES[slug] ?? ['en']) : CHANGELOG_LOCALES;
+        const out: { code: LocaleCode | 'x-default'; path: string }[] = langs.map((l) => ({ code: l, path: (l === 'en' ? '' : `/${l}`) + rest + '/' }));
+        out.push({ code: 'x-default', path: rest + '/' });
+        return out;
+    }
     if (isLocaleOnly(cur, rest)) return [];
     // Non-canonical fallback copies (EN content at a locale URL) emit no hreflang.
     const selfPath = trail(('/' + pathname.replace(/^\/+/, '')).replace(/\/+$/, '') || '/');
@@ -188,8 +221,10 @@ export function canonicalPathFor(pathname: string): string {
     const { locale: cur, rest } = splitLocale(pathname);
     const trail = (p: string) => (p === '/' ? '/' : p + '/');
     if (cur === 'de' || cur === 'de-ch' || cur === 'nl' || cur === 'it') {
+        if (isChangelog(rest)) return changelogPathFor(rest, cur);
         if (!DNI_LOCAL.includes(rest) && !equivGroupFor(pathname) && !isLocaleOnly(cur, rest)) return trail(rest);
     }
+    if (cur === 'fr-ch' && isChangelog(rest)) return changelogPathFor(rest, 'fr');
     if (cur === 'fr-ch') {
         if (!FR_CH_LOCAL.includes(rest) && !equivGroupFor(pathname)) return trail('/fr' + (rest === '/' ? '' : rest));
     }

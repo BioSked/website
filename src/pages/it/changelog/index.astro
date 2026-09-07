@@ -1,0 +1,58 @@
+---
+export const prerender = true;
+
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+import { getCollection, render } from 'astro:content';
+
+// Sort by date - newest first
+const allPosts = (await getCollection('itChangelogs'))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf() || a.id.localeCompare(b.id));
+
+const posts = await Promise.all(
+  allPosts.map(async (post) => {
+    const { Content } = await render(post);
+    return { ...post, Content };
+  })
+);
+
+const dateOptions: Intl.DateTimeFormatOptions = {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+};
+
+---
+
+<BaseLayout
+    title="Changelog Momentum | BioSked"
+    description="Novità e correzioni di Momentum, versione per versione."
+    noIndex={true}
+    locale="it"
+>
+    <div class="container section-padding max-w-5xl">
+        <h1 class="text-display-hero mb-4">Changelog</h1>
+        <p class="text-muted-foreground text-lead max-w-2xl mb-12 md:mb-25">Novità e correzioni di Momentum, versione per versione. Le voci precedenti sono disponibili nel <a href="/changelog/" class="underline hover:text-foreground">changelog in inglese</a>.</p>
+        {posts.map((post) =>
+            <div class="md:flex pb-15 md:pb-40 md:not-last:border-l md:not-last:border-gray-300/90 ml-2">
+                <div class="flex-2 relative">
+                    <a href={`/it/changelog/${post.id}`} class="sticky top-26">
+                        <span class="text-foreground/70 relative md:-top-6 md:-left-3">
+                            <span class="hidden md:inline text-accent text-2xl relative top-1">▪︎</span>
+                            <span class="relative md:ml-1 top-0.5">{post.data.date.toLocaleDateString('it-IT', dateOptions)}</span>
+                        </span><br class="hidden md:block">
+                        <span class="relative hover:opacity-70 transition-opacity text-sm md:text-base duration-200 top-0.5 md:-top-4 ml-2 md:ml-4 bg-primary/25 border border-accent/15 py-0.5 px-2 rounded-sm text-accent">v{post.data.version}</span>
+                    </a>
+                </div>
+                <div class="flex-6">
+                    <h2 class="text-display-card font-bold mb-4 mt-5 md:-mt-5 md:mb-6">
+                        {post.data.title}
+                    </h2>
+                    {/*{post.data.image && <Image src={post.data.image} alt={post.data.title} class="mb-4 md:mb-7 rounded shadow-xl shadow-secondary/10 border border-secondary/15"/>}*/}
+                    <post.Content />
+                </div>
+            </div>
+            <hr class="sm:hidden last:hidden pb-15">
+        )}
+    </div>
+</BaseLayout>

@@ -48,7 +48,7 @@ const FR: FooterLocale = {
                 { name: 'Tarifs', href: '/fr/pricing/' },
                 { name: 'Cas clients', href: '/fr/cas-clients/' },
                 { name: 'Support', href: '/fr/help/kb-tickets/new/' },
-                { name: 'Changelog', href: '/changelog/' },
+                { name: 'Changelog', href: '/fr/changelog/' },
             ],
         },
         {
@@ -77,7 +77,7 @@ const DE: FooterLocale = {
                 { name: 'Preise', href: '/de/pricing/' },
                 { name: 'Referenzen', href: '/de/referenzen/' },
                 { name: 'Support', href: '/de/help/kb-tickets/new/' },
-                { name: 'Changelog', href: '/changelog/' },
+                { name: 'Changelog', href: '/de/changelog/' },
             ],
         },
         {
@@ -105,7 +105,7 @@ const NL: FooterLocale = {
                 { name: 'Referenties', href: '/nl/referenties/' },
                 { name: 'Arbeidstijdregistratie 2027', href: '/nl/arbeidstijdregistratie-2027/' },
                 { name: 'Support', href: '/nl/help/kb-tickets/new/' },
-                { name: 'Changelog', href: '/changelog/' },
+                { name: 'Changelog', href: '/nl/changelog/' },
             ],
         },
         {
@@ -132,7 +132,7 @@ const IT: FooterLocale = {
                 { name: 'Prezzi', href: '/it/pricing/' },
                 { name: 'Referenze', href: '/it/referenze/' },
                 { name: 'Support', href: '/it/help/kb-tickets/new/' },
-                { name: 'Changelog', href: '/changelog/' },
+                { name: 'Changelog', href: '/it/changelog/' },
             ],
         },
         {
@@ -169,7 +169,7 @@ const DE_CH: FooterLocale = {
             {
                 ...link,
                 // Swiss German reads the German knowledge base: there is no /de-ch/help/.
-                href: link.href.startsWith('/de/help/') ? link.href : link.href.replace(/^\/de(?=\/)/, '/de-ch'),
+                href: link.href.startsWith('/de/help/') || link.href.startsWith('/de/changelog/') ? link.href : link.href.replace(/^\/de(?=\/)/, '/de-ch'),
             },
         ]),
     })),
