@@ -2,7 +2,7 @@
 layout: "@layouts/ArticleLayout.astro"
 date: 2026-09-07
 author: David Dudok de Wit
-title: "257 améliorations plus tard : tout ce que nous avons corrigé dans Momentum depuis avril"
+title: "257 améliorations plus tard : tout ce que nous avons apporté à Momentum depuis avril"
 description: "Entre avril et septembre, nous avons déployé 257 améliorations dans Momentum, dont 131 corrections et 83 nées directement de vos retours. Voici le bilan complet, sans jargon."
 image: "../../../assets/fr-blog/momentum-2026-09-ce-que-nous-avons-corrige.png"
 canonicalPath: "/fr/blog/257-ameliorations-plus-tard-tout-ce-que-nous-avons-corrige/"
@@ -19,7 +19,7 @@ Vous en avez senti une partie sur votre propre planning : des comptes qui tombe
 
 Entre le 1<sup>er</sup> avril et le 6 septembre, nous avons déployé 257 améliorations dans Momentum. Le chiffre n'est pas arrondi : c'est le nombre d'éléments que notre outil de suivi marque comme déployés sur cette période, des corrections visibles jusqu'à la tuyauterie qui les rend possibles. Parmi eux :
 
-- 131 sont des corrections de choses cassées ou qui se comportaient mal.
+- 131 sont des corrections, et autant de gains de fiabilité au quotidien : des comptes justes, des notifications qui arrivent aux bonnes personnes, des exports complets.
 - 83 viennent directement d'un retour de l'un d'entre vous : un échange avec le support, une demande, une remarque après un appel.
 - 124, près de la moitié, ont été signalés par notre propre équipe support et succès client, souvent en votre nom. La plupart des 83 en font partie.
 - 1 106 modifications de code ont été fusionnées pour y arriver.
@@ -36,17 +36,17 @@ Nous avons regroupé les points marquants par problème résolu, parce que c'est
 
 **Approuver les demandes en voyant le planning.** Une demande approuvée est une promesse faite. Deux choses ont changé. Les demandes en attente peuvent maintenant s'afficher directement dans la vue par date, à côté des affectations qu'elles touchent. Et vous pouvez pré-approuver un ensemble de demandes, lancer une construction de test, regarder la couverture, puis confirmer ou revenir en arrière avant que quiconque soit notifié. Les deux sont derrière un interrupteur par instance. Nous les activons par étapes, instances les plus actives d'abord ; dites-le à votre référent BioSked si vous voulez en être tôt.
 
-**Construire un planning redevient rapide, et reproductible.** Sur notre construction client de référence, le moteur classique est passé d'environ 43 minutes à 45 secondes. Nous avons aussi découvert que deux constructions identiques pouvaient donner deux plannings différents, parce que rien ne décidait laquelle de plusieurs lignes identiques d'une trame comptait comme pourvue. Sur un planning, 245 affectations sur 695 bougeaient d'une construction à l'autre. C'est corrigé, et vérifié sur de vrais plannings. Les modifications en masse d'un mois entier aboutissent au lieu d'échouer en cours de route : 200 affectations demandaient 324 allers-retours vers la base de données, elles en demandent 6.
+**Construire un planning redevient rapide, et reproductible.** Sur notre construction client de référence, le moteur classique est passé d'environ 43 minutes à 45 secondes. Deux constructions identiques donnent désormais le même planning : quand une trame contient plusieurs lignes identiques pour le même rôle, l'ordre dans lequel elles sont pourvues est maintenant fixe. Sur un planning, cela représentait 245 affectations sur 695 qui bougeaient d'une construction à l'autre. Vérifié sur de vrais plannings. Les modifications en masse d'un mois entier aboutissent d'une traite : 200 affectations demandaient 324 allers-retours vers la base de données, elles en demandent 6.
 
 **Des notifications fiables.**
 
-- Des notifications qui ignoraient les restrictions par rôle.
-- Des alertes « planning publié » déclenchées sans publication.
-- Des administrateurs non prévenus quand quelqu'un est retiré d'une affectation publiée.
-- Des demandes déposées depuis l'application mobile sans notification ni trace dans l'historique.
-- Une seule publication non pourvue dans la bourse aux activités qui bloquait toutes les autres notifications.
+- Des notifications qui respectent les restrictions par rôle.
+- Des alertes « planning publié » envoyées seulement quand un planning a été publié.
+- Des administrateurs prévenus quand quelqu'un est retiré d'une affectation publiée.
+- Des demandes déposées depuis l'application mobile qui laissent une notification et une trace dans l'historique.
+- Une publication non pourvue dans la bourse aux activités qui ne retient plus les autres notifications.
 
-Tout est corrigé, et les notifications administrateur respectent désormais leurs cases à cocher.
+Et les notifications administrateur respectent désormais leurs cases à cocher.
 
 **Voir plus, cliquer moins.** Dans la nouvelle vue par date :
 
@@ -56,20 +56,20 @@ Tout est corrigé, et les notifications administrateur respectent désormais leu
 - Un menu contextuel plus clair, avec « Remplacer le personnel » limité aux seuls candidats possibles.
 - Les affectations vides et obligatoires en rouge.
 - Les vacations non pourvues visibles dans la vue Chronologie.
-- Des filtres enregistrés qui s'ouvrent sur la période enregistrée. Chez un client, un filtre s'ouvrait sur quatre ans de planning et figeait la page.
+- Des filtres enregistrés qui s'ouvrent sur la période enregistrée, même quand le planning couvre plusieurs années.
 
 **Des exports qui exportent.**
 
 - L'export Excel depuis la nouvelle vue par date, et le même format de fichier qu'avant pour les exports de la vue liste.
 - Des exports qui respectent le filtre ouvert, et des fichiers CSV au-delà de 1 000 lignes.
 - Des exports SFTP planifiés qui contiennent désormais exactement ce qu'un export manuel contient, avec un port explicite.
-- Des exports de calendrier qui ne tombent plus en erreur, et des affectations créées à partir de demandes approuvées qui arrivent maintenant dans les agendas Outlook.
+- Des exports de calendrier qui aboutissent à chaque fois, et des affectations créées à partir de demandes approuvées qui arrivent maintenant dans les agendas Outlook.
 
-**Une nouvelle application mobile.** Reconstruite de zéro et disponible sur l'App Store et Google Play depuis juillet : un écran « aujourd'hui », la connexion par Face ID ou empreinte, un accès hors ligne chiffré à votre planning, la connexion Microsoft en un geste (et SAML pour les autres fournisseurs d'identité, votre service informatique saura), des notifications push plus rapides, le mode sombre, cinq langues. Vos premières remarques à son sujet (réglages de visibilité des notes, demandes déposées qui n'apparaissaient pas, horaires personnalisés sur iPhone) sont corrigés, et les mises à jour partent désormais vers un petit groupe d'abord, puis vers tout le monde.
+**Une nouvelle application mobile.** Reconstruite de zéro et disponible sur l'App Store et Google Play depuis juillet : un écran « aujourd'hui », la connexion par Face ID ou empreinte, un accès hors ligne chiffré à votre planning, la connexion Microsoft en un geste (et SAML pour les autres fournisseurs d'identité, votre service informatique saura), des notifications push plus rapides, le mode sombre, cinq langues. Vos premières remarques à son sujet (réglages de visibilité des notes, demandes déposées visibles dans votre liste, horaires personnalisés sur iPhone) ont été prises en compte, et les mises à jour partent désormais vers un petit groupe d'abord, puis vers tout le monde.
 
 ![La nouvelle application mobile Momentum](../../../assets/images/momentum-mobile-app-2026-fr.png)
 
-**Se connecter, à tous les coups.** Des mots de passe longs qui ne permettaient plus de se connecter, des liens d'activation qui échouaient au second clic : corrigés. Le support voit désormais pourquoi une connexion a échoué, et « je n'arrive pas à me connecter » se règle en un seul échange.
+**Se connecter, à tous les coups.** Les mots de passe longs se connectent, les liens d'activation fonctionnent au second clic, et le support voit désormais pourquoi une connexion n'a pas abouti : « je n'arrive pas à me connecter » se règle en un seul échange.
 
 ## Comment nous améliorons Momentum
 
