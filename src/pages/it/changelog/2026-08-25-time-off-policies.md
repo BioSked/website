@@ -4,7 +4,7 @@ date: 2026-08-25
 version: "4.7.0"
 author: BioSked
 title: 🗓️ Politiche per le ferie, richieste pre-approvate, costruzioni più rapide
-description: Momentum 4.7 porta le politiche per le ferie, la pre-approvazione delle richieste, i conteggi nella Panoramica data e una costruzione classica molto più rapida, seguita da release più piccole il 26 agosto e il 1° settembre 2026.
+description: "Momentum 4.7: politiche per le ferie, pre-approvazione e richieste nella Panoramica data, in distribuzione progressiva e non ancora attive su tutte le istanze, più conteggi e una costruzione molto più rapida."
 image: "../../../assets/images/momentum4-7-it.png"
 lang: it
 
@@ -12,13 +12,13 @@ lang: it
 
 ![Momentum 4.7](../../../assets/images/momentum4-7-it.png)
 
-Distribuita per gradi dal 17 agosto e su tutte le istanze europee il 25 agosto 2026, seguita da release più piccole il 26 agosto e il 1° settembre. Tre delle nuove funzionalità sono dietro un interruttore per istanza: le attiviamo per gradi, istanze più attive per prime. Dillo al tuo referente BioSked se vuoi essere tra i primi.
+Distribuita per gradi dal 17 agosto e su tutte le istanze europee il 25 agosto 2026, seguita da release più piccole il 26 agosto e il 1° settembre. **Distribuzione progressiva:** le politiche per le ferie, la pre-approvazione delle richieste e le richieste nella Panoramica data vengono attivate istanza per istanza, istanze più attive per prime, e non sono ancora attive ovunque. Se non le vedi ancora, stanno arrivando. Dillo al tuo referente BioSked se vuoi essere tra i primi.
 
 ### ✨ Novità
 
-- **Politiche per le ferie:** le regole di maturazione stanno in un solo posto invece di essere solo annuali, e un termine di contratto può usare più politiche, per esempio ferie annuali, malattia e giorni di anzianità. Le maturazioni annuali esistenti migrano in una politica per termine di contratto. Dietro un interruttore per istanza.
-- **Pre-approvare le richieste:** segna un insieme di richieste come pre-approvate, avvia una costruzione di prova per verificare la copertura, poi approva definitivamente o annulla. Il personale riceve la notifica solo all'approvazione finale. Dietro un interruttore per istanza.
-- **Richieste nella Panoramica data:** mostra le richieste in sospeso accanto agli incarichi che toccano, secondo il filtro attivo. Dietro un interruttore per istanza.
+- **Politiche per le ferie:** le regole di maturazione stanno in un solo posto invece di essere solo annuali, e un termine di contratto può usare più politiche, per esempio ferie annuali, malattia e giorni di anzianità. Le maturazioni annuali esistenti migrano in una politica per termine di contratto. Distribuzione progressiva, non ancora su tutte le istanze.
+- **Pre-approvare le richieste:** segna un insieme di richieste come pre-approvate, avvia una costruzione di prova per verificare la copertura, poi approva definitivamente o annulla. Il personale riceve la notifica solo all'approvazione finale. Distribuzione progressiva, non ancora su tutte le istanze.
+- **Richieste nella Panoramica data:** mostra le richieste in sospeso accanto agli incarichi che toccano, secondo il filtro attivo. Distribuzione progressiva, non ancora su tutte le istanze.
 - **Conteggi nella Panoramica data:** l'opzione di visualizzazione "Mostra conteggi" indica quanti incarichi, o punti, contiene un giorno o un gruppo, in entrambi i layout e con qualsiasi raggruppamento.
 - **Turni scoperti nella Cronologia:** la cronologia può ora mostrare i turni che aspettano ancora qualcuno.
 - **Gli scambi si concludono senza una seconda approvazione** quando la persona che accetta ha già il diritto "Modifica richieste: approva/rifiuta". Prima nell'app mobile; la pagina richieste sul web seguirà.

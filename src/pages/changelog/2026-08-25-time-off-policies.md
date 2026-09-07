@@ -4,20 +4,20 @@ date: 2026-08-25
 version: "4.7.0"
 author: BioSked
 title: 🗓️ Time-off policies, pre-approved requests, faster builds
-description: Momentum 4.7 brings a Time-off Policy Center, pre-approval of requests, counts in the date view and a much faster classic scheduler, followed by smaller releases on 26 August and 1 September 2026.
+description: "Momentum 4.7: time-off policies, pre-approval and requests in the date view, rolled out progressively and not on every instance yet, plus counts in the date view and a much faster build."
 image: "../../assets/images/momentum4-7.png"
 
 ---
 
 ![Momentum 4.7](../../assets/images/momentum4-7.png)
 
-Rolled out in stages from 17 August and to all European instances on 25 August 2026, followed by smaller releases on 26 August and 1 September. Three of the new capabilities sit behind a per-instance switch: we turn them on in stages, most active instances first. Tell your customer success contact if you want to be early.
+Rolled out in stages from 17 August and to all European instances on 25 August 2026, followed by smaller releases on 26 August and 1 September. **Progressive rollout:** time-off policies, pre-approval of requests and requests in the date view are being switched on instance by instance, most active instances first, and are not active everywhere yet. If you do not see them, they are on their way. Tell your customer success contact if you want to be early.
 
 ### ✨ New
 
-- **Time-off Policy Center:** accrual rules live in one place instead of being yearly only, and a contract term can use several policies, for example annual leave, sick leave and seniority days. Existing yearly accruals migrate into one policy per contract term. Behind a per-instance switch.
-- **Pre-approve requests:** mark a set of requests as pre-approved, run a test build to check coverage, then approve for good or roll back. Staff are only notified at final approval. Behind a per-instance switch.
-- **Requests in the date view:** show pending requests next to the assignments they affect, following the active filter. Behind a per-instance switch.
+- **Time-off Policy Center:** accrual rules live in one place instead of being yearly only, and a contract term can use several policies, for example annual leave, sick leave and seniority days. Existing yearly accruals migrate into one policy per contract term. Progressive rollout, not on every instance yet.
+- **Pre-approve requests:** mark a set of requests as pre-approved, run a test build to check coverage, then approve for good or roll back. Staff are only notified at final approval. Progressive rollout, not on every instance yet.
+- **Requests in the date view:** show pending requests next to the assignments they affect, following the active filter. Progressive rollout, not on every instance yet.
 - **Counts in the date view:** a "Show counts" display option shows how many assignments, or points, a day or a group holds, in both layouts and under any grouping.
 - **Unstaffed shifts on the timeline:** the timeline view can now show the shifts that still need someone.
 - **Swaps complete without a second approval** when the person accepting already holds the "Change requests: approve/deny" permission. Mobile app first; the web requests page follows.

@@ -4,7 +4,7 @@ date: 2026-08-25
 version: "4.7.0"
 author: BioSked
 title: 🗓️ Abwesenheitsrichtlinien, vorab genehmigte Anfragen, schnellere Planerstellung
-description: Momentum 4.7 bringt Abwesenheitsrichtlinien, die Vorabgenehmigung von Anfragen, Anzahlen in der Tagesansicht und eine deutlich schnellere klassische Planerstellung, gefolgt von kleineren Releases am 26. August und 1. September 2026.
+description: "Momentum 4.7: Abwesenheitsrichtlinien, Vorabgenehmigung und Anfragen in der Tagesansicht, schrittweise eingeführt und noch nicht auf allen Instanzen aktiv, dazu Anzahlen und eine viel schnellere Planerstellung."
 image: "../../../assets/images/momentum4-7-de.png"
 lang: de
 
@@ -12,13 +12,13 @@ lang: de
 
 ![Momentum 4.7](../../../assets/images/momentum4-7-de.png)
 
-Schrittweise ab dem 17. August und am 25. August 2026 auf allen europäischen Instanzen ausgerollt, gefolgt von kleineren Releases am 26. August und 1. September. Drei der neuen Funktionen liegen hinter einem Schalter pro Instanz: Wir aktivieren sie schrittweise, aktivste Instanzen zuerst. Sagen Sie Ihrer Ansprechperson bei BioSked Bescheid, wenn Sie früh dabei sein möchten.
+Schrittweise ab dem 17. August und am 25. August 2026 auf allen europäischen Instanzen ausgerollt, gefolgt von kleineren Releases am 26. August und 1. September. **Schrittweise Einführung:** Abwesenheitsrichtlinien, die Vorabgenehmigung von Anfragen und Anfragen in der Tagesansicht werden Instanz für Instanz aktiviert, aktivste Instanzen zuerst, und sind noch nicht überall aktiv. Wenn Sie sie noch nicht sehen, sind sie unterwegs. Sagen Sie Ihrer Ansprechperson bei BioSked Bescheid, wenn Sie früh dabei sein möchten.
 
 ### ✨ Neu
 
-- **Abwesenheitsrichtlinien:** Ansparregeln liegen an einem Ort, statt nur jährlich zu gelten, und ein Vertragsinhalt kann mehrere Richtlinien nutzen, zum Beispiel Jahresurlaub, Krankheit und Dienstalterstage. Bestehende jährliche Ansparungen werden in eine Richtlinie je Vertragsinhalt überführt. Hinter einem Schalter pro Instanz.
-- **Anfragen vorab genehmigen:** Markieren Sie eine Gruppe von Anfragen als vorab genehmigt, starten Sie eine Testerstellung zur Prüfung der Abdeckung, und genehmigen Sie dann endgültig oder machen Sie rückgängig. Mitarbeitende werden erst bei der endgültigen Genehmigung benachrichtigt. Hinter einem Schalter pro Instanz.
-- **Anfragen in der Tagesansicht:** Zeigen Sie offene Anfragen neben den betroffenen Zuweisungen an, dem aktiven Filter folgend. Hinter einem Schalter pro Instanz.
+- **Abwesenheitsrichtlinien:** Ansparregeln liegen an einem Ort, statt nur jährlich zu gelten, und ein Vertragsinhalt kann mehrere Richtlinien nutzen, zum Beispiel Jahresurlaub, Krankheit und Dienstalterstage. Bestehende jährliche Ansparungen werden in eine Richtlinie je Vertragsinhalt überführt. Schrittweise Einführung, noch nicht auf allen Instanzen.
+- **Anfragen vorab genehmigen:** Markieren Sie eine Gruppe von Anfragen als vorab genehmigt, starten Sie eine Testerstellung zur Prüfung der Abdeckung, und genehmigen Sie dann endgültig oder machen Sie rückgängig. Mitarbeitende werden erst bei der endgültigen Genehmigung benachrichtigt. Schrittweise Einführung, noch nicht auf allen Instanzen.
+- **Anfragen in der Tagesansicht:** Zeigen Sie offene Anfragen neben den betroffenen Zuweisungen an, dem aktiven Filter folgend. Schrittweise Einführung, noch nicht auf allen Instanzen.
 - **Anzahlen in der Tagesansicht:** Die Anzeigeoption „Anzahlen anzeigen“ zeigt, wie viele Zuweisungen oder Punkte ein Tag oder eine Gruppe enthält, in beiden Layouts und bei jeder Gruppierung.
 - **Unbesetzte Dienste in der Zeitleiste:** Die Zeitleiste kann jetzt die Dienste anzeigen, für die noch jemand fehlt.
 - **Tausche werden ohne zweite Genehmigung abgeschlossen,** wenn die annehmende Person bereits das Recht „Änderungsanfragen: genehmigen/ablehnen“ besitzt. Zuerst in der mobilen App; die Anfragenseite im Web folgt.

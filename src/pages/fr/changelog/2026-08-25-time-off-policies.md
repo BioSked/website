@@ -4,7 +4,7 @@ date: 2026-08-25
 version: "4.7.0"
 author: BioSked
 title: 🗓️ Politiques de congés, demandes pré-approuvées, constructions plus rapides
-description: Momentum 4.7 apporte les politiques de congés, la pré-approbation des demandes, des comptages dans la vue par date et un moteur de construction classique bien plus rapide, suivi de mises en production plus petites les 26 août et 1er septembre 2026.
+description: "Momentum 4.7 : politiques de congés, pré-approbation et demandes dans la vue par date, déployées progressivement et pas encore actives sur toutes les instances, plus des comptages et une construction bien plus rapide."
 image: "../../../assets/images/momentum4-7-fr.png"
 lang: fr
 
@@ -12,13 +12,13 @@ lang: fr
 
 ![Momentum 4.7](../../../assets/images/momentum4-7-fr.png)
 
-Déployée par étapes à partir du 17 août et sur toutes les instances européennes le 25 août 2026, suivie de mises en production plus petites les 26 août et 1er septembre. Trois des nouveautés sont derrière un interrupteur par instance : nous les activons par étapes, instances les plus actives d'abord. Dites-le à votre référent BioSked si vous voulez en être tôt.
+Déployée par étapes à partir du 17 août et sur toutes les instances européennes le 25 août 2026, suivie de mises en production plus petites les 26 août et 1er septembre. **Déploiement progressif :** les politiques de congés, la pré-approbation des demandes et les demandes dans la vue par date sont activées instance par instance, instances les plus actives d'abord, et ne sont pas encore actives partout. Si vous ne les voyez pas, elles arrivent. Dites-le à votre référent BioSked si vous voulez en être tôt.
 
 ### ✨ Nouveau
 
-- **Politiques de congés :** les règles d'acquisition sont réunies au même endroit au lieu d'être annuelles uniquement, et un terme de contrat peut utiliser plusieurs politiques, par exemple congés annuels, maladie et jours d'ancienneté. Les acquisitions annuelles existantes migrent vers une politique par terme de contrat. Derrière un interrupteur par instance.
-- **Pré-approuver les demandes :** marquez un ensemble de demandes comme pré-approuvées, lancez une construction de test pour vérifier la couverture, puis approuvez définitivement ou revenez en arrière. Le personnel n'est notifié qu'à l'approbation finale. Derrière un interrupteur par instance.
-- **Les demandes dans la vue par date :** affichez les demandes en attente à côté des affectations qu'elles touchent, selon le filtre actif. Derrière un interrupteur par instance.
+- **Politiques de congés :** les règles d'acquisition sont réunies au même endroit au lieu d'être annuelles uniquement, et un terme de contrat peut utiliser plusieurs politiques, par exemple congés annuels, maladie et jours d'ancienneté. Les acquisitions annuelles existantes migrent vers une politique par terme de contrat. Déploiement progressif, pas encore sur toutes les instances.
+- **Pré-approuver les demandes :** marquez un ensemble de demandes comme pré-approuvées, lancez une construction de test pour vérifier la couverture, puis approuvez définitivement ou revenez en arrière. Le personnel n'est notifié qu'à l'approbation finale. Déploiement progressif, pas encore sur toutes les instances.
+- **Les demandes dans la vue par date :** affichez les demandes en attente à côté des affectations qu'elles touchent, selon le filtre actif. Déploiement progressif, pas encore sur toutes les instances.
 - **Comptages dans la vue par date :** l'option d'affichage « Afficher les comptages » montre combien d'affectations, ou de points, contient un jour ou un groupe, dans les deux dispositions et quel que soit le groupement.
 - **Vacations non remplies dans la vue Chronologie :** la chronologie peut désormais afficher les vacations qui attendent encore quelqu'un.
 - **Les échanges aboutissent sans seconde approbation** quand la personne qui accepte a déjà le droit « Requêtes de changements : approuver/refuser ». Application mobile d'abord ; la page de requêtes web suit.

@@ -4,7 +4,7 @@ date: 2026-08-25
 version: "4.7.0"
 author: BioSked
 title: 🗓️ Verlofbeleid, vooraf goedgekeurde verzoeken, sneller aanmaken
-description: Momentum 4.7 brengt verlofbeleid, het vooraf goedkeuren van verzoeken, aantallen in de datumweergave en een veel snellere klassieke planningsopbouw, gevolgd door kleinere releases op 26 augustus en 1 september 2026.
+description: "Momentum 4.7: verlofbeleid, vooraf goedkeuren en verzoeken in de datumweergave, geleidelijk uitgerold en nog niet op elke instantie actief, plus aantallen en een veel snellere planningsopbouw."
 image: "../../../assets/images/momentum4-7-nl.png"
 lang: nl
 
@@ -12,13 +12,13 @@ lang: nl
 
 ![Momentum 4.7](../../../assets/images/momentum4-7-nl.png)
 
-Stapsgewijs uitgerold vanaf 17 augustus en op 25 augustus 2026 naar alle Europese instanties, gevolgd door kleinere releases op 26 augustus en 1 september. Drie van de nieuwe functies zitten achter een schakelaar per instantie: we schakelen ze stapsgewijs in, meest actieve instanties eerst. Laat het uw BioSked-contactpersoon weten als u er vroeg bij wilt zijn.
+Stapsgewijs uitgerold vanaf 17 augustus en op 25 augustus 2026 naar alle Europese instanties, gevolgd door kleinere releases op 26 augustus en 1 september. **Geleidelijke uitrol:** verlofbeleid, het vooraf goedkeuren van verzoeken en verzoeken in de datumweergave worden instantie per instantie ingeschakeld, meest actieve instanties eerst, en zijn nog niet overal actief. Ziet u ze nog niet, dan komen ze eraan. Laat het uw BioSked-contactpersoon weten als u er vroeg bij wilt zijn.
 
 ### ✨ Nieuw
 
-- **Verlofbeleid:** opbouwregels staan op één plek in plaats van alleen per jaar, en een contractbepaling kan meerdere beleidsregels gebruiken, bijvoorbeeld jaarlijks verlof, ziekte en anciënniteitsdagen. Bestaande jaarlijkse opbouw migreert naar één beleidsregel per contractbepaling. Achter een schakelaar per instantie.
-- **Verzoeken vooraf goedkeuren:** markeer een set verzoeken als vooraf goedgekeurd, voer een testopbouw uit om de bezetting te controleren en keur daarna definitief goed of draai terug. Personeel krijgt pas bij de definitieve goedkeuring een kennisgeving. Achter een schakelaar per instantie.
-- **Verzoeken in de datumweergave:** toon openstaande verzoeken naast de taken die ze raken, volgens het actieve filter. Achter een schakelaar per instantie.
+- **Verlofbeleid:** opbouwregels staan op één plek in plaats van alleen per jaar, en een contractbepaling kan meerdere beleidsregels gebruiken, bijvoorbeeld jaarlijks verlof, ziekte en anciënniteitsdagen. Bestaande jaarlijkse opbouw migreert naar één beleidsregel per contractbepaling. Geleidelijke uitrol, nog niet op elke instantie.
+- **Verzoeken vooraf goedkeuren:** markeer een set verzoeken als vooraf goedgekeurd, voer een testopbouw uit om de bezetting te controleren en keur daarna definitief goed of draai terug. Personeel krijgt pas bij de definitieve goedkeuring een kennisgeving. Geleidelijke uitrol, nog niet op elke instantie.
+- **Verzoeken in de datumweergave:** toon openstaande verzoeken naast de taken die ze raken, volgens het actieve filter. Geleidelijke uitrol, nog niet op elke instantie.
 - **Aantallen in de datumweergave:** de weergaveoptie "Aantallen tonen" laat zien hoeveel taken, of punten, een dag of een groep bevat, in beide lay-outs en bij elke groepering.
 - **Onbezette diensten op de tijdlijn:** de tijdlijn kan nu de diensten tonen waarvoor nog iemand nodig is.
 - **Wissels worden zonder tweede goedkeuring afgerond** wanneer de persoon die accepteert al het recht "Aanvragen wijzigen: goedkeuren/afwijzen" heeft. Eerst in de mobiele app; de verzoekenpagina op het web volgt.
