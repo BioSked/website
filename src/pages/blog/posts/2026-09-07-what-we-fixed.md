@@ -10,7 +10,7 @@ image: "../../../assets/images/momentum-2026-09-what-we-fixed.png"
 
 ![257 improvements shipped since April](../../../assets/images/momentum-2026-09-what-we-fixed.png)
 
-In March, one of you answered our satisfaction survey with an 8 out of 10 and a remark I have not forgotten. The update was good, simpler, but there were "no usage notes I can consult to know what all the features do."
+In March, one of you answered our satisfaction survey with an 8 out of 10 and a remark we have not forgotten. The update was good, simpler, but there were "no usage notes I can consult to know what all the features do."
 
 Fair point. We have been fixing and shipping all spring and summer, and telling you about it through support answers, a webinar and an occasional email. That is not the same as writing it down in one place. So here it is.
 

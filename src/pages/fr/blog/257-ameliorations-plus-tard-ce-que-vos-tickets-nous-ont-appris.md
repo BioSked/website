@@ -11,7 +11,7 @@ canonicalPath: "/fr/blog/257-ameliorations-plus-tard-ce-que-vos-tickets-nous-ont
 
 ![257 améliorations livrées depuis avril](../../../assets/fr-blog/momentum-2026-09-ce-que-nous-avons-corrige.png)
 
-En mars, l'un d'entre vous a répondu à notre enquête de satisfaction avec un 8 sur 10 et une remarque que je n'ai pas oubliée. La mise à jour était bonne, plus simple, mais il manquait « des publications de notes d'utilisation, consultables en cas de besoin, pour connaître toutes les fonctionnalités ».
+En mars, l'un d'entre vous a répondu à notre enquête de satisfaction avec un 8 sur 10 et une remarque que nous n'avons pas oubliée. La mise à jour était bonne, plus simple, mais il manquait « des publications de notes d'utilisation, consultables en cas de besoin, pour connaître toutes les fonctionnalités ».
 
 C'est juste. Nous avons corrigé et livré tout le printemps et tout l'été, et nous vous l'avons dit au fil des réponses du support, d'un webinaire et de quelques emails. Ce n'est pas la même chose que de l'écrire noir sur blanc, au même endroit. Voici donc le bilan.
 
