@@ -28,7 +28,7 @@ Tout cela est sorti en trois versions principales (4.5 en avril et mai, 4.6 en j
 
 ## Ce que nous avons corrigé, en clair
 
-J'ai regroupé les points marquants par problème résolu, parce que c'est ainsi que vous nous les avez envoyés.
+Nous avons regroupé les points marquants par problème résolu, parce que c'est ainsi que vous nous les avez envoyés.
 
 **Vos comptes d'heures et de congés tombent juste.** C'était la plus grosse famille de tickets, et la plus importante : une journée de récupération valorisée 24 h au lieu de 7 h, des congés qui se chevauchent comptés deux fois, un solde de congés impossible à suivre sans fausser le compte d'heures. Les termes de contrat comptent désormais les jours de congé séparément des heures travaillées. Et quand nous avons remplacé le moteur de calcul, nous avons vérifié qu'il ne changeait aucun des chiffres que vous voyez déjà : 4,3 millions de valeurs du rapport de synthèse des absences rejouées sur les 325 bases de production, zéro différence. Les corrections font que les comptes tombent juste ; le rejeu fait que le changement de moteur est invisible. Si le vôtre ne tombe toujours pas juste, dites-le-nous.
 
@@ -67,22 +67,23 @@ Tout est corrigé, et les notifications administrateur respectent désormais leu
 
 **Une nouvelle application mobile.** Reconstruite de zéro et disponible sur l'App Store et Google Play depuis juillet : un écran « aujourd'hui », la connexion par Face ID ou empreinte, un accès hors ligne chiffré à votre planning, la connexion Microsoft en un geste (et SAML pour les autres fournisseurs d'identité, votre service informatique saura), des notifications push plus rapides, le mode sombre, cinq langues. Vos premiers tickets à son sujet (réglages de visibilité des notes, demandes déposées qui n'apparaissaient pas, horaires personnalisés sur iPhone) sont corrigés, et les mises à jour partent désormais vers un petit groupe d'abord, puis vers tout le monde.
 
+![La nouvelle application mobile Momentum](../../../assets/images/momentum-mobile-app-2026-fr.png)
+
 **Se connecter, à tous les coups.** Des mots de passe longs qui ne permettaient plus de se connecter, des liens d'activation qui échouaient au second clic : corrigés. Le support voit désormais pourquoi une connexion a échoué, et « je n'arrive pas à me connecter » se règle en un seul échange.
 
-## Comment nous livrons désormais
+## Comment nous améliorons Momentum
 
 La version de juin a reconstruit 250 000 lignes de code historique sur des fondations modernes. Le bon choix pour les années à venir, et quelques semaines plus agitées que nous ne l'aurions voulu pour certains d'entre vous. Cela a aussi changé notre façon de livrer. Les grosses versions groupées, c'est terminé : depuis fin août, nous livrons de petits incréments, presque chaque semaine, d'abord sur quelques instances actives, et le [changelog](/fr/changelog/) montre ce qui est sorti et quand.
 
 ## Avec vos mots
 
-> « Support très réactif, problème de paramétrage, solution trouvée en moins de 24 h. Top ! »
-> Administrateur Momentum, France (enquête support, août)
+*« Support très réactif, problème de paramétrage, solution trouvée en moins de 24 h. Top ! »*<br><cite>Administrateur Momentum, France, enquête support, août 2026</cite>
 
-> « C'est un miracle de Noël ! Ça marche. Merci, merci, merci. »
-> Responsable imagerie, groupe médical, États-Unis (juin, traduit de l'anglais)
+*« C'est un miracle de Noël ! Ça marche. Merci, merci, merci. »*<br><cite>Responsable imagerie, groupe médical, États-Unis, juin 2026, traduit de l'anglais</cite>
 
-> « Depuis la mise à jour, la fonctionnalité est plutôt très bonne, plus simple. »
-> La personne qui demandait des notes d'utilisation, en mars. Cet article est une première réponse.
+*« Depuis la mise à jour, la fonctionnalité est plutôt très bonne, plus simple. »*<br><cite>La personne qui demandait des notes d'utilisation, mars 2026</cite>
+
+Cet article est une première réponse.
 
 ## Ce sur quoi nous travaillons ensuite
 
@@ -91,14 +92,14 @@ La version de juin a reconstruit 250 000 lignes de code historique sur des fonda
 - Une page Demandes unique dans la nouvelle interface : congés, travail supplémentaire et échanges sur un seul écran, avec des approbations date par date.
 - Des heures prêtes pour la paie : heures supplémentaires par taux, exports plus propres.
 - Pour les cabinets qui utilisent un agenda de rendez-vous en ligne : un pilote dans lequel un planning Momentum publié alimente cet agenda.
-- Et deux ou trois choses que je préfère vous montrer que vous décrire.
+- Et deux ou trois choses que notre équipe préfère vous montrer plutôt que vous décrire.
 
 ## Venez le voir
 
-- **JFR 2026**, Palais des Congrès de Paris, du 8 au 11 octobre, stand 126A.
+- **JFR 2026**, Palais des Congrès de Paris, du 8 au 11 octobre, stand 126A. [Réservez un créneau](/fr/demo/).
 - **Amérique du Nord :** RSNA 2026, Chicago, du 29 novembre au 3 décembre.
-- **Pour tous :** demandez à votre référent BioSked un tour de 20 minutes des nouveautés sur votre instance, ou parcourez la [base de connaissances](/fr/help/).
+- **Pour tous :** [parlez-nous](/fr/demo/) pour un tour de 20 minutes des nouveautés sur votre instance, ou parcourez la [base de connaissances](/fr/help/).
 
-Merci pour vos tickets. Chacun d'eux a fait avancer quelque chose.
+Merci pour vos retours. C'est avec eux que Momentum progresse.
 
 David Dudok de Wit, CEO, BioSked

@@ -16,7 +16,7 @@ Fair point. We have been fixing and shipping all spring and summer, and telling 
 
 ## The numbers, and where they come from
 
-Between 1 April and 6 September we deployed 257 improvements to Momentum. I did not round that up. It is the number of items our engineering tracker marks as deployed in that window, from the fixes you can see to the plumbing behind them. Of those:
+Between 1 April and 6 September we deployed 257 improvements to Momentum. We did not round that up. It is the number of items our engineering tracker marks as deployed in that window, from the fixes you can see to the plumbing behind them. Of those:
 
 - 131 were fixes for things that were broken or behaving wrongly.
 - 83 came straight from a support ticket or a request one of you sent us.
@@ -27,7 +27,7 @@ They went out in three main releases (4.5 in April and May, 4.6 in June, 4.7 in 
 
 ## What we fixed, in plain language
 
-I have grouped the highlights by the problem they solve, because that is how you sent them to us.
+We grouped the highlights by the problem they solve, because that is how you sent them to us.
 
 **Your hours and time-off counts add up.** This was the biggest family of tickets, and the one that mattered most: a day off valued at 24 hours instead of 7, overlapping time-off counted twice, a time-off allowance you could not track without distorting the hours count. Contract terms now count time-off days separately from worked hours. And when we replaced the counting engine underneath, we made sure it changed none of the numbers you already see: we replayed 4.3 million time-off summary figures across all 325 production databases, zero differences. The fixes are what make the numbers add up; the replay is what makes the engine change invisible. If yours still does not add up, tell us.
 
@@ -66,22 +66,23 @@ All fixed, and admin notifications now respect their checkboxes.
 
 **A new mobile app.** Rebuilt from scratch and in the App Store and on Google Play since July: a "today" screen, sign-in with Face ID or fingerprint, encrypted offline access to your schedule, one-tap Microsoft sign-in (and SAML for other identity providers), faster push notifications, dark mode, five languages. Your first tickets on it (note visibility settings, submitted requests not showing, custom hours on iPhone) are fixed, and updates now go to a small group first, then to everyone.
 
+![The new Momentum mobile app](../../../assets/images/momentum-mobile-app-2026-en.png)
+
 **Getting in, every time.** Long passwords that could not sign in, activation links that failed on a second click: fixed. Support can now see why a sign-in failed, so "I can't get in" gets answered in one exchange.
 
-## How we ship now
+## How we improve Momentum
 
 The June update rebuilt 250,000 lines of legacy code on modern foundations. The right call for the years ahead, and it made a few weeks bumpier than we wanted for some of you. It also changed how we ship. Big bundled releases are over: since late August we ship small increments, most weeks, to a few active instances first, and the [changelog](/changelog/) shows what went out and when.
 
 ## In your words
 
-> "It's a Christmas miracle! It is working. Thank you, thank you, thank you."
-> Imaging supervisor, US medical group (June)
+*“It's a Christmas miracle! It is working. Thank you, thank you, thank you.”*<br><cite>Imaging supervisor, US medical group, June 2026</cite>
 
-> "I built the schedule out through the end of the year and it was 90% perfect. Now I know what the issues are, so I can easily correct them."
-> Practice manager, community health network, California (May)
+*“I built the schedule out through the end of the year and it was 90% perfect. Now I know what the issues are, so I can easily correct them.”*<br><cite>Practice manager, community health network, California, May 2026</cite>
 
-> "Since the update, the feature is really quite good, simpler."
-> The person who asked for usage notes, in March (translated from French). This post is a first answer.
+*“Since the update, the feature is really quite good, simpler.”*<br><cite>The person who asked for usage notes, March 2026, translated from French</cite>
+
+This post is a first answer.
 
 ## What we are working on next
 
@@ -89,14 +90,14 @@ The June update rebuilt 250,000 lines of legacy code on modern foundations. The 
 - Time-off policies switched on across instances, with rollover rules the next thing on the list.
 - A single Requests page in the new interface: time-off, extra work and swap requests on one screen, with approvals date by date.
 - Payroll-ready hours: extra hours by pay rate, cleaner exports.
-- And a few things I would rather show you than describe.
+- And a few things our team would rather show you than describe.
 
 ## Come and see it
 
 - **France:** JFR 2026, Paris, 8 to 11 October, stand 126A.
 - **North America:** RSNA 2026, Chicago, 29 November to 3 December. [Book a slot](/demo/) with us there.
-- **Everyone:** ask your customer success contact for a 20-minute tour of what is new on your instance, or browse the [knowledge base](/help/).
+- **Everyone:** [talk to us](/demo/) for a 20-minute tour of what is new on your instance, or browse the [knowledge base](/help/).
 
-Thank you for the tickets. Every one of them moved something.
+Thank you for your feedback. It is what moves Momentum forward.
 
 David Dudok de Wit, CEO, BioSked
