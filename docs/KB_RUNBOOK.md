@@ -21,6 +21,14 @@ in HubSpot; this site mirrors them.
 4. `src/lib/kb.ts` merges both files and the pages under `src/pages/help/` and
    `src/pages/[lang]/help/` render them.
 
+Published category routes are checked against each source KB home page on every
+sync. When a category is absent from the articles' primary breadcrumbs, its
+published listing supplies the existing article membership. This preserves old
+category links when an article moves to a different primary category, without
+creating or rewriting articles. Missing article references or unreadable category
+listings fail the sync rather than publishing an empty or partial replacement.
+The regression gate is `scripts/test-kb-published-categories.mjs` (`npm run test:kb`).
+
 ## Why content.biosked.com exists
 
 `kb.biosked.com` and `kb.biosked.fr`, the old public addresses, redirect every

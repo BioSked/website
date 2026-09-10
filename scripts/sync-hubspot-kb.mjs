@@ -3,6 +3,7 @@ import { mkdir, readFile, rename, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { parse, parseFragment, serializeOuter } from 'parse5';
+import { discoverMissingCategories } from './lib/kb-published-categories.mjs';
 
 // The HubSpot knowledge base is read from a host that is never redirected, so
 // the public addresses can 301 to biosked.com without starving the sync.
@@ -448,7 +449,7 @@ async function mapConcurrent(items, limit, mapper) {
   return results;
 }
 
-function buildCategories(articles) {
+function buildCategories(articles, publishedCategories = []) {
   const byKey = new Map();
   for (const article of articles) {
     const fallback = {
@@ -471,11 +472,22 @@ function buildCategories(articles) {
     item.articlePaths.push(article.sourcePath);
     if (article.subcategory && !item.subcategories.includes(article.subcategory)) item.subcategories.push(article.subcategory);
   }
+  // Category URLs are published independently of an article's primary breadcrumb.
+  // Keep live secondary categories instead of dropping their existing public links.
+  for (const category of publishedCategories) {
+    const key = `${category.locale}:${category.path}`;
+    const existing = byKey.get(key);
+    byKey.set(key, {
+      ...category,
+      articlePaths: [...(existing?.articlePaths ?? []), ...category.articlePaths],
+      subcategories: [...(existing?.subcategories ?? []), ...category.subcategories],
+    });
+  }
   return [...byKey.values()]
     .map((category) => ({
       ...category,
       articlePaths: [...new Set(category.articlePaths)].sort(),
-      subcategories: category.subcategories.sort((a, b) => a.localeCompare(b)),
+      subcategories: [...new Set(category.subcategories)].sort((a, b) => a.localeCompare(b)),
     }))
     .sort((a, b) => a.locale.localeCompare(b.locale) || a.title.localeCompare(b.title));
 }
@@ -577,7 +589,16 @@ if (exportPath) {
 const articles = extracted
   .filter(Boolean)
   .sort((a, b) => a.locale.localeCompare(b.locale) || a.sourcePath.localeCompare(b.sourcePath));
-const categories = buildCategories(articles);
+let categories = buildCategories(articles);
+if (!exportPath) {
+  const homePages = await mapConcurrent([...SUPPORTED_LOCALES], CONCURRENCY, async (locale) => {
+    const url = `${SOURCE_ORIGIN}/${locale}/knowledge`;
+    return { locale, url, html: await fetchText(url) };
+  });
+  const publishedCategories = await discoverMissingCategories(homePages, articles, categories, fetchText);
+  categories = buildCategories(articles, publishedCategories);
+  console.log(`Preserved ${publishedCategories.length} additional published category route(s).`);
+}
 const core = {
   schemaVersion: 1,
   sourceHost: SOURCE_HOST,
