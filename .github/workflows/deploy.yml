@@ -31,6 +31,9 @@ jobs:
       - name: Install dependencies
         run: npm ci --include=dev
 
+      - name: Verify deployment recovery
+        run: node --test scripts/test-pages-deployment.mjs
+
       - name: Pull changed knowledge-base content from HubSpot
         run: npm run sync:kb
 
@@ -50,14 +53,21 @@ jobs:
     if: github.event_name != 'pull_request'
     needs: build
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    # Three upstream 10-minute attempts plus backoff and checkout overhead.
+    timeout-minutes: 35
     permissions:
+      contents: read
       pages: write
       id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      - name: Checkout deployment action
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
       - name: Deploy
         id: deployment
-        uses: actions/deploy-pages@cd2ce8fcbc39b97be8ca5fce6e763baed58fa128 # v5.0.0
+        uses: ./.github/actions/deploy-pages-retry

@@ -1,0 +1,65 @@
+name: Deploy Pages with bounded recovery
+description: Retry GitHub deployment startup failures without hiding a persistent failure.
+outputs:
+  page_url:
+    description: URL from the successful deployment attempt.
+    value: ${{ steps.result.outputs.page_url }}
+runs:
+  using: composite
+  steps:
+    # error_count in deploy-pages covers status polling, NOT OIDC or creation.
+    # Retry the official action to acquire a fresh token and deploy the same
+    # current-run artifact. The callers retain the shared pages concurrency lock.
+    - name: Deploy attempt 1
+      id: attempt_1
+      continue-on-error: true
+      uses: actions/deploy-pages@cd2ce8fcbc39b97be8ca5fce6e763baed58fa128 # v5.0.0
+      with:
+        token: ${{ github.token }}
+        artifact_name: github-pages
+        timeout: '600000'
+
+    - name: Back off before attempt 2
+      if: ${{ !cancelled() && steps.attempt_1.outcome == 'failure' }}
+      shell: bash
+      run: sleep 30
+
+    - name: Deploy attempt 2
+      id: attempt_2
+      if: ${{ !cancelled() && steps.attempt_1.outcome == 'failure' }}
+      continue-on-error: true
+      uses: actions/deploy-pages@cd2ce8fcbc39b97be8ca5fce6e763baed58fa128 # v5.0.0
+      with:
+        token: ${{ github.token }}
+        artifact_name: github-pages
+        timeout: '600000'
+
+    - name: Back off before attempt 3
+      if: ${{ !cancelled() && steps.attempt_2.outcome == 'failure' }}
+      shell: bash
+      run: sleep 60
+
+    - name: Deploy attempt 3
+      id: attempt_3
+      if: ${{ !cancelled() && steps.attempt_2.outcome == 'failure' }}
+      continue-on-error: true
+      uses: actions/deploy-pages@cd2ce8fcbc39b97be8ca5fce6e763baed58fa128 # v5.0.0
+      with:
+        token: ${{ github.token }}
+        artifact_name: github-pages
+        timeout: '600000'
+
+    # A failed attempt can emit page_url before polling fails. Select by outcome,
+    # never just by a nonempty URL or conclusion (continue-on-error masks that).
+    - name: Require a successful deployment
+      id: result
+      if: ${{ !cancelled() }}
+      shell: bash
+      env:
+        ATTEMPT_1_OUTCOME: ${{ steps.attempt_1.outcome }}
+        ATTEMPT_1_URL: ${{ steps.attempt_1.outputs.page_url }}
+        ATTEMPT_2_OUTCOME: ${{ steps.attempt_2.outcome }}
+        ATTEMPT_2_URL: ${{ steps.attempt_2.outputs.page_url }}
+        ATTEMPT_3_OUTCOME: ${{ steps.attempt_3.outcome }}
+        ATTEMPT_3_URL: ${{ steps.attempt_3.outputs.page_url }}
+      run: bash "$GITHUB_ACTION_PATH/result.sh"
