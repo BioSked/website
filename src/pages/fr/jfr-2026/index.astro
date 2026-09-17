@@ -23,12 +23,12 @@ const programme: Ligne[] = [
 ].sort((a, b) => a.debut.localeCompare(b.debut));
 const ouvert = Boolean(JFR2026.hubspot.formId) && !JFR2026.inscriptionsCloses;
 const inputClass =
-  'border-input bg-background focus-visible:ring-ring mt-2 w-full rounded-md border px-3 py-3 outline-none focus-visible:ring-2';
+  'border-secondary/30 bg-white focus-visible:border-accent focus-visible:ring-ring mt-2 w-full rounded-md border px-3 py-3 outline-none focus-visible:ring-2';
 const heure = (h: string) => h.replace(':', ' h ');
 ---
 
 <BaseLayout
-  title="Journée clients Momentum aux JFR 2026 : inscriptions"
+  title="JFR 2026 : Journée clients Momentum"
   description="Inscription à la journée clients Momentum du vendredi 9 octobre 2026, salle 203 du Palais des congrès de Paris, session par session."
   noIndex={true}
   locale="fr"
@@ -37,16 +37,10 @@ const heure = (h: string) => h.replace(':', ' h ');
 >
   <section class="section-padding">
     <div class="container max-w-4xl">
-      <p class="font-mono text-sm font-semibold uppercase tracking-widest text-muted-foreground">JFR 2026 · Journée clients</p>
-      <h1 class="text-display-hero mt-4">Journée clients Momentum, vendredi 9 octobre 2026</h1>
-      <p class="text-lead text-muted-foreground mt-5 max-w-2xl">
-        Au Palais des congrès de Paris, salle 203, pendant les JFR. Des sessions de formation sur Momentum, ancrées dans le quotidien de l’imagerie. Venez à une session, à plusieurs, ou à toute la journée.
-      </p>
-      <ul class="mt-6 flex flex-wrap gap-3 text-sm">
-        <li class="rounded-full border border-secondary/15 bg-white/60 px-3 py-1">30 places par session</li>
-        <li class="rounded-full border border-secondary/15 bg-white/60 px-3 py-1">Sans démonstration commerciale</li>
-        <li class="rounded-full border border-secondary/15 bg-white/60 px-3 py-1">Inscription session par session</li>
-      </ul>
+      <h1 class="text-display-hero">JFR 2026 : Journée clients Momentum</h1>
+      <p class="text-lead mt-5 font-semibold text-foreground">Vendredi 9 octobre 2026 • Palais des congrès • Salle 203</p>
+      <p class="text-lead text-muted-foreground mt-3 max-w-2xl">Inscrivez-vous aux sessions Momentum : formations, nouvelles fonctionnalités, tutoriels.</p>
+      <p class="mt-4 text-sm"><a class="text-accent font-semibold hover:underline" href="#acces">Comment trouver la salle 203</a></p>
     </div>
   </section>
 
@@ -60,10 +54,7 @@ const heure = (h: string) => h.replace(':', ' h ');
     >
       <fieldset class="m-0 min-w-0 border-0 p-0" data-jfr-fields disabled>
         <div class="flex flex-wrap items-end justify-between gap-4">
-          <div>
-            <h2 class="text-display-card font-bold">1. Choisissez vos sessions</h2>
-            <p class="text-muted-foreground mt-1 text-sm" data-jfr-maj>Les places restantes s’affichent sous chaque session.</p>
-          </div>
+          <h2 class="text-display-card font-bold">1. Choisissez vos sessions</h2>
           <button type="button" class="text-accent text-sm font-semibold hover:underline" data-jfr-tout>Toute la journée</button>
         </div>
 
@@ -167,10 +158,32 @@ const heure = (h: string) => h.replace(':', ' h ');
     <div class="rounded-2xl border border-emerald-700/30 bg-emerald-50 px-5 py-6 text-emerald-950 sm:px-8">
       <h2 class="text-display-card font-bold" data-jfr-conf-titre>Merci, votre inscription est enregistrée.</h2>
       <div class="mt-4 space-y-4 text-sm" data-jfr-conf-corps></div>
-      <p class="mt-6 text-sm" data-jfr-conf-pratique>Les informations pratiques pour accéder à la salle 203 vous seront envoyées avant la journée. Pour modifier ou annuler, revenez sur cette page avec la même adresse e-mail.</p>
+      <p class="mt-6 text-sm" data-jfr-conf-pratique>Salle 203, niveau 2 du Palais des congrès, côté Hall Paris. <a class="font-semibold underline" href="#acces">Comment venir</a>. Pour modifier ou annuler, revenez sur cette page avec la même adresse e-mail.</p>
     </div>
     </div>
   </section>
+
+  <section class="section-padding pt-0" id="acces">
+    <div class="container max-w-4xl">
+      <div class="rounded-xl border border-secondary/15 bg-white/60 p-5 sm:p-8">
+        <h2 class="text-display-card font-bold">Comment venir</h2>
+        <p class="text-foreground/85 mt-3">Palais des congrès de Paris, 2 place de la Porte Maillot, 75017 Paris. <a class="text-accent font-semibold hover:underline" href="https://www.google.com/maps/search/?api=1&query=Palais%20des%20Congr%C3%A8s%20de%20Paris" target="_blank" rel="noopener noreferrer">Voir l’itinéraire</a></p>
+        <ol class="text-foreground/85 mt-4 space-y-3">
+          <li class="flex gap-3"><span class="bg-primary/10 text-accent grid size-7 shrink-0 place-items-center rounded-full text-sm font-bold">1</span><span>En transports : métro ligne 1, RER C et RER E, tramway T3b, arrêt Porte Maillot.</span></li>
+          <li class="flex gap-3"><span class="bg-primary/10 text-accent grid size-7 shrink-0 place-items-center rounded-full text-sm font-bold">2</span><span>Dans le Palais des congrès, montez au niveau 2 : la salle 203 se trouve côté Hall Paris.</span></li>
+          <li class="flex gap-3"><span class="bg-primary/10 text-accent grid size-7 shrink-0 place-items-center rounded-full text-sm font-bold">3</span><span>Vous ne trouvez pas la salle ? Passez à notre stand 126A, au niveau 1 (Hall Passy) : nous vous accompagnons.</span></li>
+        </ol>
+        <p class="text-muted-foreground mt-4 text-sm">Les informations d’accès au congrès vous seront envoyées avant la journée.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-padding pt-0">
+    <div class="container max-w-4xl">
+      <p class="text-lead text-foreground/85">Pas encore client ? <a class="text-accent font-semibold hover:underline" href="/fr/demo/">Contactez-nous</a> ou venez nous voir sur notre stand aux JFR : stand 126A, niveau 1 (Hall Passy).</p>
+    </div>
+  </section>
+
 
   <script is:inline type="application/json" id="jfr-data" set:html={JSON.stringify({ event: JFR2026, sessions: SESSIONS })} />
 </BaseLayout>
@@ -259,11 +272,6 @@ const heure = (h: string) => h.replace(':', ' h ');
         const label = statusLabel(st);
         badge.textContent = label;
         badge.className = `mt-2 w-fit rounded-full px-2.5 py-0.5 text-xs font-semibold ${label ? STATUS_CLASSES[st.etat] ?? '' : 'hidden'}`;
-      }
-      const maj = form.querySelector<HTMLElement>('[data-jfr-maj]');
-      if (maj && data?.maj) {
-        const t = new Date(data.maj);
-        maj.textContent = `Places restantes mises à jour à ${t.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Paris' })}.`;
       }
     };
     const loadPlaces = async () => {

@@ -86,7 +86,7 @@ const heure = (h: string) => h.replace(':', ' h ');
         attenteTotal += s.attente;
         const complet = s.ferme || s.inscrits >= event.seuilComplet;
         row.querySelector('[data-col="inscrits"]')!.textContent = String(s.inscrits);
-        row.querySelector('[data-col="restantes"]')!.textContent = String(Math.max(0, event.capacite - s.inscrits));
+        row.querySelector('[data-col="restantes"]')!.textContent = String(Math.max(0, event.seuilComplet - s.inscrits));
         row.querySelector('[data-col="attente"]')!.textContent = String(s.attente);
         row.querySelector('[data-col="etat"]')!.textContent = s.ferme ? 'Close à la main' : complet ? 'Complet' : 'Ouverte';
       }
