@@ -2,6 +2,8 @@
 export const prerender = true;
 
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import { Image } from 'astro:assets';
+import jfrLogo from '@/assets/images/jfr-2026-logo.png';
 import Button from '@/components/ui/Button.astro';
 import { JFR2026, SESSIONS, TEMPS_COMMUNS, sessionsPubliees } from '@/data/jfr2026.mjs';
 
@@ -37,6 +39,7 @@ const heure = (h: string) => h.replace(':', ' h ');
 >
   <section class="section-padding">
     <div class="container max-w-4xl">
+      <Image src={jfrLogo} alt="JFR 2026, Journées francophones de radiologie" width={480} class="mb-8 h-auto w-72 rounded-xl sm:w-96" loading="eager" />
       <h1 class="text-display-hero">JFR 2026 : Journée clients Momentum</h1>
       <p class="text-lead mt-5 font-semibold text-foreground">Vendredi 9 octobre 2026 • Palais des congrès • Salle 203</p>
       <p class="text-lead text-muted-foreground mt-3 max-w-2xl">Inscrivez-vous aux sessions Momentum : formations, nouvelles fonctionnalités, tutoriels.</p>
