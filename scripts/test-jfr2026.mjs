@@ -35,7 +35,8 @@ assert.deepEqual(seatStatus({ inscrits: 18 }, JFR2026), { etat: 'dernieres', res
 assert.deepEqual(seatStatus({ inscrits: 27 }, JFR2026), { etat: 'dernieres', restantes: 1 });
 assert.deepEqual(seatStatus({ inscrits: 28 }, JFR2026), { etat: 'complet', restantes: 0 });
 assert.deepEqual(seatStatus({ inscrits: 3, ferme: true }, JFR2026), { etat: 'complet', restantes: 0 });
-assert.equal(statusLabel({ etat: 'dernieres', restantes: 1 }), 'Plus qu’une place');
+assert.equal(statusLabel({ etat: 'dernieres', restantes: 1 }), '1 place restante');
+assert.equal(statusLabel({ etat: 'ouvert', restantes: 28 }), '28 places restantes');
 assert.equal(statusLabel({ etat: 'complet', restantes: 0 }), 'Complet, liste d’attente');
 assert.deepEqual(splitSelection(['s0915', 's1000'], { s1000: { etat: 'complet' } }), { inscrire: ['s0915'], attente: ['s1000'] });
 
@@ -43,7 +44,7 @@ assert.deepEqual(splitSelection(['s0915', 's1000'], { s1000: { etat: 'complet' }
 assert.equal(sourceFromSearch('?src=leo', SOURCES, 'lien_direct'), 'invitation_leo');
 assert.equal(sourceFromSearch('?src=inconnu', SOURCES, 'lien_direct'), 'lien_direct');
 assert.equal(sourceFromSearch('?src=constructor', SOURCES, 'lien_direct'), 'lien_direct');
-assert.deepEqual(preselectedFromSearch('?session=s0915,s1100,zzz', SESSIONS), ['s0915']);
+assert.deepEqual(preselectedFromSearch('?session=s0915,s1145,zzz', SESSIONS), ['s0915']);
 
 // Envoi HubSpot
 const now = new Date('2026-09-21T06:30:00Z');
@@ -83,7 +84,7 @@ const contacts = [
   { properties: { jfr26_sessions: '09:15 Congés et absences;10:00 Compteurs d’heures', jfr26_liste_attente: 'Aucune', jfr26_source: 'newsletter', jfr26_date_inscription: '2026-09-21T06:00:00.000Z', jfr26_annulation: 'false' } },
   { properties: { jfr26_sessions: 'Aucune', jfr26_liste_attente: '09:15 Congés et absences', jfr26_source: 'invitation_leo', jfr26_date_inscription: '2026-09-19T06:00:00.000Z', jfr26_annulation: 'false' } },
   { properties: { jfr26_sessions: '09:15 Congés et absences', jfr26_liste_attente: 'Aucune', jfr26_source: 'lien_direct', jfr26_annulation: 'true' } },
-  { properties: { jfr26_sessions: '16:00 Session inconnue', jfr26_source: 'autre_chose' } },
+  { properties: { jfr26_sessions: '19:00 Session inconnue', jfr26_source: 'autre_chose' } },
   { properties: { jfr26_sessions: '14:15 Copier-coller intelligent ou roulements', jfr26_annulation: 'false' } },
 ];
 const c = countPlaces(contacts, options, { now: now.getTime(), sources: ['newsletter', 'invitation_leo', 'invitation_sarah', 'lien_direct'] });
@@ -96,6 +97,6 @@ assert.equal(c.annulations, 1);
 assert.equal(c.dernieres_24h, 1);
 assert.deepEqual(c.par_source, { newsletter: 1, invitation_leo: 1, invitation_sarah: 0, lien_direct: 1, autre: 0 }, 'source vide comptée comme lien direct');
 assert.equal(c.sessions.s1415.inscrits, 1);
-assert.equal(Object.keys(c.sessions).includes('s1600'), false);
+assert.equal(c.sessions.s1600.inscrits, 0, '16:00 option exists, nobody registered in the fixture');
 
 console.log(`JFR 2026 checks passed: ${SESSIONS.length} sessions, ${sessionsPubliees().length} published.`);

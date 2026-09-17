@@ -17,9 +17,8 @@ export function seatStatus(entry, { seuilComplet }) {
 export function statusLabel(status) {
   switch (status?.etat) {
     case 'ouvert':
-      return 'Places disponibles';
     case 'dernieres':
-      return status.restantes === 1 ? 'Plus qu’une place' : `Plus que ${status.restantes} places`;
+      return status.restantes === 1 ? '1 place restante' : `${status.restantes} places restantes`;
     case 'complet':
       return 'Complet, liste d’attente';
     default:
