@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "prebuild": "npm run test:analytics && npm run test:locales && npm run test:style && npm run test:kb && npm run test:momentum-support-context",
+    "prebuild": "npm run test:analytics && npm run test:jfr2026 && npm run test:locales && npm run test:style && npm run test:kb && npm run test:momentum-support-context",
     "build": "astro build",
     "postbuild": "node scripts/generate-static-redirect-pages.mjs && npm run test:seo && npm run test:kb:dist && node scripts/kb-translation-staleness.mjs && node scripts/test-style.mjs dist",
     "preview": "astro preview",
@@ -16,6 +16,7 @@
     "test:locales": "node scripts/test-locales.mjs",
     "test:style": "node scripts/test-style.mjs",
     "test:seo": "node scripts/test-seo.mjs",
+    "test:jfr2026": "node scripts/test-jfr2026.mjs",
     "astro": "astro",
     "check": "astro check"
   },

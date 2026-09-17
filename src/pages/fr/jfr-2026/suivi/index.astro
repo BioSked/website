@@ -1,0 +1,119 @@
+---
+export const prerender = true;
+
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { JFR2026, SOURCES, SOURCE_PAR_DEFAUT, sessionsPubliees } from '@/data/jfr2026.mjs';
+
+const publiees = sessionsPubliees();
+const heure = (h: string) => h.replace(':', ' h ');
+---
+
+<BaseLayout
+  title="JFR 2026 : suivi des inscriptions, chiffres seuls"
+  description="Suivi interne des inscriptions à la journée clients Momentum du 9 octobre 2026 : places par session, liste d’attente et sources, sans aucun nom."
+  noIndex={true}
+  locale="fr"
+  languageLinks={[{ code: 'fr', label: 'Français', href: '/fr/jfr-2026/suivi/', active: true }]}
+  localeAlternates={{ fr: '/fr/jfr-2026/suivi/' }}
+>
+  <section class="section-padding">
+    <div class="container max-w-4xl">
+      <p class="font-mono text-sm font-semibold uppercase tracking-widest text-muted-foreground">JFR 2026 · Suivi</p>
+      <h1 class="text-display-section mt-4 font-bold">Inscriptions à la journée clients</h1>
+      <p class="text-muted-foreground mt-3 text-sm" data-suivi-maj>Chargement des chiffres…</p>
+
+      <div class="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-4">
+        <div class="rounded-xl border border-secondary/15 bg-white/60 p-4"><div class="text-2xl font-bold" data-kpi="personnes">-</div><div class="text-muted-foreground text-xs">personnes inscrites</div></div>
+        <div class="rounded-xl border border-secondary/15 bg-white/60 p-4"><div class="text-2xl font-bold" data-kpi="dernieres_24h">-</div><div class="text-muted-foreground text-xs">dans les dernières 24 h</div></div>
+        <div class="rounded-xl border border-secondary/15 bg-white/60 p-4"><div class="text-2xl font-bold" data-kpi="attente">-</div><div class="text-muted-foreground text-xs">places en liste d’attente</div></div>
+        <div class="rounded-xl border border-secondary/15 bg-white/60 p-4"><div class="text-2xl font-bold" data-kpi="annulations">-</div><div class="text-muted-foreground text-xs">annulations</div></div>
+      </div>
+
+      <div class="mt-8 overflow-x-auto">
+        <table class="w-full min-w-[36rem] text-left text-sm">
+          <thead class="text-muted-foreground border-b border-secondary/15 text-xs uppercase tracking-wide">
+            <tr><th class="py-2 pr-4">Session</th><th class="py-2 pr-4 text-right">Inscrits</th><th class="py-2 pr-4 text-right">Places restantes</th><th class="py-2 pr-4 text-right">Liste d’attente</th><th class="py-2">État</th></tr>
+          </thead>
+          <tbody>
+            {publiees.map((s) => (
+              <tr class="border-b border-secondary/10" data-ligne={s.slug}>
+                <td class="py-3 pr-4"><span class="font-mono text-xs">{heure(s.debut)}</span> <span class="ml-2">{s.valeurHubspot.slice(6)}</span></td>
+                <td class="py-3 pr-4 text-right font-semibold" data-col="inscrits">-</td>
+                <td class="py-3 pr-4 text-right" data-col="restantes">-</td>
+                <td class="py-3 pr-4 text-right" data-col="attente">-</td>
+                <td class="py-3" data-col="etat">-</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="text-display-card mt-10 font-bold">Par source</h2>
+      <ul class="mt-4 grid grid-cols-2 gap-3 text-sm sm:grid-cols-5" data-sources></ul>
+
+      <p class="text-muted-foreground mt-10 text-xs">Chiffres seuls, sans aucun nom, avec un décalage de 10 à 15 minutes. Une session est close à {JFR2026.seuilComplet} inscrits sur {JFR2026.capacite} ; au-delà, les inscriptions passent en liste d’attente. Le détail des personnes est dans HubSpot, listes « JFR26 ».</p>
+    </div>
+  </section>
+
+  <script is:inline type="application/json" id="suivi-data" set:html={JSON.stringify({ event: JFR2026, slugs: publiees.map((s) => s.slug), sources: [...Object.values(SOURCES), SOURCE_PAR_DEFAUT] })} />
+</BaseLayout>
+
+<script>
+  const LIBELLES: Record<string, string> = {
+    newsletter: 'Newsletter',
+    invitation_leo: 'Invitation Léo',
+    invitation_sarah: 'Invitation Sarah',
+    lien_direct: 'Lien direct',
+    autre: 'Autre',
+  };
+
+  async function load() {
+    const el = document.getElementById('suivi-data');
+    if (!el) return;
+    const { event, slugs } = JSON.parse(el.textContent || '{}');
+    const maj = document.querySelector<HTMLElement>('[data-suivi-maj]')!;
+    try {
+      const response = await fetch(`${event.placesUrl}?m=${Math.floor(Date.now() / 60000)}`, { cache: 'no-store' });
+      if (!response.ok) throw new Error(String(response.status));
+      const data = await response.json();
+      const t = new Date(data.maj);
+      maj.textContent = `Mis à jour le ${t.toLocaleString('fr-FR', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Paris' })} (heure de Paris).`;
+      let attenteTotal = 0;
+      for (const slug of slugs) {
+        const row = document.querySelector<HTMLElement>(`[data-ligne="${slug}"]`);
+        const s = data.sessions?.[slug];
+        if (!row || !s) continue;
+        attenteTotal += s.attente;
+        const complet = s.ferme || s.inscrits >= event.seuilComplet;
+        row.querySelector('[data-col="inscrits"]')!.textContent = String(s.inscrits);
+        row.querySelector('[data-col="restantes"]')!.textContent = String(Math.max(0, event.capacite - s.inscrits));
+        row.querySelector('[data-col="attente"]')!.textContent = String(s.attente);
+        row.querySelector('[data-col="etat"]')!.textContent = s.ferme ? 'Close à la main' : complet ? 'Complet' : 'Ouverte';
+      }
+      const kpi = (name: string, value: number) => {
+        const node = document.querySelector<HTMLElement>(`[data-kpi="${name}"]`);
+        if (node) node.textContent = String(value ?? 0);
+      };
+      kpi('personnes', data.personnes);
+      kpi('dernieres_24h', data.dernieres_24h);
+      kpi('annulations', data.annulations);
+      kpi('attente', attenteTotal);
+      const list = document.querySelector<HTMLElement>('[data-sources]')!;
+      list.replaceChildren(
+        ...Object.entries(data.par_source ?? {}).map(([key, value]) => {
+          const li = document.createElement('li');
+          li.className = 'rounded-xl border border-secondary/15 bg-white/60 p-3';
+          li.innerHTML = `<div class="text-xl font-bold"></div><div class="text-muted-foreground text-xs"></div>`;
+          li.children[0].textContent = String(value);
+          li.children[1].textContent = LIBELLES[key] ?? 'Autre';
+          return li;
+        }),
+      );
+    } catch {
+      maj.textContent = 'Les chiffres ne sont pas encore disponibles. Le compteur démarre avec la mise en ligne.';
+    }
+  }
+
+  load();
+  window.setInterval(load, 5 * 60 * 1000);
+</script>

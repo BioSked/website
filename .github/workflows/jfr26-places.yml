@@ -1,0 +1,55 @@
+name: JFR 2026 places
+
+# Compteur de places de la journée clients JFR 2026 (biosked.com/fr/jfr-2026/).
+# Toutes les 5 minutes : lit HubSpot en lecture seule et publie des chiffres
+# seuls sur la branche jfr26-places. A désactiver après le 16 octobre 2026.
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: jfr26-places
+  cancel-in-progress: true
+
+jobs:
+  places:
+    if: github.repository == 'BioSked/website'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          sparse-checkout: |
+            scripts/jfr26-places.mjs
+            src/lib/jfr2026.mjs
+          sparse-checkout-cone-mode: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 22
+
+      - name: Count seats
+        env:
+          HUBSPOT_TOKEN: ${{ secrets.HUBSPOT_JFR26_READ_TOKEN }}
+        run: node scripts/jfr26-places.mjs > "$RUNNER_TEMP/places.json"
+
+      - name: Publish counts
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          [ -s "$RUNNER_TEMP/places.json" ] || exit 0
+          mkdir "$RUNNER_TEMP/out"
+          cd "$RUNNER_TEMP/out"
+          git init -q -b jfr26-places
+          cp "$RUNNER_TEMP/places.json" places.json
+          git add places.json
+          git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" commit -q -m "JFR 2026: places"
+          git push -q --force "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" jfr26-places
