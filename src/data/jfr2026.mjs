@@ -148,7 +148,7 @@ export const SESSIONS = [
 
 export const TEMPS_COMMUNS = [
   { debut: '09:00', fin: '09:15', titre: 'Accueil' },
-  { debut: '12:15', fin: '13:30', titre: 'Pause déjeuner' },
+  { debut: '12:15', fin: '13:30', titre: 'Pause' },
 ];
 
 export const sessionsPubliees = () => SESSIONS.filter((s) => s.publiee);
