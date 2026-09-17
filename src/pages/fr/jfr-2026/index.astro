@@ -1,0 +1,399 @@
+---
+export const prerender = true;
+
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Button from '@/components/ui/Button.astro';
+import { JFR2026, SESSIONS, TEMPS_COMMUNS, sessionsPubliees } from '@/data/jfr2026.mjs';
+
+const publiees = sessionsPubliees();
+interface Ligne {
+  commun: boolean;
+  debut: string;
+  fin: string;
+  titre: string;
+  slug?: string;
+  duree?: string;
+  format?: string;
+  description?: string;
+  public?: string;
+}
+const programme: Ligne[] = [
+  ...publiees.map((s) => ({ ...s, commun: false })),
+  ...TEMPS_COMMUNS.map((t) => ({ ...t, commun: true })),
+].sort((a, b) => a.debut.localeCompare(b.debut));
+const ouvert = Boolean(JFR2026.hubspot.formId) && !JFR2026.inscriptionsCloses;
+const inputClass =
+  'border-input bg-background focus-visible:ring-ring mt-2 w-full rounded-md border px-3 py-3 outline-none focus-visible:ring-2';
+const heure = (h: string) => h.replace(':', ' h ');
+---
+
+<BaseLayout
+  title="Journée clients Momentum aux JFR 2026 : inscriptions"
+  description="Inscription à la journée clients Momentum du vendredi 9 octobre 2026, salle 203 du Palais des congrès de Paris, session par session."
+  noIndex={true}
+  locale="fr"
+  languageLinks={[{ code: 'fr', label: 'Français', href: '/fr/jfr-2026/', active: true }]}
+  localeAlternates={{ fr: '/fr/jfr-2026/' }}
+>
+  <section class="section-padding">
+    <div class="container max-w-4xl">
+      <p class="font-mono text-sm font-semibold uppercase tracking-widest text-muted-foreground">JFR 2026 · Journée clients</p>
+      <h1 class="text-display-hero mt-4">Journée clients Momentum, vendredi 9 octobre 2026</h1>
+      <p class="text-lead text-muted-foreground mt-5 max-w-2xl">
+        Au Palais des congrès de Paris, salle 203, pendant les JFR. Des sessions de formation sur Momentum, ancrées dans le quotidien de l’imagerie. Venez à une session, à plusieurs, ou à toute la journée.
+      </p>
+      <ul class="mt-6 flex flex-wrap gap-3 text-sm">
+        <li class="rounded-full border border-secondary/15 bg-white/60 px-3 py-1">30 places par session</li>
+        <li class="rounded-full border border-secondary/15 bg-white/60 px-3 py-1">Sans démonstration commerciale</li>
+        <li class="rounded-full border border-secondary/15 bg-white/60 px-3 py-1">Inscription session par session</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section-padding pt-0" data-jfr-inscription>
+    <form
+      class="container max-w-4xl"
+      data-jfr-form
+      method="post"
+      action={`${JFR2026.hubspot.endpoint}${JFR2026.hubspot.formId}`}
+      novalidate
+    >
+      <fieldset class="m-0 min-w-0 border-0 p-0" data-jfr-fields disabled>
+        <div class="flex flex-wrap items-end justify-between gap-4">
+          <div>
+            <h2 class="text-display-card font-bold">1. Choisissez vos sessions</h2>
+            <p class="text-muted-foreground mt-1 text-sm" data-jfr-maj>Les places restantes s’affichent sous chaque session.</p>
+          </div>
+          <button type="button" class="text-accent text-sm font-semibold hover:underline" data-jfr-tout>Toute la journée</button>
+        </div>
+
+        <ol class="mt-6 space-y-3">
+          {programme.map((item) =>
+            item.commun ? (
+              <li class="text-muted-foreground flex gap-4 px-4 py-2 text-sm sm:px-5">
+                <span class="w-44 shrink-0 whitespace-nowrap">{heure(item.debut)} à {heure(item.fin)}</span>
+                <span>{item.titre}</span>
+              </li>
+            ) : (
+              <li>
+                <label
+                  class="flex cursor-pointer gap-4 rounded-xl border border-secondary/15 bg-white/60 p-4 transition-colors hover:border-accent/60 has-[input:checked]:border-accent has-[input:checked]:bg-primary/5 sm:p-5"
+                  data-jfr-session={item.slug}
+                >
+                  <input type="checkbox" name="session" value={item.slug} class="accent-accent mt-1 size-5 shrink-0" />
+                  <span class="min-w-0 flex-1">
+                    <span class="text-muted-foreground flex flex-wrap gap-x-2 gap-y-1 text-xs">
+                      <span class="font-semibold whitespace-nowrap text-foreground/80">{heure(item.debut)} à {heure(item.fin)}</span>
+                      <span aria-hidden="true">·</span>
+                      <span>{item.duree}</span>
+                      <span aria-hidden="true">·</span>
+                      <span>{item.format}</span>
+                    </span>
+                    <span class="mt-1 block font-semibold text-foreground">{item.titre}</span>
+                    <span class="text-foreground/85 mt-1 block text-sm">{item.description}</span>
+                    <span class="text-muted-foreground mt-2 block text-xs">Pour : {item.public}</span>
+                    <span class="mt-2 hidden w-fit rounded-full px-2.5 py-0.5 text-xs font-semibold" data-statut aria-live="polite"></span>
+                  </span>
+                </label>
+              </li>
+            ),
+          )}
+        </ol>
+
+        <div class="mt-4 hidden" data-jfr-sujet-bloc>
+          <label for="jfr-sujet" class="block font-medium">Votre sujet pour le champ ouvert <span class="text-muted-foreground text-sm font-normal">(facultatif)</span></label>
+          <textarea id="jfr-sujet" name="sujet" rows="3" maxlength="1000" class={`${inputClass} resize-y`}></textarea>
+        </div>
+
+        <h2 class="text-display-card mt-12 font-bold">2. Vos coordonnées</h2>
+        <p class="text-muted-foreground mt-1 text-sm">Les champs marqués d’un astérisque sont obligatoires.</p>
+        <div class="mt-6 grid gap-5 sm:grid-cols-2">
+          <div>
+            <label for="jfr-firstname" class="block font-medium">Prénom <span class="text-red-700" aria-hidden="true">*</span></label>
+            <input id="jfr-firstname" name="firstname" type="text" autocomplete="given-name" required class={inputClass} />
+          </div>
+          <div>
+            <label for="jfr-lastname" class="block font-medium">Nom <span class="text-red-700" aria-hidden="true">*</span></label>
+            <input id="jfr-lastname" name="lastname" type="text" autocomplete="family-name" required class={inputClass} />
+          </div>
+          <div class="sm:col-span-2">
+            <label for="jfr-email" class="block font-medium">E-mail professionnel <span class="text-red-700" aria-hidden="true">*</span></label>
+            <input id="jfr-email" name="email" type="email" autocomplete="email" required class={inputClass} />
+          </div>
+          <div>
+            <label for="jfr-company" class="block font-medium">Établissement <span class="text-red-700" aria-hidden="true">*</span></label>
+            <input id="jfr-company" name="company" type="text" autocomplete="organization" required class={inputClass} />
+          </div>
+          <div>
+            <label for="jfr-jobtitle" class="block font-medium">Fonction <span class="text-red-700" aria-hidden="true">*</span></label>
+            <input id="jfr-jobtitle" name="jobtitle" type="text" autocomplete="organization-title" required class={inputClass} />
+          </div>
+          <div>
+            <label for="jfr-phone" class="block font-medium">Téléphone <span class="text-muted-foreground text-sm font-normal">(facultatif)</span></label>
+            <input id="jfr-phone" name="phone" type="tel" autocomplete="tel" class={inputClass} />
+          </div>
+        </div>
+
+        <div class="absolute -left-[9999px] h-px w-px overflow-hidden" aria-hidden="true">
+          <label for="jfr-site">Site web</label>
+          <input id="jfr-site" name="site_web" type="text" tabindex="-1" autocomplete="off" />
+        </div>
+
+        <div class="mt-8 rounded-xl border border-secondary/15 bg-white/60 p-4 text-sm sm:p-5">
+          <p class="font-semibold">Déjà inscrit ?</p>
+          <p class="text-foreground/85 mt-1">Pour modifier vos sessions, inscrivez-vous à nouveau avec la même adresse e-mail : la nouvelle inscription remplace la précédente.</p>
+          <label class="mt-3 flex items-center gap-3">
+            <input type="checkbox" name="annulation" class="accent-accent size-4" data-jfr-annulation />
+            <span>Annuler mon inscription</span>
+          </label>
+        </div>
+
+        <p class="text-muted-foreground mt-6 text-xs leading-relaxed">
+          Vos informations servent à organiser votre venue à cette journée et à vous envoyer les informations pratiques. Elles sont enregistrées dans notre outil de relation client (HubSpot, hébergé dans l’Union européenne) et ne sont transmises à aucun autre organisme. Pour y accéder, les rectifier ou vous opposer à leur utilisation : <a class="text-accent hover:underline" href="mailto:dpo@biosked.com">dpo@biosked.com</a>. En savoir plus : notre <a class="text-accent hover:underline" href="/privacy/">politique de confidentialité</a>.
+        </p>
+
+        <p class="mt-6 min-h-5 text-sm text-red-700" data-jfr-statut role="status" aria-live="polite" tabindex="-1"></p>
+        <Button type="submit" variant="secondary" size="lg" className="mt-2 w-full sm:w-auto" data-jfr-envoyer>
+          Valider mon inscription
+        </Button>
+      </fieldset>
+      <p class="mt-4 text-sm text-red-700" data-jfr-js>Activez JavaScript pour vous inscrire.</p>
+      {!ouvert && <p class="mt-4 text-sm font-semibold" data-jfr-bientot>Les inscriptions ouvrent très prochainement.</p>}
+    </form>
+  </section>
+
+  <section class="section-padding hidden pt-0" data-jfr-confirmation tabindex="-1">
+    <div class="container max-w-3xl rounded-2xl border border-emerald-700/30 bg-emerald-50 px-5 py-6 text-emerald-950 sm:px-8">
+      <h2 class="text-display-card font-bold" data-jfr-conf-titre>Merci, votre inscription est enregistrée.</h2>
+      <div class="mt-4 space-y-4 text-sm" data-jfr-conf-corps></div>
+      <p class="mt-6 text-sm">Les informations pratiques pour accéder à la salle 203 vous seront envoyées avant la journée. Pour modifier ou annuler, revenez sur cette page avec la même adresse e-mail.</p>
+    </div>
+  </section>
+
+  <script is:inline type="application/json" id="jfr-data" set:html={JSON.stringify({ event: JFR2026, sessions: SESSIONS })} />
+</BaseLayout>
+
+<script>
+  import { SOURCES, SOURCE_PAR_DEFAUT, VALEUR_AUCUNE } from '@/data/jfr2026.mjs';
+  import {
+    buildIcs,
+    buildJfrSubmission,
+    preselectedFromSearch,
+    seatStatus,
+    sourceFromSearch,
+    splitSelection,
+    statusLabel,
+  } from '@/lib/jfr2026.mjs';
+
+  type Session = { slug: string; titre: string; debut: string; fin: string; valeurHubspot: string; publiee: boolean; sujetLibre?: boolean };
+  type Status = { etat: string; restantes: number | null };
+
+  const STATUS_CLASSES: Record<string, string> = {
+    ouvert: 'bg-emerald-50 text-emerald-800',
+    dernieres: 'bg-amber-50 text-amber-800',
+    complet: 'bg-red-50 text-red-700',
+  };
+  const TIMEOUT_MS = 15000;
+  const MIN_FILL_MS = 3000;
+
+  function cookie(name: string) {
+    const prefix = `${name}=`;
+    for (const part of document.cookie.split(';')) {
+      const c = part.trim();
+      if (c.startsWith(prefix)) return decodeURIComponent(c.slice(prefix.length));
+    }
+    return '';
+  }
+
+  function init() {
+    const dataEl = document.getElementById('jfr-data');
+    const form = document.querySelector<HTMLFormElement>('[data-jfr-form]');
+    if (!dataEl || !form || form.dataset.enhanced === 'true') return;
+    form.dataset.enhanced = 'true';
+    const { event, sessions } = JSON.parse(dataEl.textContent || '{}') as { event: any; sessions: Session[] };
+    const published = sessions.filter((s) => s.publiee);
+    const fieldset = form.querySelector<HTMLFieldSetElement>('[data-jfr-fields]')!;
+    const status = form.querySelector<HTMLElement>('[data-jfr-statut]')!;
+    const submit = form.querySelector<HTMLButtonElement>('[data-jfr-envoyer]')!;
+    const cancel = form.querySelector<HTMLInputElement>('[data-jfr-annulation]')!;
+    const topicBlock = form.querySelector<HTMLElement>('[data-jfr-sujet-bloc]')!;
+    const confirmation = document.querySelector<HTMLElement>('[data-jfr-confirmation]')!;
+    const registration = document.querySelector<HTMLElement>('[data-jfr-inscription]')!;
+    const boxes = [...form.querySelectorAll<HTMLInputElement>('input[name="session"]')];
+    const statuses: Record<string, Status> = {};
+    const loadedAt = Date.now();
+
+    form.querySelector('[data-jfr-js]')?.classList.add('hidden');
+    if (!event.hubspot.formId || event.inscriptionsCloses) return;
+    fieldset.disabled = false;
+
+    const topicSlugs = new Set(published.filter((s) => s.sujetLibre).map((s) => s.slug));
+    const refreshTopic = () => {
+      const show = boxes.some((b) => b.checked && topicSlugs.has(b.value)) && !cancel.checked;
+      topicBlock.classList.toggle('hidden', !show);
+    };
+    boxes.forEach((b) => b.addEventListener('change', refreshTopic));
+    cancel.addEventListener('change', () => {
+      boxes.forEach((b) => (b.disabled = cancel.checked));
+      submit.textContent = cancel.checked ? 'Annuler mon inscription' : 'Valider mon inscription';
+      refreshTopic();
+    });
+    for (const slug of preselectedFromSearch(window.location.search, sessions)) {
+      const box = boxes.find((b) => b.value === slug);
+      if (box) box.checked = true;
+    }
+    refreshTopic();
+    form.querySelector('[data-jfr-tout]')?.addEventListener('click', () => {
+      boxes.forEach((b) => (b.checked = true));
+      refreshTopic();
+    });
+
+    const paint = (data: any) => {
+      for (const s of published) {
+        const st = seatStatus(data?.sessions?.[s.slug], { seuilComplet: event.seuilComplet }) as Status;
+        statuses[s.slug] = st;
+        const badge = form.querySelector<HTMLElement>(`[data-jfr-session="${s.slug}"] [data-statut]`);
+        if (!badge) continue;
+        const label = statusLabel(st);
+        badge.textContent = label;
+        badge.className = `mt-2 w-fit rounded-full px-2.5 py-0.5 text-xs font-semibold ${label ? STATUS_CLASSES[st.etat] ?? '' : 'hidden'}`;
+      }
+      const maj = form.querySelector<HTMLElement>('[data-jfr-maj]');
+      if (maj && data?.maj) {
+        const t = new Date(data.maj);
+        maj.textContent = `Places restantes mises à jour à ${t.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Paris' })}.`;
+      }
+    };
+    const loadPlaces = async () => {
+      try {
+        const controller = new AbortController();
+        const timer = window.setTimeout(() => controller.abort(), 5000);
+        const response = await fetch(`${event.placesUrl}?m=${Math.floor(Date.now() / 60000)}`, { signal: controller.signal, cache: 'no-store' });
+        window.clearTimeout(timer);
+        if (response.ok) paint(await response.json());
+      } catch {
+        /* Sans compteur, l'inscription fonctionne quand même. */
+      }
+    };
+    loadPlaces();
+
+    const show = (message: string) => {
+      status.textContent = message;
+      status.focus();
+    };
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      status.textContent = '';
+      const values = Object.fromEntries(new FormData(form).entries()) as Record<string, string>;
+      const selected = boxes.filter((b) => b.checked).map((b) => b.value);
+      const annulation = cancel.checked;
+      for (const name of ['firstname', 'lastname', 'email', 'company', 'jobtitle']) {
+        const input = form.querySelector<HTMLInputElement>(`[name="${name}"]`)!;
+        if (!input.value.trim()) return show('Merci de remplir les champs obligatoires, marqués d’un astérisque.');
+        if (name === 'email' && !input.checkValidity()) return show('Vérifiez votre adresse e-mail.');
+      }
+      if (!annulation && selected.length === 0) return show('Choisissez au moins une session.');
+
+      const { inscrire, attente } = splitSelection(selected, statuses);
+      const done = () => renderConfirmation({ annulation, inscrire, attente });
+      if (values.site_web || Date.now() - loadedAt < MIN_FILL_MS) return done();
+
+      const payload = buildJfrSubmission({
+        values,
+        sessions,
+        inscrire,
+        attente,
+        source: sourceFromSearch(window.location.search, SOURCES, SOURCE_PAR_DEFAUT),
+        annulation,
+        sujet: values.sujet,
+        aucune: VALEUR_AUCUNE,
+        pageUri: window.location.href,
+        pageName: document.title,
+        hutk: cookie('hubspotutk'),
+      });
+
+      submit.disabled = true;
+      submit.setAttribute('aria-busy', 'true');
+      const label = submit.textContent;
+      submit.textContent = 'Envoi en cours…';
+      const controller = new AbortController();
+      const timer = window.setTimeout(() => controller.abort(), TIMEOUT_MS);
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+          signal: controller.signal,
+        });
+        if (!response.ok) {
+          const body = await response.json().catch(() => ({}));
+          const invalidEmail = (body?.errors ?? []).some((err: any) => String(err?.errorType).includes('EMAIL'));
+          throw new Error(invalidEmail ? 'email' : 'failed');
+        }
+        done();
+      } catch (err) {
+        show(
+          (err as Error).message === 'email'
+            ? 'Vérifiez votre adresse e-mail.'
+            : 'L’inscription n’a pas pu être enregistrée. Réessayez dans quelques minutes.',
+        );
+      } finally {
+        window.clearTimeout(timer);
+        submit.disabled = false;
+        submit.removeAttribute('aria-busy');
+        submit.textContent = label;
+      }
+    });
+
+    function renderConfirmation({ annulation, inscrire, attente }: { annulation: boolean; inscrire: string[]; attente: string[] }) {
+      const body = confirmation.querySelector<HTMLElement>('[data-jfr-conf-corps]')!;
+      const title = confirmation.querySelector<HTMLElement>('[data-jfr-conf-titre]')!;
+      body.replaceChildren();
+      const bySlug = new Map(sessions.map((s) => [s.slug, s]));
+      const addList = (heading: string, slugs: string[], withCalendar: boolean) => {
+        if (slugs.length === 0) return;
+        const h = document.createElement('p');
+        h.className = 'font-semibold';
+        h.textContent = heading;
+        const ul = document.createElement('ul');
+        ul.className = 'mt-2 space-y-2';
+        for (const slug of slugs) {
+          const s = bySlug.get(slug);
+          if (!s) continue;
+          const li = document.createElement('li');
+          li.textContent = `${s.debut.replace(':', ' h ')}, ${s.titre}`;
+          if (withCalendar) {
+            const a = document.createElement('a');
+            a.className = 'ml-2 font-semibold underline';
+            a.textContent = 'Ajouter à mon agenda';
+            a.href = URL.createObjectURL(new Blob([buildIcs(s, event)], { type: 'text/calendar;charset=utf-8' }));
+            a.download = `momentum-jfr-2026-${s.debut.replace(':', 'h')}.ics`;
+            li.append(' ', a);
+          }
+          ul.append(li);
+        }
+        const block = document.createElement('div');
+        block.append(h, ul);
+        body.append(block);
+      };
+      if (annulation) {
+        title.textContent = 'Votre inscription est annulée.';
+        const p = document.createElement('p');
+        p.textContent = 'Vous pouvez vous réinscrire à tout moment sur cette page.';
+        body.append(p);
+      } else {
+        title.textContent = 'Merci, votre inscription est enregistrée.';
+        addList('Vos sessions :', inscrire, true);
+        addList('Liste d’attente, nous vous prévenons si une place se libère :', attente, false);
+      }
+      registration.classList.add('hidden');
+      confirmation.classList.remove('hidden');
+      confirmation.focus();
+      window.scrollTo({ top: confirmation.offsetTop - 80, behavior: 'smooth' });
+    }
+  }
+
+  init();
+  document.addEventListener('astro:page-load', init);
+</script>
