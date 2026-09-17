@@ -23,10 +23,11 @@ for (const s of SESSIONS) {
   assert.ok(s.fin > s.debut, `${s.slug}: fin après début`);
 }
 const publicText = JSON.stringify(sessionsPubliees()) + readFileSync(new URL('../src/pages/fr/jfr-2026/index.astro', import.meta.url), 'utf8');
-for (const word of [/doctolib/i, /\binstance/i, /\bticket/i]) {
+for (const word of [/\binstance/i, /\bticket/i]) {
   assert.doesNotMatch(publicText, word, `texte public sans ${word}`);
 }
-assert.doesNotMatch(readFileSync(new URL('../src/data/jfr2026.mjs', import.meta.url), 'utf8'), /doctolib/i, 'catalogue sans nom de partenaire');
+const doctolib = SESSIONS.find((x) => /doctolib/i.test(x.titre));
+assert.ok(doctolib?.publiee && doctolib.logo?.src && doctolib.duree === '45 min', 'session Doctolib publiée, 45 min, avec logo');
 
 // Places
 assert.deepEqual(seatStatus(undefined, JFR2026), { etat: 'inconnu', restantes: null });
