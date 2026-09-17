@@ -99,7 +99,8 @@ export function buildJfrSubmission({
   add('jfr26_sessions', annulation ? aucune : join(inscrire));
   add('jfr26_liste_attente', annulation ? aucune : join(attente));
   add('jfr26_annulation', annulation ? 'true' : 'false');
-  add('jfr26_source', source);
+  // Source kept from the first tagged link: only a tagged link sends it, a cancellation never does.
+  if (!annulation) add('jfr26_source', source);
   add('jfr26_date_inscription', now.toISOString());
   if (!annulation) add('jfr26_sujet_champ_ouvert', sujet);
 
@@ -110,7 +111,7 @@ export function buildJfrSubmission({
   return { submittedAt: String(now.getTime()), fields, context };
 }
 
-const icsText = (text) => String(text).replace(/\\/g, '\\\\').replace(/;/g, '\;').replace(/,/g, '\\,').replace(/\n/g, '\\n');
+const icsText = (text) => String(text).replace(/\\/g, '\\\\').replace(/;/g, '\\;').replace(/,/g, '\\,').replace(/\n/g, '\\n');
 const icsDate = (date) => date.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}Z$/, 'Z');
 
 export function buildIcs(session, event, now = new Date()) {
@@ -162,7 +163,8 @@ export function countPlaces(contacts, options, { now = Date.now(), sources = [] 
     personnes += 1;
     for (const slug of inscrit) sessions[slug].inscrits += 1;
     for (const slug of attente) sessions[slug].attente += 1;
-    parSource[sources.includes(p.jfr26_source) ? p.jfr26_source : 'autre'] += 1;
+    const src = p.jfr26_source ? (sources.includes(p.jfr26_source) ? p.jfr26_source : 'autre') : 'lien_direct';
+    parSource[src] = (parSource[src] ?? 0) + 1;
     const t = Date.parse(p.jfr26_date_inscription ?? '');
     if (Number.isFinite(t) && now - t >= 0 && now - t < 86_400_000) dernieres24h += 1;
   }

@@ -63,6 +63,9 @@ const cancel = buildJfrSubmission({ values, sessions: SESSIONS, inscrire: ['s091
 assert.equal(field(cancel, 'jfr26_sessions'), 'Aucune');
 assert.equal(field(cancel, 'jfr26_annulation'), 'true');
 assert.equal(field(cancel, 'jfr26_sujet_champ_ouvert'), undefined);
+assert.equal(field(cancel, 'jfr26_source'), undefined, 'une annulation ne remplace pas la source');
+const untagged = buildJfrSubmission({ values, sessions: SESSIONS, inscrire: ['s0915'], source: '', aucune: VALEUR_AUCUNE, now });
+assert.equal(field(untagged, 'jfr26_source'), undefined, 'lien sans source : la source d’origine est conservée');
 
 // Agenda
 const ics = buildIcs(SESSIONS[0], JFR2026, now);
@@ -70,6 +73,9 @@ assert.match(ics, /DTSTART:20261009T071500Z\r\n/, '09:15 à Paris = 07:15 UTC le
 assert.match(ics, /DTEND:20261009T080000Z\r\n/);
 assert.match(ics, /LOCATION:Palais des congrès de Paris\\, salle 203/);
 assert.ok(ics.endsWith('END:VCALENDAR\r\n'));
+const icsSpecial = buildIcs({ ...SESSIONS[0], titre: 'A; B, C' }, { ...JFR2026, lieu: 'L; M' }, now);
+assert.match(icsSpecial, /SUMMARY:.*A\\; B\\, C\r\n/, 'point-virgule et virgule échappés dans le titre');
+assert.match(icsSpecial, /LOCATION:L\\; M\r\n/, 'point-virgule échappé dans le lieu');
 
 // Compteur
 const options = [...SESSIONS.map((s) => ({ value: s.valeurHubspot, hidden: s.slug === 's1415' })), { value: 'Aucune', hidden: false }];
@@ -78,16 +84,18 @@ const contacts = [
   { properties: { jfr26_sessions: 'Aucune', jfr26_liste_attente: '09:15 Congés et absences', jfr26_source: 'invitation_leo', jfr26_date_inscription: '2026-09-19T06:00:00.000Z', jfr26_annulation: 'false' } },
   { properties: { jfr26_sessions: '09:15 Congés et absences', jfr26_liste_attente: 'Aucune', jfr26_source: 'lien_direct', jfr26_annulation: 'true' } },
   { properties: { jfr26_sessions: '16:00 Session inconnue', jfr26_source: 'autre_chose' } },
+  { properties: { jfr26_sessions: '14:15 Copier-coller intelligent ou roulements', jfr26_annulation: 'false' } },
 ];
 const c = countPlaces(contacts, options, { now: now.getTime(), sources: ['newsletter', 'invitation_leo', 'invitation_sarah', 'lien_direct'] });
 assert.equal(c.sessions.s0915.inscrits, 1);
 assert.equal(c.sessions.s0915.attente, 1);
 assert.equal(c.sessions.s1000.inscrits, 1);
 assert.equal(c.sessions.s1415.ferme, true);
-assert.equal(c.personnes, 2);
+assert.equal(c.personnes, 3);
 assert.equal(c.annulations, 1);
 assert.equal(c.dernieres_24h, 1);
-assert.deepEqual(c.par_source, { newsletter: 1, invitation_leo: 1, invitation_sarah: 0, lien_direct: 0, autre: 0 });
+assert.deepEqual(c.par_source, { newsletter: 1, invitation_leo: 1, invitation_sarah: 0, lien_direct: 1, autre: 0 }, 'source vide comptée comme lien direct');
+assert.equal(c.sessions.s1415.inscrits, 1);
 assert.equal(Object.keys(c.sessions).includes('s1600'), false);
 
 console.log(`JFR 2026 checks passed: ${SESSIONS.length} sessions, ${sessionsPubliees().length} published.`);

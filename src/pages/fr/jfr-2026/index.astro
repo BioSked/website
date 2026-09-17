@@ -167,7 +167,7 @@ const heure = (h: string) => h.replace(':', ' h ');
     <div class="rounded-2xl border border-emerald-700/30 bg-emerald-50 px-5 py-6 text-emerald-950 sm:px-8">
       <h2 class="text-display-card font-bold" data-jfr-conf-titre>Merci, votre inscription est enregistrée.</h2>
       <div class="mt-4 space-y-4 text-sm" data-jfr-conf-corps></div>
-      <p class="mt-6 text-sm">Les informations pratiques pour accéder à la salle 203 vous seront envoyées avant la journée. Pour modifier ou annuler, revenez sur cette page avec la même adresse e-mail.</p>
+      <p class="mt-6 text-sm" data-jfr-conf-pratique>Les informations pratiques pour accéder à la salle 203 vous seront envoyées avant la journée. Pour modifier ou annuler, revenez sur cette page avec la même adresse e-mail.</p>
     </div>
     </div>
   </section>
@@ -176,7 +176,7 @@ const heure = (h: string) => h.replace(':', ' h ');
 </BaseLayout>
 
 <script>
-  import { SOURCES, SOURCE_PAR_DEFAUT, VALEUR_AUCUNE } from '@/data/jfr2026.mjs';
+  import { SOURCES, VALEUR_AUCUNE } from '@/data/jfr2026.mjs';
   import {
     buildIcs,
     buildJfrSubmission,
@@ -306,7 +306,7 @@ const heure = (h: string) => h.replace(':', ' h ');
         sessions,
         inscrire,
         attente,
-        source: sourceFromSearch(window.location.search, SOURCES, SOURCE_PAR_DEFAUT),
+        source: sourceFromSearch(window.location.search, SOURCES, ''),
         annulation,
         sujet: values.sujet,
         aucune: VALEUR_AUCUNE,
@@ -389,6 +389,7 @@ const heure = (h: string) => h.replace(':', ' h ');
         addList('Vos sessions :', inscrire, true);
         addList('Liste d’attente, nous vous prévenons si une place se libère :', attente, false);
       }
+      confirmation.querySelector('[data-jfr-conf-pratique]')?.classList.toggle('hidden', annulation);
       registration.classList.add('hidden');
       confirmation.classList.remove('hidden');
       confirmation.focus();
