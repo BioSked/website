@@ -9,12 +9,14 @@ import { toSwissGerman } from './swissGerman';
 export interface FooterLocale {
     hqLines: [string, string];
     privacyLabel: string;
+    termsLabel: string;
     sections: { title: string; links: { name: string; href: string }[] }[];
 }
 
 const EN: FooterLocale = {
     hqLines: ['Americas Headquarter: Rochester, New York', 'Europe Headquarter: Geneva, Switzerland'],
     privacyLabel: 'Privacy Policy',
+    termsLabel: 'Terms and Conditions',
     sections: [
         {
             title: 'Momentum',
@@ -40,6 +42,7 @@ const EN: FooterLocale = {
 const FR: FooterLocale = {
     hqLines: ['Siège Amériques : Rochester, New York', 'Siège Europe : Genève, Suisse'],
     privacyLabel: 'Politique de confidentialité',
+    termsLabel: 'Conditions générales',
     sections: [
         {
             title: 'Momentum',
@@ -69,6 +72,7 @@ const FR: FooterLocale = {
 const DE: FooterLocale = {
     hqLines: ['Hauptsitz Amerika: Rochester, New York', 'Hauptsitz Europa: Genf, Schweiz'],
     privacyLabel: 'Datenschutzerklärung',
+    termsLabel: 'Allgemeine Geschäftsbedingungen',
     sections: [
         {
             title: 'Momentum',
@@ -96,6 +100,7 @@ const DE: FooterLocale = {
 const NL: FooterLocale = {
     hqLines: ['Hoofdkantoor Amerika: Rochester, New York', 'Hoofdkantoor Europa: Genève, Zwitserland'],
     privacyLabel: 'Privacybeleid',
+    termsLabel: 'Algemene voorwaarden',
     sections: [
         {
             title: 'Momentum',
@@ -124,6 +129,7 @@ const NL: FooterLocale = {
 const IT: FooterLocale = {
     hqLines: ['Sede Americhe: Rochester, New York', 'Sede Europa: Ginevra, Svizzera'],
     privacyLabel: 'Informativa sulla privacy',
+    termsLabel: 'Condizioni generali',
     sections: [
         {
             title: 'Momentum',

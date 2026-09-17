@@ -28,10 +28,10 @@ export const LOCALE_LABELS: Record<LocaleCode, string> = {
 const SHARED_ROOT_PATHS = ['/privacy', '/internal-testing'];
 
 /** English marketing paths that have a real French equivalent at /fr/<same>. */
-const FR_MIRRORED = ['/', '/about', '/careers', '/pricing', '/demo', '/getquote', '/blog'];
+const FR_MIRRORED = ['/', '/about', '/careers', '/pricing', '/demo', '/getquote', '/blog', '/legal', '/legal/subprocessors'];
 
 /** Routes genuinely localized for de/de-ch/nl/it. */
-const DNI_LOCAL = ['/', '/pricing', '/demo', '/getquote'];
+const DNI_LOCAL = ['/', '/pricing', '/demo', '/getquote', '/legal', '/legal/subprocessors'];
 
 /** Changelog: an index per locale, and entries with identical slugs across locales. */
 const CHANGELOG_LOCALES: LocaleCode[] = ['en', 'fr', 'de', 'nl', 'it'];

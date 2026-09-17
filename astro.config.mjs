@@ -69,6 +69,8 @@ export default defineConfig({
         sitemap({
             filter: (page) => {
                 if (page === 'https://biosked.com/privacy/') return false;
+                // Legal reference pages (terms, subprocessors) are no-index in every locale.
+                if (/\/legal\//.test(page)) return false;
                 // Astro's fr-ch -> fr fallback can surface synthetic /fr-ch-ch/
                 // routes to the sitemap integration. They are not real pages.
                 if (page.includes('/fr-ch-ch/') || page.includes('/de-ch-ch/')) return false;

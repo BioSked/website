@@ -1,6 +1,9 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
 Allow: /
+# Legal reference pages: not landing pages
+Disallow: /legal/
+Disallow: /*/legal/
 
 # Sitemap
 Sitemap: https://biosked.com/sitemap-index.xml
