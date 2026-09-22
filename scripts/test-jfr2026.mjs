@@ -27,7 +27,7 @@ for (const word of [/\binstance/i, /\bticket/i]) {
   assert.doesNotMatch(publicText, word, `texte public sans ${word}`);
 }
 const doctolib = SESSIONS.find((x) => /doctolib/i.test(x.titre));
-assert.ok(doctolib?.publiee && doctolib.logo?.src && doctolib.duree === '45 min', 'session Doctolib publiée, 45 min, avec logo');
+assert.ok(doctolib?.publiee && doctolib.logo?.src && doctolib.debut === '16:00' && doctolib.fin === '17:00', 'session Doctolib publiée, 16:00 à 17:00, avec logo');
 
 // Places
 assert.deepEqual(seatStatus(undefined, JFR2026), { etat: 'inconnu', restantes: null });
@@ -50,11 +50,11 @@ assert.deepEqual(preselectedFromSearch('?session=s0915,s1145,zzz', SESSIONS), ['
 // Envoi HubSpot
 const now = new Date('2026-09-21T06:30:00Z');
 const values = { firstname: ' Ada ', lastname: 'Test', email: 'ada@example.org', company: 'CHU', jobtitle: 'Cadre', phone: '' };
-const payload = buildJfrSubmission({ values, sessions: SESSIONS, inscrire: ['s0915', 's1715'], attente: [], source: 'newsletter', sujet: 'Gardes', aucune: VALEUR_AUCUNE, now, pageUri: 'https://biosked.com/fr/jfr-2026/' });
+const payload = buildJfrSubmission({ values, sessions: SESSIONS, inscrire: ['s0915', 's1720'], attente: [], source: 'newsletter', sujet: 'Gardes', aucune: VALEUR_AUCUNE, now, pageUri: 'https://biosked.com/fr/jfr-2026/' });
 const field = (p, name) => p.fields.find((f) => f.name === name)?.value;
 assert.equal(field(payload, 'firstname'), 'Ada');
 assert.equal(field(payload, 'phone'), undefined, 'champ vide non envoyé');
-assert.equal(field(payload, 'jfr26_sessions'), '09:15 Congés et absences;17:15 Champ ouvert');
+assert.equal(field(payload, 'jfr26_sessions'), '09:15 Congés et absences;17:20 Champ ouvert');
 assert.equal(field(payload, 'jfr26_liste_attente'), 'Aucune', 'liste vide envoyée comme Aucune pour effacer');
 assert.equal(field(payload, 'jfr26_annulation'), 'false');
 assert.equal(field(payload, 'jfr26_sujet_champ_ouvert'), 'Gardes');
