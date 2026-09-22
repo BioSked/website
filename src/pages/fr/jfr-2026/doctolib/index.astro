@@ -197,7 +197,7 @@ const gains = [
 
 <script>
   import { VALEUR_AUCUNE } from '@/data/jfr2026.mjs';
-  import { buildIcs, buildJfrSubmission, seatStatus, statusLabel } from '@/lib/jfr2026.mjs';
+  import { buildJfrSubmission, seatStatus, statusLabel } from '@/lib/jfr2026.mjs';
 
   type Session = { slug: string; titre: string; debut: string; fin: string; valeurHubspot: string };
 
@@ -339,10 +339,14 @@ const gains = [
         const a = document.createElement('a');
         a.className = 'ml-2 font-semibold underline';
         a.textContent = 'Ajouter à mon agenda';
-        a.href = URL.createObjectURL(new Blob([buildIcs(session, event)], { type: 'text/calendar;charset=utf-8' }));
-        a.download = 'momentum-jfr-2026-doctolib.ics';
+        a.href = `/fr/jfr-2026/agenda/${session.slug}.ics`;
         p.append(' ', a);
         body.append(p);
+      }
+      if (statut.etat !== 'inconnu') {
+        const restantes = typeof statut.restantes === 'number' ? Math.max(0, statut.restantes - (attente ? 0 : 1)) : null;
+        statut = { ...statut, restantes } as typeof statut;
+        paint();
       }
       registration.classList.add('hidden');
       confirmation.classList.remove('hidden');
