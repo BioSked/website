@@ -252,6 +252,8 @@ const debutJournee = heure(programme[0].debut);
     const registration = document.querySelector<HTMLElement>('[data-jfr-inscription]')!;
     const boxes = [...form.querySelectorAll<HTMLInputElement>('input[name="session"]')];
     const statuses: Record<string, Status> = {};
+    const counts: Record<string, { inscrits: number; attente: number; ferme?: boolean }> = {};
+    const mine = new Set<string>();
     const loadedAt = Date.now();
 
     form.querySelector('[data-jfr-js]')?.classList.add('hidden');
@@ -281,6 +283,7 @@ const debutJournee = heure(programme[0].debut);
 
     const paint = (data: any) => {
       for (const s of published) {
+        if (data?.sessions?.[s.slug]) counts[s.slug] = data.sessions[s.slug];
         const st = seatStatus(data?.sessions?.[s.slug], { seuilComplet: event.seuilComplet }) as Status;
         statuses[s.slug] = st;
         const badge = form.querySelector<HTMLElement>(`[data-jfr-session="${s.slug}"] [data-statut]`);
@@ -372,7 +375,26 @@ const debutJournee = heure(programme[0].debut);
       }
     });
 
+    function adjustCounts({ annulation, inscrire, attente }: { annulation: boolean; inscrire: string[]; attente: string[] }) {
+      // Le fichier de comptage est régénéré toutes les cinq minutes : on reflète le
+      // changement tout de suite pour la personne qui vient de valider.
+      const delta = annulation ? -1 : 1;
+      const touched = annulation ? Object.keys(statuses) : [...inscrire, ...attente];
+      for (const slug of touched) {
+        const current = counts[slug];
+        if (!current) continue;
+        if (annulation && !mine.has(slug)) continue;
+        const inscrits = Math.max(0, (current.inscrits ?? 0) + (inscrire.includes(slug) || annulation ? delta : 0));
+        counts[slug] = { ...current, inscrits };
+        statuses[slug] = seatStatus(counts[slug], { seuilComplet: event.seuilComplet }) as Status;
+      }
+      for (const slug of inscrire) mine.add(slug);
+      if (annulation) mine.clear();
+      paint({ sessions: counts });
+    }
+
     function renderConfirmation({ annulation, inscrire, attente }: { annulation: boolean; inscrire: string[]; attente: string[] }) {
+      adjustCounts({ annulation, inscrire, attente });
       const body = confirmation.querySelector<HTMLElement>('[data-jfr-conf-corps]')!;
       const title = confirmation.querySelector<HTMLElement>('[data-jfr-conf-titre]')!;
       body.replaceChildren();
@@ -393,8 +415,7 @@ const debutJournee = heure(programme[0].debut);
             const a = document.createElement('a');
             a.className = 'ml-2 font-semibold underline';
             a.textContent = 'Ajouter à mon agenda';
-            a.href = URL.createObjectURL(new Blob([buildIcs(s, event)], { type: 'text/calendar;charset=utf-8' }));
-            a.download = `momentum-jfr-2026-${s.debut.replace(':', 'h')}.ics`;
+            a.href = `/fr/jfr-2026/agenda/${s.slug}.ics`;
             li.append(' ', a);
           }
           ul.append(li);
