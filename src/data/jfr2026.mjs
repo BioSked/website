@@ -131,19 +131,6 @@ export const SESSIONS = [
     valeurHubspot: '17:00 Application mobile',
     publiee: true,
   },
-  {
-    slug: 's1720',
-    debut: '17:20',
-    fin: '18:30',
-    duree: '1 h 10',
-    format: 'Échange',
-    titre: 'Vos questions, en direct sur vos plannings',
-    description: 'Venez avec votre sujet : nous le traitons avec vous, en rendez-vous individuel ou en petit groupe.',
-    public: 'Tout public',
-    valeurHubspot: '17:20 Champ ouvert',
-    publiee: false,
-    sujetLibre: true,
-  },
 ];
 
 export const TEMPS_COMMUNS = [
