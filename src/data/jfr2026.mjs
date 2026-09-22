@@ -149,7 +149,7 @@ export const SESSIONS = [
 export const TEMPS_COMMUNS = [
   { debut: '09:00', fin: '09:15', titre: 'Accueil' },
   { debut: '10:45', fin: '11:00', titre: 'Pause' },
-  { debut: '12:15', fin: '13:30', titre: 'Pause' },
+  { debut: '12:00', fin: '13:30', titre: 'Pause' },
   { debut: '15:00', fin: '15:15', titre: 'Pause' },
   { debut: '15:45', fin: '16:00', titre: 'Pause' },
 ];
