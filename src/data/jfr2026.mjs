@@ -141,7 +141,7 @@ export const SESSIONS = [
     description: 'Venez avec votre sujet : nous le traitons avec vous, en rendez-vous individuel ou en petit groupe.',
     public: 'Tout public',
     valeurHubspot: '17:20 Champ ouvert',
-    publiee: true,
+    publiee: false,
     sujetLibre: true,
   },
 ];
