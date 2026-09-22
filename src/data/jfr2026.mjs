@@ -14,6 +14,9 @@ export const JFR2026 = {
   hubspot: {
     portalId: '25195055',
     formId: '5258afc1-36fa-4529-b0d9-6d0554e47800',
+    // Formulaire distinct pour les annulations : le formulaire d'inscription
+    // déclenche l'e-mail de confirmation, une annulation ne doit pas le recevoir.
+    formIdAnnulation: '23838fb4-5cdf-4a8f-b2c1-fe18ef54aadb',
     endpoint: 'https://api-eu1.hsforms.com/submissions/v3/integration/submit/25195055/',
   },
   placesUrl: 'https://raw.githubusercontent.com/BioSked/website/jfr26-places/places.json',

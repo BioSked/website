@@ -59,6 +59,7 @@ const debutJournee = heure(programme[0].debut);
       data-jfr-form
       method="post"
       action={`${JFR2026.hubspot.endpoint}${JFR2026.hubspot.formId}`}
+      data-action-annulation={`${JFR2026.hubspot.endpoint}${JFR2026.hubspot.formIdAnnulation}`}
       novalidate
     >
       <fieldset class="m-0 min-w-0 border-0 p-0" data-jfr-fields disabled>
@@ -349,7 +350,7 @@ const debutJournee = heure(programme[0].debut);
       const controller = new AbortController();
       const timer = window.setTimeout(() => controller.abort(), TIMEOUT_MS);
       try {
-        const response = await fetch(form.action, {
+        const response = await fetch(annulation ? (form.dataset.actionAnnulation ?? form.action) : form.action, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload),
