@@ -16,28 +16,16 @@ const heure = (h: string) => {
   return mm === '00' ? `${Number(hh)}h` : `${Number(hh)}h${mm}`;
 };
 const creneau = `${heure(session.debut)} à ${heure(session.fin)}`;
-const points = [
-  {
-    titre: 'Le constat',
-    texte:
-      'Les disponibilités des médecins vivent dans Doctolib, le planning se construit ailleurs. Chaque garde déplacée se ressaisit deux fois, et le secrétariat court derrière les écarts.',
-  },
-  {
-    titre: 'Ce que fait l’intégration',
-    texte:
-      'Le planning validé dans Momentum alimente les journées types et les créneaux de rendez-vous dans Doctolib, automatiquement, à chaque publication.',
-  },
-  {
-    titre: 'Ce que vous verrez',
-    texte:
-      'Une démonstration de bout en bout, du planning publié jusqu’au créneau visible par le patient, présentée avec les équipes Doctolib.',
-  },
+const gains = [
+  'Zéro ressaisie',
+  'Des agendas toujours à jour',
+  'Des heures rendues au secrétariat',
 ];
 ---
 
 <BaseLayout
-  title="Momentum x Doctolib aux JFR 2026 : session du 9 octobre"
-  description="Session Momentum x Doctolib du vendredi 9 octobre 2026 aux JFR, salle 203 du Palais des congrès de Paris : vos plannings publiés automatiquement dans Doctolib, sans ressaisie. Inscription en ligne."
+  title="JFR 2026 : Momentum x Doctolib, la session du 9 octobre"
+  description="JFR 2026, session Momentum x Doctolib du vendredi 9 octobre, salle 203 du Palais des congrès de Paris : le planning validé dans Momentum ouvre vos créneaux dans Doctolib, sans ressaisie. Inscription en ligne."
   noIndex={true}
   locale="fr"
   languageLinks={[{ code: 'fr', label: 'Français', href: '/fr/jfr-2026/doctolib/', active: true }]}
@@ -45,72 +33,74 @@ const points = [
 >
   <section class="section-padding">
     <div class="container max-w-4xl">
-      <div class="flex items-center gap-5">
-        <Image src={jfrLogo} alt="JFR 2026, Journées francophones de radiologie" width={320} class="h-auto w-20 sm:w-24" loading="eager" />
-        <span class="text-muted-foreground text-2xl font-light" aria-hidden="true">×</span>
-        <img src="/images/partners/doctolib-logo.svg" alt="Doctolib" width="160" height="40" class="h-7 w-auto sm:h-8" loading="eager" />
+      <div class="flex flex-wrap items-center gap-x-5 gap-y-3">
+        <Image src={jfrLogo} alt="JFR 2026, Journées francophones de radiologie" width={320} class="h-auto w-16" loading="eager" />
+        <span class="text-muted-foreground text-xl font-light" aria-hidden="true">×</span>
+        <img src="/images/partners/momentum-logo.svg" alt="Momentum" width="182" height="24" class="h-5 w-auto" loading="eager" />
+        <span class="text-muted-foreground text-xl font-light" aria-hidden="true">×</span>
+        <img src="/images/partners/doctolib-logo.svg" alt="Doctolib" width="160" height="40" class="h-6 w-auto" loading="eager" />
       </div>
-      <h1 class="text-display-hero mt-8">Vos plannings publiés dans Doctolib, sans ressaisie</h1>
-      <p class="text-lead text-muted-foreground mt-5 max-w-2xl">
-        Session commune Momentum et Doctolib aux JFR 2026, ouverte sur inscription.
+
+      <h1 class="text-display-hero mt-6">Fini la ressaisie entre votre planning et vos rendez-vous</h1>
+      <p class="text-lead text-foreground/85 mt-4 max-w-2xl">
+        Le planning validé dans Momentum ouvre automatiquement les créneaux de rendez-vous dans Doctolib. Vos équipes ne saisissent plus deux fois, et les agendas cessent de diverger.
       </p>
-      <div class="mt-8 flex flex-wrap items-center gap-x-8 gap-y-4">
-        <span class="flex items-baseline gap-2">
-          <span class="text-foreground text-3xl font-bold tracking-tight tabular-nums">{creneau}</span>
-        </span>
+      <ul class="mt-5 flex flex-wrap gap-2">
+        {gains.map((g) => (
+          <li class="bg-primary/10 text-accent rounded-full px-3 py-1 text-sm font-semibold">{g}</li>
+        ))}
+      </ul>
+
+      <div class="border-secondary/15 mt-8 flex flex-wrap items-center gap-x-8 gap-y-4 border-t pt-6">
+        <span class="text-foreground text-3xl font-bold tracking-tight tabular-nums">{creneau}</span>
         <span class="text-foreground/85">
           <span class="block font-semibold">Vendredi 9 octobre 2026</span>
           <span class="text-muted-foreground block text-sm">Palais des congrès de Paris, salle 203</span>
         </span>
-        <span class="hidden text-xs font-semibold sm:inline-flex" data-jfr-statut-hero></span>
-      </div>
-      <div class="mt-8 flex flex-wrap items-center gap-4">
+        <span class="hidden text-xs font-semibold" data-jfr-statut-hero></span>
         <Button href="#inscription" variant="secondary" size="lg">Réserver ma place</Button>
-        <span class="text-muted-foreground text-sm">Une heure, 30 places, entrée libre avec votre badge JFR.</span>
       </div>
-    </div>
-  </section>
 
-  <section class="section-padding pt-0">
-    <div class="container max-w-4xl">
-      <div class="grid gap-4 sm:grid-cols-3">
-        {points.map((p) => (
-          <div class="border-secondary/15 rounded-xl border bg-white/60 p-5">
-            <h2 class="text-accent text-xs font-semibold tracking-wide uppercase">{p.titre}</h2>
-            <p class="text-foreground/85 mt-2 text-sm">{p.texte}</p>
-          </div>
-        ))}
+      <div class="mt-12 grid gap-4 sm:grid-cols-2">
+        <div class="border-secondary/15 rounded-xl border bg-white/60 p-5">
+          <h2 class="text-muted-foreground text-xs font-semibold tracking-wide uppercase">Aujourd’hui</h2>
+          <p class="text-foreground/85 mt-2 text-sm">
+            Le planning est arrêté dans Momentum, puis les créneaux sont ressaisis dans Doctolib, agenda par agenda, salle par salle. À chaque garde déplacée, il faut recommencer, et le secrétariat court derrière les écarts.
+          </p>
+        </div>
+        <div class="border-accent/30 bg-primary/5 rounded-xl border p-5">
+          <h2 class="text-accent text-xs font-semibold tracking-wide uppercase">Avec l’intégration</h2>
+          <p class="text-foreground/85 mt-2 text-sm">
+            Le planning publié part dans Doctolib avec les bonnes journées types, les bonnes salles et les bons médecins. Plus de ressaisie, plus d’écart entre les deux outils, et le temps du trimestre rendu à l’équipe.
+          </p>
+        </div>
       </div>
-      <p class="text-muted-foreground mt-6 text-sm">Disponible en pilote, déploiement sur demande.</p>
-    </div>
-  </section>
+      <p class="text-muted-foreground mt-4 text-sm">Disponible en pilote, déploiement sur demande.</p>
 
-  <section class="section-padding pt-0">
-    <div class="container max-w-4xl">
-      <div class="bg-primary/5 border-secondary/15 rounded-2xl border p-5 sm:p-8">
+      <div class="bg-primary/5 border-secondary/15 mt-12 rounded-2xl border p-5 sm:p-8">
         <h2 class="text-display-card font-bold">Au programme de la session</h2>
-        <ul class="mt-5 space-y-4">
+        <ul class="mt-5 space-y-3">
           <li class="flex gap-4">
             <span class="bg-primary/10 text-accent grid size-7 shrink-0 place-items-center rounded-full text-sm font-bold">1</span>
             <span class="text-foreground/85">Du planning Momentum à la journée type Doctolib : ce qui part, quand, et qui garde la main.</span>
           </li>
           <li class="flex gap-4">
             <span class="bg-primary/10 text-accent grid size-7 shrink-0 place-items-center rounded-full text-sm font-bold">2</span>
-            <span class="text-foreground/85">Ce que cela change au quotidien pour le secrétariat et pour la prise de rendez-vous.</span>
+            <span class="text-foreground/85">Le temps gagné au quotidien : ouverture des agendas, changements de dernière minute, fin des doubles saisies.</span>
           </li>
           <li class="flex gap-4">
             <span class="bg-primary/10 text-accent grid size-7 shrink-0 place-items-center rounded-full text-sm font-bold">3</span>
             <span class="text-foreground/85">Vos questions, avec les équipes Momentum et Doctolib dans la salle.</span>
           </li>
         </ul>
-        <p class="text-muted-foreground mt-6 text-sm">
+        <p class="text-muted-foreground mt-5 text-sm">
           Momentum construit les plannings des équipes médicales : gardes, astreintes, congés et compteurs d’heures, en radiologie comme au bloc et aux urgences.
         </p>
       </div>
     </div>
   </section>
 
-  <section class="section-padding pt-0" id="inscription" data-jfr-inscription>
+  <section class="pb-12 md:pb-16 lg:pb-20" id="inscription" data-jfr-inscription>
     <form
       class="container max-w-3xl"
       data-jfr-form
@@ -171,7 +161,7 @@ const points = [
     </form>
   </section>
 
-  <section class="section-padding hidden pt-0" data-jfr-confirmation tabindex="-1">
+  <section class="hidden pb-12 md:pb-16 lg:pb-20" data-jfr-confirmation tabindex="-1">
     <div class="container max-w-3xl">
       <div class="rounded-2xl border border-emerald-700/30 bg-emerald-50 px-5 py-6 text-emerald-950 sm:px-8">
         <h2 class="text-display-card font-bold" data-jfr-conf-titre>Merci, votre place est réservée.</h2>
@@ -181,7 +171,7 @@ const points = [
     </div>
   </section>
 
-  <section class="section-padding pt-0" id="acces">
+  <section class="pb-12 md:pb-16 lg:pb-20" id="acces">
     <div class="container max-w-4xl">
       <div class="border-secondary/15 rounded-xl border bg-white/60 p-5 sm:p-8">
         <h2 class="text-display-card font-bold">Comment venir</h2>
@@ -196,7 +186,7 @@ const points = [
     </div>
   </section>
 
-  <section class="section-padding pt-0">
+  <section class="pb-12 md:pb-16 lg:pb-20">
     <div class="container max-w-4xl">
       <p class="text-lead text-foreground/85">Déjà client Momentum ? La journée entière vous est ouverte : <a class="text-accent font-semibold hover:underline" href="/fr/jfr-2026/">programme et inscriptions</a>.</p>
     </div>
