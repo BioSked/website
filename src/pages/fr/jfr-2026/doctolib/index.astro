@@ -1,0 +1,366 @@
+---
+export const prerender = true;
+
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { Image } from 'astro:assets';
+import jfrLogo from '@/assets/images/jfr-2026-logo.png';
+import Button from '@/components/ui/Button.astro';
+import { JFR2026, SESSIONS } from '@/data/jfr2026.mjs';
+
+const session = SESSIONS.find((s) => /doctolib/i.test(s.titre))!;
+const ouvert = Boolean(JFR2026.hubspot.formId) && !JFR2026.inscriptionsCloses;
+const inputClass =
+  'border-secondary/30 bg-white focus-visible:border-accent focus-visible:ring-ring mt-2 w-full rounded-md border px-3 py-3 outline-none focus-visible:ring-2';
+const heure = (h: string) => {
+  const [hh, mm] = h.split(':');
+  return mm === '00' ? `${Number(hh)}h` : `${Number(hh)}h${mm}`;
+};
+const creneau = `${heure(session.debut)} à ${heure(session.fin)}`;
+const points = [
+  {
+    titre: 'Le constat',
+    texte:
+      'Les disponibilités des médecins vivent dans Doctolib, le planning se construit ailleurs. Chaque garde déplacée se ressaisit deux fois, et le secrétariat court derrière les écarts.',
+  },
+  {
+    titre: 'Ce que fait l’intégration',
+    texte:
+      'Le planning validé dans Momentum alimente les journées types et les créneaux de rendez-vous dans Doctolib, automatiquement, à chaque publication.',
+  },
+  {
+    titre: 'Ce que vous verrez',
+    texte:
+      'Une démonstration de bout en bout, du planning publié jusqu’au créneau visible par le patient, présentée avec les équipes Doctolib.',
+  },
+];
+---
+
+<BaseLayout
+  title="Momentum x Doctolib aux JFR 2026 : session du 9 octobre"
+  description="Session Momentum x Doctolib du vendredi 9 octobre 2026 aux JFR, salle 203 du Palais des congrès de Paris : vos plannings publiés automatiquement dans Doctolib, sans ressaisie. Inscription en ligne."
+  noIndex={true}
+  locale="fr"
+  languageLinks={[{ code: 'fr', label: 'Français', href: '/fr/jfr-2026/doctolib/', active: true }]}
+  localeAlternates={{ fr: '/fr/jfr-2026/doctolib/' }}
+>
+  <section class="section-padding">
+    <div class="container max-w-4xl">
+      <div class="flex items-center gap-5">
+        <Image src={jfrLogo} alt="JFR 2026, Journées francophones de radiologie" width={320} class="h-auto w-20 sm:w-24" loading="eager" />
+        <span class="text-muted-foreground text-2xl font-light" aria-hidden="true">×</span>
+        <img src="/images/partners/doctolib-logo.svg" alt="Doctolib" width="160" height="40" class="h-7 w-auto sm:h-8" loading="eager" />
+      </div>
+      <h1 class="text-display-hero mt-8">Vos plannings publiés dans Doctolib, sans ressaisie</h1>
+      <p class="text-lead text-muted-foreground mt-5 max-w-2xl">
+        Session commune Momentum et Doctolib aux JFR 2026, ouverte sur inscription.
+      </p>
+      <div class="mt-8 flex flex-wrap items-center gap-x-8 gap-y-4">
+        <span class="flex items-baseline gap-2">
+          <span class="text-foreground text-3xl font-bold tracking-tight tabular-nums">{creneau}</span>
+        </span>
+        <span class="text-foreground/85">
+          <span class="block font-semibold">Vendredi 9 octobre 2026</span>
+          <span class="text-muted-foreground block text-sm">Palais des congrès de Paris, salle 203</span>
+        </span>
+        <span class="hidden text-xs font-semibold sm:inline-flex" data-jfr-statut-hero></span>
+      </div>
+      <div class="mt-8 flex flex-wrap items-center gap-4">
+        <Button href="#inscription" variant="secondary" size="lg">Réserver ma place</Button>
+        <span class="text-muted-foreground text-sm">Une heure, 30 places, entrée libre avec votre badge JFR.</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-padding pt-0">
+    <div class="container max-w-4xl">
+      <div class="grid gap-4 sm:grid-cols-3">
+        {points.map((p) => (
+          <div class="border-secondary/15 rounded-xl border bg-white/60 p-5">
+            <h2 class="text-accent text-xs font-semibold tracking-wide uppercase">{p.titre}</h2>
+            <p class="text-foreground/85 mt-2 text-sm">{p.texte}</p>
+          </div>
+        ))}
+      </div>
+      <p class="text-muted-foreground mt-6 text-sm">Disponible en pilote, déploiement sur demande.</p>
+    </div>
+  </section>
+
+  <section class="section-padding pt-0">
+    <div class="container max-w-4xl">
+      <div class="bg-primary/5 border-secondary/15 rounded-2xl border p-5 sm:p-8">
+        <h2 class="text-display-card font-bold">Au programme de la session</h2>
+        <ul class="mt-5 space-y-4">
+          <li class="flex gap-4">
+            <span class="bg-primary/10 text-accent grid size-7 shrink-0 place-items-center rounded-full text-sm font-bold">1</span>
+            <span class="text-foreground/85">Du planning Momentum à la journée type Doctolib : ce qui part, quand, et qui garde la main.</span>
+          </li>
+          <li class="flex gap-4">
+            <span class="bg-primary/10 text-accent grid size-7 shrink-0 place-items-center rounded-full text-sm font-bold">2</span>
+            <span class="text-foreground/85">Ce que cela change au quotidien pour le secrétariat et pour la prise de rendez-vous.</span>
+          </li>
+          <li class="flex gap-4">
+            <span class="bg-primary/10 text-accent grid size-7 shrink-0 place-items-center rounded-full text-sm font-bold">3</span>
+            <span class="text-foreground/85">Vos questions, avec les équipes Momentum et Doctolib dans la salle.</span>
+          </li>
+        </ul>
+        <p class="text-muted-foreground mt-6 text-sm">
+          Momentum construit les plannings des équipes médicales : gardes, astreintes, congés et compteurs d’heures, en radiologie comme au bloc et aux urgences.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-padding pt-0" id="inscription" data-jfr-inscription>
+    <form
+      class="container max-w-3xl"
+      data-jfr-form
+      method="post"
+      action={`${JFR2026.hubspot.endpoint}${JFR2026.hubspot.formId}`}
+      novalidate
+    >
+      <fieldset class="m-0 min-w-0 border-0 p-0" data-jfr-fields disabled>
+        <h2 class="text-display-card font-bold">Réserver ma place</h2>
+        <p class="text-muted-foreground mt-2 text-sm">
+          Vendredi 9 octobre, {creneau}, salle 203. <span data-jfr-statut-places></span>
+        </p>
+        <p class="text-muted-foreground mt-1 text-sm">Les champs marqués d’un astérisque sont obligatoires.</p>
+
+        <div class="mt-6 grid gap-5 sm:grid-cols-2">
+          <div>
+            <label for="jfr-firstname" class="block font-medium">Prénom <span class="text-red-700" aria-hidden="true">*</span></label>
+            <input id="jfr-firstname" name="firstname" type="text" autocomplete="given-name" required class={inputClass} />
+          </div>
+          <div>
+            <label for="jfr-lastname" class="block font-medium">Nom <span class="text-red-700" aria-hidden="true">*</span></label>
+            <input id="jfr-lastname" name="lastname" type="text" autocomplete="family-name" required class={inputClass} />
+          </div>
+          <div class="sm:col-span-2">
+            <label for="jfr-email" class="block font-medium">E-mail professionnel <span class="text-red-700" aria-hidden="true">*</span></label>
+            <input id="jfr-email" name="email" type="email" autocomplete="email" required class={inputClass} />
+          </div>
+          <div>
+            <label for="jfr-company" class="block font-medium">Établissement <span class="text-red-700" aria-hidden="true">*</span></label>
+            <input id="jfr-company" name="company" type="text" autocomplete="organization" required class={inputClass} />
+          </div>
+          <div>
+            <label for="jfr-jobtitle" class="block font-medium">Fonction <span class="text-red-700" aria-hidden="true">*</span></label>
+            <input id="jfr-jobtitle" name="jobtitle" type="text" autocomplete="organization-title" required class={inputClass} />
+          </div>
+          <div class="sm:col-span-2">
+            <label for="jfr-phone" class="block font-medium">Téléphone <span class="text-muted-foreground text-sm font-normal">(facultatif)</span></label>
+            <input id="jfr-phone" name="phone" type="tel" autocomplete="tel" class={inputClass} />
+          </div>
+        </div>
+
+        <div class="absolute -left-[9999px] h-px w-px overflow-hidden" aria-hidden="true">
+          <label for="jfr-site">Site web</label>
+          <input id="jfr-site" name="site_web" type="text" tabindex="-1" autocomplete="off" />
+        </div>
+
+        <p class="text-muted-foreground mt-6 text-xs leading-relaxed">
+          Vos informations servent à organiser votre venue à cette session et à vous envoyer les informations pratiques. Elles sont enregistrées dans notre outil de relation client (HubSpot, hébergé dans l’Union européenne) et ne sont transmises à aucun autre organisme. Pour y accéder, les rectifier ou vous opposer à leur utilisation : <a class="text-accent hover:underline" href="mailto:dpo@biosked.com">dpo@biosked.com</a>. En savoir plus : notre <a class="text-accent hover:underline" href="/privacy/">politique de confidentialité</a>.
+        </p>
+
+        <p class="mt-6 min-h-5 text-sm text-red-700" data-jfr-statut role="status" aria-live="polite" tabindex="-1"></p>
+        <Button type="submit" variant="secondary" size="lg" className="mt-2 w-full sm:w-auto" data-jfr-envoyer>
+          Réserver ma place
+        </Button>
+      </fieldset>
+      <p class="mt-4 text-sm text-red-700" data-jfr-js>Activez JavaScript pour vous inscrire.</p>
+      {!ouvert && <p class="mt-4 text-sm font-semibold">Les inscriptions ouvrent très prochainement.</p>}
+    </form>
+  </section>
+
+  <section class="section-padding hidden pt-0" data-jfr-confirmation tabindex="-1">
+    <div class="container max-w-3xl">
+      <div class="rounded-2xl border border-emerald-700/30 bg-emerald-50 px-5 py-6 text-emerald-950 sm:px-8">
+        <h2 class="text-display-card font-bold" data-jfr-conf-titre>Merci, votre place est réservée.</h2>
+        <div class="mt-4 space-y-3 text-sm" data-jfr-conf-corps></div>
+        <p class="mt-6 text-sm">Salle 203, niveau 2 du Palais des congrès, côté Hall Paris. <a class="font-semibold underline" href="#acces">Comment venir</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-padding pt-0" id="acces">
+    <div class="container max-w-4xl">
+      <div class="border-secondary/15 rounded-xl border bg-white/60 p-5 sm:p-8">
+        <h2 class="text-display-card font-bold">Comment venir</h2>
+        <p class="text-foreground/85 mt-3">Palais des congrès de Paris, 2 place de la Porte Maillot, 75017 Paris. <a class="text-accent font-semibold hover:underline" href="https://www.google.com/maps/search/?api=1&query=Palais%20des%20Congr%C3%A8s%20de%20Paris" target="_blank" rel="noopener noreferrer">Voir l’itinéraire</a></p>
+        <ol class="text-foreground/85 mt-4 space-y-3">
+          <li class="flex gap-3"><span class="bg-primary/10 text-accent grid size-7 shrink-0 place-items-center rounded-full text-sm font-bold">1</span><span>En transports : métro ligne 1, RER C et RER E, tramway T3b, arrêt Porte Maillot.</span></li>
+          <li class="flex gap-3"><span class="bg-primary/10 text-accent grid size-7 shrink-0 place-items-center rounded-full text-sm font-bold">2</span><span>Dans le Palais des congrès, montez au niveau 2 : la salle 203 se trouve côté Hall Paris.</span></li>
+          <li class="flex gap-3"><span class="bg-primary/10 text-accent grid size-7 shrink-0 place-items-center rounded-full text-sm font-bold">3</span><span>Vous ne trouvez pas la salle ? Passez au stand Momentum 126A, au niveau 1 (Hall Passy) : nous vous accompagnons.</span></li>
+        </ol>
+        <p class="text-muted-foreground mt-4 text-sm">Accès au congrès avec votre propre badge JFR : <a class="underline hover:text-foreground" href="https://www.jfr.plus/jfr-2026-tarifs" target="_blank" rel="noopener noreferrer">inscription sur le site des JFR</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-padding pt-0">
+    <div class="container max-w-4xl">
+      <p class="text-lead text-foreground/85">Déjà client Momentum ? La journée entière vous est ouverte : <a class="text-accent font-semibold hover:underline" href="/fr/jfr-2026/">programme et inscriptions</a>.</p>
+    </div>
+  </section>
+
+  <script is:inline type="application/json" id="jfr-data" set:html={JSON.stringify({ event: JFR2026, session })} />
+</BaseLayout>
+
+<script>
+  import { VALEUR_AUCUNE } from '@/data/jfr2026.mjs';
+  import { buildIcs, buildJfrSubmission, seatStatus, statusLabel } from '@/lib/jfr2026.mjs';
+
+  type Session = { slug: string; titre: string; debut: string; fin: string; valeurHubspot: string };
+
+  const TIMEOUT_MS = 15000;
+  const MIN_FILL_MS = 3000;
+
+  function cookie(name: string) {
+    const prefix = `${name}=`;
+    for (const part of document.cookie.split(';')) {
+      const c = part.trim();
+      if (c.startsWith(prefix)) return decodeURIComponent(c.slice(prefix.length));
+    }
+    return undefined;
+  }
+
+  function init() {
+    const data = document.getElementById('jfr-data');
+    const form = document.querySelector<HTMLFormElement>('[data-jfr-form]');
+    if (!data || !form) return;
+    const { event, session } = JSON.parse(data.textContent || '{}') as { event: any; session: Session };
+    const fieldset = form.querySelector<HTMLFieldSetElement>('[data-jfr-fields]')!;
+    const status = form.querySelector<HTMLElement>('[data-jfr-statut]')!;
+    const submit = form.querySelector<HTMLButtonElement>('[data-jfr-envoyer]')!;
+    const confirmation = document.querySelector<HTMLElement>('[data-jfr-confirmation]')!;
+    const registration = document.querySelector<HTMLElement>('[data-jfr-inscription]')!;
+    const loadedAt = Date.now();
+    let statut = { etat: 'inconnu', restantes: null } as { etat: string; restantes: number | null };
+
+    if (form.action.includes('/submit/') && !form.action.endsWith('/')) fieldset.disabled = false;
+    form.querySelector('[data-jfr-js]')?.classList.add('hidden');
+
+    const paint = () => {
+      const label = statusLabel(statut);
+      for (const el of document.querySelectorAll<HTMLElement>('[data-jfr-statut-places], [data-jfr-statut-hero]')) {
+        el.textContent = label;
+        if (el.hasAttribute('data-jfr-statut-hero')) {
+          el.className = label
+            ? `inline-flex rounded-full px-3 py-1 text-xs font-semibold ${
+                statut.etat === 'complet' ? 'bg-red-50 text-red-700' : statut.etat === 'dernieres' ? 'bg-amber-50 text-amber-800' : 'bg-emerald-50 text-emerald-800'
+              }`
+            : 'hidden';
+        }
+      }
+      if (statut.etat === 'complet') submit.textContent = 'M’inscrire sur la liste d’attente';
+    };
+
+    (async () => {
+      try {
+        const controller = new AbortController();
+        const timer = window.setTimeout(() => controller.abort(), 5000);
+        const response = await fetch(`${event.placesUrl}?m=${Math.floor(Date.now() / 60000)}`, { signal: controller.signal, cache: 'no-store' });
+        window.clearTimeout(timer);
+        if (response.ok) {
+          const places = await response.json();
+          statut = seatStatus(places?.sessions?.[session.slug], { seuilComplet: event.seuilComplet }) as typeof statut;
+          paint();
+        }
+      } catch {
+        /* Sans compteur, l'inscription fonctionne quand même. */
+      }
+    })();
+
+    const show = (message: string) => {
+      status.textContent = message;
+      status.focus();
+    };
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      status.textContent = '';
+      const values = Object.fromEntries(new FormData(form).entries()) as Record<string, string>;
+      for (const name of ['firstname', 'lastname', 'email', 'company', 'jobtitle']) {
+        const input = form.querySelector<HTMLInputElement>(`[name="${name}"]`)!;
+        if (!input.value.trim()) return show('Merci de remplir les champs obligatoires, marqués d’un astérisque.');
+        if (name === 'email' && !input.checkValidity()) return show('Vérifiez votre adresse e-mail.');
+      }
+
+      const attente = statut.etat === 'complet';
+      const done = () => renderConfirmation(attente);
+      if (values.site_web || Date.now() - loadedAt < MIN_FILL_MS) return done();
+
+      const payload = buildJfrSubmission({
+        values,
+        sessions: [session],
+        inscrire: attente ? [] : [session.slug],
+        attente: attente ? [session.slug] : [],
+        source: 'doctolib',
+        aucune: VALEUR_AUCUNE,
+        pageUri: window.location.href,
+        pageName: document.title,
+        hutk: cookie('hubspotutk'),
+      });
+
+      submit.disabled = true;
+      submit.setAttribute('aria-busy', 'true');
+      const label = submit.textContent;
+      submit.textContent = 'Envoi en cours…';
+      const controller = new AbortController();
+      const timer = window.setTimeout(() => controller.abort(), TIMEOUT_MS);
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+          signal: controller.signal,
+        });
+        if (!response.ok) {
+          const body = await response.json().catch(() => ({}));
+          const invalidEmail = (body?.errors ?? []).some((err: any) => String(err?.errorType).includes('EMAIL'));
+          throw new Error(invalidEmail ? 'email' : 'failed');
+        }
+        done();
+      } catch (err) {
+        show(
+          (err as Error).message === 'email'
+            ? 'Vérifiez votre adresse e-mail.'
+            : 'La réservation n’a pas pu être enregistrée. Réessayez dans quelques minutes.',
+        );
+      } finally {
+        window.clearTimeout(timer);
+        submit.disabled = false;
+        submit.removeAttribute('aria-busy');
+        submit.textContent = label;
+      }
+    });
+
+    function renderConfirmation(attente: boolean) {
+      const body = confirmation.querySelector<HTMLElement>('[data-jfr-conf-corps]')!;
+      const title = confirmation.querySelector<HTMLElement>('[data-jfr-conf-titre]')!;
+      body.replaceChildren();
+      const p = document.createElement('p');
+      if (attente) {
+        title.textContent = 'Vous êtes sur la liste d’attente.';
+        p.textContent = 'La salle est complète. Nous vous prévenons dès qu’une place se libère.';
+        body.append(p);
+      } else {
+        title.textContent = 'Merci, votre place est réservée.';
+        p.textContent = `${session.titre}, vendredi 9 octobre.`;
+        const a = document.createElement('a');
+        a.className = 'ml-2 font-semibold underline';
+        a.textContent = 'Ajouter à mon agenda';
+        a.href = URL.createObjectURL(new Blob([buildIcs(session, event)], { type: 'text/calendar;charset=utf-8' }));
+        a.download = 'momentum-jfr-2026-doctolib.ics';
+        p.append(' ', a);
+        body.append(p);
+      }
+      registration.classList.add('hidden');
+      confirmation.classList.remove('hidden');
+      confirmation.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      confirmation.focus();
+    }
+  }
+
+  init();
+  document.addEventListener('astro:after-swap', init);
+</script>

@@ -5,7 +5,10 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import { JFR2026, SOURCES, SOURCE_PAR_DEFAUT, sessionsPubliees } from '@/data/jfr2026.mjs';
 
 const publiees = sessionsPubliees();
-const heure = (h: string) => h.replace(':', ' h ');
+const heure = (h: string) => {
+  const [hh, mm] = h.split(':');
+  return mm === '00' ? `${Number(hh)}h` : `${Number(hh)}h${mm}`;
+};
 ---
 
 <BaseLayout

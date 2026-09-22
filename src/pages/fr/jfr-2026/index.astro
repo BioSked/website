@@ -27,7 +27,12 @@ const programme: Ligne[] = [
 const ouvert = Boolean(JFR2026.hubspot.formId) && !JFR2026.inscriptionsCloses;
 const inputClass =
   'border-secondary/30 bg-white focus-visible:border-accent focus-visible:ring-ring mt-2 w-full rounded-md border px-3 py-3 outline-none focus-visible:ring-2';
-const heure = (h: string) => h.replace(':', ' h ');
+const heure = (h: string) => {
+  const [hh, mm] = h.split(':');
+  return mm === '00' ? `${Number(hh)}h` : `${Number(hh)}h${mm}`;
+};
+const finJournee = heure([...programme].sort((a, b) => a.fin.localeCompare(b.fin)).at(-1)!.fin);
+const debutJournee = heure(programme[0].debut);
 ---
 
 <BaseLayout
@@ -42,7 +47,7 @@ const heure = (h: string) => h.replace(':', ' h ');
     <div class="container max-w-4xl">
       <Image src={jfrLogo} alt="JFR 2026, Journées francophones de radiologie" width={320} class="mb-8 h-auto w-32 sm:w-40" loading="eager" />
       <h1 class="text-display-hero">JFR 2026 : Journée clients Momentum</h1>
-      <p class="text-lead mt-5 font-semibold text-foreground">Vendredi 9 octobre 2026 • Palais des congrès • Salle 203</p>
+      <p class="text-lead mt-5 font-semibold text-foreground">Vendredi 9 octobre 2026 • {debutJournee} à {finJournee} • Palais des congrès, salle 203</p>
       <p class="text-lead text-muted-foreground mt-3 max-w-2xl">Inscrivez-vous aux sessions Momentum : formations, nouvelles fonctionnalités, tutoriels.</p>
       <p class="mt-4 text-sm"><a class="text-accent font-semibold hover:underline" href="#acces">Comment trouver la salle 203</a></p>
     </div>
@@ -65,27 +70,33 @@ const heure = (h: string) => h.replace(':', ' h ');
         <ol class="mt-6 space-y-3">
           {programme.map((item) =>
             item.commun ? (
-              <li class="text-muted-foreground flex gap-4 px-4 py-2 text-sm sm:px-5">
-                <span class="w-44 shrink-0 whitespace-nowrap">{heure(item.debut)} à {heure(item.fin)}</span>
-                <span>{item.titre}</span>
+              <li class="grid grid-cols-[1.25rem_3.5rem_1fr] items-center gap-x-3 px-4 py-1 sm:grid-cols-[1.25rem_4.5rem_1fr] sm:gap-x-4 sm:px-5">
+                <span aria-hidden="true"></span>
+                <span class="text-muted-foreground text-sm font-semibold tabular-nums">{heure(item.debut)}</span>
+                <span class="text-muted-foreground flex items-center gap-3 text-sm">
+                  <span class="whitespace-nowrap">{item.titre}</span>
+                  <span class="bg-secondary/15 h-px flex-1" aria-hidden="true"></span>
+                  <span class="whitespace-nowrap text-xs tabular-nums">{heure(item.fin)}</span>
+                </span>
               </li>
             ) : (
               <li>
                 <label
-                  class="flex cursor-pointer gap-4 rounded-xl border border-secondary/15 bg-white/60 p-4 transition-colors hover:border-accent/60 has-[input:checked]:border-accent has-[input:checked]:bg-primary/5 sm:p-5"
+                  class="grid cursor-pointer grid-cols-[1.25rem_3.5rem_1fr] items-start gap-x-3 rounded-xl border border-secondary/15 bg-white/60 p-4 transition-colors hover:border-accent/60 has-[input:checked]:border-accent has-[input:checked]:bg-primary/5 sm:grid-cols-[1.25rem_4.5rem_1fr] sm:gap-x-4 sm:p-5"
                   data-jfr-session={item.slug}
                 >
-                  <input type="checkbox" name="session" value={item.slug} class="accent-accent mt-1 size-5 shrink-0" />
-                  <span class="min-w-0 flex-1">
-                    <span class="text-muted-foreground flex flex-wrap gap-x-2 gap-y-1 text-xs">
-                      <span class="font-semibold whitespace-nowrap text-foreground/80">{heure(item.debut)} à {heure(item.fin)}</span>
-                      <span aria-hidden="true">·</span>
+                  <input type="checkbox" name="session" value={item.slug} class="accent-accent mt-1.5 size-5 shrink-0" />
+                  <span class="pt-0.5">
+                    <span class="text-foreground block text-xl leading-none font-bold tracking-tight tabular-nums">{heure(item.debut)}</span>
+                    <span class="text-muted-foreground mt-1 block text-xs whitespace-nowrap tabular-nums">à {heure(item.fin)}</span>
+                  </span>
+                  <span class="min-w-0">
+                    <span class="text-muted-foreground flex flex-wrap items-center gap-x-2 gap-y-1 text-xs">
+                      <span class="bg-primary/10 text-accent rounded-full px-2 py-0.5 text-[0.7rem] font-semibold tracking-wide uppercase">{item.format}</span>
                       <span>{item.duree}</span>
-                      <span aria-hidden="true">·</span>
-                      <span>{item.format}</span>
                       {item.logo && <img src={item.logo.src} alt={item.logo.alt} width="96" height="24" class="ml-auto h-5 w-auto self-center" loading="lazy" />}
                     </span>
-                    <span class="mt-1 block font-semibold text-foreground">{item.titre}</span>
+                    <span class="text-foreground mt-2 block font-semibold">{item.titre}</span>
                     <span class="text-foreground/85 mt-1 block text-sm">{item.description}</span>
                     <span class="text-muted-foreground mt-2 block text-xs">Pour : {item.public}</span>
                     <span class="mt-2 hidden w-fit rounded-full px-2.5 py-0.5 text-xs font-semibold" data-statut aria-live="polite"></span>
@@ -377,7 +388,7 @@ const heure = (h: string) => h.replace(':', ' h ');
           const s = bySlug.get(slug);
           if (!s) continue;
           const li = document.createElement('li');
-          li.textContent = `${s.debut.replace(':', ' h ')}, ${s.titre}`;
+          li.textContent = `${s.debut.replace(':00', 'h').replace(':', 'h')}, ${s.titre}`;
           if (withCalendar) {
             const a = document.createElement('a');
             a.className = 'ml-2 font-semibold underline';
