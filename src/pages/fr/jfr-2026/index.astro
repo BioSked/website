@@ -5,7 +5,7 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import { Image } from 'astro:assets';
 import jfrLogo from '@/assets/images/jfr-2026-logo.png';
 import Button from '@/components/ui/Button.astro';
-import { JFR2026, SESSIONS, TEMPS_COMMUNS, sessionsPubliees } from '@/data/jfr2026.mjs';
+import { JFR2026, TEMPS_COMMUNS, sessionsPubliees } from '@/data/jfr2026.mjs';
 
 const publiees = sessionsPubliees();
 interface Ligne {
@@ -201,7 +201,7 @@ const debutJournee = heure(programme[0].debut);
   </section>
 
 
-  <script is:inline type="application/json" id="jfr-data" set:html={JSON.stringify({ event: JFR2026, sessions: SESSIONS })} />
+  <script is:inline type="application/json" id="jfr-data" set:html={JSON.stringify({ event: JFR2026, sessions: publiees })} />
 </BaseLayout>
 
 <script>
