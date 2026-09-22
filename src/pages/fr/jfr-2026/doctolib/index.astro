@@ -18,7 +18,7 @@ const heure = (h: string) => {
 const creneau = `${heure(session.debut)} à ${heure(session.fin)}`;
 const gains = [
   'Zéro ressaisie',
-  'Des agendas toujours à jour',
+  'Ouverture des agendas automatisée',
   'Des heures rendues au secrétariat',
 ];
 ---
@@ -43,7 +43,7 @@ const gains = [
 
       <h1 class="text-display-hero mt-6">Fini la ressaisie entre votre planning et vos rendez-vous</h1>
       <p class="text-lead text-foreground/85 mt-4 max-w-2xl">
-        Le planning validé dans Momentum ouvre automatiquement les créneaux de rendez-vous dans Doctolib. Vos équipes ne saisissent plus deux fois, et les agendas cessent de diverger.
+        Le planning validé dans Momentum ouvre automatiquement les créneaux de rendez-vous dans Doctolib. Vos équipes ne saisissent plus deux fois.
       </p>
       <ul class="mt-5 flex flex-wrap gap-2">
         {gains.map((g) => (
@@ -65,13 +65,13 @@ const gains = [
         <div class="border-secondary/15 rounded-xl border bg-white/60 p-5">
           <h2 class="text-muted-foreground text-xs font-semibold tracking-wide uppercase">Aujourd’hui</h2>
           <p class="text-foreground/85 mt-2 text-sm">
-            Le planning est arrêté dans Momentum, puis les créneaux sont ressaisis dans Doctolib, agenda par agenda, salle par salle. À chaque garde déplacée, il faut recommencer, et le secrétariat court derrière les écarts.
+            Le planning est arrêté dans Momentum, puis les créneaux sont ressaisis dans Doctolib, agenda par agenda, salle par salle.
           </p>
         </div>
         <div class="border-accent/30 bg-primary/5 rounded-xl border p-5">
           <h2 class="text-accent text-xs font-semibold tracking-wide uppercase">Avec l’intégration</h2>
           <p class="text-foreground/85 mt-2 text-sm">
-            Le planning publié part dans Doctolib avec les bonnes journées types, les bonnes salles et les bons médecins. Plus de ressaisie, plus d’écart entre les deux outils, et le temps du trimestre rendu à l’équipe.
+            Le planning publié part dans Doctolib avec les bonnes journées types, les bonnes salles et les bons médecins. Plus de ressaisie, et le temps est rendu à l’équipe.
           </p>
         </div>
       </div>
@@ -86,7 +86,7 @@ const gains = [
           </li>
           <li class="flex gap-4">
             <span class="bg-primary/10 text-accent grid size-7 shrink-0 place-items-center rounded-full text-sm font-bold">2</span>
-            <span class="text-foreground/85">Le temps gagné au quotidien : ouverture des agendas, changements de dernière minute, fin des doubles saisies.</span>
+            <span class="text-foreground/85">Le temps gagné : l’ouverture des agendas de rendez-vous, sans double saisie.</span>
           </li>
           <li class="flex gap-4">
             <span class="bg-primary/10 text-accent grid size-7 shrink-0 place-items-center rounded-full text-sm font-bold">3</span>
