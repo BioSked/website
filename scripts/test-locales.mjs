@@ -85,4 +85,9 @@ assert.match(baseHeadSource, /'de-ch':\s*'de_CH'/, 'Deutsch (Schweiz) must publi
 assert.match(pricingPlansSource, /DE_CH_PRICING_PLANS/, 'Deutsch (Schweiz) must define localized pricing plans');
 assert.match(deChMarketSource, /CHF\s*5\.99/, 'Deutsch (Schweiz) pricing must be denominated in CHF');
 
+const nlMarketSource = await readFile(new URL('../src/i18n/market/nl.ts', import.meta.url), 'utf8');
+const nlDemoSub = nlMarketSource.match(/\bdemo:\s*\{[\s\S]*?\bsub:\s*'([^']+)'/)?.[1];
+assert.equal(typeof nlDemoSub, 'string', 'Dutch demo introduction must exist');
+assert.match(nlDemoSub, /\bdemo\b[^.;!?]*\bNederlands\b/i, 'Dutch demo introduction must offer a demo in Dutch');
+
 console.log('locale navigation tests passed');
