@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
+import * as jfrLogic from '../src/lib/jfr2026.mjs';
 
 import { JFR2026, SESSIONS, SOURCES, VALEUR_AUCUNE, sessionsPubliees } from '../src/data/jfr2026.mjs';
 import {
@@ -7,6 +8,7 @@ import {
   buildJfrSubmission,
   countPlaces,
   preselectedFromSearch,
+
   seatStatus,
   slugFromValue,
   sourceFromSearch,
@@ -68,6 +70,19 @@ assert.equal(field(cancel, 'jfr26_sujet_champ_ouvert'), undefined);
 assert.equal(field(cancel, 'jfr26_source'), undefined, 'une annulation ne remplace pas la source');
 const untagged = buildJfrSubmission({ values, sessions: SESSIONS, inscrire: ['s0945'], source: '', aucune: VALEUR_AUCUNE, now });
 assert.equal(field(untagged, 'jfr26_source'), undefined, 'lien sans source : la source d’origine est conservée');
+
+// A blocked attempt must never be displayed as a saved booking/cancellation.
+assert.equal(typeof jfrLogic.registrationBlockMessage, 'function', 'guard must return a non-success outcome');
+const registrationBlockMessage = jfrLogic.registrationBlockMessage;
+assert.equal(registrationBlockMessage({ honeypot: '', elapsedMs: 3000 }), null);
+assert.match(registrationBlockMessage({ honeypot: '', elapsedMs: 2999 }), /pas.*envoyée/);
+assert.match(registrationBlockMessage({ honeypot: 'autofill-or-bot', elapsedMs: 10000 }), /pas.*envoyée/);
+assert.match(registrationBlockMessage({ honeypot: ' ', elapsedMs: 10000 }), /pas.*envoyée/);
+for (const page of ['index.astro', 'doctolib/index.astro']) {
+  const source = readFileSync(new URL(`../src/pages/fr/jfr-2026/${page}`, import.meta.url), 'utf8');
+  assert.doesNotMatch(source, /if\s*\(values\.site_web[^\n]*return done\(\)/, `${page}: never fake success before POST`);
+  assert.match(source, /if\s*\(blocked\)\s*return show\(blocked\)/, `${page}: show a recoverable blocked-attempt message`);
+}
 
 // Agenda
 const ics = buildIcs(SESSIONS[0], JFR2026, now);

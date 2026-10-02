@@ -211,6 +211,7 @@ const debutJournee = heure(programme[0].debut);
     buildIcs,
     buildJfrSubmission,
     preselectedFromSearch,
+    registrationBlockMessage,
     seatStatus,
     sourceFromSearch,
     splitSelection,
@@ -327,7 +328,8 @@ const debutJournee = heure(programme[0].debut);
 
       const { inscrire, attente } = splitSelection(selected, statuses);
       const done = () => renderConfirmation({ annulation, inscrire, attente });
-      if (values.site_web || Date.now() - loadedAt < MIN_FILL_MS) return done();
+      const blocked = registrationBlockMessage({ honeypot: values.site_web, elapsedMs: Date.now() - loadedAt, minFillMs: MIN_FILL_MS });
+      if (blocked) return show(blocked);
 
       const payload = buildJfrSubmission({
         values,

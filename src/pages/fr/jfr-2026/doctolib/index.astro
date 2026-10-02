@@ -197,7 +197,7 @@ const gains = [
 
 <script>
   import { VALEUR_AUCUNE } from '@/data/jfr2026.mjs';
-  import { buildJfrSubmission, seatStatus, statusLabel } from '@/lib/jfr2026.mjs';
+  import { buildJfrSubmission, registrationBlockMessage, seatStatus, statusLabel } from '@/lib/jfr2026.mjs';
 
   type Session = { slug: string; titre: string; debut: string; fin: string; valeurHubspot: string };
 
@@ -277,7 +277,8 @@ const gains = [
 
       const attente = statut.etat === 'complet';
       const done = () => renderConfirmation(attente);
-      if (values.site_web || Date.now() - loadedAt < MIN_FILL_MS) return done();
+      const blocked = registrationBlockMessage({ honeypot: values.site_web, elapsedMs: Date.now() - loadedAt, minFillMs: MIN_FILL_MS });
+      if (blocked) return show(blocked);
 
       const payload = buildJfrSubmission({
         values,

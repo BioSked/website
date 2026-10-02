@@ -2,6 +2,17 @@
 
 const CONTACT = '0-1';
 
+// Un blocage local n'est jamais une confirmation d'enregistrement.
+export function registrationBlockMessage({ honeypot, elapsedMs, minFillMs = 3000 }) {
+  if (honeypot) {
+    return 'La demande n’a pas été envoyée. Rechargez la page, puis renseignez vos coordonnées manuellement.';
+  }
+  if (!Number.isFinite(elapsedMs) || elapsedMs < minFillMs) {
+    return 'La demande n’a pas encore été envoyée. Patientez quelques secondes, puis validez à nouveau.';
+  }
+  return null;
+}
+
 export function slugFromValue(value) {
   const match = /^(\d{2}):(\d{2})(?:\s|$)/.exec(String(value ?? '').trim());
   return match ? `s${match[1]}${match[2]}` : null;
