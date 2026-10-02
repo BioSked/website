@@ -88,6 +88,6 @@ assert.match(deChMarketSource, /CHF\s*5\.99/, 'Deutsch (Schweiz) pricing must be
 const nlMarketSource = await readFile(new URL('../src/i18n/market/nl.ts', import.meta.url), 'utf8');
 const nlDemoSub = nlMarketSource.match(/\bdemo:\s*\{[\s\S]*?\bsub:\s*'([^']+)'/)?.[1];
 assert.equal(typeof nlDemoSub, 'string', 'Dutch demo introduction must exist');
-assert.match(nlDemoSub, /\bdemo\b[^.;!?]*\bNederlands\b/i, 'Dutch demo introduction must offer a demo in Dutch');
+assert.doesNotMatch(nlDemoSub, /\b(?:Nederlands|Engels|Frans)\b/i, 'Dutch demo introduction must omit redundant language explanations');
 
 console.log('locale navigation tests passed');
