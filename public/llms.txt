@@ -11,6 +11,7 @@ Key facts (published): used by more than 250 healthcare organizations on more th
 - [Book a demo](https://biosked.com/demo/): Product demonstration request.
 - [About BioSked](https://biosked.com/about/): Company background, locations and leadership.
 - [Help center](https://biosked.com/help/): Public knowledge base for Momentum users and administrators.
+- [Physician call schedule guide](https://biosked.com/guides/physician-call-schedule/): How to build a fair call schedule in the US (ACGME duty hours for residents, fairness counters, six steps) with a free Excel template.
 
 ## France and French-speaking countries
 
@@ -33,6 +34,9 @@ Key facts (published): used by more than 250 healthcare organizations on more th
 - [Deutsch](https://biosked.com/de/): German product overview.
 - [Nederlands](https://biosked.com/nl/): Dutch product overview.
 - [Italiano](https://biosked.com/it/): Italian product overview.
+- [Dienstplan für Ärzte](https://biosked.com/de/ratgeber/dienstplan-aerzte/): German guide to fair physician duty rosters (Arbeitszeitgesetz, TV-Ärzte) with a free Excel template.
+- [Wachtrooster voor artsen](https://biosked.com/nl/gids/wachtrooster-artsen/): Dutch guide for Belgium (law of 12 December 2010) and the Netherlands, with a free Excel template.
+- [Turni di guardia dei medici](https://biosked.com/it/guida/turni-di-guardia-medici/): Italian guide (D.Lgs. 66/2003, CCNL Area Sanità) with a free Excel template.
 
 ## Optional
 

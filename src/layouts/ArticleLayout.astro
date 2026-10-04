@@ -7,6 +7,12 @@ const locale = Astro.currentLocale ?? 'en';
 const DATE_LOCALES: Record<string, string> = { en: 'en-US', fr: 'fr-FR', 'fr-ch': 'fr-CH', de: 'de-DE', 'de-ch': 'de-CH', nl: 'nl-NL', it: 'it-IT' };
 const BREADCRUMB_LABEL: Record<string, string> = { en: 'News', fr: 'Article', 'fr-ch': 'Article', de: 'Artikel', 'de-ch': 'Artikel', nl: 'Artikel', it: 'Articolo' };
 const blogHref = locale === 'en' ? '/blog/' : `/${locale}/blog/`;
+const homeHref = locale === 'en' ? '/' : `/${locale}/`;
+// Guides outside the blog (localized on-call guides) set a breadcrumb label and
+// link to the locale home instead of a blog index that may not exist there.
+const crumbHref = frontmatter.breadcrumb ? homeHref : blogHref;
+const crumbLabel = frontmatter.breadcrumb ? 'BioSked' : 'Blog';
+const demoBase = locale === 'en' ? '/demo/' : `/${locale}/demo/`;
 
 const postDate = new Date(frontmatter.date);
 const pubDate = postDate.toLocaleDateString(DATE_LOCALES[locale] ?? 'en-US', {
@@ -38,7 +44,7 @@ const articleSchema = JSON.stringify({
         {
             '@type': 'BreadcrumbList',
             itemListElement: [
-                { '@type': 'ListItem', position: 1, name: 'Blog', item: new URL(blogHref, Astro.site ?? 'https://biosked.com').toString() },
+                { '@type': 'ListItem', position: 1, name: crumbLabel, item: new URL(crumbHref, Astro.site ?? 'https://biosked.com').toString() },
                 { '@type': 'ListItem', position: 2, name: frontmatter.title, item: canonical },
             ],
         },
@@ -66,7 +72,7 @@ const frTopicLink = FR_TOPIC_LINKS.find((t) => t.words.some((w) => slugWords.inc
 <BaseLayout title={frontmatter.title} description={frontmatter.description} author={authorName || undefined}>
 	<script is:inline type="application/ld+json" set:html={articleSchema} />
 	<div class="container max-w-5xl section-padding text-sm md:text-base mb-10 md:mb-20 group redacted">
-		<div class="text-muted-foreground text-sm font-medium text-center mb-4"><a href={blogHref} class="transition-all hover:text-foreground">Blog</a> <span class="mx-1 font-light">/</span> {BREADCRUMB_LABEL[locale] ?? 'News'}</div>
+		<div class="text-muted-foreground text-sm font-medium text-center mb-4"><a href={crumbHref} class="transition-all hover:text-foreground">{crumbLabel}</a> <span class="mx-1 font-light">/</span> {frontmatter.breadcrumb ?? BREADCRUMB_LABEL[locale] ?? 'News'}</div>
 		<h1 class="text-display-section font-bold text-center max-w-xl mx-auto mb-6">
 			{frontmatter.title}
 		</h1>
@@ -74,7 +80,24 @@ const frTopicLink = FR_TOPIC_LINKS.find((t) => t.words.some((w) => slugWords.inc
 		<div class="mb-8 text-center text-muted-foreground text-tight">{byline}</div>
 		<slot />
 
-		{isFrench && (
+		{frontmatter.aside && (
+			<aside class="mt-14 rounded-lg border border-secondary/15 bg-white/40 p-6 md:p-8 not-prose">
+				<p class="text-foreground font-semibold mb-1">{frontmatter.aside.heading}</p>
+				<p class="text-muted-foreground mb-5">{frontmatter.aside.text}</p>
+				<div class="flex flex-wrap gap-3">
+					<a href={`${demoBase}?ref=${slugWords.join('-')}`}>
+						<Button size="lg" className="rounded-full px-5 font-bold">{frontmatter.aside.demo_label}</Button>
+					</a>
+					{frontmatter.aside.secondary_href && (
+						<a href={frontmatter.aside.secondary_href}>
+							<Button size="lg" variant="ghost" className="rounded-full px-4 font-semibold">{frontmatter.aside.secondary_label}</Button>
+						</a>
+					)}
+				</div>
+			</aside>
+		)}
+
+		{isFrench && !frontmatter.aside && (
 			<aside class="mt-14 rounded-lg border border-secondary/15 bg-white/40 p-6 md:p-8 not-prose">
 				<p class="text-foreground font-semibold mb-1">
 					Ces sujets sont notre métier depuis plus de 15 ans.

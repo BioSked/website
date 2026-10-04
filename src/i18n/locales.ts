@@ -77,6 +77,8 @@ function isLocaleOnly(cur: LocaleCode, rest: string): boolean {
  */
 const PAGE_EQUIV: Record<string, Partial<Record<LocaleCode, string>>> = {
     references: { fr: '/fr/cas-clients', de: '/de/referenzen', 'de-ch': '/de-ch/referenzen', nl: '/nl/referenties', it: '/it/referenze' },
+    // On-call scheduling guide, localized per market (law, holidays, template).
+    oncallGuide: { en: '/guides/physician-call-schedule', fr: '/fr/blog/planning-de-garde-medecins', nl: '/nl/gids/wachtrooster-artsen', de: '/de/ratgeber/dienstplan-aerzte', it: '/it/guida/turni-di-guardia-medici' },
     security: { fr: '/fr/securite-donnees', 'fr-ch': '/fr-ch/securite-donnees', de: '/de/sicherheit-und-daten', 'de-ch': '/de-ch/sicherheit-und-daten', nl: '/nl/beveiliging-en-gegevens', it: '/it/sicurezza-e-dati' },
 };
 

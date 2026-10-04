@@ -95,10 +95,10 @@ export default defineConfig({
                 // de/de-ch/nl/it/fr-ch: only genuinely localized routes
                 const m = page.match(/^https:\/\/biosked\.com\/(de|de-ch|nl|it|fr-ch)\/(.*)$/);
                 const allowed = {
-                    de: ['', 'demo/', 'pricing/', 'getquote/', 'referenzen/', 'sicherheit-und-daten/'],
+                    de: ['', 'demo/', 'pricing/', 'getquote/', 'referenzen/', 'sicherheit-und-daten/', 'ratgeber/dienstplan-aerzte/'],
                     'de-ch': ['', 'demo/', 'pricing/', 'getquote/', 'referenzen/', 'sicherheit-und-daten/', 'impressum/'],
-                    nl: ['', 'demo/', 'pricing/', 'getquote/', 'referenties/', 'beveiliging-en-gegevens/', 'arbeidstijdregistratie-2027/'],
-                    it: ['', 'demo/', 'pricing/', 'getquote/', 'referenze/', 'sicurezza-e-dati/'],
+                    nl: ['', 'demo/', 'pricing/', 'getquote/', 'referenties/', 'beveiliging-en-gegevens/', 'arbeidstijdregistratie-2027/', 'gids/wachtrooster-artsen/'],
+                    it: ['', 'demo/', 'pricing/', 'getquote/', 'referenze/', 'sicurezza-e-dati/', 'guida/turni-di-guardia-medici/'],
                     'fr-ch': ['', 'pricing/', 'demo/', 'getquote/', 'securite-donnees/', 'mentions-legales/'],
                 };
                 // The knowledge base is fully translated for de/nl/it; de-ch and fr-ch read de/fr.

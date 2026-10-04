@@ -49,7 +49,7 @@ Pour les praticiens hospitaliers des établissements publics, l’[article R6152
 - **Un repos quotidien de onze heures consécutives** par période de 24 heures, garanti après le dernier déplacement d’une astreinte.
 - **24 heures de travail continu au plus**, en cas de nécessité de service, suivies aussitôt d’un repos d’une durée équivalente. C’est ce que l’on appelle couramment le repos de sécurité.
 
-![Deux exemples : une garde sur place de 24 heures suivie de 24 heures de repos, et une astreinte de nuit dont le dernier déplacement finit à 8 heures, suivie de 11 heures de repos](../../../assets/fr-blog/2026-10-04-planning-de-garde-repos-de-securite.png)
+<figure class="max-w-2xl mx-auto"><picture><source media="(max-width: 640px)" srcset="/guides/fr-planning-de-garde-timeline-m.webp" width="400" height="483"><img src="/guides/fr-planning-de-garde-timeline.webp" alt="Deux exemples : une garde sur place de 24 heures suivie de 24 heures de repos, et une astreinte de nuit dont le dernier déplacement finit à 8 heures, suivie de 11 heures de repos" width="672" height="421" loading="lazy" decoding="async"></picture></figure>
 
 Les autres statuts relèvent d’autres textes ou de règles propres à l’établissement : internes et docteurs juniors, praticiens contractuels, médecins libéraux en clinique ou en groupe d’imagerie. Le nombre maximal de gardes et d’astreintes qu’un praticien peut être tenu d’assurer est fixé par arrêté, et ce texte a été modifié en 2025. Vérifiez la version en vigueur sur Légifrance et faites valider votre organisation par la direction des affaires médicales.
 
@@ -78,7 +78,7 @@ Les 104 samedis et dimanches et les 11 jours fériés de l’année se réparti
 
 ## Construire le planning de garde en six étapes
 
-![Les six étapes : lister les lignes, écrire les règles, collecter absences et souhaits, remplir dans le bon ordre, relire avec les compteurs, publier et tracer les échanges](../../../assets/fr-blog/2026-10-04-planning-de-garde-six-etapes.png)
+<figure class="max-w-2xl mx-auto"><picture><source media="(max-width: 640px)" srcset="/guides/fr-planning-de-garde-steps-m.webp" width="400" height="610"><img src="/guides/fr-planning-de-garde-steps.webp" alt="Les six étapes : lister les lignes, écrire les règles, collecter absences et souhaits, remplir dans le bon ordre, relire avec les compteurs, publier et tracer les échanges" width="672" height="428" loading="lazy" decoding="async"></picture></figure>
 
 ### 1. Lister les lignes
 
