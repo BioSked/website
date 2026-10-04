@@ -87,7 +87,7 @@ const frTopicLink = FR_TOPIC_LINKS.find((t) => t.words.some((w) => slugWords.inc
 					Pour aller plus loin : <a href={frTopicLink.href} class="font-semibold text-foreground underline decoration-secondary/30 underline-offset-4 hover:decoration-secondary">{frTopicLink.label}</a>.
 				</p>
 				<div class="flex flex-wrap gap-3">
-					<a href="/fr/demo/">
+					<a href={`/fr/demo/?ref=${slugWords.join('-')}`}>
 						<Button size="lg" className="rounded-full px-5 font-bold">Demander une démo</Button>
 					</a>
 					<a href="/fr/cas-clients/">

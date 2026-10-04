@@ -148,4 +148,4 @@ Sur l’année, ou sur douze mois glissants. Le mois sert à vérifier les contr
 
 ### Un logiciel peut-il respecter nos règles locales ?
 
-C’est le premier critère à vérifier. Dans Momentum, les règles du service (participation par ligne, repos, maximums, équité) sont paramétrées une fois, puis appliquées à chaque génération du planning. Le plus simple est de le voir sur votre propre organisation : [demander une démo](/fr/demo/).
+C’est le premier critère à vérifier. Dans Momentum, les règles du service (participation par ligne, repos, maximums, équité) sont paramétrées une fois, puis appliquées à chaque génération du planning. Le plus simple est de le voir sur votre propre organisation : [demander une démo](/fr/demo/?ref=planning-de-garde-medecins).

@@ -123,6 +123,8 @@ export function normalizeSiteLanguage(language) {
 
 export function classifyCtaPath(pathname) {
   const segments = String(pathname || '').split('/').filter(Boolean);
+  // Free templates offered on the guides (public/modeles/*.xlsx).
+  if (segments[0] === 'modeles' && segments.length === 2 && /\.xlsx$/i.test(segments[1])) return 'template_download';
   if (LOCALE_PREFIXES.has(segments[0])) segments.shift();
   if (segments.length !== 1) return null;
   if (segments[0] === 'demo') return 'demo_cta_click';

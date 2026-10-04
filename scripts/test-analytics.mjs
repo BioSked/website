@@ -148,6 +148,9 @@ assert.equal(classifyCtaPath('/de-ch/demo/'), 'demo_cta_click');
 assert.equal(classifyCtaPath('/nl/getquote/'), 'quote_cta_click');
 assert.equal(classifyCtaPath('/blog/demo/'), null);
 assert.equal(classifyCtaPath('/demo/thank-you/'), null);
+assert.equal(classifyCtaPath('/modeles/modele-planning-de-garde.xlsx'), 'template_download');
+assert.equal(classifyCtaPath('/modeles/'), null);
+assert.equal(classifyCtaPath('/fr/modeles/x.xlsx'), null);
 
 assert.equal(
   leadEventForForm('e937d75c-2dbc-4b77-8e53-1582aa472092', '/demo/'),
