@@ -19,7 +19,7 @@ export const SCHEDULE = [
     { key: 'ch-pikett-de', date: '2026-10-12', locale: 'de-ch', path: '/de-ch/funktionen/pikettplanung/', kind: 'landing', group: 'pikett', footer: 'Pikettplanung' },
     { key: 'ch-pikett-fr', date: '2026-10-12', locale: 'fr-ch', path: '/fr-ch/fonctionnalites/planning-de-piquet/', kind: 'landing', group: 'pikett', footer: 'Planning de piquet' },
     { key: 'nl-spoed', date: '2026-10-13', locale: 'nl', path: '/nl/specialismen/spoedgevallen/', kind: 'landing', footer: 'Spoedgevallen' },
-    { key: 'frch-refs', date: '2026-10-14', locale: 'fr-ch', path: '/fr-ch/references/', kind: 'md', footer: 'Références' },
+    { key: 'frch-refs', date: '2026-10-14', locale: 'fr-ch', path: '/fr-ch/references/', kind: 'md', group: 'references', footer: 'Références' },
     { key: 'de-tv', date: '2026-10-15', locale: 'de', path: '/de/ratgeber/tv-aerzte-dienstplan-grenzen/', kind: 'md' },
     { key: 'it-guardia', date: '2026-10-16', locale: 'it', path: '/it/funzionalita/turni-di-guardia-e-reperibilita/', kind: 'landing', footer: 'Turni di guardia' },
     { key: 'nl-radio', date: '2026-10-20', locale: 'nl', path: '/nl/specialismen/radiologie/', kind: 'landing', footer: 'Radiologie' },

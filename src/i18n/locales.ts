@@ -95,7 +95,8 @@ const PAGE_EQUIV: Record<string, Partial<Record<LocaleCode, string>>> = {
 
 // Scheduled translation pairs join once every page of the pair is live.
 for (const [name, group] of Object.entries(publishedGroups())) {
-    PAGE_EQUIV[name] = group as Partial<Record<LocaleCode, string>>;
+    // A scheduled page can also join an existing group (e.g. the references pages).
+    PAGE_EQUIV[name] = { ...(PAGE_EQUIV[name] ?? {}), ...(group as Partial<Record<LocaleCode, string>>) };
 }
 
 function equivGroupFor(pathname: string): Partial<Record<LocaleCode, string>> | null {

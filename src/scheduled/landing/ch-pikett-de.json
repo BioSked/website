@@ -1,0 +1,129 @@
+{
+ "key": "ch-pikett-de",
+ "locale": "de-ch",
+ "path": "/de-ch/funktionen/pikettplanung/",
+ "metaTitle": "Pikettplan und Dienstplanung im Spital | Momentum",
+ "metaDescription": "Pikettplan nach Arbeitsgesetz: höchstens 7 Pikett-Tage in 4 Wochen, Interventionszeit, Ruhezeit nach Einsätzen. Momentum plant Pikett und Dienste.",
+ "eyebrow": "Pikett- und Dienstplanung",
+ "title": "Pikett- und Dienstplanung für Spitäler",
+ "description": "Bereitschaft im Haus, Hintergrunddienst auf Pikett, Tagdienste: Momentum erstellt den Plan nach den Regeln Ihrer Klinik und hält die Zähler bei jedem Tausch aktuell.",
+ "painsHeading": "Warum der Pikettplan so viel Zeit kostet",
+ "primaryPain": "Ein Pikettplan ist schnell gezeichnet und schwer korrekt zu halten. Das Arbeitsgesetz erlaubt höchstens sieben Pikett-Tage in vier Wochen, danach folgen zwei Wochen ohne Pikett. Nächtliche Einsätze verschieben die Ruhezeit in den nächsten Tag, und jeder Tausch kann eine dieser Grenzen verletzen, ohne dass es in der Tabelle auffällt.",
+ "pains": [
+  "sieben Pikett-Tage in vier Wochen und die zwei Wochen danach im Blick behalten",
+  "Ruhezeiten nach nächtlichen Einsätzen in den Folgetag einplanen",
+  "Pikett, Wochenenden und Feiertage nach Pensum fair verteilen",
+  "Tausche nachführen, ohne dass Plan und Zähler auseinanderlaufen"
+ ],
+ "outcomesHeading": "Was Momentum für die Planenden ändert",
+ "outcomes": [
+  "ein Monatsplan in 4 bis 5 Stunden statt in 4 Tagen (Notfallstation des CHIREC, Belgien, Fallstudie Mai 2025)",
+  "bis zu 90 % weniger Zeitaufwand für die Dienstplanung (gleiche Fallstudie)",
+  "52 Ärztinnen und Ärzte zwischen Notfallstation und SAMU in einem Plan (CHU d’Angers, Kunde seit 2021, Fallstudie 2023)",
+  "Zähler für Pikett, Nächte, Wochenenden und Feiertage, für das ganze Team einsehbar"
+ ],
+ "quote": {
+  "text": "Ich hätte nicht erwartet, dass Momentum eine solche Wirkung hat. Alles ist klar, flüssig, automatisiert. Ich bin beeindruckt, wie das Tool derart optimierte Dienstpläne generiert und dabei fast alle Wünsche berücksichtigt.",
+  "cite": "Dr. Frédéric Cavallotto, Leiter der Notfallstation, Hôpital de Braine-l’Alleud, Groupe CHIREC (Fallstudie, Mai 2025, aus dem Französischen übersetzt)",
+  "href": "/de-ch/referenzen/"
+ },
+ "sections": [
+  {
+   "heading": "Die Pikettregeln des Arbeitsgesetzes",
+   "paragraphs": [
+    "Beim Pikettdienst halten sich Ärztinnen und Ärzte neben der normalen Arbeit für Einsätze bereit (Art. 14 Abs. 1 ArGV 1). Die Verordnung 1 zum Arbeitsgesetz (Stand 1. September 2024) setzt jedem Pikettplan drei Grenzen.",
+    "Erstens die Häufigkeit: höchstens sieben Tage Pikett oder Piketteinsätze in vier Wochen, und nach dem letzten Pikettdienst zwei Wochen ohne Aufgebot (Art. 14 Abs. 2). Ausnahmsweise sind 14 Tage in vier Wochen erlaubt, wenn Grösse und Struktur des Betriebs keine genügenden Personalressourcen zulassen und im Jahresdurchschnitt höchstens fünf Einsätze pro Monat anfallen (Art. 14 Abs. 3).",
+    "Zweitens die Anrechnung: Pikett im Betrieb ist ganz Arbeitszeit. Pikett ausserhalb zählt, soweit tatsächlich gearbeitet wird, samt Weg zur Arbeit und zurück (Art. 15). Drittens die Ruhe: Einsätze dürfen die tägliche Ruhezeit unterbrechen, der Rest wird danach nachgewährt. Kommen keine vier Stunden Ruhe am Stück zustande, folgen nach dem letzten Einsatz 11 Stunden Ruhezeit (Art. 19 Abs. 3)."
+   ]
+  },
+  {
+   "heading": "Interventionszeit unter 30 Minuten",
+   "paragraphs": [
+    "Für Spitäler und Kliniken ergänzt Art. 8a ArGV 2 (Stand 1. Februar 2026) diese Regeln. Zwischen Aufruf und Eintreffen am Arbeitsort liegen grundsätzlich mindestens 30 Minuten. Ist die Frist aus zwingenden Gründen kürzer, gibt es eine Zeitgutschrift von 10 % der inaktiven Pikettzeit, zusätzlich zu Einsatz und Wegzeit. Muss das Pikett deshalb im Spital geleistet werden, gilt die ganze Zeit als Arbeitszeit. In beiden Fällen bleibt es bei höchstens sieben Tagen in vier Wochen, die Ausnahme mit 14 Tagen entfällt.",
+    "Das SECO rechnet im Merkblatt für Spitäler (Version vom 6. März 2023) vor: Pikett von 20 bis 8 Uhr, ein Einsatz von 1 Stunde 20 Minuten, je 20 Minuten Weg. Inaktiv waren 10 Stunden, die Gutschrift beträgt also 1 Stunde, dazu kommen 2 Stunden für Einsatz und Weg. Die Gutschrift ist innerhalb eines Jahres zu gewähren."
+   ]
+  },
+  {
+   "heading": "Bereitschaft im Haus ist kein Pikett",
+   "paragraphs": [
+    "Dürfen die Ärztinnen und Ärzte das Spital nicht verlassen, spricht das SECO von Bereitschaftsdienst. Er zählt vollständig als Arbeitszeit, auch ohne Einsatz, und danach ist die tägliche Ruhezeit zu gewähren. Auch eine Interventionszeit, die das Verlassen des Spitals objektiv nicht erlaubt, macht aus Pikett Bereitschaft.",
+    "Für den Plan heisst das: Bereitschaft im Haus und Pikett von zu Hause gehören in getrennte Dienstlinien, mit eigenen Regeln und Zählern. Auch telefonische Beratung von zu Hause aus zählt laut SECO als Arbeitszeit."
+   ]
+  },
+  {
+   "heading": "Den Pikettplan in Vierwochenfenstern denken",
+   "paragraphs": [
+    "Ein Monatsplan verdeckt die Vierwochengrenze. Prüfen Sie Pikett-Tage in rollenden vier Wochen und tragen Sie die zwei pikettfreien Wochen gleich mit ein. Laut SECO müssen sie nicht im Vierwochenfenster liegen, sie können auch daran anschliessen.",
+    "Kurzfristige Änderungen an Pikettplan und Einteilung sind bei Personen mit Familienpflichten nur mit deren Einverständnis möglich, und nur, wenn dem Betrieb keine andere Lösung zumutbar ist (Art. 14 Abs. 4 ArGV 1). Schwangere und stillende Mütter dürfen laut SECO nicht für Pikett eingeteilt werden.",
+    "Pikettzulagen regelt nicht das Arbeitsgesetz, sondern der Arbeitsvertrag oder der Gesamtarbeitsvertrag. Damit die Lohnbuchhaltung richtig rechnet, muss jeder Pikettdienst eindeutig im Plan stehen."
+   ]
+  },
+  {
+   "heading": "Wie Momentum Pikett und Dienste plant",
+   "paragraphs": [
+    "In Momentum hat jede Dienstlinie ihre Zeiten, ihre Teilnehmenden und ihre Regeln: Tagdienst, Bereitschaftsdienst, Hintergrunddienst auf Pikett. Ruhezeiten, Höchstwerte pro Zeitraum und die Verteilung nach Pensum richten Sie einmal ein. Momentum erstellt den Plan nach diesen Regeln und prüft vor der Publikation, ob jede Linie besetzt ist. Setzt eine manuelle Änderung jemanden in eine Ruhezeit, erscheint eine Warnung.",
+    "Wünsche, Absenzen und Tausche laufen über die App oder das Web. Vor dem Bewilligen sehen Sie, was ein Tausch für Abdeckung und Zähler bedeutet. Der publizierte Plan erscheint auf dem Smartphone, Änderungen lösen eine Benachrichtigung aus, und die Dienste lassen sich mit dem persönlichen Kalender synchronisieren. Validierte Stunden, Dienste und Pikettdienste gehen per Export an die Lohnbuchhaltung."
+   ]
+  },
+  {
+   "heading": "Mit einer Klinik beginnen",
+   "paragraphs": [
+    "Meist beginnt ein Spital mit einer Klinik und erweitert danach. Am CHU d’Angers lief Momentum zuerst in der Anästhesie, dann folgte die Notfallmedizin mit 52 Ärztinnen und Ärzten (Fallstudie 2023). Beim CHIREC kam die Notfallstation nach der Radiologie dazu. Wer an mehreren Standorten arbeitet, hat einen einzigen Plan."
+   ]
+  }
+ ],
+ "proof": "Momentum wird von mehr als 250 Gesundheitsorganisationen an über 1000 Standorten in neun Ländern genutzt, von mehr als 50 000 Personen. BioSked plant ärztliche Dienste seit mehr als 15 Jahren.",
+ "faq": [
+  {
+   "q": "Wie viele Pikett-Tage sind pro Monat erlaubt?",
+   "a": "Das Gesetz rechnet in vier Wochen, nicht im Monat: höchstens sieben Tage, danach zwei Wochen ohne Pikett (Art. 14 Abs. 2 ArGV 1). Mehr ist nur ausnahmsweise erlaubt, und bei einer Interventionszeit unter 30 Minuten nie (Art. 8a Abs. 4 ArGV 2)."
+  },
+  {
+   "q": "Zählt ein Telefonat während des Piketts als Arbeitszeit?",
+   "a": "Ja. Laut SECO-Merkblatt für Spitäler gilt auch die Zeit als Arbeitszeit, die bei einem Pikett zu Hause ohne Anfahrt anfällt, einschliesslich der Zeit am Telefon. Rückt jemand aus, zählen Einsatz und Arbeitsweg (Art. 15 Abs. 2 ArGV 1)."
+  },
+  {
+   "q": "Wer legt die Pikettzulage fest?",
+   "a": "Nicht das Arbeitsgesetz. Laut SECO müssen Zuschläge für Pikett ausserhalb des Betriebs im Arbeitsvertrag vereinbart oder im Gesamtarbeitsvertrag geregelt sein."
+  },
+  {
+   "q": "Gelten die Pikettregeln auch für Kaderärztinnen und Kaderärzte?",
+   "a": "In einem Spital, das dem Arbeitsgesetz untersteht, gelten sie für alle Ärztinnen und Ärzte ausser jenen mit höherer leitender Tätigkeit, laut SECO in der Regel Chefärztinnen und Chefärzte. In Spitälern, die vom Gesetz ausgenommen sind, gelten sie nur für Assistenzärztinnen und Assistenzärzte. Die Abgrenzung erklärt unser Ratgeber zum Dienstplan."
+  },
+  {
+   "q": "Kann Momentum unsere Pikettregeln abbilden?",
+   "a": "Ihre Regeln werden einmal eingerichtet: Teilnahme pro Dienstlinie, Ruhezeiten, Höchstwerte pro Zeitraum, Verteilung nach Pensum. Momentum wendet sie bei jeder Planerstellung an. Am besten prüfen Sie das in einer Demo mit Ihrem eigenen Pikettmodell."
+  }
+ ],
+ "related": [
+  {
+   "label": "Ratgeber Dienstplan, mit Excel-Vorlage",
+   "href": "/de-ch/ratgeber/dienstplan-aerzte/"
+  },
+  {
+   "label": "Feiertage 2027 nach Kanton",
+   "href": "/de-ch/ratgeber/feiertage-2027-kantone/"
+  },
+  {
+   "label": "42+4-Stunden-Woche im Dienstplan",
+   "href": "/de-ch/ratgeber/42-plus-4-dienstplan/"
+  },
+  {
+   "label": "Referenzen",
+   "href": "/de-ch/referenzen/"
+  },
+  {
+   "label": "Preise Schweiz",
+   "href": "/de-ch/pricing/"
+  }
+ ],
+ "labels": {
+  "demo": "Demo anfragen",
+  "secondary": "Referenzen ansehen",
+  "secondaryHref": "/de-ch/referenzen/",
+  "momentumEyebrow": "So plant Momentum",
+  "proofEyebrow": "Referenzen",
+  "faqHeading": "Häufige Fragen zum Pikettplan",
+  "imageAlt": "Momentum: Monatsplan mit Bereitschafts- und Pikettdiensten und Zählern pro Ärztin und Arzt"
+ }
+}

@@ -1,0 +1,128 @@
+{
+ "key": "ch-pikett-fr",
+ "locale": "fr-ch",
+ "path": "/fr-ch/fonctionnalites/planning-de-piquet/",
+ "metaTitle": "Planning de piquet et de garde à l’hôpital | Momentum",
+ "metaDescription": "Planning de piquet à l’hôpital selon la LTr : 7 jours sur 4 semaines, délai d’intervention, repos. Momentum génère gardes et piquets selon vos règles.",
+ "eyebrow": "Gardes et piquets",
+ "title": "Planning de garde et de piquet pour les hôpitaux",
+ "description": "Garde sur place, piquet à domicile, activité de jour : Momentum génère le planning selon les règles de chaque service et met les compteurs à jour à chaque échange.",
+ "painsHeading": "Ce qui complique un planning de piquet",
+ "primaryPain": "Dans beaucoup de services, le piquet vit dans un tableur à part. Or il obéit à des limites précises : sept jours au plus sur quatre semaines, deux semaines sans piquet ensuite, un repos à recalculer après chaque intervention de nuit. Un échange accepté par message suffit pour qu’une limite saute sans que personne ne le voie.",
+ "pains": [
+  "suivre les jours de piquet de chacun sur quatre semaines glissantes",
+  "distinguer garde sur place et piquet à domicile dans le décompte des heures",
+  "répartir nuits, week-ends et jours fériés selon le taux d’activité",
+  "garder planning et compteurs à jour après chaque échange"
+ ],
+ "outcomesHeading": "Ce que Momentum change pour le chef de service",
+ "outcomes": [
+  "un planning mensuel construit en 4 à 5 heures au lieu de 4 jours (urgences du CHIREC, Belgique, étude de cas, mai 2025)",
+  "une satisfaction du personnel de 90 à 100 % (même étude)",
+  "52 médecins partagés entre urgences et SAMU dans un seul planning, avec une satisfaction de 95 à 100 % (CHU d’Angers, client depuis 2021, étude de cas 2023)",
+  "des compteurs de gardes et de piquets consultables par toute l’équipe"
+ ],
+ "quote": {
+  "text": "Aujourd’hui tout est au même endroit et accessible sur internet, en tant qu’administrateur de Momentum pour le DMU, je n’ai rien à faire si ce n’est à me connecter pour accéder à toutes les demandes des praticiens et gérer mes plannings.",
+  "cite": "Dr Thomas Boishardy, praticien hospitalier, département de médecine d’urgence, CHU d’Angers (étude de cas, 2023)",
+  "href": "/fr/cas-clients/chu-angers/"
+ },
+ "sections": [
+  {
+   "heading": "Garde ou piquet : ce qui compte comme temps de travail",
+   "paragraphs": [
+    "Le SECO trace la frontière simplement. Si le médecin doit rester à l’hôpital, il ne s’agit plus d’un piquet mais d’une garde : elle compte en entier comme temps de travail, même sans intervention, et le repos quotidien habituel suit (aide-mémoire pour les hôpitaux et cliniques, version du 15 mars 2023).",
+    "Le piquet effectué dans l’établissement compte lui aussi en entier. À domicile, seuls comptent l’activité effectivement déployée et le trajet aller-retour (art. 15 OLT 1). Le temps passé au téléphone, sans se déplacer, compte également, précise le SECO."
+   ]
+  },
+  {
+   "heading": "Les limites du piquet, article par article",
+   "paragraphs": [
+    "Sept jours au plus par période de quatre semaines, puis deux semaines sans piquet après le dernier service (art. 14, al. 2, OLT 1, état le 1er septembre 2024). À titre exceptionnel, quatorze jours, si le personnel manque et si les interventions ne dépassent pas cinq par mois en moyenne annuelle (art. 14, al. 3).",
+    "Dans les hôpitaux, le délai entre l’appel et l’arrivée sur le lieu de travail est en principe d’au moins 30 minutes (art. 8a OLT 2, état le 1er février 2026). S’il est plus court pour des raisons impérieuses, le médecin reçoit une compensation en temps de 10 % de la période inactive ; si ce délai l’oblige à rester sur place, tout le service compte comme temps de travail. Dans ces deux cas, la limite reste de sept jours sur quatre semaines.",
+    "Les interventions peuvent interrompre le repos quotidien, à condition que la fraction restante suive immédiatement. S’il ne reste pas 4 heures de repos consécutives, 11 heures de repos suivent la dernière intervention (art. 19, al. 3, OLT 1)."
+   ]
+  },
+  {
+   "heading": "Un exemple chiffré",
+   "paragraphs": [
+    "L’aide-mémoire du SECO prend ce cas : piquet de 20 h à 8 h, une intervention de 1 h 20, 20 minutes de trajet à l’aller et autant au retour, avec un délai d’intervention de moins de 30 minutes. La période inactive dure 10 heures : le médecin a droit à 1 heure de compensation, qui s’ajoute aux 2 heures d’intervention et de trajet, et qui est accordée dans l’année. Le lendemain dépend donc de la nuit réelle, pas seulement des cases du planning."
+   ]
+  },
+  {
+   "heading": "Avant de publier : cinq vérifications",
+   "paragraphs": [
+    "Sur quatre semaines glissantes, personne ne dépasse sept jours de piquet, et les deux semaines sans piquet sont posées. Selon le SECO, elles peuvent suivre la période de quatre semaines au lieu d’y être incluses.",
+    "Le piquet des médecins ayant des responsabilités familiales n’est pas modifié à bref délai sans leur accord (art. 14, al. 4, OLT 1). Une femme enceinte ou qui allaite n’est pas affectée au piquet (aide-mémoire du SECO).",
+    "Garde sur place et piquet forment deux lignes distinctes, avec leurs propres compteurs. Enfin, l’indemnité de piquet relève du contrat ou de la CCT, pas de la LTr : chaque piquet doit figurer clairement dans le planning transmis à la paie."
+   ]
+  },
+  {
+   "heading": "Momentum : gardes, piquets et activité de jour dans un même planning",
+   "paragraphs": [
+    "Garde sur place, piquet de médecin cadre, consultation : chaque ligne a ses horaires, ses participants et ses règles. Vous paramétrez une fois repos, maximums sur une période et répartition selon le taux d’activité ; Momentum les applique à chaque génération et vérifie la couverture avant publication. Si une modification manuelle place un médecin sur une activité pendant son repos, une alerte le signale.",
+    "Souhaits, absences et échanges passent par l’application mobile ou le web. Avant d’accepter, le responsable voit l’effet sur la couverture et sur les compteurs. Le planning publié arrive sur mobile, chaque changement déclenche une notification, et les gardes se synchronisent avec l’agenda personnel. Heures, gardes et piquets validés partent vers la paie par export."
+   ]
+  },
+  {
+   "heading": "Un service d’abord, puis les autres",
+   "paragraphs": [
+    "Le plus souvent, un hôpital commence par un service, puis étend Momentum aux services voisins. Au CHU d’Angers, l’anesthésie a précédé la médecine d’urgence ; au CHIREC, la radiologie a précédé les urgences. Un médecin qui exerce sur deux sites n’a qu’un planning : une affectation sur un site le rend indisponible sur l’autre au même moment."
+   ]
+  }
+ ],
+ "proof": "Plus de 250 organisations de santé utilisent Momentum sur plus de 1 000 sites, dans neuf pays, avec plus de 50 000 utilisateurs. BioSked planifie le temps médical depuis plus de quinze ans.",
+ "faq": [
+  {
+   "q": "Combien de jours de piquet un médecin peut-il assurer par mois ?",
+   "a": "La loi raisonne sur quatre semaines : sept jours au plus, suivis de deux semaines sans piquet (art. 14, al. 2, OLT 1). L’exception de quatorze jours suppose un manque de personnel et au plus cinq interventions par mois en moyenne annuelle ; elle est exclue si le délai d’intervention est inférieur à 30 minutes (art. 8a, al. 4, OLT 2)."
+  },
+  {
+   "q": "Le piquet à domicile compte-t-il comme temps de travail ?",
+   "a": "Pour l’activité effectivement déployée et le trajet, oui (art. 15, al. 2, OLT 1), y compris le temps passé au téléphone sans déplacement, selon le SECO. Avec un délai d’intervention de moins de 30 minutes s’ajoute une compensation de 10 % de la période inactive (art. 8a, al. 2, OLT 2)."
+  },
+  {
+   "q": "Une femme enceinte peut-elle être de piquet ?",
+   "a": "Non. Selon l’aide-mémoire du SECO pour les hôpitaux, la durée du travail des femmes enceintes et des mères qui allaitent ne peut dépasser 9 heures par jour (art. 60 OLT 1) ; il n’est donc pas possible de les affecter à un service de piquet."
+  },
+  {
+   "q": "Qui fixe l’indemnité de piquet ?",
+   "a": "Pas la LTr. Selon le SECO, les indemnités pour un piquet hors de l’entreprise doivent être définies par le contrat de travail ou par la convention collective de travail."
+  },
+  {
+   "q": "Momentum peut-il appliquer nos règles de piquet ?",
+   "a": "Vos règles sont paramétrées une fois : participation par ligne, repos, maximums sur une période, répartition selon le taux d’activité. Momentum les applique à chaque génération du planning. Le plus simple est de le vérifier en démo, sur votre propre organisation."
+  }
+ ],
+ "related": [
+  {
+   "label": "Guide et modèle Excel du planning de garde",
+   "href": "/fr-ch/guide/planning-de-garde-medecins/"
+  },
+  {
+   "label": "Jours fériés 2027 par canton",
+   "href": "/fr-ch/guide/jours-feries-2027-cantons/"
+  },
+  {
+   "label": "Semaine de 42+4 heures et planning",
+   "href": "/fr-ch/guide/semaine-42-plus-4/"
+  },
+  {
+   "label": "Références",
+   "href": "/fr-ch/references/"
+  },
+  {
+   "label": "Tarifs pour la Suisse",
+   "href": "/fr-ch/pricing/"
+  }
+ ],
+ "labels": {
+  "demo": "Demander une démo",
+  "secondary": "Voir les références",
+  "secondaryHref": "/fr-ch/references/",
+  "momentumEyebrow": "Avec Momentum",
+  "proofEyebrow": "Références",
+  "faqHeading": "Questions fréquentes sur le piquet",
+  "imageAlt": "Momentum : planning mensuel avec gardes sur place, piquets et compteurs par médecin"
+ }
+}

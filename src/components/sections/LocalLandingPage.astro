@@ -32,6 +32,7 @@ const faqSchema = page.faq
 const pendingPaths = new Set(SCHEDULE.filter((s) => s.kind !== 'upgrade' && !isPublished(s.key)).map((s) => s.path));
 const relatedLinks = page.related.filter((link) => !pendingPaths.has(link.href));
 const quoteHref = page.quote?.href && !pendingPaths.has(page.quote.href) ? page.quote.href : undefined;
+const secondaryHref = L.secondaryHref && !pendingPaths.has(L.secondaryHref) ? L.secondaryHref : undefined;
 ---
 
 {faqSchema && <script is:inline type="application/ld+json" set:html={faqSchema} />}
@@ -49,8 +50,8 @@ const quoteHref = page.quote?.href && !pendingPaths.has(page.quote.href) ? page.
               {L.demo}
             </Button>
           </a>
-          {L.secondaryHref && (
-            <a href={L.secondaryHref}>
+          {secondaryHref && (
+            <a href={secondaryHref}>
               <Button size="lg" variant="ghost" className="rounded-full px-4 font-semibold">
                 {L.secondary}
               </Button>
@@ -178,7 +179,7 @@ const quoteHref = page.quote?.href && !pendingPaths.has(page.quote.href) ? page.
 
 <section class="pb-16 md:pb-24">
   <div class="container max-w-5xl">
-    {page.resource && (
+    {page.resource && !pendingPaths.has(page.resource.href) && (
       <p class="mb-8 text-lg">
         <a href={page.resource.href} class="font-semibold underline decoration-secondary/30 underline-offset-4 hover:decoration-secondary">{page.resource.label}</a>
       </p>
