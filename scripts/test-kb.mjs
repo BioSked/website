@@ -10,7 +10,7 @@ const snapshot = JSON.parse(raw);
 
 assert.equal(snapshot.schemaVersion, 1, 'KB snapshot schema version must be 1');
 // Only hosts that are never redirected may feed the sync (see docs/KB_RUNBOOK.md).
-assert.ok(['content.biosked.com', 'kb.biosked.fr'].includes(snapshot.sourceHost), `KB snapshot must come from a non-redirected HubSpot host, got ${snapshot.sourceHost}`);
+assert.ok(['content.biosked.com'].includes(snapshot.sourceHost), `KB snapshot must come from a non-redirected HubSpot host, got ${snapshot.sourceHost}`);
 assert.match(snapshot.contentHash, /^[a-f0-9]{64}$/, 'KB snapshot must carry a SHA-256 content hash');
 assert.ok(snapshot.generatedAt, 'KB snapshot must record its generation timestamp');
 assert.ok(Array.isArray(snapshot.articles), 'KB snapshot must contain an article array');

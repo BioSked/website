@@ -7,11 +7,12 @@ import { discoverMissingCategories } from './lib/kb-published-categories.mjs';
 
 // The HubSpot knowledge base is read from a host that is never redirected, so
 // the public addresses can 301 to biosked.com without starving the sync.
-// content.biosked.com is the knowledge base's primary HubSpot domain; kb.biosked.fr
-// is a legacy HubSpot host that keeps serving the full KB. The first candidate
-// whose sitemap is complete wins, so a HubSpot-side sitemap regeneration lag or
-// a routing change never silently produces an empty or partial snapshot.
-const SOURCE_CANDIDATES = ['content.biosked.com', 'kb.biosked.fr'];
+// content.biosked.com is the knowledge base's primary HubSpot domain and the only
+// source left: kb.biosked.fr moved off HubSpot in October 2026 and now 301s to
+// biosked.com/help from Firebase (firebase-redirects/). A candidate counts only if
+// its sitemap is complete, so a HubSpot-side sitemap regeneration lag or a
+// routing change never silently produces an empty or partial snapshot.
+const SOURCE_CANDIDATES = ['content.biosked.com'];
 const MIN_SITEMAP_ENTRIES = 150;
 let SOURCE_HOST = SOURCE_CANDIDATES[0];
 let SOURCE_ORIGIN = `https://${SOURCE_HOST}`;

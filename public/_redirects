@@ -3,6 +3,7 @@
 # Astro static redirects also create fallback meta-refresh pages; SEO launch should use real 301s.
 
 /blog/10-raisons-pour-passer-sur-un-logiciel-de-planification-automatique-des-medecins/ /fr/blog/10-raisons-pour-passer-sur-un-logiciel-de-planification-automatique-des-medecins/ 301
+/blog/257-ameliorations-plus-tard-tout-ce-que-nous-avons-corrige/ /fr/blog/257-ameliorations-plus-tard-tout-ce-que-nous-avons-corrige/ 301
 /blog/ameliorer-la-qvct-des-medecins-le-lien-essentiel-avec-la-gestion-des-plannings/ /fr/blog/ameliorer-la-qvct-des-medecins-le-lien-essentiel-avec-la-gestion-des-plannings/ 301
 /blog/analyse-du-paysage-de-la-radiologie-en-france/ /fr/blog/analyse-du-paysage-de-la-radiologie-en-france/ 301
 /blog/approuver-les-demandes-sans-casser-le-planning-comment-lia-simule-avant-que-vous-decidiez/ /fr/blog/approuver-les-demandes-sans-casser-le-planning-comment-lia-simule-avant-que-vous-decidiez/ 301
@@ -60,6 +61,7 @@
 /secteurs-soins/urgences/ /fr/secteurs-soins/urgences/ 301
 /secteurs-soins/etablissements-de-sante/ /fr/secteurs-soins/etablissements-de-sante/ 301
 /secteurs-soins/autres-specialites-medicales/ /fr/secteurs-soins/autres-specialites-medicales/ 301
+/fr/blog/257-ameliorations-plus-tard-ce-que-vos-tickets-nous-ont-appris/ /fr/blog/257-ameliorations-plus-tard-tout-ce-que-nous-avons-corrige/ 301
 /bookdemo/ /demo/ 301
 /schedule-a-demo/ /demo/ 301
 /contact-sales/ /demo/ 301
@@ -102,8 +104,8 @@
 /fonctionnalites/ /fr/#fonctionnalites 301
 /essais-cliniques/ /fr/secteurs-soins/etablissements-de-sante/ 301
 /mentions-legales-politique-de-confidentialite/ /fr/mentions-legales/ 301
-/note-de-version/ /changelog/ 301
-/note-de-version-momentum/ /changelog/ 301
+/note-de-version/ /fr/changelog/ 301
+/note-de-version-momentum/ /fr/changelog/ 301
 /support/ /fr/help/kb-tickets/new/ 301
 /theme/actualites/ /fr/blog/ 301
 /theme/biosked/ /fr/blog/ 301

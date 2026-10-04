@@ -1,0 +1,677 @@
+{
+  "hosting": [
+    {
+      "target": "fr",
+      "public": "public",
+      "redirects": [
+        {
+          "source": "/",
+          "destination": "https://biosked.com/fr/",
+          "type": 301
+        },
+        {
+          "regex": "^/blog/10-raisons-pour-passer-sur-un-logiciel-de-planification-automatique-des-medecins/?$",
+          "destination": "https://biosked.com/fr/blog/10-raisons-pour-passer-sur-un-logiciel-de-planification-automatique-des-medecins/",
+          "type": 301
+        },
+        {
+          "regex": "^/blog/257-ameliorations-plus-tard-tout-ce-que-nous-avons-corrige/?$",
+          "destination": "https://biosked.com/fr/blog/257-ameliorations-plus-tard-tout-ce-que-nous-avons-corrige/",
+          "type": 301
+        },
+        {
+          "regex": "^/blog/ameliorer-la-qvct-des-medecins-le-lien-essentiel-avec-la-gestion-des-plannings/?$",
+          "destination": "https://biosked.com/fr/blog/ameliorer-la-qvct-des-medecins-le-lien-essentiel-avec-la-gestion-des-plannings/",
+          "type": 301
+        },
+        {
+          "regex": "^/blog/analyse-du-paysage-de-la-radiologie-en-france/?$",
+          "destination": "https://biosked.com/fr/blog/analyse-du-paysage-de-la-radiologie-en-france/",
+          "type": 301
+        },
+        {
+          "regex": "^/blog/approuver-les-demandes-sans-casser-le-planning-comment-lia-simule-avant-que-vous-decidiez/?$",
+          "destination": "https://biosked.com/fr/blog/approuver-les-demandes-sans-casser-le-planning-comment-lia-simule-avant-que-vous-decidiez/",
+          "type": 301
+        },
+        {
+          "regex": "^/blog/biosked-aux-jfr-2023-centralisez-et-optimisez-la-planification-de-votre-service-dimagerie-avec-la-solution-momentum/?$",
+          "destination": "https://biosked.com/fr/blog/biosked-aux-jfr-2023-centralisez-et-optimisez-la-planification-de-votre-service-dimagerie-avec-la-solution-momentum/",
+          "type": 301
+        },
+        {
+          "regex": "^/blog/biosked-reinvente-la-planification-des-equipes-medicales-avec-la-nouvelle-version-de-momentum/?$",
+          "destination": "https://biosked.com/fr/blog/biosked-reinvente-la-planification-des-equipes-medicales-avec-la-nouvelle-version-de-momentum/",
+          "type": 301
+        },
+        {
+          "regex": "^/blog/comment-gerer-les-remplacements-en-centre-de-radiologie/?$",
+          "destination": "https://biosked.com/fr/blog/comment-gerer-les-remplacements-en-centre-de-radiologie/",
+          "type": 301
+        },
+        {
+          "regex": "^/blog/communique-de-presse/?$",
+          "destination": "https://biosked.com/fr/blog/communique-de-presse/",
+          "type": 301
+        },
+        {
+          "regex": "^/blog/creer-culture-bien-etre-medecins/?$",
+          "destination": "https://biosked.com/fr/blog/creer-culture-bien-etre-medecins/",
+          "type": 301
+        },
+        {
+          "regex": "^/blog/decouvrez-momentum-au-congres-hwl-2024-la-revolution-de-la-planification-pour-les-etablissements-de-sante/?$",
+          "destination": "https://biosked.com/fr/blog/decouvrez-momentum-au-congres-hwl-2024-la-revolution-de-la-planification-pour-les-etablissements-de-sante/",
+          "type": 301
+        },
+        {
+          "regex": "^/blog/etat-des-lieux-de-la-gestion-des-gardes-medicales-en-centre-hospitalier/?$",
+          "destination": "https://biosked.com/fr/blog/etat-des-lieux-de-la-gestion-des-gardes-medicales-en-centre-hospitalier/",
+          "type": 301
+        },
+        {
+          "regex": "^/blog/etat-des-lieux-de-la-medecine-en-cardiologie-et-des-maladies-cardiovasculaires-en-france/?$",
+          "destination": "https://biosked.com/fr/blog/etat-des-lieux-de-la-medecine-en-cardiologie-et-des-maladies-cardiovasculaires-en-france/",
+          "type": 301
+        },
+        {
+          "regex": "^/blog/gagner-du-temps-et-ameliorer-la-qualite-de-vie-au-travail-en-radiologie-lapport-de-lia/?$",
+          "destination": "https://biosked.com/fr/blog/gagner-du-temps-et-ameliorer-la-qualite-de-vie-au-travail-en-radiologie-lapport-de-lia/",
+          "type": 301
+        },
+        {
+          "regex": "^/blog/gestion-efficace-du-bloc-operatoire-limportance-dun-outil-de-planification-dequipe/?$",
+          "destination": "https://biosked.com/fr/blog/gestion-efficace-du-bloc-operatoire-limportance-dun-outil-de-planification-dequipe/",
+          "type": 301
+        },
+        {
+          "regex": "^/blog/la-planification-dynamique-des-equipes-medicales-et-paramedicales-en-radiologie/?$",
+          "destination": "https://biosked.com/fr/blog/la-planification-dynamique-des-equipes-medicales-et-paramedicales-en-radiologie/",
+          "type": 301
+        },
+        {
+          "regex": "^/blog/la-teleradiologie-une-solution-a-long-terme/?$",
+          "destination": "https://biosked.com/fr/blog/la-teleradiologie-une-solution-a-long-terme/",
+          "type": 301
+        },
+        {
+          "regex": "^/blog/lautomatisation-de-la-planification-dequipes-dans-le-service-danesthesie/?$",
+          "destination": "https://biosked.com/fr/blog/lautomatisation-de-la-planification-dequipes-dans-le-service-danesthesie/",
+          "type": 301
+        },
+        {
+          "regex": "^/blog/le-plafonnement-des-remunerations-des-medecins-interimaires-remplacants/?$",
+          "destination": "https://biosked.com/fr/blog/le-plafonnement-des-remunerations-des-medecins-interimaires-remplacants/",
+          "type": 301
+        },
+        {
+          "regex": "^/blog/le-regroupement-des-radiologues-en-france/?$",
+          "destination": "https://biosked.com/fr/blog/le-regroupement-des-radiologues-en-france/",
+          "type": 301
+        },
+        {
+          "regex": "^/blog/les-enjeux-de-la-permanence-et-de-la-continuite-des-soins-pour-les-medecins-liberaux-et-les-etablissements-de-sante/?$",
+          "destination": "https://biosked.com/fr/blog/les-enjeux-de-la-permanence-et-de-la-continuite-des-soins-pour-les-medecins-liberaux-et-les-etablissements-de-sante/",
+          "type": 301
+        },
+        {
+          "regex": "^/blog/les-tendances-des-jfr-2022/?$",
+          "destination": "https://biosked.com/fr/blog/les-tendances-des-jfr-2022/",
+          "type": 301
+        },
+        {
+          "regex": "^/blog/lia-un-levier-puissant-pour-loptimisation-des-plannings-dequipes-en-etablissement-de-sante/?$",
+          "destination": "https://biosked.com/fr/blog/lia-un-levier-puissant-pour-loptimisation-des-plannings-dequipes-en-etablissement-de-sante/",
+          "type": 301
+        },
+        {
+          "regex": "^/blog/limportance-cruciale-de-la-planification-des-equipes-danesthesie-dans-le-bloc-operatoire/?$",
+          "destination": "https://biosked.com/fr/blog/limportance-cruciale-de-la-planification-des-equipes-danesthesie-dans-le-bloc-operatoire/",
+          "type": 301
+        },
+        {
+          "regex": "^/blog/lintelligence-artificielle-peut-elle-remplacer-a-terme-lactivite-du-radiologue/?$",
+          "destination": "https://biosked.com/fr/blog/lintelligence-artificielle-peut-elle-remplacer-a-terme-lactivite-du-radiologue/",
+          "type": 301
+        },
+        {
+          "regex": "^/blog/maitriser-la-planification-des-equipes-anesthesistes-et-iades-avec-momentum/?$",
+          "destination": "https://biosked.com/fr/blog/maitriser-la-planification-des-equipes-anesthesistes-et-iades-avec-momentum/",
+          "type": 301
+        },
+        {
+          "regex": "^/blog/momentum-assistant-lia-de-planning-qui-repond-a-la-place-du-chef-de-service/?$",
+          "destination": "https://biosked.com/fr/blog/momentum-assistant-lia-de-planning-qui-repond-a-la-place-du-chef-de-service/",
+          "type": 301
+        },
+        {
+          "regex": "^/blog/momentum-fait-peau-neuve-mode-sombre-raccourcis-clavier-et-creation-en-un-clic/?$",
+          "destination": "https://biosked.com/fr/blog/momentum-fait-peau-neuve-mode-sombre-raccourcis-clavier-et-creation-en-un-clic/",
+          "type": 301
+        },
+        {
+          "regex": "^/blog/momentum-la-solution-innovante-pour-la-planification-des-equipes-medicales-presentee-par-sih-solutions/?$",
+          "destination": "https://biosked.com/fr/blog/momentum-la-solution-innovante-pour-la-planification-des-equipes-medicales-presentee-par-sih-solutions/",
+          "type": 301
+        },
+        {
+          "regex": "^/blog/momentum-par-biosked-aux-jfr-2024-reinventez-la-gestion-de-vos-plannings-en-radiologie/?$",
+          "destination": "https://biosked.com/fr/blog/momentum-par-biosked-aux-jfr-2024-reinventez-la-gestion-de-vos-plannings-en-radiologie/",
+          "type": 301
+        },
+        {
+          "regex": "^/blog/momentum-pour-les-anesthesistes/?$",
+          "destination": "https://biosked.com/fr/blog/momentum-pour-les-anesthesistes/",
+          "type": 301
+        },
+        {
+          "regex": "^/blog/momentum-pour-les-urgences/?$",
+          "destination": "https://biosked.com/fr/blog/momentum-pour-les-urgences/",
+          "type": 301
+        },
+        {
+          "regex": "^/blog/nouveaute-momentum-une-vue-par-shift-pour-une-meilleure-coordination-sur-le-terrain/?$",
+          "destination": "https://biosked.com/fr/blog/nouveaute-momentum-une-vue-par-shift-pour-une-meilleure-coordination-sur-le-terrain/",
+          "type": 301
+        },
+        {
+          "regex": "^/blog/optimiser-la-planification-en-radiologie/?$",
+          "destination": "https://biosked.com/fr/blog/optimiser-la-planification-en-radiologie/",
+          "type": 301
+        },
+        {
+          "regex": "^/blog/optimiser-les-plannings-de-garde-medicale-comment-momentum-simplifie-la-gestion-des-equipes-medicales/?$",
+          "destination": "https://biosked.com/fr/blog/optimiser-les-plannings-de-garde-medicale-comment-momentum-simplifie-la-gestion-des-equipes-medicales/",
+          "type": 301
+        },
+        {
+          "regex": "^/blog/optimiser-les-plannings-dequipes-dans-les-services-durgence/?$",
+          "destination": "https://biosked.com/fr/blog/optimiser-les-plannings-dequipes-dans-les-services-durgence/",
+          "type": 301
+        },
+        {
+          "regex": "^/blog/optimisez-la-planification-des-plannings-medecins-avec-lintelligence-artificielle-ia/?$",
+          "destination": "https://biosked.com/fr/blog/optimisez-la-planification-des-plannings-medecins-avec-lintelligence-artificielle-ia/",
+          "type": 301
+        },
+        {
+          "regex": "^/blog/optimisez-la-planification-en-radiologie-avec-momentum-rendez-vous-aux-jfr-2024/?$",
+          "destination": "https://biosked.com/fr/blog/optimisez-la-planification-en-radiologie-avec-momentum-rendez-vous-aux-jfr-2024/",
+          "type": 301
+        },
+        {
+          "regex": "^/blog/optimisez-vos-plannings-dequipes-durgence-avec-lia-decouvrez-momentum-au-congres-des-urgences-2025/?$",
+          "destination": "https://biosked.com/fr/blog/optimisez-vos-plannings-dequipes-durgence-avec-lia-decouvrez-momentum-au-congres-des-urgences-2025/",
+          "type": 301
+        },
+        {
+          "regex": "^/blog/permanence-des-soins-ambulatoires-comment-biosked-aide-les-medecins-a-concilier-vie-professionnelle-et-vie-personnelle-tout-en-assurant-la-continuite-des-soins/?$",
+          "destination": "https://biosked.com/fr/blog/permanence-des-soins-ambulatoires-comment-biosked-aide-les-medecins-a-concilier-vie-professionnelle-et-vie-personnelle-tout-en-assurant-la-continuite-des-soins/",
+          "type": 301
+        },
+        {
+          "regex": "^/blog/perspectives-pour-le-marche-de-la-radiologie-en-france-et-dans-le-monde/?$",
+          "destination": "https://biosked.com/fr/blog/perspectives-pour-le-marche-de-la-radiologie-en-france-et-dans-le-monde/",
+          "type": 301
+        },
+        {
+          "regex": "^/blog/planification-des-urgences-pourquoi-la-gestion-territoriale-est-devenue-le-defi-numero-un-des-chefs-de-service/?$",
+          "destination": "https://biosked.com/fr/blog/planification-des-urgences-pourquoi-la-gestion-territoriale-est-devenue-le-defi-numero-un-des-chefs-de-service/",
+          "type": 301
+        },
+        {
+          "regex": "^/blog/planning-medical-pour-les-anesthesistes-et-iades-en-1-clic/?$",
+          "destination": "https://biosked.com/fr/blog/planning-medical-pour-les-anesthesistes-et-iades-en-1-clic/",
+          "type": 301
+        },
+        {
+          "regex": "^/blog/pourquoi-prioriser-et-optimiser-la-planification-de-son-etablissement-de-sante/?$",
+          "destination": "https://biosked.com/fr/blog/pourquoi-prioriser-et-optimiser-la-planification-de-son-etablissement-de-sante/",
+          "type": 301
+        },
+        {
+          "regex": "^/blog/un-tour-dhorizon-de-la-planification-dynamique/?$",
+          "destination": "https://biosked.com/fr/blog/un-tour-dhorizon-de-la-planification-dynamique/",
+          "type": 301
+        },
+        {
+          "regex": "^/blog/votre-planning-danesthesistes-et-iades-construit-automatiquement/?$",
+          "destination": "https://biosked.com/fr/blog/votre-planning-danesthesistes-et-iades-construit-automatiquement/",
+          "type": 301
+        },
+        {
+          "regex": "^/blog/votre-projet-est-deja-finance-a-hauteur-de-75-000-e/?$",
+          "destination": "https://biosked.com/fr/blog/votre-projet-est-deja-finance-a-hauteur-de-75-000-e/",
+          "type": 301
+        },
+        {
+          "regex": "^/fonctionnalites/planification-optimisee-automatiquement-2/?$",
+          "destination": "https://biosked.com/fr/fonctionnalites/planification-optimisee-automatiquement-2/",
+          "type": 301
+        },
+        {
+          "regex": "^/fonctionnalites/plannings-de-garde-centralises/?$",
+          "destination": "https://biosked.com/fr/fonctionnalites/plannings-de-garde-centralises/",
+          "type": 301
+        },
+        {
+          "regex": "^/fonctionnalites/gestion-des-requetes-des-equipes/?$",
+          "destination": "https://biosked.com/fr/fonctionnalites/gestion-des-requetes-des-equipes/",
+          "type": 301
+        },
+        {
+          "regex": "^/fonctionnalites/communication-et-diffusion/?$",
+          "destination": "https://biosked.com/fr/fonctionnalites/communication-et-diffusion/",
+          "type": 301
+        },
+        {
+          "regex": "^/fonctionnalites/rapports-et-statistiques/?$",
+          "destination": "https://biosked.com/fr/fonctionnalites/rapports-et-statistiques/",
+          "type": 301
+        },
+        {
+          "regex": "^/fonctionnalites/badgeage-et-suivi-rh/?$",
+          "destination": "https://biosked.com/fr/fonctionnalites/badgeage-et-suivi-rh/",
+          "type": 301
+        },
+        {
+          "regex": "^/secteurs-soins/radiologie/?$",
+          "destination": "https://biosked.com/fr/secteurs-soins/radiologie/",
+          "type": 301
+        },
+        {
+          "regex": "^/secteurs-soins/anesthesie/?$",
+          "destination": "https://biosked.com/fr/secteurs-soins/anesthesie/",
+          "type": 301
+        },
+        {
+          "regex": "^/secteurs-soins/cardiologie/?$",
+          "destination": "https://biosked.com/fr/secteurs-soins/cardiologie/",
+          "type": 301
+        },
+        {
+          "regex": "^/secteurs-soins/urgences/?$",
+          "destination": "https://biosked.com/fr/secteurs-soins/urgences/",
+          "type": 301
+        },
+        {
+          "regex": "^/secteurs-soins/etablissements-de-sante/?$",
+          "destination": "https://biosked.com/fr/secteurs-soins/etablissements-de-sante/",
+          "type": 301
+        },
+        {
+          "regex": "^/secteurs-soins/autres-specialites-medicales/?$",
+          "destination": "https://biosked.com/fr/secteurs-soins/autres-specialites-medicales/",
+          "type": 301
+        },
+        {
+          "regex": "^/fr/blog/257-ameliorations-plus-tard-ce-que-vos-tickets-nous-ont-appris/?$",
+          "destination": "https://biosked.com/fr/blog/257-ameliorations-plus-tard-tout-ce-que-nous-avons-corrige/",
+          "type": 301
+        },
+        {
+          "regex": "^/bookdemo/?$",
+          "destination": "https://biosked.com/demo/",
+          "type": 301
+        },
+        {
+          "regex": "^/schedule-a-demo/?$",
+          "destination": "https://biosked.com/demo/",
+          "type": 301
+        },
+        {
+          "regex": "^/contact-sales/?$",
+          "destination": "https://biosked.com/demo/",
+          "type": 301
+        },
+        {
+          "regex": "^/contact/?$",
+          "destination": "https://biosked.com/demo/",
+          "type": 301
+        },
+        {
+          "regex": "^/about-biosked/leadership-team/?$",
+          "destination": "https://biosked.com/about/",
+          "type": 301
+        },
+        {
+          "regex": "^/the-first-rvu-based-multi-time-zone-scheduling-platform-for-radiology-teams/?$",
+          "destination": "https://biosked.com/blog/posts/2025-11-05-rvu-based-scheduling/",
+          "type": 301
+        },
+        {
+          "regex": "^/momentum-update-a-shift-based-view-for-better-on-the-ground-coordination/?$",
+          "destination": "https://biosked.com/blog/posts/2025-07-03-shift-view/",
+          "type": 301
+        },
+        {
+          "regex": "^/ai-a-powerful-lever-for-optimizing-team-schedules-in-healthcare-settings/?$",
+          "destination": "https://biosked.com/blog/posts/2025-03-15-optimizing-team-schedules/",
+          "type": 301
+        },
+        {
+          "regex": "^/biosked-reinvents-medical-team-scheduling-with-the-new-version-of-momentum/?$",
+          "destination": "https://biosked.com/blog/posts/2025-01-29-medical-team-scheduling/",
+          "type": 301
+        },
+        {
+          "regex": "^/5-myths-of-healthcare-staff-scheduling-software/?$",
+          "destination": "https://biosked.com/blog/posts/2024-01-31-five-healthcare-myths/",
+          "type": 301
+        },
+        {
+          "regex": "^/the-year-of-improved-workforce-management/?$",
+          "destination": "https://biosked.com/blog/posts/2023-12-21-year-2024/",
+          "type": 301
+        },
+        {
+          "regex": "^/the-costly-implications-of-staff-turnover-in-healthcare-organizations/?$",
+          "destination": "https://biosked.com/blog/posts/2023-11-29-rising-costs-in-healthcare/",
+          "type": 301
+        },
+        {
+          "regex": "^/scheduling-struggles-the-implications-of-manual-staff-scheduling/?$",
+          "destination": "https://biosked.com/blog/posts/2023-11-06-manual-staff-scheduling-implications/",
+          "type": 301
+        },
+        {
+          "regex": "^/revolutionizing-healthcare-management-why-healthcare-scheduling-software-is-essential/?$",
+          "destination": "https://biosked.com/blog/posts/2023-10-24-revolution-healthcare-scheduling/",
+          "type": 301
+        },
+        {
+          "regex": "^/innovative-solutions-for-smarter-anesthesia-scheduling/?$",
+          "destination": "https://biosked.com/blog/posts/2023-10-17-smarter-anesthesia/",
+          "type": 301
+        },
+        {
+          "regex": "^/benefits-of-automating-physician-scheduling-software/?$",
+          "destination": "https://biosked.com/blog/posts/2023-10-17-schedule-automation-benefits/",
+          "type": 301
+        },
+        {
+          "regex": "^/prescription-for-efficient-healthcare/?$",
+          "destination": "https://biosked.com/blog/posts/2023-10-03-prescription-efficient-healthcare/",
+          "type": 301
+        },
+        {
+          "regex": "^/a-game-changer-in-healthcare-how-staff-scheduling-software-streamlines-operations/?$",
+          "destination": "https://biosked.com/blog/posts/2023-09-21-healthcare-game-changer/",
+          "type": 301
+        },
+        {
+          "regex": "^/optimize-physician-scheduling/?$",
+          "destination": "https://biosked.com/blog/posts/2023-08-09-physician-scheduling-ai/",
+          "type": 301
+        },
+        {
+          "regex": "^/10-reasons-for-physician-scheduling-software/?$",
+          "destination": "https://biosked.com/blog/posts/2023-08-09-five-reasons-to-automate/",
+          "type": 301
+        },
+        {
+          "regex": "^/scheduling-myths-that-ruin-efficiency/?$",
+          "destination": "https://biosked.com/blog/posts/2023-08-09-scheduling-myths/",
+          "type": 301
+        },
+        {
+          "regex": "^/healthcare-scheduling-requests/?$",
+          "destination": "https://biosked.com/blog/posts/2023-08-09-scheduling-requests/",
+          "type": 301
+        },
+        {
+          "regex": "^/creating-culturef-physician-wellness/?$",
+          "destination": "https://biosked.com/blog/posts/2022-09-04-culture-of-physician-wellness/",
+          "type": 301
+        },
+        {
+          "regex": "^/improving-your-practices-scheduling-understanding-equity/?$",
+          "destination": "https://biosked.com/blog/posts/2022-05-15-understanding-equity/",
+          "type": 301
+        },
+        {
+          "regex": "^/consequences-of-improper-scheduling/?$",
+          "destination": "https://biosked.com/blog/posts/2022-03-15-consequences-improper-scheduling/",
+          "type": 301
+        },
+        {
+          "regex": "^/press-release-healthcare-scheduling-software/?$",
+          "destination": "https://biosked.com/blog/posts/2021-11-02-biosked-independence/",
+          "type": 301
+        },
+        {
+          "regex": "^/blog/posts/fr/2025-07-03-shift-view/?$",
+          "destination": "https://biosked.com/fr/blog/nouveaute-momentum-une-vue-par-shift-pour-une-meilleure-coordination-sur-le-terrain/",
+          "type": 301
+        },
+        {
+          "regex": "^/accueil-biosked/?$",
+          "destination": "https://biosked.com/fr/",
+          "type": 301
+        },
+        {
+          "regex": "^/demander-une-demo/?$",
+          "destination": "https://biosked.com/fr/demo/",
+          "type": 301
+        },
+        {
+          "regex": "^/demander-une-demonstration/?$",
+          "destination": "https://biosked.com/fr/demo/",
+          "type": 301
+        },
+        {
+          "regex": "^/een-demonstratie-aanvragen/?$",
+          "destination": "https://biosked.com/nl/demo/",
+          "type": 301
+        },
+        {
+          "regex": "^/ressources/?$",
+          "destination": "https://biosked.com/fr/ressources/",
+          "type": 301
+        },
+        {
+          "regex": "^/ressources/livre-blanc/?$",
+          "destination": "https://biosked.com/fr/ressources/",
+          "type": 301
+        },
+        {
+          "regex": "^/ressources/temoignages/?$",
+          "destination": "https://biosked.com/fr/cas-clients/",
+          "type": 301
+        },
+        {
+          "regex": "^/la-societe-biosked/?$",
+          "destination": "https://biosked.com/fr/about/",
+          "type": 301
+        },
+        {
+          "regex": "^/la-societe-biosked/nous-connaitre/?$",
+          "destination": "https://biosked.com/fr/about/",
+          "type": 301
+        },
+        {
+          "regex": "^/la-societe-biosked/lequipe/?$",
+          "destination": "https://biosked.com/fr/about/#equipe",
+          "type": 301
+        },
+        {
+          "regex": "^/la-societe-biosked/nous-rejoindre-2/?$",
+          "destination": "https://biosked.com/fr/careers/",
+          "type": 301
+        },
+        {
+          "regex": "^/secteurs-soins/?$",
+          "destination": "https://biosked.com/fr/#specialites",
+          "type": 301
+        },
+        {
+          "regex": "^/fonctionnalites/?$",
+          "destination": "https://biosked.com/fr/#fonctionnalites",
+          "type": 301
+        },
+        {
+          "regex": "^/essais-cliniques/?$",
+          "destination": "https://biosked.com/fr/secteurs-soins/etablissements-de-sante/",
+          "type": 301
+        },
+        {
+          "regex": "^/mentions-legales-politique-de-confidentialite/?$",
+          "destination": "https://biosked.com/fr/mentions-legales/",
+          "type": 301
+        },
+        {
+          "regex": "^/note-de-version/?$",
+          "destination": "https://biosked.com/fr/changelog/",
+          "type": 301
+        },
+        {
+          "regex": "^/note-de-version-momentum/?$",
+          "destination": "https://biosked.com/fr/changelog/",
+          "type": 301
+        },
+        {
+          "regex": "^/support/?$",
+          "destination": "https://biosked.com/fr/help/kb-tickets/new/",
+          "type": 301
+        },
+        {
+          "regex": "^/theme/actualites/?$",
+          "destination": "https://biosked.com/fr/blog/",
+          "type": 301
+        },
+        {
+          "regex": "^/theme/biosked/?$",
+          "destination": "https://biosked.com/fr/blog/",
+          "type": 301
+        },
+        {
+          "regex": "^/theme/anesthesie/?$",
+          "destination": "https://biosked.com/fr/secteurs-soins/anesthesie/",
+          "type": 301
+        },
+        {
+          "regex": "^/theme/cardiologie/?$",
+          "destination": "https://biosked.com/fr/secteurs-soins/cardiologie/",
+          "type": 301
+        },
+        {
+          "regex": "^/theme/radiologie/?$",
+          "destination": "https://biosked.com/fr/secteurs-soins/radiologie/",
+          "type": 301
+        },
+        {
+          "regex": "^/theme/urgences/?$",
+          "destination": "https://biosked.com/fr/secteurs-soins/urgences/",
+          "type": 301
+        },
+        {
+          "regex": "^/theme/recrutement/?$",
+          "destination": "https://biosked.com/fr/careers/",
+          "type": 301
+        },
+        {
+          "regex": "^/blog/layout_category/archives/?$",
+          "destination": "https://biosked.com/fr/blog/",
+          "type": 301
+        },
+        {
+          "regex": "^/blog/layout_category/nouveau-modele/?$",
+          "destination": "https://biosked.com/fr/blog/",
+          "type": 301
+        },
+        {
+          "regex": "^/(?:comments/)?feed/?$",
+          "destination": "https://biosked.com/fr/rss.xml",
+          "type": 301
+        },
+        {
+          "regex": "^/.+/feed/?$",
+          "destination": "https://biosked.com/fr/rss.xml",
+          "type": 301
+        },
+        {
+          "regex": "^/[a-z0-9_-]*sitemap[a-z0-9_.-]*\\.xml$",
+          "destination": "https://biosked.com/sitemap-index.xml",
+          "type": 301
+        },
+        {
+          "regex": "^/(?:category|tag|author)/.*$",
+          "destination": "https://biosked.com/fr/blog/",
+          "type": 301
+        },
+        {
+          "regex": "^/(?:blog/)?page/[0-9]+/?$",
+          "destination": "https://biosked.com/fr/blog/",
+          "type": 301
+        },
+        {
+          "source": "/wp-content/uploads/2025/03/Lettre-ouverte-FR.pdf",
+          "destination": "https://biosked.com/fr/about/",
+          "type": 301
+        },
+        {
+          "regex": "^/(?P<rest>.*)$",
+          "destination": "https://biosked.com/:rest",
+          "type": 301
+        }
+      ]
+    },
+    {
+      "target": "kbfr",
+      "public": "public",
+      "redirects": [
+        {
+          "regex": "^/en/knowledge/?$",
+          "destination": "https://biosked.com/help/",
+          "type": 301
+        },
+        {
+          "regex": "^/fr/knowledge/?$",
+          "destination": "https://biosked.com/fr/help/",
+          "type": 301
+        },
+        {
+          "regex": "^/en/knowledge/kb-search-results/?$",
+          "destination": "https://biosked.com/help/",
+          "type": 301
+        },
+        {
+          "regex": "^/fr/knowledge/kb-search-results/?$",
+          "destination": "https://biosked.com/fr/help/",
+          "type": 301
+        },
+        {
+          "regex": "^/en/knowledge/(?P<rest>.+?)/?$",
+          "destination": "https://biosked.com/help/:rest/",
+          "type": 301
+        },
+        {
+          "regex": "^/fr/knowledge/(?P<rest>.+?)/?$",
+          "destination": "https://biosked.com/fr/help/:rest/",
+          "type": 301
+        },
+        {
+          "regex": "^/(?P<rest>(?:hs-fs|hubfs)/.*)$",
+          "destination": "https://kb.biosked.com/:rest",
+          "type": 301
+        },
+        {
+          "regex": "^/.*$",
+          "destination": "https://biosked.com/help/",
+          "type": 301
+        }
+      ]
+    },
+    {
+      "target": "gofr",
+      "public": "public",
+      "redirects": [
+        {
+          "regex": "^/.*$",
+          "destination": "https://biosked.com/fr/",
+          "type": 301
+        }
+      ]
+    }
+  ]
+}
