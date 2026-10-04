@@ -58,10 +58,10 @@ export const specialtyPages: Record<string, FrenchLandingPage> = {
     type: "specialty",
     eyebrow: "Anesthésie-réanimation",
     title: "Le logiciel de planning des anesthésistes et des IADE",
-    description: "Bloc opératoire, consultations, gardes, astreintes et repos de sécurité : Momentum tient le planning des médecins anesthésistes-réanimateurs et des IADE dans un seul outil, le génère sous vos règles, puis absorbe les changements du programme opératoire sans reconstruire la semaine.",
+    description: "Bloc opératoire, consultations, gardes, astreintes et repos de sécurité : Momentum tient le planning des médecins anesthésistes-réanimateurs et des IADE dans un seul outil et le génère selon vos règles. Quand le programme opératoire change, il propose des remplaçants au lieu de vous laisser repartir d’une page blanche.",
     metaTitle: "Logiciel de planning anesthésistes et IADE | Momentum",
-    metaDescription: "Logiciel de planning pour anesthésistes et IADE : bloc opératoire, gardes, repos de sécurité, consultations, équité. Jusqu’à 95 % du planning automatisé à l’Hôpital Européen de Marseille.",
-    primaryPain: "Un planning d’anesthésie relie deux populations, les médecins anesthésistes-réanimateurs (MAR) et les IADE, à un programme opératoire qui bouge chaque semaine : salles fermées faute de personnel, chirurgiens qui changent de bloc, absences de dernière minute. S’y ajoutent les consultations, les gardes, les astreintes et les repos de sécurité. À l’Hôpital Européen de Marseille, quand le service est passé de quelques anesthésistes à près d’une vingtaine, la construction sur Excel a fini par prendre une vacation administrative par semaine, plus 4 à 6 heures de temps personnel.",
+    metaDescription: "Logiciel de planning pour anesthésistes et IADE : bloc opératoire, gardes, repos de sécurité, consultations et équité dans un seul outil. Plus de 250 organisations de santé utilisent Momentum.",
+    primaryPain: "Un planning d’anesthésie relie deux populations, les médecins anesthésistes-réanimateurs (MAR) et les IADE, à un programme opératoire qui bouge chaque semaine : salles fermées faute de personnel, chirurgiens qui changent de bloc, absences de dernière minute. S’y ajoutent les consultations, les gardes, les astreintes et les repos de sécurité. Sur un tableur, le responsable y consacre souvent une vacation administrative par semaine, et le reste déborde sur son temps personnel.",
     painsHeading: "Ce qui rend le planning d’anesthésie difficile",
     pains: [
       "affecter MAR et IADE sur les salles selon les compétences et les spécialités chirurgicales",
@@ -71,43 +71,37 @@ export const specialtyPages: Record<string, FrenchLandingPage> = {
     ],
     outcomesHeading: "Ce que Momentum change pour le responsable du planning",
     outcomes: [
-      "jusqu’à 95 % du planning des MAR et des IADE généré automatiquement (Hôpital Européen de Marseille, étude de cas publiée)",
-      "les repos de sécurité vérifiés à la génération et à chaque modification manuelle",
-      "une alerte dès qu’un praticien se retrouve sur deux vacations incompatibles",
-      "des compteurs de gardes, de consultations et de pénibilité consultables par toute l’équipe"
+      "un seul planning pour le bloc, les consultations, les gardes et les astreintes, médecins et IADE compris",
+      "les règles de repos de sécurité appliquées à la génération, avec une alerte si une modification manuelle les enfreint",
+      "des compteurs de gardes, de consultations et de pénibilité consultables par toute l’équipe",
+      "jusqu’à 90 % de temps de gestion des horaires en moins, mesuré aux urgences du CHIREC (étude de cas 2025)"
     ],
-    quote: {
-      text: "Désormais, je ne m’occupe manuellement que de la mise à jour du planning de bloc avec la présence des chirurgiens en amont et ensuite, Momentum construit automatiquement le planning hebdomadaire des MAR et IADEs. C’est un gain de temps inestimable !",
-      cite: "Dr Jean-Marc Stordeur, médecin anesthésiste-réanimateur, responsable des plannings, Hôpital Européen de Marseille",
-      href: "/fr/cas-clients/hopital-europeen-marseille/"
-    },
     sections: [
       {
         heading: "Un planning construit à partir du programme opératoire",
         paragraphs: [
-          "Le planning d’anesthésie dépend de celui du bloc. Momentum part de vos trames de bloc : salles, vacations, chirurgiens et spécialités, avec les besoins en MAR et en IADE de chaque salle. Le planning des équipes se génère ensuite en respectant les compétences, les disponibilités, les désidératas et les règles du service.",
-          "Une salle qui ferme, un chirurgien qui change de jour, une vacation ajoutée : Momentum propose les remplacements sur les seules affectations concernées, sans reconstruire le mois. Les vues par spécialité et les filtres d’affichage donnent une lecture rapide de la semaine de bloc, salle par salle."
+          "Le planning d’anesthésie dépend de celui du bloc. Momentum part de vos trames de bloc : salles, vacations, chirurgiens et spécialités, avec les besoins en MAR et en IADE de chaque salle. Le planning des équipes se génère ensuite en tenant compte des compétences, des disponibilités, des désidératas et des règles du service.",
+          "Une salle qui ferme, un chirurgien qui change de jour, une absence : Momentum propose des remplaçants compétents et disponibles pour les affectations touchées, et vous choisissez. Les vues par spécialité et les filtres d’affichage donnent une lecture rapide de la semaine de bloc, salle par salle."
         ]
       },
       {
         heading: "Gardes, astreintes et repos de sécurité dans le même planning",
         paragraphs: [
-          "Garde sur place, astreinte, descente de garde : tout vit dans le même planning que l’activité de jour, pour les médecins comme pour les IADE. Plus de fichier de gardes à réconcilier avec le planning de bloc, ni de double affectation découverte le matin même.",
-          "Vos règles de repos de sécurité sont paramétrées une fois. Momentum les applique à la génération et vous alerte si une modification manuelle place un praticien sur une activité alors qu’il devrait être en repos. L’historique des repos reste consultable à tout moment."
+          "Garde sur place, astreinte, descente de garde : tout vit dans le même planning que l’activité de jour, pour les médecins comme pour les IADE. Plus de fichier de gardes à réconcilier avec le planning de bloc.",
+          "Vos règles de repos de sécurité sont paramétrées une fois. Momentum les applique à la génération et vous alerte si une modification manuelle place un praticien sur une activité alors qu’il devrait être en repos. L’historique des repos reste consultable."
         ]
       },
       {
-        heading: "Consultations, compétences et internes",
+        heading: "Consultations et compétences",
         paragraphs: [
-          "Les consultations d’anesthésie se répartissent selon vos règles, au trimestre ou à l’année, et chaque praticien voit où il en est. Les compétences de chacun, médecin ou IADE, bloquent les affectations impossibles : personne n’est proposé sur une salle de pédiatrie sans la compétence requise.",
-          "Dans les CHU, les internes peuvent être planifiés dans le même outil, avec leurs propres règles."
+          "Les consultations d’anesthésie se répartissent selon vos règles, au trimestre ou à l’année, et chaque praticien voit où il en est. Les compétences de chacun, médecin ou IADE, encadrent les affectations : personne n’est proposé sur une salle de pédiatrie sans la compétence requise."
         ]
       },
       {
         heading: "L’équité, compteurs à l’appui",
         paragraphs: [
           "Nuits, week-ends, jours fériés, consultations, pénibilité : chaque compteur est visible par l’équipe. Les arbitrages s’appuient sur des chiffres partagés plutôt que sur la mémoire du responsable, et chacun peut vérifier que la répartition est juste.",
-          "À l’Hôpital Européen de Marseille, l’équité est la base de la génération du planning ; les désidératas de chacun et les règles de l’établissement s’y ajoutent."
+          "Les désidératas de chacun et les règles de l’établissement s’ajoutent à cette base d’équité, sans la remplacer."
         ]
       },
       {
@@ -120,11 +114,11 @@ export const specialtyPages: Record<string, FrenchLandingPage> = {
       {
         heading: "Heures, congés et exports",
         paragraphs: [
-          "Les IADE et les médecins déclarent leurs heures supplémentaires depuis l’application ; heures effectuées et congés sont suivis dans le même outil, pour les praticiens salariés comme libéraux. La paie reçoit un export, sans ressaisie."
+          "Heures effectuées, heures supplémentaires et congés sont suivis dans le même outil, pour les praticiens salariés comme libéraux. La paie reçoit un export, sans ressaisie."
         ]
       }
     ],
-    proof: "L’Hôpital Européen de Marseille planifie une vingtaine de MAR et une dizaine d’IADE avec Momentum. Au total, plus de 250 organisations de santé l’utilisent sur plus de 1 000 sites, et BioSked planifie le temps médical depuis plus de quinze ans.",
+    proof: "Plus de 250 organisations de santé utilisent Momentum sur plus de 1 000 sites, dans neuf pays, et BioSked planifie le temps médical depuis plus de quinze ans. Les fonctions décrites sur cette page sont détaillées dans notre livre blanc sur la planification en anesthésie (2023).",
     faq: [
       {
         q: "Momentum remplace-t-il le logiciel d’anesthésie ou le dossier anesthésique ?",
@@ -140,11 +134,11 @@ export const specialtyPages: Record<string, FrenchLandingPage> = {
       },
       {
         q: "Que se passe-t-il quand le programme opératoire change ?",
-        a: "Vous mettez à jour le planning de bloc. Momentum propose les remplacements sur les affectations concernées, en respectant compétences, repos et compteurs, sans reconstruire le mois."
+        a: "Vous mettez à jour le planning de bloc. Momentum propose des remplaçants pour les affectations touchées, en tenant compte des compétences, des repos et des compteurs ; vous validez le choix."
       },
       {
         q: "Comment se passe la mise en place ?",
-        a: "Un chef de projet Momentum paramètre avec vous les règles du service, au fil de réunions hebdomadaires. À l’Hôpital Européen de Marseille, après un mois d’utilisation, les équipes s’étaient habituées à la planification automatique et à l’application mobile."
+        a: "Un chef de projet Momentum paramètre avec vous les règles du service au cours de réunions régulières, puis vous accompagne sur les premiers plannings générés."
       },
       {
         q: "Où sont hébergées les données ?",
@@ -152,13 +146,13 @@ export const specialtyPages: Record<string, FrenchLandingPage> = {
       }
     ],
     resource: {
-      label: "Livre blanc : la planification dynamique en anesthésie",
+      label: "Livre blanc (2023) : la planification dynamique en anesthésie",
       href: "/fr/ressources/"
     },
     related: [
       {
-        label: "Lire le cas Hôpital Européen de Marseille",
-        href: "/fr/cas-clients/hopital-europeen-marseille/"
+        label: "Cas clients",
+        href: "/fr/cas-clients/"
       },
       {
         label: "Planning de garde",
