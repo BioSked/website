@@ -15,7 +15,9 @@
         "about": "Over ons",
         "about-subtitle": "Maak kennis met het team",
         "references": "Referenties",
-        "references-subtitle": "Gedocumenteerde klantresultaten"
+        "references-subtitle": "Gedocumenteerde klantresultaten",
+        "oncall-template": "Wachtrooster-sjabloon",
+        "oncall-template-subtitle": "Gratis Excel-sjabloon en gids"
     },
     "cta": {
         "demo": "Demo aanvragen"

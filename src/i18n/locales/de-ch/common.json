@@ -18,7 +18,9 @@
         "references-subtitle": "Dokumentierte Kundenergebnisse",
         "domains": "Zielgruppen",
         "domains-subtitle": "Momentum für Ihr Team",
-        "security": "Sicherheit"
+        "security": "Sicherheit",
+        "oncall-template": "Dienstplan-Vorlage",
+        "oncall-template-subtitle": "Kostenlose Excel-Vorlage und Ratgeber"
     },
     "cta": {
         "demo": "Demo buchen"

@@ -68,6 +68,13 @@ export const NAV_LINKS = [
                 showMobile: true,
             },
             {
+                label: 'nav.oncall-template',
+                alt: 'nav.oncall-template-subtitle',
+                href: '/guides/physician-call-schedule/',
+                showDesktop: true,
+                showMobile: true,
+            },
+            {
                 label: 'Integrations',
                 alt: '',
                 href: '/integrations',

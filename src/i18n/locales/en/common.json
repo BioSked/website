@@ -10,7 +10,9 @@
         "help-subtitle": "How can we help?",
         "about": "About us",
         "about-subtitle": "Meet the team",
-        "blog-subtitle": "Articles and news"
+        "blog-subtitle": "Articles and news",
+        "oncall-template": "Call schedule template",
+        "oncall-template-subtitle": "Free Excel template and guide"
     },
     "cta": {
         "demo": "Book a Demo"

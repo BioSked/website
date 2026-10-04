@@ -1,3 +1,8 @@
+/** French pages whose Swiss version lives at a different path (Swiss law). */
+export const FR_CH_SPECIFIC = {
+  '/fr/blog/planning-de-garde-medecins/': '/fr-ch/guide/planning-de-garde-medecins/',
+};
+
 /** French route remainders that have dedicated Swiss-French pages. */
 export const FR_CH_LOCAL = [
   '/',
@@ -21,6 +26,8 @@ export function frChLocalPathFor(href) {
 
   const [, pathname, suffix] = match;
   const clean = pathname === '/' ? '/' : pathname.replace(/\/+$/, '');
+  const specific = FR_CH_SPECIFIC[`${clean}/`];
+  if (specific) return `${specific}${suffix}`;
   const rest = clean === '/fr'
     ? '/'
     : clean.startsWith('/fr/')

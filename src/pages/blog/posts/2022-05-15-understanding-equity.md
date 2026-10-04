@@ -19,3 +19,5 @@ Identifying a wellness coach or wellness team is a good place to start. This can
 Reducing environmental stressors will also promote provider wellness. Physicians are often buried in paperwork, so implementing processes to improve workflows in the office can reduce burnout. Making sure your practice has adequate coverage and fair schedules will also promote wellness among your physicians. One way to ensure this is to implement an automated provider scheduling system. These have been proven to prevent understaffing, reduce overtime, reduce burnout, and improve provider satisfaction.
 
 While provider burnout is on the rise, there are ways to combat it. Reducing burnout is important for both provider wellness and patient wellness. Every doctor is different, so make sure you take time to listen to the needs of your providers and work with them to ensure they have the resources to be the best doctor they can be.
+
+For a practical method and a free Excel template with fairness counters, see our [physician call schedule guide](/guides/physician-call-schedule/).

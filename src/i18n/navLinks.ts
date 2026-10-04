@@ -70,6 +70,7 @@ const FR_NAV_LINKS: NavLink[] = [
         subitems: [
             { label: 'nav.blog', alt: 'nav.blog-subtitle', href: '/fr/blog/', showDesktop: true, showMobile: true },
             { label: 'nav.whitepapers', alt: 'nav.whitepapers-subtitle', href: '/fr/ressources/', showDesktop: true, showMobile: true },
+            { label: 'nav.oncall-template', alt: 'nav.oncall-template-subtitle', href: '/fr/blog/planning-de-garde-medecins/', showDesktop: true, showMobile: true },
             { label: 'nav.about', alt: 'nav.about-subtitle', href: '/fr/about/', showDesktop: true, showMobile: true },
             { label: 'nav.careers', alt: 'nav.careers-subtitle', href: '/fr/careers/', showDesktop: true, showMobile: true },
             { label: 'nav.help', alt: 'nav.help-subtitle', href: '/fr/help/', showDesktop: true, showMobile: true },

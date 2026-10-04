@@ -15,7 +15,9 @@
         "about": "Chi siamo",
         "about-subtitle": "Scopri il team",
         "references": "Referenze",
-        "references-subtitle": "Risultati documentati dei clienti"
+        "references-subtitle": "Risultati documentati dei clienti",
+        "oncall-template": "Modello turni di guardia",
+        "oncall-template-subtitle": "Modello Excel gratuito e guida"
     },
     "cta": {
         "demo": "Richiedi una demo"

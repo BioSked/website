@@ -245,6 +245,10 @@ export const specialtyPages: Record<string, FrenchLandingPage> = {
     },
     related: [
       {
+        "label": "Guide et modèle Excel du planning de garde",
+        "href": "/fr/blog/planning-de-garde-medecins/"
+      },
+      {
         label: "Cas clients",
         href: "/fr/cas-clients/"
       },
@@ -395,6 +399,10 @@ export const specialtyPages: Record<string, FrenchLandingPage> = {
       href: "/fr/ressources/"
     },
     related: [
+      {
+        "label": "Guide et modèle Excel du planning de garde",
+        "href": "/fr/blog/planning-de-garde-medecins/"
+      },
       {
         label: "Lire le cas CHIREC",
         href: "/fr/cas-clients/chirec/"

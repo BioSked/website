@@ -15,7 +15,9 @@
         "about": "Über uns",
         "about-subtitle": "Das Team kennenlernen",
         "references": "Referenzen",
-        "references-subtitle": "Dokumentierte Kundenergebnisse"
+        "references-subtitle": "Dokumentierte Kundenergebnisse",
+        "oncall-template": "Dienstplan-Vorlage",
+        "oncall-template-subtitle": "Kostenlose Excel-Vorlage und Ratgeber"
     },
     "cta": {
         "demo": "Demo buchen"

@@ -28,7 +28,9 @@
         "case-studies-subtitle": "Retours d’expérience France",
         "security": "Sécurité",
         "whitepapers": "Livres blancs",
-        "whitepapers-subtitle": "Guides pratiques par spécialité"
+        "whitepapers-subtitle": "Guides pratiques par spécialité",
+        "oncall-template": "Modèle de planning de garde",
+        "oncall-template-subtitle": "Modèle Excel gratuit et guide"
     },
     "cta": {
         "demo": "Demander une démo"
