@@ -369,9 +369,11 @@ const priorConsentTimeZones = [...PRIOR_CONSENT_TIME_ZONES];
     // and only on pages that actually create a form via window.bskHsForm().
     (function () {
         var queue = [];
+        var created = [];
         var injected = false;
         window.bskHsForm = function (cfg) {
             queue.push(cfg);
+            created.push(cfg);
             if (injected) return;
             injected = true;
             var s = document.createElement('script');
@@ -380,10 +382,34 @@ const priorConsentTimeZones = [...PRIOR_CONSENT_TIME_ZONES];
             s.setAttribute('charset', 'utf-8');
             s.onload = function () {
                 if (!window.hbspt) return;
+                document.querySelectorAll('[data-bsk-fallback]').forEach(function (n) { n.remove(); });
                 window.bskHsForm = function (c) { window.hbspt.forms.create(c); };
                 queue.forEach(window.bskHsForm);
                 queue = [];
             };
+            // Ad blockers and some hospital network filters block hsforms.net,
+            // which used to leave an empty card. Offer a plain email instead.
+            var fallback = function () {
+                created.forEach(function (c) {
+                    var el = c.target && document.querySelector(c.target);
+                    if (!el || el.querySelector('form, iframe, [data-bsk-fallback]')) return;
+                    var fr = (c.locale || document.documentElement.lang || '').slice(0, 2) === 'fr';
+                    var mail = fr ? 'info@biosked.com' : 'sales@biosked.com';
+                    var subject = encodeURIComponent(fr ? 'Demande de démo Momentum' : 'Momentum demo request');
+                    var box = document.createElement('div');
+                    box.setAttribute('data-bsk-fallback', '');
+                    box.setAttribute('role', 'status');
+                    box.style.cssText = 'padding:1rem 0;line-height:1.5';
+                    box.innerHTML = (fr
+                        ? 'Le formulaire ne s’affiche pas (bloqueur de publicité ou filtre réseau)\u00a0? Écrivez-nous à '
+                        : 'The form did not load (ad blocker or network filter). Email us at ')
+                        + '<a style="text-decoration:underline" href="mailto:' + mail + '?subject=' + subject + '">' + mail + '</a>'
+                        + (fr ? ' en indiquant votre établissement et le nombre de personnes à planifier.' : ' with your organization and the number of people to schedule.');
+                    el.appendChild(box);
+                });
+            };
+            s.onerror = fallback;
+            setTimeout(fallback, 10000);
             document.head.appendChild(s);
         };
     })();
