@@ -1135,6 +1135,11 @@
           "type": 301
         },
         {
+          "regex": "^/blog/(?P<slug>[^/]+)/page/[0-9]+/?$",
+          "destination": "https://biosked.com/fr/blog/:slug/",
+          "type": 301
+        },
+        {
           "regex": "^/(?:category|tag|author)/.*$",
           "destination": "https://biosked.com/fr/blog/",
           "type": 301

@@ -49,6 +49,8 @@ const frSite = {
         { regex: '^/(?:comments/)?feed/?$', destination: `${ORIGIN}/fr/rss.xml`, type: 301 },
         { regex: '^/.+/feed/?$', destination: `${ORIGIN}/fr/rss.xml`, type: 301 },
         { regex: '^/[a-z0-9_-]*sitemap[a-z0-9_.-]*\\.xml$', destination: `${ORIGIN}/sitemap-index.xml`, type: 301 },
+        // Divi blog pagination under a post (/blog/<post>/page/3/?df_blog), still in Google's index
+        { regex: '^/blog/(?P<slug>[^/]+)/page/[0-9]+/?$', destination: `${ORIGIN}/fr/blog/:slug/`, type: 301 },
         // WordPress archives and pagination that never had a page of their own
         { regex: '^/(?:category|tag|author)/.*$', destination: `${ORIGIN}/fr/blog/`, type: 301 },
         { regex: '^/(?:blog/)?page/[0-9]+/?$', destination: `${ORIGIN}/fr/blog/`, type: 301 },
