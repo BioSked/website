@@ -1,0 +1,116 @@
+{
+ "key": "nl-spoed",
+ "locale": "nl",
+ "path": "/nl/specialismen/spoedgevallen/",
+ "metaTitle": "Planning spoedgevallendienst en urgentieartsen | Momentum",
+ "metaDescription": "Planning voor de spoedgevallendienst: wachtlijnen, 24-uursdiensten, 12 uur rust, MUG en eerlijke verdeling. Bij CHIREC: maandrooster in 4 tot 5 uur.",
+ "eyebrow": "Spoedgevallen en urgentiegeneeskunde",
+ "title": "Roosterplanning voor de spoedgevallendienst en urgentieartsen",
+ "description": "Wachtlijnen, 24-uursdiensten, rust na elke lange prestatie, de MUG en ASO’s: Momentum genereert het rooster van de spoedgevallendienst volgens de regels van uw dienst en houdt de tellers voor een eerlijke verdeling bij.",
+ "painsHeading": "Waar het spoedrooster op vastloopt",
+ "primaryPain": "Een spoedgevallendienst draait 24 uur op 24, 7 dagen op 7. Elke wachtlijn moet bezet zijn, ook de MUG. Nachten, weekends en feestdagen moeten eerlijk rondgaan, en na een lange prestatie volgt rust. Op de spoedgevallendienst van CHIREC in Braine-l’Alleud kostte een maandrooster op papier en in Excel 4 dagen werk (casestudy, mei 2025).",
+ "pains": [
+  "elke wachtlijn dag en nacht bezetten, zonder gaten of dubbele toewijzingen",
+  "na elke prestatie van 12 tot 24 uur de verplichte rust inplannen",
+  "nachten, weekends en feestdagen eerlijk en controleerbaar verdelen",
+  "wensen, verlof en ruilen verwerken zonder het rooster opnieuw te maken"
+ ],
+ "outcomesHeading": "Wat het de dienst oplevert",
+ "outcomes": [
+  "een maandrooster in 4 tot 5 uur in plaats van 4 dagen (spoedgevallendienst CHIREC, casestudy mei 2025)",
+  "tot 90% minder tijd voor roosterbeheer (zelfde casestudy)",
+  "een tevredenheid van het personeel tussen 90 en 100% (zelfde casestudy)",
+  "tellers voor nachten, weekends en feestdagen die het hele team kan inzien"
+ ],
+ "quote": {
+  "text": "Ik had niet verwacht dat Momentum zo’n impact zou hebben. Het is duidelijk, vlot en geautomatiseerd. Ik ben onder de indruk van het vermogen van de tool om zo geoptimaliseerde roosters te genereren en daarbij bijna alle wensen te respecteren.",
+  "cite": "dr. Frédéric Cavallotto, diensthoofd Spoedgevallen, ziekenhuis van Braine-l’Alleud, CHIREC (casestudy, mei 2025; vertaald uit het Frans)",
+  "href": "/nl/referenties/chirec/"
+ },
+ "sections": [
+  {
+   "heading": "Wachtlijnen en 24-uursdiensten zoals u ze vandaag organiseert",
+   "paragraphs": [
+    "Spoed volwassenen, kinderspoed, MUG: elke wachtlijn heeft haar uren, de vereiste competenties en het aantal artsen. Wachten van 24 uur, halve wachten en nachtdiensten stelt u in zoals uw dienst ze nu draait. Het rooster volgt uw eigen sjablonen, geen opgelegd model.",
+    "Bij elke generatie controleert Momentum of elke lijn bezet is. Een lege lijn ziet u voor het rooster gepubliceerd wordt, niet midden in de nacht."
+   ]
+  },
+  {
+   "heading": "Rust na een prestatie van 12 tot 24 uur",
+   "paragraphs": [
+    "Voor artsen met een arbeidsovereenkomst of in statutair verband en voor ASO’s geldt de wet van 12 december 2010 tot vaststelling van de arbeidsduur van de geneesheren. Een werkperiode duurt nooit langer dan 24 uur, behalve bij een ongeval of een onvoorziene noodzakelijkheid (art. 5, § 2). En “elke arbeidsprestatie waarvan de duur tussen 12 uren en 24 uren bedraagt moet worden gevolgd door een periode van minimum rust van 12 opeenvolgende uren” (art. 5, § 3). Over 13 weken bedraagt de arbeidsduur gemiddeld hoogstens 48 uur per week, met een absolute grens van 60 uur (art. 5, § 1).",
+    "Die grenzen en de rustregels van uw dienst stelt u één keer in, en Momentum past ze toe bij elke generatie van het rooster. Laat de vertaling van de wet naar regels nakijken door de medische directie of uw juridische dienst."
+   ]
+  },
+  {
+   "heading": "Spoed en MUG zonder dubbele toewijzing",
+   "paragraphs": [
+    "Wanneer dezelfde urgentieartsen de spoed en de MUG bemannen, voorkomt één rooster dat iemand op twee plaatsen tegelijk staat. In het CHU d’Angers (Frankrijk) worden zo 52 artsen gepland, gedeeld tussen de spoedgevallendienst en de Samu; de dienst is klant sinds 2021 (casestudy, 2023).",
+    "Werken de urgentieartsen op meerdere campussen van een ziekenhuisnetwerk, dan houdt elke campus zijn eigen lijnen en regels in één gezamenlijk rooster, zonder dubbele toewijzingen tussen campussen."
+   ]
+  },
+  {
+   "heading": "Nachten, weekends en feestdagen: eerlijk verdeeld in tellers",
+   "paragraphs": [
+    "Elke nacht, elk weekend en elke feestdag komt op een teller die het hele team kan inzien, en elke goedgekeurde ruil werkt de tellers bij. Discussies steunen zo op gedeelde cijfers, niet op het geheugen van het diensthoofd.",
+    "Op de spoedgevallendienst van CHIREC wordt de verdeling als eerlijker ervaren, ziet iedereen hoe de wensen meetellen en zijn er aanzienlijk minder e-mails om bij te sturen (casestudy, mei 2025)."
+   ]
+  },
+  {
+   "heading": "ASO’s: het maandrooster vier weken vooraf",
+   "paragraphs": [
+    "Voor ASO’s gelden ook de collectieve overeenkomsten van de Nationale Paritaire Commissie Artsen-Ziekenhuizen. Het ziekenhuis deelt het maandrooster, met de wachtregeling en de rusttijden, minstens vier weken vooraf elektronisch mee (overeenkomst van 19 mei 2021, art. 6). Sinds 1 april 2024 worden in een periode van één maand nooit meer dan 260 uren ingeroosterd (overeenkomst van 21 december 2023, art. 3).",
+    "Momentum publiceert het rooster op mobiel en web, met een melding bij elke wijziging en synchronisatie met de agenda. Artsen dienen wensen en verlof in via de app of het web en stellen ruilen voor; u ziet het effect van een aanvraag voor u ze goedkeurt."
+   ]
+  },
+  {
+   "heading": "Van gepresteerde uren tot loonadministratie",
+   "paragraphs": [
+    "De gepresteerde uren zijn zichtbaar en worden gevalideerd in dezelfde tool, en gaan daarna naar de directie en de loonadministratie, met minder correcties achteraf.",
+    "Bij CHIREC wogen de automatische urenberekening, de export naar HR en de waarschuwingen bij overschrijdingen mee in de keuze. De dienst ziet nu aanzienlijk minder fouten in de lonen (casestudy, mei 2025)."
+   ]
+  }
+ ],
+ "proof": "Op de spoedgevallendienst van het ziekenhuis van Braine-l’Alleud (CHIREC, 40.000 bezoeken per jaar, 25 tot 30 artsen) draait Momentum sinds eind 2024. In totaal gebruiken meer dan 250 zorgorganisaties Momentum, op meer dan 1.000 locaties in 9 landen.",
+ "faq": [
+  {
+   "q": "Kan Momentum de regels van de wet van 12 december 2010 toepassen?",
+   "a": "U stelt de grenzen in die voor uw artsen gelden, zoals hoogstens 24 uur per werkperiode en 12 uur rust na een prestatie van 12 tot 24 uur. Momentum past ze toe bij elke generatie van het rooster."
+  },
+  {
+   "q": "Geldt die wet ook voor zelfstandige urgentieartsen?",
+   "a": "Nee. De wet geldt voor artsen met een arbeidsovereenkomst of in statutair verband, voor ASO’s en voor studenten-stagiairs (art. 3). In Momentum heeft elke arts zijn eigen contract en regels, zodat zelfstandigen en artsen in loondienst in hetzelfde rooster staan."
+  },
+  {
+   "q": "Kunnen de spoed en de MUG in één rooster?",
+   "a": "Ja. Artsen die op meerdere lijnen werken, staan in één rooster, zodat niemand op twee plaatsen tegelijk ingepland wordt."
+  },
+  {
+   "q": "Wat verandert er als er ASO’s in het team zitten?",
+   "a": "Hun maandrooster, met wachtregeling en rusttijden, moet minstens vier weken vooraf elektronisch meegedeeld worden, en sinds 1 april 2024 worden in een maand nooit meer dan 260 uren ingeroosterd. Neem die grenzen op in de regels voor de ASO’s; het rooster verschijnt op hun mobiel, met meldingen."
+  },
+  {
+   "q": "Hoe verloopt de invoering?",
+   "a": "Een projectleider van Momentum stelt samen met u de lijnen, de regels en de contracten in en begeleidt u bij de eerste roosters. Bij CHIREC werden eerst het diensthoofd en twee referentiepersonen opgeleid, daarna volgden de artsen (casestudy, mei 2025)."
+  },
+  {
+   "q": "Waar worden de gegevens bewaard?",
+   "a": "Voor Europese klanten in de Europese Unie. Momentum verwerkt planningsgegevens, geen patiëntendossiers."
+  }
+ ],
+ "related": [
+  {"label": "Gids en Excel-sjabloon voor het wachtrooster", "href": "/nl/gids/wachtrooster-artsen/"},
+  {"label": "Casestudy CHIREC (spoedgevallen)", "href": "/nl/referenties/chirec/"},
+  {"label": "Alle referenties", "href": "/nl/referenties/"},
+  {"label": "Demo aanvragen", "href": "/nl/demo/"}
+ ],
+ "labels": {
+  "demo": "Demo aanvragen",
+  "secondary": "Bekijk de referenties",
+  "secondaryHref": "/nl/referenties/",
+  "momentumEyebrow": "Zo werkt Momentum op de spoed",
+  "proofEyebrow": "Referentie in België",
+  "faqHeading": "Veelgestelde vragen",
+  "imageAlt": "Momentum: maandoverzicht van het rooster met wachtdiensten en tellers"
+ }
+}

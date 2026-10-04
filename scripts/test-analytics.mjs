@@ -575,13 +575,22 @@ for (const [path, successPath] of [
   ['src/pages/fr/getquote.astro', '/fr/demo/merci/'],
   ['src/pages/fr-ch/getquote.astro', '/fr-ch/demo/merci/'],
 ]) {
+  // French quote pages use a native French form posting to the same HubSpot form
+  // (the HubSpot frame rendered English labels on a French page).
   const quotePage = read(path);
-  assert.match(quotePage, /class="[^"]*\bhs-form-frame\b[^"]*"/);
-  assert.match(quotePage, /data-form-id="152f6973-10dd-42d4-af28-2df2f8f830e9"/);
-  assert.match(quotePage, /forms\/embed\/25195055\.js/);
-  assert.match(quotePage, new RegExp(`data-success-redirect="${successPath}"`));
-  assert.doesNotMatch(quotePage, /bskHsForm|onFormSubmit(?:ted)?/);
+  assert.match(quotePage, /<FrenchLeadForm kind="quote" formId="152f6973-10dd-42d4-af28-2df2f8f830e9"/);
+  assert.match(quotePage, new RegExp(`successPath="${successPath}"`));
+  assert.doesNotMatch(quotePage, /hs-form-frame|bskHsForm|onFormSubmit(?:ted)?/);
 }
+const frenchLeadForm = read('src/components/forms/FrenchLeadForm.astro');
+assert.match(frenchLeadForm, /data-fr-lead-form/);
+assert.match(frenchLeadForm, /api-eu1\.hsforms\.com\/submissions\/v3\/integration\/submit/);
+assert.match(frenchLeadForm, /buildHubSpotSubmission/);
+assert.match(frenchLeadForm, /bskTrackLead\(formId, redirect\)/);
+assert.match(frenchLeadForm, /data-success-path=\{successPath\}/);
+assert.match(frenchLeadForm, /Adresse e-mail professionnelle/);
+assert.match(frenchLeadForm, /Nombre de personnes à planifier/);
+assert.doesNotMatch(frenchLeadForm, /First Name|Work Email|Geschäftliche|Anzahl/);
 
 const intlQuotePage = read('src/components/sections/intl/GetQuotePage.astro');
 assert.match(intlQuotePage, /class="[^"]*\bhs-form-frame\b[^"]*"/);

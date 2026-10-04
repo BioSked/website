@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { SCHEDULE, publishToday } from '../src/data/publishSchedule.mjs';
 import { access, readFile, readdir, stat } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -214,16 +215,25 @@ function collectStructuredTypes(value) {
 
 await access(distDir);
 const htmlFiles = (await walk(distDir)).filter((file) => file.endsWith('.html'));
-const blogSourceFiles = (await Promise.all(blogSourceDirs.map((directory) => walk(directory))))
+const regularBlogSourceFiles = (await Promise.all(blogSourceDirs.map((directory) => walk(directory))))
   .flat()
   .filter((file) => file.endsWith('.md'));
-const expectedBlogOutputPaths = new Set(blogSourceFiles.map((file) => {
-  const relativeSourcePath = path.relative(projectRoot, file).split(path.sep).join('/');
-  const outputStem = relativeSourcePath
-    .replace(/^src\/pages\//, '')
-    .replace(/\.md$/, '');
-  return `${outputStem}/index.html`;
-}));
+// Scheduled articles (src/scheduled, src/data/publishSchedule.mjs) count once
+// live when their path is under /blog/posts/ or /fr/blog/.
+const scheduledBlogItems = SCHEDULE.filter((item) => item.kind === 'md' && /^\/(?:blog\/posts|fr\/blog)\//.test(item.path) && item.date <= publishToday())
+  .map((item) => ({ file: path.join(projectRoot, 'src/scheduled', `${item.key}.md`), output: `${item.path.replace(/^\/|\/$/g, '')}/index.html` }));
+for (const item of scheduledBlogItems) await access(item.file);
+const blogSourceFiles = [...regularBlogSourceFiles, ...scheduledBlogItems.map((item) => item.file)];
+const expectedBlogOutputPaths = new Set([
+  ...regularBlogSourceFiles.map((file) => {
+    const relativeSourcePath = path.relative(projectRoot, file).split(path.sep).join('/');
+    const outputStem = relativeSourcePath
+      .replace(/^src\/pages\//, '')
+      .replace(/\.md$/, '');
+    return `${outputStem}/index.html`;
+  }),
+  ...scheduledBlogItems.map((item) => item.output),
+]);
 assert.equal(
   expectedBlogOutputPaths.size,
   blogSourceFiles.length,

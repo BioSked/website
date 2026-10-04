@@ -1,0 +1,117 @@
+{
+ "key": "de-anaes",
+ "locale": "de",
+ "path": "/de/fachbereiche/anaesthesie/",
+ "metaTitle": "Dienstplan Anästhesie: Dienste und Ruhezeiten | Momentum",
+ "metaDescription": "Dienstplan Anästhesie: Bereitschaftsdienst, Oberarzt-Rufbereitschaft, Intensivstation und Ruhezeiten in einem Plan, mit fairen Zählern für das ganze Team.",
+ "eyebrow": "Anästhesiologie",
+ "title": "Dienstplanung für die Anästhesie: Vordergrund, Hintergrund und Ruhezeiten in einem Plan",
+ "description": "Bereitschaftsdienst im Haus, oberärztliche Rufbereitschaft, Intensivstation, Notarztdienst und Prämedikation: Momentum erstellt den ärztlichen Dienstplan der Anästhesie nach Ihren Regeln und wendet die Ruhezeiten bei jeder Planerstellung an.",
+ "painsHeading": "Was den Anästhesie-Dienstplan schwierig macht",
+ "primaryPain": "Ein Anästhesie-Dienstplan verbindet mehrere Dienstformen: den Bereitschaftsdienst im Haus, die Rufbereitschaft der Oberärztinnen und Oberärzte, dazu oft Intensivstation, Kreißsaal und Notarztdienst. Jede hat eigene Zeiten und Teilnehmende, und nach jedem langen Dienst muss die Ruhezeit im Plan stehen. Ein Tausch am Donnerstag kann am Freitag eine Ruhezeit verletzen oder eine tarifliche Monatsgrenze überschreiten, ohne dass es jemand merkt. Und am Ende soll das ganze Team sehen können, dass Nächte, Wochenenden und Feiertage fair verteilt sind.",
+ "pains": [
+  "Vordergrund- und Hintergrunddienste so verzahnen, dass jede Nacht abgedeckt ist",
+  "Ruhezeiten nach Bereitschaftsdienst und nach Einsätzen in der Rufbereitschaft einhalten",
+  "Monatsgrenzen für Bereitschaftsdienste und Rufbereitschaften je Person im Blick behalten",
+  "Nächte, Wochenenden, Feiertage und Prämedikation fair verteilen"
+ ],
+ "outcomesHeading": "Was sich für die Dienstplanung der Anästhesie ändert",
+ "outcomes": [
+  "alle Dienstformen der Abteilung in einem Plan, zusammen mit den Tagdiensten",
+  "Ruhezeitregeln bei der Planerstellung angewandt, mit einem Hinweis, wenn eine manuelle Änderung sie verletzt",
+  "Zähler für Dienste, Rufbereitschaften, Wochenenden und Prämedikation, die das ganze Team einsehen kann",
+  "bis zu 90 % weniger Zeit für die Verwaltung der Dienstpläne, gemessen in der Notaufnahme des CHIREC (Belgien, Fallstudie Mai 2025)"
+ ],
+ "quote": {
+  "text": "Heute ist alles an einem Ort und über das Internet zugänglich. Als Momentum-Administrator für die Notfallmedizin habe ich nichts weiter zu tun, als mich anzumelden, um auf alle Anfragen der Ärztinnen und Ärzte zuzugreifen und meine Dienstpläne zu verwalten.",
+  "cite": "Dr. Thomas Boishardy, praticien hospitalier, Notfallmedizin, CHU d’Angers, Frankreich (Fallstudie 2023; aus dem Französischen übersetzt)",
+  "href": "/de/referenzen/"
+ },
+ "sections": [
+  {
+   "heading": "Vordergrund und Hintergrund in einem Plan",
+   "paragraphs": [
+    "Bereitschaftsdienst im Haus für Assistenz- und Fachärztinnen und -ärzte, oberärztliche Rufbereitschaft von zu Hause, Intensivstation, Kreißsaal, Notarztdienst: Jede Dienstform bekommt in Momentum ihre Zeiten, ihre Teilnehmenden und ihre Regeln. Alle stehen im selben Plan wie die Tagdienste, sodass niemand mehr eine Dienstliste mit einem zweiten Plan abgleichen muss.",
+    "Nach TV-Ärzte darf ein Dienst mit Bereitschaftsdienst unter weiteren Voraussetzungen bis zu 24 Stunden dauern, wenn mindestens die Zeit über acht Stunden als Bereitschaftsdienst geleistet wird (TV-Ärzte/VKA § 10 Abs. 2, TV-Ärzte/TdL § 7 Abs. 4). Grundsätzlich sind bis zu vier Bereitschaftsdienste im Kalendermonat zu leisten, in einem Monat je Quartal fünf (VKA § 10 Abs. 10, TdL § 7 Abs. 5a)."
+   ]
+  },
+  {
+   "heading": "Ruhezeiten, bei der Planerstellung angewandt",
+   "paragraphs": [
+    "Nach mehr als zwölf Stunden Arbeitszeit folgt unmittelbar eine Ruhezeit von mindestens elf Stunden (§ 7 Abs. 9 ArbZG). Einsätze in der Rufbereitschaft kürzen die Ruhezeit; betragen die Kürzungen nicht mehr als die Hälfte, dürfen sie in Krankenhäusern zu anderen Zeiten ausgeglichen werden (§ 5 Abs. 3 ArbZG).",
+    "Ihre Ruhezeitregeln werden einmal hinterlegt. Momentum wendet sie bei der Planerstellung an und weist Sie darauf hin, wenn eine manuelle Änderung jemanden während seiner Ruhezeit einteilt. Der Verlauf der Ruhezeiten bleibt einsehbar."
+   ]
+  },
+  {
+   "heading": "Rufbereitschaft der Oberärztinnen und Oberärzte",
+   "paragraphs": [
+    "Im TV-Ärzte/VKA sind höchstens 13 Rufbereitschaften im Kalendermonat zu leisten, und wer auch Bereitschaftsdienste macht, wird verrechnet: Bei zwei Bereitschaftsdiensten bleiben in Vollzeit höchstens sieben Rufbereitschaften, bei vier keine (§ 10 Abs. 8 und 12). Im TV-Ärzte/TdL darf ein Dienst mit Bereitschaftsdienst über acht Stunden nicht mit einer unmittelbar anschließenden Rufbereitschaft kombiniert werden, außer mit schriftlicher Vereinbarung (§ 7 Abs. 4).",
+    "In Momentum hat jede Person Zähler für Rufbereitschaften und Bereitschaftsdienste, die bei jedem Tausch aktuell bleiben. So sieht die Planung früh, wer sich einer Grenze nähert."
+   ]
+  },
+  {
+   "heading": "Prämedikation, Qualifikationen und Weiterbildung",
+   "paragraphs": [
+    "Prämedikationsambulanz und andere Tagesaufgaben verteilen Sie nach Ihren Regeln über das Quartal oder das Jahr, und jede Ärztin und jeder Arzt sieht den eigenen Stand. Qualifikationen grenzen die Einteilung ein: Niemand wird für einen Dienst vorgeschlagen, für den die nötige Qualifikation fehlt.",
+    "Assistenzärztinnen und Assistenzärzte in Weiterbildung haben eigene Dienste und Regeln für ihre Gruppe, im selben Plan wie Fach- und Oberärztinnen und -ärzte."
+   ]
+  },
+  {
+   "heading": "Fairness mit Zählern",
+   "paragraphs": [
+    "Nächte, Wochenenden, Feiertage, Prämedikation, belastende Dienste: Jeder Zähler ist für das Team sichtbar. Entscheidungen stützen sich auf gemeinsame Zahlen statt auf das Gedächtnis der Planenden, und alle können prüfen, ob die Verteilung stimmt.",
+    "Planungswünsche und die Regeln des Hauses kommen auf diese Grundlage, ohne sie zu ersetzen."
+   ]
+  },
+  {
+   "heading": "Planungswünsche, Dienstbörse, App und Lohnexport",
+   "paragraphs": [
+    "Urlaub, Verfügbarkeiten und Planungswünsche tragen Ärztinnen und Ärzte in der App für iPhone und Android ein. Tausche schlagen sie vor, freie Dienste übernehmen sie über die Dienstbörse, und jede Anfrage ist nachvollziehbar. Vor der Zustimmung sieht die Planung, was eine Anfrage im Plan bewirkt.",
+    "Der veröffentlichte Plan synchronisiert sich mit den persönlichen Kalendern, und jede Person wird benachrichtigt, wenn sich ein Dienst ändert, der sie betrifft. Geleistete Stunden, Überstunden und Urlaub laufen im selben Werkzeug, und die Lohnabrechnung erhält einen Export ohne erneute Eingabe."
+   ]
+  }
+ ],
+ "proof": "Am CHU d’Angers in Frankreich wurde Momentum zuerst in der Anästhesie eingesetzt; die Notfallmedizin plant damit 52 Ärztinnen und Ärzte zwischen Notaufnahme und SAMU, Kunde seit 2021 (Fallstudie 2023). Insgesamt planen mehr als 250 Gesundheitseinrichtungen an über 1.000 Standorten in 9 Ländern mit Momentum, seit mehr als 15 Jahren.",
+ "faq": [
+  {
+   "q": "Ersetzt Momentum das Anästhesie-Informationssystem oder die Narkosedokumentation?",
+   "a": "Nein. Momentum plant, wer wann welchen Dienst hat. Narkosedokumentation und klinische Daten bleiben in Ihren klinischen Systemen; Momentum verarbeitet nur Planungsdaten, keine Patientenakten."
+  },
+  {
+   "q": "Können Bereitschaftsdienst und Oberarzt-Rufbereitschaft gemeinsam geplant werden?",
+   "a": "Ja. Vordergrund- und Hintergrunddienste stehen im selben Plan, jeweils mit eigenen Teilnehmenden und Regeln. Jede Änderung ist sofort für alle Dienstformen sichtbar."
+  },
+  {
+   "q": "Wie berücksichtigt Momentum Ruhezeiten?",
+   "a": "Ihre Regeln werden einmal hinterlegt. Momentum wendet sie bei der Planerstellung an und weist Sie darauf hin, wenn eine manuelle Änderung jemanden während der Ruhezeit einteilt. Der Verlauf bleibt einsehbar."
+  },
+  {
+   "q": "Lassen sich die Monatsgrenzen des TV-Ärzte abbilden?",
+   "a": "Höchstzahlen pro Monat, etwa für Bereitschaftsdienste und Rufbereitschaften, werden als Regeln der Abteilung hinterlegt und bei jeder Planerstellung angewandt. Welche Zahlen gelten, hängt von Ihrem Tarifvertrag ab; unser Ratgeber stellt TV-Ärzte/VKA und TV-Ärzte/TdL nebeneinander."
+  },
+  {
+   "q": "Können Assistenzärztinnen und -ärzte in Weiterbildung mitgeplant werden?",
+   "a": "Ja. Sie haben eigene Dienste und Regeln für ihre Gruppe, im selben Plan wie Fach- und Oberärztinnen und -ärzte."
+  },
+  {
+   "q": "Wie läuft die Einführung?",
+   "a": "Eine Projektleiterin oder ein Projektleiter von Momentum richtet mit Ihnen in regelmäßigen Terminen die Regeln der Abteilung ein und begleitet Sie bei den ersten erstellten Plänen."
+  }
+ ],
+ "related": [
+  {"label": "Ratgeber: Dienstplan für Ärzte", "href": "/de/ratgeber/dienstplan-aerzte/"},
+  {"label": "TV-Ärzte: Grenzen für den Dienstplan", "href": "/de/ratgeber/tv-aerzte-dienstplan-grenzen/"},
+  {"label": "Notaufnahme", "href": "/de/fachbereiche/notaufnahme/"},
+  {"label": "Radiologie", "href": "/de/fachbereiche/radiologie/"},
+  {"label": "Referenzen", "href": "/de/referenzen/"}
+ ],
+ "labels": {
+  "demo": "Demo anfragen",
+  "secondary": "Referenzen ansehen",
+  "secondaryHref": "/de/referenzen/",
+  "momentumEyebrow": "Mit Momentum",
+  "proofEyebrow": "Aus der Praxis",
+  "faqHeading": "Häufige Fragen",
+  "imageAlt": "Momentum: Monatsansicht des Dienstplans mit Diensten, Bereitschaften und Zählern"
+ }
+}

@@ -1,0 +1,114 @@
+{
+ "key": "de-notauf",
+ "locale": "de",
+ "path": "/de/fachbereiche/notaufnahme/",
+ "metaTitle": "Dienstplan Notaufnahme: Software für Ärzte | Momentum",
+ "metaDescription": "Dienstplan Notaufnahme: Schichten und Dienste rund um die Uhr, faire Wochenenden, Ruhezeiten geprüft. CHIREC: Monatsplan in 4 bis 5 Stunden statt 4 Tagen.",
+ "eyebrow": "Notfallmedizin",
+ "title": "Dienstplanung für die Notaufnahme: rund um die Uhr besetzt, nachvollziehbar verteilt",
+ "description": "Momentum erstellt den ärztlichen Dienstplan der Notaufnahme nach Ihren Regeln: Schichten oder Bereitschaftsdienste, Nächte, Wochenenden, Feiertage und Ruhezeiten. Die Zähler bleiben bei jedem Tausch aktuell.",
+ "painsHeading": "Warum der Dienstplan der Notaufnahme so viel Zeit kostet",
+ "primaryPain": "Eine Notaufnahme ist an 365 Tagen rund um die Uhr ärztlich besetzt. Jede Position braucht jemanden mit der passenden Qualifikation, Nächte, Wochenenden und Feiertage müssen reihum gehen, nach langen Diensten kommt die Ruhezeit, und die Grenzen des Tarifvertrags gelten für jede Person einzeln. Wer dieselben Ärztinnen und Ärzte auch im Notarztdienst einsetzt, darf sie nicht zweimal verplanen. In der Notaufnahme des CHIREC in Belgien kostete ein Monatsplan auf Papier und in Excel vor Momentum 4 Tage (Fallstudie, Mai 2025).",
+ "pains": [
+  "jede Position rund um die Uhr besetzen, ohne Lücke und ohne Doppelbelegung",
+  "Nächte, Wochenenden und Feiertage nachprüfbar fair verteilen",
+  "Ruhezeiten und tarifliche Monatsgrenzen auch nach jedem Tausch einhalten",
+  "Planungswünsche, Urlaub und Teilzeit einarbeiten, ohne von vorn anzufangen"
+ ],
+ "outcomesHeading": "Was sich für die Leitung der Notaufnahme ändert",
+ "outcomes": [
+  "der Monatsdienstplan in 4 bis 5 Stunden statt in 4 Tagen (Notaufnahme des CHIREC, Belgien, Fallstudie Mai 2025)",
+  "bis zu 90 % weniger Zeit für die Verwaltung der Dienstpläne (dieselbe Fallstudie)",
+  "eine Zufriedenheit im Team zwischen 90 und 100 % (dieselbe Fallstudie)",
+  "Zähler für Nächte, Wochenenden und Feiertage, die das ganze Team einsehen kann"
+ ],
+ "quote": {
+  "text": "Ich hatte nicht erwartet, dass Momentum eine solche Wirkung hat. Es ist klar, flüssig, automatisiert. Ich bin beeindruckt, wie das Tool so optimierte Dienstpläne erstellt und dabei fast alle Wünsche berücksichtigt.",
+  "cite": "Dr. Frédéric Cavallotto, Leiter der Notaufnahme, Krankenhaus Braine-l’Alleud, CHIREC-Gruppe, Belgien (Fallstudie, Mai 2025; aus dem Französischen übersetzt)",
+  "href": "/de/referenzen/"
+ },
+ "sections": [
+  {
+   "heading": "Schichtdienst, Bereitschaftsdienst oder beides",
+   "paragraphs": [
+    "Bereitschaftsdienst darf nur angeordnet werden, wenn zwar Arbeit anfällt, erfahrungsgemäß aber die Zeit ohne Arbeitsleistung überwiegt (TV-Ärzte/VKA § 10 Abs. 1, TV-Ärzte/TdL § 7 Abs. 4). Wo das nicht zutrifft, wird im Schichtdienst geplant, mit eigenen Grenzen: Schichten bis zwölf Stunden, höchstens vier über zehn Stunden in Folge und acht in zwei Kalenderwochen, dazu 72 Stunden Abstand zu einem Bereitschaftsdienst (TV-Ärzte/VKA § 7 Abs. 5). Im TV-Ärzte/TdL lassen sich solche Schichten nicht mit Bereitschaftsdienst kombinieren (§ 7 Abs. 3).",
+    "In Momentum legen Sie Schichten, 24-Stunden-Dienste, Nachtdienste und den oberärztlichen Hintergrund so an, wie Ihre Notaufnahme heute arbeitet. Der Plan folgt Ihren Vorlagen, nicht einem vorgegebenen Modell."
+   ]
+  },
+  {
+   "heading": "Jede Position besetzt, bevor der Plan erscheint",
+   "paragraphs": [
+    "Jede Position hat ihre Zeiten, die nötige Qualifikation und die Zahl der Ärztinnen und Ärzte: Früh-, Spät- und Nachtdienst, Hintergrund, Notarztdienst. Momentum prüft die Besetzung jeder Position bei der Planerstellung. Eine leere Position fällt vor der Veröffentlichung auf, nicht mitten in der Nacht."
+   ]
+  },
+  {
+   "heading": "Notaufnahme und Notarztdienst in einem Plan",
+   "paragraphs": [
+    "Wenn dieselben Ärztinnen und Ärzte die Notaufnahme und den Notarztdienst besetzen, verhindert ein gemeinsamer Plan, dass jemand zur selben Zeit an zwei Orten eingeteilt ist. Am CHU d’Angers in Frankreich plant die Notfallmedizin so 52 Ärztinnen und Ärzte, die zwischen Notaufnahme und SAMU, dem französischen Rettungs- und Notarztdienst, geteilt sind, Kunde seit 2021 (Fallstudie 2023)."
+   ]
+  },
+  {
+   "heading": "Nächte, Wochenenden, Feiertage: Fairness zum Nachzählen",
+   "paragraphs": [
+    "Jede Nacht, jedes Wochenende und jeder Feiertag landet in einem Zähler je Person, den das ganze Team sieht. Die Verteilung folgt Ihren Regeln, und Entscheidungen stützen sich auf gemeinsame Zahlen statt auf das Gedächtnis der Leitung.",
+    "Für Wochenenden setzen beide TV-Ärzte eine eigene Grenze: Arbeit von Freitag 21 Uhr bis Montag 5 Uhr an höchstens zwei Wochenenden im Monat, ein weiteres je Quartal, mindestens ein freies im Monat (TV-Ärzte/VKA § 8 Abs. 4, TV-Ärzte/TdL § 6 Abs. 9). In der Notaufnahme des CHIREC nimmt das Team die Verteilung als gerechter wahr, und es gehen deutlich weniger E-Mails zur Abstimmung hin und her (Fallstudie, Mai 2025)."
+   ]
+  },
+  {
+   "heading": "Ruhezeiten, Tarifgrenzen und Stunden",
+   "paragraphs": [
+    "Ruhezeit nach dem Dienst, Höchstzahlen pro Monat, Verträge und Teilzeit: Ihre Regeln werden einmal hinterlegt und bei jeder Planerstellung angewandt. Das Arbeitszeitgesetz gilt dabei immer mit, etwa die Ruhezeit von mindestens elf Stunden unmittelbar nach mehr als zwölf Stunden Arbeitszeit (§ 7 Abs. 9 ArbZG).",
+    "Die geleisteten Stunden sind im selben Werkzeug sichtbar, werden bestätigt und gehen an Leitung und Lohnabrechnung, mit weniger Korrekturen im Nachhinein."
+   ]
+  },
+  {
+   "heading": "Planungswünsche, Tausch und App",
+   "paragraphs": [
+    "Ärztinnen und Ärzte sehen den Plan in der App oder im Browser, tragen Planungswünsche und Urlaub ein, schlagen Tausche vor und werden bei jeder Änderung benachrichtigt, die sie betrifft. Die Leitung sieht die Wirkung einer Anfrage, bevor sie zustimmt.",
+    "Beim CHIREC verlief die Einführung in Stufen: zuerst die Leitung und zwei Ansprechpersonen für den Alltag, dann die Einsicht in den Plan und die Planungswünsche für alle, mit Begleitung für Ärztinnen und Ärzte, die mit digitalen Werkzeugen weniger vertraut sind (Fallstudie, Mai 2025)."
+   ]
+  }
+ ],
+ "proof": "In der Notaufnahme des Krankenhauses Braine-l’Alleud (CHIREC-Gruppe, Belgien) arbeiten 25 bis 30 Ärztinnen und Ärzte bei 40.000 Patientenkontakten im Jahr mit Momentum (Fallstudie, Mai 2025). Insgesamt planen mehr als 250 Gesundheitseinrichtungen an über 1.000 Standorten in 9 Ländern mit Momentum.",
+ "faq": [
+  {
+   "q": "Plant Momentum Schichtdienst und Bereitschaftsdienst in derselben Notaufnahme?",
+   "a": "Ja. Schichten, 24-Stunden-Dienste, Nacht- und Hintergrunddienste legen Sie nach Ihrer Organisation an. Die Ruhezeiten nach jedem Dienst werden bei der Planerstellung angewandt."
+  },
+  {
+   "q": "Berücksichtigt Momentum die Grenzen des TV-Ärzte?",
+   "a": "Die Grenzen, die in Ihrem Haus gelten, etwa Höchstzahlen pro Monat und Ruhezeiten, werden als Regeln der Abteilung hinterlegt und bei jeder Planerstellung angewandt. Welche Grenzen gelten, hängt von Ihrem Tarifvertrag ab: TV-Ärzte/VKA, TV-Ärzte/TdL, der Tarifvertrag eines privaten Trägers oder kirchliche Regelungen. Unser Ratgeber stellt TV-Ärzte/VKA und TV-Ärzte/TdL nebeneinander."
+  },
+  {
+   "q": "Können Notaufnahme und Notarztdienst gemeinsam geplant werden?",
+   "a": "Ja. Ärztinnen und Ärzte mit mehreren Tätigkeiten stehen in einem Plan, so wird niemand doppelt eingeteilt. Am CHU d’Angers (Frankreich) sind 52 Ärztinnen und Ärzte zwischen Notaufnahme und SAMU so geplant (Fallstudie 2023)."
+  },
+  {
+   "q": "Wie wird Fairness bei Nächten und Wochenenden nachgewiesen?",
+   "a": "Jede Nacht, jedes Wochenende und jeder Feiertag wird je Person gezählt. Momentum verteilt nach Ihren Regeln und zeigt die Zähler dem ganzen Team, damit alle die Verteilung prüfen können."
+  },
+  {
+   "q": "Wie läuft die Einführung?",
+   "a": "Eine Projektleiterin oder ein Projektleiter von Momentum richtet mit Ihnen Positionen, Regeln und Verträge ein und begleitet die ersten Pläne. Beim CHIREC wurden zuerst die Leitung und zwei Ansprechpersonen geschult, bevor alle Ärztinnen und Ärzte dazukamen (Fallstudie, Mai 2025)."
+  },
+  {
+   "q": "Wo liegen die Daten?",
+   "a": "Bei europäischen Kunden in der Europäischen Union. Momentum verarbeitet nur Planungsdaten, keine Patientenakten. Einzelheiten stehen auf der Seite Sicherheit und Daten."
+  }
+ ],
+ "related": [
+  {"label": "Ratgeber: Dienstplan für Ärzte", "href": "/de/ratgeber/dienstplan-aerzte/"},
+  {"label": "TV-Ärzte: Grenzen für den Dienstplan", "href": "/de/ratgeber/tv-aerzte-dienstplan-grenzen/"},
+  {"label": "Referenzen", "href": "/de/referenzen/"},
+  {"label": "Sicherheit und Daten", "href": "/de/sicherheit-und-daten/"}
+ ],
+ "labels": {
+  "demo": "Demo anfragen",
+  "secondary": "Referenzen ansehen",
+  "secondaryHref": "/de/referenzen/",
+  "momentumEyebrow": "Mit Momentum",
+  "proofEyebrow": "Aus der Praxis",
+  "faqHeading": "Häufige Fragen",
+  "imageAlt": "Momentum: Monatsansicht des Dienstplans mit Diensten, Bereitschaften und Zählern"
+ }
+}

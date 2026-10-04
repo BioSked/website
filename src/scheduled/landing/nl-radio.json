@@ -1,0 +1,113 @@
+{
+ "key": "nl-radio",
+ "locale": "nl",
+ "path": "/nl/specialismen/radiologie/",
+ "metaTitle": "Planning radiologie: rooster voor radiologen | Momentum",
+ "metaDescription": "Planning radiologie: sessies per site en modaliteit, meerdere campussen, thuiswacht, vervangingen en teleradiologie in één rooster voor het hele team.",
+ "eyebrow": "Radiologie en medische beeldvorming",
+ "title": "Roosterplanning voor radiologen en diensten medische beeldvorming",
+ "description": "Sessies per campus en per modaliteit, thuiswachten, vervangingen en verslaggeving op afstand: Momentum genereert het rooster van radiologen, technologen en secretariaat volgens de regels van uw dienst.",
+ "painsHeading": "Waarom het radiologierooster zoveel tijd vraagt",
+ "primaryPain": "Een dienst medische beeldvorming verdeelt zijn radiologen over CT, MR, mammografie, echografie en klassieke radiologie, vaak op meer dan één campus. Daarbovenop komen thuiswachten, verslaggeving op afstand, wensen en afwezigheden. In een spreadsheet kost elke nieuwe versie veel tijd, en niemand kan nog nagaan waarom een sessie bij wie terechtkwam. Bovendien moeten de technologen en het secretariaat mee.",
+ "pains": [
+  "sessies per site en modaliteit vullen met radiologen die die modaliteit doen",
+  "een bevoegde vervanger vinden bij ziekte of een toestel in onderhoud",
+  "thuiswachten, weekends en feestdagen eerlijk en controleerbaar verdelen",
+  "technologen en secretariaat laten aansluiten bij het rooster van de radiologen"
+ ],
+ "outcomesHeading": "Wat er verandert",
+ "outcomes": [
+  "één rooster per site en per modaliteit, voor radiologen, technologen en secretariaat",
+  "vervangers voorgesteld op basis van competenties en beschikbaarheid",
+  "tellers voor thuiswachten, weekends en feestdagen die elke radioloog kan inzien",
+  "één fte, of zelfs twee, gewonnen door de koppeling van Momentum met afsprakenplanning en tijdregistratie, volgens IMAGIR in Bordeaux (casestudy, juni 2021)"
+ ],
+ "quote": {
+  "text": "Voor mij maken de drie essentiële onderdelen van de toepassing, de automatische planning binnen de randvoorwaarden, de verspreiding van de roosters en tellers en de integratie met de afsprakenplanning, van Momentum een noodzakelijke en doeltreffende spil om de planning van de middelen te begrijpen en te overzien.",
+  "cite": "Anthony Bagot, operationeel verantwoordelijke, IMAGIR Bordeaux (casestudy, juni 2021; vertaald uit het Frans)"
+ },
+ "sections": [
+  {
+   "heading": "Sessies per campus en per modaliteit",
+   "paragraphs": [
+    "Elke site houdt zijn eigen sjablonen: zalen, modaliteiten, openingsuren, sessies in de voormiddag en de namiddag. De competenties van elke radioloog bepalen welke sessies hij krijgt: senologie, interventionele radiologie, musculoskeletale MR, pediatrie. Wie geen mammografie doet, komt er nooit op te staan.",
+    "Voor de technologen medische beeldvorming gelden dezelfde principes, met hun eigen competenties per modaliteit en hun vaste sites. De ene blijft op één campus, de andere draait mee over meerdere locaties."
+   ]
+  },
+  {
+   "heading": "Meerdere campussen, één rooster",
+   "paragraphs": [
+    "In een ziekenhuisnetwerk of een groep met privépraktijken werken radiologen niet meer op één plek. Momentum verdeelt de sessies over de sites volgens uw afspraken en toont per site en per dag wie waar staat. Sessies zonder radioloog ziet u voor de publicatie.",
+    "Bij IMAGIR in Bordeaux, ongeveer 40 radiologen op 9 sites, maakte de fusie van twee groepen het nodig om de middelen tussen de sites te delen. Volgens de groep bracht Momentum meer afstemming en communicatie tussen alle teams (casestudy, juni 2021)."
+   ]
+  },
+  {
+   "heading": "Thuiswacht en een eerlijke verdeling onder radiologen",
+   "paragraphs": [
+    "Thuiswachten, weekends, feestdagen en zware sessies: elke teller is zichtbaar voor alle radiologen en wordt bijgewerkt na elke goedgekeurde ruil. De overzichten van de verdeling en van de gewerkte feestdagen haalt u uit de tool, in plaats van ze op het einde van het jaar met de hand na te rekenen.",
+    "Wensen, deeltijdse regelingen en vervangers komen daar bovenop, zonder die basis te vervangen."
+   ]
+  },
+  {
+   "heading": "Vervangingen bij afwezigheid of een toestel in onderhoud",
+   "paragraphs": [
+    "Een onverwachte afwezigheid, een MR in onderhoud, een polikliniek die een halve dag sluit: Momentum stelt voor de getroffen sessies bevoegde en beschikbare vervangers voor, rekening houdend met de tellers. De verantwoordelijke kiest, en wie het aangaat krijgt een melding op zijn telefoon."
+   ]
+  },
+  {
+   "heading": "Teleradiologie als sessie in het rooster",
+   "paragraphs": [
+    "Verslaggeving op afstand plant u zoals elke andere sessie: met een tijdvak, de vereiste competenties en dezelfde tellers. Momentum regelt wie wanneer leest; de beelden en de verslagen blijven in uw eigen systemen."
+   ]
+  },
+  {
+   "heading": "RIS, uren en loonadministratie",
+   "paragraphs": [
+    "Momentum plant de teams, niet de onderzoeken. Het kan gekoppeld worden aan het RIS, zoals het RIS van NGI bij het Centre d’Imagerie Médicale Les Cèdres in Saint-Malo. Bij IMAGIR is Momentum verbonden met de afsprakenplanning EasyDoct en met Kelio van Bodet voor HR en tijdregistratie (casestudy, juni 2021).",
+    "Uren, verlof en tijdregistratie van de medewerkers volgen in dezelfde tool, en de loonadministratie krijgt een export zonder overtypen."
+   ]
+  }
+ ],
+ "proof": "Bij CHIREC was Momentum al in gebruik op de dienst radiologie toen de spoedgevallendienst eind 2024 volgde (casestudy, mei 2025). Het Centre d’Imagerie Médicale Les Cèdres in Saint-Malo plant zijn 18 radiologen op vijf vestigingen met Momentum, klant sinds 2014.",
+ "faq": [
+  {
+   "q": "Vervangt Momentum het RIS of de afsprakenagenda?",
+   "a": "Nee. Momentum plant de teams: wie op welke site, met welke modaliteit en wanneer werkt. Het kan aan het RIS en de afsprakenplanning gekoppeld worden, zodat beide op elkaar afgestemd blijven. Momentum verwerkt alleen planningsgegevens, geen medische dossiers van patiënten."
+  },
+  {
+   "q": "Kunnen meerdere campussen en poliklinieken in één rooster?",
+   "a": "Ja. Eén rooster dekt al uw sites, en elke site houdt zijn sjablonen, modaliteiten en uren. Radiologen en technologen worden volgens uw afspraken over de sites verdeeld."
+  },
+  {
+   "q": "Worden technologen en het secretariaat ook ingepland?",
+   "a": "Ja. Radiologen, technologen medische beeldvorming, secretariaat en onthaal staan in dezelfde tool, elk met zijn competenties, contract en regels."
+  },
+  {
+   "q": "Hoe telt een thuiswacht voor ASO’s radiologie?",
+   "a": "Moet de ASO niet binnen de 20 minuten in het ziekenhuis zijn, dan telt alleen de tijd die in het ziekenhuis gewerkt wordt; moet hij sneller ter plaatse zijn, dan telt de hele wacht (collectieve overeenkomst van 19 mei 2021, art. 5). In Momentum hebben ASO’s hun eigen sessies per modaliteit en site en hun eigen regels, in hetzelfde rooster als de stafleden."
+  },
+  {
+   "q": "Wat gebeurt er bij een defect toestel of een afwezigheid?",
+   "a": "Momentum stelt voor de getroffen sessies bevoegde en beschikbare vervangers voor, rekening houdend met de tellers. De verantwoordelijke keurt goed, en de betrokkenen krijgen een melding."
+  },
+  {
+   "q": "Waar worden de gegevens bewaard?",
+   "a": "Voor Europese klanten in de Europese Unie."
+  }
+ ],
+ "related": [
+  {"label": "Gids en Excel-sjabloon voor het wachtrooster", "href": "/nl/gids/wachtrooster-artsen/"},
+  {"label": "Casestudy CHIREC", "href": "/nl/referenties/chirec/"},
+  {"label": "Alle referenties", "href": "/nl/referenties/"},
+  {"label": "Demo aanvragen", "href": "/nl/demo/"}
+ ],
+ "labels": {
+  "demo": "Demo aanvragen",
+  "secondary": "Bekijk de referenties",
+  "secondaryHref": "/nl/referenties/",
+  "momentumEyebrow": "Zo werkt Momentum in de radiologie",
+  "proofEyebrow": "Referenties",
+  "faqHeading": "Veelgestelde vragen",
+  "imageAlt": "Momentum: maandoverzicht van het rooster met wachtdiensten en tellers"
+ }
+}

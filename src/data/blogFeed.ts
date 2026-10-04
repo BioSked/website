@@ -5,7 +5,8 @@
  */
 import type { ImageMetadata } from 'astro';
 import { getCollection } from 'astro:content';
-import { isLive, scheduleItem } from './publishSchedule.mjs';
+import { scheduleItem } from './publishSchedule.mjs';
+import { isPublished } from './scheduledContent';
 
 export interface FeedItem {
     href: string;
@@ -26,7 +27,7 @@ export async function blogFeed(locale: 'en' | 'fr'): Promise<FeedItem[]> {
         : (await getCollection('enPosts')).map((p) => ({ href: `/blog/posts/${p.id}/`, title: p.data.title, description: p.data.description, image: p.data.image, date: p.data.date, author: realName(p.data.author), order: p.data.sortOrder }));
     const scheduled: FeedItem[] = (await getCollection('scheduled')).flatMap((e) => {
         const item = scheduleItem(e.data.key);
-        if (!item || !e.data.blog || !e.data.image || item.locale !== locale || !isLive(item.key)) return [];
+        if (!item || !e.data.blog || !e.data.image || item.locale !== locale || !isPublished(item.key)) return [];
         return [{ href: item.path, title: e.data.title, description: e.data.description, image: e.data.image, date: new Date(item.date), author: '', order: 0 }];
     });
     return [...own, ...scheduled].sort((a, b) => b.date.valueOf() - a.date.valueOf() || b.order - a.order || a.href.localeCompare(b.href));

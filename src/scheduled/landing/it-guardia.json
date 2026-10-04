@@ -1,0 +1,122 @@
+{
+ "key": "it-guardia",
+ "locale": "it",
+ "path": "/it/funzionalita/turni-di-guardia-e-reperibilita/",
+ "metaTitle": "Turni di guardia e reperibilità dei medici | Momentum",
+ "metaDescription": "Turni di guardia e pronta disponibilità dei medici: limiti del CCNL Area Sanità impostati come regole, contatori di equità, cambi turno da app e web.",
+ "eyebrow": "Guardie e pronta disponibilità",
+ "title": "Turni di guardia e pronta disponibilità nello stesso piano dell’attività di giorno",
+ "description": "Momentum genera guardie e pronte disponibilità dalle regole del reparto, verifica la copertura prima di pubblicare e aggiorna i contatori di equità a ogni cambio turno.",
+ "painsHeading": "Dove si inceppano i turni di guardia",
+ "primaryPain": "Quando guardie e pronte disponibilità vivono in un foglio separato dal piano di giorno, i conflitti si scoprono in reparto: uno smonto dimenticato, una notte scoperta, due versioni del piano in chat. Ogni cambio va ricontrollato a mano contro il CCNL e il regolamento aziendale, e la distribuzione di notti e festivi si difende a memoria.",
+ "pains": [
+  "tenere insieme guardia attiva, pronta disponibilità, smonto e attività di giorno",
+  "rispettare riposi e massimi mensili anche dopo l’ennesimo cambio",
+  "distribuire notti, sabati, domeniche e festivi in modo verificabile",
+  "far arrivare alle paghe guardie, ore di reperibilità e chiamate senza ricopiarle"
+ ],
+ "outcomesHeading": "Che cosa cambia con Momentum",
+ "outcomes": [
+  "la copertura di ogni linea di guardia verificata prima della pubblicazione",
+  "riposi e massimi impostati una volta e applicati a ogni generazione dei turni",
+  "contatori di guardie, notti, festivi e pronte disponibilità visibili a tutta l’équipe",
+  "turni mensili, guardie comprese, costruiti in 4-5 ore invece di 4 giorni (pronto soccorso del CHIREC, Belgio, caso di studio, maggio 2025)"
+ ],
+ "quote": {
+  "text": "Oggi è tutto nello stesso posto e accessibile su internet: come amministratore di Momentum per il dipartimento di medicina d’urgenza, non devo fare altro che collegarmi per accedere a tutte le richieste dei medici e gestire i miei turni.",
+  "cite": "Dr Thomas Boishardy, medico ospedaliero, CHU di Angers, Francia (caso di studio, 2023)",
+  "href": "/it/referenze/"
+ },
+ "sections": [
+  {
+   "heading": "Guardia attiva e pronta disponibilità, ognuna con le sue regole",
+   "paragraphs": [
+    "Il CCNL dell’Area Sanità organizza la guardia per unità operativa o tra unità operative di aree funzionali omogenee dello stesso presidio, e il dirigente «non può essere preposto a più servizi di guardia contemporaneamente» (CCNL 23 gennaio 2024, art. 29, c. 1). La pronta disponibilità è limitata ai turni notturni e ai festivi; in anestesia, rianimazione e terapia intensiva è prevista solo come integrativa della guardia (art. 30, c. 3).",
+    "In Momentum ogni linea, di guardia o di pronta disponibilità, ha i suoi orari, il numero di medici richiesto e l’elenco di chi può coprirla, nello stesso piano dell’attività di giorno. La copertura si verifica a ogni generazione: una linea scoperta compare prima della pubblicazione, non di notte."
+   ]
+  },
+  {
+   "heading": "I limiti del contratto, impostati come regole",
+   "paragraphs": [
+    "Il CCNL 2022-2024, firmato il 27 febbraio 2026, lascia in vigore le norme del contratto precedente che non sostituisce espressamente (art. 3). Orario, guardia e pronta disponibilità non sono tra queste: i limiti restano gli stessi.",
+    "Guardie notturne: non più di cinque al mese, in media sul quadrimestre (art. 29, c. 2), su turni di norma di 12 ore, nelle fasce 8-20 e 20-8 (art. 29, c. 6). Pronta disponibilità: 12 ore, mai meno di 4, al massimo dieci al mese in media sul quadrimestre; guardie e pronte disponibilità insieme non oltre dodici servizi medi mensili nel bimestre (art. 30, c. 6). Riposo: almeno 11 ore consecutive (art. 27, c. 13) e mai più di 12 ore continuative a qualsiasi titolo (art. 27, c. 10, lett. f).",
+    "In Momentum questi limiti, le regole attuative della vostra azienda (art. 27, c. 20) e quelle del reparto si impostano una volta e si applicano a ogni generazione dei turni."
+   ]
+  },
+  {
+   "heading": "Contatori che l’équipe può verificare",
+   "paragraphs": [
+    "Il contratto chiede che i servizi di guardia siano «distribuiti in turni uniformi fra tutti i componenti l’equipe» (art. 29, c. 3). Momentum tiene per ogni medico i contatori di guardie, notti, sabati, domeniche, festivi e pronte disponibilità, visibili a tutta l’équipe: la ripartizione si controlla sui numeri, non sulla memoria di chi compila i turni.",
+    "Ogni cambio approvato aggiorna i contatori, festivi compresi: l’equità mostrata a gennaio vale ancora a giugno."
+   ]
+  },
+  {
+   "heading": "Desiderata, ferie e cambi turno dal telefono",
+   "paragraphs": [
+    "I medici consultano i turni, inviano desiderata e ferie e propongono cambi dall’app Momentum, su iPhone e Android, o dal web. Chi è coinvolto in un cambio riceve una notifica, e le guardie compaiono nel calendario personale.",
+    "Al CHU di Angers, in Francia, desiderata, assenze e scambi dei 52 medici condivisi tra pronto soccorso e SAMU passano dall’app, e ogni richiesta validata aggiorna i turni su tutte le piattaforme (caso di studio, 2023)."
+   ]
+  },
+  {
+   "heading": "Dalle guardie alle paghe, senza ricopiare",
+   "paragraphs": [
+    "Ogni servizio pesa in modo diverso in busta paga: 100 euro per turno di guardia notturno o festivo, 120 in pronto soccorso (art. 29, c. 5); 2,00 euro lordi l’ora di pronta disponibilità (art. 30, c. 7); la chiamata pagata come straordinario, salvo recupero orario (art. 30, c. 5), alle tariffe aggiornate dal CCNL 2022-2024 (art. 8).",
+    "In Momentum le ore svolte si vedono e si validano nello stesso strumento, poi partono verso le paghe con un’esportazione. Al pronto soccorso del CHIREC il caso di studio riporta meno errori e meno correzioni sulle retribuzioni (maggio 2025)."
+   ]
+  }
+ ],
+ "proof": "Al pronto soccorso dell’ospedale di Braine-l’Alleud (gruppo CHIREC, Belgio: 40.000 accessi l’anno, 25-30 medici) la costruzione dei turni mensili, guardie comprese, è passata da 4 giorni a 4-5 ore (caso di studio, maggio 2025). In tutto, più di 250 organizzazioni sanitarie usano Momentum su oltre 1.000 sedi, in nove paesi.",
+ "faq": [
+  {
+   "q": "Momentum tiene conto dei limiti del CCNL dell’Area Sanità?",
+   "a": "I limiti che la vostra azienda applica, per esempio il massimo di guardie notturne al mese o le 11 ore di riposo dopo la guardia, si impostano come regole e valgono a ogni generazione dei turni. Le regole attuative sono dell’azienda (art. 27, c. 20): voi le decidete, Momentum le applica."
+  },
+  {
+   "q": "Come funziona un cambio turno?",
+   "a": "Il medico propone il cambio dall’app o dal web. Chi pianifica vede l’effetto sulla copertura e sui contatori prima di accettarlo; una volta approvato, piano e contatori si aggiornano e i medici coinvolti ricevono una notifica."
+  },
+  {
+   "q": "Il 4 ottobre conta come festivo nei contatori?",
+   "a": "Sì, dal 2026: la legge 8 ottobre 2025, n. 151 lo ha aggiunto ai giorni festivi della legge 260/1949. Per i dirigenti del SSN è festivo anche il santo patrono, se cade in un giorno lavorativo (CCNL 2022-2024, art. 9, c. 6)."
+  },
+  {
+   "q": "Le ore di pronta disponibilità e le chiamate arrivano alle paghe?",
+   "a": "Sì. Guardie, pronte disponibilità e ore svolte, validate nel piano, si esportano verso il sistema paghe, senza ricopiare tabelle a fine mese."
+  },
+  {
+   "q": "Dove sono ospitati i dati?",
+   "a": "Per i clienti europei, nell’Unione europea, con un trattamento conforme al GDPR e un accordo sul trattamento dei dati disponibile su richiesta."
+  }
+ ],
+ "related": [
+  {
+   "label": "Guida e modello Excel dei turni di guardia",
+   "href": "/it/guida/turni-di-guardia-medici/"
+  },
+  {
+   "label": "CCNL Area Sanità 2022-2024: cosa cambia per i turni",
+   "href": "/it/guida/ccnl-area-sanita-turni/"
+  },
+  {
+   "label": "Turni del pronto soccorso",
+   "href": "/it/specialita/pronto-soccorso/"
+  },
+  {
+   "label": "Turni della radiologia",
+   "href": "/it/specialita/radiologia/"
+  },
+  {
+   "label": "Casi pubblicati",
+   "href": "/it/referenze/"
+  }
+ ],
+ "labels": {
+  "demo": "Richiedi una demo",
+  "secondary": "Vedi i casi pubblicati",
+  "secondaryHref": "/it/referenze/",
+  "momentumEyebrow": "Momentum per le guardie",
+  "proofEyebrow": "Risultati pubblicati",
+  "faqHeading": "Domande frequenti",
+  "imageAlt": "Momentum: vista mensile dei turni con guardie, pronte disponibilità e contatori per medico"
+ }
+}

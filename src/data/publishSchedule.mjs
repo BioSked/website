@@ -15,7 +15,7 @@
  */
 export const SCHEDULE = [
     { key: 'fr-ght', date: '2026-10-07', locale: 'fr', path: '/fr/secteurs-soins/etablissements-de-sante/', kind: 'upgrade' },
-    { key: 'nl-chirec', date: '2026-10-08', locale: 'nl', path: '/nl/referenties/chirec/', kind: 'md' },
+    { key: 'nl-chirec', date: '2026-10-13', locale: 'nl', path: '/nl/referenties/chirec/', kind: 'md' },
     { key: 'ch-pikett-de', date: '2026-10-12', locale: 'de-ch', path: '/de-ch/funktionen/pikettplanung/', kind: 'landing', group: 'pikett', footer: 'Pikettplanung' },
     { key: 'ch-pikett-fr', date: '2026-10-12', locale: 'fr-ch', path: '/fr-ch/fonctionnalites/planning-de-piquet/', kind: 'landing', group: 'pikett', footer: 'Planning de piquet' },
     { key: 'nl-spoed', date: '2026-10-13', locale: 'nl', path: '/nl/specialismen/spoedgevallen/', kind: 'landing', footer: 'Spoedgevallen' },
@@ -23,8 +23,8 @@ export const SCHEDULE = [
     { key: 'de-tv', date: '2026-10-15', locale: 'de', path: '/de/ratgeber/tv-aerzte-dienstplan-grenzen/', kind: 'md' },
     { key: 'it-guardia', date: '2026-10-16', locale: 'it', path: '/it/funzionalita/turni-di-guardia-e-reperibilita/', kind: 'landing', footer: 'Turni di guardia' },
     { key: 'nl-radio', date: '2026-10-20', locale: 'nl', path: '/nl/specialismen/radiologie/', kind: 'landing', footer: 'Radiologie' },
-    { key: 'us-acgme', date: '2026-10-21', locale: 'en', path: '/guides/acgme-duty-hours-2028-proposal/', kind: 'md' },
-    { key: 'fr-cardio', date: '2026-10-22', locale: 'fr', path: '/fr/secteurs-soins/cardiologie/', kind: 'upgrade' },
+    { key: 'us-acgme', date: '2026-10-06', locale: 'en', path: '/guides/acgme-duty-hours-2028-proposal/', kind: 'md' },
+    { key: 'fr-cardio', date: '2026-10-28', locale: 'fr', path: '/fr/secteurs-soins/cardiologie/', kind: 'upgrade' },
     { key: 'de-notauf', date: '2026-10-27', locale: 'de', path: '/de/fachbereiche/notaufnahme/', kind: 'landing', footer: 'Notaufnahme' },
     { key: 'fr-buyer', date: '2026-10-28', locale: 'fr', path: '/fr/blog/choisir-logiciel-planning-medical/', kind: 'md' },
     { key: 'it-ps', date: '2026-10-29', locale: 'it', path: '/it/specialita/pronto-soccorso/', kind: 'landing', footer: 'Pronto soccorso' },

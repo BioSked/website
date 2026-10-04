@@ -132,4 +132,122 @@ export const FR_UPGRADES: { key: string; slug: string; page: FrenchLandingPage }
     ]
   },
   },
+  {
+    key: 'fr-cardio',
+    slug: 'cardiologie',
+    page: {
+      "slug": "cardiologie",
+      "type": "specialty",
+      "eyebrow": "Cardiologie",
+      "title": "Le logiciel de planning des services et des groupes de cardiologie",
+      "description": "Consultations, explorations, salle de cathétérisme, garde de l’USIC et astreintes : Momentum construit le planning des cardiologues selon les compétences de chacun et les règles du service, sur un ou plusieurs sites.",
+      "metaTitle": "Logiciel de planning cardiologie et USIC | Momentum",
+      "metaDescription": "Logiciel de planning de cardiologie : consultations, explorations, salle de cathétérisme, garde d’USIC, astreintes et compteurs d’équité, multisite.",
+      "primaryPain": "La même équipe tient l’activité programmée de jour, la permanence de l’unité de soins intensifs de cardiologie la nuit et le week-end, et, dans les centres interventionnels, une astreinte qui doit répondre tous les jours de l’année. Les compétences ne sont pas interchangeables : un cardiologue qui ne fait pas d’ETO ne remplace pas celui qui en fait, et seuls certains praticiens tiennent l’astreinte de rythmologie. Sur un tableur, chaque absence oblige à tout revérifier à la main.",
+      "painsHeading": "Une semaine de cardiologie, vue du responsable du planning",
+      "pains": [
+        "affecter chaque vacation au praticien compétent : ETO, épreuve d’effort, coronarographie, rythmologie",
+        "couvrir la garde de l’USIC et les astreintes sans trou, toute l’année",
+        "respecter le repos après une garde sans vider les consultations du lendemain",
+        "répartir gardes, astreintes, week-ends et explorations de façon vérifiable"
+      ],
+      "outcomesHeading": "Ce que Momentum change pour le service",
+      "outcomes": [
+        "un seul planning pour l’activité programmée, la garde de l’USIC et les astreintes",
+        "des affectations réservées aux praticiens compétents, astreintes comprises",
+        "vos règles de repos appliquées à la génération, avec une alerte si une modification les enfreint",
+        "des compteurs de gardes, d’astreintes, de week-ends et d’activités consultables par toute l’équipe"
+      ],
+      "sections": [
+        {
+          "heading": "L’activité programmée, vacation par vacation",
+          "paragraphs": [
+            "Chaque activité de jour devient une vacation, avec ses horaires, son lieu et la compétence qu’elle demande : consultation, échographie transthoracique ou transœsophagienne, épreuve d’effort, lecture de Holter, avis dans les autres services, vacation de coronarographie ou de rythmologie en salle de cathétérisme. Momentum affecte les cardiologues selon ces compétences : un praticien qui ne fait pas de rythmologie n’est jamais proposé sur une vacation de rythmologie.",
+            "Momentum planifie qui tient la vacation, pas les patients : le programme de la salle et les rendez-vous restent dans vos logiciels. Les temps partiels, l’activité mixte et les désidératas de chacun s’ajoutent aux règles du service."
+          ]
+        },
+        {
+          "heading": "La permanence de l’USIC : garde sur place et astreinte opérationnelle",
+          "paragraphs": [
+            "Depuis le 1er juin 2023, l’article D6124-29-4 du Code de la santé publique prévoit que la permanence médicale de l’unité de soins intensifs de cardiologie est assurée, en dehors des services de jour, par au moins « la présence sur site d’un médecin justifiant d’une formation ou d’une expérience en soins critiques » et « une astreinte opérationnelle d’un médecin spécialisé dans la discipline ».",
+            "Dans Momentum, ces deux lignes vivent dans le même planning que l’activité de jour, chacune avec la liste des médecins qui peuvent la tenir. La couverture de chaque nuit, de chaque week-end et de chaque jour férié est vérifiée à la génération : une ligne vide apparaît avant la publication.",
+            "Pour les praticiens hospitaliers, l’article R6152-27 limite le travail continu à vingt-quatre heures et prévoit, « immédiatement à l’issue de cette période », un repos d’une durée équivalente. Vos règles de repos sont paramétrées une fois : le cardiologue de garde n’est pas placé en consultation le lendemain matin, et une modification manuelle qui l’y placerait déclenche une alerte."
+          ]
+        },
+        {
+          "heading": "Les astreintes de cardiologie interventionnelle et de rythmologie",
+          "paragraphs": [
+            "Pour les centres autorisés en activité interventionnelle sous imagerie médicale en cardiologie, l’article D6124-185-1, en vigueur depuis le 1er juin 2023, demande de garantir « tous les jours de l’année, 24 heures sur 24 » la présence sur site ou en astreinte opérationnelle d’un médecin dont la formation dépend de la modalité : rythmologie, cardiopathies congénitales, cardiopathies ischémiques et structurelles de l’adulte.",
+            "Chaque astreinte devient une ligne de Momentum, avec sa propre liste de praticiens qualifiés. Quand un cardiologue d’astreinte s’absente, Momentum propose des remplaçants qualifiés et disponibles. Avant d’accepter un échange, le responsable en voit l’effet sur la couverture et les compteurs."
+          ]
+        },
+        {
+          "heading": "Plusieurs sites, un seul planning par cardiologue",
+          "paragraphs": [
+            "Consultations avancées dans un hôpital voisin, plateau technique dans un autre établissement, cabinet de ville : beaucoup de cardiologues changent de site dans la même semaine. Chaque site garde ses vacations et ses horaires, mais chaque praticien n’a qu’un planning. Une affectation sur un site le rend indisponible ailleurs au même moment.",
+            "La vue d’ensemble montre qui est où, jour par jour, et repère les vacations non couvertes."
+          ]
+        },
+        {
+          "heading": "Une équité qui compte aussi l’activité de jour",
+          "paragraphs": [
+            "En cardiologie, la répartition des consultations, des explorations et des vacations de salle pèse autant que celle des gardes dans le sentiment d’équité. Ces activités se répartissent selon vos règles, au trimestre ou à l’année, avec des compteurs que chaque cardiologue peut consulter.",
+            "Nuits, week-ends, jours fériés, astreintes : chaque compteur est mis à jour à chaque échange validé. Les arbitrages s’appuient sur des chiffres partagés plutôt que sur la mémoire du responsable."
+          ]
+        },
+        {
+          "heading": "Demandes, échanges, publication et paie",
+          "paragraphs": [
+            "Les cardiologues déposent congés, indisponibilités et désidératas depuis l’application mobile, sur iPhone et Android, ou depuis le web, et y proposent leurs échanges. Une fois publié, le planning se synchronise avec les agendas personnels, et chacun est prévenu des changements qui le concernent.",
+            "Heures effectuées, gardes et astreintes sont suivies dans le même outil, pour les praticiens salariés comme libéraux, et la paie reçoit un export sans ressaisie."
+          ]
+        }
+      ],
+      "proof": "Plus de 250 organisations de santé utilisent Momentum sur plus de 1 000 sites, dans neuf pays, et BioSked planifie le temps médical depuis plus de quinze ans. Notre livre blanc sur la cardiologie (2023) détaille les contraintes de ces services : compétences non interchangeables, changements de lieu, congés et désidératas.",
+      "faq": [
+        {
+          "q": "Momentum planifie-t-il les patients de la salle de cathétérisme ?",
+          "a": "Non. Momentum planifie les équipes : qui tient quelle vacation, quelle garde et quelle astreinte. Le programme de la salle, les rendez-vous de consultation et le dossier patient restent dans vos logiciels."
+        },
+        {
+          "q": "Peut-on réserver l’astreinte de rythmologie aux praticiens formés ?",
+          "a": "Oui. Chaque ligne d’astreinte a sa liste de praticiens autorisés, définie à partir de leurs compétences. Seuls ces praticiens y sont affectés à la génération et proposés en remplacement."
+        },
+        {
+          "q": "La garde de l’USIC et l’activité de jour sont-elles dans le même planning ?",
+          "a": "Oui. Garde sur place, astreintes et vacations de jour vivent dans un seul planning, et vos règles de repos après une garde s’appliquent à chaque génération."
+        },
+        {
+          "q": "Comment se passe la mise en place ?",
+          "a": "Un chef de projet Momentum paramètre avec vous les vacations, les lignes de garde et d’astreinte, les compétences et les règles du service, puis vous accompagne sur les premiers plannings générés."
+        },
+        {
+          "q": "Où sont hébergées les données ?",
+          "a": "Dans l’Union européenne, avec un traitement aligné sur le RGPD. Votre contrat est signé avec Bio-Optronics Sàrl, notre entité suisse."
+        }
+      ],
+      "related": [
+        {
+          "label": "Guide et modèle Excel du planning de garde",
+          "href": "/fr/blog/planning-de-garde-medecins/"
+        },
+        {
+          "label": "Choisir un logiciel de planning médical : 12 critères",
+          "href": "/fr/blog/choisir-logiciel-planning-medical/"
+        },
+        {
+          "label": "Planning de garde",
+          "href": "/fr/fonctionnalites/plannings-de-garde-centralises/"
+        },
+        {
+          "label": "Gestion des demandes",
+          "href": "/fr/fonctionnalites/gestion-des-requetes-des-equipes/"
+        },
+        {
+          "label": "Établissements de santé et GHT",
+          "href": "/fr/secteurs-soins/etablissements-de-sante/"
+        }
+      ]
+    },
+  },
 ];

@@ -1,0 +1,116 @@
+{
+ "key": "de-radio",
+ "locale": "de",
+ "path": "/de/fachbereiche/radiologie/",
+ "metaTitle": "Dienstplan Radiologie: Klinik, Praxis und MVZ | Momentum",
+ "metaDescription": "Dienstplan Radiologie für Klinik, Praxis und MVZ: Arbeitsplätze nach Standort und Modalität, Dienste, Rufbereitschaft, Vertretungen und faire Zähler.",
+ "eyebrow": "Radiologie",
+ "title": "Dienstplanung für die Radiologie in Klinik, Praxis und MVZ",
+ "description": "Arbeitsplätze nach Standort und Modalität, Bereitschaftsdienst und Rufbereitschaft, Teleradiologie und Vertretungen: Momentum erstellt den Plan für Radiologinnen, Radiologen und MTR nach Ihren Regeln.",
+ "painsHeading": "Was den Radiologie-Dienstplan kompliziert macht",
+ "primaryPain": "Ob Institut im Krankenhaus oder Praxisverbund mit mehreren Standorten: Der Plan muss CT, MRT, Mammographie, Ultraschall und konventionelles Röntgen besetzen, mit Ärztinnen und Ärzten, deren Qualifikationen nicht austauschbar sind. Dazu kommen Dienste und Rufbereitschaften, Teleradiologie, Planungswünsche und Abwesenheiten. In einer Tabelle kostet jede neue Fassung Tage, und warum jemand wo eingeteilt ist, kann später niemand mehr nachvollziehen. Die MTR und die Anmeldung müssen dabei im selben Takt mitgehen.",
+ "pains": [
+  "Arbeitsplätze nach Standort und Modalität besetzen und Personal zwischen Standorten teilen",
+  "bei Krankheit oder Gerätestillstand schnell eine qualifizierte Vertretung finden",
+  "Dienste, Rufbereitschaften, Wochenenden und Feiertage nachvollziehbar verteilen",
+  "den Plan mit Zeiterfassung und Lohnabrechnung in Einklang halten"
+ ],
+ "outcomesHeading": "Was Momentum einem radiologischen Team bringt",
+ "outcomes": [
+  "ein Plan je Standort und Modalität, Radiologinnen, Radiologen, MTR und Anmeldung eingeschlossen",
+  "Vertretungsvorschläge nach Qualifikation und Verfügbarkeit, wenn jemand ausfällt",
+  "eine bis zwei Vollzeitstellen gewonnen durch die Verbindung von Momentum, Terminvergabe und Zeitwirtschaft (IMAGIR, Bordeaux, Fallstudie Juni 2021)",
+  "Zähler für Dienste, Rufbereitschaften, Wochenenden und Feiertage, die alle Partnerinnen und Partner einsehen können"
+ ],
+ "quote": {
+  "text": "Für mich machen die drei wesentlichen Bestandteile der Anwendung, die automatische Planung unter Vorgaben, die Verteilung von Dienstplänen und Zählern und die Anbindung an die Terminvergabe, Momentum zu einem notwendigen und wirksamen Dreh- und Angelpunkt, um die Ressourcenplanung zu verstehen und zu überblicken.",
+  "cite": "Anthony Bagot, operativer Leiter, IMAGIR, Bordeaux (Fallstudie, Juni 2021; aus dem Französischen übersetzt)",
+  "href": "/de/referenzen/"
+ },
+ "sections": [
+  {
+   "heading": "Klinikradiologie und Praxis: zwei Planungswelten",
+   "paragraphs": [
+    "Im Krankenhaus plant das Institut für Radiologie neben dem Tagesbetrieb Bereitschaftsdienste und Rufbereitschaften. Der TV-Ärzte/VKA nennt Röntgeninstitute von Krankenhäusern ausdrücklich in seinem Geltungsbereich (§ 1 Abs. 1) und begrenzt die Rufbereitschaften auf 13 im Kalendermonat, darüber hinaus nur bei drohender Gefährdung der Patientensicherheit (§ 10 Abs. 8). Beim CHIREC in Belgien plante die Radiologie bereits mit Momentum, bevor die Notaufnahme Ende 2024 folgte (Fallstudie, Mai 2025).",
+    "In Praxis und MVZ stehen Standorte, Öffnungszeiten und Geräte im Vordergrund. Das Arbeitszeitgesetz gilt für Arbeitnehmerinnen und Arbeitnehmer (§ 2 Abs. 2 ArbZG), also für angestellte Ärztinnen und Ärzte und das Praxisteam; wie sich die Partnerinnen und Partner selbst verteilen, legen sie untereinander fest. In Momentum hinterlegen Sie für jedes Team die Regeln, die dort gelten."
+   ]
+  },
+  {
+   "heading": "Arbeitsplätze nach Standort und Modalität",
+   "paragraphs": [
+    "Jeder Standort behält seine Vorlagen: Räume, Geräte, Öffnungszeiten, Vormittag und Nachmittag. Die Qualifikationen jeder Radiologin und jedes Radiologen entscheiden, welche Arbeitsplätze vorgeschlagen werden, etwa Mammadiagnostik, Intervention, muskuloskelettale MRT oder Kinderradiologie. Wer keine Mammographie befundet, wird dort nie eingeteilt.",
+    "Dieselben Regeln gelten für die MTR, mit eigenen Qualifikationen je Modalität und ihren Stammstandorten. Eine MTR kann fest an einem Standort bleiben, eine andere zwischen mehreren Praxen wechseln."
+   ]
+  },
+  {
+   "heading": "Standortübergreifend planen, Teleradiologie eingeschlossen",
+   "paragraphs": [
+    "In einem Verbund mit mehreren Standorten sind Radiologinnen und Radiologen nicht mehr an eine Praxis gebunden. Momentum verteilt die Arbeitsplätze nach Ihren Regeln über die Standorte, und Teleradiologie oder Befundung aus der Ferne wird wie jeder andere Arbeitsplatz geplant, mit denselben Zählern.",
+    "Die Übersicht zeigt, wer wann wo arbeitet, Standort für Standort und Tag für Tag, und markiert unbesetzte Arbeitsplätze vor der Veröffentlichung."
+   ]
+  },
+  {
+   "heading": "Krankheit, Gerätestillstand, geschlossener Standort",
+   "paragraphs": [
+    "Ein kurzfristiger Ausfall, ein MRT in der Wartung, ein Standort, der einen halben Tag schließt: Momentum schlägt für die betroffenen Arbeitsplätze qualifizierte und verfügbare Vertretungen vor und berücksichtigt dabei die Zähler. Die Leitung entscheidet, und das betroffene Team wird auf dem Smartphone informiert."
+   ]
+  },
+  {
+   "heading": "Faire Verteilung unter Partnern und im Team",
+   "paragraphs": [
+    "Dienste, Rufbereitschaften, Samstage, Feiertage, belastende Arbeitsplätze: Jeder Zähler ist für die Partnerinnen und Partner sichtbar und dient als Grundlage für Entscheidungen. Listen zur Fairness und zu gearbeiteten Feiertagen kommen direkt aus dem Werkzeug, statt am Jahresende von Hand nachgerechnet zu werden.",
+    "Planungswünsche, Teilzeit und Vertretungen kommen auf diese Grundlage, ohne sie zu ersetzen."
+   ]
+  },
+  {
+   "heading": "Zeiterfassung, Urlaub, Lohnexport und angrenzende Systeme",
+   "paragraphs": [
+    "Stunden, Urlaub und Zeiterfassung der Angestellten laufen im selben Werkzeug, und die Lohnabrechnung erhält einen Export ohne erneute Eingabe.",
+    "Bei IMAGIR in Bordeaux ist Momentum mit der Online-Terminvergabe EasyDoct und der Zeitwirtschaft Kelio von Bodet verbunden (Fallstudie, Juni 2021). In Frankreich ist Momentum auch an RIS angebunden, etwa an das von NGI. Ob und wie Ihre Systeme angebunden werden können, klären wir im Gespräch."
+   ]
+  }
+ ],
+ "proof": "Radiologische Gruppen planen ihre Teams seit mehr als zehn Jahren mit Momentum, etwa das Centre d’Imagerie Médicale Les Cèdres in Saint-Malo (Frankreich), Kunde seit 2014, und IMAGIR in Bordeaux mit rund 40 Radiologinnen und Radiologen an neun Standorten (Fallstudie, Juni 2021). Insgesamt planen mehr als 250 Gesundheitseinrichtungen an über 1.000 Standorten in 9 Ländern mit Momentum.",
+ "faq": [
+  {
+   "q": "Ersetzt Momentum das RIS oder die Terminvergabe?",
+   "a": "Nein. Momentum plant die Teams: wer an welchem Standort, an welcher Modalität und wann arbeitet. Momentum verarbeitet nur Planungsdaten, keine Patientenakten."
+  },
+  {
+   "q": "Lassen sich mehrere Standorte in einem Plan führen?",
+   "a": "Ja. Ein Plan deckt alle Standorte ab, und jeder Standort behält seine Vorlagen, Modalitäten und Öffnungszeiten. Wie Radiologinnen, Radiologen und MTR zwischen den Standorten geteilt werden, bestimmen Ihre Regeln."
+  },
+  {
+   "q": "Werden MTR und Anmeldung mitgeplant?",
+   "a": "Ja. Radiologinnen und Radiologen, MTR, medizinische Fachangestellte und Empfang werden im selben Werkzeug geplant, jeweils mit eigenen Qualifikationen, Verträgen und Regeln."
+  },
+  {
+   "q": "Was passiert bei Gerätestillstand oder Ausfall?",
+   "a": "Momentum schlägt für die betroffenen Arbeitsplätze qualifizierte und verfügbare Vertretungen vor und berücksichtigt die Zähler. Die Leitung bestätigt, und die betroffenen Personen werden benachrichtigt."
+  },
+  {
+   "q": "Gelten in Praxis und MVZ dieselben Regeln wie in der Klinik?",
+   "a": "Nicht unbedingt. Das Arbeitszeitgesetz gilt für alle Angestellten. Ein TV-Ärzte gilt nur bei Arbeitgebern in seinem Geltungsbereich, der TV-Ärzte/VKA etwa bei Mitgliedern eines Mitgliedverbandes der VKA, dort auch in Röntgeninstituten von Krankenhäusern (§ 1 Abs. 1). In Momentum hinterlegen Sie für jedes Team die Regeln, die dort gelten."
+  },
+  {
+   "q": "Wo liegen die Daten?",
+   "a": "Bei europäischen Kunden in der Europäischen Union. Einzelheiten stehen auf der Seite Sicherheit und Daten."
+  }
+ ],
+ "related": [
+  {"label": "Ratgeber: Dienstplan für Ärzte", "href": "/de/ratgeber/dienstplan-aerzte/"},
+  {"label": "TV-Ärzte: Grenzen für den Dienstplan", "href": "/de/ratgeber/tv-aerzte-dienstplan-grenzen/"},
+  {"label": "Notaufnahme", "href": "/de/fachbereiche/notaufnahme/"},
+  {"label": "Referenzen", "href": "/de/referenzen/"},
+  {"label": "Sicherheit und Daten", "href": "/de/sicherheit-und-daten/"}
+ ],
+ "labels": {
+  "demo": "Demo anfragen",
+  "secondary": "Referenzen ansehen",
+  "secondaryHref": "/de/referenzen/",
+  "momentumEyebrow": "Mit Momentum",
+  "proofEyebrow": "Aus der Praxis",
+  "faqHeading": "Häufige Fragen",
+  "imageAlt": "Momentum: Monatsansicht des Dienstplans mit Diensten, Bereitschaften und Zählern"
+ }
+}

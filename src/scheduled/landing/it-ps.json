@@ -1,0 +1,122 @@
+{
+ "key": "it-ps",
+ "locale": "it",
+ "path": "/it/specialita/pronto-soccorso/",
+ "metaTitle": "Turni del pronto soccorso per i medici | Momentum",
+ "metaDescription": "Turni del pronto soccorso h24: linee coperte, 11 ore di riposo, notti e festivi equi, desiderata da app. CHIREC: turni mensili in 4-5 ore, non in 4 giorni.",
+ "eyebrow": "Pronto soccorso e medicina d’urgenza",
+ "title": "I turni dei medici di pronto soccorso, costruiti dalle regole del reparto",
+ "description": "Turni h24, notti e festivi, 11 ore di riposo, OBI e attività condivise: Momentum genera i turni del pronto soccorso, verifica ogni linea prima di pubblicare e tiene i contatori aggiornati a ogni cambio.",
+ "painsHeading": "Perché i turni del pronto soccorso sono così difficili",
+ "primaryPain": "Il pronto soccorso è tra i servizi in cui il CCNL prevede la guardia per unità operativa (CCNL Area Sanità 23 gennaio 2024, allegato 1), e nei servizi ospedalieri la presenza dei dirigenti va assicurata «nell’arco delle ventiquattro ore e per tutti i giorni della settimana» (art. 27, c. 11). Ogni notte va coperta, i festivi devono girare, dopo ogni notte servono 11 ore di riposo. Con un foglio Excel, ogni assenza riapre il mese.",
+ "pains": [
+  "coprire ogni linea, giorno e notte, senza buchi né doppioni",
+  "far seguire a ogni notte le 11 ore di riposo, anche dopo un cambio",
+  "ripartire notti, weekend e festivi in modo che tutti possano verificarlo",
+  "integrare desiderata, ferie e part-time senza ricostruire il mese"
+ ],
+ "outcomesHeading": "Che cosa cambia per il direttore del pronto soccorso",
+ "outcomes": [
+  "turni mensili costruiti in 4-5 ore invece di 4 giorni (CHIREC, Belgio, caso di studio, maggio 2025)",
+  "fino al 90% di tempo in meno sulla gestione dei turni (stesso caso di studio)",
+  "soddisfazione del personale tra il 90 e il 100% (CHIREC, 2025) e tra il 95 e il 100% (CHU di Angers, caso di studio, 2023)",
+  "contatori di notti, weekend e festivi visibili a tutta l’équipe"
+ ],
+ "quote": {
+  "text": "Non mi aspettavo che Momentum avesse un impatto simile. È chiaro, fluido, automatizzato. Sono impressionato dalla capacità dello strumento di generare turni così ottimizzati rispettando quasi tutte le preferenze.",
+  "cite": "Dr Frédéric Cavallotto, primario del pronto soccorso, ospedale di Braine-l’Alleud, gruppo CHIREC, Belgio (caso di studio, maggio 2025)",
+  "href": "/it/referenze/"
+ },
+ "sections": [
+  {
+   "heading": "Turni h24: ogni linea coperta prima di pubblicare",
+   "paragraphs": [
+    "Pronto soccorso generale o pediatrico, OBI, attività condivisa con il 118: ogni linea ha i suoi orari, le competenze richieste e il numero di medici. Momentum verifica la copertura di ogni linea a ogni generazione dei turni: una linea scoperta compare prima della pubblicazione, non durante la notte.",
+    "I turni seguono la vostra organizzazione, non un modello imposto: guardie di norma di 12 ore nelle fasce 8-20 e 20-8, come prevede il CCNL (art. 29, c. 6), turni diurni più brevi, smonto dopo la notte."
+   ]
+  },
+  {
+   "heading": "Riposo di 11 ore e 12 ore al massimo",
+   "paragraphs": [
+    "Dopo una notte dalle 20 alle 8, il turno successivo non può iniziare prima delle 19: spettano 11 ore di riposo consecutivo ogni 24 (D.Lgs. 66/2003, art. 7; CCNL, art. 27, c. 13). Nessuna prestazione supera le 12 ore continuative (art. 27, c. 10, lett. f), e le guardie notturne programmabili sono al massimo cinque al mese, in media sul quadrimestre (art. 29, c. 2).",
+    "In Momentum questi limiti e quelli del vostro regolamento aziendale si impostano una volta e valgono a ogni generazione e a ogni cambio. Le ore svolte si vedono e si validano nello stesso strumento, poi partono verso le paghe, dove in pronto soccorso la guardia notturna o festiva vale 120 euro invece di 100 (art. 29, c. 5)."
+   ]
+  },
+  {
+   "heading": "Notti, weekend e festivi: l’equità si conta",
+   "paragraphs": [
+    "Ogni notte, weekend e festivo si somma a un contatore per medico, visibile a tutta l’équipe. La ripartizione segue le vostre regole, e le discussioni partono da numeri condivisi invece che dalla memoria di chi compila i turni.",
+    "I medici inviano desiderata e ferie e propongono cambi dall’app o dal web; chi pianifica vede l’effetto di una richiesta prima di accettarla, e ogni cambio approvato aggiorna i contatori.",
+    "Al CHIREC il caso di studio riporta una migliore equità percepita, più trasparenza su come si tiene conto dei desiderata e una riduzione significativa delle email di aggiustamento (maggio 2025)."
+   ]
+  },
+  {
+   "heading": "Quando mancano medici, ogni assenza pesa di più",
+   "paragraphs": [
+    "La carenza di medici nei pronto soccorso è scritta anche nelle norme: per il 2023 il decreto-legge 30 marzo 2023, n. 34 ha permesso alle aziende di alzare fino a 100 euro lordi l’ora la tariffa delle prestazioni aggiuntive «per affrontare la carenza di personale medico e infermieristico presso i servizi di emergenza-urgenza ospedalieri» (art. 11, c. 1).",
+    "Un software non sostituisce i medici che mancano. Aiuta però a vedere prima dove il piano non regge: quando arriva un’assenza, Momentum propone i sostituti compatibili e disponibili, tenendo conto dei contatori, e chi pianifica sceglie."
+   ]
+  },
+  {
+   "heading": "Pronto soccorso, attività condivise e più presidi",
+   "paragraphs": [
+    "Quando gli stessi medici coprono il pronto soccorso e altre attività, un unico piano evita che siano assegnati a due posti nello stesso momento. Al CHU di Angers, in Francia, 52 medici condivisi tra pronto soccorso e SAMU, l’emergenza territoriale francese, sono pianificati con Momentum, cliente dal 2021 (caso di studio, 2023).",
+    "Se l’équipe lavora su più presidi, ogni sede mantiene linee e regole in un piano comune, e un’assegnazione su una sede rende il medico non disponibile sull’altra."
+   ]
+  }
+ ],
+ "proof": "Al pronto soccorso dell’ospedale di Braine-l’Alleud (gruppo CHIREC, Belgio: 40.000 accessi l’anno, 25-30 medici) Momentum è in uso da fine 2024. Al CHU di Angers, in Francia, pianifica dal 2021 i turni di 52 medici tra pronto soccorso e SAMU.",
+ "faq": [
+  {
+   "q": "Momentum gestisce turni di 12 ore e lo smonto dopo la notte?",
+   "a": "Sì. Turni di 12 ore, turni diurni più brevi, notti e smonto si definiscono secondo la vostra organizzazione, con le regole di riposo applicate a ogni generazione."
+  },
+  {
+   "q": "Quante ore di riposo spettano dopo una notte di guardia?",
+   "a": "Almeno 11 ore consecutive (D.Lgs. 66/2003, art. 7; CCNL Area Sanità 23 gennaio 2024, art. 27, c. 13), regola confermata dal CCNL 2022-2024. Dopo una guardia dalle 20 alle 8, il turno successivo non inizia prima delle 19."
+  },
+  {
+   "q": "Si possono pianificare insieme pronto soccorso, OBI o più presidi?",
+   "a": "Sì. I medici condivisi tra più attività o più sedi sono pianificati in un solo piano: ogni linea mantiene le sue regole e le doppie assegnazioni emergono prima della pubblicazione."
+  },
+  {
+   "q": "Come si segue l’equità di notti e weekend?",
+   "a": "Ogni notte, weekend e festivo è contato per ogni medico. Momentum ripartisce secondo le vostre regole e mostra i contatori a tutta l’équipe, che può verificare la distribuzione."
+  },
+  {
+   "q": "Come si svolge l’avvio?",
+   "a": "Un capo progetto Momentum imposta con voi linee, regole e contratti, poi vi accompagna sui primi turni. Al CHIREC sono stati formati prima il primario e due referenti, poi i medici (caso di studio, maggio 2025)."
+  },
+  {
+   "q": "Dove sono ospitati i dati?",
+   "a": "Per i clienti europei, nell’Unione europea, con un trattamento conforme al GDPR."
+  }
+ ],
+ "related": [
+  {
+   "label": "Guida e modello Excel dei turni di guardia",
+   "href": "/it/guida/turni-di-guardia-medici/"
+  },
+  {
+   "label": "Turni di guardia e pronta disponibilità",
+   "href": "/it/funzionalita/turni-di-guardia-e-reperibilita/"
+  },
+  {
+   "label": "CCNL Area Sanità 2022-2024: cosa cambia per i turni",
+   "href": "/it/guida/ccnl-area-sanita-turni/"
+  },
+  {
+   "label": "Caso CHIREC (in francese)",
+   "href": "/fr/cas-clients/chirec/"
+  }
+ ],
+ "labels": {
+  "demo": "Richiedi una demo",
+  "secondary": "Vedi i casi pubblicati",
+  "secondaryHref": "/it/referenze/",
+  "momentumEyebrow": "Momentum per il pronto soccorso",
+  "proofEyebrow": "Risultati pubblicati",
+  "faqHeading": "Domande frequenti",
+  "imageAlt": "Momentum: vista mensile dei turni del pronto soccorso con notti, guardie e contatori per medico"
+ }
+}

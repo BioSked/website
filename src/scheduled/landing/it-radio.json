@@ -1,0 +1,120 @@
+{
+ "key": "it-radio",
+ "locale": "it",
+ "path": "/it/specialita/radiologia/",
+ "metaTitle": "Software turni radiologia: radiologi e tecnici | Momentum",
+ "metaDescription": "Software turni per la radiologia: sedute per sede e modalità, reperibilità, gruppi multisede, tecnici e segreteria nello stesso piano. Il caso IMAGIR.",
+ "eyebrow": "Radiologia e diagnostica per immagini",
+ "title": "I turni dei radiologi, per sede e per modalità",
+ "description": "Sedute per sede e per modalità, reperibilità, più sedi, tecnici e segreteria: Momentum costruisce i turni della radiologia dalle vostre regole e propone i sostituti quando arriva un imprevisto.",
+ "painsHeading": "Che cosa complica i turni di una radiologia",
+ "primaryPain": "Distribuire decine di radiologi su più sedi, tra TC, risonanza, mammografia, ecografia e radiologia tradizionale, con le reperibilità, la teleradiologia, i desiderata e le assenze: su un foglio di calcolo ogni versione costa giorni, e nessuno sa più perché una seduta è andata a chi. E i turni dei radiologi sono solo metà del lavoro, perché tecnici di radiologia e segreteria devono seguire lo stesso movimento.",
+ "pains": [
+  "costruire le sedute per sede e per modalità condividendo il personale",
+  "trovare un sostituto competente per un’assenza o un fermo macchina",
+  "tenere contatori di reperibilità, weekend e festivi che reggano al confronto",
+  "pianificare radiologi, tecnici e segreteria nello stesso piano"
+ ],
+ "outcomesHeading": "Che cosa porta Momentum a una radiologia",
+ "outcomes": [
+  "un piano per sede e per modalità, con radiologi, tecnici e segreteria",
+  "sostituti proposti per competenze e disponibilità quando arriva un imprevisto",
+  "contatori di reperibilità, festivi lavorati e weekend che ogni radiologo può consultare",
+  "«il recupero di un equivalente a tempo pieno, se non due» grazie al collegamento tra Momentum, EasyDoct e Kelio (IMAGIR, Bordeaux, caso di studio, giugno 2021)"
+ ],
+ "quote": {
+  "text": "Per me le tre componenti essenziali dell’applicazione, cioè la pianificazione automatica sotto vincoli, la diffusione dei turni e dei contatori e l’integrazione con la prenotazione degli appuntamenti, fanno di Momentum un perno necessario ed efficace per capire e vedere la pianificazione delle risorse.",
+  "cite": "Anthony Bagot, responsabile operativo, IMAGIR, Bordeaux, Francia (caso di studio, giugno 2021)",
+  "href": "/it/referenze/"
+ },
+ "sections": [
+  {
+   "heading": "Sedute per sede e per modalità",
+   "paragraphs": [
+    "Ogni sede mantiene le sue griglie: sale, modalità, orari di apertura, sedute del mattino e del pomeriggio. Le competenze di ciascun radiologo decidono quali sedute gli vengono proposte: senologia, interventistica, risonanza muscolo-scheletrica, pediatria. Un radiologo che non fa mammografia non viene mai assegnato a quella seduta.",
+    "Le stesse regole valgono per i tecnici sanitari di radiologia medica, con le loro competenze per modalità e le sedi di riferimento: uno può restare fisso su una sede, un altro ruotare tra più centri."
+   ]
+  },
+  {
+   "heading": "Reperibilità e guardie nello stesso piano delle sedute",
+   "paragraphs": [
+    "Per i radiologi dipendenti del SSN, il CCNL dell’Area Sanità indica tra i casi in cui organizzare la guardia per unità operativa anche la radiodiagnostica negli ospedali sede di dipartimento di urgenza ed emergenza di I e II livello (CCNL 23 gennaio 2024, art. 29, c. 4, e allegato 1). La pronta disponibilità segue l’art. 30: solo notti e festivi, turni di 12 ore e mai meno di 4, al massimo dieci al mese in media sul quadrimestre (c. 3 e 6). Nei servizi ospedalieri un radiologo non può essere in pronta disponibilità su più sedi della stessa unità operativa (c. 3).",
+    "In Momentum reperibilità e guardie stanno nello stesso piano delle sedute di giorno, con i loro contatori, e le ore di pronta disponibilità partono verso le paghe con un’esportazione, senza ricopiarle a fine mese."
+   ]
+  },
+  {
+   "heading": "Più sedi, un solo piano",
+   "paragraphs": [
+    "In un gruppo su più sedi i radiologi non sono legati a un solo centro. Momentum distribuisce le sedute tra le sedi secondo le vostre regole di condivisione, e le sedute di teleradiologia o di refertazione a distanza si pianificano come le altre, con gli stessi contatori. La vista d’insieme mostra chi è dove, sede per sede e giorno per giorno, e segnala le sedute scoperte prima della pubblicazione.",
+    "IMAGIR, nato nel marzo 2020 dalla fusione di due gruppi di Bordeaux, conta una quarantina di radiologi associati su 9 sedi di produzione; con Momentum condivide le risorse tra le sedi e diffonde turni e contatori a tutte le équipe (caso di studio, giugno 2021)."
+   ]
+  },
+  {
+   "heading": "Assenze, fermi macchina e sostituzioni",
+   "paragraphs": [
+    "Un’assenza improvvisa, una risonanza in manutenzione, una sede che chiude mezza giornata: Momentum propone sostituti competenti e disponibili per le sedute coinvolte, tenendo conto dei contatori. Il responsabile sceglie, e chi è coinvolto riceve una notifica sul telefono."
+   ]
+  },
+  {
+   "heading": "Equità tra radiologi, elenchi pronti",
+   "paragraphs": [
+    "Reperibilità, guardie, sabati, festivi, sedute gravose: ogni contatore è visibile ai radiologi e serve da base per le decisioni. Gli elenchi di equità e dei festivi lavorati escono dallo strumento invece di essere ricalcolati a mano a fine anno.",
+    "Al Centre d’Imagerie Médicale Les Cèdres di Saint-Malo, in Francia, cliente dal 2014, 18 radiologi e il personale dipendente su cinque sedi ricevono i turni sul telefono con le notifiche; timbrature e gestione delle ferie stanno nella stessa piattaforma."
+   ]
+  }
+ ],
+ "proof": "Gruppi di radiologia pianificano le loro équipe con Momentum da più di dieci anni, come il Centre d’Imagerie Médicale Les Cèdres di Saint-Malo, cliente dal 2014. In tutto, più di 250 organizzazioni sanitarie usano Momentum su oltre 1.000 sedi, in nove paesi.",
+ "faq": [
+  {
+   "q": "Momentum sostituisce il RIS o l’agenda degli appuntamenti?",
+   "a": "No. Momentum pianifica le équipe: chi lavora in quale sede, su quale modalità e quando. Tratta solo dati di pianificazione, non cartelle cliniche. In Francia si collega al RIS e alla prenotazione: al RIS di NGI da Les Cèdres, alla prenotazione online EasyDoct e alla gestione presenze Kelio da IMAGIR."
+  },
+  {
+   "q": "Si possono pianificare più sedi nello stesso strumento?",
+   "a": "Sì. Un solo piano copre tutte le sedi, e ogni sede mantiene griglie, modalità e orari. La condivisione di radiologi e tecnici tra le sedi segue le vostre regole."
+  },
+  {
+   "q": "Anche tecnici di radiologia e segreteria?",
+   "a": "Sì. Radiologi, tecnici sanitari di radiologia medica, segreteria e accettazione sono pianificati nello stesso strumento, ognuno con le sue competenze, il suo contratto e le sue regole."
+  },
+  {
+   "q": "Che cosa succede con un fermo macchina o un’assenza?",
+   "a": "Momentum propone sostituti competenti e disponibili per le sedute coinvolte, tenendo conto dei contatori di equità. Il responsabile convalida, e le persone interessate ricevono una notifica."
+  },
+  {
+   "q": "Le reperibilità notturne si gestiscono nello stesso piano?",
+   "a": "Sì. Pronte disponibilità e guardie sono linee del piano come le sedute di giorno, con i loro contatori. Per i dirigenti del SSN restano i limiti dell’art. 30 del CCNL dell’Area Sanità, confermati dal contratto 2022-2024."
+  },
+  {
+   "q": "Dove sono ospitati i dati?",
+   "a": "Per i clienti europei, nell’Unione europea, con un trattamento conforme al GDPR."
+  }
+ ],
+ "related": [
+  {
+   "label": "Turni di guardia e pronta disponibilità",
+   "href": "/it/funzionalita/turni-di-guardia-e-reperibilita/"
+  },
+  {
+   "label": "CCNL Area Sanità 2022-2024: cosa cambia per i turni",
+   "href": "/it/guida/ccnl-area-sanita-turni/"
+  },
+  {
+   "label": "Guida e modello Excel dei turni di guardia",
+   "href": "/it/guida/turni-di-guardia-medici/"
+  },
+  {
+   "label": "Caso IMAGIR (in francese)",
+   "href": "/fr/cas-clients/imagir-bordeaux/"
+  }
+ ],
+ "labels": {
+  "demo": "Richiedi una demo",
+  "secondary": "Vedi i casi pubblicati",
+  "secondaryHref": "/it/referenze/",
+  "momentumEyebrow": "Momentum per la radiologia",
+  "proofEyebrow": "Risultati pubblicati",
+  "faqHeading": "Domande frequenti",
+  "imageAlt": "Momentum: vista mensile dei turni di radiologia per sede e modalità, con reperibilità e contatori"
+ }
+}

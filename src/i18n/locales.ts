@@ -9,7 +9,8 @@
  * locale's home page instead of publishing duplicate English content.
  */
 import { FR_CH_LOCAL } from './frChPaths.mjs';
-import { SCHEDULE, liveGroups } from '../data/publishSchedule.mjs';
+import { SCHEDULE } from '../data/publishSchedule.mjs';
+import { publishedGroups } from '../data/scheduledContent';
 export { FR_CH_LOCAL, frChLocalPathFor } from './frChPaths.mjs';
 
 export const LOCALE_CODES = ['en', 'fr', 'fr-ch', 'de', 'de-ch', 'nl', 'it'] as const;
@@ -93,7 +94,7 @@ const PAGE_EQUIV: Record<string, Partial<Record<LocaleCode, string>>> = {
 };
 
 // Scheduled translation pairs join once every page of the pair is live.
-for (const [name, group] of Object.entries(liveGroups())) {
+for (const [name, group] of Object.entries(publishedGroups())) {
     PAGE_EQUIV[name] = group as Partial<Record<LocaleCode, string>>;
 }
 

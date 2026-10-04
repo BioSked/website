@@ -1,5 +1,7 @@
 ---
 import Button from '@/components/ui/Button.astro';
+import { SCHEDULE } from '@/data/publishSchedule.mjs';
+import { isPublished } from '@/data/scheduledContent';
 import { Image } from 'astro:assets';
 import dateView from '@/assets/screenshots/dateview.png';
 import type { LocalLandingPage as LandingPage } from '@/data/localLandingPages';
@@ -26,6 +28,10 @@ const faqSchema = page.faq
       })),
     })
   : null;
+// Links to scheduled pages that are not published yet appear on their date.
+const pendingPaths = new Set(SCHEDULE.filter((s) => s.kind !== 'upgrade' && !isPublished(s.key)).map((s) => s.path));
+const relatedLinks = page.related.filter((link) => !pendingPaths.has(link.href));
+const quoteHref = page.quote?.href && !pendingPaths.has(page.quote.href) ? page.quote.href : undefined;
 ---
 
 {faqSchema && <script is:inline type="application/ld+json" set:html={faqSchema} />}
@@ -109,7 +115,7 @@ const faqSchema = page.faq
       <figure>
         <blockquote class="text-2xl font-medium italic leading-snug text-foreground md:text-3xl">{page.locale.startsWith('fr') ? `«\u00a0${page.quote.text}\u00a0»` : page.locale === 'en' ? `“${page.quote.text}”` : page.locale.startsWith('de') && page.locale !== 'de-ch' ? `„${page.quote.text}“` : page.locale === 'de-ch' ? `«${page.quote.text}»` : `“${page.quote.text}”`}</blockquote>
         <figcaption class="mt-5 text-base text-muted-foreground">
-          {page.quote.href ? <a href={page.quote.href} class="underline decoration-secondary/30 underline-offset-4 hover:text-foreground">{page.quote.cite}</a> : page.quote.cite}
+          {quoteHref ? <a href={quoteHref} class="underline decoration-secondary/30 underline-offset-4 hover:text-foreground">{page.quote.cite}</a> : page.quote.cite}
         </figcaption>
       </figure>
     </div>
@@ -179,7 +185,7 @@ const faqSchema = page.faq
     )}
     <h2 class="text-display-card">{RELATED[page.locale] ?? RELATED.en}</h2>
     <div class="mt-4 flex flex-wrap gap-3">
-      {page.related.map((link) => (
+      {relatedLinks.map((link) => (
         <a href={link.href} class="rounded-full border border-secondary/15 px-4 py-2 text-sm font-semibold transition-colors hover:bg-white/50">
           {link.label}
         </a>
