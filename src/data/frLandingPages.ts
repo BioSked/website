@@ -296,33 +296,122 @@ export const specialtyPages: Record<string, FrenchLandingPage> = {
   urgences: {
     slug: "urgences",
     type: "specialty",
-    eyebrow: "Urgences",
-    title: "Gardes couvertes, imprévus absorbés, équité mesurable",
-    description:
-      "Momentum construit les lignes de garde jour, nuit et week-end, centralise les désidératas et recalcule la couverture quand un arrêt tombe. Repos et compteurs sont vérifiés avant publication.",
+    eyebrow: "Médecine d’urgence",
+    title: "Le logiciel de planning des urgences et des médecins urgentistes",
+    description: "Lignes de garde, nuits, week-ends, repos de sécurité, SAMU et SMUR : Momentum génère le planning des urgentistes selon vos règles, tient les compteurs d’équité à jour et peut couvrir plusieurs sites d’un même GHT dans un seul outil.",
     metaTitle: "Logiciel de planning des urgences et urgentistes | Momentum",
-    metaDescription:
-      "Lignes de garde, continuité, remplacements en urgence, renforts territoriaux : Momentum planifie les services d’urgences. CHIREC : de 4 jours à 4-5 h par mois.",
-    primaryPain:
-      "Un tableau de service d’urgences doit couvrir chaque ligne de garde, absorber les arrêts de dernière minute et rester équitable sur les nuits et les week-ends. Aux urgences du CHIREC (40 000 passages par an, 25 à 30 médecins), sa construction mensuelle prenait 4 jours.",
+    metaDescription: "Logiciel de planning des urgences : gardes, nuits, week-ends, repos de sécurité, SMUR et désidératas. Aux urgences du CHIREC, un mois de planning est passé de 4 jours à 4–5 heures (étude de cas 2025).",
+    primaryPain: "Un service d’urgences tourne vingt-quatre heures sur vingt-quatre, toute l’année. Chaque ligne de garde doit être couverte, les nuits, les week-ends et les jours fériés doivent tourner équitablement, les repos de sécurité suivre chaque garde, et un praticien partagé avec le SAMU ne peut pas être à deux endroits à la fois. Aux urgences du CHIREC, avant Momentum, un mois de planning sur papier et sur Excel prenait 4 jours (étude de cas 2025).",
+    painsHeading: "Ce qui rend le planning des urgences si exigeant",
     pains: [
-      "couvrir toutes les lignes de garde, nuits et week-ends compris, sans découvert",
-      "collecter les désidératas sans chaîne d’emails ni échanges informels",
-      "replanifier en urgence après un arrêt, en respectant repos et compteurs",
-      "organiser les renforts entre sites d’un même territoire (GHT)",
+      "couvrir chaque ligne de garde, jour et nuit, sans trou ni doublon",
+      "répartir nuits, week-ends et jours fériés de façon équitable et vérifiable",
+      "enchaîner gardes et repos de sécurité, y compris pour les praticiens partagés avec le SAMU",
+      "intégrer désidératas, congés et temps partiels sans tout reconstruire"
     ],
+    outcomesHeading: "Ce que Momentum change pour le chef de service",
     outcomes: [
-      "construction du planning mensuel réduite de 4 jours à 4–5 heures (CHIREC, étude de cas 2025)",
-      "jusqu’à 90 % de temps de gestion des horaires en moins (CHIREC)",
-      "satisfaction du personnel mesurée à 90–100 % au CHIREC et 95–100 % au CHU d’Angers",
-      "toutes les demandes des praticiens au même endroit (CHU d’Angers, 52 praticiens urgences-Samu)",
+      "un mois de planning construit en 4 à 5 heures au lieu de 4 jours (urgences du CHIREC, étude de cas 2025)",
+      "jusqu’à 90 % de temps de gestion des horaires en moins (même étude)",
+      "une satisfaction du personnel mesurée entre 90 et 100 % (même étude)",
+      "des compteurs de nuits, de week-ends et de jours fériés consultables par toute l’équipe"
     ],
-    proof:
-      "Le Dr Boishardy, administrateur Momentum du DMU au CHU d’Angers, le dit dans l’étude de cas : le planning d’un service d’urgences est l’un des plus compliqués d’un hôpital. Tout est désormais au même endroit, accessible en ligne. Le CHIREC a mesuré le sien : 4 jours devenus 4–5 heures par mois.",
+    quote: {
+      text: "Je ne m’attendais pas à ce que Momentum ait un tel impact. C’est clair, fluide, automatisé. Je suis impressionné par la capacité de l’outil à générer des plannings aussi optimisés en respectant presque tous les souhaits.",
+      cite: "Dr Frédéric Cavallotto, chef du service des urgences, hôpital de Braine-l’Alleud, groupe CHIREC (étude de cas, mai 2025)",
+      href: "/fr/cas-clients/chirec/"
+    },
+    sections: [
+      {
+        heading: "Des lignes de garde couvertes avant publication",
+        paragraphs: [
+          "Urgences adultes, pédiatriques, UHCD, SMUR : chaque ligne a ses horaires, ses compétences requises et son nombre de médecins. Momentum vérifie la couverture de chaque ligne à la génération. Une ligne vide apparaît avant la publication du planning, pas au milieu de la nuit.",
+          "Les gardes de 24 heures, les demi-gardes et les postes de nuit se définissent comme vous les organisez aujourd’hui ; le planning suit vos trames, pas un modèle imposé."
+        ]
+      },
+      {
+        heading: "Nuits, week-ends et jours fériés : l’équité se compte",
+        paragraphs: [
+          "Chaque nuit, chaque week-end et chaque jour férié s’ajoute à un compteur visible par toute l’équipe. La répartition suit vos règles, et les arbitrages s’appuient sur des chiffres partagés plutôt que sur la mémoire du chef de service.",
+          "Aux urgences du CHIREC, l’équipe constate une meilleure équité perçue et une prise en compte transparente des désidératas, avec beaucoup moins d’e-mails d’ajustement (étude de cas 2025)."
+        ]
+      },
+      {
+        heading: "Repos de sécurité et temps de travail",
+        paragraphs: [
+          "Repos après garde, temps de travail additionnel, contrats et temps partiels : vos règles sont paramétrées une fois et appliquées à chaque génération du planning.",
+          "Les heures effectuées sont visibles et validées dans le même outil, puis transmises à la direction et à la paie, avec moins de corrections après coup."
+        ]
+      },
+      {
+        heading: "Urgences, SAMU et SMUR dans le même planning",
+        paragraphs: [
+          "Quand les mêmes praticiens assurent les urgences, la régulation et les sorties SMUR, un seul planning évite qu’ils soient affectés à deux endroits en même temps. Au CHU d’Angers, 52 praticiens partagés entre les urgences et le SAMU sont planifiés dans Momentum, client depuis 2021 (étude de cas 2023)."
+        ]
+      },
+      {
+        heading: "Un planning territorial pour le GHT",
+        paragraphs: [
+          "Quand les urgentistes travaillent sur plusieurs établissements d’un GHT, chaque site garde ses lignes et ses règles, mais le planning est commun. La vue territoriale montre quelles lignes sont couvertes sur l’ensemble des sites et évite les doubles affectations entre établissements."
+        ]
+      },
+      {
+        heading: "Désidératas, échanges et application mobile",
+        paragraphs: [
+          "Les médecins consultent le planning et déposent désidératas et congés depuis l’application mobile ou le web, proposent des échanges et sont prévenus de chaque changement qui les concerne. Le chef de service voit l’effet d’une demande avant de l’accepter.",
+          "Au CHIREC, la mise en place s’est faite par étapes : formation du chef de service et de deux référents, puis consultation en ligne et dépôt des désidératas, avec un accompagnement des praticiens les moins familiers du numérique (étude de cas 2025)."
+        ]
+      }
+    ],
+    proof: "Aux urgences de l’hôpital de Braine-l’Alleud (groupe CHIREC, 40 000 passages par an, 25 à 30 médecins), Momentum est en place depuis fin 2024. Au total, plus de 250 organisations de santé utilisent Momentum sur plus de 1 000 sites, dans neuf pays.",
+    faq: [
+      {
+        q: "Momentum gère-t-il les gardes de 24 heures et les postes de nuit ?",
+        a: "Oui. Gardes de 24 heures, demi-gardes, nuits et postes de jour se définissent selon votre organisation, et les règles de repos qui suivent chaque garde sont appliquées à la génération du planning."
+      },
+      {
+        q: "Peut-on planifier les urgences, le SAMU et le SMUR ensemble ?",
+        a: "Oui. Les praticiens partagés entre plusieurs activités sont planifiés dans un seul planning, ce qui évite les doubles affectations. Au CHU d’Angers, 52 praticiens partagés entre urgences et SAMU sont planifiés ainsi."
+      },
+      {
+        q: "Comment l’équité des nuits et des week-ends est-elle suivie ?",
+        a: "Chaque nuit, week-end et jour férié est compté pour chaque médecin. Momentum répartit selon vos règles et affiche les compteurs à toute l’équipe, pour que chacun puisse vérifier la répartition."
+      },
+      {
+        q: "Plusieurs sites d’un GHT peuvent-ils partager le même planning ?",
+        a: "Oui. Chaque site garde ses lignes de garde et ses règles, dans un planning commun qui donne une vue territoriale et évite les doubles affectations entre établissements."
+      },
+      {
+        q: "Comment se passe la mise en place ?",
+        a: "Un chef de projet Momentum paramètre avec vous les lignes, les règles et les contrats, puis vous accompagne sur les premiers plannings. Au CHIREC, le chef de service et deux référents ont été formés en premier, avant l’ouverture aux médecins (étude de cas 2025)."
+      },
+      {
+        q: "Où sont hébergées les données ?",
+        a: "Dans l’Union européenne, avec un traitement aligné sur le RGPD. Votre contrat est signé avec Bio-Optronics Sàrl, notre entité suisse."
+      }
+    ],
+    resource: {
+      label: "Livre blanc (2023) : la planification dynamique aux urgences",
+      href: "/fr/ressources/"
+    },
     related: [
-      { label: "Cas CHU Angers", href: "/fr/cas-clients/chu-angers/" },
-      { label: "Plannings de garde", href: "/fr/fonctionnalites/plannings-de-garde-centralises/" },
-    ],
+      {
+        label: "Lire le cas CHIREC",
+        href: "/fr/cas-clients/chirec/"
+      },
+      {
+        label: "Planning de garde",
+        href: "/fr/fonctionnalites/plannings-de-garde-centralises/"
+      },
+      {
+        label: "Établissements de santé et GHT",
+        href: "/fr/secteurs-soins/etablissements-de-sante/"
+      },
+      {
+        label: "Tarifs",
+        href: "/fr/pricing/"
+      }
+    ]
   },
   "etablissements-de-sante": {
     slug: "etablissements-de-sante",
