@@ -6,6 +6,9 @@
  *   biosked-fr-redirect     biosked.fr, www.biosked.fr  old WordPress site
  *   biosked-fr-kb-redirect  kb.biosked.fr               old HubSpot knowledge base
  *   biosked-fr-go-redirect  go.biosked.fr               old HubSpot landing pages
+ *   biosked-nl-redirect     biosked.nl, www             -> biosked.com/nl/
+ *   biosked-ch-redirect     biosked.ch, www             -> biosked.com/fr-ch/
+ *   biosked-net-redirect    biosked.net, www            -> biosked.com/
  *
  * Every legacy URL goes to its final biosked.com page in ONE hop (GitHub Pages
  * cannot send real 301s, so pointing at biosked.com's own redirect stubs would
@@ -133,6 +136,21 @@ const goSite = {
     ],
 };
 
-const firebaseJson = { hosting: [frSite, kbSite, goSite] };
+// biosked.nl, biosked.ch and biosked.net (live since 20-21 Jul 2026): home to the
+// matching locale, everything else path-preserved on biosked.com.
+// Mirrors what was deployed in July (cleanUrls included) so a redeploy changes nothing.
+const countrySite = (target, home) => ({
+    target,
+    public: 'public',
+    cleanUrls: true,
+    redirects: [
+        { source: '/', destination: `${ORIGIN}${home}`, type: 301 },
+        { source: '/:path*', destination: `${ORIGIN}/:path*`, type: 301 },
+    ],
+});
+
+const firebaseJson = {
+    hosting: [frSite, kbSite, goSite, countrySite('nl', '/nl/'), countrySite('ch', '/fr-ch/'), countrySite('net', '/')],
+};
 writeFileSync(new URL('../firebase-redirects/firebase.json', import.meta.url), JSON.stringify(firebaseJson, null, 2) + '\n');
 console.log(`wrote firebase-redirects/firebase.json (${frSite.redirects.length} biosked.fr rules, ${exact.length} from astro.config.mjs)`);

@@ -1,11 +1,28 @@
 {
-  "projects": { "default": "momentum-firebase-87e95" },
+  "projects": {
+    "default": "momentum-firebase-87e95"
+  },
   "targets": {
     "momentum-firebase-87e95": {
       "hosting": {
-        "fr": ["biosked-fr-redirect"],
-        "kbfr": ["biosked-fr-kb-redirect"],
-        "gofr": ["biosked-fr-go-redirect"]
+        "fr": [
+          "biosked-fr-redirect"
+        ],
+        "kbfr": [
+          "biosked-fr-kb-redirect"
+        ],
+        "gofr": [
+          "biosked-fr-go-redirect"
+        ],
+        "nl": [
+          "biosked-nl-redirect"
+        ],
+        "ch": [
+          "biosked-ch-redirect"
+        ],
+        "net": [
+          "biosked-net-redirect"
+        ]
       }
     }
   }

@@ -1,24 +1,31 @@
-# Redirects for the retired biosked.fr hosts
+# Redirects for BioSked's retired domains
 
-biosked.com is the only website. The old French hosts answer with permanent
-(301) redirects served by Firebase Hosting, project `momentum-firebase-87e95`.
-Their DNS lives in Google Cloud DNS, zone `biosked-fr-public` (project
-`momentum-335403`); the domain is registered at Infomaniak.
+biosked.com is the only website. Every other BioSked domain answers with
+permanent (301) redirects served by Firebase Hosting, project
+`momentum-firebase-87e95`. This folder is the source of truth for all the
+redirect sites. DNS lives in Google Cloud DNS (project `momentum-335403`, one
+zone per domain, e.g. `biosked-fr-public`); the domains are registered at
+Infomaniak (Bio-Optronics Sàrl). The full picture is in the Domains & Web
+Hosting runbook on SharePoint (Momentum > 05. General SaaS).
 
-| Host | Firebase site | Where it sends people |
+| Host | Firebase site (target) | Where it sends people |
 |---|---|---|
-| biosked.fr, www.biosked.fr | `biosked-fr-redirect` | the matching page on biosked.com, French pages under `/fr/` |
-| kb.biosked.fr | `biosked-fr-kb-redirect` | the same article on biosked.com/help (`/fr/help/` for French) |
-| go.biosked.fr | `biosked-fr-go-redirect` | biosked.com/fr/ (the old HubSpot landing pages are gone) |
+| biosked.fr, www.biosked.fr | `biosked-fr-redirect` (`fr`) | the matching page on biosked.com, French pages under `/fr/` |
+| kb.biosked.fr | `biosked-fr-kb-redirect` (`kbfr`) | the same article on biosked.com/help (`/fr/help/` for French) |
+| go.biosked.fr | `biosked-fr-go-redirect` (`gofr`) | each old landing page to its biosked.com equivalent; meetings, files and unsubscribe links to go.biosked.com. **Not live yet:** DNS still points at HubSpot until after JFR 2026 |
+| biosked.nl, www | `biosked-nl-redirect` (`nl`) | biosked.com/nl/, other paths kept as is |
+| biosked.ch, www | `biosked-ch-redirect` (`ch`) | biosked.com/fr-ch/, other paths kept as is |
+| biosked.net, www | `biosked-net-redirect` (`net`) | biosked.com/, other paths kept as is |
 
-Every legacy URL reaches its final page in one hop. GitHub Pages cannot send a
-real 301, so the rules point at final pages, never at biosked.com's own
-meta-refresh stubs.
+Every legacy biosked.fr URL reaches its final page in one hop. GitHub Pages
+cannot send a real 301, so the rules point at final pages, never at
+biosked.com's own meta-refresh stubs.
 
 ## Change a rule
 
 The biosked.fr rules come from the `redirects` map in `astro.config.mjs` (the
-same source as `public/_redirects`). Edit the map or the generator, then:
+same source as `public/_redirects`); the kb, go and country rules are in
+`scripts/generate-firebase-redirects.mjs`. Edit, then:
 
 ```bash
 node scripts/generate-redirects.mjs
@@ -29,15 +36,21 @@ cd ..
 node scripts/test-firebase-redirects.mjs --live
 ```
 
+Deploy only the targets you changed (`--only hosting:nl`, and so on).
 Deploying needs a Google account with access to `momentum-firebase-87e95`
 (`npx firebase-tools login`). The project is on the free Spark plan: keep these
 sites redirect-only, never host files here (shared 360 MB/day transfer quota).
 
-## Roll back a deploy
+## Switch go.biosked.fr (after JFR 2026)
 
-Firebase console > Hosting > the site > Release history > Roll back. To take a host off Firebase entirely,
-point its record in `biosked-fr-public` elsewhere (TTL is 300 s).
+In zone `biosked-fr-public`, replace `go.biosked.fr CNAME
+25195055.sites.hscoscdn-eu1.net.` with `go.biosked.fr CNAME
+biosked-fr-go-redirect.web.app.` (TTL 300). The Firebase certificate is
+already issued. Firebase confirms ownership within a minute or two; then run
+`node scripts/test-firebase-redirects.mjs --live --only=go`.
 
-biosked.nl, biosked.ch and biosked.net use the same project with a plain
-path-preserving rule each (sites `biosked-nl-redirect`, `biosked-ch-redirect`,
-`biosked-net-redirect`); they are not managed from this folder.
+## Roll back
+
+Firebase console > Hosting > the site > Release history > Roll back. To take a
+host off Firebase entirely, point its DNS record elsewhere (TTL is 300 s on
+biosked.fr).

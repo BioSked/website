@@ -867,6 +867,57 @@
           "type": 301
         }
       ]
+    },
+    {
+      "target": "nl",
+      "public": "public",
+      "cleanUrls": true,
+      "redirects": [
+        {
+          "source": "/",
+          "destination": "https://biosked.com/nl/",
+          "type": 301
+        },
+        {
+          "source": "/:path*",
+          "destination": "https://biosked.com/:path*",
+          "type": 301
+        }
+      ]
+    },
+    {
+      "target": "ch",
+      "public": "public",
+      "cleanUrls": true,
+      "redirects": [
+        {
+          "source": "/",
+          "destination": "https://biosked.com/fr-ch/",
+          "type": 301
+        },
+        {
+          "source": "/:path*",
+          "destination": "https://biosked.com/:path*",
+          "type": 301
+        }
+      ]
+    },
+    {
+      "target": "net",
+      "public": "public",
+      "cleanUrls": true,
+      "redirects": [
+        {
+          "source": "/",
+          "destination": "https://biosked.com/",
+          "type": 301
+        },
+        {
+          "source": "/:path*",
+          "destination": "https://biosked.com/:path*",
+          "type": 301
+        }
+      ]
     }
   ]
 }
