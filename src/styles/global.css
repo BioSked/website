@@ -535,3 +535,46 @@ html.theme-transition::view-transition-new(root) {
   -webkit-mask-image: radial-gradient(closest-side, black 50%, transparent 98%);
   mask-image: radial-gradient(closest-side, black 50%, transparent 98%);
 }
+
+/* Keep editorial art and template previews visibly tied to the real BioSked mark. */
+.biosked-branded-visual {
+    position: relative;
+    isolation: isolate;
+}
+
+.biosked-branded-visual::after {
+    content: '';
+    position: absolute;
+    right: 1rem;
+    bottom: 1rem;
+    width: 160px;
+    height: 44px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.96) url('/images/biosked-logo.svg') center / 122px 21px no-repeat;
+    box-shadow: 0 3px 15px rgba(16, 38, 75, 0.14);
+    pointer-events: none;
+}
+
+.redacted > .biosked-branded-visual {
+    margin-bottom: 2rem;
+}
+
+.redacted > .biosked-branded-visual > img {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 0;
+    border: 1px solid color-mix(in oklab, var(--secondary) 15%, transparent);
+    border-radius: 0.375rem;
+    box-shadow: 0 15px 30px rgba(16, 38, 75, 0.1);
+}
+
+@media (max-width: 640px) {
+    .biosked-branded-visual::after {
+        right: 0.65rem;
+        bottom: 0.65rem;
+        width: 126px;
+        height: 36px;
+        background-size: 100px 17px;
+    }
+}
