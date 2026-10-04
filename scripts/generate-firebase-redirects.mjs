@@ -137,15 +137,15 @@ const goSite = {
 };
 
 // biosked.nl, biosked.ch and biosked.net (live since 20-21 Jul 2026): home to the
-// matching locale, everything else path-preserved on biosked.com.
-// Mirrors what was deployed in July (cleanUrls included) so a redeploy changes nothing.
+// matching locale, legacy paths straight to their final page, everything else
+// kept as is on biosked.com (trailing slash included, unlike the July /:path* glob).
 const countrySite = (target, home) => ({
     target,
     public: 'public',
-    cleanUrls: true,
     redirects: [
         { source: '/', destination: `${ORIGIN}${home}`, type: 301 },
-        { source: '/:path*', destination: `${ORIGIN}/:path*`, type: 301 },
+        ...exact,
+        { regex: '^/(?P<rest>.*)$', destination: `${ORIGIN}/:rest`, type: 301 },
     ],
 });
 
