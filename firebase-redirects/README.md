@@ -36,8 +36,8 @@ cd ..
 node scripts/test-firebase-redirects.mjs --live
 ```
 
-Never deploy with a bare `--only hosting`: it also redeploys the mobile app's
-default site `momentum-firebase-87e95`. Name the targets.
+Name the targets you changed: a bare `--only hosting` redeploys all six sites
+at once.
 Deploying needs a Google account with access to `momentum-firebase-87e95`
 (`npx firebase-tools login`). The project is on the free Spark plan: keep these
 sites redirect-only, never host files here (shared 360 MB/day transfer quota).
