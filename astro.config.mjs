@@ -146,6 +146,14 @@ export default defineConfig({
         ...retiredFallbackRedirects,
         "fr/blog/257-ameliorations-plus-tard-ce-que-vos-tickets-nous-ont-appris": { destination: "/fr/blog/257-ameliorations-plus-tard-tout-ce-que-nous-avons-corrige", status: 301 },
 
+        // --- guide folders (one guide per locale for now): no 404 on the folder URL ---
+        "guides": { destination: "/guides/physician-call-schedule", status: 301 },
+        "de/ratgeber": { destination: "/de/ratgeber/dienstplan-aerzte", status: 301 },
+        "de-ch/ratgeber": { destination: "/de-ch/ratgeber/dienstplan-aerzte", status: 301 },
+        "nl/gids": { destination: "/nl/gids/wachtrooster-artsen", status: 301 },
+        "it/guida": { destination: "/it/guida/turni-di-guardia-medici", status: 301 },
+        "fr-ch/guide": { destination: "/fr-ch/guide/planning-de-garde-medecins", status: 301 },
+
         // --- inherited biosked.com legacy slugs (EN) ---
         "bookdemo": { destination: "/demo", status: 301 },
         "schedule-a-demo": { destination: "/demo", status: 301 },

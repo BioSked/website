@@ -30,7 +30,7 @@ export interface HomeContent {
 
 const HOME_CONTENT_BASE: Record<'de' | 'nl' | 'it', HomeContent> = {
     de: {
-        metaTitle: 'Momentum – Dienstplanung für ärztliche Teams | BioSked',
+        metaTitle: 'Dienstplan-Software für Klinikärzte | BioSked Momentum',
         metaDescription:
             'Momentum von BioSked automatisiert Dienst-, Bereitschafts- und Rufdienstplanung für ärztliche Teams: regelkonform, fair und standortübergreifend.',
         hero: {
@@ -59,7 +59,7 @@ const HOME_CONTENT_BASE: Record<'de' | 'nl' | 'it', HomeContent> = {
         },
     },
     nl: {
-        metaTitle: 'Momentum: Roosterplanning voor artsenteams | BioSked',
+        metaTitle: 'Wachtrooster en planning voor artsen | BioSked Momentum',
         metaDescription:
             'Momentum van BioSked automatiseert zorgroosters voor artsenteams, inclusief wacht- en bereikbaarheidsdiensten, eerlijke verdeling en tijdregistratie.',
         hero: {
@@ -88,7 +88,7 @@ const HOME_CONTENT_BASE: Record<'de' | 'nl' | 'it', HomeContent> = {
         },
     },
     it: {
-        metaTitle: 'Momentum: pianificazione dei turni medici | BioSked',
+        metaTitle: 'Software turni medici e reperibilità | BioSked Momentum',
         metaDescription:
             'Momentum di BioSked automatizza i turni per ospedali, gruppi di radiologia e team medici multi-sede, con regole, reperibilità, equità e rilevazione ore.',
         hero: {
@@ -122,7 +122,7 @@ export const HOME_CONTENT: Record<'de' | 'de-ch' | 'nl' | 'it', HomeContent> = {
     ...HOME_CONTENT_BASE,
     'de-ch': {
         ...toSwissGerman(HOME_CONTENT_BASE.de),
-        metaTitle: 'Momentum: Dienstplanung für Schweizer Ärzteteams | BioSked',
+        metaTitle: 'Dienst- und Pikettplanung für Spitäler | BioSked Momentum',
         metaDescription:
             'Momentum automatisiert Dienstpläne, Pikett, Planungswünsche, Zeiterfassung und Reporting für Spitäler, Kliniken und Teams an mehreren Standorten in der Schweiz.',
     },
