@@ -48,6 +48,8 @@ const frSite = {
         // WordPress archives and pagination that never had a page of their own
         { regex: '^/(?:category|tag|author)/.*$', destination: `${ORIGIN}/fr/blog/`, type: 301 },
         { regex: '^/(?:blog/)?page/[0-9]+/?$', destination: `${ORIGIN}/fr/blog/`, type: 301 },
+        // A 2025 HubSpot email carries this link cut short with an ellipsis
+        { regex: '^/blog/votre-planning-d.*-automatiquement/?$', destination: `${ORIGIN}/fr/blog/votre-planning-danesthesistes-et-iades-construit-automatiquement/`, type: 301 },
         // The March 2025 open letter was linked from the old about page
         { source: '/wp-content/uploads/2025/03/Lettre-ouverte-FR.pdf', destination: `${ORIGIN}/fr/about/`, type: 301 },
         // Everything else: same path on biosked.com (its own legacy stubs and 404 page).
@@ -56,10 +58,24 @@ const frSite = {
     ],
 };
 
+const HUBSPOT_PATHS = '(?:meetings|hubfs|hs|hs-fs|_hcms)(?:/.*)?';
+
+// Old HubSpot slugs can carry accents, which arrive either raw or percent-encoded
+// (é = 1 or 6 characters). ACC matches either form.
+const ACC = '.{1,6}';
+
 const kbSite = {
     target: 'kbfr',
     public: 'public',
     redirects: [
+        // Renamed French article, linked from the Jan-Feb 2025 "new date view" emails
+        { regex: '^/fr/knowledge/vue-de-la-nouvelle-date/?$', destination: `${ORIGIN}/fr/help/nouvelle-vue-par-date/`, type: 301 },
+        // The 2025 knowledge-base migration paths and the 2024 locale-less links
+        { regex: '^/migration/en/knowledge(?:/kb-search-results)?/?$', destination: `${ORIGIN}/help/`, type: 301 },
+        { regex: '^/migration/fr/knowledge(?:/kb-search-results)?/?$', destination: `${ORIGIN}/fr/help/`, type: 301 },
+        { regex: '^/migration/en/knowledge/(?P<rest>.+?)/?$', destination: `${ORIGIN}/help/:rest/`, type: 301 },
+        { regex: '^/migration/fr/knowledge/(?P<rest>.+?)/?$', destination: `${ORIGIN}/fr/help/:rest/`, type: 301 },
+        { regex: '^/knowledge/(?P<rest>.+?)/?$', destination: `${ORIGIN}/help/:rest/`, type: 301 },
         { regex: '^/en/knowledge/?$', destination: `${ORIGIN}/help/`, type: 301 },
         { regex: '^/fr/knowledge/?$', destination: `${ORIGIN}/fr/help/`, type: 301 },
         { regex: '^/en/knowledge/kb-search-results/?$', destination: `${ORIGIN}/help/`, type: 301 },
@@ -68,14 +84,51 @@ const kbSite = {
         { regex: '^/fr/knowledge/(?P<rest>.+?)/?$', destination: `${ORIGIN}/fr/help/:rest/`, type: 301 },
         // Article images and HubSpot files keep serving from kb.biosked.com
         { regex: '^/(?P<rest>(?:hs-fs|hubfs)/.*)$', destination: 'https://kb.biosked.com/:rest', type: 301 },
+        // Unsubscribe and other HubSpot system paths
+        { regex: '^/(?P<rest>(?:hs|_hcms)/.*)$', destination: 'https://go.biosked.com/:rest', type: 301 },
         { regex: '^/.*$', destination: `${ORIGIN}/help/`, type: 301 },
     ],
 };
+
+// go.biosked.fr held the HubSpot landing pages. Meetings, files and unsubscribe
+// links keep working on go.biosked.com (the portal's primary HubSpot domain);
+// every landing page goes to its biosked.com equivalent (HubSpot audit, 4 Oct 2026).
+const GO_PAGES = [
+    ['fr-fr/d' + ACC + 'couvrez-une-nouvelle-fa' + ACC + 'on-de-planifier-' + ACC + 'quitablement-anesth' + ACC + 'sie', '/fr/demo/'],
+    ['fr-fr/d' + ACC + 'couvrez-une-nouvelle-fa' + ACC + 'on-de-planifier-' + ACC + 'quitablement', '/fr/demo/'],
+    ['demo-anesthesie2?', '/fr/demo/'],
+    ['(?:en-us/)?discover-a-new-way-to-schedule-your-staff', '/demo/'],
+    ['en-us/save-up-to-(?:25|50)-today(?:-0)?', '/demo/'],
+    ['fr-fr/etude-de-cas-chirec', '/fr/cas-clients/chirec/'],
+    ['fr-fr/etude-de-cas-chu-angers', '/fr/cas-clients/chu-angers/'],
+    ['fr-fr/etude-de-cas-hopital-europeen-marseille', '/fr/cas-clients/hopital-europeen-marseille/'],
+    ['fr-fr/etude-de-cas-imagerie-medicale-les-cedres', '/fr/cas-clients/imagerie-medicale-les-cedres/'],
+    ['fr-fr/etude-de-cas-imagir-bordeaux', '/fr/cas-clients/imagir-bordeaux/'],
+    ['fr-fr/etude-de-cas-imalliance-hdf', '/fr/cas-clients/imalliance-hdf/'],
+    ['fr-fr/etude-de-cas-iris-grim', '/fr/cas-clients/iris-grim/'],
+    ['fr-fr/etude-de-cas-[a-z-]+', '/fr/cas-clients/'],
+    ['(?:en-us/)?case-study-university-of-rochester-medical-center-pathology-department', '/'],
+    ['planification-dynamique-radiologie', '/fr/secteurs-soins/radiologie/'],
+    ['planification-dynamique-[^/]+', '/fr/ressources/'],
+    ['fr-fr/livre-blanc-[a-z-]+', '/fr/ressources/'],
+    ['tradeshow-0-0|-santexpo-2026|congr' + ACC + 's-des-urgences|la-revue', '/fr/demo/'],
+    ['r' + ACC + 'servation-tradeshow-0-0-[0-9a-f-]+', '/fr/jfr-2026/'],
+    ['medica', '/de/demo/'],
+    ['rsna-2025', '/demo/'],
+    ['webinaire-june-2026', '/fr/changelog/2026-07-01-new-mobile-app/'],
+    ['webinar-july-2026', '/changelog/2026-07-01-new-mobile-app/'],
+    ['-webinar-momentum|momentum-3\\.3-annoucement', '/changelog/'],
+    ['momentum-webinar-2026|momentum-b' + ACC + 'ta|annonce-momentum-3\\.3|fr-fr/webinar-planification-dynamique(?:-0)?', '/fr/changelog/'],
+    ['parrainage(?:-0)?', '/fr/'],
+    ['momentum-referral-program', '/'],
+];
 
 const goSite = {
     target: 'gofr',
     public: 'public',
     redirects: [
+        { regex: `^/(?P<rest>${HUBSPOT_PATHS})$`, destination: 'https://go.biosked.com/:rest', type: 301 },
+        ...GO_PAGES.map(([slug, dest]) => ({ regex: `^/(?:${slug})/?$`, destination: ORIGIN + dest, type: 301 })),
         { regex: '^/.*$', destination: `${ORIGIN}/fr/`, type: 301 },
     ],
 };

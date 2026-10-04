@@ -158,6 +158,10 @@ export default defineConfig({
         // --- legacy biosked.fr WordPress URLs (FR) ---
         "blog/posts/fr/2025-07-03-shift-view": { destination: "/fr/blog/nouveaute-momentum-une-vue-par-shift-pour-une-meilleure-coordination-sur-le-terrain", status: 301 },
         "accueil-biosked": { destination: "/fr/", status: 301 },
+        // renamed WordPress posts, still linked from 2023-2025 HubSpot emails
+        "blog/intelligence-artificielle-remplacer-activite-radiologue": { destination: "/fr/blog/lintelligence-artificielle-peut-elle-remplacer-a-terme-lactivite-du-radiologue", status: 301 },
+        "blog/perspectives-pour-le-marche-radiologie-france-monde": { destination: "/fr/blog/perspectives-pour-le-marche-de-la-radiologie-en-france-et-dans-le-monde", status: 301 },
+        "blog/teleradiologie-solution-long-terme": { destination: "/fr/blog/la-teleradiologie-une-solution-a-long-terme", status: 301 },
         "demander-une-demo": { destination: "/fr/demo", status: 301 },
         "demander-une-demonstration": { destination: "/fr/demo", status: 301 },
         // Legacy biosked.nl slug (host-level 301s forward the path here;

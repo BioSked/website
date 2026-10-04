@@ -450,6 +450,21 @@
           "type": 301
         },
         {
+          "regex": "^/blog/intelligence-artificielle-remplacer-activite-radiologue/?$",
+          "destination": "https://biosked.com/fr/blog/lintelligence-artificielle-peut-elle-remplacer-a-terme-lactivite-du-radiologue/",
+          "type": 301
+        },
+        {
+          "regex": "^/blog/perspectives-pour-le-marche-radiologie-france-monde/?$",
+          "destination": "https://biosked.com/fr/blog/perspectives-pour-le-marche-de-la-radiologie-en-france-et-dans-le-monde/",
+          "type": 301
+        },
+        {
+          "regex": "^/blog/teleradiologie-solution-long-terme/?$",
+          "destination": "https://biosked.com/fr/blog/la-teleradiologie-une-solution-a-long-terme/",
+          "type": 301
+        },
+        {
           "regex": "^/demander-une-demo/?$",
           "destination": "https://biosked.com/fr/demo/",
           "type": 301
@@ -605,6 +620,11 @@
           "type": 301
         },
         {
+          "regex": "^/blog/votre-planning-d.*-automatiquement/?$",
+          "destination": "https://biosked.com/fr/blog/votre-planning-danesthesistes-et-iades-construit-automatiquement/",
+          "type": 301
+        },
+        {
           "source": "/wp-content/uploads/2025/03/Lettre-ouverte-FR.pdf",
           "destination": "https://biosked.com/fr/about/",
           "type": 301
@@ -620,6 +640,36 @@
       "target": "kbfr",
       "public": "public",
       "redirects": [
+        {
+          "regex": "^/fr/knowledge/vue-de-la-nouvelle-date/?$",
+          "destination": "https://biosked.com/fr/help/nouvelle-vue-par-date/",
+          "type": 301
+        },
+        {
+          "regex": "^/migration/en/knowledge(?:/kb-search-results)?/?$",
+          "destination": "https://biosked.com/help/",
+          "type": 301
+        },
+        {
+          "regex": "^/migration/fr/knowledge(?:/kb-search-results)?/?$",
+          "destination": "https://biosked.com/fr/help/",
+          "type": 301
+        },
+        {
+          "regex": "^/migration/en/knowledge/(?P<rest>.+?)/?$",
+          "destination": "https://biosked.com/help/:rest/",
+          "type": 301
+        },
+        {
+          "regex": "^/migration/fr/knowledge/(?P<rest>.+?)/?$",
+          "destination": "https://biosked.com/fr/help/:rest/",
+          "type": 301
+        },
+        {
+          "regex": "^/knowledge/(?P<rest>.+?)/?$",
+          "destination": "https://biosked.com/help/:rest/",
+          "type": 301
+        },
         {
           "regex": "^/en/knowledge/?$",
           "destination": "https://biosked.com/help/",
@@ -656,6 +706,11 @@
           "type": 301
         },
         {
+          "regex": "^/(?P<rest>(?:hs|_hcms)/.*)$",
+          "destination": "https://go.biosked.com/:rest",
+          "type": 301
+        },
+        {
           "regex": "^/.*$",
           "destination": "https://biosked.com/help/",
           "type": 301
@@ -666,6 +721,146 @@
       "target": "gofr",
       "public": "public",
       "redirects": [
+        {
+          "regex": "^/(?P<rest>(?:meetings|hubfs|hs|hs-fs|_hcms)(?:/.*)?)$",
+          "destination": "https://go.biosked.com/:rest",
+          "type": 301
+        },
+        {
+          "regex": "^/(?:fr-fr/d.{1,6}couvrez-une-nouvelle-fa.{1,6}on-de-planifier-.{1,6}quitablement-anesth.{1,6}sie)/?$",
+          "destination": "https://biosked.com/fr/demo/",
+          "type": 301
+        },
+        {
+          "regex": "^/(?:fr-fr/d.{1,6}couvrez-une-nouvelle-fa.{1,6}on-de-planifier-.{1,6}quitablement)/?$",
+          "destination": "https://biosked.com/fr/demo/",
+          "type": 301
+        },
+        {
+          "regex": "^/(?:demo-anesthesie2?)/?$",
+          "destination": "https://biosked.com/fr/demo/",
+          "type": 301
+        },
+        {
+          "regex": "^/(?:(?:en-us/)?discover-a-new-way-to-schedule-your-staff)/?$",
+          "destination": "https://biosked.com/demo/",
+          "type": 301
+        },
+        {
+          "regex": "^/(?:en-us/save-up-to-(?:25|50)-today(?:-0)?)/?$",
+          "destination": "https://biosked.com/demo/",
+          "type": 301
+        },
+        {
+          "regex": "^/(?:fr-fr/etude-de-cas-chirec)/?$",
+          "destination": "https://biosked.com/fr/cas-clients/chirec/",
+          "type": 301
+        },
+        {
+          "regex": "^/(?:fr-fr/etude-de-cas-chu-angers)/?$",
+          "destination": "https://biosked.com/fr/cas-clients/chu-angers/",
+          "type": 301
+        },
+        {
+          "regex": "^/(?:fr-fr/etude-de-cas-hopital-europeen-marseille)/?$",
+          "destination": "https://biosked.com/fr/cas-clients/hopital-europeen-marseille/",
+          "type": 301
+        },
+        {
+          "regex": "^/(?:fr-fr/etude-de-cas-imagerie-medicale-les-cedres)/?$",
+          "destination": "https://biosked.com/fr/cas-clients/imagerie-medicale-les-cedres/",
+          "type": 301
+        },
+        {
+          "regex": "^/(?:fr-fr/etude-de-cas-imagir-bordeaux)/?$",
+          "destination": "https://biosked.com/fr/cas-clients/imagir-bordeaux/",
+          "type": 301
+        },
+        {
+          "regex": "^/(?:fr-fr/etude-de-cas-imalliance-hdf)/?$",
+          "destination": "https://biosked.com/fr/cas-clients/imalliance-hdf/",
+          "type": 301
+        },
+        {
+          "regex": "^/(?:fr-fr/etude-de-cas-iris-grim)/?$",
+          "destination": "https://biosked.com/fr/cas-clients/iris-grim/",
+          "type": 301
+        },
+        {
+          "regex": "^/(?:fr-fr/etude-de-cas-[a-z-]+)/?$",
+          "destination": "https://biosked.com/fr/cas-clients/",
+          "type": 301
+        },
+        {
+          "regex": "^/(?:(?:en-us/)?case-study-university-of-rochester-medical-center-pathology-department)/?$",
+          "destination": "https://biosked.com/",
+          "type": 301
+        },
+        {
+          "regex": "^/(?:planification-dynamique-radiologie)/?$",
+          "destination": "https://biosked.com/fr/secteurs-soins/radiologie/",
+          "type": 301
+        },
+        {
+          "regex": "^/(?:planification-dynamique-[^/]+)/?$",
+          "destination": "https://biosked.com/fr/ressources/",
+          "type": 301
+        },
+        {
+          "regex": "^/(?:fr-fr/livre-blanc-[a-z-]+)/?$",
+          "destination": "https://biosked.com/fr/ressources/",
+          "type": 301
+        },
+        {
+          "regex": "^/(?:tradeshow-0-0|-santexpo-2026|congr.{1,6}s-des-urgences|la-revue)/?$",
+          "destination": "https://biosked.com/fr/demo/",
+          "type": 301
+        },
+        {
+          "regex": "^/(?:r.{1,6}servation-tradeshow-0-0-[0-9a-f-]+)/?$",
+          "destination": "https://biosked.com/fr/jfr-2026/",
+          "type": 301
+        },
+        {
+          "regex": "^/(?:medica)/?$",
+          "destination": "https://biosked.com/de/demo/",
+          "type": 301
+        },
+        {
+          "regex": "^/(?:rsna-2025)/?$",
+          "destination": "https://biosked.com/demo/",
+          "type": 301
+        },
+        {
+          "regex": "^/(?:webinaire-june-2026)/?$",
+          "destination": "https://biosked.com/fr/changelog/2026-07-01-new-mobile-app/",
+          "type": 301
+        },
+        {
+          "regex": "^/(?:webinar-july-2026)/?$",
+          "destination": "https://biosked.com/changelog/2026-07-01-new-mobile-app/",
+          "type": 301
+        },
+        {
+          "regex": "^/(?:-webinar-momentum|momentum-3\\.3-annoucement)/?$",
+          "destination": "https://biosked.com/changelog/",
+          "type": 301
+        },
+        {
+          "regex": "^/(?:momentum-webinar-2026|momentum-b.{1,6}ta|annonce-momentum-3\\.3|fr-fr/webinar-planification-dynamique(?:-0)?)/?$",
+          "destination": "https://biosked.com/fr/changelog/",
+          "type": 301
+        },
+        {
+          "regex": "^/(?:parrainage(?:-0)?)/?$",
+          "destination": "https://biosked.com/fr/",
+          "type": 301
+        },
+        {
+          "regex": "^/(?:momentum-referral-program)/?$",
+          "destination": "https://biosked.com/",
+          "type": 301
+        },
         {
           "regex": "^/.*$",
           "destination": "https://biosked.com/fr/",
