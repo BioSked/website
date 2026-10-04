@@ -6,13 +6,13 @@ author: "BioSked"
 byline: "Vorlage aktualisiert am 4. Oktober 2026"
 title: "Dienstplan für Ärzte: Regeln, Fairness und kostenlose Excel-Vorlage"
 description: "Fairer Dienstplan für Ärztinnen und Ärzte: was Arbeitszeitgesetz und TV-Ärzte vorgeben, welche Zähler zählen, sechs Schritte und eine Excel-Vorlage."
-image: "../../../assets/guides/de-dienstplan-cover.png"
+image: "../../../assets/fr-blog/2026-10-04-planning-de-garde-medecins-editorial.webp"
 canonicalPath: "/de/ratgeber/dienstplan-aerzte/"
 breadcrumb: "Ratgeber"
 aside: {"heading": "Den Dienstplan nach Ihren Regeln erstellen lassen", "text": "In der Notaufnahme des CHIREC (Braine-l’Alleud, Belgien) entsteht der Monatsdienstplan mit Momentum in 4 bis 5 Stunden statt in 4 Tagen (Fallstudie, Mai 2025).", "demo_label": "Demo anfragen", "secondary_label": "Alle Referenzen", "secondary_href": "/de/referenzen/"}
 ---
 
-![Excel-Vorlage für den ärztlichen Dienstplan: Dienstplan mit Kontrollen und Fairness-Zähler je Ärztin oder Arzt](../../../assets/guides/de-dienstplan-cover.png)
+<figure class="biosked-branded-visual"><img src="/guides/fr-planning-de-garde-editorial.webp" alt="Zwei medizinische Fachkräfte planen gemeinsam einen ärztlichen Dienstplan auf Papier" width="1600" height="900" loading="eager" decoding="async"></figure>
 
 Der Dienstplan ist das meistdiskutierte Dokument einer Abteilung. Ein Dienst zu viel, Weihnachten zwei Jahre hintereinander für dieselbe Person, und das Vertrauen in den ganzen Plan bröckelt.
 
@@ -51,7 +51,7 @@ Für angestellte Ärztinnen und Ärzte gilt das [Arbeitszeitgesetz (ArbZG)](http
 - **Nach mehr als zwölf Stunden** Arbeitszeit folgt unmittelbar eine Ruhezeit von mindestens elf Stunden (§ 7 Abs. 9).
 - **Opt-out.** Eine Verlängerung ohne Ausgleich erlaubt nur ein Tarifvertrag, und nur mit schriftlicher Einwilligung der Ärztin oder des Arztes, widerrufbar mit sechs Monaten Frist (§ 7 Abs. 2a und 7).
 
-<figure class="max-w-2xl mx-auto"><picture><source media="(max-width: 640px)" srcset="/guides/de-dienstplan-timeline-m.webp" width="400" height="476"><img src="/guides/de-dienstplan-timeline.webp" alt="Zwei Beispiele: ein 24-Stunden-Dienst aus 8 Stunden Tagdienst und 16 Stunden Bereitschaftsdienst mit unmittelbar folgenden 11 Stunden Ruhezeit, und eine Rufbereitschaft mit einem Einsatz von 4 bis 6 Uhr, nach dem der Tagdienst um 8 Uhr beginnt und die Kürzung der Ruhezeit später ausgeglichen wird" width="672" height="421" loading="lazy" decoding="async"></picture></figure>
+<figure class="max-w-2xl mx-auto"><picture><source media="(max-width: 640px)" srcset="/guides/de-dienstplan-timeline-v2-m.svg" width="400" height="672"><img src="/guides/de-dienstplan-timeline-v2.svg" alt="Zwei Beispiele: ein 24-Stunden-Dienst aus 8 Stunden Tagdienst und 16 Stunden Bereitschaftsdienst mit unmittelbar folgenden 11 Stunden Ruhezeit, und eine Rufbereitschaft mit einem Einsatz von 4 bis 6 Uhr, nach dem der Tagdienst um 8 Uhr beginnt und die Kürzung der Ruhezeit später ausgeglichen wird" width="672" height="582" loading="lazy" decoding="async"></picture></figure>
 
 Die konkreten Grenzen stehen im Tarifvertrag. Hier die zwei großen Tarifverträge des Marburger Bundes ([Texte auf marburger-bund.de](https://www.marburger-bund.de/bundesverband/tarifvertraege)):
 
@@ -95,7 +95,7 @@ Die 104 Samstage und Sonntage von 2027 und die Feiertage verteilen Sie genauso.
 
 ## Den Dienstplan in sechs Schritten erstellen
 
-<figure class="max-w-2xl mx-auto"><picture><source media="(max-width: 640px)" srcset="/guides/de-dienstplan-steps-m.webp" width="400" height="648"><img src="/guides/de-dienstplan-steps.webp" alt="Die sechs Schritte: Dienste auflisten, Regeln festlegen, Wünsche sammeln, in Reihenfolge füllen, mit Zählern prüfen, veröffentlichen und jeden Tausch dokumentieren" width="672" height="409" loading="lazy" decoding="async"></picture></figure>
+<figure class="max-w-2xl mx-auto"><picture><source media="(max-width: 640px)" srcset="/guides/de-dienstplan-steps-v2-m.svg" width="400" height="861"><img src="/guides/de-dienstplan-steps-v2.svg" alt="Die sechs Schritte: Dienste auflisten, Regeln festlegen, Wünsche sammeln, in Reihenfolge füllen, mit Zählern prüfen, veröffentlichen und jeden Tausch dokumentieren" width="672" height="532" loading="lazy" decoding="async"></picture></figure>
 
 ### 1. Dienste auflisten
 
@@ -124,6 +124,8 @@ Jeder genehmigte Tausch aktualisiert die Zähler. Sonst sagt die Fairness vom Ja
 ## Die kostenlose Excel-Vorlage
 
 **[Vorlage Dienstplan herunterladen](/modeles/vorlage-dienstplan-aerzte.xlsx)** (Excel-Datei .xlsx, ohne Makros, kostenlos).
+
+<figure class="biosked-branded-visual"><img src="/guides/de-dienstplan-cover.png" alt="Excel-Vorlage für den ärztlichen Dienstplan: Dienstplan mit Kontrollen und Fairness-Zähler je Ärztin oder Arzt" width="1600" height="900" loading="lazy" decoding="async"></figure>
 
 - **Zwei Dienstarten** zum Benennen, zum Beispiel „Bereitschaftsdienst“ und „Rufbereitschaft“, für ein ganzes Jahr.
 - **Team, Abwesenheiten und Feiertage**: Stellenanteil jeder Person, Abwesenheiten (von, bis, Grund), die neun bundesweiten Feiertage 2026 bis 2028. Die Feiertage Ihres Bundeslandes ergänzen Sie selbst.

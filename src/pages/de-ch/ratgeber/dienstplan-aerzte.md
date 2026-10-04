@@ -6,13 +6,13 @@ author: "BioSked"
 byline: "Vorlage aktualisiert am 4. Oktober 2026"
 title: "Dienstplan für Ärztinnen und Ärzte: Arbeitsgesetz, Pikett, Excel-Vorlage"
 description: "Fairer Dienstplan im Spital: was ArG, ArGV 1 und ArGV 2 vorgeben, Pikett-Regeln, Fairness-Zähler, sechs Schritte und eine kostenlose Excel-Vorlage."
-image: "../../../assets/guides/de-ch-dienstplan-cover.png"
+image: "../../../assets/fr-blog/2026-10-04-planning-de-garde-medecins-editorial.webp"
 canonicalPath: "/de-ch/ratgeber/dienstplan-aerzte/"
 breadcrumb: "Ratgeber"
 aside: {"heading": "Den Dienstplan nach Ihren Regeln erstellen", "text": "Auf der Notfallstation des CHIREC (Belgien) entsteht der Monatsplan für 25 bis 30 Ärztinnen und Ärzte in 4 bis 5 Stunden statt in 4 Tagen (Fallstudie, Mai 2025).", "demo_label": "Demo anfragen", "secondary_label": "Referenzen ansehen", "secondary_href": "/de-ch/referenzen/"}
 ---
 
-![Excel-Vorlage für den Dienstplan: Plan mit Kontrollen und Fairness-Zähler pro Ärztin und Arzt](../../../assets/guides/de-ch-dienstplan-cover.png)
+<figure class="biosked-branded-visual"><img src="/guides/fr-planning-de-garde-editorial.webp" alt="Zwei medizinische Fachpersonen planen gemeinsam einen Dienstplan auf Papier" width="1600" height="900" loading="eager" decoding="async"></figure>
 
 Der Dienstplan ist das meistdiskutierte Dokument einer Klinik. Ein Nachtdienst zu viel, zweimal hintereinander Weihnachten für dieselbe Person, und das Vertrauen in den ganzen Plan bröckelt.
 
@@ -50,7 +50,7 @@ Für Assistenzärztinnen und Assistenzärzte gilt das [Arbeitsgesetz (ArG)](http
 - **Pikett an höchstens 7 Tagen in 4 Wochen**, danach zwei Wochen ohne Pikett (Art. 14 Abs. 2 ArGV 1). Kommen wegen der Einsätze keine 4 Stunden Ruhe am Stück zustande, folgen nach dem letzten Einsatz 11 Stunden Ruhezeit (Art. 19 Abs. 3 ArGV 1).
 - **Mindestens 12 freie Sonntage** pro Kalenderjahr (Art. 12 Abs. 2 ArGV 2).
 
-<figure class="max-w-2xl mx-auto"><picture><source media="(max-width: 640px)" srcset="/guides/de-ch-dienstplan-timeline-m.webp" width="400" height="439"><img src="/guides/de-ch-dienstplan-timeline.webp" alt="Zwei Beispiele: Nachtdienst im Spital von 20 bis 8 Uhr mit mindestens 12 Stunden Ruhezeit danach, und Pikett von zu Hause mit Einsätzen bis 6 Uhr ohne 4 Stunden Ruhe am Stück, gefolgt von 11 Stunden Ruhezeit" width="672" height="421" loading="lazy" decoding="async"></picture></figure>
+<figure class="max-w-2xl mx-auto"><picture><source media="(max-width: 640px)" srcset="/guides/de-ch-dienstplan-timeline-v2-m.svg" width="400" height="672"><img src="/guides/de-ch-dienstplan-timeline-v2.svg" alt="Zwei Beispiele: Nachtdienst im Spital von 20 bis 8 Uhr mit mindestens 12 Stunden Ruhezeit danach, und Pikett von zu Hause mit Einsätzen bis 6 Uhr ohne 4 Stunden Ruhe am Stück, gefolgt von 11 Stunden Ruhezeit" width="672" height="582" loading="lazy" decoding="async"></picture></figure>
 
 **Wen das betrifft.** Seit dem 1. Januar 2005 gilt das ArG für alle Assistenzärztinnen und Assistenzärzte, auch in Spitälern, die ihm sonst nicht unterstehen ([Art. 4a ArGV 1](https://www.fedlex.admin.ch/eli/cc/2000/243/de)). Ausgenommen sind Spitäler, die Teil der kantonalen oder kommunalen Verwaltung sind, sowie öffentlich-rechtliche Anstalten ohne Rechtspersönlichkeit und Körperschaften, deren Personal mehrheitlich öffentlich-rechtlich angestellt ist (Art. 2 ArG, Art. 7 ArGV 1). Dort gilt für die übrigen Ärztinnen und Ärzte das kantonale oder kommunale Personalrecht. Chefärztinnen und Chefärzte üben laut [SECO](https://www.seco.admin.ch/de/krankenanstalten-kliniken) in der Regel eine höhere leitende Tätigkeit aus. Für sie gelten nur die Vorschriften zum Gesundheitsschutz (Art. 3 Bst. d und Art. 3a ArG).
 
@@ -81,7 +81,7 @@ Die 104 Samstage und Sonntage des Jahres 2027 und die Feiertage Ihres Kantons ve
 
 ## Den Dienstplan in sechs Schritten erstellen
 
-<figure class="max-w-2xl mx-auto"><picture><source media="(max-width: 640px)" srcset="/guides/de-ch-dienstplan-steps-m.webp" width="400" height="648"><img src="/guides/de-ch-dienstplan-steps.webp" alt="Die sechs Schritte: Dienste auflisten, Regeln aufschreiben, Absenzen und Wünsche sammeln, in der richtigen Reihenfolge füllen, mit den Zählern prüfen, publizieren und Tausche nachführen" width="672" height="428" loading="lazy" decoding="async"></picture></figure>
+<figure class="max-w-2xl mx-auto"><picture><source media="(max-width: 640px)" srcset="/guides/de-ch-dienstplan-steps-v2-m.svg" width="400" height="861"><img src="/guides/de-ch-dienstplan-steps-v2.svg" alt="Die sechs Schritte: Dienste auflisten, Regeln aufschreiben, Absenzen und Wünsche sammeln, in der richtigen Reihenfolge füllen, mit den Zählern prüfen, publizieren und Tausche nachführen" width="672" height="532" loading="lazy" decoding="async"></picture></figure>
 
 ### 1. Die Dienste auflisten
 
@@ -110,6 +110,8 @@ Jeder bewilligte Tausch aktualisiert die Zähler. Sonst sagt die Fairness vom Ja
 ## Die kostenlose Excel-Vorlage
 
 **[Dienstplan-Vorlage herunterladen](/modeles/vorlage-dienstplan-aerzte-schweiz.xlsx)** (Excel-Datei .xlsx, ohne Makros, kostenlos).
+
+<figure class="biosked-branded-visual"><img src="/guides/de-ch-dienstplan-cover.png" alt="Excel-Vorlage für den Dienstplan: Plan mit Kontrollen und Fairness-Zähler pro Ärztin und Arzt" width="1600" height="900" loading="lazy" decoding="async"></figure>
 
 - **Zwei Dienste** mit frei wählbarem Namen, zum Beispiel «Bereitschaftsdienst» und «Pikettdienst», für ein ganzes Jahr.
 - **Team, Absenzen und Feiertage**: Arbeitspensum jeder Person, Absenzen (von, bis, Grund) und die verbreiteten Feiertage 2026 bis 2028. Ausser dem 1. August sind Feiertage kantonal: Ergänzen Sie jene Ihres Kantons.
