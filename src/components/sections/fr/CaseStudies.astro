@@ -12,11 +12,16 @@ import chirec from '@/assets/case-studies/chirec.jpg';
 interface Props {
   demoHref?: string;
   headingLevel?: 'h1' | 'h2';
+  featuredOnly?: boolean;
 }
 
-const { demoHref = '/fr/demo/', headingLevel = 'h2' } = Astro.props;
+const { demoHref = '/fr/demo/', headingLevel = 'h2', featuredOnly = headingLevel !== 'h1' } = Astro.props;
 const Heading = headingLevel;
 const CardHeading = headingLevel === 'h1' ? 'h2' : 'h3';
+
+// Home pages show only the references we currently feature; the case-studies
+// index (headingLevel h1) lists every published case.
+const FEATURED_HREFS = ['/fr/cas-clients/chirec/', '/fr/cas-clients/chu-angers/', '/fr/cas-clients/imagerie-medicale-les-cedres/', '/fr/cas-clients/imagir-bordeaux/'];
 
 const caseStudies = [
   {
@@ -111,7 +116,7 @@ const caseStudies = [
     </div>
 
     <div class="grid gap-4 md:grid-cols-2">
-      {caseStudies.map((study, index) => (
+      {caseStudies.filter((study) => !featuredOnly || FEATURED_HREFS.includes(study.href)).map((study, index) => (
         <div
           class={`flex h-full flex-col border border-secondary/10 ${index === 0 ? 'md:col-span-2' : ''}`}
         >

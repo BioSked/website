@@ -11,10 +11,7 @@ import QuoteSvg from '@/assets/layout/quote.svg';
 import chuLogo from '@/assets/companies/carousel/chu.webp';
 import imagirLogo from '@/assets/companies/carousel/imagir-or.webp';
 import chirecLogo from '@/assets/companies/carousel/chirec-2015.webp';
-import imallianceLogo from '@/assets/companies/carousel/imalliance-hdf.png';
-import irisGrimLogo from '@/assets/companies/carousel/iris-grim.svg';
 import cedresLogo from '@/assets/companies/carousel/cedres.png';
-import hopitalEuropeenLogo from '@/assets/companies/carousel/hopital-europeen.svg';
 
 const testimonials = [
   {
@@ -38,26 +35,6 @@ const testimonials = [
     logo: chuLogo,
   },
   {
-    id: '3',
-    name: 'Dominique Molmy',
-    title: 'Secrétaire référente',
-    hospital: 'IMALLIANCE HDF',
-    testimonial:
-      'Le planning est produit aujourd’hui très aisément, et en cas d’aléas, les possibilités de remplacement sont proposées pour un ajustement quasi immédiat.',
-    initials: 'MD',
-    logo: imallianceLogo, // Official artwork normalized to monochrome so its white header wordmark remains legible on the light card.
-  },
-  {
-    id: '4',
-    name: 'Équipe de planification',
-    title: 'Groupement de radiologues, Nantes',
-    hospital: 'IRIS GRIM',
-    testimonial:
-      'La gestion des plannings-types, la proposition de médecins pour des remplacements, l’application mobile et l’intégration aux calendriers personnels sont des fonctionnalités dont on ne peut plus se passer.',
-    initials: 'BB',
-    logo: irisGrimLogo,
-  },
-  {
     id: '5',
     name: 'Karine Delaunay',
     title: 'Cadre administrative',
@@ -66,16 +43,6 @@ const testimonials = [
       'Le produit a très bien évolué en peu de temps. Momentum s’adapte vraiment à notre organisation et c’est un vrai point fort de la solution.',
     initials: 'KD',
     logo: cedresLogo,
-  },
-  {
-    id: '6',
-    name: 'Docteur Stordeur',
-    title: 'Médecin anesthésiste-réanimateur',
-    hospital: 'Hôpital Européen de Marseille',
-    testimonial:
-      'Avec Momentum, nous avons automatisé 95% de la planification des équipes. C’est réellement une source de stress en moins.',
-    initials: 'DS',
-    logo: hopitalEuropeenLogo,
   },
   {
     id: '7',

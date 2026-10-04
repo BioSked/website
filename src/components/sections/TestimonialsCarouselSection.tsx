@@ -14,7 +14,6 @@ import washingtonLogo from '@/assets/companies/carousel/washington-medicine.webp
 import chuLogo from '@/assets/companies/carousel/chu.webp';
 import imagirLogo from '@/assets/companies/carousel/imagir-or.webp';
 import chirecLogo from '@/assets/companies/carousel/chirec-2015.webp';
-import irisGrimLogo from '@/assets/companies/carousel/iris-grim.svg';
 
 const testimonials = [
   {
@@ -46,16 +45,6 @@ const testimonials = [
       "It's nice to be able to trust that the Momentum team will be available to address whatever needs we have.",
     initials: 'KB',
     logo: washingtonLogo,
-  },
-  {
-    id: '4',
-    name: 'Bernard Bensadoun',
-    title: 'Group Director',
-    hospital: 'IRIS GRIM',
-    testimonial:
-      'Choosing Momentum as an assisted scheduling tool quickly proved to be the right decision. Its pay-per-use business model is flexible and advantageous.',
-    initials: 'BB',
-    logo: irisGrimLogo,
   },
   {
     id: '5',

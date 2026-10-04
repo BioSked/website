@@ -608,7 +608,6 @@ for (const [alt, assetStem, extension = 'webp'] of [
   ['Rochester Regional Health', 'rrh'],
   ['Lakewood Health System', 'lakewood'],
   ['Washington Medical Center', 'washington-medicine'],
-  ['IRIS GRIM', 'iris-grim', 'svg'],
   ['CHU Angers', 'chu'],
   ['Imagir', 'imagir-or'],
   ['CHIREC, Hôpital de Braine-l’Alleud', 'chirec-2015'],
@@ -637,10 +636,7 @@ assert.equal(frenchRvuImageTag?.sizes, expectedRvuSizes, 'French RVU sizes must 
 const frenchTestimonialLogos = [
   ['IMAGIR Bordeaux', 'imagir-or', 'webp'],
   ['CHU Angers', 'chu', 'webp'],
-  ['IMALLIANCE HDF', 'imalliance-hdf', 'png'],
-  ['IRIS GRIM', 'iris-grim', 'svg'],
   ['Imagerie Médicale Les Cèdres', 'cedres', 'png'],
-  ['Hôpital Européen de Marseille', 'hopital-europeen', 'svg'],
   ['CHIREC', 'chirec-2015', 'webp'],
 ];
 const frenchTestimonialSource = await readFile(
@@ -656,10 +652,7 @@ const frenchTestimonialRecords = [...frenchTestimonialData.matchAll(/\{\s*id:\s*
 for (const [name, hospital, logoVariable] of [
   ['Anthony Bagot', 'IMAGIR Bordeaux', 'imagirLogo'],
   ['Thomas Boishardy', 'CHU Angers', 'chuLogo'],
-  ['Dominique Molmy', 'IMALLIANCE HDF', 'imallianceLogo'],
-  ['Équipe de planification', 'IRIS GRIM', 'irisGrimLogo'],
   ['Karine Delaunay', 'Imagerie Médicale Les Cèdres', 'cedresLogo'],
-  ['Docteur Stordeur', 'Hôpital Européen de Marseille', 'hopitalEuropeenLogo'],
   ['Frédéric Cavallotto', 'CHIREC', 'chirecLogo'],
 ]) {
   const record = frenchTestimonialRecords.find((candidate) => candidate.includes(`hospital: '${hospital}'`));
@@ -687,15 +680,7 @@ for (const [locale, homepageImages] of [
     `${locale} homepage must render one customer logo for every testimonial`,
   );
 }
-const irisGrimCarouselImages = [englishHomepageImages, frenchHomepageImages, frenchSwissHomepageImages]
-  .map((images) => images.find((attrs) => attrs.alt === 'IRIS GRIM' && /\/iris-grim\.[^/]+\.svg$/.test(attrs.src ?? '')));
-for (const irisGrimCarouselImage of irisGrimCarouselImages) {
-  assert.ok(irisGrimCarouselImage, 'English, French, and French-Swiss homepages must render the authentic IRIS GRIM SVG');
-  assert.match(irisGrimCarouselImage.class ?? '', /(?:^|\s)filter-\[grayscale\(1\)\](?:\s|$)/, 'IRIS GRIM logo must use the shared grayscale treatment');
-  assert.match(irisGrimCarouselImage.class ?? '', /(?:^|\s)opacity-50(?:\s|$)/, 'IRIS GRIM logo must use the shared muted contrast');
-  assert.match(irisGrimCarouselImage.class ?? '', /(?:^|\s)max-h-10(?:\s|$)/, 'IRIS GRIM logo must use the shared height limit');
-  assert.match(irisGrimCarouselImage.class ?? '', /(?:^|\s)max-w-\[120px\](?:\s|$)/, 'IRIS GRIM logo must use the shared width limit');
-}
+// IRIS GRIM is no longer quoted on the home pages (Oct 2026); its case-study card asset is checked below.
 assert.equal(
   frenchHomepageImages.filter(
     (attrs) => attrs.alt === 'Hôpital Européen de Marseille' && /\/chu\./.test(attrs.src ?? ''),
@@ -773,9 +758,12 @@ await assert.rejects(
   (error) => error?.code === 'ENOENT',
   'Legacy Nantes landmark should be removed after the licensed clinic photo replacement',
 );
+// Home pages feature four references; the full case-study index carries the licensed photo and its credit.
+const frenchCaseStudyIndex = await readFile(path.join(distDir, 'fr/cas-clients/index.html'), 'utf8');
+const frenchCaseStudyIndexImages = [...frenchCaseStudyIndex.matchAll(/<img\b[^>]*>/gsi)]
+  .map((match) => attributes(match[0]));
 for (const [locale, html, homepageImages] of [
-  ['French', frenchHomepage, frenchHomepageImages],
-  ['French-Swiss', frenchSwissHomepage, frenchSwissHomepageImages],
+  ['French case-study index', frenchCaseStudyIndex, frenchCaseStudyIndexImages],
 ]) {
   assert.match(
     html,

@@ -33,8 +33,8 @@ const {
   
   <div class="container max-w-5xl relative z-10">
     <div class="flex">
-      <div class="flex max-w-[900px] flex-col gap-5 md:gap-6 flex-3">
-        <h1 class="text-display-hero text-left">
+      <div class="flex max-w-[900px] flex-col gap-4 md:gap-6 flex-3">
+        <h1 class="text-display-hero max-sm:text-[2.125rem] max-sm:leading-[1.08] text-left">
           {title}
           <!-- <br class="hidden md:block" /> -->
         </h1>
@@ -64,17 +64,13 @@ const {
             </Button>
           </a>
         </div>
-        <div class="font-semibold text-foreground/80 text-sm">
-          <GroupIcon class="inline-block size-7 mb-1 mr-1"/>50 000+ utilisateurs
-          <span class="mx-2 font-light hidden lg:inline">|</span>
-          <hr class="lg:hidden border-none mb-1">
-          <HospitalIcon class="inline-block size-5 mb-1 mr-1"/>1 000+ sites de santé
-          <span class="mx-2 font-light hidden lg:inline">|</span>
-          <hr class="lg:hidden border-none mb-2">
-          <EarthIcon class="inline-block size-5 mb-1 mr-1"/>9 pays
+        <div class="flex flex-wrap items-center gap-x-3 sm:gap-x-4 gap-y-1 font-semibold text-foreground/80 text-sm">
+          <span class="inline-flex items-center gap-1"><GroupIcon class="inline-block size-5 sm:size-6"/>50 000+ utilisateurs</span>
+          <span class="inline-flex items-center gap-1"><HospitalIcon class="inline-block size-4"/>1 000+ sites<span class="hidden sm:inline">&nbsp;de santé</span></span>
+          <span class="inline-flex items-center gap-1"><EarthIcon class="inline-block size-4"/>9 pays</span>
         </div>
-        <div class="text-foreground/80 text-sm">
-          CHU Angers · CHIREC · IRIS GRIM · IMALLIANCE · Les Cèdres : <a href="/fr/cas-clients/" class="text-cyan-700 hover:text-secondary transition-colors font-medium">cas clients</a>
+        <div class="hidden sm:block text-foreground/80 text-sm">
+          CHIREC · CHU d’Angers · IMAGIR · Les Cèdres&nbsp;: <a href="/fr/cas-clients/" class="text-cyan-700 hover:text-secondary transition-colors font-medium">cas clients</a>
         </div>
       </div>
       <div class="hidden sm:block flex-2">

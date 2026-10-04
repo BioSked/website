@@ -593,12 +593,12 @@ export const featurePages: Record<string, FrenchLandingPage> = {
       "une seule version de référence, mise à jour en temps réel",
       "des notifications ciblées : chacun voit ce qui le concerne",
       "une application mobile iOS et Android, disponible en cinq langues",
-      "l’intégration aux calendriers personnels, citée comme indispensable par IRIS GRIM",
+      "une synchronisation avec les calendriers personnels, pour que chacun retrouve ses gardes dans son agenda",
     ],
     proof:
-      "Chez IRIS GRIM (45 radiologues, 13 sites nantais), les gestionnaires de planification citent l’application mobile et l’intégration aux calendriers personnels parmi les fonctionnalités dont l’équipe ne peut plus se passer, selon l’étude de cas publiée.",
+      "La nouvelle application mobile Momentum, lancée en juin 2026 sur iPhone et Android, fonctionne en cinq langues, avec Face ID, la connexion Microsoft et un mode hors ligne ; chaque praticien y reçoit les changements qui le concernent.",
     related: [
-      { label: "Cas IRIS GRIM", href: "/fr/cas-clients/iris-grim/" },
+      { label: "Cas clients", href: "/fr/cas-clients/" },
       { label: "Gestion des requêtes", href: "/fr/fonctionnalites/gestion-des-requetes-des-equipes/" },
     ],
   },
