@@ -1,5 +1,6 @@
 import { frChLocalPathFor, type LocaleCode } from './locales';
 import { toSwissGerman } from './swissGerman';
+import { SCHEDULE, isLive } from '../data/publishSchedule.mjs';
 
 /**
  * Per-locale footer content. Kept as literal strings (no t() layer); the
@@ -191,5 +192,12 @@ const FOOTER_BY_LOCALE: Record<LocaleCode, FooterLocale> = {
 };
 
 export function footerFor(locale: LocaleCode): FooterLocale {
-    return FOOTER_BY_LOCALE[locale] ?? EN;
+    const base = FOOTER_BY_LOCALE[locale] ?? EN;
+    // Scheduled pages with a footer label appear in the first column once live.
+    const extra = SCHEDULE.filter((s) => s.footer && s.locale === locale && isLive(s.key)).map((s) => ({ name: s.footer as string, href: s.path }));
+    if (!extra.length) return base;
+    return {
+        ...base,
+        sections: base.sections.map((section, i) => (i === 0 ? { ...section, links: [...section.links, ...extra] } : section)),
+    };
 }

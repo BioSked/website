@@ -1,0 +1,47 @@
+---
+// Pages published on their date (src/data/publishSchedule.mjs): articles from
+// src/scheduled/*.md and landing pages from src/scheduled/landing/*.json.
+// Before its date a page is not built at all.
+export const prerender = true;
+
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import type { LocaleCode } from '@/i18n/locales';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import ArticleLayout from '@/layouts/ArticleLayout.astro';
+import LocalLandingPage from '@/components/sections/LocalLandingPage.astro';
+import { LOCAL_LANDING_PAGES, type LocalLandingPage as LocalLandingPageData } from '@/data/localLandingPages';
+import { isLive, scheduleItem } from '@/data/publishSchedule.mjs';
+
+export async function getStaticPaths() {
+    const paths = [];
+    for (const entry of await getCollection('scheduled')) {
+        const item = scheduleItem(entry.data.key);
+        if (!item || item.kind !== 'md' || !isLive(item.key)) continue;
+        paths.push({ params: { scheduled: item.path.replace(/^\/|\/$/g, '') }, props: { kind: 'md', entry, item } });
+    }
+    for (const page of LOCAL_LANDING_PAGES) {
+        const item = scheduleItem(page.key);
+        if (!item || item.kind !== 'landing' || !isLive(item.key)) continue;
+        paths.push({ params: { scheduled: item.path.replace(/^\/|\/$/g, '') }, props: { kind: 'landing', page, item } });
+    }
+    return paths;
+}
+
+type ScheduledArticle = CollectionEntry<'scheduled'>;
+const props = Astro.props as { kind: 'md' | 'landing'; entry?: ScheduledArticle; page?: LocalLandingPageData; item: { date: string; locale: LocaleCode } };
+const { kind, item } = props;
+const article = kind === 'md' ? (props.entry as ScheduledArticle) : null;
+const landing = kind === 'landing' ? (props.page as LocalLandingPageData) : null;
+const Content = article ? (await render(article)).Content : null;
+---
+
+{article && Content && (
+    <ArticleLayout frontmatter={{ ...article.data, date: item.date, author: 'BioSked' }} locale={item.locale}>
+        <Content />
+    </ArticleLayout>
+)}
+{landing && (
+    <BaseLayout title={landing.metaTitle} description={landing.metaDescription} locale={item.locale}>
+        <LocalLandingPage page={landing} />
+    </BaseLayout>
+)}

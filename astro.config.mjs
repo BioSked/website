@@ -4,6 +4,7 @@ import { readdirSync } from 'node:fs';
 import react from '@astrojs/react';
 import { unified } from '@astrojs/markdown-remark';
 import sitemap from '@astrojs/sitemap';
+import { SCHEDULE } from './src/data/publishSchedule.mjs';
 import tailwindcss from '@tailwindcss/vite';
 import rehypeAddClasses from './src/lib/rehypeAddClasses.mjs';
 import rehypeRaw from 'rehype-raw';
@@ -105,6 +106,8 @@ export default defineConfig({
                 if (m && m[2].startsWith('help/')) return ['de', 'nl', 'it'].includes(m[1]);
                 // The changelog is published in en, fr, de, nl and it; de-ch and fr-ch read de/fr.
                 if (m && m[2].startsWith('changelog/')) return ['de', 'nl', 'it'].includes(m[1]);
+                // Scheduled pages exist only once live, so listing them all here is safe.
+                if (m && SCHEDULE.some((s) => s.path === `/${m[1]}/${m[2]}`)) return true;
                 if (m) return allowed[m[1]].includes(m[2]);
                 return true;
             },

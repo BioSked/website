@@ -4,11 +4,10 @@ export const prerender = true;
 import BaseLayout from "@/layouts/BaseLayout.astro";
 
 import { Image } from 'astro:assets';
-import { getCollection } from 'astro:content';
+import { blogFeed } from '@/data/blogFeed';
 
-// Sort by date - newest first
-const posts = (await getCollection('enPosts'))
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf() || b.data.sortOrder - a.data.sortOrder || a.id.localeCompare(b.id));
+// Newest first; includes scheduled posts once their date has come
+const posts = await blogFeed('en');
 
 const dateOptions: Intl.DateTimeFormatOptions = {
     year: 'numeric',
@@ -34,26 +33,26 @@ if (!lastPost) throw new Error('The English blog collection is empty.');
         <h1 class="text-display-section mb-10">Blog</h1>
 
         <div class="border rounded mb-20 bg-white/20 hover:bg-white/35 transition-all shadow-xl shadow-secondary/5">
-            <a href={`/blog/posts/${lastPost.id}/`} class="md:flex md:grid-cols-2 group">
-                <div class="flex-3"><Image src={lastPost.data.image} alt={lastPost.data.title} class="rounded-sm md:opacity-90 group-hover:opacity-100 transition-all ease-out duration-300"/></div>
+            <a href={lastPost.href} class="md:flex md:grid-cols-2 group">
+                <div class="flex-3"><Image src={lastPost.image} alt={lastPost.title} class="rounded-sm md:opacity-90 group-hover:opacity-100 transition-all ease-out duration-300"/></div>
                 <div class="flex-2 p-5 md:pl-9 sm:pr-6 sm:pt-7">
-                    <span class="text-muted-foreground text-sm">{lastPost.data.author} · {lastPost.data.date.toLocaleDateString('en-US', dateOptions)}</span>
+                    <span class="text-muted-foreground text-sm">{lastPost.author ? `${lastPost.author} · ` : ''}{lastPost.date.toLocaleDateString('en-US', dateOptions)}</span>
                     <span class="opacity-0 group-hover:opacity-100 transition-opacity ease-out duration-500 text-cyan-500 font-medium tracking-large text-sm ml-2 hidden lg:inline">READ</span>
-                    <h2 class="text-display-card my-3">{lastPost.data.title}</h2>
-                    <div class="text-muted-foreground text-sm">{lastPost.data.description}</div>
+                    <h2 class="text-display-card my-3">{lastPost.title}</h2>
+                    <div class="text-muted-foreground text-sm">{lastPost.description}</div>
                 </div>     
             </a>
         </div>
         
         <ul class="grid grid-cols-1 md:grid-cols-2 gap-y-20">
             {posts.slice(1).map((post, index) => 
-                <a href={`/blog/posts/${post.id}/`} class="group">
+                <a href={post.href} class="group">
                     <li class={index%2 ? 'md:pl-12 border-none' :'md:pr-12 group relative md:border-r md:border-secondary/10'}>
-                        <Image src={post.data.image} alt={post.data.title} class="rounded-sm mb-4 md:mb-5 shadow-lg shadow-secondary/10 md:opacity-90 group-hover:opacity-100 transition-all ease-out duration-300"/>
-                        <span class="text-muted-foreground text-sm">{post.data.author} · {post.data.date.toLocaleDateString('en-US', dateOptions)}</span>
+                        <Image src={post.image} alt={post.title} class="rounded-sm mb-4 md:mb-5 shadow-lg shadow-secondary/10 md:opacity-90 group-hover:opacity-100 transition-all ease-out duration-300"/>
+                        <span class="text-muted-foreground text-sm">{post.author ? `${post.author} · ` : ''}{post.date.toLocaleDateString('en-US', dateOptions)}</span>
                         <span class="opacity-0 group-hover:opacity-100 transition-opacity ease-out duration-500 text-cyan-500 font-medium tracking-large text-sm ml-2">READ</span>
-                        <h2 class="text-display-card my-3">{post.data.title}</h2>
-                        <div class="text-muted-foreground text-sm">{post.data.description}</div>
+                        <h2 class="text-display-card my-3">{post.title}</h2>
+                        <div class="text-muted-foreground text-sm">{post.description}</div>
                     </li>
                 </a>
             )}

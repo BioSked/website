@@ -6,6 +6,10 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  schedule:
+    # Daily rebuild: pages in src/data/publishSchedule.mjs go live on their
+    # date (06:20 Zurich in summer, 05:20 in winter).
+    - cron: '20 4 * * *'
 
 permissions:
   contents: read
@@ -71,3 +75,19 @@ jobs:
       - name: Deploy
         id: deployment
         uses: ./.github/actions/deploy-pages-retry
+
+  index-scheduled:
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    needs: deploy
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Ping IndexNow for pages published today
+        run: node scripts/indexnow-scheduled.mjs

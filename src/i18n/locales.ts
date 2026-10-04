@@ -9,6 +9,7 @@
  * locale's home page instead of publishing duplicate English content.
  */
 import { FR_CH_LOCAL } from './frChPaths.mjs';
+import { SCHEDULE, liveGroups } from '../data/publishSchedule.mjs';
 export { FR_CH_LOCAL, frChLocalPathFor } from './frChPaths.mjs';
 
 export const LOCALE_CODES = ['en', 'fr', 'fr-ch', 'de', 'de-ch', 'nl', 'it'] as const;
@@ -67,6 +68,15 @@ const LOCALE_ONLY_PAGES: Partial<Record<LocaleCode, string[]>> = {
     'fr-ch': ['/demo/merci'],
 };
 
+// Scheduled pages (src/data/publishSchedule.mjs) are local to their locale:
+// canonical to themselves, no English fallback.
+for (const item of SCHEDULE) {
+    if (item.kind === 'upgrade' || item.locale === 'en' || item.locale === 'fr') continue;
+    const loc = item.locale as LocaleCode;
+    const rest = item.path.replace(/\/$/, '').slice(loc.length + 1);
+    (LOCALE_ONLY_PAGES[loc] ??= []).push(rest);
+}
+
 function isLocaleOnly(cur: LocaleCode, rest: string): boolean {
     return (LOCALE_ONLY_PAGES[cur] ?? []).includes(rest);
 }
@@ -81,6 +91,11 @@ const PAGE_EQUIV: Record<string, Partial<Record<LocaleCode, string>>> = {
     oncallGuide: { en: '/guides/physician-call-schedule', fr: '/fr/blog/planning-de-garde-medecins', nl: '/nl/gids/wachtrooster-artsen', de: '/de/ratgeber/dienstplan-aerzte', it: '/it/guida/turni-di-guardia-medici', 'de-ch': '/de-ch/ratgeber/dienstplan-aerzte', 'fr-ch': '/fr-ch/guide/planning-de-garde-medecins' },
     security: { fr: '/fr/securite-donnees', 'fr-ch': '/fr-ch/securite-donnees', de: '/de/sicherheit-und-daten', 'de-ch': '/de-ch/sicherheit-und-daten', nl: '/nl/beveiliging-en-gegevens', it: '/it/sicurezza-e-dati' },
 };
+
+// Scheduled translation pairs join once every page of the pair is live.
+for (const [name, group] of Object.entries(liveGroups())) {
+    PAGE_EQUIV[name] = group as Partial<Record<LocaleCode, string>>;
+}
 
 function equivGroupFor(pathname: string): Partial<Record<LocaleCode, string>> | null {
     const clean = ('/' + pathname.replace(/^\/+/, '')).replace(/\/+$/, '') || '/';
@@ -228,7 +243,7 @@ export function canonicalPathFor(pathname: string): string {
     }
     if (cur === 'fr-ch' && isChangelog(rest)) return changelogPathFor(rest, 'fr');
     if (cur === 'fr-ch') {
-        if (!FR_CH_LOCAL.includes(rest) && !equivGroupFor(pathname)) return trail('/fr' + (rest === '/' ? '' : rest));
+        if (!FR_CH_LOCAL.includes(rest) && !equivGroupFor(pathname) && !isLocaleOnly(cur, rest)) return trail('/fr' + (rest === '/' ? '' : rest));
     }
     return trail(('/' + pathname.replace(/^\/+/, '')).replace(/\/+$/, '') || '/');
 }

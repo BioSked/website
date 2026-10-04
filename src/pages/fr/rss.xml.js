@@ -1,18 +1,16 @@
-import { getCollection } from 'astro:content';
+import { blogFeed } from '../../data/blogFeed';
 
 const esc = (s) => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
 export async function GET(context) {
-    const posts = (await getCollection('frPosts')).sort(
-        (a, b) => b.data.date.valueOf() - a.data.date.valueOf() || a.id.localeCompare(b.id)
-    );
+    const posts = await blogFeed('fr');
     const site = context.site ?? 'https://biosked.com';
     const items = posts.map((p) => `  <item>
-    <title>${esc(p.data.title)}</title>
-    <link>${new URL(`/fr/blog/${p.id.replace(/\.md$/, '')}/`, site)}</link>
-    <guid>${new URL(`/fr/blog/${p.id.replace(/\.md$/, '')}/`, site)}</guid>
-    <description>${esc(p.data.description)}</description>
-    <pubDate>${new Date(p.data.date).toUTCString()}</pubDate>
+    <title>${esc(p.title)}</title>
+    <link>${new URL(p.href, site)}</link>
+    <guid>${new URL(p.href, site)}</guid>
+    <description>${esc(p.description)}</description>
+    <pubDate>${new Date(p.date).toUTCString()}</pubDate>
   </item>`).join('\n');
     const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0"><channel>

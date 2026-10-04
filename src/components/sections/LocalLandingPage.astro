@@ -1,0 +1,189 @@
+---
+import Button from '@/components/ui/Button.astro';
+import { Image } from 'astro:assets';
+import dateView from '@/assets/screenshots/dateview.png';
+import type { LocalLandingPage as LandingPage } from '@/data/localLandingPages';
+
+interface Props {
+  page: LandingPage;
+}
+
+// Same layout as the French landing pages, for scheduled pages in other
+// locales: every visible label comes from the page data.
+const { page } = Astro.props;
+const L = page.labels;
+const slug = page.path.split('/').filter(Boolean).pop();
+const demoHref = `${page.locale === 'en' ? '' : `/${page.locale}`}/demo/?ref=${slug}`;
+const RELATED: Record<string, string> = { en: 'Explore next', de: 'Weiterlesen', 'de-ch': 'Weiterlesen', nl: 'Verder lezen', it: 'Approfondisci', fr: 'À explorer ensuite', 'fr-ch': 'À explorer ensuite' };
+const faqSchema = page.faq
+  ? JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: page.faq.map((f) => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a },
+      })),
+    })
+  : null;
+---
+
+{faqSchema && <script is:inline type="application/ld+json" set:html={faqSchema} />}
+
+<section class="section-padding">
+  <div class="container max-w-5xl">
+    <div class="grid gap-10 lg:grid-cols-[1fr_420px] lg:items-center">
+      <div>
+        <p class="font-mono text-sm font-semibold uppercase tracking-widest text-muted-foreground">{page.eyebrow}</p>
+        <h1 class="text-display-hero max-sm:text-[2.125rem] max-sm:leading-[1.08] mt-4">{page.title}</h1>
+        <p class="text-lead mt-5 max-w-2xl text-muted-foreground">{page.description}</p>
+        <div class="mt-7 flex flex-wrap gap-3">
+          <a href={demoHref}>
+            <Button size="lg" className="rounded-full px-5 font-bold">
+              {L.demo}
+            </Button>
+          </a>
+          {L.secondaryHref && (
+            <a href={L.secondaryHref}>
+              <Button size="lg" variant="ghost" className="rounded-full px-4 font-semibold">
+                {L.secondary}
+              </Button>
+            </a>
+          )}
+        </div>
+      </div>
+      <div class="overflow-hidden rounded-xl border border-secondary/10 bg-white/30 p-1 shadow-xl shadow-secondary/10">
+        <Image
+          src={dateView}
+          alt={L.imageAlt}
+          width={840}
+          widths={[420, 840, 1260]}
+              sizes="(min-width: 1024px) 50vw, 100vw"
+          format="webp"
+          quality={85}
+          loading="eager"
+          class="w-full h-auto rounded-lg"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pb-10 md:pb-16">
+  <div class="container max-w-5xl">
+    <div class="grid gap-6 md:grid-cols-[1.1fr_0.9fr]">
+      <div class="border-y border-secondary/10 py-8">
+        <h2 class="text-display-section">{page.painsHeading}</h2>
+        <p class="mt-4 text-lg leading-relaxed text-foreground/80">{page.primaryPain}</p>
+      </div>
+      <div class="grid gap-3">
+        {page.pains.map((pain) => (
+          <div class="border border-secondary/10 bg-white/25 p-4">
+            <p class="font-semibold text-secondary">{pain}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-10 md:py-16">
+  <div class="container max-w-5xl">
+    <div class="mb-8 max-w-2xl">
+      <p class="font-mono text-sm font-semibold uppercase tracking-widest text-muted-foreground">{L.momentumEyebrow}</p>
+      <h2 class="text-display-section mt-3">{page.outcomesHeading}</h2>
+    </div>
+    <div class="grid gap-4 md:grid-cols-2">
+      {page.outcomes.map((outcome) => (
+        <div class="border-l-2 border-cyan-500 bg-white/20 p-5">
+          <p class="text-lg font-semibold">{outcome}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+{page.quote && (
+  <section class="py-10 md:py-14">
+    <div class="container max-w-3xl">
+      <figure>
+        <blockquote class="text-2xl font-medium italic leading-snug text-foreground md:text-3xl">{page.locale.startsWith('fr') ? `«\u00a0${page.quote.text}\u00a0»` : page.locale === 'en' ? `“${page.quote.text}”` : page.locale.startsWith('de') && page.locale !== 'de-ch' ? `„${page.quote.text}“` : page.locale === 'de-ch' ? `«${page.quote.text}»` : `“${page.quote.text}”`}</blockquote>
+        <figcaption class="mt-5 text-base text-muted-foreground">
+          {page.quote.href ? <a href={page.quote.href} class="underline decoration-secondary/30 underline-offset-4 hover:text-foreground">{page.quote.cite}</a> : page.quote.cite}
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+)}
+
+{page.sections && (
+  <section class="py-10 md:py-16">
+    <div class="container max-w-5xl">
+      <div class="divide-y divide-secondary/10 border-y border-secondary/10">
+        {page.sections.map((section) => (
+          <div class="grid gap-4 py-8 md:grid-cols-[0.8fr_1.2fr] md:gap-10">
+            <h2 class="text-display-card">{section.heading}</h2>
+            <div class="space-y-4 text-lg leading-relaxed text-foreground/85">
+              {section.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+)}
+
+<section class="py-10 md:py-16">
+  <div class="container max-w-5xl">
+    <div class="grid gap-6 border border-secondary/10 bg-secondary/5 p-6 md:grid-cols-[1fr_auto] md:items-center md:p-8">
+      <div>
+        <p class="font-mono text-sm font-semibold uppercase tracking-widest text-muted-foreground">{L.proofEyebrow}</p>
+        <p class="text-lead mt-3">{page.proof}</p>
+      </div>
+      <a href={demoHref}>
+        <Button size="lg" className="rounded-full px-5 font-bold">
+          {L.demo}
+        </Button>
+      </a>
+    </div>
+  </div>
+</section>
+
+{page.faq && (
+  <section class="py-10 md:py-16">
+    <div class="container max-w-3xl">
+      <h2 class="text-display-section">{L.faqHeading}</h2>
+      <div class="mt-6 divide-y divide-secondary/10 border-y border-secondary/10">
+        {page.faq.map((item) => (
+          <details class="group py-5">
+            <summary class="cursor-pointer list-none text-lg font-semibold marker:hidden">
+              <span class="flex items-start justify-between gap-4">
+                <span>{item.q}</span>
+                <span class="text-muted-foreground transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+              </span>
+            </summary>
+            <p class="mt-3 text-lg leading-relaxed text-foreground/85">{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+)}
+
+<section class="pb-16 md:pb-24">
+  <div class="container max-w-5xl">
+    {page.resource && (
+      <p class="mb-8 text-lg">
+        <a href={page.resource.href} class="font-semibold underline decoration-secondary/30 underline-offset-4 hover:decoration-secondary">{page.resource.label}</a>
+      </p>
+    )}
+    <h2 class="text-display-card">{RELATED[page.locale] ?? RELATED.en}</h2>
+    <div class="mt-4 flex flex-wrap gap-3">
+      {page.related.map((link) => (
+        <a href={link.href} class="rounded-full border border-secondary/15 px-4 py-2 text-sm font-semibold transition-colors hover:bg-white/50">
+          {link.label}
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

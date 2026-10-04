@@ -1,3 +1,6 @@
+import { FR_UPGRADES } from './frLandingUpgrades';
+import { isLive } from './publishSchedule.mjs';
+
 export type FrenchLandingPage = {
   slug: string;
   type: "specialty" | "feature";
@@ -484,6 +487,11 @@ export const specialtyPages: Record<string, FrenchLandingPage> = {
     ],
   },
 };
+
+// Scheduled new versions of specialty pages replace the current ones on their date.
+for (const upgrade of FR_UPGRADES) {
+  if (isLive(upgrade.key)) specialtyPages[upgrade.slug] = upgrade.page;
+}
 
 export const featurePages: Record<string, FrenchLandingPage> = {
   "planification-optimisee-automatiquement-2": {
