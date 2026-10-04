@@ -40,6 +40,21 @@ const articleSchema = JSON.stringify({
 });
 
 const isFrench = locale === 'fr' || locale === 'fr-ch';
+
+// Every French post links to the landing page of its topic, so the pages that
+// should rank for "logiciel de planning ..." receive the blog's internal links.
+// Matched on whole words of the post slug, first rule wins.
+const FR_TOPIC_LINKS: Array<{ words: string[]; href: string; label: string }> = [
+	{ words: ['anesthesie', 'danesthesie', 'anesthesistes', 'danesthesistes', 'iade', 'iades', 'bloc', 'operatoire'], href: '/fr/secteurs-soins/anesthesie/', label: 'notre logiciel de planning pour les anesthésistes et les IADE' },
+	{ words: ['radiologie', 'radiologue', 'radiologues', 'dimagerie', 'imagerie', 'teleradiologie', 'jfr'], href: '/fr/secteurs-soins/radiologie/', label: 'notre logiciel de planning pour les radiologues et les groupes d’imagerie' },
+	{ words: ['urgences', 'durgence', 'urgence'], href: '/fr/secteurs-soins/urgences/', label: 'notre logiciel de planning pour les urgences' },
+	{ words: ['garde', 'gardes', 'permanence', 'continuite'], href: '/fr/fonctionnalites/plannings-de-garde-centralises/', label: 'notre logiciel de planning de garde pour les médecins' },
+	{ words: ['cardiologie', 'cardiovasculaires'], href: '/fr/secteurs-soins/cardiologie/', label: 'notre logiciel de planning pour les cardiologues' },
+	{ words: ['etablissement', 'etablissements', 'ght'], href: '/fr/secteurs-soins/etablissements-de-sante/', label: 'la planification médicale multisite pour les établissements et les GHT' },
+];
+const FR_DEFAULT_LINK = { href: '/fr/fonctionnalites/planification-optimisee-automatiquement-2/', label: 'la planification médicale automatique avec Momentum' };
+const slugWords = Astro.url.pathname.split('/').filter(Boolean).pop()?.split('-') ?? [];
+const frTopicLink = FR_TOPIC_LINKS.find((t) => t.words.some((w) => slugWords.includes(w))) ?? FR_DEFAULT_LINK;
 ---
 
 <BaseLayout title={frontmatter.title} description={frontmatter.description} author={frontmatter.author}>
@@ -58,9 +73,12 @@ const isFrench = locale === 'fr' || locale === 'fr-ch';
 				<p class="text-foreground font-semibold mb-1">
 					Ces sujets sont notre métier depuis plus de 15 ans.
 				</p>
-				<p class="text-muted-foreground mb-5">
+				<p class="text-muted-foreground mb-3">
 					Au CHIREC, la construction du planning mensuel des urgences est passée de 4 jours
 					à 4–5 heures (étude de cas, 2025). Voyez ce que Momentum donnerait sur vos propres plannings.
+				</p>
+				<p class="text-muted-foreground mb-5">
+					Pour aller plus loin : <a href={frTopicLink.href} class="font-semibold text-foreground underline decoration-secondary/30 underline-offset-4 hover:decoration-secondary">{frTopicLink.label}</a>.
 				</p>
 				<div class="flex flex-wrap gap-3">
 					<a href="/fr/demo/">

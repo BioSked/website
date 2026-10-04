@@ -29,7 +29,7 @@ export const specialtyPages: Record<string, FrenchLandingPage> = {
     title: "Vacations, modalités, mutualisation : le planning des groupes d’imagerie",
     description:
       "Momentum construit les vacations par site et par modalité, applique vos règles de mutualisation et vos compteurs d’équité, et se couple à votre RIS. Les groupes d’imagerie français s’appuient dessus depuis plus de quinze ans.",
-    metaTitle: "Planning radiologues multi-sites | Momentum BioSked",
+    metaTitle: "Logiciel de planning radiologues et imagerie | Momentum",
     metaDescription:
       "Vacations par modalité, mutualisation multi-sites, remplacements, couplage RIS NGI : Momentum planifie les groupes d’imagerie français, avec des études de cas publiées.",
     primaryPain:
@@ -180,7 +180,7 @@ export const specialtyPages: Record<string, FrenchLandingPage> = {
     title: "Consultations, plateaux techniques et astreintes de cardiologie",
     description:
       "Momentum répartit consultations, échographies, rythmologie, salle de cathétérisme et astreintes selon les compétences réelles de chaque praticien, avec des compteurs d’équité consultables par l’équipe.",
-    metaTitle: "Planning cardiologues sous contraintes | Momentum BioSked",
+    metaTitle: "Logiciel de planning cardiologues | Momentum",
     metaDescription:
       "Consultations, plateaux techniques, astreintes, compétences non interchangeables : Momentum génère le planning de cardiologie avec compteurs d’équité traçables.",
     primaryPain:
@@ -211,7 +211,7 @@ export const specialtyPages: Record<string, FrenchLandingPage> = {
     title: "Gardes couvertes, imprévus absorbés, équité mesurable",
     description:
       "Momentum construit les lignes de garde jour, nuit et week-end, centralise les désidératas et recalcule la couverture quand un arrêt tombe. Repos et compteurs sont vérifiés avant publication.",
-    metaTitle: "Planning médecins urgentistes | Momentum BioSked",
+    metaTitle: "Logiciel de planning des urgences et urgentistes | Momentum",
     metaDescription:
       "Lignes de garde, continuité, remplacements en urgence, renforts territoriaux : Momentum planifie les services d’urgences. CHIREC : de 4 jours à 4-5 h par mois.",
     primaryPain:
@@ -242,7 +242,7 @@ export const specialtyPages: Record<string, FrenchLandingPage> = {
     title: "Piloter les plannings médicaux à l’échelle d’un établissement ou d’un GHT",
     description:
       "Momentum harmonise les règles de temps de travail entre services et sites, consolide compteurs et couverture, et relie badgeage, RH et export paie sans écraser le fonctionnement propre de chaque service.",
-    metaTitle: "Planification médicale multisites | Momentum BioSked",
+    metaTitle: "Logiciel de planning médical multisite et GHT | Momentum",
     metaDescription:
       "Harmonisation des règles, compteurs consolidés, mutualisation territoriale, badgeage et export paie : Momentum pilote les plannings médicaux multisites et GHT.",
     primaryPain:
@@ -273,7 +273,7 @@ export const specialtyPages: Record<string, FrenchLandingPage> = {
     title: "Un moteur de contraintes qui se paramètre sur les règles de votre service",
     description:
       "Ophtalmologie, pathologie, pédiatrie, biologie ou équipes mixtes : Momentum formalise vos règles (contrats, compétences, présence, équité) au lieu de vous demander de changer d’organisation.",
-    metaTitle: "Planning médical autres spécialités | Momentum BioSked",
+    metaTitle: "Logiciel de planning médical, toutes spécialités | Momentum",
     metaDescription:
       "Contrats, compétences, obligations de présence, équité : Momentum paramètre la planification automatique sur les règles propres à chaque spécialité médicale.",
     primaryPain:
@@ -307,7 +307,7 @@ export const featurePages: Record<string, FrenchLandingPage> = {
     title: "La génération automatique de plannings sous contraintes",
     description:
       "Momentum encode contrats, règles de temps de travail, compétences, désidératas et compteurs d’équité, puis génère le planning. Le moteur fait les vérifications ; vous gardez la main sur les exceptions.",
-    metaTitle: "Planification médicale automatique | Momentum BioSked",
+    metaTitle: "Planning médical automatique avec l’IA | Momentum",
     metaDescription:
       "Génération de plannings médicaux sous contraintes : contrats, repos, compétences, équité. CHIREC : de 4 jours à 4-5 heures par mois, jusqu’à 90 % de temps en moins.",
     primaryPain:
@@ -338,7 +338,7 @@ export const featurePages: Record<string, FrenchLandingPage> = {
     title: "Gardes et astreintes dans le même planning que l’activité de jour",
     description:
       "Momentum relie lignes de garde, astreintes, descentes de garde et vacations de jour : la couverture se vérifie avant publication et chaque remplacement met à jour repos et compteurs.",
-    metaTitle: "Plannings de garde centralisés | Momentum BioSked",
+    metaTitle: "Logiciel de planning de garde médecins | Momentum",
     metaDescription:
       "Lignes de garde, astreintes, repos et vacations de jour dans une même vue : couverture vérifiée avant publication, compteurs à jour à chaque remplacement.",
     primaryPain:
@@ -369,7 +369,7 @@ export const featurePages: Record<string, FrenchLandingPage> = {
     title: "Désidératas et demandes des praticiens, tracés au même endroit",
     description:
       "Congés, préférences, indisponibilités, échanges de gardes : les demandes entrent dans Momentum, alimentent directement la génération du planning et laissent une trace que chacun peut consulter.",
-    metaTitle: "Gestion des désidératas médecins | Momentum BioSked",
+    metaTitle: "Désidératas et demandes des médecins | Momentum",
     metaDescription:
       "Désidératas, congés, indisponibilités et échanges collectés dans un seul canal, intégrés à la génération du planning, arbitrés avec des compteurs d’équité.",
     primaryPain:
@@ -400,7 +400,7 @@ export const featurePages: Record<string, FrenchLandingPage> = {
     title: "Un planning publié une fois, à jour partout",
     description:
       "Publication en temps réel, notifications de changement, application mobile et synchronisation avec les calendriers personnels : la version que consulte le praticien est toujours la bonne.",
-    metaTitle: "Diffusion planning médical mobile | Momentum BioSked",
+    metaTitle: "Planning médical sur mobile et diffusion | Momentum",
     metaDescription:
       "Publication en temps réel, notifications ciblées, app mobile iOS et Android, synchronisation des calendriers personnels : une seule version de référence du planning.",
     primaryPain:
@@ -431,7 +431,7 @@ export const featurePages: Record<string, FrenchLandingPage> = {
     title: "Équité, activité, temps de travail : des rapports qui sortent du planning",
     description:
       "Listes d’équité, gardes, astreintes, jours fériés travaillés, pénibilité, temps réalisé : Momentum produit les rapports depuis les affectations validées, sans ressaisie.",
-    metaTitle: "Rapports planning médical | Momentum BioSked",
+    metaTitle: "Rapports et statistiques de planning médical | Momentum",
     metaDescription:
       "Listes d’équité, gardes, astreintes, jours fériés, pénibilité, temps réalisé : des rapports générés depuis le planning validé, sans reconstruction manuelle.",
     primaryPain:
@@ -462,7 +462,7 @@ export const featurePages: Record<string, FrenchLandingPage> = {
     title: "Du badgeage à la paie : les heures réelles rapprochées du planning",
     description:
       "Momentum enregistre le pointage, rapproche prévu et réalisé, gère absences et congés, et exporte des heures fiables vers la paie et les outils RH comme Kelio/Bodet.",
-    metaTitle: "Badgeage médical et suivi RH | Momentum BioSked",
+    metaTitle: "Badgeage et suivi du temps de travail médical | Momentum",
     metaDescription:
       "Pointage, rapprochement prévu-réalisé, congés, export paie : Momentum relie planning et heures réelles. IMAGIR : « le gain d’un ETP voire deux » via les intégrations.",
     primaryPain:

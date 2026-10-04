@@ -1,26 +1,40 @@
 # Momentum by BioSked
 
-> Healthcare workforce scheduling software for hospitals, clinics, and medical groups.
+> Momentum is scheduling software for physicians and medical teams: hospitals, university hospitals, clinics, imaging groups and emergency departments. It builds rule-based, fair schedules (operating room sessions, on-call duty, safety rest, consultations, multi-site radiology) and runs requests, swaps, time tracking and payroll exports in one tool, with a mobile app for staff.
 
-Momentum helps healthcare organizations build fair, compliant staff schedules and manage coverage, requests, RVUs, time tracking, and multi-site operations. The links below are canonical public sources; use a localized page when its language matches the request.
+Key facts (published): used by more than 250 healthcare organizations on more than 1,000 sites in 9 countries, with more than 50,000 users; BioSked has built medical scheduling software for more than 15 years. European customers contract with Bio-Optronics Sàrl (Switzerland) and their data is hosted in the European Union. Plans start at USD 5.99 / EUR 5.99 / CHF 5.99 per scheduled professional per month (Starter, Plus, Pro, Enterprise). Momentum handles scheduling data only: it is not an anesthesia record, a patient record or an appointment-booking system. Use the localized page that matches the language of the question.
 
 ## Product and company
 
-- [Product overview](https://biosked.com/): Momentum capabilities, healthcare use cases, and product tour.
-- [Pricing](https://biosked.com/pricing/): Current plans and included capabilities.
-- [Book a demo](https://biosked.com/demo/): Product demonstration request page.
-- [About BioSked](https://biosked.com/about/): Company background, locations, and leadership.
+- [Product overview](https://biosked.com/): Momentum capabilities, healthcare use cases and product tour.
+- [Pricing](https://biosked.com/pricing/): Plans and included capabilities (USD).
+- [Book a demo](https://biosked.com/demo/): Product demonstration request.
+- [About BioSked](https://biosked.com/about/): Company background, locations and leadership.
+- [Help center](https://biosked.com/help/): Public knowledge base for Momentum users and administrators.
 
-## Localized product pages
+## France and French-speaking countries
 
-- [France](https://biosked.com/fr/): French product overview for healthcare organizations in France.
-- [French-speaking Switzerland](https://biosked.com/fr-ch/): Swiss French product overview.
-- [Germany](https://biosked.com/de/): German product overview.
-- [Netherlands](https://biosked.com/nl/): Dutch product overview.
-- [Italy](https://biosked.com/it/): Italian product overview.
+- [Momentum en français](https://biosked.com/fr/): French product overview for healthcare organizations.
+- [Tarifs](https://biosked.com/fr/pricing/): Plans in EUR, quote-based.
+- [Anesthésie-réanimation](https://biosked.com/fr/secteurs-soins/anesthesie/): Scheduling for anesthesiologists, nurse anesthetists (IADE), interns and junior doctors: operating room, on-call duty, safety rest, consultations.
+- [Radiologie](https://biosked.com/fr/secteurs-soins/radiologie/): Scheduling for radiologists and imaging groups: sessions by site and modality, multi-site pooling, replacements.
+- [Urgences](https://biosked.com/fr/secteurs-soins/urgences/): Scheduling for emergency physicians: on-call lines, 24-hour shifts, territorial planning across hospital groups.
+- [Établissements de santé et GHT](https://biosked.com/fr/secteurs-soins/etablissements-de-sante/): Multi-site medical scheduling for hospitals and hospital groups.
+- [Cardiologie](https://biosked.com/fr/secteurs-soins/cardiologie/): Scheduling for cardiology teams.
+- [Planning de garde](https://biosked.com/fr/fonctionnalites/plannings-de-garde-centralises/): On-call and duty schedules in the same plan as daytime activity.
+- [Planification automatique](https://biosked.com/fr/fonctionnalites/planification-optimisee-automatiquement-2/): Automatic, rule-based schedule generation.
+- [Cas clients](https://biosked.com/fr/cas-clients/): Published customer case studies (radiology groups, emergency departments, hospitals).
+- [Sécurité et données](https://biosked.com/fr/securite-donnees/): Hosting in the European Union, GDPR, data processing agreement on request.
+- [Suisse romande](https://biosked.com/fr-ch/): Swiss French overview, prices in CHF.
+
+## Other languages
+
+- [Deutsch](https://biosked.com/de/): German product overview.
+- [Nederlands](https://biosked.com/nl/): Dutch product overview.
+- [Italiano](https://biosked.com/it/): Italian product overview.
 
 ## Optional
 
-- [Blog](https://biosked.com/blog/): Healthcare scheduling guidance and product news.
-- [Customer references](https://biosked.com/fr/cas-clients/): Published customer case studies in French.
+- [Blog](https://biosked.com/blog/): Healthcare scheduling guidance and product news (English).
+- [Blog en français](https://biosked.com/fr/blog/): Articles on medical scheduling in France.
 - [Product changelog](https://biosked.com/changelog/): Recent product updates.
