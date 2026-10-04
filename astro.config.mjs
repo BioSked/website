@@ -42,6 +42,22 @@ const frLandingRedirects = Object.fromEntries([
     ...FR_SECTOR_SLUGS.map((s) => [`/secteurs-soins/${s}`, { destination: `/fr/secteurs-soins/${s}`, status: 301 }]),
 ]);
 
+// Until 28 Jul 2026 the de, de-ch, nl and it trees served English fallback copies
+// of the blog, about and careers pages (canonical to the English page). Google
+// still requests those addresses, so each one goes to the page it copied.
+const RETIRED_FALLBACK_LOCALES = ['de', 'de-ch', 'nl', 'it'];
+const enBlogSlugs = readdirSync('./src/pages/blog/posts')
+    .filter((f) => f.endsWith('.md'))
+    .map((f) => f.replace(/\.md$/, ''));
+const retiredFallbackRedirects = Object.fromEntries(
+    RETIRED_FALLBACK_LOCALES.flatMap((l) => [
+        [`/${l}/blog`, { destination: '/blog', status: 301 }],
+        [`/${l}/about`, { destination: '/about', status: 301 }],
+        [`/${l}/careers`, { destination: '/careers', status: 301 }],
+        ...enBlogSlugs.map((s) => [`/${l}/blog/posts/${s}`, { destination: `/blog/posts/${s}`, status: 301 }]),
+    ])
+);
+
 export default defineConfig({
     site: 'https://biosked.com',
     output: 'static',
@@ -122,9 +138,11 @@ export default defineConfig({
     //  1. inherited biosked.com slugs -> EN pages
     //  2. legacy biosked.fr WordPress URLs -> /fr/ pages
     //  3. generated: old FR blog + landing-page paths -> /fr/ equivalents
+    //  4. generated: retired de/de-ch/nl/it fallback copies -> the English page
     redirects: {
         ...frBlogRedirects,
         ...frLandingRedirects,
+        ...retiredFallbackRedirects,
         "fr/blog/257-ameliorations-plus-tard-ce-que-vos-tickets-nous-ont-appris": { destination: "/fr/blog/257-ameliorations-plus-tard-tout-ce-que-nous-avons-corrige", status: 301 },
 
         // --- inherited biosked.com legacy slugs (EN) ---
@@ -133,6 +151,7 @@ export default defineConfig({
         "contact-sales": { destination: "/demo", status: 301 },
         "contact": { destination: "/demo", status: 301 },
         "about-biosked/leadership-team": { destination: "/about", status: 301 },
+        "category/news": { destination: "/blog", status: 301 },
         "the-first-rvu-based-multi-time-zone-scheduling-platform-for-radiology-teams": { destination: "/blog/posts/2025-11-05-rvu-based-scheduling", status: 301 },
         "momentum-update-a-shift-based-view-for-better-on-the-ground-coordination": { destination: "/blog/posts/2025-07-03-shift-view", status: 301 },
         "ai-a-powerful-lever-for-optimizing-team-schedules-in-healthcare-settings": { destination: "/blog/posts/2025-03-15-optimizing-team-schedules", status: 301 },

@@ -305,6 +305,526 @@
           "type": 301
         },
         {
+          "regex": "^/de/blog/?$",
+          "destination": "https://biosked.com/blog/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/about/?$",
+          "destination": "https://biosked.com/about/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/careers/?$",
+          "destination": "https://biosked.com/careers/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2021-11-02-biosked-independence/?$",
+          "destination": "https://biosked.com/blog/posts/2021-11-02-biosked-independence/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2022-03-15-consequences-improper-scheduling/?$",
+          "destination": "https://biosked.com/blog/posts/2022-03-15-consequences-improper-scheduling/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2022-05-15-understanding-equity/?$",
+          "destination": "https://biosked.com/blog/posts/2022-05-15-understanding-equity/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2022-09-04-culture-of-physician-wellness/?$",
+          "destination": "https://biosked.com/blog/posts/2022-09-04-culture-of-physician-wellness/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2023-08-09-five-reasons-to-automate/?$",
+          "destination": "https://biosked.com/blog/posts/2023-08-09-five-reasons-to-automate/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2023-08-09-physician-scheduling-ai/?$",
+          "destination": "https://biosked.com/blog/posts/2023-08-09-physician-scheduling-ai/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2023-08-09-scheduling-myths/?$",
+          "destination": "https://biosked.com/blog/posts/2023-08-09-scheduling-myths/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2023-08-09-scheduling-requests/?$",
+          "destination": "https://biosked.com/blog/posts/2023-08-09-scheduling-requests/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2023-09-21-healthcare-game-changer/?$",
+          "destination": "https://biosked.com/blog/posts/2023-09-21-healthcare-game-changer/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2023-10-03-prescription-efficient-healthcare/?$",
+          "destination": "https://biosked.com/blog/posts/2023-10-03-prescription-efficient-healthcare/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2023-10-17-schedule-automation-benefits/?$",
+          "destination": "https://biosked.com/blog/posts/2023-10-17-schedule-automation-benefits/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2023-10-17-smarter-anesthesia/?$",
+          "destination": "https://biosked.com/blog/posts/2023-10-17-smarter-anesthesia/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2023-10-24-revolution-healthcare-scheduling/?$",
+          "destination": "https://biosked.com/blog/posts/2023-10-24-revolution-healthcare-scheduling/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2023-11-06-manual-staff-scheduling-implications/?$",
+          "destination": "https://biosked.com/blog/posts/2023-11-06-manual-staff-scheduling-implications/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2023-11-29-rising-costs-in-healthcare/?$",
+          "destination": "https://biosked.com/blog/posts/2023-11-29-rising-costs-in-healthcare/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2023-12-21-year-2024/?$",
+          "destination": "https://biosked.com/blog/posts/2023-12-21-year-2024/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2024-01-31-five-healthcare-myths/?$",
+          "destination": "https://biosked.com/blog/posts/2024-01-31-five-healthcare-myths/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2025-01-29-medical-team-scheduling/?$",
+          "destination": "https://biosked.com/blog/posts/2025-01-29-medical-team-scheduling/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2025-03-15-optimizing-team-schedules/?$",
+          "destination": "https://biosked.com/blog/posts/2025-03-15-optimizing-team-schedules/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2025-07-03-shift-view/?$",
+          "destination": "https://biosked.com/blog/posts/2025-07-03-shift-view/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2025-11-05-rvu-based-scheduling/?$",
+          "destination": "https://biosked.com/blog/posts/2025-11-05-rvu-based-scheduling/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2026-03-25-fresh-new-look/?$",
+          "destination": "https://biosked.com/blog/posts/2026-03-25-fresh-new-look/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2026-09-07-what-we-fixed/?$",
+          "destination": "https://biosked.com/blog/posts/2026-09-07-what-we-fixed/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/?$",
+          "destination": "https://biosked.com/blog/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/about/?$",
+          "destination": "https://biosked.com/about/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/careers/?$",
+          "destination": "https://biosked.com/careers/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2021-11-02-biosked-independence/?$",
+          "destination": "https://biosked.com/blog/posts/2021-11-02-biosked-independence/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2022-03-15-consequences-improper-scheduling/?$",
+          "destination": "https://biosked.com/blog/posts/2022-03-15-consequences-improper-scheduling/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2022-05-15-understanding-equity/?$",
+          "destination": "https://biosked.com/blog/posts/2022-05-15-understanding-equity/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2022-09-04-culture-of-physician-wellness/?$",
+          "destination": "https://biosked.com/blog/posts/2022-09-04-culture-of-physician-wellness/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2023-08-09-five-reasons-to-automate/?$",
+          "destination": "https://biosked.com/blog/posts/2023-08-09-five-reasons-to-automate/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2023-08-09-physician-scheduling-ai/?$",
+          "destination": "https://biosked.com/blog/posts/2023-08-09-physician-scheduling-ai/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2023-08-09-scheduling-myths/?$",
+          "destination": "https://biosked.com/blog/posts/2023-08-09-scheduling-myths/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2023-08-09-scheduling-requests/?$",
+          "destination": "https://biosked.com/blog/posts/2023-08-09-scheduling-requests/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2023-09-21-healthcare-game-changer/?$",
+          "destination": "https://biosked.com/blog/posts/2023-09-21-healthcare-game-changer/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2023-10-03-prescription-efficient-healthcare/?$",
+          "destination": "https://biosked.com/blog/posts/2023-10-03-prescription-efficient-healthcare/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2023-10-17-schedule-automation-benefits/?$",
+          "destination": "https://biosked.com/blog/posts/2023-10-17-schedule-automation-benefits/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2023-10-17-smarter-anesthesia/?$",
+          "destination": "https://biosked.com/blog/posts/2023-10-17-smarter-anesthesia/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2023-10-24-revolution-healthcare-scheduling/?$",
+          "destination": "https://biosked.com/blog/posts/2023-10-24-revolution-healthcare-scheduling/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2023-11-06-manual-staff-scheduling-implications/?$",
+          "destination": "https://biosked.com/blog/posts/2023-11-06-manual-staff-scheduling-implications/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2023-11-29-rising-costs-in-healthcare/?$",
+          "destination": "https://biosked.com/blog/posts/2023-11-29-rising-costs-in-healthcare/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2023-12-21-year-2024/?$",
+          "destination": "https://biosked.com/blog/posts/2023-12-21-year-2024/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2024-01-31-five-healthcare-myths/?$",
+          "destination": "https://biosked.com/blog/posts/2024-01-31-five-healthcare-myths/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2025-01-29-medical-team-scheduling/?$",
+          "destination": "https://biosked.com/blog/posts/2025-01-29-medical-team-scheduling/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2025-03-15-optimizing-team-schedules/?$",
+          "destination": "https://biosked.com/blog/posts/2025-03-15-optimizing-team-schedules/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2025-07-03-shift-view/?$",
+          "destination": "https://biosked.com/blog/posts/2025-07-03-shift-view/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2025-11-05-rvu-based-scheduling/?$",
+          "destination": "https://biosked.com/blog/posts/2025-11-05-rvu-based-scheduling/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2026-03-25-fresh-new-look/?$",
+          "destination": "https://biosked.com/blog/posts/2026-03-25-fresh-new-look/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2026-09-07-what-we-fixed/?$",
+          "destination": "https://biosked.com/blog/posts/2026-09-07-what-we-fixed/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/?$",
+          "destination": "https://biosked.com/blog/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/about/?$",
+          "destination": "https://biosked.com/about/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/careers/?$",
+          "destination": "https://biosked.com/careers/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2021-11-02-biosked-independence/?$",
+          "destination": "https://biosked.com/blog/posts/2021-11-02-biosked-independence/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2022-03-15-consequences-improper-scheduling/?$",
+          "destination": "https://biosked.com/blog/posts/2022-03-15-consequences-improper-scheduling/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2022-05-15-understanding-equity/?$",
+          "destination": "https://biosked.com/blog/posts/2022-05-15-understanding-equity/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2022-09-04-culture-of-physician-wellness/?$",
+          "destination": "https://biosked.com/blog/posts/2022-09-04-culture-of-physician-wellness/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2023-08-09-five-reasons-to-automate/?$",
+          "destination": "https://biosked.com/blog/posts/2023-08-09-five-reasons-to-automate/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2023-08-09-physician-scheduling-ai/?$",
+          "destination": "https://biosked.com/blog/posts/2023-08-09-physician-scheduling-ai/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2023-08-09-scheduling-myths/?$",
+          "destination": "https://biosked.com/blog/posts/2023-08-09-scheduling-myths/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2023-08-09-scheduling-requests/?$",
+          "destination": "https://biosked.com/blog/posts/2023-08-09-scheduling-requests/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2023-09-21-healthcare-game-changer/?$",
+          "destination": "https://biosked.com/blog/posts/2023-09-21-healthcare-game-changer/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2023-10-03-prescription-efficient-healthcare/?$",
+          "destination": "https://biosked.com/blog/posts/2023-10-03-prescription-efficient-healthcare/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2023-10-17-schedule-automation-benefits/?$",
+          "destination": "https://biosked.com/blog/posts/2023-10-17-schedule-automation-benefits/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2023-10-17-smarter-anesthesia/?$",
+          "destination": "https://biosked.com/blog/posts/2023-10-17-smarter-anesthesia/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2023-10-24-revolution-healthcare-scheduling/?$",
+          "destination": "https://biosked.com/blog/posts/2023-10-24-revolution-healthcare-scheduling/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2023-11-06-manual-staff-scheduling-implications/?$",
+          "destination": "https://biosked.com/blog/posts/2023-11-06-manual-staff-scheduling-implications/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2023-11-29-rising-costs-in-healthcare/?$",
+          "destination": "https://biosked.com/blog/posts/2023-11-29-rising-costs-in-healthcare/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2023-12-21-year-2024/?$",
+          "destination": "https://biosked.com/blog/posts/2023-12-21-year-2024/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2024-01-31-five-healthcare-myths/?$",
+          "destination": "https://biosked.com/blog/posts/2024-01-31-five-healthcare-myths/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2025-01-29-medical-team-scheduling/?$",
+          "destination": "https://biosked.com/blog/posts/2025-01-29-medical-team-scheduling/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2025-03-15-optimizing-team-schedules/?$",
+          "destination": "https://biosked.com/blog/posts/2025-03-15-optimizing-team-schedules/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2025-07-03-shift-view/?$",
+          "destination": "https://biosked.com/blog/posts/2025-07-03-shift-view/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2025-11-05-rvu-based-scheduling/?$",
+          "destination": "https://biosked.com/blog/posts/2025-11-05-rvu-based-scheduling/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2026-03-25-fresh-new-look/?$",
+          "destination": "https://biosked.com/blog/posts/2026-03-25-fresh-new-look/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2026-09-07-what-we-fixed/?$",
+          "destination": "https://biosked.com/blog/posts/2026-09-07-what-we-fixed/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/?$",
+          "destination": "https://biosked.com/blog/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/about/?$",
+          "destination": "https://biosked.com/about/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/careers/?$",
+          "destination": "https://biosked.com/careers/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2021-11-02-biosked-independence/?$",
+          "destination": "https://biosked.com/blog/posts/2021-11-02-biosked-independence/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2022-03-15-consequences-improper-scheduling/?$",
+          "destination": "https://biosked.com/blog/posts/2022-03-15-consequences-improper-scheduling/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2022-05-15-understanding-equity/?$",
+          "destination": "https://biosked.com/blog/posts/2022-05-15-understanding-equity/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2022-09-04-culture-of-physician-wellness/?$",
+          "destination": "https://biosked.com/blog/posts/2022-09-04-culture-of-physician-wellness/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2023-08-09-five-reasons-to-automate/?$",
+          "destination": "https://biosked.com/blog/posts/2023-08-09-five-reasons-to-automate/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2023-08-09-physician-scheduling-ai/?$",
+          "destination": "https://biosked.com/blog/posts/2023-08-09-physician-scheduling-ai/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2023-08-09-scheduling-myths/?$",
+          "destination": "https://biosked.com/blog/posts/2023-08-09-scheduling-myths/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2023-08-09-scheduling-requests/?$",
+          "destination": "https://biosked.com/blog/posts/2023-08-09-scheduling-requests/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2023-09-21-healthcare-game-changer/?$",
+          "destination": "https://biosked.com/blog/posts/2023-09-21-healthcare-game-changer/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2023-10-03-prescription-efficient-healthcare/?$",
+          "destination": "https://biosked.com/blog/posts/2023-10-03-prescription-efficient-healthcare/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2023-10-17-schedule-automation-benefits/?$",
+          "destination": "https://biosked.com/blog/posts/2023-10-17-schedule-automation-benefits/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2023-10-17-smarter-anesthesia/?$",
+          "destination": "https://biosked.com/blog/posts/2023-10-17-smarter-anesthesia/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2023-10-24-revolution-healthcare-scheduling/?$",
+          "destination": "https://biosked.com/blog/posts/2023-10-24-revolution-healthcare-scheduling/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2023-11-06-manual-staff-scheduling-implications/?$",
+          "destination": "https://biosked.com/blog/posts/2023-11-06-manual-staff-scheduling-implications/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2023-11-29-rising-costs-in-healthcare/?$",
+          "destination": "https://biosked.com/blog/posts/2023-11-29-rising-costs-in-healthcare/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2023-12-21-year-2024/?$",
+          "destination": "https://biosked.com/blog/posts/2023-12-21-year-2024/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2024-01-31-five-healthcare-myths/?$",
+          "destination": "https://biosked.com/blog/posts/2024-01-31-five-healthcare-myths/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2025-01-29-medical-team-scheduling/?$",
+          "destination": "https://biosked.com/blog/posts/2025-01-29-medical-team-scheduling/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2025-03-15-optimizing-team-schedules/?$",
+          "destination": "https://biosked.com/blog/posts/2025-03-15-optimizing-team-schedules/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2025-07-03-shift-view/?$",
+          "destination": "https://biosked.com/blog/posts/2025-07-03-shift-view/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2025-11-05-rvu-based-scheduling/?$",
+          "destination": "https://biosked.com/blog/posts/2025-11-05-rvu-based-scheduling/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2026-03-25-fresh-new-look/?$",
+          "destination": "https://biosked.com/blog/posts/2026-03-25-fresh-new-look/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2026-09-07-what-we-fixed/?$",
+          "destination": "https://biosked.com/blog/posts/2026-09-07-what-we-fixed/",
+          "type": 301
+        },
+        {
           "regex": "^/fr/blog/257-ameliorations-plus-tard-ce-que-vos-tickets-nous-ont-appris/?$",
           "destination": "https://biosked.com/fr/blog/257-ameliorations-plus-tard-tout-ce-que-nous-avons-corrige/",
           "type": 301
@@ -332,6 +852,11 @@
         {
           "regex": "^/about-biosked/leadership-team/?$",
           "destination": "https://biosked.com/about/",
+          "type": 301
+        },
+        {
+          "regex": "^/category/news/?$",
+          "destination": "https://biosked.com/blog/",
           "type": 301
         },
         {
@@ -1173,6 +1698,526 @@
           "type": 301
         },
         {
+          "regex": "^/de/blog/?$",
+          "destination": "https://biosked.com/blog/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/about/?$",
+          "destination": "https://biosked.com/about/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/careers/?$",
+          "destination": "https://biosked.com/careers/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2021-11-02-biosked-independence/?$",
+          "destination": "https://biosked.com/blog/posts/2021-11-02-biosked-independence/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2022-03-15-consequences-improper-scheduling/?$",
+          "destination": "https://biosked.com/blog/posts/2022-03-15-consequences-improper-scheduling/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2022-05-15-understanding-equity/?$",
+          "destination": "https://biosked.com/blog/posts/2022-05-15-understanding-equity/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2022-09-04-culture-of-physician-wellness/?$",
+          "destination": "https://biosked.com/blog/posts/2022-09-04-culture-of-physician-wellness/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2023-08-09-five-reasons-to-automate/?$",
+          "destination": "https://biosked.com/blog/posts/2023-08-09-five-reasons-to-automate/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2023-08-09-physician-scheduling-ai/?$",
+          "destination": "https://biosked.com/blog/posts/2023-08-09-physician-scheduling-ai/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2023-08-09-scheduling-myths/?$",
+          "destination": "https://biosked.com/blog/posts/2023-08-09-scheduling-myths/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2023-08-09-scheduling-requests/?$",
+          "destination": "https://biosked.com/blog/posts/2023-08-09-scheduling-requests/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2023-09-21-healthcare-game-changer/?$",
+          "destination": "https://biosked.com/blog/posts/2023-09-21-healthcare-game-changer/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2023-10-03-prescription-efficient-healthcare/?$",
+          "destination": "https://biosked.com/blog/posts/2023-10-03-prescription-efficient-healthcare/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2023-10-17-schedule-automation-benefits/?$",
+          "destination": "https://biosked.com/blog/posts/2023-10-17-schedule-automation-benefits/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2023-10-17-smarter-anesthesia/?$",
+          "destination": "https://biosked.com/blog/posts/2023-10-17-smarter-anesthesia/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2023-10-24-revolution-healthcare-scheduling/?$",
+          "destination": "https://biosked.com/blog/posts/2023-10-24-revolution-healthcare-scheduling/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2023-11-06-manual-staff-scheduling-implications/?$",
+          "destination": "https://biosked.com/blog/posts/2023-11-06-manual-staff-scheduling-implications/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2023-11-29-rising-costs-in-healthcare/?$",
+          "destination": "https://biosked.com/blog/posts/2023-11-29-rising-costs-in-healthcare/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2023-12-21-year-2024/?$",
+          "destination": "https://biosked.com/blog/posts/2023-12-21-year-2024/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2024-01-31-five-healthcare-myths/?$",
+          "destination": "https://biosked.com/blog/posts/2024-01-31-five-healthcare-myths/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2025-01-29-medical-team-scheduling/?$",
+          "destination": "https://biosked.com/blog/posts/2025-01-29-medical-team-scheduling/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2025-03-15-optimizing-team-schedules/?$",
+          "destination": "https://biosked.com/blog/posts/2025-03-15-optimizing-team-schedules/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2025-07-03-shift-view/?$",
+          "destination": "https://biosked.com/blog/posts/2025-07-03-shift-view/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2025-11-05-rvu-based-scheduling/?$",
+          "destination": "https://biosked.com/blog/posts/2025-11-05-rvu-based-scheduling/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2026-03-25-fresh-new-look/?$",
+          "destination": "https://biosked.com/blog/posts/2026-03-25-fresh-new-look/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2026-09-07-what-we-fixed/?$",
+          "destination": "https://biosked.com/blog/posts/2026-09-07-what-we-fixed/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/?$",
+          "destination": "https://biosked.com/blog/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/about/?$",
+          "destination": "https://biosked.com/about/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/careers/?$",
+          "destination": "https://biosked.com/careers/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2021-11-02-biosked-independence/?$",
+          "destination": "https://biosked.com/blog/posts/2021-11-02-biosked-independence/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2022-03-15-consequences-improper-scheduling/?$",
+          "destination": "https://biosked.com/blog/posts/2022-03-15-consequences-improper-scheduling/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2022-05-15-understanding-equity/?$",
+          "destination": "https://biosked.com/blog/posts/2022-05-15-understanding-equity/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2022-09-04-culture-of-physician-wellness/?$",
+          "destination": "https://biosked.com/blog/posts/2022-09-04-culture-of-physician-wellness/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2023-08-09-five-reasons-to-automate/?$",
+          "destination": "https://biosked.com/blog/posts/2023-08-09-five-reasons-to-automate/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2023-08-09-physician-scheduling-ai/?$",
+          "destination": "https://biosked.com/blog/posts/2023-08-09-physician-scheduling-ai/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2023-08-09-scheduling-myths/?$",
+          "destination": "https://biosked.com/blog/posts/2023-08-09-scheduling-myths/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2023-08-09-scheduling-requests/?$",
+          "destination": "https://biosked.com/blog/posts/2023-08-09-scheduling-requests/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2023-09-21-healthcare-game-changer/?$",
+          "destination": "https://biosked.com/blog/posts/2023-09-21-healthcare-game-changer/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2023-10-03-prescription-efficient-healthcare/?$",
+          "destination": "https://biosked.com/blog/posts/2023-10-03-prescription-efficient-healthcare/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2023-10-17-schedule-automation-benefits/?$",
+          "destination": "https://biosked.com/blog/posts/2023-10-17-schedule-automation-benefits/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2023-10-17-smarter-anesthesia/?$",
+          "destination": "https://biosked.com/blog/posts/2023-10-17-smarter-anesthesia/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2023-10-24-revolution-healthcare-scheduling/?$",
+          "destination": "https://biosked.com/blog/posts/2023-10-24-revolution-healthcare-scheduling/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2023-11-06-manual-staff-scheduling-implications/?$",
+          "destination": "https://biosked.com/blog/posts/2023-11-06-manual-staff-scheduling-implications/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2023-11-29-rising-costs-in-healthcare/?$",
+          "destination": "https://biosked.com/blog/posts/2023-11-29-rising-costs-in-healthcare/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2023-12-21-year-2024/?$",
+          "destination": "https://biosked.com/blog/posts/2023-12-21-year-2024/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2024-01-31-five-healthcare-myths/?$",
+          "destination": "https://biosked.com/blog/posts/2024-01-31-five-healthcare-myths/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2025-01-29-medical-team-scheduling/?$",
+          "destination": "https://biosked.com/blog/posts/2025-01-29-medical-team-scheduling/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2025-03-15-optimizing-team-schedules/?$",
+          "destination": "https://biosked.com/blog/posts/2025-03-15-optimizing-team-schedules/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2025-07-03-shift-view/?$",
+          "destination": "https://biosked.com/blog/posts/2025-07-03-shift-view/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2025-11-05-rvu-based-scheduling/?$",
+          "destination": "https://biosked.com/blog/posts/2025-11-05-rvu-based-scheduling/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2026-03-25-fresh-new-look/?$",
+          "destination": "https://biosked.com/blog/posts/2026-03-25-fresh-new-look/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2026-09-07-what-we-fixed/?$",
+          "destination": "https://biosked.com/blog/posts/2026-09-07-what-we-fixed/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/?$",
+          "destination": "https://biosked.com/blog/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/about/?$",
+          "destination": "https://biosked.com/about/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/careers/?$",
+          "destination": "https://biosked.com/careers/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2021-11-02-biosked-independence/?$",
+          "destination": "https://biosked.com/blog/posts/2021-11-02-biosked-independence/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2022-03-15-consequences-improper-scheduling/?$",
+          "destination": "https://biosked.com/blog/posts/2022-03-15-consequences-improper-scheduling/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2022-05-15-understanding-equity/?$",
+          "destination": "https://biosked.com/blog/posts/2022-05-15-understanding-equity/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2022-09-04-culture-of-physician-wellness/?$",
+          "destination": "https://biosked.com/blog/posts/2022-09-04-culture-of-physician-wellness/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2023-08-09-five-reasons-to-automate/?$",
+          "destination": "https://biosked.com/blog/posts/2023-08-09-five-reasons-to-automate/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2023-08-09-physician-scheduling-ai/?$",
+          "destination": "https://biosked.com/blog/posts/2023-08-09-physician-scheduling-ai/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2023-08-09-scheduling-myths/?$",
+          "destination": "https://biosked.com/blog/posts/2023-08-09-scheduling-myths/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2023-08-09-scheduling-requests/?$",
+          "destination": "https://biosked.com/blog/posts/2023-08-09-scheduling-requests/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2023-09-21-healthcare-game-changer/?$",
+          "destination": "https://biosked.com/blog/posts/2023-09-21-healthcare-game-changer/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2023-10-03-prescription-efficient-healthcare/?$",
+          "destination": "https://biosked.com/blog/posts/2023-10-03-prescription-efficient-healthcare/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2023-10-17-schedule-automation-benefits/?$",
+          "destination": "https://biosked.com/blog/posts/2023-10-17-schedule-automation-benefits/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2023-10-17-smarter-anesthesia/?$",
+          "destination": "https://biosked.com/blog/posts/2023-10-17-smarter-anesthesia/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2023-10-24-revolution-healthcare-scheduling/?$",
+          "destination": "https://biosked.com/blog/posts/2023-10-24-revolution-healthcare-scheduling/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2023-11-06-manual-staff-scheduling-implications/?$",
+          "destination": "https://biosked.com/blog/posts/2023-11-06-manual-staff-scheduling-implications/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2023-11-29-rising-costs-in-healthcare/?$",
+          "destination": "https://biosked.com/blog/posts/2023-11-29-rising-costs-in-healthcare/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2023-12-21-year-2024/?$",
+          "destination": "https://biosked.com/blog/posts/2023-12-21-year-2024/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2024-01-31-five-healthcare-myths/?$",
+          "destination": "https://biosked.com/blog/posts/2024-01-31-five-healthcare-myths/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2025-01-29-medical-team-scheduling/?$",
+          "destination": "https://biosked.com/blog/posts/2025-01-29-medical-team-scheduling/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2025-03-15-optimizing-team-schedules/?$",
+          "destination": "https://biosked.com/blog/posts/2025-03-15-optimizing-team-schedules/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2025-07-03-shift-view/?$",
+          "destination": "https://biosked.com/blog/posts/2025-07-03-shift-view/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2025-11-05-rvu-based-scheduling/?$",
+          "destination": "https://biosked.com/blog/posts/2025-11-05-rvu-based-scheduling/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2026-03-25-fresh-new-look/?$",
+          "destination": "https://biosked.com/blog/posts/2026-03-25-fresh-new-look/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2026-09-07-what-we-fixed/?$",
+          "destination": "https://biosked.com/blog/posts/2026-09-07-what-we-fixed/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/?$",
+          "destination": "https://biosked.com/blog/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/about/?$",
+          "destination": "https://biosked.com/about/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/careers/?$",
+          "destination": "https://biosked.com/careers/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2021-11-02-biosked-independence/?$",
+          "destination": "https://biosked.com/blog/posts/2021-11-02-biosked-independence/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2022-03-15-consequences-improper-scheduling/?$",
+          "destination": "https://biosked.com/blog/posts/2022-03-15-consequences-improper-scheduling/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2022-05-15-understanding-equity/?$",
+          "destination": "https://biosked.com/blog/posts/2022-05-15-understanding-equity/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2022-09-04-culture-of-physician-wellness/?$",
+          "destination": "https://biosked.com/blog/posts/2022-09-04-culture-of-physician-wellness/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2023-08-09-five-reasons-to-automate/?$",
+          "destination": "https://biosked.com/blog/posts/2023-08-09-five-reasons-to-automate/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2023-08-09-physician-scheduling-ai/?$",
+          "destination": "https://biosked.com/blog/posts/2023-08-09-physician-scheduling-ai/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2023-08-09-scheduling-myths/?$",
+          "destination": "https://biosked.com/blog/posts/2023-08-09-scheduling-myths/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2023-08-09-scheduling-requests/?$",
+          "destination": "https://biosked.com/blog/posts/2023-08-09-scheduling-requests/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2023-09-21-healthcare-game-changer/?$",
+          "destination": "https://biosked.com/blog/posts/2023-09-21-healthcare-game-changer/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2023-10-03-prescription-efficient-healthcare/?$",
+          "destination": "https://biosked.com/blog/posts/2023-10-03-prescription-efficient-healthcare/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2023-10-17-schedule-automation-benefits/?$",
+          "destination": "https://biosked.com/blog/posts/2023-10-17-schedule-automation-benefits/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2023-10-17-smarter-anesthesia/?$",
+          "destination": "https://biosked.com/blog/posts/2023-10-17-smarter-anesthesia/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2023-10-24-revolution-healthcare-scheduling/?$",
+          "destination": "https://biosked.com/blog/posts/2023-10-24-revolution-healthcare-scheduling/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2023-11-06-manual-staff-scheduling-implications/?$",
+          "destination": "https://biosked.com/blog/posts/2023-11-06-manual-staff-scheduling-implications/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2023-11-29-rising-costs-in-healthcare/?$",
+          "destination": "https://biosked.com/blog/posts/2023-11-29-rising-costs-in-healthcare/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2023-12-21-year-2024/?$",
+          "destination": "https://biosked.com/blog/posts/2023-12-21-year-2024/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2024-01-31-five-healthcare-myths/?$",
+          "destination": "https://biosked.com/blog/posts/2024-01-31-five-healthcare-myths/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2025-01-29-medical-team-scheduling/?$",
+          "destination": "https://biosked.com/blog/posts/2025-01-29-medical-team-scheduling/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2025-03-15-optimizing-team-schedules/?$",
+          "destination": "https://biosked.com/blog/posts/2025-03-15-optimizing-team-schedules/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2025-07-03-shift-view/?$",
+          "destination": "https://biosked.com/blog/posts/2025-07-03-shift-view/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2025-11-05-rvu-based-scheduling/?$",
+          "destination": "https://biosked.com/blog/posts/2025-11-05-rvu-based-scheduling/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2026-03-25-fresh-new-look/?$",
+          "destination": "https://biosked.com/blog/posts/2026-03-25-fresh-new-look/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2026-09-07-what-we-fixed/?$",
+          "destination": "https://biosked.com/blog/posts/2026-09-07-what-we-fixed/",
+          "type": 301
+        },
+        {
           "regex": "^/fr/blog/257-ameliorations-plus-tard-ce-que-vos-tickets-nous-ont-appris/?$",
           "destination": "https://biosked.com/fr/blog/257-ameliorations-plus-tard-tout-ce-que-nous-avons-corrige/",
           "type": 301
@@ -1200,6 +2245,11 @@
         {
           "regex": "^/about-biosked/leadership-team/?$",
           "destination": "https://biosked.com/about/",
+          "type": 301
+        },
+        {
+          "regex": "^/category/news/?$",
+          "destination": "https://biosked.com/blog/",
           "type": 301
         },
         {
@@ -1774,6 +2824,526 @@
           "type": 301
         },
         {
+          "regex": "^/de/blog/?$",
+          "destination": "https://biosked.com/blog/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/about/?$",
+          "destination": "https://biosked.com/about/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/careers/?$",
+          "destination": "https://biosked.com/careers/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2021-11-02-biosked-independence/?$",
+          "destination": "https://biosked.com/blog/posts/2021-11-02-biosked-independence/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2022-03-15-consequences-improper-scheduling/?$",
+          "destination": "https://biosked.com/blog/posts/2022-03-15-consequences-improper-scheduling/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2022-05-15-understanding-equity/?$",
+          "destination": "https://biosked.com/blog/posts/2022-05-15-understanding-equity/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2022-09-04-culture-of-physician-wellness/?$",
+          "destination": "https://biosked.com/blog/posts/2022-09-04-culture-of-physician-wellness/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2023-08-09-five-reasons-to-automate/?$",
+          "destination": "https://biosked.com/blog/posts/2023-08-09-five-reasons-to-automate/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2023-08-09-physician-scheduling-ai/?$",
+          "destination": "https://biosked.com/blog/posts/2023-08-09-physician-scheduling-ai/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2023-08-09-scheduling-myths/?$",
+          "destination": "https://biosked.com/blog/posts/2023-08-09-scheduling-myths/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2023-08-09-scheduling-requests/?$",
+          "destination": "https://biosked.com/blog/posts/2023-08-09-scheduling-requests/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2023-09-21-healthcare-game-changer/?$",
+          "destination": "https://biosked.com/blog/posts/2023-09-21-healthcare-game-changer/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2023-10-03-prescription-efficient-healthcare/?$",
+          "destination": "https://biosked.com/blog/posts/2023-10-03-prescription-efficient-healthcare/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2023-10-17-schedule-automation-benefits/?$",
+          "destination": "https://biosked.com/blog/posts/2023-10-17-schedule-automation-benefits/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2023-10-17-smarter-anesthesia/?$",
+          "destination": "https://biosked.com/blog/posts/2023-10-17-smarter-anesthesia/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2023-10-24-revolution-healthcare-scheduling/?$",
+          "destination": "https://biosked.com/blog/posts/2023-10-24-revolution-healthcare-scheduling/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2023-11-06-manual-staff-scheduling-implications/?$",
+          "destination": "https://biosked.com/blog/posts/2023-11-06-manual-staff-scheduling-implications/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2023-11-29-rising-costs-in-healthcare/?$",
+          "destination": "https://biosked.com/blog/posts/2023-11-29-rising-costs-in-healthcare/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2023-12-21-year-2024/?$",
+          "destination": "https://biosked.com/blog/posts/2023-12-21-year-2024/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2024-01-31-five-healthcare-myths/?$",
+          "destination": "https://biosked.com/blog/posts/2024-01-31-five-healthcare-myths/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2025-01-29-medical-team-scheduling/?$",
+          "destination": "https://biosked.com/blog/posts/2025-01-29-medical-team-scheduling/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2025-03-15-optimizing-team-schedules/?$",
+          "destination": "https://biosked.com/blog/posts/2025-03-15-optimizing-team-schedules/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2025-07-03-shift-view/?$",
+          "destination": "https://biosked.com/blog/posts/2025-07-03-shift-view/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2025-11-05-rvu-based-scheduling/?$",
+          "destination": "https://biosked.com/blog/posts/2025-11-05-rvu-based-scheduling/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2026-03-25-fresh-new-look/?$",
+          "destination": "https://biosked.com/blog/posts/2026-03-25-fresh-new-look/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2026-09-07-what-we-fixed/?$",
+          "destination": "https://biosked.com/blog/posts/2026-09-07-what-we-fixed/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/?$",
+          "destination": "https://biosked.com/blog/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/about/?$",
+          "destination": "https://biosked.com/about/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/careers/?$",
+          "destination": "https://biosked.com/careers/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2021-11-02-biosked-independence/?$",
+          "destination": "https://biosked.com/blog/posts/2021-11-02-biosked-independence/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2022-03-15-consequences-improper-scheduling/?$",
+          "destination": "https://biosked.com/blog/posts/2022-03-15-consequences-improper-scheduling/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2022-05-15-understanding-equity/?$",
+          "destination": "https://biosked.com/blog/posts/2022-05-15-understanding-equity/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2022-09-04-culture-of-physician-wellness/?$",
+          "destination": "https://biosked.com/blog/posts/2022-09-04-culture-of-physician-wellness/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2023-08-09-five-reasons-to-automate/?$",
+          "destination": "https://biosked.com/blog/posts/2023-08-09-five-reasons-to-automate/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2023-08-09-physician-scheduling-ai/?$",
+          "destination": "https://biosked.com/blog/posts/2023-08-09-physician-scheduling-ai/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2023-08-09-scheduling-myths/?$",
+          "destination": "https://biosked.com/blog/posts/2023-08-09-scheduling-myths/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2023-08-09-scheduling-requests/?$",
+          "destination": "https://biosked.com/blog/posts/2023-08-09-scheduling-requests/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2023-09-21-healthcare-game-changer/?$",
+          "destination": "https://biosked.com/blog/posts/2023-09-21-healthcare-game-changer/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2023-10-03-prescription-efficient-healthcare/?$",
+          "destination": "https://biosked.com/blog/posts/2023-10-03-prescription-efficient-healthcare/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2023-10-17-schedule-automation-benefits/?$",
+          "destination": "https://biosked.com/blog/posts/2023-10-17-schedule-automation-benefits/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2023-10-17-smarter-anesthesia/?$",
+          "destination": "https://biosked.com/blog/posts/2023-10-17-smarter-anesthesia/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2023-10-24-revolution-healthcare-scheduling/?$",
+          "destination": "https://biosked.com/blog/posts/2023-10-24-revolution-healthcare-scheduling/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2023-11-06-manual-staff-scheduling-implications/?$",
+          "destination": "https://biosked.com/blog/posts/2023-11-06-manual-staff-scheduling-implications/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2023-11-29-rising-costs-in-healthcare/?$",
+          "destination": "https://biosked.com/blog/posts/2023-11-29-rising-costs-in-healthcare/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2023-12-21-year-2024/?$",
+          "destination": "https://biosked.com/blog/posts/2023-12-21-year-2024/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2024-01-31-five-healthcare-myths/?$",
+          "destination": "https://biosked.com/blog/posts/2024-01-31-five-healthcare-myths/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2025-01-29-medical-team-scheduling/?$",
+          "destination": "https://biosked.com/blog/posts/2025-01-29-medical-team-scheduling/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2025-03-15-optimizing-team-schedules/?$",
+          "destination": "https://biosked.com/blog/posts/2025-03-15-optimizing-team-schedules/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2025-07-03-shift-view/?$",
+          "destination": "https://biosked.com/blog/posts/2025-07-03-shift-view/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2025-11-05-rvu-based-scheduling/?$",
+          "destination": "https://biosked.com/blog/posts/2025-11-05-rvu-based-scheduling/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2026-03-25-fresh-new-look/?$",
+          "destination": "https://biosked.com/blog/posts/2026-03-25-fresh-new-look/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2026-09-07-what-we-fixed/?$",
+          "destination": "https://biosked.com/blog/posts/2026-09-07-what-we-fixed/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/?$",
+          "destination": "https://biosked.com/blog/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/about/?$",
+          "destination": "https://biosked.com/about/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/careers/?$",
+          "destination": "https://biosked.com/careers/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2021-11-02-biosked-independence/?$",
+          "destination": "https://biosked.com/blog/posts/2021-11-02-biosked-independence/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2022-03-15-consequences-improper-scheduling/?$",
+          "destination": "https://biosked.com/blog/posts/2022-03-15-consequences-improper-scheduling/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2022-05-15-understanding-equity/?$",
+          "destination": "https://biosked.com/blog/posts/2022-05-15-understanding-equity/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2022-09-04-culture-of-physician-wellness/?$",
+          "destination": "https://biosked.com/blog/posts/2022-09-04-culture-of-physician-wellness/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2023-08-09-five-reasons-to-automate/?$",
+          "destination": "https://biosked.com/blog/posts/2023-08-09-five-reasons-to-automate/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2023-08-09-physician-scheduling-ai/?$",
+          "destination": "https://biosked.com/blog/posts/2023-08-09-physician-scheduling-ai/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2023-08-09-scheduling-myths/?$",
+          "destination": "https://biosked.com/blog/posts/2023-08-09-scheduling-myths/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2023-08-09-scheduling-requests/?$",
+          "destination": "https://biosked.com/blog/posts/2023-08-09-scheduling-requests/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2023-09-21-healthcare-game-changer/?$",
+          "destination": "https://biosked.com/blog/posts/2023-09-21-healthcare-game-changer/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2023-10-03-prescription-efficient-healthcare/?$",
+          "destination": "https://biosked.com/blog/posts/2023-10-03-prescription-efficient-healthcare/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2023-10-17-schedule-automation-benefits/?$",
+          "destination": "https://biosked.com/blog/posts/2023-10-17-schedule-automation-benefits/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2023-10-17-smarter-anesthesia/?$",
+          "destination": "https://biosked.com/blog/posts/2023-10-17-smarter-anesthesia/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2023-10-24-revolution-healthcare-scheduling/?$",
+          "destination": "https://biosked.com/blog/posts/2023-10-24-revolution-healthcare-scheduling/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2023-11-06-manual-staff-scheduling-implications/?$",
+          "destination": "https://biosked.com/blog/posts/2023-11-06-manual-staff-scheduling-implications/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2023-11-29-rising-costs-in-healthcare/?$",
+          "destination": "https://biosked.com/blog/posts/2023-11-29-rising-costs-in-healthcare/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2023-12-21-year-2024/?$",
+          "destination": "https://biosked.com/blog/posts/2023-12-21-year-2024/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2024-01-31-five-healthcare-myths/?$",
+          "destination": "https://biosked.com/blog/posts/2024-01-31-five-healthcare-myths/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2025-01-29-medical-team-scheduling/?$",
+          "destination": "https://biosked.com/blog/posts/2025-01-29-medical-team-scheduling/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2025-03-15-optimizing-team-schedules/?$",
+          "destination": "https://biosked.com/blog/posts/2025-03-15-optimizing-team-schedules/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2025-07-03-shift-view/?$",
+          "destination": "https://biosked.com/blog/posts/2025-07-03-shift-view/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2025-11-05-rvu-based-scheduling/?$",
+          "destination": "https://biosked.com/blog/posts/2025-11-05-rvu-based-scheduling/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2026-03-25-fresh-new-look/?$",
+          "destination": "https://biosked.com/blog/posts/2026-03-25-fresh-new-look/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2026-09-07-what-we-fixed/?$",
+          "destination": "https://biosked.com/blog/posts/2026-09-07-what-we-fixed/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/?$",
+          "destination": "https://biosked.com/blog/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/about/?$",
+          "destination": "https://biosked.com/about/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/careers/?$",
+          "destination": "https://biosked.com/careers/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2021-11-02-biosked-independence/?$",
+          "destination": "https://biosked.com/blog/posts/2021-11-02-biosked-independence/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2022-03-15-consequences-improper-scheduling/?$",
+          "destination": "https://biosked.com/blog/posts/2022-03-15-consequences-improper-scheduling/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2022-05-15-understanding-equity/?$",
+          "destination": "https://biosked.com/blog/posts/2022-05-15-understanding-equity/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2022-09-04-culture-of-physician-wellness/?$",
+          "destination": "https://biosked.com/blog/posts/2022-09-04-culture-of-physician-wellness/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2023-08-09-five-reasons-to-automate/?$",
+          "destination": "https://biosked.com/blog/posts/2023-08-09-five-reasons-to-automate/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2023-08-09-physician-scheduling-ai/?$",
+          "destination": "https://biosked.com/blog/posts/2023-08-09-physician-scheduling-ai/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2023-08-09-scheduling-myths/?$",
+          "destination": "https://biosked.com/blog/posts/2023-08-09-scheduling-myths/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2023-08-09-scheduling-requests/?$",
+          "destination": "https://biosked.com/blog/posts/2023-08-09-scheduling-requests/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2023-09-21-healthcare-game-changer/?$",
+          "destination": "https://biosked.com/blog/posts/2023-09-21-healthcare-game-changer/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2023-10-03-prescription-efficient-healthcare/?$",
+          "destination": "https://biosked.com/blog/posts/2023-10-03-prescription-efficient-healthcare/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2023-10-17-schedule-automation-benefits/?$",
+          "destination": "https://biosked.com/blog/posts/2023-10-17-schedule-automation-benefits/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2023-10-17-smarter-anesthesia/?$",
+          "destination": "https://biosked.com/blog/posts/2023-10-17-smarter-anesthesia/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2023-10-24-revolution-healthcare-scheduling/?$",
+          "destination": "https://biosked.com/blog/posts/2023-10-24-revolution-healthcare-scheduling/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2023-11-06-manual-staff-scheduling-implications/?$",
+          "destination": "https://biosked.com/blog/posts/2023-11-06-manual-staff-scheduling-implications/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2023-11-29-rising-costs-in-healthcare/?$",
+          "destination": "https://biosked.com/blog/posts/2023-11-29-rising-costs-in-healthcare/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2023-12-21-year-2024/?$",
+          "destination": "https://biosked.com/blog/posts/2023-12-21-year-2024/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2024-01-31-five-healthcare-myths/?$",
+          "destination": "https://biosked.com/blog/posts/2024-01-31-five-healthcare-myths/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2025-01-29-medical-team-scheduling/?$",
+          "destination": "https://biosked.com/blog/posts/2025-01-29-medical-team-scheduling/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2025-03-15-optimizing-team-schedules/?$",
+          "destination": "https://biosked.com/blog/posts/2025-03-15-optimizing-team-schedules/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2025-07-03-shift-view/?$",
+          "destination": "https://biosked.com/blog/posts/2025-07-03-shift-view/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2025-11-05-rvu-based-scheduling/?$",
+          "destination": "https://biosked.com/blog/posts/2025-11-05-rvu-based-scheduling/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2026-03-25-fresh-new-look/?$",
+          "destination": "https://biosked.com/blog/posts/2026-03-25-fresh-new-look/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2026-09-07-what-we-fixed/?$",
+          "destination": "https://biosked.com/blog/posts/2026-09-07-what-we-fixed/",
+          "type": 301
+        },
+        {
           "regex": "^/fr/blog/257-ameliorations-plus-tard-ce-que-vos-tickets-nous-ont-appris/?$",
           "destination": "https://biosked.com/fr/blog/257-ameliorations-plus-tard-tout-ce-que-nous-avons-corrige/",
           "type": 301
@@ -1801,6 +3371,11 @@
         {
           "regex": "^/about-biosked/leadership-team/?$",
           "destination": "https://biosked.com/about/",
+          "type": 301
+        },
+        {
+          "regex": "^/category/news/?$",
+          "destination": "https://biosked.com/blog/",
           "type": 301
         },
         {
@@ -2375,6 +3950,526 @@
           "type": 301
         },
         {
+          "regex": "^/de/blog/?$",
+          "destination": "https://biosked.com/blog/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/about/?$",
+          "destination": "https://biosked.com/about/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/careers/?$",
+          "destination": "https://biosked.com/careers/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2021-11-02-biosked-independence/?$",
+          "destination": "https://biosked.com/blog/posts/2021-11-02-biosked-independence/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2022-03-15-consequences-improper-scheduling/?$",
+          "destination": "https://biosked.com/blog/posts/2022-03-15-consequences-improper-scheduling/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2022-05-15-understanding-equity/?$",
+          "destination": "https://biosked.com/blog/posts/2022-05-15-understanding-equity/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2022-09-04-culture-of-physician-wellness/?$",
+          "destination": "https://biosked.com/blog/posts/2022-09-04-culture-of-physician-wellness/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2023-08-09-five-reasons-to-automate/?$",
+          "destination": "https://biosked.com/blog/posts/2023-08-09-five-reasons-to-automate/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2023-08-09-physician-scheduling-ai/?$",
+          "destination": "https://biosked.com/blog/posts/2023-08-09-physician-scheduling-ai/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2023-08-09-scheduling-myths/?$",
+          "destination": "https://biosked.com/blog/posts/2023-08-09-scheduling-myths/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2023-08-09-scheduling-requests/?$",
+          "destination": "https://biosked.com/blog/posts/2023-08-09-scheduling-requests/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2023-09-21-healthcare-game-changer/?$",
+          "destination": "https://biosked.com/blog/posts/2023-09-21-healthcare-game-changer/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2023-10-03-prescription-efficient-healthcare/?$",
+          "destination": "https://biosked.com/blog/posts/2023-10-03-prescription-efficient-healthcare/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2023-10-17-schedule-automation-benefits/?$",
+          "destination": "https://biosked.com/blog/posts/2023-10-17-schedule-automation-benefits/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2023-10-17-smarter-anesthesia/?$",
+          "destination": "https://biosked.com/blog/posts/2023-10-17-smarter-anesthesia/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2023-10-24-revolution-healthcare-scheduling/?$",
+          "destination": "https://biosked.com/blog/posts/2023-10-24-revolution-healthcare-scheduling/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2023-11-06-manual-staff-scheduling-implications/?$",
+          "destination": "https://biosked.com/blog/posts/2023-11-06-manual-staff-scheduling-implications/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2023-11-29-rising-costs-in-healthcare/?$",
+          "destination": "https://biosked.com/blog/posts/2023-11-29-rising-costs-in-healthcare/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2023-12-21-year-2024/?$",
+          "destination": "https://biosked.com/blog/posts/2023-12-21-year-2024/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2024-01-31-five-healthcare-myths/?$",
+          "destination": "https://biosked.com/blog/posts/2024-01-31-five-healthcare-myths/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2025-01-29-medical-team-scheduling/?$",
+          "destination": "https://biosked.com/blog/posts/2025-01-29-medical-team-scheduling/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2025-03-15-optimizing-team-schedules/?$",
+          "destination": "https://biosked.com/blog/posts/2025-03-15-optimizing-team-schedules/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2025-07-03-shift-view/?$",
+          "destination": "https://biosked.com/blog/posts/2025-07-03-shift-view/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2025-11-05-rvu-based-scheduling/?$",
+          "destination": "https://biosked.com/blog/posts/2025-11-05-rvu-based-scheduling/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2026-03-25-fresh-new-look/?$",
+          "destination": "https://biosked.com/blog/posts/2026-03-25-fresh-new-look/",
+          "type": 301
+        },
+        {
+          "regex": "^/de/blog/posts/2026-09-07-what-we-fixed/?$",
+          "destination": "https://biosked.com/blog/posts/2026-09-07-what-we-fixed/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/?$",
+          "destination": "https://biosked.com/blog/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/about/?$",
+          "destination": "https://biosked.com/about/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/careers/?$",
+          "destination": "https://biosked.com/careers/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2021-11-02-biosked-independence/?$",
+          "destination": "https://biosked.com/blog/posts/2021-11-02-biosked-independence/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2022-03-15-consequences-improper-scheduling/?$",
+          "destination": "https://biosked.com/blog/posts/2022-03-15-consequences-improper-scheduling/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2022-05-15-understanding-equity/?$",
+          "destination": "https://biosked.com/blog/posts/2022-05-15-understanding-equity/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2022-09-04-culture-of-physician-wellness/?$",
+          "destination": "https://biosked.com/blog/posts/2022-09-04-culture-of-physician-wellness/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2023-08-09-five-reasons-to-automate/?$",
+          "destination": "https://biosked.com/blog/posts/2023-08-09-five-reasons-to-automate/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2023-08-09-physician-scheduling-ai/?$",
+          "destination": "https://biosked.com/blog/posts/2023-08-09-physician-scheduling-ai/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2023-08-09-scheduling-myths/?$",
+          "destination": "https://biosked.com/blog/posts/2023-08-09-scheduling-myths/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2023-08-09-scheduling-requests/?$",
+          "destination": "https://biosked.com/blog/posts/2023-08-09-scheduling-requests/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2023-09-21-healthcare-game-changer/?$",
+          "destination": "https://biosked.com/blog/posts/2023-09-21-healthcare-game-changer/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2023-10-03-prescription-efficient-healthcare/?$",
+          "destination": "https://biosked.com/blog/posts/2023-10-03-prescription-efficient-healthcare/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2023-10-17-schedule-automation-benefits/?$",
+          "destination": "https://biosked.com/blog/posts/2023-10-17-schedule-automation-benefits/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2023-10-17-smarter-anesthesia/?$",
+          "destination": "https://biosked.com/blog/posts/2023-10-17-smarter-anesthesia/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2023-10-24-revolution-healthcare-scheduling/?$",
+          "destination": "https://biosked.com/blog/posts/2023-10-24-revolution-healthcare-scheduling/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2023-11-06-manual-staff-scheduling-implications/?$",
+          "destination": "https://biosked.com/blog/posts/2023-11-06-manual-staff-scheduling-implications/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2023-11-29-rising-costs-in-healthcare/?$",
+          "destination": "https://biosked.com/blog/posts/2023-11-29-rising-costs-in-healthcare/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2023-12-21-year-2024/?$",
+          "destination": "https://biosked.com/blog/posts/2023-12-21-year-2024/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2024-01-31-five-healthcare-myths/?$",
+          "destination": "https://biosked.com/blog/posts/2024-01-31-five-healthcare-myths/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2025-01-29-medical-team-scheduling/?$",
+          "destination": "https://biosked.com/blog/posts/2025-01-29-medical-team-scheduling/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2025-03-15-optimizing-team-schedules/?$",
+          "destination": "https://biosked.com/blog/posts/2025-03-15-optimizing-team-schedules/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2025-07-03-shift-view/?$",
+          "destination": "https://biosked.com/blog/posts/2025-07-03-shift-view/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2025-11-05-rvu-based-scheduling/?$",
+          "destination": "https://biosked.com/blog/posts/2025-11-05-rvu-based-scheduling/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2026-03-25-fresh-new-look/?$",
+          "destination": "https://biosked.com/blog/posts/2026-03-25-fresh-new-look/",
+          "type": 301
+        },
+        {
+          "regex": "^/de-ch/blog/posts/2026-09-07-what-we-fixed/?$",
+          "destination": "https://biosked.com/blog/posts/2026-09-07-what-we-fixed/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/?$",
+          "destination": "https://biosked.com/blog/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/about/?$",
+          "destination": "https://biosked.com/about/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/careers/?$",
+          "destination": "https://biosked.com/careers/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2021-11-02-biosked-independence/?$",
+          "destination": "https://biosked.com/blog/posts/2021-11-02-biosked-independence/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2022-03-15-consequences-improper-scheduling/?$",
+          "destination": "https://biosked.com/blog/posts/2022-03-15-consequences-improper-scheduling/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2022-05-15-understanding-equity/?$",
+          "destination": "https://biosked.com/blog/posts/2022-05-15-understanding-equity/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2022-09-04-culture-of-physician-wellness/?$",
+          "destination": "https://biosked.com/blog/posts/2022-09-04-culture-of-physician-wellness/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2023-08-09-five-reasons-to-automate/?$",
+          "destination": "https://biosked.com/blog/posts/2023-08-09-five-reasons-to-automate/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2023-08-09-physician-scheduling-ai/?$",
+          "destination": "https://biosked.com/blog/posts/2023-08-09-physician-scheduling-ai/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2023-08-09-scheduling-myths/?$",
+          "destination": "https://biosked.com/blog/posts/2023-08-09-scheduling-myths/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2023-08-09-scheduling-requests/?$",
+          "destination": "https://biosked.com/blog/posts/2023-08-09-scheduling-requests/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2023-09-21-healthcare-game-changer/?$",
+          "destination": "https://biosked.com/blog/posts/2023-09-21-healthcare-game-changer/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2023-10-03-prescription-efficient-healthcare/?$",
+          "destination": "https://biosked.com/blog/posts/2023-10-03-prescription-efficient-healthcare/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2023-10-17-schedule-automation-benefits/?$",
+          "destination": "https://biosked.com/blog/posts/2023-10-17-schedule-automation-benefits/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2023-10-17-smarter-anesthesia/?$",
+          "destination": "https://biosked.com/blog/posts/2023-10-17-smarter-anesthesia/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2023-10-24-revolution-healthcare-scheduling/?$",
+          "destination": "https://biosked.com/blog/posts/2023-10-24-revolution-healthcare-scheduling/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2023-11-06-manual-staff-scheduling-implications/?$",
+          "destination": "https://biosked.com/blog/posts/2023-11-06-manual-staff-scheduling-implications/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2023-11-29-rising-costs-in-healthcare/?$",
+          "destination": "https://biosked.com/blog/posts/2023-11-29-rising-costs-in-healthcare/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2023-12-21-year-2024/?$",
+          "destination": "https://biosked.com/blog/posts/2023-12-21-year-2024/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2024-01-31-five-healthcare-myths/?$",
+          "destination": "https://biosked.com/blog/posts/2024-01-31-five-healthcare-myths/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2025-01-29-medical-team-scheduling/?$",
+          "destination": "https://biosked.com/blog/posts/2025-01-29-medical-team-scheduling/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2025-03-15-optimizing-team-schedules/?$",
+          "destination": "https://biosked.com/blog/posts/2025-03-15-optimizing-team-schedules/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2025-07-03-shift-view/?$",
+          "destination": "https://biosked.com/blog/posts/2025-07-03-shift-view/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2025-11-05-rvu-based-scheduling/?$",
+          "destination": "https://biosked.com/blog/posts/2025-11-05-rvu-based-scheduling/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2026-03-25-fresh-new-look/?$",
+          "destination": "https://biosked.com/blog/posts/2026-03-25-fresh-new-look/",
+          "type": 301
+        },
+        {
+          "regex": "^/nl/blog/posts/2026-09-07-what-we-fixed/?$",
+          "destination": "https://biosked.com/blog/posts/2026-09-07-what-we-fixed/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/?$",
+          "destination": "https://biosked.com/blog/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/about/?$",
+          "destination": "https://biosked.com/about/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/careers/?$",
+          "destination": "https://biosked.com/careers/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2021-11-02-biosked-independence/?$",
+          "destination": "https://biosked.com/blog/posts/2021-11-02-biosked-independence/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2022-03-15-consequences-improper-scheduling/?$",
+          "destination": "https://biosked.com/blog/posts/2022-03-15-consequences-improper-scheduling/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2022-05-15-understanding-equity/?$",
+          "destination": "https://biosked.com/blog/posts/2022-05-15-understanding-equity/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2022-09-04-culture-of-physician-wellness/?$",
+          "destination": "https://biosked.com/blog/posts/2022-09-04-culture-of-physician-wellness/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2023-08-09-five-reasons-to-automate/?$",
+          "destination": "https://biosked.com/blog/posts/2023-08-09-five-reasons-to-automate/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2023-08-09-physician-scheduling-ai/?$",
+          "destination": "https://biosked.com/blog/posts/2023-08-09-physician-scheduling-ai/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2023-08-09-scheduling-myths/?$",
+          "destination": "https://biosked.com/blog/posts/2023-08-09-scheduling-myths/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2023-08-09-scheduling-requests/?$",
+          "destination": "https://biosked.com/blog/posts/2023-08-09-scheduling-requests/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2023-09-21-healthcare-game-changer/?$",
+          "destination": "https://biosked.com/blog/posts/2023-09-21-healthcare-game-changer/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2023-10-03-prescription-efficient-healthcare/?$",
+          "destination": "https://biosked.com/blog/posts/2023-10-03-prescription-efficient-healthcare/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2023-10-17-schedule-automation-benefits/?$",
+          "destination": "https://biosked.com/blog/posts/2023-10-17-schedule-automation-benefits/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2023-10-17-smarter-anesthesia/?$",
+          "destination": "https://biosked.com/blog/posts/2023-10-17-smarter-anesthesia/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2023-10-24-revolution-healthcare-scheduling/?$",
+          "destination": "https://biosked.com/blog/posts/2023-10-24-revolution-healthcare-scheduling/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2023-11-06-manual-staff-scheduling-implications/?$",
+          "destination": "https://biosked.com/blog/posts/2023-11-06-manual-staff-scheduling-implications/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2023-11-29-rising-costs-in-healthcare/?$",
+          "destination": "https://biosked.com/blog/posts/2023-11-29-rising-costs-in-healthcare/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2023-12-21-year-2024/?$",
+          "destination": "https://biosked.com/blog/posts/2023-12-21-year-2024/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2024-01-31-five-healthcare-myths/?$",
+          "destination": "https://biosked.com/blog/posts/2024-01-31-five-healthcare-myths/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2025-01-29-medical-team-scheduling/?$",
+          "destination": "https://biosked.com/blog/posts/2025-01-29-medical-team-scheduling/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2025-03-15-optimizing-team-schedules/?$",
+          "destination": "https://biosked.com/blog/posts/2025-03-15-optimizing-team-schedules/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2025-07-03-shift-view/?$",
+          "destination": "https://biosked.com/blog/posts/2025-07-03-shift-view/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2025-11-05-rvu-based-scheduling/?$",
+          "destination": "https://biosked.com/blog/posts/2025-11-05-rvu-based-scheduling/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2026-03-25-fresh-new-look/?$",
+          "destination": "https://biosked.com/blog/posts/2026-03-25-fresh-new-look/",
+          "type": 301
+        },
+        {
+          "regex": "^/it/blog/posts/2026-09-07-what-we-fixed/?$",
+          "destination": "https://biosked.com/blog/posts/2026-09-07-what-we-fixed/",
+          "type": 301
+        },
+        {
           "regex": "^/fr/blog/257-ameliorations-plus-tard-ce-que-vos-tickets-nous-ont-appris/?$",
           "destination": "https://biosked.com/fr/blog/257-ameliorations-plus-tard-tout-ce-que-nous-avons-corrige/",
           "type": 301
@@ -2402,6 +4497,11 @@
         {
           "regex": "^/about-biosked/leadership-team/?$",
           "destination": "https://biosked.com/about/",
+          "type": 301
+        },
+        {
+          "regex": "^/category/news/?$",
+          "destination": "https://biosked.com/blog/",
           "type": 301
         },
         {
