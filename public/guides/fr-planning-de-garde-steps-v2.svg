@@ -1,7 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="955" viewBox="0 0 1200 955" role="img" aria-labelledby="title desc">
 <title id="title">Construire un planning de garde en six étapes</title><desc id="desc">Les six étapes pour planifier, vérifier l’équité et publier un planning de garde.</desc>
-<rect width="1200" height="955" rx="28" fill="#F5F8FB"/>
-<rect x="1" y="1" width="1198" height="953" rx="27" fill="none" stroke="#D9E4EC" stroke-width="2"/>
+<rect width="1200" height="955" fill="#F5F8FB"/>
 <g transform="translate(62 40) scale(1.5)">
 <g clip-path="url(#clip0_1834_1075)">
 <path d="M42.2246 11.5512C43.559 10.8402 44.4194 9.59517 44.4194 7.72668C44.4194 4.5858 42.0478 2.77747 39.0527 2.77747H31.5222V20.5637H39.7345C42.6985 20.5637 45.0118 18.8447 45.0118 15.7019C45.0118 13.5381 43.8853 12.2038 42.2246 11.5512ZM40.5056 8.14231C40.5056 9.17955 39.6452 10.0691 38.5788 10.0691H35.436V6.24465H38.5788C39.6452 6.24465 40.5056 7.0759 40.5056 8.14231ZM39.1712 17.0947H35.436V13.2702H39.1712C40.2686 13.2702 41.098 14.1598 41.098 15.1988C41.098 16.2652 40.2686 17.0947 39.1712 17.0947Z" fill="black"/>
@@ -30,7 +29,6 @@
 </clipPath>
 </defs>
 </g>
-<text x="263" y="62" fill="#10264B" font-family="Inter, Arial, sans-serif" font-size="19" font-weight="700" text-anchor="start" letter-spacing="1.5">REPÈRE PRATIQUE</text>
 <text x="62" y="128" fill="#10264B" font-family="Inter, Arial, sans-serif" font-size="45" font-weight="750" text-anchor="start">Construire un planning de garde</text>
 <text x="62" y="189" fill="#5D6B7B" font-family="Inter, Arial, sans-serif" font-size="25" font-weight="400" text-anchor="start">Six étapes, dans cet ordre : l’équité se vérifie avant publication</text>
 <text x="57" y="247" fill="#38ACCA" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700" text-anchor="start" letter-spacing="1.1">01  CADRER</text>
