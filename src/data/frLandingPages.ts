@@ -25,33 +25,122 @@ export const specialtyPages: Record<string, FrenchLandingPage> = {
   radiologie: {
     slug: "radiologie",
     type: "specialty",
-    eyebrow: "Radiologie",
-    title: "Vacations, modalités, mutualisation : le planning des groupes d’imagerie",
-    description:
-      "Momentum construit les vacations par site et par modalité, applique vos règles de mutualisation et vos compteurs d’équité, et se couple à votre RIS. Les groupes d’imagerie français s’appuient dessus depuis plus de quinze ans.",
+    eyebrow: "Radiologie et imagerie médicale",
+    title: "Le logiciel de planning des radiologues et des groupes d’imagerie",
+    description: "Vacations par site et par modalité, mutualisation entre sites, gardes, téléradiologie et remplacements : Momentum construit le planning des radiologues, des manipulateurs et des secrétaires selon vos règles, et se connecte au RIS, à la prise de rendez-vous et au badgeage.",
     metaTitle: "Logiciel de planning radiologues et imagerie | Momentum",
-    metaDescription:
-      "Vacations par modalité, mutualisation multi-sites, remplacements, couplage RIS NGI : Momentum planifie les groupes d’imagerie français, avec des études de cas publiées.",
-    primaryPain:
-      "Répartir 30 ou 40 radiologues sur une dizaine de sites, entre scanner, IRM, mammographie et échographie, avec les gardes, les désidératas et les absences : sur un tableur, chaque version coûte des journées de travail et repose sur des arbitrages que personne ne peut retracer.",
+    metaDescription: "Logiciel de planning pour radiologues et groupes d’imagerie : vacations par site et modalité, mutualisation multisite, gardes, remplacements, couplage RIS et prise de rendez-vous. Des groupes d’imagerie clients depuis plus de dix ans.",
+    primaryPain: "Répartir des dizaines de radiologues sur plusieurs sites, entre scanner, IRM, mammographie, échographie et radiologie conventionnelle, avec les gardes, la téléradiologie, les désidératas et les absences : sur un tableur, chaque version coûte des journées et repose sur des arbitrages que personne ne peut retracer. Et le planning des radiologues n’est que la moitié du travail, car manipulateurs, secrétaires et agents d’accueil doivent suivre le même mouvement.",
+    painsHeading: "Ce qui complique le planning d’un groupe d’imagerie",
     pains: [
       "construire les vacations par site et par modalité en mutualisant les effectifs",
-      "reproposer un remplaçant compétent quand tombe une absence ou une panne de modalité",
-      "tenir des compteurs d’équité opposables : gardes, week-ends, jours fériés, pénibilité",
-      "coupler le planning au RIS, à la prise de rendez-vous et à la paie",
+      "trouver un remplaçant compétent quand tombe une absence ou une panne de modalité",
+      "tenir des compteurs d’équité opposables : gardes, week-ends, jours fériés, pénibilité",
+      "aligner le planning sur le RIS, la prise de rendez-vous et le badgeage"
     ],
+    outcomesHeading: "Ce que Momentum apporte à un groupe d’imagerie",
     outcomes: [
-      "des propositions de remplacement quasi immédiates en cas d’aléa (IMALLIANCE-HDF, 34 radiologues sur 12 sites)",
-      "3 générations de plannings par an au lieu d’une construction permanente (Les Cèdres, client depuis 2014)",
-      "« le gain d’un ETP voire deux » via le trio Momentum–EasyDoct–Kelio (IMAGIR, étude de cas publiée)",
-      "un couplage RIS NGI en production chez Les Cèdres et IMALLIANCE-HDF",
+      "un planning par site et par modalité, radiologues, manipulateurs et secrétaires compris",
+      "des remplaçants proposés selon les compétences et les disponibilités quand un aléa survient",
+      "« le gain d’un ETP voire deux » grâce à l’interconnexion Momentum, EasyDoct et Kelio (IMAGIR Bordeaux, étude de cas 2021)",
+      "des compteurs d’équité, de jours fériés travaillés et d’astreintes que chaque associé peut consulter"
     ],
-    proof:
-      "IMALLIANCE-HDF (34 radiologues, 12 sites, RIS NGI), IRIS GRIM (45 radiologues, 13 sites nantais), Les Cèdres (client depuis 2014, pointage et couplage RIS NGI) et IMAGIR (Bordeaux, 9 sites, EasyDoct et Kelio/Bodet) documentent leurs résultats dans des études de cas publiées.",
+    quote: {
+      text: "Le trio Momentum, Easydoct et Kelio est indéniable et apporte une réelle plus-value. L’interconnexion de ces outils permet facilement le gain d’un ETP voire deux.",
+      cite: "Anthony Bagot, responsable opérationnel, IMAGIR Bordeaux (étude de cas, juin 2021)",
+      href: "/fr/cas-clients/imagir-bordeaux/"
+    },
+    sections: [
+      {
+        heading: "Des vacations par site et par modalité",
+        paragraphs: [
+          "Chaque site garde ses trames : salles, modalités, horaires d’ouverture, vacations du matin et de l’après-midi. Les compétences de chaque radiologue décident des vacations qui lui sont proposées : sénologie, interventionnel, IRM ostéo-articulaire, pédiatrie. Un radiologue qui ne fait pas de mammographie n’y est jamais affecté.",
+          "Les mêmes règles s’appliquent aux manipulateurs, avec leurs propres compétences par modalité et leurs sites de rattachement. Un manipulateur référent peut rester sédentaire sur un site, un autre tourner entre plusieurs cabinets."
+        ]
+      },
+      {
+        heading: "Mutualisation entre sites et téléradiologie",
+        paragraphs: [
+          "Dans un groupe multisite, les radiologues ne sont plus attachés à un seul cabinet. Momentum répartit les vacations entre les sites selon vos règles de mutualisation, et les vacations de téléradiologie ou de lecture à distance se planifient comme les autres, avec les mêmes compteurs.",
+          "La vue d’ensemble montre qui est où, site par site et jour par jour, et repère les vacations non couvertes avant publication."
+        ]
+      },
+      {
+        heading: "Absences, pannes et remplacements",
+        paragraphs: [
+          "Une absence imprévue, un IRM en maintenance, un cabinet qui ferme une demi-journée : Momentum propose des remplaçants compétents et disponibles pour les vacations touchées, en tenant compte des compteurs. Le responsable choisit, et l’équipe concernée est prévenue sur son téléphone."
+        ]
+      },
+      {
+        heading: "Équité entre associés et gardes",
+        paragraphs: [
+          "Gardes, astreintes, samedis, jours fériés, vacations pénibles : chaque compteur est visible par les associés et sert de base aux arbitrages. Les listes d’équité et de jours fériés travaillés sortent directement de l’outil au lieu d’être recalculées à la main en fin d’année.",
+          "Les désidératas, les temps partiels et les remplaçants s’ajoutent à cette base sans la remplacer."
+        ]
+      },
+      {
+        heading: "RIS, prise de rendez-vous, badgeage et paie",
+        paragraphs: [
+          "Momentum se couple au RIS, par exemple celui de NGI, pour que les vacations planifiées correspondent à l’activité du terrain. Chez IMAGIR, la connexion avec la prise de rendez-vous EasyDoct et avec la gestion des temps Kelio de Bodet complète le planning (étude de cas 2021).",
+          "Les heures, les congés et le badgeage des salariés sont suivis dans le même outil, et la paie reçoit un export sans ressaisie."
+        ]
+      },
+      {
+        heading: "Internes et services hospitaliers",
+        paragraphs: [
+          "Dans un service de radiologie de CHU, les internes ont leurs propres vacations par modalité et par site, et des règles propres à leur groupe, dans le même planning que les seniors. Les gardes du service et l’activité de jour restent dans un seul outil."
+        ]
+      }
+    ],
+    proof: "Des groupes d’imagerie planifient leurs équipes avec Momentum depuis plus de dix ans, comme Imageries Les Cèdres à Saint-Malo, client depuis 2014. Au total, plus de 250 organisations de santé utilisent Momentum sur plus de 1 000 sites, dans neuf pays.",
+    faq: [
+      {
+        q: "Momentum remplace-t-il le RIS ou l’agenda de rendez-vous ?",
+        a: "Non. Momentum planifie les équipes : qui travaille sur quel site, quelle modalité et quand. Il se connecte au RIS et à la prise de rendez-vous pour que les deux restent alignés. Momentum gère uniquement des données de planification, pas des dossiers médicaux de patients."
+      },
+      {
+        q: "Peut-on planifier plusieurs sites dans le même outil ?",
+        a: "Oui. Un même planning couvre tous vos sites, et chaque site garde ses trames, ses modalités et ses horaires. La mutualisation des radiologues et des manipulateurs entre sites suit vos règles."
+      },
+      {
+        q: "Les manipulateurs et les secrétaires sont-ils planifiés aussi ?",
+        a: "Oui. Radiologues, manipulateurs, secrétaires et agents d’accueil sont planifiés dans le même outil, chacun avec ses compétences, ses contrats et ses règles."
+      },
+      {
+        q: "Que se passe-t-il en cas de panne de modalité ou d’absence ?",
+        a: "Momentum propose des remplaçants compétents et disponibles pour les vacations touchées, en tenant compte des compteurs d’équité. Le responsable valide, et les personnes concernées reçoivent une notification."
+      },
+      {
+        q: "Combien coûte Momentum ?",
+        a: "Les abonnements démarrent à 5,99 € par professionnel planifié et par mois, en quatre formules (Starter, Plus, Pro, Enterprise). Le détail est sur notre page Tarifs."
+      },
+      {
+        q: "Où sont hébergées les données ?",
+        a: "Dans l’Union européenne, avec un traitement aligné sur le RGPD. Votre contrat est signé avec Bio-Optronics Sàrl, notre entité suisse."
+      }
+    ],
+    resource: {
+      label: "Lire les études de cas des groupes d’imagerie",
+      href: "/fr/cas-clients/"
+    },
     related: [
-      { label: "Cas clients radiologie", href: "/fr/cas-clients/" },
-      { label: "Gestion des requêtes", href: "/fr/fonctionnalites/gestion-des-requetes-des-equipes/" },
-    ],
+      {
+        label: "Lire le cas IMAGIR Bordeaux",
+        href: "/fr/cas-clients/imagir-bordeaux/"
+      },
+      {
+        label: "Badgeage et suivi RH",
+        href: "/fr/fonctionnalites/badgeage-et-suivi-rh/"
+      },
+      {
+        label: "Planning de garde",
+        href: "/fr/fonctionnalites/plannings-de-garde-centralises/"
+      },
+      {
+        label: "Tarifs",
+        href: "/fr/pricing/"
+      }
+    ]
   },
   anesthesie: {
     slug: "anesthesie",
