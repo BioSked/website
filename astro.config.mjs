@@ -96,10 +96,10 @@ export default defineConfig({
                 const m = page.match(/^https:\/\/biosked\.com\/(de|de-ch|nl|it|fr-ch)\/(.*)$/);
                 const allowed = {
                     de: ['', 'demo/', 'pricing/', 'getquote/', 'referenzen/', 'sicherheit-und-daten/', 'ratgeber/dienstplan-aerzte/'],
-                    'de-ch': ['', 'demo/', 'pricing/', 'getquote/', 'referenzen/', 'sicherheit-und-daten/', 'impressum/'],
+                    'de-ch': ['', 'demo/', 'pricing/', 'getquote/', 'referenzen/', 'sicherheit-und-daten/', 'impressum/', 'ratgeber/dienstplan-aerzte/'],
                     nl: ['', 'demo/', 'pricing/', 'getquote/', 'referenties/', 'beveiliging-en-gegevens/', 'arbeidstijdregistratie-2027/', 'gids/wachtrooster-artsen/'],
                     it: ['', 'demo/', 'pricing/', 'getquote/', 'referenze/', 'sicurezza-e-dati/', 'guida/turni-di-guardia-medici/'],
-                    'fr-ch': ['', 'pricing/', 'demo/', 'getquote/', 'securite-donnees/', 'mentions-legales/'],
+                    'fr-ch': ['', 'pricing/', 'demo/', 'getquote/', 'securite-donnees/', 'mentions-legales/', 'guide/planning-de-garde-medecins/'],
                 };
                 // The knowledge base is fully translated for de/nl/it; de-ch and fr-ch read de/fr.
                 if (m && m[2].startsWith('help/')) return ['de', 'nl', 'it'].includes(m[1]);

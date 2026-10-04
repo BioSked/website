@@ -28,12 +28,14 @@ Key facts (published): used by more than 250 healthcare organizations on more th
 - [Cas clients](https://biosked.com/fr/cas-clients/): Published customer case studies (radiology groups, emergency departments, hospitals).
 - [Sécurité et données](https://biosked.com/fr/securite-donnees/): Hosting in the European Union, GDPR, data processing agreement on request.
 - [Suisse romande](https://biosked.com/fr-ch/): Swiss French overview, prices in CHF.
+- [Planning de garde et de piquet (Suisse)](https://biosked.com/fr-ch/guide/planning-de-garde-medecins/): Swiss guide (Loi sur le travail, OLT 1 and 2, service de piquet) with a free Excel template.
 
 ## Other languages
 
 - [Deutsch](https://biosked.com/de/): German product overview.
 - [Nederlands](https://biosked.com/nl/): Dutch product overview.
 - [Italiano](https://biosked.com/it/): Italian product overview.
+- [Dienstplan für Ärztinnen und Ärzte (Schweiz)](https://biosked.com/de-ch/ratgeber/dienstplan-aerzte/): Swiss German guide (Arbeitsgesetz, ArGV 1 and 2, Pikettdienst) with a free Excel template.
 - [Dienstplan für Ärzte](https://biosked.com/de/ratgeber/dienstplan-aerzte/): German guide to fair physician duty rosters (Arbeitszeitgesetz, TV-Ärzte) with a free Excel template.
 - [Wachtrooster voor artsen](https://biosked.com/nl/gids/wachtrooster-artsen/): Dutch guide for Belgium (law of 12 December 2010) and the Netherlands, with a free Excel template.
 - [Turni di guardia dei medici](https://biosked.com/it/guida/turni-di-guardia-medici/): Italian guide (D.Lgs. 66/2003, CCNL Area Sanità) with a free Excel template.
