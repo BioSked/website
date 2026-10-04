@@ -6,12 +6,12 @@ author: "BioSked"
 byline: "Modèle mis à jour le 4 octobre 2026"
 title: "Planning de garde des médecins : règles, équité et modèle Excel gratuit"
 description: "Construire un planning de garde équitable : ce que dit le Code de la santé publique, les compteurs à suivre, la méthode en six étapes et un modèle Excel gratuit à télécharger."
-image: "../../../assets/fr-blog/2026-10-04-planning-de-garde-medecins-modele-excel.png"
+image: "../../../assets/fr-blog/2026-10-04-planning-de-garde-medecins-editorial.webp"
 canonicalPath: "/fr/blog/planning-de-garde-medecins/"
 
 ---
 
-![Modèle Excel de planning de garde : planning, contrôles et compteurs d’équité par médecin](../../../assets/fr-blog/2026-10-04-planning-de-garde-medecins-modele-excel.png)
+<figure class="biosked-branded-visual"><img src="/guides/fr-planning-de-garde-editorial.webp" alt="Deux professionnels de santé organisent un tableau de gardes sur papier" width="1600" height="900" loading="eager" decoding="async"></figure>
 
 Le planning de garde est le document le plus discuté d’un service médical. Une nuit de trop, un réveillon attribué deux années de suite à la même personne, et c’est la confiance dans tout le planning qui s’effrite.
 
@@ -49,7 +49,7 @@ Pour les praticiens hospitaliers des établissements publics, l’[article R6152
 - **Un repos quotidien de onze heures consécutives** par période de 24 heures, garanti après le dernier déplacement d’une astreinte.
 - **24 heures de travail continu au plus**, en cas de nécessité de service, suivies aussitôt d’un repos d’une durée équivalente. C’est ce que l’on appelle couramment le repos de sécurité.
 
-<figure class="max-w-2xl mx-auto"><picture><source media="(max-width: 640px)" srcset="/guides/fr-planning-de-garde-timeline-m.webp" width="400" height="483"><img src="/guides/fr-planning-de-garde-timeline.webp" alt="Deux exemples : une garde sur place de 24 heures suivie de 24 heures de repos, et une astreinte de nuit dont le dernier déplacement finit à 8 heures, suivie de 11 heures de repos" width="672" height="421" loading="lazy" decoding="async"></picture></figure>
+<figure class="max-w-2xl mx-auto"><picture><source media="(max-width: 640px)" srcset="/guides/fr-planning-de-garde-timeline-v2-m.svg" width="400" height="606"><img src="/guides/fr-planning-de-garde-timeline-v2.svg" alt="Deux exemples : une garde sur place de 24 heures suivie de 24 heures de repos, et une astreinte de nuit dont le dernier déplacement finit à 8 heures, suivie de 11 heures de repos" width="672" height="426" loading="lazy" decoding="async"></picture></figure>
 
 Les autres statuts relèvent d’autres textes ou de règles propres à l’établissement : internes et docteurs juniors, praticiens contractuels, médecins libéraux en clinique ou en groupe d’imagerie. Le nombre maximal de gardes et d’astreintes qu’un praticien peut être tenu d’assurer est fixé par arrêté, et ce texte a été modifié en 2025. Vérifiez la version en vigueur sur Légifrance et faites valider votre organisation par la direction des affaires médicales.
 
@@ -78,7 +78,7 @@ Les 104 samedis et dimanches et les 11 jours fériés de l’année se réparti
 
 ## Construire le planning de garde en six étapes
 
-<figure class="max-w-2xl mx-auto"><picture><source media="(max-width: 640px)" srcset="/guides/fr-planning-de-garde-steps-m.webp" width="400" height="610"><img src="/guides/fr-planning-de-garde-steps.webp" alt="Les six étapes : lister les lignes, écrire les règles, collecter absences et souhaits, remplir dans le bon ordre, relire avec les compteurs, publier et tracer les échanges" width="672" height="428" loading="lazy" decoding="async"></picture></figure>
+<figure class="max-w-2xl mx-auto"><picture><source media="(max-width: 640px)" srcset="/guides/fr-planning-de-garde-steps-v2-m.svg" width="400" height="839"><img src="/guides/fr-planning-de-garde-steps-v2.svg" alt="Les six étapes : lister les lignes, écrire les règles, collecter absences et souhaits, remplir dans le bon ordre, relire avec les compteurs, publier et tracer les échanges" width="672" height="535" loading="lazy" decoding="async"></picture></figure>
 
 ### 1. Lister les lignes
 
@@ -107,6 +107,8 @@ Chaque échange validé met à jour les compteurs. Sans cela, l’équité affic
 ## Le modèle Excel gratuit
 
 **[Télécharger le modèle de planning de garde](/modeles/modele-planning-de-garde.xlsx)** (fichier Excel .xlsx, sans macro, gratuit).
+
+<figure class="biosked-branded-visual"><img src="/guides/fr-planning-de-garde-modele-excel.png" alt="Aperçu du modèle Excel de planning de garde : planning, contrôles et compteurs d’équité par médecin" width="1600" height="900" loading="lazy" decoding="async"></figure>
 
 - **Deux lignes de garde** à nommer, par exemple « Garde sur place » et « Astreinte », sur une année complète.
 - **L’équipe, les absences et les jours fériés** : quotité de chaque médecin, absences (du, au, motif), jours fériés de 2026 à 2028.
