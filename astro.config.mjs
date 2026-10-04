@@ -6,6 +6,7 @@ import { unified } from '@astrojs/markdown-remark';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 import rehypeAddClasses from './src/lib/rehypeAddClasses.mjs';
+import rehypeRaw from 'rehype-raw';
 import rehypeUnwrapImages from 'rehype-unwrap-images';
 
 // Legacy biosked.fr blog URLs lived at /blog/<fr-slug>. The posts now live at
@@ -214,6 +215,8 @@ export default defineConfig({
     markdown: {
         processor: unified({
             rehypePlugins: [
+                // Parse raw HTML in migrated posts so the article classes below reach it too.
+                rehypeRaw,
                 rehypeUnwrapImages,
                 [rehypeAddClasses, {
                     h1: 'text-display-section font-bold text-center max-w-xl mx-auto mb-6',
