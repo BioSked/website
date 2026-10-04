@@ -22,6 +22,9 @@
         ],
         "net": [
           "biosked-net-redirect"
+        ],
+        "blog": [
+          "biosked-blog-redirect"
         ]
       }
     }

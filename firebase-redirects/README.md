@@ -16,6 +16,7 @@ Hosting runbook on SharePoint (Momentum > 05. General SaaS).
 | biosked.nl, www | `biosked-nl-redirect` (`nl`) | home to biosked.com/nl/; legacy paths to their final page; other paths kept as is |
 | biosked.ch, www | `biosked-ch-redirect` (`ch`) | home to biosked.com/fr-ch/; legacy paths to their final page; other paths kept as is |
 | biosked.net, www | `biosked-net-redirect` (`net`) | home to biosked.com/; legacy paths to their final page; other paths kept as is |
+| blog.biosked.com | `biosked-blog-redirect` (`blog`) | the old WordPress blog: known posts to their biosked.com post, anything else to biosked.com/blog/ (DNS in zone `biosked-com-public`) |
 
 Every legacy URL reaches its final page in one hop, trailing slash kept. GitHub Pages
 cannot send a real 301, so the rules point at final pages, never at
@@ -31,13 +32,13 @@ sites. The kb and go rules are in `scripts/generate-firebase-redirects.mjs`. Edi
 node scripts/generate-redirects.mjs
 node scripts/generate-firebase-redirects.mjs
 cd firebase-redirects
-npx firebase-tools deploy --only hosting:fr,hosting:kbfr,hosting:gofr,hosting:nl,hosting:ch,hosting:net
+npx firebase-tools deploy --only hosting:fr,hosting:kbfr,hosting:gofr,hosting:nl,hosting:ch,hosting:net,hosting:blog
 cd ..
 node scripts/test-firebase-redirects.mjs --live
 ```
 
-Name the targets you changed: a bare `--only hosting` redeploys all six sites
-at once.
+Name the targets you changed: a bare `--only hosting` redeploys every site in
+this file at once.
 Deploying needs a Google account with access to `momentum-firebase-87e95`
 (`npx firebase-tools login`). The project is on the free Spark plan: keep these
 sites redirect-only, never host files here (shared 360 MB/day transfer quota).

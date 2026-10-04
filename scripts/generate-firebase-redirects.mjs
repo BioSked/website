@@ -9,6 +9,7 @@
  *   biosked-nl-redirect     biosked.nl, www             -> biosked.com/nl/
  *   biosked-ch-redirect     biosked.ch, www             -> biosked.com/fr-ch/
  *   biosked-net-redirect    biosked.net, www            -> biosked.com/
+ *   biosked-blog-redirect   blog.biosked.com            old WordPress blog -> biosked.com/blog/
  *
  * Every legacy URL goes to its final biosked.com page in ONE hop (GitHub Pages
  * cannot send real 301s, so pointing at biosked.com's own redirect stubs would
@@ -149,8 +150,20 @@ const countrySite = (target, home) => ({
     ],
 });
 
+// blog.biosked.com: the old WordPress blog (PEAL hosting, answering 500 by Oct 2026).
+// Known legacy slugs go to their post; anything else to the blog index.
+const blogSite = {
+    target: 'blog',
+    public: 'public',
+    redirects: [
+        { source: '/', destination: `${ORIGIN}/blog/`, type: 301 },
+        ...exact,
+        { regex: '^/.*$', destination: `${ORIGIN}/blog/`, type: 301 },
+    ],
+};
+
 const firebaseJson = {
-    hosting: [frSite, kbSite, goSite, countrySite('nl', '/nl/'), countrySite('ch', '/fr-ch/'), countrySite('net', '/')],
+    hosting: [frSite, kbSite, goSite, countrySite('nl', '/nl/'), countrySite('ch', '/fr-ch/'), countrySite('net', '/'), blogSite],
 };
 writeFileSync(new URL('../firebase-redirects/firebase.json', import.meta.url), JSON.stringify(firebaseJson, null, 2) + '\n');
 console.log(`wrote firebase-redirects/firebase.json (${frSite.redirects.length} biosked.fr rules, ${exact.length} from astro.config.mjs)`);
