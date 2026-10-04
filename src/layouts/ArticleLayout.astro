@@ -15,6 +15,11 @@ const pubDate = postDate.toLocaleDateString(DATE_LOCALES[locale] ?? 'en-US', {
     day: 'numeric'
 });
 
+// A post can replace the byline (e.g. "Modèle mis à jour le ..."); generic team
+// handles such as "Marketing" are not shown as authors, only real names are.
+const authorName = typeof frontmatter.author === 'string' && /\s/.test(frontmatter.author.trim()) ? frontmatter.author.trim() : '';
+const byline = frontmatter.byline ?? (authorName ? `${authorName} · ${pubDate}` : pubDate);
+
 const canonical = new URL(Astro.url.pathname.replace(/\/?$/, '/'), Astro.site ?? 'https://biosked.com').toString();
 const articleSchema = JSON.stringify({
     '@context': 'https://schema.org',
@@ -24,6 +29,7 @@ const articleSchema = JSON.stringify({
             headline: frontmatter.title,
             description: frontmatter.description,
             datePublished: new Date(frontmatter.date).toISOString(),
+            ...(frontmatter.updated ? { dateModified: new Date(frontmatter.updated).toISOString() } : {}),
             author: { '@type': 'Organization', name: 'BioSked' },
             publisher: { '@id': 'https://biosked.com/#organization' },
             mainEntityOfPage: canonical,
@@ -57,7 +63,7 @@ const slugWords = Astro.url.pathname.split('/').filter(Boolean).pop()?.split('-'
 const frTopicLink = FR_TOPIC_LINKS.find((t) => t.words.some((w) => slugWords.includes(w))) ?? FR_DEFAULT_LINK;
 ---
 
-<BaseLayout title={frontmatter.title} description={frontmatter.description} author={frontmatter.author}>
+<BaseLayout title={frontmatter.title} description={frontmatter.description} author={authorName || undefined}>
 	<script is:inline type="application/ld+json" set:html={articleSchema} />
 	<div class="container max-w-5xl section-padding text-sm md:text-base mb-10 md:mb-20 group redacted">
 		<div class="text-muted-foreground text-sm font-medium text-center mb-4"><a href={blogHref} class="transition-all hover:text-foreground">Blog</a> <span class="mx-1 font-light">/</span> {BREADCRUMB_LABEL[locale] ?? 'News'}</div>
@@ -65,7 +71,7 @@ const frTopicLink = FR_TOPIC_LINKS.find((t) => t.words.some((w) => slugWords.inc
 			{frontmatter.title}
 		</h1>
 		<hr class="my-4 md:my-6 max-w-2xl mx-auto">
-		<div class="mb-8 text-center text-muted-foreground text-tight">{frontmatter.author} <span class="mx-2">·</span> {pubDate}</div>
+		<div class="mb-8 text-center text-muted-foreground text-tight">{byline}</div>
 		<slot />
 
 		{isFrench && (
