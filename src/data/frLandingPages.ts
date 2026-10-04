@@ -92,9 +92,10 @@ export const specialtyPages: Record<string, FrenchLandingPage> = {
         ]
       },
       {
-        heading: "Consultations et compétences",
+        heading: "Consultations, compétences et internes",
         paragraphs: [
-          "Les consultations d’anesthésie se répartissent selon vos règles, au trimestre ou à l’année, et chaque praticien voit où il en est. Les compétences de chacun, médecin ou IADE, encadrent les affectations : personne n’est proposé sur une salle de pédiatrie sans la compétence requise."
+          "Les consultations d’anesthésie se répartissent selon vos règles, au trimestre ou à l’année, et chaque praticien voit où il en est. Les compétences de chacun, médecin ou IADE, encadrent les affectations : personne n’est proposé sur une salle de pédiatrie sans la compétence requise.",
+          "Dans les CHU, les internes et les docteurs juniors se planifient dans le même outil que les seniors, avec leurs propres postes et des règles propres à leur groupe."
         ]
       },
       {
@@ -131,6 +132,10 @@ export const specialtyPages: Record<string, FrenchLandingPage> = {
       {
         q: "Comment Momentum gère-t-il les repos de sécurité ?",
         a: "Vos règles sont paramétrées une fois. Momentum les applique à la génération du planning et vous alerte si une modification manuelle place un praticien sur une activité pendant son repos. L’historique des repos reste consultable."
+      },
+      {
+        q: "Peut-on planifier les internes et les docteurs juniors ?",
+        a: "Oui. Dans plusieurs CHU, internes et docteurs juniors ont leur propre profession dans Momentum, des postes qui leur sont réservés et des règles propres à leur groupe, dans le même planning que les médecins seniors et les IADE."
       },
       {
         q: "Que se passe-t-il quand le programme opératoire change ?",
