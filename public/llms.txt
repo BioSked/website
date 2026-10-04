@@ -22,6 +22,7 @@ Key facts (published): used by more than 250 healthcare organizations on more th
 - [Établissements de santé et GHT](https://biosked.com/fr/secteurs-soins/etablissements-de-sante/): Multi-site medical scheduling for hospitals and hospital groups.
 - [Cardiologie](https://biosked.com/fr/secteurs-soins/cardiologie/): Scheduling for cardiology teams.
 - [Planning de garde](https://biosked.com/fr/fonctionnalites/plannings-de-garde-centralises/): On-call and duty schedules in the same plan as daytime activity.
+- [Guide du planning de garde](https://biosked.com/fr/blog/planning-de-garde-medecins/): How to build a fair physician on-call schedule in France (rules for hospital practitioners, fairness counters, six steps) with a free Excel template.
 - [Planification automatique](https://biosked.com/fr/fonctionnalites/planification-optimisee-automatiquement-2/): Automatic, rule-based schedule generation.
 - [Cas clients](https://biosked.com/fr/cas-clients/): Published customer case studies (radiology groups, emergency departments, hospitals).
 - [Sécurité et données](https://biosked.com/fr/securite-donnees/): Hosting in the European Union, GDPR, data processing agreement on request.

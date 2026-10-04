@@ -535,6 +535,10 @@ export const featurePages: Record<string, FrenchLandingPage> = {
     ],
     proof:
       "Aux urgences du CHIREC (40 000 passages par an, 25 à 30 médecins), la construction du planning, gardes comprises, est passée de 4 jours à 4–5 heures par mois. Au CHU d’Angers, 52 praticiens urgences-Samu sont planifiés dans Momentum.",
+    resource: {
+      label: "Guide et modèle Excel gratuit : le planning de garde des médecins",
+      href: "/fr/blog/planning-de-garde-medecins/"
+    },
     related: [
       { label: "Urgences", href: "/fr/secteurs-soins/urgences/" },
       { label: "Anesthésie", href: "/fr/secteurs-soins/anesthesie/" },
