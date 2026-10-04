@@ -9,7 +9,20 @@ interface Props {
 }
 
 const { page } = Astro.props;
+const faqSchema = page.faq
+  ? JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: page.faq.map((f) => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a },
+      })),
+    })
+  : null;
 ---
+
+{faqSchema && <script is:inline type="application/ld+json" set:html={faqSchema} />}
 
 <section class="section-padding">
   <div class="container max-w-5xl">
@@ -52,7 +65,7 @@ const { page } = Astro.props;
   <div class="container max-w-5xl">
     <div class="grid gap-6 md:grid-cols-[1.1fr_0.9fr]">
       <div class="border-y border-secondary/10 py-8">
-        <h2 class="text-display-section">Les enjeux à traiter</h2>
+        <h2 class="text-display-section">{page.painsHeading ?? 'Les enjeux à traiter'}</h2>
         <p class="mt-4 text-lg leading-relaxed text-foreground/80">{page.primaryPain}</p>
       </div>
       <div class="grid gap-3">
@@ -70,7 +83,7 @@ const { page } = Astro.props;
   <div class="container max-w-5xl">
     <div class="mb-8 max-w-2xl">
       <p class="font-mono text-sm font-semibold uppercase tracking-widest text-muted-foreground">Réponse Momentum</p>
-      <h2 class="text-display-section mt-3">Un planning plus rapide à construire, plus simple à défendre</h2>
+      <h2 class="text-display-section mt-3">{page.outcomesHeading ?? 'Un planning plus rapide à construire, plus simple à défendre'}</h2>
     </div>
     <div class="grid gap-4 md:grid-cols-2">
       {page.outcomes.map((outcome) => (
@@ -81,6 +94,36 @@ const { page } = Astro.props;
     </div>
   </div>
 </section>
+
+{page.quote && (
+  <section class="py-10 md:py-14">
+    <div class="container max-w-3xl">
+      <figure>
+        <blockquote class="text-2xl font-medium italic leading-snug text-foreground md:text-3xl">« {page.quote.text} »</blockquote>
+        <figcaption class="mt-5 text-base text-muted-foreground">
+          {page.quote.href ? <a href={page.quote.href} class="underline decoration-secondary/30 underline-offset-4 hover:text-foreground">{page.quote.cite}</a> : page.quote.cite}
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+)}
+
+{page.sections && (
+  <section class="py-10 md:py-16">
+    <div class="container max-w-5xl">
+      <div class="divide-y divide-secondary/10 border-y border-secondary/10">
+        {page.sections.map((section) => (
+          <div class="grid gap-4 py-8 md:grid-cols-[0.8fr_1.2fr] md:gap-10">
+            <h2 class="text-display-card">{section.heading}</h2>
+            <div class="space-y-4 text-lg leading-relaxed text-foreground/85">
+              {section.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+)}
 
 <section class="py-10 md:py-16">
   <div class="container max-w-5xl">
@@ -98,8 +141,34 @@ const { page } = Astro.props;
   </div>
 </section>
 
+{page.faq && (
+  <section class="py-10 md:py-16">
+    <div class="container max-w-3xl">
+      <h2 class="text-display-section">Questions fréquentes</h2>
+      <div class="mt-6 divide-y divide-secondary/10 border-y border-secondary/10">
+        {page.faq.map((item) => (
+          <details class="group py-5">
+            <summary class="cursor-pointer list-none text-lg font-semibold marker:hidden">
+              <span class="flex items-start justify-between gap-4">
+                <span>{item.q}</span>
+                <span class="text-muted-foreground transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+              </span>
+            </summary>
+            <p class="mt-3 text-lg leading-relaxed text-foreground/85">{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+)}
+
 <section class="pb-16 md:pb-24">
   <div class="container max-w-5xl">
+    {page.resource && (
+      <p class="mb-8 text-lg">
+        <a href={page.resource.href} class="font-semibold underline decoration-secondary/30 underline-offset-4 hover:decoration-secondary">{page.resource.label}</a>
+      </p>
+    )}
     <h2 class="text-display-card">À explorer ensuite</h2>
     <div class="mt-4 flex flex-wrap gap-3">
       {page.related.map((link) => (
