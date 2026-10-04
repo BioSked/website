@@ -6,13 +6,13 @@ author: "BioSked"
 byline: "Modello aggiornato il 4 ottobre 2026"
 title: "Turni di guardia dei medici: regole, equità e modello Excel gratuito"
 description: "Turni di guardia equi: cosa dicono il D.Lgs. 66/2003 e il CCNL Area Sanità, i contatori da seguire, sei passi e un modello Excel gratuito."
-image: "../../../assets/guides/it-turni-di-guardia-cover.png"
+image: "../../../assets/fr-blog/2026-10-04-planning-de-garde-medecins-editorial.webp"
 canonicalPath: "/it/guida/turni-di-guardia-medici/"
 breadcrumb: "Guida"
 aside: {"heading": "Più linee di guardia o più presidi?", "text": "Al pronto soccorso del CHIREC (Braine-l’Alleud, Belgio) i turni mensili di 25-30 medici si costruiscono in 4-5 ore invece di 4 giorni (caso di studio, maggio 2025).", "demo_label": "Richiedi una demo", "secondary_label": "Vedi i casi pubblicati", "secondary_href": "/it/referenze/"}
 ---
 
-![Modello Excel di turni di guardia: piano dei turni con controlli e contatori di equità per medico](../../../assets/guides/it-turni-di-guardia-cover.png)
+<figure class="biosked-branded-visual"><img src="/guides/fr-planning-de-garde-editorial.webp" alt="Due professionisti sanitari organizzano insieme i turni di guardia su carta" width="1600" height="900" loading="eager" decoding="async"></figure>
 
 I turni di guardia sono il documento più discusso di un’unità operativa. Una notte di troppo, un Natale assegnato due anni di seguito alla stessa persona, e la fiducia in tutto il piano si incrina.
 
@@ -56,7 +56,7 @@ Per i dirigenti medici del SSN si aggiunge il [CCNL dell’Area Sanità del 23 g
 - **Pronta disponibilità: turni di 12 ore**, mai meno di 4, solo di notte e nei festivi. Al massimo dieci al mese in media sul quadrimestre e, sommate alle guardie, dodici servizi medi mensili nel bimestre (art. 30, c. 3 e 6).
 - **Riposo dopo la chiamata e nei festivi.** Dopo una chiamata in pronta disponibilità, le ore che mancano per completare le 11 ore di riposo si recuperano subito e di seguito; per ragioni eccezionali, in un’unica soluzione nei tre giorni successivi (art. 30, c. 8). Una pronta disponibilità in giorno festivo dà diritto, su richiesta, a un’intera giornata di riposo compensativo senza riduzione del debito orario (art. 30, c. 4).
 
-<figure class="max-w-2xl mx-auto"><picture><source media="(max-width: 640px)" srcset="/guides/it-turni-di-guardia-timeline-m.webp" width="400" height="436"><img src="/guides/it-turni-di-guardia-timeline.webp" alt="Due esempi: una guardia notturna di 12 ore, dalle 20 alle 8, seguita da 11 ore di riposo; una pronta disponibilità di domenica che dà diritto, su richiesta, a una giornata di riposo compensativo" width="672" height="421" loading="lazy" decoding="async"></picture></figure>
+<figure class="max-w-2xl mx-auto"><picture><source media="(max-width: 640px)" srcset="/guides/it-turni-di-guardia-timeline-v2-m.svg" width="400" height="672"><img src="/guides/it-turni-di-guardia-timeline-v2.svg" alt="Due esempi: una guardia notturna di 12 ore, dalle 20 alle 8, seguita da 11 ore di riposo; una pronta disponibilità di domenica che dà diritto, su richiesta, a una giornata di riposo compensativo" width="672" height="582" loading="lazy" decoding="async"></picture></figure>
 
 Gli specializzandi seguono il [D.Lgs. 368/1999](https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:1999-08-17;368): impegno pari al tempo pieno del SSN, sotto la guida di tutori, con modalità fissate dalla scuola (artt. 38 e 40). Nelle strutture private accreditate valgono il D.Lgs. 66/2003 e il contratto applicato dalla struttura.
 
@@ -89,7 +89,7 @@ Nel 2027 i 104 sabati e domeniche e le 13 festività (Pasqua compresa; sei cadon
 
 ## Costruire i turni di guardia in sei passi
 
-<figure class="max-w-2xl mx-auto"><picture><source media="(max-width: 640px)" srcset="/guides/it-turni-di-guardia-steps-m.webp" width="400" height="586"><img src="/guides/it-turni-di-guardia-steps.webp" alt="I sei passi: elencare le linee, scrivere le regole, raccogliere assenze e desiderata, riempire nell’ordine giusto, rileggere con i contatori, pubblicare e tracciare i cambi" width="672" height="409" loading="lazy" decoding="async"></picture></figure>
+<figure class="max-w-2xl mx-auto"><picture><source media="(max-width: 640px)" srcset="/guides/it-turni-di-guardia-steps-v2-m.svg" width="400" height="861"><img src="/guides/it-turni-di-guardia-steps-v2.svg" alt="I sei passi: elencare le linee, scrivere le regole, raccogliere assenze e desiderata, riempire nell’ordine giusto, rileggere con i contatori, pubblicare e tracciare i cambi" width="672" height="532" loading="lazy" decoding="async"></picture></figure>
 
 ### 1. Elencare le linee
 
@@ -118,6 +118,8 @@ Ogni cambio approvato aggiorna i contatori. Senza questo, l’equità mostrata a
 ## Il modello Excel gratuito
 
 **[Scarica il modello di turni di guardia](/modeles/modello-turni-di-guardia.xlsx)** (file Excel .xlsx, senza macro, gratuito).
+
+<figure class="biosked-branded-visual"><img src="/guides/it-turni-di-guardia-cover.png" alt="Modello Excel di turni di guardia: piano dei turni con controlli e contatori di equità per medico" width="1600" height="900" loading="lazy" decoding="async"></figure>
 
 - **Due linee di guardia** da nominare, per esempio «Guardia attiva» e «Pronta disponibilità», su un anno intero.
 - **Équipe, assenze e festivi**: impegno orario di ogni medico, assenze (dal, al, motivo), festività nazionali dal 2026 al 2028, compreso il 4 ottobre. Aggiungi il santo patrono del tuo comune.

@@ -6,13 +6,13 @@ author: "BioSked"
 byline: "Modèle mis à jour le 4 octobre 2026"
 title: "Planning de garde et de piquet des médecins : règles suisses et modèle Excel"
 description: "Planning de garde équitable à l’hôpital : ce que prévoient la LTr et ses ordonnances, le piquet, les compteurs, six étapes et un modèle Excel gratuit."
-image: "../../../assets/guides/fr-ch-planning-de-garde-cover.png"
+image: "../../../assets/fr-blog/2026-10-04-planning-de-garde-medecins-editorial.webp"
 canonicalPath: "/fr-ch/guide/planning-de-garde-medecins/"
 breadcrumb: "Guide"
 aside: {"heading": "Un planning de garde généré selon vos règles", "text": "Aux urgences du CHIREC (Belgique), le planning mensuel de 25 à 30 médecins se construit en 4 à 5 heures au lieu de 4 jours (étude de cas, mai 2025).", "demo_label": "Demander une démo", "secondary_label": "Voir les tarifs pour la Suisse", "secondary_href": "/fr-ch/pricing/"}
 ---
 
-![Modèle Excel de planning de garde : planning, contrôles et compteurs d’équité par médecin](../../../assets/guides/fr-ch-planning-de-garde-cover.png)
+<figure class="biosked-branded-visual"><img src="/guides/fr-planning-de-garde-editorial.webp" alt="Deux professionnels de santé organisent ensemble un planning de garde sur papier" width="1600" height="900" loading="eager" decoding="async"></figure>
 
 Le planning de garde, ou plan de service, est le document le plus discuté d’un service médical. Une nuit de trop, Noël attribué deux années de suite à la même personne, et c’est la confiance dans tout le planning qui s’effrite.
 
@@ -50,7 +50,7 @@ Les médecins-assistants relèvent de la [loi sur le travail (LTr)](https://www.
 - **Sept jours de piquet au plus sur quatre semaines**, puis deux semaines sans piquet (art. 14, al. 2, OLT 1). Si les interventions ne laissent pas 4 heures de repos consécutives, 11 heures de repos suivent la dernière intervention (art. 19, al. 3, OLT 1).
 - **Au moins 12 dimanches de congé** par année civile (art. 12, al. 2, OLT 2).
 
-<figure class="max-w-2xl mx-auto"><picture><source media="(max-width: 640px)" srcset="/guides/fr-ch-planning-de-garde-timeline-m.webp" width="400" height="481"><img src="/guides/fr-ch-planning-de-garde-timeline.webp" alt="Deux exemples : une garde de nuit à l’hôpital de 20 h à 8 h suivie d’au moins 12 heures de repos, et un piquet à domicile avec des interventions jusqu’à 6 h sans 4 heures de repos d’affilée, suivi de 11 heures de repos" width="672" height="421" loading="lazy" decoding="async"></picture></figure>
+<figure class="max-w-2xl mx-auto"><picture><source media="(max-width: 640px)" srcset="/guides/fr-ch-planning-de-garde-timeline-v2-m.svg" width="400" height="672"><img src="/guides/fr-ch-planning-de-garde-timeline-v2.svg" alt="Deux exemples : une garde de nuit à l’hôpital de 20 h à 8 h suivie d’au moins 12 heures de repos, et un piquet à domicile avec des interventions jusqu’à 6 h sans 4 heures de repos d’affilée, suivi de 11 heures de repos" width="672" height="582" loading="lazy" decoding="async"></picture></figure>
 
 **Qui est concerné.** Depuis le 1er janvier 2005, la LTr s’applique à tous les médecins-assistants, même dans un hôpital qui n’y est pas soumis par ailleurs ([art. 4a OLT 1](https://www.fedlex.admin.ch/eli/cc/2000/243/fr)). Sont exclus de la loi les hôpitaux intégrés à l’administration cantonale ou communale, ainsi que les établissements de droit public sans personnalité juridique et les corporations de droit public dont la majorité du personnel est engagée en droit public (art. 2 LTr, art. 7 OLT 1). Leurs autres médecins relèvent du droit du personnel cantonal ou communal. Selon le [SECO](https://www.seco.admin.ch/fr/hopitaux-cliniques), les médecins-chefs exercent en général une fonction dirigeante élevée : seules les règles de protection de la santé s’appliquent à eux (art. 3, let. d, et art. 3a LTr).
 
@@ -81,7 +81,7 @@ Les 104 samedis et dimanches de 2027 et les fériés de votre canton se répart
 
 ## Construire le planning de garde en six étapes
 
-<figure class="max-w-2xl mx-auto"><picture><source media="(max-width: 640px)" srcset="/guides/fr-ch-planning-de-garde-steps-m.webp" width="400" height="610"><img src="/guides/fr-ch-planning-de-garde-steps.webp" alt="Les six étapes : lister les lignes, écrire les règles, collecter absences et souhaits, remplir dans le bon ordre, relire avec les compteurs, publier et tracer les échanges" width="672" height="428" loading="lazy" decoding="async"></picture></figure>
+<figure class="max-w-2xl mx-auto"><picture><source media="(max-width: 640px)" srcset="/guides/fr-ch-planning-de-garde-steps-v2-m.svg" width="400" height="861"><img src="/guides/fr-ch-planning-de-garde-steps-v2.svg" alt="Les six étapes : lister les lignes, écrire les règles, collecter absences et souhaits, remplir dans le bon ordre, relire avec les compteurs, publier et tracer les échanges" width="672" height="532" loading="lazy" decoding="async"></picture></figure>
 
 ### 1. Lister les lignes
 
@@ -110,6 +110,8 @@ Chaque échange validé met à jour les compteurs. Sans cela, l’équité affic
 ## Le modèle Excel gratuit
 
 **[Télécharger le modèle de planning de garde](/modeles/modele-planning-de-garde-suisse.xlsx)** (fichier Excel .xlsx, sans macro, gratuit).
+
+<figure class="biosked-branded-visual"><img src="/guides/fr-ch-planning-de-garde-cover.png" alt="Modèle Excel de planning de garde : planning, contrôles et compteurs d’équité par médecin" width="1600" height="900" loading="lazy" decoding="async"></figure>
 
 - **Deux lignes** à nommer, par exemple « Garde sur place » et « Piquet », sur une année complète.
 - **L’équipe, les absences et les jours fériés** : taux d’activité, absences (du, au, motif), jours fériés courants de 2026 à 2028. Hormis le 1er août, les fériés sont cantonaux : ajoutez les vôtres, par exemple le Jeûne genevois ou le Lundi du Jeûne.

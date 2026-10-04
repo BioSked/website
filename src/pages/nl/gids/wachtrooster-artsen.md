@@ -6,13 +6,13 @@ author: "BioSked"
 byline: "Sjabloon bijgewerkt op 4 oktober 2026"
 title: "Wachtrooster voor artsen: regels, eerlijke verdeling en gratis Excel-sjabloon"
 description: "Een eerlijk wachtrooster opmaken: wat de wet van 12 december 2010 zegt, welke tellers u bijhoudt, zes stappen en een gratis Excel-sjabloon."
-image: "../../../assets/guides/nl-wachtrooster-cover.png"
+image: "../../../assets/fr-blog/2026-10-04-planning-de-garde-medecins-editorial.webp"
 canonicalPath: "/nl/gids/wachtrooster-artsen/"
 breadcrumb: "Gids"
 aside: {"heading": "Van 4 dagen naar 4 tot 5 uur per maandrooster", "text": "Op de spoedgevallendienst van het ziekenhuis van Braine-l’Alleud (CHIREC) wordt het maandrooster voor 25 tot 30 artsen nu in 4 tot 5 uur opgemaakt in plaats van 4 dagen (casestudy, mei 2025).", "demo_label": "Demo aanvragen", "secondary_label": "Bekijk de referenties", "secondary_href": "/nl/referenties/"}
 ---
 
-![Excel-sjabloon voor een wachtrooster: rooster met controles en tellers per arts](../../../assets/guides/nl-wachtrooster-cover.png)
+<figure class="biosked-branded-visual"><img src="/guides/fr-planning-de-garde-editorial.webp" alt="Twee zorgprofessionals stellen samen een wachtrooster op papier op" width="1600" height="900" loading="eager" decoding="async"></figure>
 
 Het wachtrooster is het document waarover in een medische dienst het meest gepraat wordt. Eén nacht te veel, twee jaar na elkaar dezelfde collega met Kerstmis, en het vertrouwen in het hele rooster brokkelt af.
 
@@ -52,7 +52,7 @@ Voor artsen met een arbeidsovereenkomst of in statutair verband, voor ASO’s en
 - **12 uur rust na een lange prestatie**: “Elke arbeidsprestatie waarvan de duur tussen 12 uren en 24 uren bedraagt moet worden gevolgd door een periode van minimum rust van 12 opeenvolgende uren” (art. 5, § 3).
 - **Een register** van de dagelijkse prestaties op de werkplek, ook elektronisch (art. 8).
 
-<figure class="max-w-2xl mx-auto"><picture><source media="(max-width: 640px)" srcset="/guides/nl-wachtrooster-timeline-m.webp" width="400" height="436"><img src="/guides/nl-wachtrooster-timeline.webp" alt="Twee voorbeelden: een wacht ter plaatse van 24 uur gevolgd door 12 uur rust, en een thuiswacht met een oproep om 2 uur, doorwerken tot 14 uur en daarna 12 uur rust" width="672" height="421" loading="lazy" decoding="async"></picture></figure>
+<figure class="max-w-2xl mx-auto"><picture><source media="(max-width: 640px)" srcset="/guides/nl-wachtrooster-timeline-v2-m.svg" width="400" height="672"><img src="/guides/nl-wachtrooster-timeline-v2.svg" alt="Twee voorbeelden: een wacht ter plaatse van 24 uur gevolgd door 12 uur rust, en een thuiswacht met een oproep om 2 uur, doorwerken tot 14 uur en daarna 12 uur rust" width="672" height="582" loading="lazy" decoding="async"></picture></figure>
 
 De wet geldt niet voor zelfstandige artsen (artikel 3 noemt alleen een arbeidsovereenkomst of statutair verband), noch voor wie een leidinggevende functie uitoefent (art. 4). Voor zelfstandige artsen-specialisten volgt de wachtregeling uit de afspraken in het ziekenhuis.
 
@@ -92,7 +92,7 @@ De zaterdagen, de zondagen en de 10 wettelijke feestdagen verdeelt u op dezelfde
 
 ## Het wachtrooster opmaken in zes stappen
 
-<figure class="max-w-2xl mx-auto"><picture><source media="(max-width: 640px)" srcset="/guides/nl-wachtrooster-steps-m.webp" width="400" height="669"><img src="/guides/nl-wachtrooster-steps.webp" alt="De zes stappen: de lijnen oplijsten, de regels opschrijven, afwezigheden en wensen verzamelen, in de juiste volgorde invullen, nakijken met de tellers, publiceren en ruilen bijhouden" width="672" height="428" loading="lazy" decoding="async"></picture></figure>
+<figure class="max-w-2xl mx-auto"><picture><source media="(max-width: 640px)" srcset="/guides/nl-wachtrooster-steps-v2-m.svg" width="400" height="861"><img src="/guides/nl-wachtrooster-steps-v2.svg" alt="De zes stappen: de lijnen oplijsten, de regels opschrijven, afwezigheden en wensen verzamelen, in de juiste volgorde invullen, nakijken met de tellers, publiceren en ruilen bijhouden" width="672" height="532" loading="lazy" decoding="async"></picture></figure>
 
 ### 1. De lijnen oplijsten
 
@@ -121,6 +121,8 @@ Elke goedgekeurde ruil past de tellers aan. Zonder dat zegt de verdeling van jan
 ## Het gratis Excel-sjabloon
 
 **[Download het sjabloon voor het wachtrooster](/modeles/sjabloon-wachtrooster-artsen.xlsx)** (Excel-bestand .xlsx, zonder macro’s, gratis).
+
+<figure class="biosked-branded-visual"><img src="/guides/nl-wachtrooster-cover.png" alt="Excel-sjabloon voor een wachtrooster: rooster met controles en tellers per arts" width="1600" height="900" loading="lazy" decoding="async"></figure>
 
 - **Twee wachtlijnen** met een eigen naam, bijvoorbeeld ‘Wacht ter plaatse’ en ‘Thuiswacht’, voor een volledig jaar.
 - **Team, afwezigheden en feestdagen**: FTE per arts, afwezigheden (van, tot en met, reden) en de Belgische feestdagen van 2026 tot 2028.

@@ -6,13 +6,13 @@ author: "BioSked"
 byline: "Template updated on October 4, 2026"
 title: "Physician Call Schedule: Rules, Fairness and a Free Excel Template"
 description: "How to build a fair physician call schedule: ACGME duty hours, the counters to track, a six-step method and a free Excel template."
-image: "../../assets/guides/en-call-schedule-cover.png"
+image: "../../assets/fr-blog/2026-10-04-planning-de-garde-medecins-editorial.webp"
 canonicalPath: "/guides/physician-call-schedule/"
 breadcrumb: "Guides"
 aside: {"heading": "Build your call schedule from your own rules", "text": "At the CHIREC emergency department in Belgium, building the monthly schedule for 25 to 30 physicians went from 4 days to 4 to 5 hours (case study, May 2025).", "demo_label": "Book a demo", "secondary_label": "See pricing", "secondary_href": "/pricing/"}
 ---
 
-![Excel physician call schedule template: schedule with automatic checks and fairness counters per physician](../../assets/guides/en-call-schedule-cover.png)
+<figure class="biosked-branded-visual"><img src="/guides/fr-planning-de-garde-editorial.webp" alt="Two clinicians arranging an on-call schedule together" width="1600" height="900" loading="eager" decoding="async"></figure>
 
 The call schedule is the most debated document in any department or physician group. One extra night, or Christmas given to the same physician two years running, and trust in the whole schedule starts to wear thin.
 
@@ -55,7 +55,7 @@ For residents and fellows in ACGME-accredited programs, the [ACGME Common Progra
 
 Averaging is done per rotation, not on a rolling basis, and vacation or leave days are left out of the calculation. Specialty requirements can go further. In emergency medicine, residents may not work longer than 12 continuous scheduled hours in the emergency department, must have at least an equivalent period of continuous time off between scheduled work periods, and may not work more than 60 scheduled hours per week seeing patients in the department, or 72 hours in total ([Emergency Medicine requirements 6.17.a](https://www.acgme.org/globalassets/pfassets/programrequirements/2026-prs/110_emergencymedicine_2026.pdf)).
 
-<figure class="max-w-2xl mx-auto"><picture><source media="(max-width: 640px)" srcset="/guides/en-call-schedule-timeline-m.webp" width="400" height="459"><img src="/guides/en-call-schedule-timeline.webp" alt="Two examples under ACGME rules: 24-hour in-house call plus up to 4 hours of transitions of care, then at least 14 hours off; a 12-hour emergency department night shift, then at least 12 hours off" width="672" height="421" loading="lazy" decoding="async"></picture></figure>
+<figure class="max-w-2xl mx-auto"><picture><source media="(max-width: 640px)" srcset="/guides/en-call-schedule-timeline-v2-m.svg" width="400" height="672"><img src="/guides/en-call-schedule-timeline-v2.svg" alt="Two examples under ACGME rules: 24-hour in-house call plus up to 4 hours of transitions of care, then at least 14 hours off; a 12-hour emergency department night shift, then at least 12 hours off" width="672" height="582" loading="lazy" decoding="async"></picture></figure>
 
 These rules may change. A proposed major revision, posted for comment on September 8, 2026 with a proposed effective date of July 1, 2028, would among other changes lower the 14 hours to 12 and drop the eight-hours-off line. Check acgme.org for the version in force.
 
@@ -88,7 +88,7 @@ The 104 Saturdays and Sundays of 2027 and the holidays your group observes (11 f
 
 ## Building the call schedule in six steps
 
-<figure class="max-w-2xl mx-auto"><picture><source media="(max-width: 640px)" srcset="/guides/en-call-schedule-steps-m.webp" width="400" height="605"><img src="/guides/en-call-schedule-steps.webp" alt="The six steps: list the call lines, write the rules down, collect time off and requests, fill in the right order, review with the counters, publish and track swaps" width="672" height="403" loading="lazy" decoding="async"></picture></figure>
+<figure class="max-w-2xl mx-auto"><picture><source media="(max-width: 640px)" srcset="/guides/en-call-schedule-steps-v2-m.svg" width="400" height="861"><img src="/guides/en-call-schedule-steps-v2.svg" alt="The six steps: list the call lines, write the rules down, collect time off and requests, fill in the right order, review with the counters, publish and track swaps" width="672" height="532" loading="lazy" decoding="async"></picture></figure>
 
 ### 1. List the call lines
 
@@ -117,6 +117,8 @@ Every approved swap updates the counters. Without that, the fairness shown in Ja
 ## The free Excel template
 
 **[Download the call schedule template](/modeles/physician-call-schedule-template.xlsx)** (Excel .xlsx file, no macros, free).
+
+<figure class="biosked-branded-visual"><img src="/guides/en-call-schedule-cover.png" alt="Excel physician call schedule template: schedule with automatic checks and fairness counters per physician" width="1600" height="900" loading="lazy" decoding="async"></figure>
 
 - **Two call lines** you can rename, for example “In-house call” and “Home call”, over a full year.
 - **Team, time off and holidays**: each physician’s FTE, time off (from, to, reason), US federal holidays from 2026 to 2028.
