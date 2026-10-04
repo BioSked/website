@@ -6,7 +6,14 @@
  *   node scripts/indexnow.mjs https://biosked.com/fr/secteurs-soins/anesthesie/ ...
  *   node scripts/indexnow.mjs --sitemap          # every URL in the live sitemap (use sparingly)
  */
-const KEY = '8e6c7cdabc975ed372e7a19b395fc8e4';
+import { readdirSync } from 'node:fs';
+
+// The key is public by design (IndexNow fetches it from the site root); read it
+// from the deployed key file so the file stays the single source.
+const KEY = readdirSync(new URL('../public/', import.meta.url))
+    .map((name) => name.match(/^([0-9a-f]{32})\.txt$/)?.[1])
+    .find(Boolean);
+if (!KEY) throw new Error('IndexNow key file missing from public/');
 const HOST = 'biosked.com';
 
 async function sitemapUrls() {

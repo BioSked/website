@@ -775,8 +775,8 @@ for (const [locale, html, homepageImages] of [
   );
   assert.equal(
     irisCaseStudyImage?.alt,
-    'Clinique Jules Verne à Nantes, site d’imagerie IRIS GRIM',
-    `${locale} case-study photo must describe the actual IRIS GRIM site`,
+    'Clinique Jules Verne à Nantes, site d’imagerie d’IRIS GRIM, aujourd’hui IRIMED',
+    `${locale} case-study photo must describe the actual IRIS GRIM (now IRIMED) site`,
   );
   assert.match(
     html,

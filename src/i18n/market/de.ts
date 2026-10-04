@@ -80,7 +80,7 @@ export const MARKET: MarketContent = {
     references: {
         metaTitle: 'Referenzen | BioSked Momentum',
         metaDescription:
-            'Veröffentlichte Momentum-Fallstudien: die Notaufnahme der CHIREC-Gruppe (Monatsplanung von 4 Tagen auf 4–5 Stunden), CHU Angers, IRIS GRIM, IMAGIR und CIM Les Cèdres – Ergebnisse mit Quellenangabe.',
+            'Veröffentlichte Momentum-Fallstudien: die Notaufnahme der CHIREC-Gruppe (Monatsplanung von 4 Tagen auf 4–5 Stunden), CHU Angers, IRIMED (vormals IRIS GRIM), IMAGIR und CIM Les Cèdres – Ergebnisse mit Quellenangabe.',
         kicker: 'Referenzen',
         heading: 'Ergebnisse, die unsere Kunden veröffentlicht haben',
         lead: 'Seit über 15 Jahren planen Gesundheitseinrichtungen ihre ärztlichen Teams mit Momentum – mehr als 250 Organisationen mit über 1 000 Standorten in neun Ländern. Eine Auswahl veröffentlichter Fallstudien, mit Zahlen und Quellen.',
@@ -111,9 +111,9 @@ export const MARKET: MarketContent = {
                 line: '52 Notfallmedizinerinnen und -mediziner mit geteilter Tätigkeit zwischen Notaufnahme und Notarztdienst (Samu) planen seit 2021 mit Momentum; die Verteilung von Diensten und Wochenenden ist über Zähler für das ganze Team nachvollziehbar.',
             },
             {
-                org: 'IRIS GRIM (Nantes)',
+                org: 'IRIMED, vormals IRIS GRIM (Nantes)',
                 specialty: 'Radiologie',
-                line: '45 Radiologinnen und Radiologen sowie 240 weitere Fachkräfte; der Verbund ersetzte 2020 sein selbst entwickeltes Planungstool durch Momentum und plant damit über acht Praxisstandorte und die Großgeräte in vier Kliniken hinweg.',
+                line: 'Fallstudie 2022: 45 Radiologinnen und Radiologen sowie 240 weitere Fachkräfte; der Verbund ersetzte 2020 sein selbst entwickeltes Planungstool durch Momentum und plant damit über acht Praxisstandorte und die Großgeräte in vier Kliniken hinweg.',
             },
             {
                 org: 'IMAGIR (Bordeaux)',

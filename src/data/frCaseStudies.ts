@@ -172,18 +172,19 @@ export const FR_CASE_STUDIES: FrCaseStudy[] = [
     },
     {
         slug: 'iris-grim',
-        org: 'IRIS GRIM',
-        title: 'IRIS GRIM : d’un outil de planification maison à Momentum pour 45 radiologues nantais',
-        metaTitle: 'IRIS GRIM (radiologie, Nantes) : 45 radiologues, 240 professionnels de santé | BioSked Momentum',
+        org: 'IRIMED (ex-IRIS GRIM)',
+        title: 'IRIS GRIM, aujourd’hui IRIMED : d’un outil de planification maison à Momentum pour 45 radiologues nantais',
+        metaTitle: 'IRIMED, ex-IRIS GRIM (radiologie, Nantes) : 45 radiologues sur Momentum, étude de cas 2022 | BioSked Momentum',
         metaDescription:
-            'Le groupement nantais IRIS GRIM (45 radiologues, 240 professionnels de santé dont 120 manipulateurs) a remplacé son outil de planification développé en interne par Momentum : moins d’actions manuelles, remplacements proposés, plannings sur mobile et calendriers personnels. Étude de cas, 2022.',
+            'Étude de cas 2022 : le groupement nantais IRIS GRIM (45 radiologues, 240 professionnels de santé dont 120 manipulateurs), devenu IRIMED en 2024 avec le groupe IMED, a remplacé son outil de planification développé en interne par Momentum : moins d’actions manuelles, remplacements proposés, plannings sur mobile et calendriers personnels.',
         specialty: 'Radiologie',
-        factsLine: '45 radiologues · 240 professionnels de santé · Nantes',
+        factsLine: '45 radiologues en 2022 · 240 professionnels de santé · Nantes',
         year: 'Étude de cas, 2022',
-        intro: 'Fabienne Tual et Marie-Aline Douceau, gestionnaires de planification, et Bernard Bensadoun, directeur d’IRIS GRIM, reviennent sur le remplacement d’un outil de planification développé en interne par Momentum, à l’échelle d’un groupement en croissance.',
+        intro: 'En 2022, Fabienne Tual et Marie-Aline Douceau, gestionnaires de planification, et Bernard Bensadoun, alors directeur d’IRIS GRIM, revenaient sur le remplacement d’un outil de planification développé en interne par Momentum, à l’échelle d’un groupement en croissance.',
         context: [
-            'IRIS GRIM est un groupement de radiologues nantais créé il y a près de 20 ans, qui poursuit son développement sur et autour de l’agglomération nantaise en agrégeant régulièrement de nouveaux cabinets.',
-            'Le groupe compte 45 médecins radiologues et 240 autres professionnels de santé, dont 120 manipulateurs en électroradiologie, répartis sur les cabinets d’imagerie médicale de ville et sur les plateaux lourds des 4 plus importantes cliniques de Nantes. Il exploite en propre 15 modalités d’imagerie en coupe et 8 sites de cabinets libéraux de ville, et partage un scanner haut de gamme et une IRM 3T avec le CHU de Nantes dans le cadre d’un GIE.',
+            'Depuis 2024, IRIS GRIM et le groupe IMED (Saint-Nazaire, Pontchâteau, Montoir-de-Bretagne, Guérande) forment IRIMED, groupe de radiologues indépendants en Loire-Atlantique et en Vendée. Cette étude de cas date de 2022 : les chiffres et les fonctions cités sont ceux d’IRIS GRIM à cette date.',
+            'IRIS GRIM était alors un groupement de radiologues nantais créé près de vingt ans plus tôt, qui se développait sur et autour de l’agglomération nantaise en agrégeant régulièrement de nouveaux cabinets.',
+            'Le groupe comptait 45 médecins radiologues et 240 autres professionnels de santé, dont 120 manipulateurs en électroradiologie, répartis sur les cabinets d’imagerie médicale de ville et sur les plateaux lourds des 4 plus importantes cliniques de Nantes. Il exploitait en propre 15 modalités d’imagerie en coupe et 8 sites de cabinets libéraux de ville, et partageait un scanner haut de gamme et une IRM 3T avec le CHU de Nantes dans le cadre d’un GIE.',
         ],
         challenge: [
             'Conscient très tôt des enjeux de la planification et de l’affectation des médecins sur chaque vacation, IRIS GRIM avait développé un outil propriétaire, Easy Planning, pensé par deux médecins du groupe. Parfaitement fonctionnelle sur l’effectif du début, cette solution sur mesure devenait un véritable casse-tête, chronophage, à mesure que le nombre de radiologues augmentait.',
@@ -206,17 +207,17 @@ export const FR_CASE_STUDIES: FrCaseStudy[] = [
             {
                 text: 'Depuis Momentum, la planification automatique des vacations, les déplacements des médecins, autant sur leurs vacations que d’un site à un autre, sont beaucoup plus rapides et très faciles à intégrer. La communication des plannings est, elle aussi, très fluide. Nous constatons une diminution conséquente des actions manuelles par rapport à ce qu’elles étaient dans Easy Planning.',
                 author: 'Fabienne Tual et Marie-Aline Douceau',
-                role: 'gestionnaires de planification, IRIS GRIM',
+                role: 'gestionnaires de planification, IRIS GRIM (2022)',
             },
             {
                 text: 'Le choix de Momentum comme outil de planification assistée s’est avéré très rapidement pertinent. Le modèle économique « coût à l’usage » est avantageux et il offre une flexibilité très appréciable.',
                 author: 'Bernard Bensadoun',
-                role: 'directeur d’IRIS GRIM',
+                role: 'alors directeur d’IRIS GRIM (2022)',
             },
             {
                 text: 'Le déploiement, l’ergonomie, la simplicité d’utilisation sont vraiment des avantages indéniables que vous apportez avec Momentum par BioSked.',
                 author: 'Fabienne Tual et Marie-Aline Douceau',
-                role: 'gestionnaires de planification, IRIS GRIM',
+                role: 'gestionnaires de planification, IRIS GRIM (2022)',
             },
         ],
         relatedSectorHref: '/fr/secteurs-soins/radiologie/',

@@ -55,11 +55,11 @@ const caseStudies = [
     href: '/fr/cas-clients/imalliance-hdf/',
   },
   {
-    title: 'IRIS GRIM',
+    title: 'IRIMED (ex-IRIS GRIM)',
     specialty: 'Radiologie',
-    fact: '45 radiologues · Nantes',
+    fact: '45 radiologues en 2022 · Nantes',
     image: irisGrim,
-    imageAlt: 'Clinique Jules Verne à Nantes, site d’imagerie IRIS GRIM',
+    imageAlt: 'Clinique Jules Verne à Nantes, site d’imagerie d’IRIS GRIM, aujourd’hui IRIMED',
     imageCredit: {
       title: 'Clinique Jules Verne',
       author: 'Kalepom',
@@ -69,7 +69,7 @@ const caseStudies = [
     },
     quote:
       'Depuis Momentum, la planification automatique des vacations, les déplacements des médecins, autant sur leurs vacations que d’un site à un autre, sont beaucoup plus rapides et très faciles à intégrer.',
-    person: 'Fabienne Tual et Marie-Aline Douceau, gestionnaires de planification',
+    person: 'Fabienne Tual et Marie-Aline Douceau, gestionnaires de planification (2022)',
     href: '/fr/cas-clients/iris-grim/',
   },
   {
@@ -124,7 +124,7 @@ const caseStudies = [
             href={study.href}
             class="group flex flex-1 bg-white/30 transition-all duration-200 hover:bg-white/60"
           >
-            <article class={`grid w-full gap-5 p-5 ${index === 0 ? 'md:grid-cols-[260px_1fr] md:p-6' : ''}`}>
+            <article class={`grid w-full gap-5 p-5 ${index === 0 ? 'md:grid-cols-[260px_1fr] md:p-6' : 'grid-rows-[auto_1fr]'}`}>
               <Image
                 src={study.image}
                 alt={study.imageAlt ?? study.title}

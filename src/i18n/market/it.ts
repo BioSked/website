@@ -80,7 +80,7 @@ export const MARKET: MarketContent = {
     references: {
         metaTitle: 'Referenze | BioSked Momentum Italia',
         metaDescription:
-            'Casi pubblicati Momentum: pronto soccorso CHIREC (creazione dei turni mensili da 4 giorni a 4–5 ore), CHU di Angers, IRIS GRIM, IMAGIR, CIM Les Cèdres. Risultati misurati nella pianificazione di équipe mediche.',
+            'Casi pubblicati Momentum: pronto soccorso CHIREC (creazione dei turni mensili da 4 giorni a 4–5 ore), CHU di Angers, IRIMED (già IRIS GRIM), IMAGIR, CIM Les Cèdres. Risultati misurati nella pianificazione di équipe mediche.',
         kicker: 'Referenze',
         heading: 'Casi pubblicati, risultati misurati',
         lead: 'Oltre 250 organizzazioni sanitarie pianificano con Momentum. Qui trovi una selezione dei casi pubblicati (pronto soccorso, radiologia multi-sede ed équipe mediche), con i numeri dichiarati dai clienti stessi.',
@@ -111,9 +111,9 @@ export const MARKET: MarketContent = {
                 line: '52 medici con attività condivisa tra pronto soccorso e SAMU, pianificati con Momentum dal 2021: guardie e weekend ripartiti con criteri di equità, desiderata e scambi gestiti nell’app.',
             },
             {
-                org: 'IRIS GRIM, Nantes',
+                org: 'IRIMED, già IRIS GRIM (Nantes)',
                 specialty: 'Radiologia',
-                line: '45 radiologi e 240 professionisti; nel 2020 il gruppo ha sostituito lo strumento di pianificazione sviluppato internamente con Momentum.',
+                line: 'Caso del 2022: 45 radiologi e 240 professionisti; nel 2020 il gruppo ha sostituito lo strumento di pianificazione sviluppato internamente con Momentum.',
             },
             {
                 org: 'IMAGIR, Bordeaux',

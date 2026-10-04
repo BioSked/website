@@ -80,7 +80,7 @@ export const MARKET: MarketContent = {
     references: {
         metaTitle: 'Referenties | BioSked Momentum',
         metaDescription:
-            'Referenties van Momentum: de spoedgevallendienst van CHIREC Braine-l’Alleud (4 dagen → 4–5 uur roosteropmaak per maand), CHU Angers, IRIS GRIM, IMAGIR en CIM Les Cèdres – gepubliceerde casestudy’s met concrete cijfers.',
+            'Referenties van Momentum: de spoedgevallendienst van CHIREC Braine-l’Alleud (4 dagen → 4–5 uur roosteropmaak per maand), CHU Angers, IRIMED (voorheen IRIS GRIM), IMAGIR en CIM Les Cèdres – gepubliceerde casestudy’s met concrete cijfers.',
         kicker: 'Referenties',
         heading: 'Gepubliceerde cases, concrete cijfers',
         lead: 'Meer dan 250 zorgorganisaties in negen landen plannen met Momentum. Hieronder een selectie uit de gepubliceerde casestudy’s, met de cijfers en namen zoals ze zijn gepubliceerd – te beginnen dicht bij huis, op de spoedgevallendienst van CHIREC in Braine-l’Alleud.',
@@ -111,9 +111,9 @@ export const MARKET: MarketContent = {
                 line: 'Universitair ziekenhuis; de 52 artsen van het departement urgentiegeneeskunde, met gedeelde activiteit tussen spoedgevallen en Samu, plannen sinds 2021 met Momentum – met tellers en rapporten die de eerlijke verdeling van wacht- en weekenddiensten controleerbaar maken.',
             },
             {
-                org: 'IRIS GRIM (Nantes)',
+                org: 'IRIMED, voorheen IRIS GRIM (Nantes)',
                 specialty: 'Radiologie',
-                line: 'Radiologiegroep met 45 radiologen en 240 andere medewerkers; verving in 2020 een zelfontwikkelde planningstool door de automatische roostergeneratie van Momentum.',
+                line: 'Casestudy 2022: radiologiegroep met 45 radiologen en 240 andere medewerkers; verving in 2020 een zelfontwikkelde planningstool door de automatische roostergeneratie van Momentum.',
             },
             {
                 org: 'IMAGIR (Bordeaux)',
