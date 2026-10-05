@@ -18,17 +18,21 @@ export function slugFromValue(value) {
   return match ? `s${match[1]}${match[2]}` : null;
 }
 
+// Le nombre de places restantes n'est affiché qu'à partir de ce seuil.
+export const SEUIL_AFFICHAGE = 3;
+
 export function seatStatus(entry, { seuilComplet }) {
   if (!entry || typeof entry.inscrits !== 'number') return { etat: 'inconnu', restantes: null };
   if (entry.ferme || entry.inscrits >= seuilComplet) return { etat: 'complet', restantes: 0 };
   const restantes = Math.max(0, seuilComplet - entry.inscrits);
-  return { etat: restantes <= 10 ? 'dernieres' : 'ouvert', restantes };
+  return { etat: restantes <= SEUIL_AFFICHAGE ? 'dernieres' : 'ouvert', restantes };
 }
 
 export function statusLabel(status) {
   switch (status?.etat) {
     case 'ouvert':
     case 'dernieres':
+      if (!(status.restantes >= 1 && status.restantes <= SEUIL_AFFICHAGE)) return '';
       return status.restantes === 1 ? '1 place restante' : `${status.restantes} places restantes`;
     case 'complet':
       return 'Complet, liste d’attente';

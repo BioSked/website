@@ -34,12 +34,17 @@ assert.ok(doctolib?.publiee && doctolib.logo?.src && doctolib.debut === '16:00' 
 // Places
 assert.deepEqual(seatStatus(undefined, JFR2026), { etat: 'inconnu', restantes: null });
 assert.deepEqual(seatStatus({ inscrits: 0 }, JFR2026), { etat: 'ouvert', restantes: 28 });
-assert.deepEqual(seatStatus({ inscrits: 18 }, JFR2026), { etat: 'dernieres', restantes: 10 });
+assert.deepEqual(seatStatus({ inscrits: 18 }, JFR2026), { etat: 'ouvert', restantes: 10 });
+assert.deepEqual(seatStatus({ inscrits: 24 }, JFR2026), { etat: 'ouvert', restantes: 4 });
+assert.deepEqual(seatStatus({ inscrits: 25 }, JFR2026), { etat: 'dernieres', restantes: 3 });
 assert.deepEqual(seatStatus({ inscrits: 27 }, JFR2026), { etat: 'dernieres', restantes: 1 });
 assert.deepEqual(seatStatus({ inscrits: 28 }, JFR2026), { etat: 'complet', restantes: 0 });
 assert.deepEqual(seatStatus({ inscrits: 3, ferme: true }, JFR2026), { etat: 'complet', restantes: 0 });
 assert.equal(statusLabel({ etat: 'dernieres', restantes: 1 }), '1 place restante');
-assert.equal(statusLabel({ etat: 'ouvert', restantes: 28 }), '28 places restantes');
+assert.equal(statusLabel({ etat: 'ouvert', restantes: 28 }), '');
+assert.equal(statusLabel({ etat: 'ouvert', restantes: 4 }), '');
+assert.equal(statusLabel({ etat: 'dernieres', restantes: 3 }), '3 places restantes');
+assert.equal(statusLabel({ etat: 'dernieres', restantes: 0 }), '');
 assert.equal(statusLabel({ etat: 'complet', restantes: 0 }), 'Complet, liste d’attente');
 assert.deepEqual(splitSelection(['s0945', 's1030'], { s1030: { etat: 'complet' } }), { inscrire: ['s0945'], attente: ['s1030'] });
 
