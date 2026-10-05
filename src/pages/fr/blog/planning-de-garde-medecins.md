@@ -66,6 +66,8 @@ Pour les médecins salariés ou statutaires, les candidats-médecins en formatio
 
 La loi ne vise pas les médecins indépendants : son article 3 ne cite que le contrat de travail et le régime statutaire. Pour eux, les gardes suivent les règles de l’hôpital. Faites valider votre organisation par la direction médicale ou le service juridique.
 
+Le modèle Excel gratuit existe en [version belge](/modeles/modele-planning-de-garde-belgique.xlsx), avec les dix jours fériés légaux belges.
+
 ## Ce que veut dire « équitable » : cinq compteurs
 
 Dans les services où le planning de garde ne fait plus débat, on retrouve presque toujours les mêmes compteurs, tenus pour chaque médecin.
@@ -119,12 +121,12 @@ Chaque échange validé met à jour les compteurs. Sans cela, l’équité affic
 
 ## Le modèle Excel gratuit
 
-**[Télécharger le modèle de planning de garde](/modeles/modele-planning-de-garde.xlsx)** (fichier Excel .xlsx, sans macro, gratuit).
+**Télécharger le modèle de planning de garde** : **[version France](/modeles/modele-planning-de-garde.xlsx)** ou **[version Belgique](/modeles/modele-planning-de-garde-belgique.xlsx)** (fichier Excel .xlsx, sans macro, gratuit).
 
 <figure class="biosked-branded-visual"><img src="/guides/fr-planning-de-garde-modele-excel.png" alt="Aperçu du modèle Excel de planning de garde : planning, contrôles et compteurs d’équité par médecin" width="1600" height="900" loading="lazy" decoding="async"></figure>
 
 - **Deux lignes de garde** à nommer, par exemple « Garde sur place » et « Astreinte », sur une année complète.
-- **L’équipe, les absences et les jours fériés** : quotité de chaque médecin, absences (du, au, motif), jours fériés français de 2026 à 2028. En Belgique, remplacez dans l’onglet Fériés le 8 mai et le 14 juillet par le 21 juillet.
+- **L’équipe, les absences et les jours fériés** : quotité de chaque médecin, absences (du, au, motif), jours fériés de 2026 à 2028, français ou belges selon la version.
 - **Des contrôles automatiques** : même médecin deux jours de suite sur une ligne, sur les deux lignes le même jour, ou pendant une absence.
 - **Des compteurs par médecin** : gardes par ligne, samedis, dimanches, fériés, part attendue selon la quotité et écart.
 
