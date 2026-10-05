@@ -8,6 +8,7 @@ const {
     title,
     description,
     image,
+    imageAlt,
     author,
     noIndex,
     pageType,
@@ -65,7 +66,7 @@ const socialImageAlts: Record<string, string> = {
     nl: 'BioSked Momentum-app voor roosterplanning van medische teams',
     it: 'App BioSked Momentum per la pianificazione dei turni medici',
 };
-const socialImageAlt = socialImageAlts[canonicalLocale] ?? SITE_METADATA.openGraph.images[0].alt;
+const socialImageAlt = imageAlt ?? socialImageAlts[canonicalLocale] ?? SITE_METADATA.openGraph.images[0].alt;
 const analyticsPageLocation = pageType === 'not-found'
     ? new URL('/__404__', Astro.site ?? 'https://biosked.com').toString()
     : null;

@@ -10,6 +10,8 @@ image: "../../../assets/fr-blog/2026-10-04-planning-de-garde-medecins-editorial.
 canonicalPath: "/nl/gids/wachtrooster-artsen/"
 breadcrumb: "Gids"
 aside: {"heading": "Van 4 dagen naar 4 tot 5 uur per maandrooster", "text": "Op de spoedgevallendienst van het ziekenhuis van Braine-l’Alleud (CHIREC) wordt het maandrooster voor 25 tot 30 artsen nu in 4 tot 5 uur opgemaakt in plaats van 4 dagen (casestudy, mei 2025).", "demo_label": "Demo aanvragen", "secondary_label": "Bekijk de referenties", "secondary_href": "/nl/referenties/"}
+ogImage: "/guides/og/nl-wachtrooster.jpg"
+ogImageAlt: "Excel-sjabloon voor een wachtrooster: rooster met controles en tellers per arts"
 ---
 
 <figure class="biosked-branded-visual"><img src="/guides/fr-planning-de-garde-editorial.webp" alt="Twee zorgprofessionals stellen samen een wachtrooster op papier op" width="1600" height="900" loading="eager" decoding="async"></figure>

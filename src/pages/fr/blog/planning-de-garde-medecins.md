@@ -9,6 +9,8 @@ description: "Construire un planning de garde équitable : ce que dit le Code d
 image: "../../../assets/fr-blog/2026-10-04-planning-de-garde-medecins-editorial.webp"
 canonicalPath: "/fr/blog/planning-de-garde-medecins/"
 
+ogImage: "/guides/og/fr-planning-de-garde.jpg"
+ogImageAlt: "Aperçu du modèle Excel de planning de garde : planning, contrôles et compteurs d’équité par médecin"
 ---
 
 <figure class="biosked-branded-visual"><img src="/guides/fr-planning-de-garde-editorial.webp" alt="Deux professionnels de santé organisent un tableau de gardes sur papier" width="1600" height="900" loading="eager" decoding="async"></figure>

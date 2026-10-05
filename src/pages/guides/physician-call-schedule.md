@@ -10,6 +10,8 @@ image: "../../assets/fr-blog/2026-10-04-planning-de-garde-medecins-editorial.web
 canonicalPath: "/guides/physician-call-schedule/"
 breadcrumb: "Guides"
 aside: {"heading": "Build your call schedule from your own rules", "text": "At the CHIREC emergency department in Belgium, building the monthly schedule for 25 to 30 physicians went from 4 days to 4 to 5 hours (case study, May 2025).", "demo_label": "Book a demo", "secondary_label": "See pricing", "secondary_href": "/pricing/"}
+ogImage: "/guides/og/en-call-schedule.jpg"
+ogImageAlt: "Excel physician call schedule template: schedule with automatic checks and fairness counters per physician"
 ---
 
 <figure class="biosked-branded-visual"><img src="/guides/fr-planning-de-garde-editorial.webp" alt="Two clinicians arranging an on-call schedule together" width="1600" height="900" loading="eager" decoding="async"></figure>

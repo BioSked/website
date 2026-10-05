@@ -10,6 +10,8 @@ image: "../../../assets/fr-blog/2026-10-04-planning-de-garde-medecins-editorial.
 canonicalPath: "/fr-ch/guide/planning-de-garde-medecins/"
 breadcrumb: "Guide"
 aside: {"heading": "Un planning de garde généré selon vos règles", "text": "Aux urgences du CHIREC (Belgique), le planning mensuel de 25 à 30 médecins se construit en 4 à 5 heures au lieu de 4 jours (étude de cas, mai 2025).", "demo_label": "Demander une démo", "secondary_label": "Voir les tarifs pour la Suisse", "secondary_href": "/fr-ch/pricing/"}
+ogImage: "/guides/og/fr-ch-planning-de-garde.jpg"
+ogImageAlt: "Modèle Excel de planning de garde : planning, contrôles et compteurs d’équité par médecin"
 ---
 
 <figure class="biosked-branded-visual"><img src="/guides/fr-planning-de-garde-editorial.webp" alt="Deux professionnels de santé organisent ensemble un planning de garde sur papier" width="1600" height="900" loading="eager" decoding="async"></figure>

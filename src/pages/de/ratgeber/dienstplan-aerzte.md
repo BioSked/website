@@ -10,6 +10,8 @@ image: "../../../assets/fr-blog/2026-10-04-planning-de-garde-medecins-editorial.
 canonicalPath: "/de/ratgeber/dienstplan-aerzte/"
 breadcrumb: "Ratgeber"
 aside: {"heading": "Den Dienstplan nach Ihren Regeln erstellen lassen", "text": "In der Notaufnahme des CHIREC (Braine-l’Alleud, Belgien) entsteht der Monatsdienstplan mit Momentum in 4 bis 5 Stunden statt in 4 Tagen (Fallstudie, Mai 2025).", "demo_label": "Demo anfragen", "secondary_label": "Alle Referenzen", "secondary_href": "/de/referenzen/"}
+ogImage: "/guides/og/de-dienstplan.jpg"
+ogImageAlt: "Excel-Vorlage für den ärztlichen Dienstplan: Dienstplan mit Kontrollen und Fairness-Zähler je Ärztin oder Arzt"
 ---
 
 <figure class="biosked-branded-visual"><img src="/guides/fr-planning-de-garde-editorial.webp" alt="Zwei medizinische Fachkräfte planen gemeinsam einen ärztlichen Dienstplan auf Papier" width="1600" height="900" loading="eager" decoding="async"></figure>

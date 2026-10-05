@@ -10,6 +10,8 @@ image: "../../../assets/fr-blog/2026-10-04-planning-de-garde-medecins-editorial.
 canonicalPath: "/it/guida/turni-di-guardia-medici/"
 breadcrumb: "Guida"
 aside: {"heading": "Più linee di guardia o più presidi?", "text": "Al pronto soccorso del CHIREC (Braine-l’Alleud, Belgio) i turni mensili di 25-30 medici si costruiscono in 4-5 ore invece di 4 giorni (caso di studio, maggio 2025).", "demo_label": "Richiedi una demo", "secondary_label": "Vedi i casi pubblicati", "secondary_href": "/it/referenze/"}
+ogImage: "/guides/og/it-turni-di-guardia.jpg"
+ogImageAlt: "Modello Excel di turni di guardia: piano dei turni con controlli e contatori di equità per medico"
 ---
 
 <figure class="biosked-branded-visual"><img src="/guides/fr-planning-de-garde-editorial.webp" alt="Due professionisti sanitari organizzano insieme i turni di guardia su carta" width="1600" height="900" loading="eager" decoding="async"></figure>

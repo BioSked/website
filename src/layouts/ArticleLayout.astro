@@ -70,7 +70,7 @@ const slugWords = Astro.url.pathname.split('/').filter(Boolean).pop()?.split('-'
 const frTopicLink = FR_TOPIC_LINKS.find((t) => t.words.some((w) => slugWords.includes(w))) ?? FR_DEFAULT_LINK;
 ---
 
-<BaseLayout title={frontmatter.title} description={frontmatter.description} author={authorName || undefined} locale={localeProp}>
+<BaseLayout title={frontmatter.title} description={frontmatter.description} image={frontmatter.ogImage} imageAlt={frontmatter.ogImageAlt} author={authorName || undefined} locale={localeProp}>
 	<script is:inline type="application/ld+json" set:html={articleSchema} />
 	<div class="container max-w-5xl section-padding text-sm md:text-base mb-10 md:mb-20 group redacted">
 		<div class="text-muted-foreground text-sm font-medium text-center mb-4"><a href={crumbHref} class="transition-all hover:text-foreground">{crumbLabel}</a> <span class="mx-1 font-light">/</span> {frontmatter.breadcrumb ?? BREADCRUMB_LABEL[locale] ?? 'News'}</div>
