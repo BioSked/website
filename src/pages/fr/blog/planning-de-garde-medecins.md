@@ -1,7 +1,7 @@
 ---
 layout: "@layouts/ArticleLayout.astro"
 date: 2026-10-04
-updated: 2026-10-04
+updated: 2026-10-05
 author: "BioSked"
 byline: "Modèle mis à jour le 4 octobre 2026"
 title: "Planning de garde des médecins : règles, équité et modèle Excel gratuit"
@@ -20,7 +20,7 @@ Ce guide rassemble ce que nous observons dans les services qui planifient leurs 
 **Au sommaire**
 
 - [Garde sur place, astreinte, temps continu : trois façons de compter](#garde-sur-place-astreinte-temps-continu-trois-façons-de-compter)
-- [Ce que dit le Code de la santé publique](#ce-que-dit-le-code-de-la-santé-publique)
+- [Ce que dit la loi en France et en Belgique](#ce-que-dit-la-loi-en-france-et-en-belgique)
 - [Ce que veut dire « équitable » : cinq compteurs](#ce-que-veut-dire-équitable-cinq-compteurs)
 - [Construire le planning de garde en six étapes](#construire-le-planning-de-garde-en-six-étapes)
 - [Le modèle Excel gratuit](#le-modèle-excel-gratuit)
@@ -39,7 +39,9 @@ Avant de répartir quoi que ce soit, nommez chaque ligne de garde et sa nature. 
 
 Un service d’anesthésie peut combiner une garde sur place de 24 heures et une astreinte de deuxième ligne ; un groupe d’imagerie, une astreinte de scanner par site. Chaque ligne a ses horaires, ses participants et ses règles : c’est la base de tout le reste.
 
-## Ce que dit le Code de la santé publique
+## Ce que dit la loi en France et en Belgique
+
+### En France : le Code de la santé publique
 
 Pour les praticiens hospitaliers des établissements publics, l’[article R6152-27 du Code de la santé publique](https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000045138028), en vigueur depuis le 7 février 2022, fixe cinq repères.
 
@@ -52,6 +54,17 @@ Pour les praticiens hospitaliers des établissements publics, l’[article R6152
 <figure class="max-w-2xl mx-auto"><picture><source media="(max-width: 640px)" srcset="/guides/fr-planning-de-garde-timeline-v2-m.svg" width="400" height="606"><img src="/guides/fr-planning-de-garde-timeline-v2.svg" alt="Deux exemples : une garde sur place de 24 heures suivie de 24 heures de repos, et une astreinte de nuit dont le dernier déplacement finit à 8 heures, suivie de 11 heures de repos" width="672" height="426" loading="lazy" decoding="async"></picture></figure>
 
 Les autres statuts relèvent d’autres textes ou de règles propres à l’établissement : internes et docteurs juniors, praticiens contractuels, médecins libéraux en clinique ou en groupe d’imagerie. Le nombre maximal de gardes et d’astreintes qu’un praticien peut être tenu d’assurer est fixé par arrêté, et ce texte a été modifié en 2025. Vérifiez la version en vigueur sur Légifrance et faites valider votre organisation par la direction des affaires médicales.
+
+### En Belgique : la loi du 12 décembre 2010
+
+Pour les médecins salariés ou statutaires, les candidats-médecins en formation (MACCS) et les étudiants stagiaires, la [loi du 12 décembre 2010 fixant la durée du travail des médecins](https://www.ejustice.just.fgov.be/eli/loi/2010/12/12/2010012338/justel), en vigueur depuis le 1er février 2011, fixe quatre repères.
+
+- **48 heures par semaine en moyenne** sur une période de 13 semaines, et 60 heures au plus au cours d’une même semaine (art. 5, § 1er).
+- **24 heures au plus par prestation** (art. 5, § 2), sauf pour faire face à un accident survenu ou imminent, ou à une nécessité imprévue.
+- **12 heures de repos après une longue prestation** : « Chaque prestation de travail dont la durée est comprise entre 12 heures et 24 heures doit être suivie d’une période de repos minimale de 12 heures consécutives » (art. 5, § 3).
+- **Un temps de travail additionnel** de 12 heures par semaine au plus, « afin d’assurer notamment tout type de service de garde sur le lieu de travail », sur accord individuel écrit et rémunéré en plus (art. 7).
+
+La loi ne vise pas les médecins indépendants : son article 3 ne cite que le contrat de travail et le régime statutaire. Pour eux, les gardes suivent les règles de l’hôpital. Faites valider votre organisation par la direction médicale ou le service juridique.
 
 ## Ce que veut dire « équitable » : cinq compteurs
 
@@ -111,7 +124,7 @@ Chaque échange validé met à jour les compteurs. Sans cela, l’équité affic
 <figure class="biosked-branded-visual"><img src="/guides/fr-planning-de-garde-modele-excel.png" alt="Aperçu du modèle Excel de planning de garde : planning, contrôles et compteurs d’équité par médecin" width="1600" height="900" loading="lazy" decoding="async"></figure>
 
 - **Deux lignes de garde** à nommer, par exemple « Garde sur place » et « Astreinte », sur une année complète.
-- **L’équipe, les absences et les jours fériés** : quotité de chaque médecin, absences (du, au, motif), jours fériés de 2026 à 2028.
+- **L’équipe, les absences et les jours fériés** : quotité de chaque médecin, absences (du, au, motif), jours fériés français de 2026 à 2028. En Belgique, remplacez dans l’onglet Fériés le 8 mai et le 14 juillet par le 21 juillet.
 - **Des contrôles automatiques** : même médecin deux jours de suite sur une ligne, sur les deux lignes le même jour, ou pendant une absence.
 - **Des compteurs par médecin** : gardes par ligne, samedis, dimanches, fériés, part attendue selon la quotité et écart.
 
@@ -138,11 +151,13 @@ Voir aussi : [le planning des urgences](/fr/secteurs-soins/urgences/) et [le pl
 
 ### Le repos de sécurité est-il obligatoire après une garde ?
 
-Pour les praticiens hospitaliers, l’article R6152-27 prévoit, après une période de travail continue de 24 heures, un repos immédiat d’une durée équivalente. Il garantit aussi le repos quotidien de onze heures après le dernier déplacement d’une astreinte.
+**En France**, pour les praticiens hospitaliers, l’article R6152-27 prévoit, après une période de travail continue de 24 heures, un repos immédiat d’une durée équivalente. Il garantit aussi le repos quotidien de onze heures après le dernier déplacement d’une astreinte.
+
+**En Belgique**, pour les médecins salariés ou statutaires et les candidats-médecins en formation, toute prestation de 12 à 24 heures doit être suivie d’au moins 12 heures de repos consécutives (loi du 12 décembre 2010, art. 5, § 3). Une prestation ne peut pas dépasser 24 heures, sauf accident ou nécessité imprévue.
 
 ### Comment compter une nuit de garde ?
 
-Quand les obligations de service se comptent en demi-journées, une nuit compte pour deux demi-journées. En temps continu, le décompte se fait en heures, en moyenne sur quatre mois.
+En France, quand les obligations de service des praticiens hospitaliers se comptent en demi-journées, une nuit compte pour deux demi-journées. En temps continu, le décompte se fait en heures, en moyenne sur quatre mois.
 
 ### Faut-il équilibrer les gardes sur le mois ou sur l’année ?
 
