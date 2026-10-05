@@ -5,6 +5,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 
 import { Image } from 'astro:assets';
 import { blogFeed } from '@/data/blogFeed';
+import { LOCALE_LABELS, ONCALL_GUIDE } from '@/i18n/locales';
 
 // Newest first; includes scheduled posts once their date has come
 const posts = await blogFeed('en');
@@ -21,6 +22,10 @@ const dateOptions: Intl.DateTimeFormatOptions = {
 //     : import.meta.glob('./posts/*.md', { eager: true })
 // );
 
+// Visitors from the de, de-ch, nl and it sites land on this blog: point them to the guide in their language.
+const guideLocales = (['de', 'de-ch', 'fr', 'fr-ch', 'it', 'nl'] as const).map((code) => ({ code, label: LOCALE_LABELS[code], href: `${ONCALL_GUIDE[code]}/` }));
+const isGuide = (href: string) => href === `${ONCALL_GUIDE.en}/`;
+
 const lastPost = posts[0];
 if (!lastPost) throw new Error('The English blog collection is empty.');
 ---
@@ -30,11 +35,15 @@ if (!lastPost) throw new Error('The English blog collection is empty.');
     description="Articles from BioSked on physician and medical team scheduling: on-call fairness, RVU-based scheduling, radiology and emergency department rosters, and Momentum product news."
 >
     <div class="container max-w-5xl section-padding mb-30">
-        <h1 class="text-display-section mb-10">Blog</h1>
+        <h1 class="text-display-section mb-3">Blog</h1>
+        <p class="text-muted-foreground text-sm max-w-3xl mb-10">
+            Free on-call guide and Excel template in your language:{' '}
+            {guideLocales.map((g, i) => <>{i > 0 && ' · '}<a href={g.href} hreflang={g.code} lang={g.code} class="underline underline-offset-2 hover:text-foreground">{g.label}</a></>)}
+        </p>
 
         <div class="border rounded mb-20 bg-white/20 hover:bg-white/35 transition-all shadow-xl shadow-secondary/5">
             <a href={lastPost.href} class="md:flex md:grid-cols-2 group">
-                <div class="flex-3"><Image src={lastPost.image} alt={lastPost.title} class="rounded-sm md:opacity-90 group-hover:opacity-100 transition-all ease-out duration-300"/></div>
+                <div class:list={['flex-3', isGuide(lastPost.href) && 'biosked-branded-visual']}><Image src={lastPost.image} alt={lastPost.title} class="rounded-sm md:opacity-90 group-hover:opacity-100 transition-all ease-out duration-300"/></div>
                 <div class="flex-2 p-5 md:pl-9 sm:pr-6 sm:pt-7">
                     <span class="text-muted-foreground text-sm">{lastPost.author ? `${lastPost.author} · ` : ''}{lastPost.date.toLocaleDateString('en-US', dateOptions)}</span>
                     <span class="opacity-0 group-hover:opacity-100 transition-opacity ease-out duration-500 text-cyan-500 font-medium tracking-large text-sm ml-2 hidden lg:inline">READ</span>
@@ -48,7 +57,13 @@ if (!lastPost) throw new Error('The English blog collection is empty.');
             {posts.slice(1).map((post, index) => 
                 <a href={post.href} class="group">
                     <li class={index%2 ? 'md:pl-12 border-none' :'md:pr-12 group relative md:border-r md:border-secondary/10'}>
-                        <Image src={post.image} alt={post.title} class="rounded-sm mb-4 md:mb-5 shadow-lg shadow-secondary/10 md:opacity-90 group-hover:opacity-100 transition-all ease-out duration-300"/>
+                        {isGuide(post.href) ? (
+                            <div class="biosked-branded-visual mb-4 md:mb-5">
+                                <Image src={post.image} alt={post.title} class="rounded-sm shadow-lg shadow-secondary/10 md:opacity-90 group-hover:opacity-100 transition-all ease-out duration-300"/>
+                            </div>
+                        ) : (
+                            <Image src={post.image} alt={post.title} class="rounded-sm mb-4 md:mb-5 shadow-lg shadow-secondary/10 md:opacity-90 group-hover:opacity-100 transition-all ease-out duration-300"/>
+                        )}
                         <span class="text-muted-foreground text-sm">{post.author ? `${post.author} · ` : ''}{post.date.toLocaleDateString('en-US', dateOptions)}</span>
                         <span class="opacity-0 group-hover:opacity-100 transition-opacity ease-out duration-500 text-cyan-500 font-medium tracking-large text-sm ml-2">READ</span>
                         <h2 class="text-display-card my-3">{post.title}</h2>

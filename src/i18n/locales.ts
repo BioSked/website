@@ -86,10 +86,13 @@ function isLocaleOnly(cur: LocaleCode, rest: string): boolean {
  * Locale-specific slugs that are semantic equivalents across locales
  * (no English page exists). Keys are canonical group names.
  */
+/** The on-call guide and template in every locale (also listed on the blog index pages). */
+export const ONCALL_GUIDE: Record<LocaleCode, string> = { en: '/guides/physician-call-schedule', fr: '/fr/blog/planning-de-garde-medecins', nl: '/nl/gids/wachtrooster-artsen', de: '/de/ratgeber/dienstplan-aerzte', it: '/it/guida/turni-di-guardia-medici', 'de-ch': '/de-ch/ratgeber/dienstplan-aerzte', 'fr-ch': '/fr-ch/guide/planning-de-garde-medecins' };
+
 const PAGE_EQUIV: Record<string, Partial<Record<LocaleCode, string>>> = {
     references: { fr: '/fr/cas-clients', de: '/de/referenzen', 'de-ch': '/de-ch/referenzen', nl: '/nl/referenties', it: '/it/referenze' },
     // On-call scheduling guide, localized per market (law, holidays, template).
-    oncallGuide: { en: '/guides/physician-call-schedule', fr: '/fr/blog/planning-de-garde-medecins', nl: '/nl/gids/wachtrooster-artsen', de: '/de/ratgeber/dienstplan-aerzte', it: '/it/guida/turni-di-guardia-medici', 'de-ch': '/de-ch/ratgeber/dienstplan-aerzte', 'fr-ch': '/fr-ch/guide/planning-de-garde-medecins' },
+    oncallGuide: ONCALL_GUIDE,
     security: { fr: '/fr/securite-donnees', 'fr-ch': '/fr-ch/securite-donnees', de: '/de/sicherheit-und-daten', 'de-ch': '/de-ch/sicherheit-und-daten', nl: '/nl/beveiliging-en-gegevens', it: '/it/sicurezza-e-dati' },
 };
 
