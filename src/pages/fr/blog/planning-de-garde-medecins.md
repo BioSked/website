@@ -68,6 +68,8 @@ La loi ne vise pas les médecins indépendants : son article 3 ne cite que le 
 
 Le modèle Excel gratuit existe en [version belge](/modeles/modele-planning-de-garde-belgique.xlsx), avec les dix jours fériés légaux belges.
 
+En Suisse, d’autres règles s’appliquent (loi sur le travail, service de piquet) : voir notre [guide pour la Suisse romande](/fr-ch/guide/planning-de-garde-medecins/), avec son modèle Excel.
+
 ## Ce que veut dire « équitable » : cinq compteurs
 
 Dans les services où le planning de garde ne fait plus débat, on retrouve presque toujours les mêmes compteurs, tenus pour chaque médecin.
