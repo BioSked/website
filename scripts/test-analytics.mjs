@@ -12,6 +12,12 @@ import {
   requiresPriorAnalyticsConsent,
 } from '../src/lib/analytics.mjs';
 import {
+  STATS_ENDPOINT,
+  buildHit,
+  statsAllowed,
+  statsEventForCta,
+} from '../src/lib/siteStats.mjs';
+import {
   buildHubSpotSubmission,
   getCookieValue,
 } from '../src/lib/hubspotSubmission.mjs';
@@ -490,6 +496,46 @@ assert.match(baseLayout, /data-page-type=\{pageType\}/);
 assert.match(baseLayout, /<BaseHead[^>]*pageType=\{pageType\}/s);
 
 const analyticsEvents = read('src/components/AnalyticsEvents.astro');
+
+// Cookie-free visit counter (src/lib/siteStats.mjs, site-stats/README.md)
+assert.match(STATS_ENDPOINT, /^https:\/\/firestore\.googleapis\.com\/v1\/projects\/biosked-site-stats\//);
+assert.equal(statsAllowed({ hostname: 'biosked.com', gpc: false, consentChoice: null, webdriver: false }), true);
+assert.equal(statsAllowed({ hostname: 'biosked.com', gpc: false, consentChoice: 'granted', webdriver: false }), true);
+assert.equal(statsAllowed({ hostname: 'biosked.com', gpc: false, consentChoice: 'denied', webdriver: false }), false);
+assert.equal(statsAllowed({ hostname: 'biosked.com', gpc: true, consentChoice: null, webdriver: false }), false);
+assert.equal(statsAllowed({ hostname: 'biosked.com', gpc: false, consentChoice: null, webdriver: true }), false);
+assert.equal(statsAllowed({ hostname: 'localhost', gpc: false, consentChoice: null, webdriver: false }), false);
+assert.equal(statsEventForCta('template_download'), 'tpl');
+assert.equal(statsEventForCta('demo_cta_click'), 'demo');
+assert.equal(statsEventForCta('quote_cta_click'), 'quote');
+assert.equal(statsEventForCta(null), null);
+{
+  const now = Date.UTC(2026, 9, 7);
+  const hit = buildHit({
+    event: 'pv',
+    pathname: '/fr/blog/planning-de-garde-medecins/',
+    referrer: 'https://www.linkedin.com/feed/?trk=abc',
+    search: '?utm_source=linkedin&utm_medium=social&utm_campaign=guide&utm_content=x@y.com&email=a@b.c',
+    lang: 'fr',
+    now,
+  });
+  assert.deepEqual(Object.keys(hit.fields).sort(), ['c', 'e', 'exp', 'l', 'm', 'p', 'r', 's']);
+  assert.equal(hit.fields.p.stringValue, '/fr/blog/planning-de-garde-medecins/');
+  assert.equal(hit.fields.r.stringValue, 'linkedin.com');
+  assert.equal(hit.fields.s.stringValue, 'linkedin');
+  assert.equal(new Date(hit.fields.exp.timestampValue).valueOf(), now + 760 * 86400000);
+  const ownReferrer = buildHit({ event: 'tpl', pathname: '/guides/physician-call-schedule/', target: '/modeles/a.xlsx', referrer: 'https://biosked.com/blog/', search: '?utm_source=john@doe.com' });
+  assert.equal(ownReferrer.fields.r, undefined, 'own site is not a referrer');
+  assert.equal(ownReferrer.fields.s, undefined, 'campaign values that look like contact details are dropped');
+  assert.equal(ownReferrer.fields.x.stringValue, '/modeles/a.xlsx');
+  assert.equal(buildHit({ event: 'pv', pathname: '/a@b.com/' }).fields.p.stringValue, '/');
+}
+const siteStatsComponent = read('src/components/SiteStats.astro');
+assert.match(baseLayout, /import SiteStats from ['"]@\/components\/SiteStats\.astro['"]/);
+assert.match(baseLayout, /<SiteStats\s*\/>/);
+assert.doesNotMatch(siteStatsComponent, /document\.cookie|setItem\(|sessionStorage|indexedDB/, 'the visit counter must not store anything on the device');
+assert.match(siteStatsComponent, /credentials: 'omit'/);
+assert.match(analyticsEvents, /__bskStatsLead\?\.\(eventName\)/);
 assert.match(analyticsEvents, /classifyCtaPath/);
 assert.match(analyticsEvents, /leadEventForForm/);
 assert.match(analyticsEvents, /hs-form-event:on-submission:success/);

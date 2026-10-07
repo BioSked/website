@@ -1,0 +1,37 @@
+rules_version = '2';
+
+// Cookie-free visit counter for biosked.com (see README.md).
+// Browsers may only add one anonymous hit at a time, in a fixed shape.
+// Nobody can read, change or delete hits from the web.
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /hits/{hitId} {
+      allow create: if request.auth == null
+        && request.resource.data.keys().hasAll(['e', 'p', 'exp'])
+        && request.resource.data.keys().hasOnly(['e', 'p', 'x', 'r', 's', 'm', 'c', 'l', 'exp'])
+        && request.resource.data.e in ['pv', 'tpl', 'demo', 'quote', 'lead']
+        && short(request.resource.data.p, 200) && request.resource.data.p.matches('^/.*')
+        && optionalShort('x', 200)
+        && optionalShort('r', 100)
+        && optionalShort('s', 80)
+        && optionalShort('m', 80)
+        && optionalShort('c', 80)
+        && optionalShort('l', 5)
+        // Deleted automatically about 25 months after the visit (TTL on exp).
+        && request.resource.data.exp is timestamp
+        && request.resource.data.exp > request.time + duration.value(740, 'd')
+        && request.resource.data.exp < request.time + duration.value(780, 'd');
+    }
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
+
+function short(value, max) {
+  return value is string && value.size() <= max;
+}
+
+function optionalShort(key, max) {
+  return !(key in request.resource.data) || short(request.resource.data[key], max);
+}

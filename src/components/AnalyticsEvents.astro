@@ -10,6 +10,7 @@
         gtag?: (...args: unknown[]) => void;
         __bskGALoaded?: boolean;
         bskTrackLead?: (formId: string, onComplete?: () => void) => void;
+        __bskStatsLead?: (leadEvent: string) => void;
     };
 
     const analyticsWindow = window as AnalyticsWindow;
@@ -74,6 +75,7 @@
             return;
         }
 
+        analyticsWindow.__bskStatsLead?.(eventName);
         const dedupeKey = `${eventName}:${formId}:${location.pathname}`;
         dispatchLead(dedupeKey, eventName, { form_id: formId }, onComplete);
     };

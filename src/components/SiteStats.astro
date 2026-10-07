@@ -1,0 +1,57 @@
+<script>
+    import { classifyCtaPath } from '@/lib/analytics.mjs';
+    import { STATS_ENDPOINT, buildHit, statsAllowed, statsEventForCta } from '@/lib/siteStats.mjs';
+
+    // Cookie-free visit counter (src/lib/siteStats.mjs). Independent of the
+    // Google Analytics consent: it stores no identifier, but it still honours
+    // "Block" and Global Privacy Control.
+    function consentChoice(): string | null {
+        try {
+            const raw = localStorage.getItem('biosked-consent');
+            return raw ? JSON.parse(raw).v ?? null : null;
+        } catch {
+            return null;
+        }
+    }
+
+    function send(event: string, target = '') {
+        if (!statsAllowed({
+            hostname: location.hostname,
+            gpc: (navigator as Navigator & { globalPrivacyControl?: boolean }).globalPrivacyControl === true,
+            consentChoice: consentChoice(),
+            webdriver: navigator.webdriver === true,
+        })) return;
+        const hit = buildHit({
+            event,
+            pathname: location.pathname,
+            target,
+            referrer: document.referrer,
+            search: location.search,
+            lang: document.documentElement.lang,
+        });
+        fetch(STATS_ENDPOINT, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(hit),
+            keepalive: true,
+            credentials: 'omit',
+            referrerPolicy: 'no-referrer',
+        }).catch(() => {});
+    }
+
+    send('pv');
+
+    document.addEventListener('click', (event) => {
+        const target = event.target;
+        if (!(target instanceof Element)) return;
+        const anchor = target.closest<HTMLAnchorElement>('a[href]');
+        if (!anchor || anchor.hasAttribute('data-locale-choice')) return;
+        const destination = new URL(anchor.href, location.href);
+        if (destination.origin !== location.origin) return;
+        const statsEvent = statsEventForCta(classifyCtaPath(destination.pathname));
+        if (statsEvent) send(statsEvent, destination.pathname);
+    }, { capture: true });
+
+    // Called by bskTrackLead (AnalyticsEvents.astro) for every completed demo, quote or support form.
+    (window as Window & { __bskStatsLead?: (leadEvent: string) => void }).__bskStatsLead = (leadEvent) => send('lead', leadEvent);
+</script>
