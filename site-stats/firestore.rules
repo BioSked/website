@@ -6,6 +6,8 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
     match /hits/{hitId} {
+      // Dashboard (dashboard/index.html): signed-in viewers only.
+      allow read: if isViewer();
       allow create: if request.auth == null
         && request.resource.data.keys().hasAll(['e', 'p', 'exp'])
         && request.resource.data.keys().hasOnly(['e', 'p', 'x', 'r', 's', 'm', 'c', 'l', 'exp'])
@@ -34,4 +36,14 @@ function short(value, max) {
 
 function optionalShort(key, max) {
   return !(key in request.resource.data) || short(request.resource.data[key], max);
+}
+
+// People who may read the numbers on the dashboard. Add an address here and
+// redeploy the rules to give someone access.
+function isViewer() {
+  return request.auth != null
+    && request.auth.token.email_verified == true
+    && request.auth.token.email in [
+      'david.dudokdewit@biosked.com'
+    ];
 }

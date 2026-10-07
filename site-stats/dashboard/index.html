@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>biosked.com visitors</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='1' y='8' width='3' height='7' fill='%230B1F44'/%3E%3Crect x='6' y='4' width='3' height='11' fill='%230E7490'/%3E%3Crect x='11' y='1' width='3' height='14' fill='%2337AFCF'/%3E%3C/svg%3E">
+<style>
+  :root {
+    --bg: #f6f7f9; --card: #ffffff; --text: #1a1f29; --muted: #5b6470; --line: #e3e7ec;
+    --accent: #0e7490; --bar: #37afcf; --up: #2e7d32; --down: #b42318;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #0f141b; --card: #171e27; --text: #e8edf3; --muted: #9aa5b1; --line: #2a3441;
+      --accent: #5cc8e0; --bar: #37afcf; --up: #6fcf73; --down: #ff8a80; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 15px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 1040px; overflow-x: hidden; margin: 0 auto; padding: 24px 16px 48px; }
+  header { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; margin-bottom: 20px; }
+  h1 { font-size: 22px; margin: 0; flex: 1 1 auto; }
+  h2 { font-size: 15px; margin: 0 0 10px; }
+  .periods button, .btn { font: inherit; border: 1px solid var(--line); background: var(--card); color: var(--text); padding: 6px 12px; border-radius: 8px; cursor: pointer; }
+  .periods button[aria-pressed="true"] { border-color: var(--accent); color: var(--accent); font-weight: 600; }
+  .who { color: var(--muted); font-size: 13px; }
+  .who button { font: inherit; background: none; border: 0; color: var(--accent); cursor: pointer; padding: 0; }
+  .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(150px, 100%), 1fr)); gap: 12px; margin-bottom: 16px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; }
+  .kpi .n { font-size: 28px; font-weight: 650; }
+  .kpi .l { color: var(--muted); font-size: 13px; }
+  .kpi .d { font-size: 12px; margin-top: 2px; }
+  .up { color: var(--up); } .down { color: var(--down); } .flat { color: var(--muted); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 12px; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  td { padding: 5px 0; border-top: 1px solid var(--line); vertical-align: top; overflow-wrap: anywhere; }
+  td.n { text-align: right; width: 64px; font-variant-numeric: tabular-nums; padding-left: 8px; }
+  .empty { color: var(--muted); font-size: 14px; }
+  .chart { margin-bottom: 12px; }
+  .chart svg { width: 100%; height: 160px; display: block; }
+  .note { color: var(--muted); font-size: 13px; margin-top: 20px; }
+  .note a, .links a { color: var(--accent); }
+  .links { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 14px; margin: -4px 0 16px; }
+  .center { max-width: 420px; margin: 12vh auto; text-align: center; }
+  .center p { color: var(--muted); }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; padding: 10px 18px; }
+</style>
+</head>
+<body>
+<main id="app"><p class="empty">Loading…</p></main>
+<script type="module">
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
+import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
+import { getFirestore, collection, query, where, getDocs, Timestamp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
+
+const DAY = 86400000;
+const RETENTION_DAYS = 760; // hits carry exp = visit time + 760 days (src/lib/siteStats.mjs)
+const app = document.getElementById('app');
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+const config = await (await fetch('/__/firebase/init.json')).json();
+const fb = initializeApp(config);
+const auth = getAuth(fb);
+const db = getFirestore(fb);
+
+let period = 7;
+let cache = {};
+
+function signInScreen(message = '') {
+  app.innerHTML = `<div class="center"><h1>biosked.com visitors</h1>
+    <p>${message || 'Sign in with your BioSked Google account to see the numbers.'}</p>
+    <button class="btn primary" id="signin">Sign in with Google</button></div>`;
+  document.getElementById('signin').onclick = () => {
+    const provider = new GoogleAuthProvider();
+    provider.setCustomParameters({ hd: 'biosked.com', prompt: 'select_account' });
+    signInWithPopup(auth, provider).catch((e) => signInScreen(`Sign-in did not complete (${esc(e.code || e.message)}).`));
+  };
+}
+
+async function load(days) {
+  const span = days <= 28 ? days * 2 : days; // previous period for 7 and 28 days
+  if (cache[span]) return cache[span];
+  const from = Timestamp.fromMillis(Date.now() - span * DAY + RETENTION_DAYS * DAY);
+  const snap = await getDocs(query(collection(db, 'hits'), where('exp', '>=', from)));
+  const hits = snap.docs.map((d) => {
+    const h = d.data();
+    return { ...h, t: h.exp.toMillis() - RETENTION_DAYS * DAY };
+  });
+  cache[span] = hits;
+  return hits;
+}
+
+const tally = (list, key) => Object.entries(list.reduce((a, h) => { const k = key(h); a[k] = (a[k] || 0) + 1; return a; }, {}))
+  .sort((a, b) => b[1] - a[1]);
+
+function table(title, rows, limit = 12) {
+  const body = rows.length
+    ? `<table>${rows.slice(0, limit).map(([k, n]) => `<tr><td>${esc(k)}</td><td class="n">${n}</td></tr>`).join('')}</table>`
+    : '<p class="empty">Nothing yet.</p>';
+  return `<div class="card"><h2>${title}</h2>${body}</div>`;
+}
+
+function delta(now, before, comparable) {
+  if (!comparable) return '';
+  if (before === 0) return now ? '<div class="d flat">new this period</div>' : '<div class="d flat">no change</div>';
+  const pct = Math.round(((now - before) / before) * 100);
+  const cls = pct > 0 ? 'up' : pct < 0 ? 'down' : 'flat';
+  return `<div class="d ${cls}">${pct > 0 ? '+' : ''}${pct}% vs previous ${period} days</div>`;
+}
+
+function chart(pv, days, start) {
+  const counts = Array.from({ length: days }, (_, i) => {
+    const d0 = start + i * DAY;
+    return pv.filter((h) => h.t >= d0 && h.t < d0 + DAY).length;
+  });
+  const max = Math.max(1, ...counts);
+  const w = 1000, h = 140, gap = days > 60 ? 1 : 3, bw = w / days - gap;
+  const bars = counts.map((c, i) => {
+    const bh = Math.round((c / max) * (h - 18));
+    const label = new Date(start + i * DAY).toISOString().slice(0, 10);
+    return `<rect x="${(i * w) / days}" y="${h - bh}" width="${Math.max(1, bw)}" height="${bh}" rx="2" fill="var(--bar)"><title>${label}: ${c}</title></rect>`;
+  }).join('');
+  return `<div class="card chart"><h2>Page views per day <span class="who">(max ${max})</span></h2>
+    <svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="none" role="img" aria-label="Page views per day">${bars}</svg></div>`;
+}
+
+async function render(user) {
+  app.innerHTML = '<p class="empty">Loading…</p>';
+  let all;
+  try {
+    all = await load(period);
+  } catch (e) {
+    if (String(e.code).includes('permission')) return signInScreen(`${esc(user.email)} has no access. Ask David to add it.`);
+    app.innerHTML = `<p class="empty">Could not load the numbers (${esc(e.message)}).</p>`;
+    return;
+  }
+  const end = Date.now();
+  const startDay = new Date(new Date(end - (period - 1) * DAY).toISOString().slice(0, 10)).valueOf();
+  const cur = all.filter((h) => h.t >= end - period * DAY);
+  const prev = all.filter((h) => h.t < end - period * DAY && h.t >= end - 2 * period * DAY);
+  const comparable = period <= 28;
+  const of = (list, e) => list.filter((h) => h.e === e);
+  const kpi = (label, e) => `<div class="card kpi"><div class="n">${of(cur, e).length}</div><div class="l">${label}</div>${delta(of(cur, e).length, of(prev, e).length, comparable)}</div>`;
+  const pv = of(cur, 'pv');
+  app.innerHTML = `
+    <header>
+      <h1>biosked.com visitors</h1>
+      <div class="periods">${[7, 28, 90].map((d) => `<button data-d="${d}" aria-pressed="${d === period}">${d} days</button>`).join(' ')}</div>
+      <div class="who">${esc(user.email)} · <button id="signout">Sign out</button></div>
+    </header>
+    <div class="links">
+      <a href="https://search.google.com/u/1/search-console/performance/search-analytics?resource_id=sc-domain%3Abiosked.com" target="_blank" rel="noopener">Google searches (Search Console)</a>
+      <a href="https://analytics.google.com/analytics/web/?authuser=1#/p376602611/reports/intelligenthome" target="_blank" rel="noopener">Google Analytics</a>
+      <a href="https://app-eu1.hubspot.com/contacts/25195055/objects/0-1/views/all/list" target="_blank" rel="noopener">HubSpot contacts</a>
+    </div>
+    <div class="kpis">
+      ${kpi('Page views', 'pv')}
+      ${kpi('Template downloads', 'tpl')}
+      ${kpi('Demo button clicks', 'demo')}
+      ${kpi('Quote button clicks', 'quote')}
+      ${kpi('Forms completed', 'lead')}
+    </div>
+    ${chart(pv, period, startDay)}
+    <div class="grid">
+      ${table('Top pages', tally(pv, (h) => h.p))}
+      ${table('Where visitors come from', tally(pv, (h) => h.r || 'Direct, or source not shared'))}
+      ${table('Campaign tags (source / medium / campaign)', tally(cur.filter((h) => h.s || h.m || h.c), (h) => `${h.s || '-'} / ${h.m || '-'} / ${h.c || '-'}`))}
+      ${table('Template downloads', tally(of(cur, 'tpl'), (h) => (h.x || '').replace('/modeles/', '')))}
+      ${table('Demo and quote clicks, by page', tally(cur.filter((h) => h.e === 'demo' || h.e === 'quote'), (h) => `${h.e === 'demo' ? 'Demo' : 'Quote'} · ${h.p}`))}
+      ${table('Forms completed', tally(of(cur, 'lead'), (h) => `${(h.x || '').replace(/_/g, ' ')} · ${h.p}`))}
+      ${table('Site language', tally(pv, (h) => h.l || '-'))}
+    </div>
+    <p class="note">Counted without cookies or any identifier, so one person reading three pages counts as three page views.
+      Not counted: visitors who chose “Block” on the site, browsers that send Global Privacy Control (Brave does by default), and automated browsers.
+      Hits are kept 25 months. How it works: <a href="https://github.com/BioSked/website/tree/main/site-stats" target="_blank" rel="noopener">site-stats</a>.</p>`;
+  app.querySelectorAll('.periods button').forEach((b) => (b.onclick = () => { period = Number(b.dataset.d); render(user); }));
+  document.getElementById('signout').onclick = () => signOut(auth);
+}
+
+onAuthStateChanged(auth, (user) => {
+  cache = {};
+  if (user) render(user); else signInScreen();
+});
+</script>
+</body>
+</html>

@@ -38,7 +38,18 @@ or delete hits from the web. Deploy after a change:
 
 Rules take about a minute to apply.
 
-## Reading the numbers
+## Dashboard
+
+https://biosked-site-stats.web.app (Firebase Hosting, folder `dashboard/`).
+Sign in with a BioSked Google account; only addresses listed in
+`isViewer()` in `firestore.rules` can read the numbers. To add someone, add
+their address there and deploy the rules. Deploy the page after a change:
+
+    cd site-stats && npx firebase-tools deploy --only hosting --project biosked-site-stats
+
+The page is not indexed (noindex header) and holds no data itself.
+
+## Reading the numbers from the command line
 
     node scripts/site-stats-report.mjs            # last 7 days
     node scripts/site-stats-report.mjs --days 28
