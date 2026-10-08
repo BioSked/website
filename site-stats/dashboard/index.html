@@ -37,7 +37,18 @@
   td.n { text-align: right; width: 64px; font-variant-numeric: tabular-nums; padding-left: 8px; }
   .empty { color: var(--muted); font-size: 14px; }
   .chart { margin-bottom: 12px; }
-  .chart svg { width: 100%; height: 160px; display: block; }
+  .plot { width: 100%; }
+  .plot svg { display: block; overflow: visible; }
+  .plot .grid { stroke: var(--line); stroke-width: 1; }
+  .plot .tick { fill: var(--muted); font-size: 11px; font-variant-numeric: tabular-nums; }
+  .plot .bar { fill: var(--bar); }
+  .plot .hit { fill: transparent; }
+  .plot .day { cursor: pointer; outline: none; }
+  .plot .day.on .bar, .plot .day:focus .bar { fill: var(--accent); }
+  .plot .day.on .hit, .plot .day:focus .hit { fill: var(--line); opacity: .35; }
+  #tip { position: absolute; transform: translate(-50%, -100%); background: var(--text); color: var(--bg); padding: 6px 10px; border-radius: 8px; font-size: 12px; line-height: 1.35; pointer-events: none; white-space: nowrap; z-index: 5; display: flex; flex-direction: column; align-items: center; }
+  #tip[hidden] { display: none; }
+  #tip strong { font-size: 14px; }
   .note { color: var(--muted); font-size: 13px; margin-top: 20px; }
   .note a, .links a { color: var(--accent); }
   .links { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 14px; margin: -4px 0 16px; }
@@ -48,6 +59,7 @@
 </head>
 <body>
 <main id="app"><p class="empty">Loading…</p></main>
+<div id="tip" role="status" hidden></div>
 <script type="module">
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
 import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
@@ -108,21 +120,109 @@ function delta(now, before, comparable) {
   return `<div class="d ${cls}">${pct > 0 ? '+' : ''}${pct}% vs previous ${period} days</div>`;
 }
 
+// Daily page-views chart: drawn at the container's real pixel width, y-axis with
+// round ticks, hover / tap / keyboard tooltip per day (the whole day column is the target).
+function niceStep(max) {
+  const raw = max / 4;
+  const mag = 10 ** Math.floor(Math.log10(raw || 1));
+  return [1, 2, 5, 10].map((m) => m * mag).find((s) => s >= raw) || mag;
+}
+
 function chart(pv, days, start) {
   const counts = Array.from({ length: days }, (_, i) => {
     const d0 = start + i * DAY;
     return pv.filter((h) => h.t >= d0 && h.t < d0 + DAY).length;
   });
-  const max = Math.max(1, ...counts);
-  const w = 1000, h = 140, gap = days > 60 ? 1 : 3, bw = w / days - gap;
-  const bars = counts.map((c, i) => {
-    const bh = Math.round((c / max) * (h - 18));
-    const label = new Date(start + i * DAY).toISOString().slice(0, 10);
-    return `<rect x="${(i * w) / days}" y="${h - bh}" width="${Math.max(1, bw)}" height="${bh}" rx="2" fill="var(--bar)"><title>${label}: ${c}</title></rect>`;
-  }).join('');
-  return `<div class="card chart"><h2>Page views per day <span class="who">(max ${max})</span></h2>
-    <svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="none" role="img" aria-label="Page views per day">${bars}</svg></div>`;
+  return `<div class="card chart"><h2>Page views per day</h2>
+    <div class="plot" data-counts="${counts.join(',')}" data-start="${start}"></div></div>`;
 }
+
+const DAY_FMT = new Intl.DateTimeFormat('en-GB', { weekday: 'short', day: 'numeric', month: 'short' });
+const TICK_FMT = new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'short' });
+
+function drawPlot(el) {
+  const counts = el.dataset.counts.split(',').map(Number);
+  const start = Number(el.dataset.start);
+  const days = counts.length;
+  const width = el.clientWidth || 600;
+  const height = 190;
+  const m = { top: 10, right: 6, bottom: 24, left: 40 };
+  const iw = width - m.left - m.right;
+  const ih = height - m.top - m.bottom;
+  const step = niceStep(Math.max(1, ...counts));
+  const top = Math.max(step, Math.ceil(Math.max(1, ...counts) / step) * step);
+  const y = (v) => m.top + ih - (v / top) * ih;
+  const band = iw / days;
+  const bw = Math.max(2, Math.min(24, band - 2));
+  const NS = 'http://www.w3.org/2000/svg';
+  const svg = document.createElementNS(NS, 'svg');
+  svg.setAttribute('width', width);
+  svg.setAttribute('height', height);
+  svg.setAttribute('role', 'img');
+  svg.setAttribute('aria-label', 'Page views per day');
+  const add = (tag, attrs, parent = svg) => {
+    const node = document.createElementNS(NS, tag);
+    for (const [k, v] of Object.entries(attrs)) node.setAttribute(k, v);
+    parent.appendChild(node);
+    return node;
+  };
+  // gridlines + y ticks
+  for (let v = 0; v <= top; v += step) {
+    add('line', { x1: m.left, x2: width - m.right, y1: y(v), y2: y(v), class: 'grid' });
+    add('text', { x: m.left - 8, y: y(v) + 4, 'text-anchor': 'end', class: 'tick' }).textContent = v.toLocaleString('en-US');
+  }
+  // x labels: about 6 evenly spaced dates
+  const every = Math.max(1, Math.ceil(days / 6));
+  for (let i = 0; i < days; i += every) {
+    add('text', { x: m.left + band * i + band / 2, y: height - 6, 'text-anchor': 'middle', class: 'tick' })
+      .textContent = TICK_FMT.format(new Date(start + i * DAY));
+  }
+  const tip = document.getElementById('tip');
+  counts.forEach((c, i) => {
+    const x = m.left + band * i + (band - bw) / 2;
+    const h = (c / top) * ih;
+    const g = add('g', { class: 'day', tabindex: '0' });
+    add('rect', { x: m.left + band * i, y: m.top, width: band, height: ih, class: 'hit' }, g);
+    if (c > 0) {
+      const r = Math.min(4, bw / 2, h);
+      const yb = m.top + ih;
+      add('path', {
+        class: 'bar',
+        d: `M${x},${yb} V${yb - h + r} Q${x},${yb - h} ${x + r},${yb - h} H${x + bw - r} Q${x + bw},${yb - h} ${x + bw},${yb - h + r} V${yb} Z`,
+      }, g);
+    }
+    const label = DAY_FMT.format(new Date(start + i * DAY));
+    g.setAttribute('aria-label', `${label}: ${c} page views`);
+    const show = () => {
+      tip.replaceChildren();
+      const v = document.createElement('strong');
+      v.textContent = `${c.toLocaleString('en-US')} page view${c === 1 ? '' : 's'}`;
+      const d = document.createElement('span');
+      d.textContent = label;
+      tip.append(v, d);
+      const box = el.getBoundingClientRect();
+      tip.style.left = `${Math.min(Math.max(box.left + window.scrollX + m.left + band * i + band / 2, 70), window.scrollX + document.documentElement.clientWidth - 70)}px`;
+      tip.style.top = `${box.top + window.scrollY + Math.max(m.top, barTop(h)) - 8}px`;
+      tip.hidden = false;
+      svg.querySelectorAll('.day.on').forEach((n) => n.classList.remove('on'));
+      g.classList.add('on');
+    };
+    const barTop = (barH) => m.top + ih - barH;
+    g.addEventListener('pointerenter', show);
+    g.addEventListener('pointerdown', show);
+    g.addEventListener('focus', show);
+  });
+  svg.addEventListener('pointerleave', (e) => { if (e.pointerType === 'mouse') { tip.hidden = true; svg.querySelectorAll('.day.on').forEach((n) => n.classList.remove('on')); } });
+  el.replaceChildren(svg);
+}
+
+function drawPlots() {
+  document.querySelectorAll('.plot').forEach(drawPlot);
+}
+window.addEventListener('resize', () => { clearTimeout(window.__plotTimer); window.__plotTimer = setTimeout(drawPlots, 150); });
+document.addEventListener('pointerdown', (e) => {
+  if (!e.target.closest || !e.target.closest('.plot')) { const t = document.getElementById('tip'); if (t) t.hidden = true; }
+});
 
 async function render(user) {
   app.innerHTML = '<p class="empty">Loading…</p>';
@@ -173,6 +273,7 @@ async function render(user) {
     <p class="note">Counted without cookies or any identifier, so one person reading three pages counts as three page views.
       Not counted: visitors who chose “Block” on the site, browsers that send Global Privacy Control (Brave does by default), and automated browsers.
       Hits are kept 25 months. How it works: <a href="https://github.com/BioSked/website/tree/main/site-stats" target="_blank" rel="noopener">site-stats</a>.</p>`;
+  drawPlots();
   app.querySelectorAll('.periods button').forEach((b) => (b.onclick = () => { period = Number(b.dataset.d); render(user); }));
   document.getElementById('signout').onclick = () => signOut(auth);
 }
