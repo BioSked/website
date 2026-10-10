@@ -1,7 +1,9 @@
 ---
-// The free on-call guide and Excel template, presented at the top of a blog
-// index: a preview of the template, one line, the main link, and the versions
-// adapted to other countries' rules.
+// The free on-call guide and Excel template, as a slim strip at the top of a
+// blog index: a small preview of the template, one line, the main link, and
+// the versions adapted to other countries' rules (a link when there is one,
+// a small menu when there are several). Kept to one row so the posts below
+// stay on the first screen.
 interface Alternate {
   code: string;
   label: string;
@@ -21,130 +23,166 @@ interface Props {
 const { title, text, cta, image, imageAlt, alternatesLabel, alternates = [] } = Astro.props;
 ---
 
-<section class="guide mb-16" aria-label={title}>
+<section class="guide mb-12" aria-label={title}>
   <a href={cta.href} class="guide-apercu" tabindex="-1">
     <img src={image} alt={imageAlt} width="1200" height="630" loading="eager" />
   </a>
   <div class="guide-texte">
-    <h2 class="guide-titre"><a href={cta.href}>{title}</a></h2>
+    <p class="guide-titre"><a href={cta.href}>{title}</a></p>
     <p class="guide-ligne">{text}</p>
+  </div>
+  <div class="guide-actions">
     <a href={cta.href} class="guide-bouton">{cta.label}<span aria-hidden="true">→</span></a>
-    {alternates.length > 0 && (
-      <div class="guide-langues">
-        <span class="guide-langues-libelle">{alternatesLabel}</span>
+    {alternates.length === 1 && (
+      <a href={alternates[0].href} hreflang={alternates[0].code} lang={alternates[0].code} class="guide-autre">{alternatesLabel}</a>
+    )}
+    {alternates.length > 1 && (
+      <details class="guide-pays">
+        <summary>{alternatesLabel}</summary>
         <ul>
           {alternates.map((a) => (
             <li><a href={a.href} hreflang={a.code} lang={a.code}>{a.label}</a></li>
           ))}
         </ul>
-      </div>
+      </details>
     )}
   </div>
 </section>
 
 <style>
   .guide {
+    position: relative;
     display: grid;
-    gap: 24px;
-    padding: 20px;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px 20px;
+    align-items: center;
+    padding: 14px 16px;
     background: rgb(255 255 255 / 0.7);
     border: 1px solid color-mix(in oklab, var(--secondary) 12%, transparent);
-    border-radius: 14px;
-    box-shadow: 0 1px 2px rgb(15 27 61 / 0.04), 0 18px 40px -28px rgb(15 27 61 / 0.35);
+    border-radius: 12px;
+    box-shadow: 0 1px 2px rgb(15 27 61 / 0.04), 0 12px 28px -24px rgb(15 27 61 / 0.35);
   }
   @media (min-width: 768px) {
     .guide {
-      grid-template-columns: minmax(0, 300px) minmax(0, 1fr);
-      align-items: center;
-      gap: 32px;
-      padding: 22px 28px 22px 22px;
+      grid-template-columns: 132px minmax(0, 1fr) auto;
+      padding: 12px 18px 12px 12px;
     }
   }
   .guide-apercu {
-    display: block;
+    display: none;
     overflow: hidden;
-    border-radius: 10px;
+    border-radius: 7px;
     border: 1px solid color-mix(in oklab, var(--secondary) 10%, transparent);
+  }
+  @media (min-width: 768px) {
+    .guide-apercu {
+      display: block;
+    }
   }
   .guide-apercu img {
     display: block;
     width: 100%;
     height: auto;
-    transition: transform 0.4s ease;
-  }
-  .guide:hover .guide-apercu img {
-    transform: scale(1.02);
   }
   .guide-titre {
     font-weight: 600;
-    font-size: 1.35rem;
-    line-height: 1.25;
-    letter-spacing: -0.01em;
+    font-size: 1.05rem;
+    line-height: 1.3;
     color: var(--foreground);
   }
   .guide-titre a:hover {
     text-decoration: underline;
-    text-underline-offset: 4px;
+    text-underline-offset: 3px;
     text-decoration-thickness: 1px;
   }
   .guide-ligne {
-    margin-top: 6px;
-    font-size: 1rem;
-    line-height: 1.5;
+    margin-top: 2px;
+    font-size: 0.9rem;
+    line-height: 1.45;
     color: var(--muted-foreground);
+  }
+  .guide-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 14px;
   }
   .guide-bouton {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    margin-top: 16px;
-    height: 42px;
-    padding: 0 18px;
+    gap: 6px;
+    height: 36px;
+    padding: 0 14px;
     border-radius: 999px;
     background: var(--secondary);
     color: var(--secondary-foreground);
     font-weight: 600;
-    font-size: 0.95rem;
+    font-size: 0.875rem;
+    white-space: nowrap;
     transition: transform 0.15s ease, box-shadow 0.15s ease;
   }
   .guide-bouton:hover {
     transform: translateY(-1px);
-    box-shadow: 0 8px 22px -12px var(--secondary);
+    box-shadow: 0 8px 20px -12px var(--secondary);
   }
-  .guide-langues {
-    margin-top: 18px;
-    padding-top: 14px;
-    border-top: 1px solid color-mix(in oklab, var(--secondary) 10%, transparent);
-  }
-  .guide-langues-libelle {
-    display: block;
-    font-size: 0.85rem;
-    color: var(--muted-foreground);
-    margin-bottom: 8px;
-  }
-  .guide-langues ul {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-  .guide-langues a {
-    display: inline-flex;
-    align-items: center;
-    height: 32px;
-    padding: 0 12px;
-    border: 1px solid color-mix(in oklab, var(--secondary) 18%, transparent);
-    border-radius: 8px;
-    background: #fff;
+  .guide-autre,
+  .guide-pays summary {
     font-size: 0.875rem;
     font-weight: 500;
     color: var(--foreground);
-    transition: border-color 0.15s ease, background-color 0.15s ease;
+    text-decoration: underline;
+    text-decoration-color: color-mix(in oklab, var(--secondary) 30%, transparent);
+    text-underline-offset: 3px;
+    white-space: nowrap;
+    cursor: pointer;
   }
-  .guide-langues a:hover {
-    border-color: var(--accent);
-    background: color-mix(in oklab, var(--primary) 12%, white);
+  .guide-autre:hover,
+  .guide-pays summary:hover {
+    text-decoration-color: var(--accent);
+  }
+  .guide-pays {
+    position: relative;
+  }
+  .guide-pays summary {
+    list-style: none;
+  }
+  .guide-pays summary::-webkit-details-marker {
+    display: none;
+  }
+  .guide-pays summary::after {
+    content: '▾';
+    display: inline-block;
+    margin-left: 4px;
+    text-decoration: none;
+  }
+  .guide-pays ul {
+    position: absolute;
+    right: 0;
+    top: calc(100% + 8px);
+    z-index: 20;
+    min-width: 200px;
+    margin: 0;
+    padding: 6px;
+    list-style: none;
+    background: #fff;
+    border: 1px solid color-mix(in oklab, var(--secondary) 14%, transparent);
+    border-radius: 10px;
+    box-shadow: 0 14px 30px -14px rgb(15 27 61 / 0.35);
+  }
+  @media (max-width: 767px) {
+    .guide-pays ul {
+      left: 0;
+      right: auto;
+    }
+  }
+  .guide-pays li a {
+    display: block;
+    padding: 7px 10px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    color: var(--foreground);
+  }
+  .guide-pays li a:hover {
+    background: color-mix(in oklab, var(--primary) 14%, white);
   }
 </style>

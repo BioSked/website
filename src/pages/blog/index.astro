@@ -37,17 +37,17 @@ if (!lastPost) throw new Error('The English blog collection is empty.');
 >
     <div class="container max-w-5xl section-padding mb-30">
         <h1 class="text-display-section mb-3">Blog</h1>
-        <p class="text-muted-foreground text-lead max-w-2xl mb-10">
+        <p class="text-muted-foreground max-w-2xl mb-8">
             Physician and medical team scheduling: on-call fairness, rosters by specialty, and Momentum news.
         </p>
 
         <OncallGuideCard
             title="Free physician call schedule template"
-            text="An Excel template with fairness counters, and a six-step guide to build a fair call schedule."
-            cta={{ label: 'Get the template and guide', href: `${ONCALL_GUIDE.en}/` }}
+            text="Excel template with fairness counters, and a six-step guide."
+            cta={{ label: 'Get the template', href: `${ONCALL_GUIDE.en}/` }}
             image="/guides/og/en-call-schedule.jpg"
             imageAlt="Preview of the Excel call schedule template: schedule, checks and fairness counters per physician"
-            alternatesLabel="Also available with each country’s rules and holidays:"
+            alternatesLabel="Other countries"
             alternates={guideLocales}
         />
 

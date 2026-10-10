@@ -26,16 +26,16 @@ if (!lastPost) throw new Error('The French blog collection is empty.');
 >
     <div class="container max-w-5xl section-padding mb-30">
         <h1 class="text-display-section mb-3">Blog BioSked</h1>
-        <p class="text-muted-foreground text-lead max-w-2xl mb-10">
+        <p class="text-muted-foreground max-w-2xl mb-8">
             Analyses, guides et nouveautés Momentum pour les équipes médicales françaises.
         </p>
         <OncallGuideCard
             title="Modèle de planning de garde gratuit"
-            text="Un modèle Excel avec les compteurs d’équité, et un guide en six étapes pour construire un planning de garde équitable."
-            cta={{ label: 'Télécharger le modèle et lire le guide', href: '/fr/blog/planning-de-garde-medecins/' }}
+            text="Modèle Excel avec compteurs d’équité, et guide en six étapes."
+            cta={{ label: 'Télécharger le modèle', href: '/fr/blog/planning-de-garde-medecins/' }}
             image="/guides/og/fr-planning-de-garde.jpg"
             imageAlt="Aperçu du modèle Excel de planning de garde : planning, contrôles et compteurs d’équité par médecin"
-            alternatesLabel="En Suisse romande ? La version suisse suit la LTr et intègre le piquet :"
+            alternatesLabel="Version suisse"
             alternates={[{ code: 'fr-CH', label: 'Planning de garde et de piquet (Suisse)', href: '/fr-ch/guide/planning-de-garde-medecins/' }]}
         />
 
