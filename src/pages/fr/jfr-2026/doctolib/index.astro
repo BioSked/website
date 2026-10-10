@@ -6,9 +6,14 @@ import { Image } from 'astro:assets';
 import jfrLogo from '@/assets/images/jfr-2026-logo.png';
 import Button from '@/components/ui/Button.astro';
 import { JFR2026, SESSIONS } from '@/data/jfr2026.mjs';
+import { publishToday } from '@/data/publishSchedule.mjs';
 
 const session = SESSIONS.find((s) => /doctolib/i.test(s.titre))!;
 const ouvert = Boolean(JFR2026.hubspot.formId) && !JFR2026.inscriptionsCloses;
+// After the session the page (QR target of the flyer) points to the integration
+// page and the demo form. The daily scheduled deploy rebuilds it on the dates.
+const sessionPassee = publishToday() > JFR2026.dateIso;
+const salonEnCours = publishToday() <= '2026-10-11';
 const inputClass =
   'border-secondary/30 bg-white focus-visible:border-accent focus-visible:ring-ring mt-2 w-full rounded-md border px-3 py-3 outline-none focus-visible:ring-2';
 const heure = (h: string) => {
@@ -24,13 +29,43 @@ const gains = [
 ---
 
 <BaseLayout
-  title="JFR 2026 : Momentum x Doctolib, la session du 9 octobre"
-  description="JFR 2026, session Momentum x Doctolib du vendredi 9 octobre, salle 203 du Palais des congrès de Paris : le planning validé dans Momentum ouvre vos créneaux dans Doctolib, sans ressaisie. Inscription en ligne."
+  title={sessionPassee ? 'JFR 2026 : Momentum x Doctolib, après la session du 9 octobre' : 'JFR 2026 : Momentum x Doctolib, la session du 9 octobre'}
+  description={sessionPassee
+    ? 'Après la session Momentum x Doctolib des JFR 2026 : vos plannings en 1 clic dans votre agenda Doctolib. Découvrez l’intégration ou contactez notre équipe.'
+    : 'JFR 2026, session Momentum x Doctolib du vendredi 9 octobre, salle 203 du Palais des congrès de Paris : le planning validé dans Momentum ouvre vos créneaux dans Doctolib, sans ressaisie. Inscription en ligne.'}
   noIndex={true}
   locale="fr"
   languageLinks={[{ code: 'fr', label: 'Français', href: '/fr/jfr-2026/doctolib/', active: true }]}
   localeAlternates={{ fr: '/fr/jfr-2026/doctolib/' }}
 >
+  {sessionPassee && (
+    <section class="section-padding">
+      <div class="container max-w-4xl">
+        <div class="flex flex-wrap items-center gap-x-5 gap-y-3">
+          <Image src={jfrLogo} alt="JFR 2026, Journées francophones de radiologie" width={320} class="h-auto w-16" loading="eager" />
+          <span class="text-muted-foreground text-xl font-light" aria-hidden="true">×</span>
+          <img src="/images/partners/momentum-logo.svg" alt="Momentum" width="182" height="24" class="h-5 w-auto" loading="eager" />
+          <span class="text-muted-foreground text-xl font-light" aria-hidden="true">×</span>
+          <img src="/images/partners/doctolib-logo.svg" alt="Doctolib" width="160" height="40" class="h-6 w-auto" loading="eager" />
+        </div>
+
+        <h1 class="text-display-hero mt-6">Vos plannings en 1&nbsp;clic dans votre agenda Doctolib</h1>
+        <p class="text-lead text-foreground/85 mt-4 max-w-2xl">
+          La session Momentum × Doctolib du 9&nbsp;octobre aux JFR a eu lieu. Merci à toutes celles et ceux qui y ont assisté. Découvrez comment fonctionne l’intégration, ou voyez-la sur vos propres plannings avec notre équipe.
+        </p>
+        <div class="mt-8 flex flex-wrap items-center gap-3">
+          <Button href="/fr/fonctionnalites/integration-doctolib/" variant="secondary" size="lg">Découvrir l’intégration</Button>
+          <Button href="/fr/demo/" variant="outline" size="lg">Nous contacter</Button>
+        </div>
+        {salonEnCours && (
+          <p class="text-foreground/85 mt-8">Encore aux JFR&nbsp;? Notre équipe vous attend au stand 126A, niveau&nbsp;1, Hall Passy, juste à côté de Doctolib.</p>
+        )}
+      </div>
+    </section>
+  )}
+
+  {!sessionPassee && (
+    <Fragment>
   <section class="section-padding">
     <div class="container max-w-4xl">
       <div class="flex flex-wrap items-center gap-x-5 gap-y-3">
@@ -75,7 +110,6 @@ const gains = [
           </p>
         </div>
       </div>
-      <p class="text-muted-foreground mt-4 text-sm">Disponible en pilote, déploiement sur demande.</p>
 
       <div class="bg-primary/5 border-secondary/15 mt-12 rounded-2xl border p-5 sm:p-8">
         <h2 class="text-display-card font-bold">Au programme de la session</h2>
@@ -193,6 +227,8 @@ const gains = [
   </section>
 
   <script is:inline type="application/json" id="jfr-data" set:html={JSON.stringify({ event: JFR2026, session })} />
+    </Fragment>
+  )}
 </BaseLayout>
 
 <script>
