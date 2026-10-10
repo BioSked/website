@@ -32,7 +32,7 @@ export const specialtyPages: Record<string, FrenchLandingPage> = {
     title: "Le logiciel de planning des radiologues et des groupes d’imagerie",
     description: "Vacations par site et par modalité, mutualisation entre sites, gardes, téléradiologie et remplacements : Momentum construit le planning des radiologues, des manipulateurs et des secrétaires selon vos règles, et se connecte au RIS, à la prise de rendez-vous et au badgeage.",
     metaTitle: "Logiciel de planning radiologues et imagerie | Momentum",
-    metaDescription: "Logiciel de planning pour radiologues et groupes d’imagerie : vacations par site et modalité, mutualisation multisite, gardes, remplacements, couplage RIS et prise de rendez-vous. Des groupes d’imagerie clients depuis plus de dix ans.",
+    metaDescription: "Logiciel de planning pour radiologues et groupes d’imagerie : vacations par site et modalité, mutualisation multisite, gardes, remplacements, couplage RIS, prise de rendez-vous, dont Doctolib. Des groupes d’imagerie clients depuis plus de dix ans.",
     primaryPain: "Répartir des dizaines de radiologues sur plusieurs sites, entre scanner, IRM, mammographie, échographie et radiologie conventionnelle, avec les gardes, la téléradiologie, les désidératas et les absences : sur un tableur, chaque version coûte des journées et repose sur des arbitrages que personne ne peut retracer. Et le planning des radiologues n’est que la moitié du travail, car manipulateurs, secrétaires et agents d’accueil doivent suivre le même mouvement.",
     painsHeading: "Ce qui complique le planning d’un groupe d’imagerie",
     pains: [
@@ -82,8 +82,9 @@ export const specialtyPages: Record<string, FrenchLandingPage> = {
         ]
       },
       {
-        heading: "RIS, prise de rendez-vous, badgeage et paie",
+        heading: "Prise de rendez-vous avec Doctolib, RIS, badgeage et paie",
         paragraphs: [
+          "Avec Doctolib, les trames d’ouverture se construisent dans Momentum, à partir du planning des équipes. Quand le planning est publié, les plages d’ouverture arrivent dans l’agenda Doctolib, avec les bonnes salles et les bons motifs de consultation.",
           "Momentum se couple au RIS, par exemple celui de NGI, pour que les vacations planifiées correspondent à l’activité du terrain. Chez IMAGIR, la connexion avec la prise de rendez-vous EasyDoct et avec la gestion des temps Kelio de Bodet complète le planning (étude de cas 2021).",
           "Les heures, les congés et le badgeage des salariés sont suivis dans le même outil, et la paie reçoit un export sans ressaisie."
         ]
@@ -99,7 +100,7 @@ export const specialtyPages: Record<string, FrenchLandingPage> = {
     faq: [
       {
         q: "Momentum remplace-t-il le RIS ou l’agenda de rendez-vous ?",
-        a: "Non. Momentum planifie les équipes : qui travaille sur quel site, quelle modalité et quand. Il se connecte au RIS et à la prise de rendez-vous pour que les deux restent alignés. Momentum gère uniquement des données de planification, pas des dossiers médicaux de patients."
+        a: "Non. Momentum planifie les équipes : qui travaille sur quel site, quelle modalité et quand. Il se connecte au RIS et à la prise de rendez-vous. Avec Doctolib, le planning publié ouvre les plages de rendez-vous. Momentum gère uniquement des données de planification, pas des dossiers médicaux de patients."
       },
       {
         q: "Peut-on planifier plusieurs sites dans le même outil ?",
@@ -127,6 +128,10 @@ export const specialtyPages: Record<string, FrenchLandingPage> = {
       href: "/fr/cas-clients/"
     },
     related: [
+      {
+        label: "Intégration Doctolib",
+        href: "/fr/fonctionnalites/integration-doctolib/"
+      },
       {
         label: "Lire le cas IMAGIR Bordeaux",
         href: "/fr/cas-clients/imagir-bordeaux/"
@@ -521,6 +526,7 @@ export const featurePages: Record<string, FrenchLandingPage> = {
     proof:
       "Au centre d’imagerie Les Cèdres (client depuis 2014), le Dr Poirier le résume dans l’étude de cas publiée : rapports, listes d’équité et calcul de pénibilité sortent du système. Les plannings ne se génèrent plus que trois fois par an.",
     related: [
+      { label: "Intégration Doctolib", href: "/fr/fonctionnalites/integration-doctolib/" },
       { label: "Radiologie", href: "/fr/secteurs-soins/radiologie/" },
       { label: "Anesthésie", href: "/fr/secteurs-soins/anesthesie/" },
     ],
@@ -618,6 +624,7 @@ export const featurePages: Record<string, FrenchLandingPage> = {
     proof:
       "La nouvelle application mobile Momentum, lancée en juin 2026 sur iPhone et Android, fonctionne en cinq langues, avec Face ID, la connexion Microsoft et un mode hors ligne ; chaque praticien y reçoit les changements qui le concernent.",
     related: [
+      { label: "Intégration Doctolib", href: "/fr/fonctionnalites/integration-doctolib/" },
       { label: "Cas clients", href: "/fr/cas-clients/" },
       { label: "Gestion des requêtes", href: "/fr/fonctionnalites/gestion-des-requetes-des-equipes/" },
     ],

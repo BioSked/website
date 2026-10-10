@@ -1,0 +1,238 @@
+---
+// A four-week appointment period, Monday to Friday. "manuel": the secretariat
+// opens one day after the other (day 9 in progress). "auto": the whole period
+// opens at once when the schedule is published.
+import './tokens.css';
+
+interface Props {
+  mode: 'manuel' | 'auto';
+  titre: string;
+  legende?: string;
+}
+
+const { mode, titre, legende } = Astro.props;
+const label = mode === 'auto'
+  ? `${titre} : les 20 journées de la période ouvertes à la publication du planning.`
+  : `${titre} : 6 journées sur 20 ouvertes à la main, la 9e en cours de saisie.`;
+const jours = ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven'];
+const dates = [1, 2, 3, 4, 5, 8, 9, 10, 11, 12, 15, 16, 17, 18, 19, 22, 23, 24, 25, 26];
+const ENCOURS = 9;
+const etat = (d: number) => (mode === 'auto' ? 'ouvert' : d < ENCOURS ? 'ouvert' : d === ENCOURS ? 'encours' : 'ferme');
+// Two or three slot bars per open day, varied so the grid reads as an agenda.
+const barres = (d: number) => (d % 3 === 0 ? [62, 30] : d % 2 === 0 ? [40, 34, 18] : [28, 52]);
+---
+
+<figure class:list={['mmdl pc', `pc-${mode}`]} data-pc role="img" aria-label={label}>
+  <div class="pc-carte" aria-hidden="true">
+    <div class="pc-tete">
+      <span>
+        <span class="pc-titre">{titre}</span>
+        <span class="pc-sous">Agenda de rendez-vous, période de 4 semaines</span>
+      </span>
+      {mode === 'auto'
+        ? <span class="pc-etat pc-etat-auto">20 journées ouvertes sur 20</span>
+        : <span class="pc-etat">6 journées ouvertes sur 20</span>}
+    </div>
+    <div class="pc-grille">
+      {jours.map((j) => <span class="pc-jour">{j}</span>)}
+      {dates.map((d, i) => (
+        <span class:list={['pc-cel', `pc-${etat(d)}`]} style={`--i:${i}`}>
+          <span class="pc-num">{d}</span>
+          {etat(d) === 'ouvert' && (
+            <span class="pc-barres">
+              {barres(d).map((w) => <span style={`width:${w}%`}></span>)}
+            </span>
+          )}
+          {etat(d) === 'encours' && (
+            <span class="pc-barres">
+              <span style="width:44%"></span>
+              <svg class="pc-curseur" viewBox="0 0 12 16" width="12" height="16"><path d="M1 1v12.2l3.1-3 2.1 4.6 2-.9-2-4.5h4.3z" fill="#0F1B3D" stroke="#fff" stroke-width="1" stroke-linejoin="round" /></svg>
+            </span>
+          )}
+        </span>
+      ))}
+    </div>
+    <ul class="pc-cles">
+      <li><span class="pc-cle pc-cle-ouvert"></span>Journée ouverte à la réservation</li>
+      {mode === 'manuel' && <li><span class="pc-cle pc-cle-encours"></span>Saisie en cours</li>}
+      {mode === 'manuel' && <li><span class="pc-cle pc-cle-ferme"></span>Encore à ouvrir</li>}
+    </ul>
+  </div>
+  {legende && <figcaption class="pc-legende">{legende}</figcaption>}
+</figure>
+
+<script is:inline>
+  (function () {
+    var still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    document.querySelectorAll('[data-pc].pc-auto:not([data-pc-armed])').forEach(function (el) {
+      el.setAttribute('data-pc-armed', '');
+      if (still || !('IntersectionObserver' in window)) return;
+      el.classList.add('pc-attente');
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (!e.isIntersecting) return;
+          el.classList.remove('pc-attente');
+          el.classList.add('pc-joue');
+          io.disconnect();
+        });
+      }, { threshold: 0.5 });
+      io.observe(el);
+    });
+  })();
+</script>
+
+<style>
+  .pc {
+    margin: 0;
+  }
+  .pc-carte {
+    background: #fff;
+    border: 1px solid var(--filet);
+    border-radius: 12px;
+    padding: 16px 16px 18px;
+    box-shadow: 0 1px 2px rgb(15 27 61 / 0.04), 0 12px 32px -18px rgb(15 27 61 / 0.25);
+  }
+  .pc-tete {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  .pc-titre {
+    display: block;
+    font-weight: 600;
+    color: var(--encre);
+    font-size: 15px;
+  }
+  .pc-sous {
+    display: block;
+    margin-top: 2px;
+    font-size: 12.5px;
+    color: var(--gris);
+  }
+  .pc-cles {
+    list-style: none;
+    margin: 14px 0 0;
+    padding: 12px 0 0;
+    border-top: 1px solid var(--filet);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 18px;
+    font-size: 12.5px;
+    color: var(--gris);
+  }
+  .pc-cles li {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+  }
+  .pc-cle {
+    width: 14px;
+    height: 11px;
+    border-radius: 3px;
+  }
+  .pc-cle-ouvert { background: var(--doctolib-voile); box-shadow: inset 0 -3px 0 var(--doctolib); }
+  .pc-cle-encours { outline: 2px solid var(--bleu); outline-offset: -2px; background: #fff; }
+  .pc-cle-ferme { border: 1px dashed #b6c2d0; }
+  .pc-etat {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--gris);
+    font-variant-numeric: tabular-nums;
+  }
+  .pc-etat-auto {
+    color: var(--doctolib);
+  }
+  .pc-grille {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 6px;
+  }
+  .pc-jour {
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--gris);
+    padding: 0 0 2px 4px;
+  }
+  .pc-cel {
+    position: relative;
+    height: 54px;
+    border-radius: 7px;
+    padding: 5px 6px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .pc-num {
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--encre);
+    font-variant-numeric: tabular-nums;
+  }
+  .pc-barres {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .pc-barres > span {
+    display: block;
+    height: 5px;
+    border-radius: 3px;
+  }
+  .pc-ferme {
+    border: 1px dashed #c8d2de;
+  }
+  .pc-ferme .pc-num {
+    color: var(--gris-clair);
+    font-weight: 500;
+  }
+  .pc-ouvert {
+    background: var(--doctolib-voile);
+  }
+  .pc-ouvert .pc-barres > span {
+    background: var(--doctolib);
+    opacity: 0.85;
+  }
+  .pc-ouvert .pc-barres > span:nth-child(2) {
+    background: var(--bleu);
+  }
+  .pc-encours {
+    background: #fff;
+    outline: 2px solid var(--bleu);
+    outline-offset: -1px;
+  }
+  .pc-encours .pc-barres > span {
+    background: #b9c4d3;
+  }
+  .pc-curseur {
+    position: absolute;
+    left: calc(44% + 3px);
+    top: -6px;
+  }
+  .pc-legende {
+    margin-top: 14px;
+    font-size: 16px;
+    line-height: 1.45;
+    color: var(--gris);
+  }
+
+  .pc.pc-attente .pc-ouvert {
+    background: transparent;
+    box-shadow: inset 0 0 0 1px #dfe6ee;
+  }
+  .pc.pc-attente .pc-ouvert .pc-barres { opacity: 0; }
+  .pc.pc-attente .pc-etat-auto { opacity: 0; }
+  .pc.pc-joue .pc-ouvert { animation: pc-ouvre 0.35s ease-out calc(0.15s + var(--i) * 0.035s) both; }
+  .pc.pc-joue .pc-ouvert .pc-barres { animation: pc-fondu 0.35s ease-out calc(0.2s + var(--i) * 0.035s) both; }
+  .pc.pc-joue .pc-etat-auto { animation: pc-fondu 0.4s ease-out 1s both; }
+  @keyframes pc-ouvre {
+    from { background: transparent; box-shadow: inset 0 0 0 1px #dfe6ee; }
+    to { background: var(--doctolib-voile); box-shadow: inset 0 0 0 1px transparent; }
+  }
+  @keyframes pc-fondu {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+</style>

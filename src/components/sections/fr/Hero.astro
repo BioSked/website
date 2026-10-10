@@ -12,11 +12,13 @@ interface Props {
   title?: string;
   lead?: string;
   demoHref?: string;
+  annonce?: { texte: string; href: string };
 }
 const {
   title = 'La plateforme de planification médicale reconnue qui associe IA, équité et simplicité',
   lead = 'Gardes, astreintes, désidératas : des plannings conformes et équitables, générés en heures, pas en jours.',
   demoHref = '/fr/demo/',
+  annonce,
 } = Astro.props;
 ---
 
@@ -34,6 +36,12 @@ const {
   <div class="container max-w-5xl relative z-10">
     <div class="flex">
       <div class="flex max-w-[900px] flex-col gap-4 md:gap-6 flex-3">
+        {annonce && (
+          <a href={annonce.href} class="group -mb-1 inline-flex w-fit items-baseline gap-2 text-sm font-semibold text-cyan-700 hover:text-secondary transition-colors md:-mb-2">
+            <span>{annonce.texte}</span>
+            <span aria-hidden="true" class="transition-transform group-hover:translate-x-0.5">→</span>
+          </a>
+        )}
         <h1 class="text-display-hero max-sm:text-[2.125rem] max-sm:leading-[1.08] text-left">
           {title}
           <!-- <br class="hidden md:block" /> -->

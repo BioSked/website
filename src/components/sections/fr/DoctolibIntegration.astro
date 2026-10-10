@@ -1,0 +1,82 @@
+---
+// Homepage band for the Doctolib integration, in the JFR 2026 flyer palette.
+import DoctolibVignette from '@/components/doctolib/DoctolibVignette.astro';
+import '@/components/doctolib/tokens.css';
+---
+
+<section id="doctolib" class="mmdl hd">
+  <div class="container max-w-6xl py-16 md:py-20">
+    <div class="grid items-center gap-12 lg:grid-cols-[1fr_minmax(0,520px)] lg:gap-14">
+      <div>
+        <div class="flex items-center gap-4">
+          <img src="/images/partners/momentum-logo.svg" alt="Momentum" width="91" height="12" class="mmdl-logo-blanc h-4 w-auto" loading="lazy" />
+          <span class="text-lg font-light text-[#8c97b0]" aria-hidden="true">×</span>
+          <img src="/images/partners/doctolib-logo.svg" alt="Doctolib" width="160" height="40" class="mmdl-logo-blanc h-5 w-auto" loading="lazy" />
+        </div>
+        <h2 class="hd-titre mt-8">Vos plannings en 1&nbsp;clic dans votre agenda&nbsp;Doctolib.</h2>
+        <p class="hd-cyan hd-sous mt-4">Des heures de ressaisie économisées.</p>
+        <div class="mt-9 flex flex-wrap items-center gap-3">
+          <a href="/fr/fonctionnalites/integration-doctolib/" class="hd-bouton">Découvrir l’intégration Doctolib</a>
+          <a href="/fr/demo/" class="hd-lien">Demander une démo</a>
+        </div>
+      </div>
+      <div class="flex justify-center lg:justify-end">
+        <DoctolibVignette />
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hd {
+    background: var(--nuit);
+    color: #fff;
+  }
+  .hd-cyan {
+    color: var(--cyan);
+  }
+  .hd-sous {
+    font-size: clamp(1.2rem, 1.2vw + 0.6rem, 1.5rem);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+  .hd-titre {
+    font-weight: 600;
+    font-size: clamp(2rem, 3.2vw + 0.5rem, 3rem);
+    line-height: 1.07;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+  .hd-bouton,
+  .hd-lien {
+    display: inline-flex;
+    align-items: center;
+    height: 48px;
+    padding: 0 22px;
+    border-radius: 999px;
+    font-weight: 700;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease, background-color 0.15s ease;
+  }
+  .hd-bouton {
+    background: var(--cyan);
+    color: var(--nuit);
+  }
+  .hd-bouton:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px -10px rgb(108 229 232 / 0.7);
+  }
+  .hd-lien {
+    border: 1px solid #3a4480;
+    color: #fff;
+    font-weight: 600;
+  }
+  .hd-lien:hover {
+    border-color: var(--cyan);
+    background: rgb(108 229 232 / 0.08);
+  }
+  .hd-bouton:focus-visible,
+  .hd-lien:focus-visible {
+    outline: 2px solid var(--cyan);
+    outline-offset: 3px;
+  }
+</style>

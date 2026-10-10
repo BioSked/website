@@ -12,23 +12,31 @@ import VideoTourSection from "@/components/sections/intl/VideoTourSection.astro"
 import Testimonials from "@/components/sections/fr/Testimonials.astro";
 import CaseStudies from "@/components/sections/fr/CaseStudies.astro";
 import Specialties from "@/components/sections/fr/Specialties.astro";
+import DoctolibIntegration from "@/components/sections/fr/DoctolibIntegration.astro";
 // import FullTimelineView from "@/components/sections/FullTimelineView.tsx";
 import RVU from "@/components/sections/fr/RVU.astro";
 import MobileAppSection from "@/components/sections/intl/MobileAppSection.astro";
 import { MOBILE_APP } from "@/i18n/mobileAppContent";
+import { publishToday } from "@/data/publishSchedule.mjs";
+
+// Launch announcement above the hero; the daily deploy removes it after the end date.
+const annonceDoctolib = publishToday() <= "2026-12-31"
+  ? { texte: "Nouveau\u00a0: l’intégration Doctolib, vos plannings en 1\u00a0clic dans votre agenda", href: "/fr/fonctionnalites/integration-doctolib/" }
+  : undefined;
 ---
 
 <BaseLayout
   title="Momentum : planification médicale par IA | BioSked"
   description="Momentum automatise les plannings médicaux, gardes, désidératas, badgeage et reporting pour les hôpitaux, cliniques et équipes multisites."
 >
-	<Hero/>
+	<Hero annonce={annonceDoctolib}/>
 	<Manifesto/>
 	<Testimonials/>
   <CaseStudies/>
 	<!-- <FullTimelineView client:visible={{rootMargin: "150px"}} /> -->
 	<a id="momentum"/>
 	<FeatureShowcase />
+	<DoctolibIntegration />
   <Specialties />
 	<RVU />
 	<MobileAppSection content={MOBILE_APP['fr']} />

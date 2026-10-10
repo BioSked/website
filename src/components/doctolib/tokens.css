@@ -1,0 +1,27 @@
+/* Momentum x Doctolib visuals: the palette of the JFR 2026 flyer and stand. */
+.mmdl {
+  --nuit: #10112d;
+  --nuit-2: #161b44;
+  --nuit-3: #1f2658;
+  --trait: #2c356f;
+  --marine: #0a367f;
+  --bleu: #37afcf;
+  --cyan: #6ce5e8;
+  --encre: #0f1b3d;
+  --gris: #5a6680;
+  --gris-clair: #8c97b0;
+  --filet: #d9e1ea;
+  --voile: #f1f5f8;
+  --doctolib: #107aca;
+  --doctolib-voile: #eaf3fb;
+  --irm: #e6a7d6;
+  --irm-2: #f2cde9;
+  --scan: #9fd6de;
+  --echo: #27b07f;
+  --mammo: #d8c3a5;
+  --vert: #157a4f;
+}
+
+.mmdl-logo-blanc {
+  filter: brightness(0) invert(1);
+}

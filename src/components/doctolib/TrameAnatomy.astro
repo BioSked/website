@@ -1,0 +1,220 @@
+---
+// One appointment template ("trame"): a session cut into opening slots, each
+// with its consultation reasons, attached once to a post and a person.
+import './tokens.css';
+
+const plages = [
+  { de: '08:00', a: '09:00', min: 60, motif: 'IRM épaule sans injection', duree: '1 h', ton: 'epaule' },
+  { de: '09:00', a: '11:30', min: 150, motif: 'IRM genou sans injection', duree: '2 h 30', ton: 'genou' },
+  { de: '11:30', a: '11:45', min: 15, motif: 'Temps réservé', duree: '15 min', ton: 'reserve' },
+  { de: '11:45', a: '13:00', min: 75, motif: 'IRM genou sans injection', duree: '1 h 15', ton: 'genou' },
+];
+const total = plages.reduce((s, p) => s + p.min, 0);
+const heures = ['08:00', '09:00', '10:00', '11:00', '12:00', '13:00'];
+---
+
+<figure class="mmdl ta" aria-label="Exemple de trame : une vacation d’IRM du matin découpée en plages d’ouverture, chacune avec son motif de consultation.">
+  <div class="ta-carte">
+    <div class="ta-barre-app" aria-hidden="true">
+      <img src="/images/partners/momentum-logo.svg" alt="" width="91" height="12" class="ta-logo" />
+      <span>Trames</span>
+    </div>
+    <div class="ta-tete">
+      <div>
+        <span class="ta-sur">Exemple de trame</span>
+        <span class="ta-nom">IRM, vacation du matin</span>
+      </div>
+      <div class="ta-rattache">
+        <span class="ta-sur">Rattachée à</span>
+        <span class="ta-etiq">Poste IRM salle 2</span>
+        <span class="ta-etiq"><i>JM</i>Dr J. Moreau</span>
+      </div>
+    </div>
+
+    <div class="ta-axe" aria-hidden="true">
+      <div class="ta-barre">
+        {plages.map((p) => (
+          <span class:list={['ta-seg', `ta-${p.ton}`]} style={`flex-grow:${p.min}`} title={`${p.de} à ${p.a} : ${p.motif}`}></span>
+        ))}
+      </div>
+      <div class="ta-graduations">
+        {heures.map((h, i) => (
+          <span style={`left:${((i * 60) / total) * 100}%`}>{h}</span>
+        ))}
+      </div>
+    </div>
+
+    <ol class="ta-plages">
+      {plages.map((p) => (
+        <li>
+          <span class:list={['ta-pastille', `ta-${p.ton}`]} aria-hidden="true"></span>
+          <span class="ta-heure">{p.de} à {p.a}</span>
+          <span class="ta-motif">{p.motif}</span>
+          <span class="ta-duree">{p.duree}</span>
+        </li>
+      ))}
+    </ol>
+  </div>
+</figure>
+
+<style>
+  .ta {
+    margin: 0;
+  }
+  .ta-carte {
+    background: #fff;
+    border: 1px solid var(--filet);
+    border-radius: 12px;
+    padding: 0 20px 10px;
+    box-shadow: 0 1px 2px rgb(15 27 61 / 0.04), 0 12px 32px -18px rgb(15 27 61 / 0.25);
+  }
+  .ta-barre-app {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 46px;
+    margin: 0 -20px 18px;
+    padding: 0 20px;
+    border-bottom: 1px solid var(--filet);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--gris);
+  }
+  .ta-logo {
+    height: 13px;
+    width: auto;
+  }
+  .ta-tete {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 12px 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--filet);
+  }
+  .ta-sur {
+    display: block;
+    font-size: 12.5px;
+    font-weight: 500;
+    color: var(--gris);
+  }
+  .ta-nom {
+    display: block;
+    margin-top: 2px;
+    font-weight: 600;
+    font-size: 17px;
+    color: var(--encre);
+  }
+  .ta-rattache {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+  }
+  .ta-rattache .ta-sur {
+    width: 100%;
+  }
+  .ta-etiq {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    height: 28px;
+    padding: 0 10px;
+    border: 1px solid var(--filet);
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--marine);
+    background: var(--voile);
+  }
+  .ta-etiq i {
+    font-style: normal;
+    display: inline-grid;
+    place-items: center;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--marine);
+    color: #fff;
+    font-size: 8.5px;
+    font-weight: 700;
+  }
+  .ta-axe {
+    position: relative;
+    margin: 22px 0 6px;
+    padding-bottom: 22px;
+  }
+  .ta-barre {
+    display: flex;
+    gap: 3px;
+    height: 34px;
+  }
+  .ta-seg {
+    flex-basis: 0;
+    border-radius: 5px;
+  }
+  .ta-epaule { background: #c3b5ee; }
+  .ta-genou { background: #a9c8f5; }
+  .ta-reserve {
+    background: repeating-linear-gradient(135deg, #cfd7e2 0 3px, #eef2f6 3px 6px);
+  }
+  .ta-graduations {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 16px;
+  }
+  .ta-graduations span {
+    position: absolute;
+    transform: translateX(-50%);
+    font-size: 11.5px;
+    font-weight: 500;
+    color: var(--gris);
+    font-variant-numeric: tabular-nums;
+  }
+  .ta-graduations span:first-child { transform: none; }
+  .ta-graduations span:last-child { transform: translateX(-100%); }
+  .ta-plages {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .ta-plages li {
+    display: grid;
+    grid-template-columns: 12px 108px 1fr auto;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 0;
+    border-top: 1px solid var(--filet);
+    font-size: 14.5px;
+  }
+  .ta-plages li:first-child { border-top: 0; }
+  .ta-pastille {
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+  }
+  .ta-heure {
+    color: var(--gris);
+    font-variant-numeric: tabular-nums;
+  }
+  .ta-motif {
+    font-weight: 600;
+    color: var(--encre);
+  }
+  .ta-duree {
+    color: var(--gris);
+    font-variant-numeric: tabular-nums;
+  }
+  @media (max-width: 480px) {
+    .ta-plages li {
+      grid-template-columns: 12px 1fr auto;
+      row-gap: 2px;
+    }
+    .ta-heure { grid-column: 2; grid-row: 2; font-size: 13px; }
+    .ta-motif { grid-column: 2; grid-row: 1; }
+    .ta-duree { grid-column: 3; grid-row: 1 / span 2; }
+  }
+</style>

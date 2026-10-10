@@ -2,7 +2,7 @@
 
 > Momentum is scheduling software for physicians and medical teams: hospitals, university hospitals, clinics, imaging groups and emergency departments. It builds rule-based, fair schedules (operating room sessions, on-call duty, safety rest, consultations, multi-site radiology) and runs requests, swaps, time tracking and payroll exports in one tool, with a mobile app for staff.
 
-Key facts (published): used by more than 250 healthcare organizations on more than 1,000 sites in 9 countries, with more than 50,000 users; BioSked has built medical scheduling software for more than 15 years. European customers contract with Bio-Optronics Sàrl (Switzerland) and their data is hosted in the European Union. Plans start at USD 5.99 / EUR 5.99 / CHF 5.99 per scheduled professional per month (Starter, Plus, Pro, Enterprise). Momentum handles scheduling data only: it is not an anesthesia record, a patient record or an appointment-booking system. Use the localized page that matches the language of the question.
+Key facts (published): used by more than 250 healthcare organizations on more than 1,000 sites in 9 countries, with more than 50,000 users; BioSked has built medical scheduling software for more than 15 years. European customers contract with Bio-Optronics Sàrl (Switzerland) and their data is hosted in the European Union. Plans start at USD 5.99 / EUR 5.99 / CHF 5.99 per scheduled professional per month (Starter, Plus, Pro, Enterprise). Momentum handles scheduling data only: it is not an anesthesia record, a patient record or an appointment-booking system. In France it is integrated with Doctolib: the published schedule opens the Doctolib appointment agendas. Use the localized page that matches the language of the question.
 
 ## Product and company
 
@@ -25,6 +25,7 @@ Key facts (published): used by more than 250 healthcare organizations on more th
 - [Planning de garde](https://biosked.com/fr/fonctionnalites/plannings-de-garde-centralises/): On-call and duty schedules in the same plan as daytime activity.
 - [Guide du planning de garde](https://biosked.com/fr/blog/planning-de-garde-medecins/): How to build a fair physician on-call schedule in France (rules for hospital practitioners, fairness counters, six steps) with a free Excel template.
 - [Planification automatique](https://biosked.com/fr/fonctionnalites/planification-optimisee-automatiquement-2/): Automatic, rule-based schedule generation.
+- [Intégration Doctolib](https://biosked.com/fr/fonctionnalites/integration-doctolib/): The schedule published in Momentum opens Doctolib appointment agendas with the practitioner, rooms, opening slots and consultation reasons, without re-entry by the secretariat.
 - [Cas clients](https://biosked.com/fr/cas-clients/): Published customer case studies (radiology groups, emergency departments, hospitals).
 - [Sécurité et données](https://biosked.com/fr/securite-donnees/): Hosting in the European Union, GDPR, data processing agreement on request.
 - [Suisse romande](https://biosked.com/fr-ch/): Swiss French overview, prices in CHF.

@@ -49,6 +49,7 @@ const FR: FooterLocale = {
                 { name: 'Produit', href: '/fr/' },
                 { name: 'Tarifs', href: '/fr/pricing/' },
                 { name: 'Cas clients', href: '/fr/cas-clients/' },
+                { name: 'Intégration Doctolib', href: '/fr/fonctionnalites/integration-doctolib/' },
                 { name: 'Modèle de planning de garde', href: '/fr/blog/planning-de-garde-medecins/' },
                 { name: 'Support', href: '/fr/help/kb-tickets/new/' },
                 { name: 'Changelog', href: '/fr/changelog/' },
@@ -158,7 +159,8 @@ const FR_CH: FooterLocale = {
     ...FR,
     sections: FR.sections.map((s) => ({
         ...s,
-        links: s.links.map((l) => ({ ...l, href: frChLocalPathFor(l.href) })),
+        // Doctolib does not serve Switzerland: its integration page stays off the Swiss footer.
+        links: s.links.filter((l) => !l.href.includes('integration-doctolib')).map((l) => ({ ...l, href: frChLocalPathFor(l.href) })),
     })),
 };
 

@@ -1,0 +1,365 @@
+---
+// What reaches Doctolib for each published session: the practitioner, one or
+// several rooms in parallel, and the opening slots with their reasons.
+import './tokens.css';
+
+const debut = 8 * 60;
+const fin = 13 * 60;
+const pos = (h: string) => {
+  const [hh, mm] = h.split(':').map(Number);
+  return ((hh * 60 + mm - debut) / (fin - debut)) * 100;
+};
+const salles = [
+  {
+    nom: 'IRM salle 3',
+    plages: [
+      { de: '08:00', a: '10:00', motif: 'IRM rachis', ton: 'rachis' },
+      { de: '10:00', a: '10:15', motif: '', ton: 'reserve' },
+      { de: '10:15', a: '13:00', motif: 'IRM cérébrale', ton: 'cerveau' },
+    ],
+  },
+  {
+    nom: 'IRM salle 4',
+    plages: [
+      { de: '08:00', a: '10:30', motif: 'IRM genou', ton: 'genou' },
+      { de: '10:30', a: '10:45', motif: '', ton: 'reserve' },
+      { de: '10:45', a: '13:00', motif: 'IRM épaule', ton: 'epaule' },
+    ],
+  },
+];
+const heures = ['08:00', '09:00', '10:00', '11:00', '12:00', '13:00'];
+---
+
+<figure class="mmdl vf" aria-label="Schéma : une vacation publiée dans Momentum, avec son praticien, deux salles en parallèle et ses plages d’ouverture, ouvre l’agenda Doctolib.">
+  <div class="vf-grille" aria-hidden="true">
+    <div class="vf-mm">
+      <div class="vf-mm-tete">
+        <img src="/images/partners/momentum-logo.svg" alt="" width="91" height="12" class="vf-logo-mm mmdl-logo-blanc" />
+        <span>Vacation publiée · mardi matin</span>
+      </div>
+      <dl class="vf-champs">
+        <div>
+          <dt>Praticien</dt>
+          <dd><span class="vf-nom"><i>AB</i>Dr A. Bernard</span></dd>
+        </div>
+        <div>
+          <dt>Salles en parallèle</dt>
+          <dd class="vf-puces"><span class="vf-puce">IRM salle 3</span><span class="vf-puce">IRM salle 4</span></dd>
+        </div>
+        <div>
+          <dt>Plages d’ouverture</dt>
+          <dd>
+            <span class="vf-mini-salle">Salle 3</span>
+            <span class="vf-mini">
+              <span class="vf-rachis" style="flex-grow:120"></span><span class="vf-reserve" style="flex-grow:15"></span><span class="vf-cerveau" style="flex-grow:165"></span>
+            </span>
+            <span class="vf-mini-salle">Salle 4</span>
+            <span class="vf-mini">
+              <span class="vf-genou" style="flex-grow:150"></span><span class="vf-reserve" style="flex-grow:15"></span><span class="vf-epaule" style="flex-grow:135"></span>
+            </span>
+            <span class="vf-note">avec leurs motifs de consultation</span>
+          </dd>
+        </div>
+      </dl>
+    </div>
+
+    <div class="vf-lien">
+      <span class="vf-lien-texte">À la publication</span>
+      <span class="vf-lien-trait"></span>
+    </div>
+
+    <div class="vf-dl">
+      <div class="vf-dl-tete">
+        <img src="/images/partners/doctolib-logo.svg" alt="" width="160" height="40" class="vf-logo-dl" />
+        <span>Agenda des patients · mardi</span>
+      </div>
+      <div class="vf-agenda">
+        <div class="vf-heures">
+          {heures.map((h) => <span style={`top:${pos(h)}%`}>{h}</span>)}
+        </div>
+        {salles.map((s) => (
+          <div class="vf-col">
+            <div class="vf-col-tete">{s.nom}<small>Dr A. Bernard</small></div>
+            <div class="vf-col-corps">
+              {heures.map((h) => <span class="vf-ligne" style={`top:${pos(h)}%`}></span>)}
+              {s.plages.map((p) => (
+                <span
+                  class:list={['vf-bloc', `vf-${p.ton}`]}
+                  style={`top:${pos(p.de)}%;height:calc(${pos(p.a) - pos(p.de)}% - 2px)`}
+                >
+                  {p.motif && <b>{p.motif}</b>}
+                  {p.motif && <em>{p.de}</em>}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</figure>
+
+<style>
+  .vf {
+    margin: 0;
+  }
+  .vf-grille {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 120px minmax(0, 1.15fr);
+    align-items: center;
+  }
+
+  /* Momentum side */
+  .vf-mm {
+    background: var(--nuit-2);
+    border: 1px solid var(--trait);
+    border-radius: 12px;
+    color: #e6eaf5;
+    box-shadow: 0 20px 40px -24px rgb(16 17 45 / 0.7);
+  }
+  .vf-mm-tete {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    height: 46px;
+    padding: 0 16px;
+    border-bottom: 1px solid var(--trait);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--cyan);
+  }
+  .vf-logo-mm {
+    height: 13px;
+    width: auto;
+  }
+  .vf-champs {
+    margin: 0;
+    padding: 4px 16px 10px;
+  }
+  .vf-champs > div {
+    padding: 12px 0;
+    border-bottom: 1px dashed #262e63;
+  }
+  .vf-champs > div:last-child {
+    border-bottom: 0;
+  }
+  .vf-champs dt {
+    font-size: 12px;
+    color: var(--gris-clair);
+    margin-bottom: 7px;
+  }
+  .vf-champs dd {
+    margin: 0;
+  }
+  .vf-nom {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    font-size: 14.5px;
+  }
+  .vf-nom i {
+    font-style: normal;
+    display: inline-grid;
+    place-items: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #2a3474;
+    color: #c9d0e6;
+    font-size: 10px;
+    font-weight: 600;
+  }
+  .vf-puces {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .vf-puce {
+    display: inline-flex;
+    align-items: center;
+    height: 26px;
+    padding: 0 10px;
+    border-radius: 5px;
+    background: var(--irm);
+    color: var(--nuit);
+    font-weight: 600;
+    font-size: 13px;
+  }
+  .vf-mini-salle {
+    display: block;
+    font-size: 11.5px;
+    color: #c9d0e6;
+    margin-bottom: 4px;
+  }
+  .vf-mini {
+    display: flex;
+    gap: 2px;
+    height: 10px;
+    margin-bottom: 10px;
+  }
+  .vf-mini span {
+    flex-basis: 0;
+    border-radius: 2px;
+  }
+  .vf-note {
+    display: block;
+    margin-top: 8px;
+    font-size: 12.5px;
+    color: #c9d0e6;
+  }
+
+  /* link */
+  .vf-lien {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 0 10px;
+  }
+  .vf-lien-texte {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--marine);
+    white-space: nowrap;
+  }
+  .vf-lien-trait {
+    position: relative;
+    width: 100%;
+    height: 2px;
+    background: var(--bleu);
+  }
+  .vf-lien-trait::after {
+    content: '';
+    position: absolute;
+    right: -2px;
+    top: -5px;
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+    border-left: 9px solid var(--bleu);
+  }
+
+  /* Doctolib side */
+  .vf-dl {
+    background: #fff;
+    border: 1px solid var(--filet);
+    border-radius: 12px;
+    box-shadow: 0 1px 2px rgb(15 27 61 / 0.04), 0 16px 36px -20px rgb(15 27 61 / 0.3);
+    overflow: hidden;
+  }
+  .vf-dl-tete {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 46px;
+    padding: 0 16px;
+    border-bottom: 1px solid var(--filet);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--encre);
+  }
+  .vf-logo-dl {
+    height: 17px;
+    width: auto;
+  }
+  .vf-agenda {
+    display: grid;
+    grid-template-columns: 44px 1fr 1fr;
+    padding: 0 12px 14px 0;
+  }
+  .vf-heures {
+    position: relative;
+    margin-top: 44px;
+    height: 220px;
+  }
+  .vf-heures span {
+    position: absolute;
+    right: 8px;
+    transform: translateY(-50%);
+    font-size: 10.5px;
+    color: var(--gris);
+    font-variant-numeric: tabular-nums;
+  }
+  .vf-col-tete {
+    height: 44px;
+    padding: 8px 6px 0;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--encre);
+    line-height: 1.2;
+  }
+  .vf-col-tete small {
+    display: block;
+    font-weight: 500;
+    font-size: 11px;
+    color: var(--gris);
+  }
+  .vf-col-corps {
+    position: relative;
+    height: 220px;
+    border-left: 1px solid var(--filet);
+  }
+  .vf-ligne {
+    position: absolute;
+    left: 0;
+    right: 0;
+    border-top: 1px solid #edf1f5;
+  }
+  .vf-bloc {
+    position: absolute;
+    left: 4px;
+    right: 4px;
+    border-radius: 4px;
+    padding: 4px 6px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    line-height: 1.15;
+  }
+  .vf-bloc b {
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--encre);
+  }
+  .vf-bloc em {
+    font-style: normal;
+    font-size: 10.5px;
+    color: #3d4a68;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .vf-epaule { background: #c3b5ee; }
+  .vf-genou { background: #a9c8f5; }
+  .vf-rachis { background: #f5c2a8; }
+  .vf-cerveau { background: #f2d49b; }
+  .vf-reserve { background: repeating-linear-gradient(135deg, #cfd7e2 0 3px, #eef2f6 3px 6px); }
+  .vf-mm .vf-reserve { background: repeating-linear-gradient(135deg, #3a4480 0 2px, #222a5e 2px 4px); }
+
+  @media (max-width: 767px) {
+    .vf-grille {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .vf-lien {
+      flex-direction: row-reverse;
+      justify-content: center;
+      height: 64px;
+      padding: 0;
+    }
+    .vf-lien-trait {
+      width: 2px;
+      height: 100%;
+    }
+    .vf-lien-trait::after {
+      right: auto;
+      left: -5px;
+      top: auto;
+      bottom: -2px;
+      border-left: 6px solid transparent;
+      border-right: 6px solid transparent;
+      border-top: 9px solid var(--bleu);
+      border-bottom: 0;
+    }
+  }
+</style>

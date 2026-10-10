@@ -1,0 +1,514 @@
+---
+export const prerender = true;
+
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Button from '@/components/ui/Button.astro';
+import DoctolibVignette from '@/components/doctolib/DoctolibVignette.astro';
+import PeriodCalendar from '@/components/doctolib/PeriodCalendar.astro';
+import TrameAnatomy from '@/components/doctolib/TrameAnatomy.astro';
+import VacationFlow from '@/components/doctolib/VacationFlow.astro';
+import '@/components/doctolib/tokens.css';
+
+const faq: Array<{ q: string; a: string; lien?: { label: string; href: string } }> = [
+  {
+    q: 'Nous utilisons Doctolib, mais pas encore Momentum. Pouvons-nous en profiter ?',
+    a: 'Oui. Momentum construit d’abord le planning de vos équipes : vacations, gardes, astreintes, congés et compteurs d’heures. À chaque publication, l’intégration ouvre ensuite vos agendas Doctolib. Contactez-nous : nous partons de votre organisation.',
+    lien: { label: 'Demander une démo', href: '/fr/demo/' },
+  },
+  {
+    q: 'Nous n’utilisons pas Doctolib. Avez-vous une solution ?',
+    a: 'Oui. Contactez-nous : nous trouvons toujours une solution, le plus souvent par une intégration avec votre outil de prise de rendez-vous ou votre RIS. Momentum en compte de nombreuses.',
+    lien: { label: 'Nous contacter', href: '/fr/demo/' },
+  },
+  {
+    q: 'Qu’est-ce qui change dans Doctolib ?',
+    a: 'Pour vos patients, rien ne change : ils prennent rendez-vous dans Doctolib comme aujourd’hui. Au démarrage, vos agendas Doctolib sont mis en correspondance avec les praticiens, les salles et les motifs de Momentum. Ensuite, les plages d’ouverture viennent du planning publié au lieu d’être saisies à la main.',
+  },
+  {
+    q: 'Momentum remplace-t-il Doctolib ?',
+    a: 'Non. Momentum construit le planning des équipes ; Doctolib reste l’outil de prise de rendez-vous de vos patients. L’intégration relie les deux.',
+  },
+  {
+    q: 'Quelles données Momentum envoie-t-il à Doctolib ?',
+    a: 'Des données de planification : le praticien, les salles, les plages d’ouverture et leurs motifs de consultation. Momentum ne gère pas de dossier patient.',
+  },
+  {
+    q: 'Nous avons déjà des journées types dans Doctolib. Faut-il tout reconstruire ?',
+    a: 'Non. Vos journées types Doctolib peuvent servir de point de départ pour créer les trames dans Momentum.',
+  },
+  {
+    q: 'L’intégration est-elle réservée à la radiologie ?',
+    a: 'Non. Elle a été pensée d’abord pour l’imagerie, où une vacation ouvre souvent plusieurs salles en parallèle. Si votre équipe planifie dans Momentum et prend ses rendez-vous dans Doctolib, parlons de votre organisation.',
+  },
+  {
+    q: 'L’intégration est-elle disponible aujourd’hui ?',
+    a: 'Oui. Notre équipe la met en place avec vous, dans votre centre.',
+  },
+];
+const pageSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'Intégration Doctolib et planning médical',
+  url: 'https://biosked.com/fr/fonctionnalites/integration-doctolib/',
+  inLanguage: 'fr',
+  about: { '@type': 'SoftwareApplication', name: 'Momentum', applicationCategory: 'BusinessApplication', publisher: { '@type': 'Organization', name: 'BioSked' } },
+  mentions: { '@type': 'Organization', name: 'Doctolib', url: 'https://www.doctolib.fr/' },
+});
+const faqSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+});
+---
+
+<BaseLayout
+  image="/images/og/integration-doctolib.jpg"
+  imageAlt="Momentum et Doctolib : vos plannings en 1 clic dans votre agenda Doctolib"
+  title="Intégration Doctolib et planning médical | Momentum"
+  description="Le planning publié dans Momentum ouvre vos agendas Doctolib : praticien, salles, plages d’ouverture et motifs de consultation, sans ressaisie au secrétariat."
+>
+  <script is:inline type="application/ld+json" set:html={pageSchema} />
+  <script is:inline type="application/ld+json" set:html={faqSchema} />
+
+  <div class="mmdl">
+    <!-- Hero: the flyer's recto, for the web -->
+    <section class="dl-nuit">
+      <div class="container max-w-6xl py-14 md:py-20 lg:py-24">
+        <div class="grid items-center gap-12 lg:grid-cols-[1fr_minmax(0,540px)] lg:gap-14">
+          <div>
+            <div class="flex items-center gap-4">
+              <img src="/images/partners/momentum-logo.svg" alt="Momentum" width="91" height="12" class="mmdl-logo-blanc h-[18px] w-auto" loading="eager" />
+              <span class="text-lg font-light text-[#8c97b0]" aria-hidden="true">×</span>
+              <img src="/images/partners/doctolib-logo.svg" alt="Doctolib" width="160" height="40" class="mmdl-logo-blanc h-[22px] w-auto" loading="eager" />
+            </div>
+            <h1 class="dl-titre mt-10">Vos plannings en 1&nbsp;clic dans votre agenda&nbsp;Doctolib.</h1>
+            <p class="dl-cyan dl-sous mt-4">Des heures de ressaisie économisées.</p>
+            <div class="mt-10 flex flex-wrap items-center gap-3">
+              <a href="/fr/demo/" class="dl-bouton">Demander une démo</a>
+              <a href="#fonctionnement" class="dl-lien">Voir comment ça marche</a>
+            </div>
+          </div>
+          <div class="flex justify-center lg:justify-end">
+            <DoctolibVignette />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Before / after -->
+    <section class="py-16 md:py-24">
+      <div class="container max-w-6xl">
+        <div class="max-w-3xl">
+          <h2 class="dl-h2">Le planning des équipes d’un côté, l’agenda des patients de l’autre.</h2>
+          <p class="mt-5 text-lg leading-relaxed text-foreground/80">
+            Momentum, le logiciel de planification des équipes médicales de BioSked, est intégré à Doctolib&nbsp;: le planning publié ouvre les plages d’ouverture dans vos agendas, avec le praticien, les salles et les motifs de consultation. Sans intégration, le secrétariat ressaisit&nbsp;: à chaque nouvelle période, il reporte le planning dans les agendas, journée par journée, praticien par praticien, salle par salle. Avec l’intégration, toute la période s’ouvre en une seule fois.
+          </p>
+        </div>
+        <div class="mt-12 grid gap-10 md:grid-cols-2 md:gap-12">
+          <PeriodCalendar mode="manuel" titre="Sans l’intégration" />
+          <PeriodCalendar mode="auto" titre="Avec l’intégration" />
+        </div>
+        <dl class="dl-gains mt-16">
+          <div>
+            <dt>Des heures de ressaisie économisées</dt>
+            <dd>Le secrétariat n’ouvre plus les agendas journée par journée. Le temps gagné revient à l’accueil des patients.</dd>
+          </div>
+          <div>
+            <dt>Moins d’erreurs</dt>
+            <dd>Les plages d’ouverture suivent les trames au lieu d’être recopiées d’un outil à l’autre.</dd>
+          </div>
+          <div>
+            <dt>Toute la période ouverte</dt>
+            <dd>Les agendas s’ouvrent dès la publication du planning, sur toute la période planifiée.</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- How it works -->
+    <section id="fonctionnement" class="dl-voile scroll-mt-24 py-16 md:py-24">
+      <div class="container max-w-6xl">
+        <div class="max-w-3xl">
+          <h2 class="dl-h2">Vos trames se gèrent dans Momentum. Ensuite, il suffit de publier.</h2>
+          <p class="mt-5 text-lg leading-relaxed text-foreground/80">
+            Une trame découpe une vacation en plages d’ouverture, chacune avec ses motifs de consultation. Vous la créez une fois dans Momentum, rattachée à un poste et à une personne, et vous la modifiez simplement quand votre organisation change.
+          </p>
+        </div>
+        <div class="mt-12 grid items-start gap-12 lg:grid-cols-[1fr_minmax(0,520px)] lg:gap-16">
+          <div>
+            <p class="dl-groupe">Une fois</p>
+            <ol class="dl-etapes">
+              <li>
+                <span class="dl-n">1</span>
+                <div>
+                  <h3>Vous gérez vos trames dans Momentum.</h3>
+                  <p>Vos journées types Doctolib peuvent servir de base.</p>
+                </div>
+              </li>
+            </ol>
+            <p class="dl-groupe mt-6">À chaque nouvelle période</p>
+            <ol class="dl-etapes" start="2">
+              <li>
+                <span class="dl-n">2</span>
+                <div>
+                  <h3>Vous publiez le planning dans Momentum.</h3>
+                  <p>Construit dans Momentum, comme aujourd’hui.</p>
+                </div>
+              </li>
+              <li>
+                <span class="dl-n">3</span>
+                <div>
+                  <h3>Momentum applique les trames.</h3>
+                  <p>Sans action manuelle.</p>
+                </div>
+              </li>
+              <li>
+                <span class="dl-n">4</span>
+                <div>
+                  <h3>Les plages d’ouverture arrivent dans Doctolib.</h3>
+                  <p>Patients et secrétariat y prennent rendez-vous.</p>
+                </div>
+              </li>
+            </ol>
+            <p class="dl-retenir">À chaque nouvelle période, il suffit de publier le planning dans Momentum pour ouvrir les agendas Doctolib.</p>
+          </div>
+          <TrameAnatomy />
+        </div>
+      </div>
+    </section>
+
+    <!-- What arrives in Doctolib -->
+    <section class="py-16 md:py-24">
+      <div class="container max-w-6xl">
+        <div class="max-w-3xl">
+          <h2 class="dl-h2">Ce que chaque vacation publiée ouvre dans l’agenda Doctolib.</h2>
+          <p class="mt-5 text-lg leading-relaxed text-foreground/80">
+            Le planning publié transmet à Doctolib le praticien, les salles et les plages d’ouverture avec leurs motifs, y compris quand une même vacation occupe plusieurs salles.
+          </p>
+        </div>
+        <div class="mt-12">
+          <VacationFlow />
+        </div>
+        <dl class="dl-gains mt-14">
+          <div>
+            <dt>Le praticien</dt>
+            <dd>Celui que le planning publié affecte à la vacation.</dd>
+          </div>
+          <div>
+            <dt>Les salles</dt>
+            <dd>Une ou plusieurs, ouvertes en parallèle.</dd>
+          </div>
+          <div>
+            <dt>Les plages d’ouverture</dt>
+            <dd>Avec leurs motifs de consultation, telles que la trame les découpe.</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- Conviction -->
+    <section class="dl-nuit">
+      <div class="container max-w-4xl py-16 md:py-24">
+        <p class="dl-cyan font-semibold">Notre conviction</p>
+        <p class="dl-conviction mt-4">L’agenda des patients doit découler du planning des équipes. Chaque heure planifiée devient alors un rendez-vous possible.</p>
+      </div>
+    </section>
+
+    <!-- Getting started -->
+    <section class="py-16 md:py-24">
+      <div class="container max-w-6xl">
+        <h2 class="dl-h2">Comment démarrer</h2>
+        <div class="dl-profils mt-10">
+          <div>
+            <h3>Vous utilisez Momentum et Doctolib</h3>
+            <ol class="dl-mini">
+              <li>Les agendas concernés sont prêts dans Doctolib.</li>
+              <li>Praticiens, salles et motifs sont mis en correspondance.</li>
+              <li>Vos trames sont créées dans Momentum, à partir de vos journées types Doctolib si vous le souhaitez.</li>
+            </ol>
+            <a href="/fr/demo/" class="dl-suite">Contacter notre équipe</a>
+          </div>
+          <div>
+            <h3>Vous utilisez Doctolib, pas encore Momentum</h3>
+            <p>Momentum construit d’abord le planning de vos équipes. À chaque publication, vos agendas Doctolib s’ouvrent.</p>
+            <a href="/fr/demo/" class="dl-suite">Demander une démo</a>
+          </div>
+          <div>
+            <h3>Vous n’utilisez pas Doctolib</h3>
+            <p>Nous trouvons toujours une solution, le plus souvent par une intégration avec votre outil de prise de rendez-vous ou votre RIS.</p>
+            <a href="/fr/demo/" class="dl-suite">Nous contacter</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="dl-voile py-16 md:py-24">
+      <div class="container max-w-3xl">
+        <h2 class="dl-h2">Questions fréquentes</h2>
+        <div class="mt-8 divide-y divide-[#d9e1ea] border-y border-[#d9e1ea]">
+          {faq.map((item) => (
+            <details class="group py-5">
+              <summary class="cursor-pointer list-none text-lg font-semibold text-[#0f1b3d] marker:hidden">
+                <span class="flex items-start justify-between gap-4">
+                  <span>{item.q}</span>
+                  <span class="text-[#37afcf] transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+                </span>
+              </summary>
+              <p class="mt-3 text-lg leading-relaxed text-foreground/80">{item.a}</p>
+              {item.lien && <a href={item.lien.href} class="dl-suite">{item.lien.label}</a>}
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Closing band -->
+    <section class="dl-nuit">
+      <div class="container max-w-6xl py-14 md:py-20">
+        <div class="grid items-end gap-8 md:grid-cols-[1fr_auto]">
+          <div>
+            <h2 class="dl-titre dl-titre-moyen">Voyez l’intégration sur vos propres plannings.</h2>
+            <p class="mt-4 max-w-2xl text-lg leading-relaxed text-[#c9d0e6]">
+              Annoncée avec Doctolib aux JFR 2026, l’intégration est disponible. Notre équipe part de vos plannings, de vos salles et de vos motifs de consultation.
+            </p>
+          </div>
+          <div class="flex flex-wrap gap-3">
+            <a href="/fr/demo/" class="dl-bouton">Demander une démo</a>
+            <a href="/fr/secteurs-soins/radiologie/" class="dl-lien">Planning des radiologues</a>
+          </div>
+        </div>
+        <p class="mt-14 text-xs text-[#8c97b0]">Doctolib est une marque de Doctolib SAS.</p>
+      </div>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .dl-nuit {
+    background: var(--nuit);
+    color: #fff;
+  }
+  .dl-voile {
+    background: #f6f8fb;
+  }
+  .dl-cyan {
+    color: var(--cyan);
+  }
+  .dl-titre {
+    font-weight: 600;
+    font-size: clamp(2.25rem, 4.2vw + 0.5rem, 3.6rem);
+    line-height: 1.05;
+    letter-spacing: -0.022em;
+    color: #fff;
+    text-wrap: balance;
+  }
+  .dl-titre-moyen {
+    font-size: clamp(1.75rem, 2.6vw + 0.5rem, 2.5rem);
+    line-height: 1.1;
+  }
+  .dl-sous {
+    font-size: clamp(1.25rem, 1.4vw + 0.6rem, 1.6rem);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+  .dl-h2 {
+    font-weight: 600;
+    font-size: clamp(1.75rem, 2.4vw + 0.4rem, 2.4rem);
+    line-height: 1.12;
+    letter-spacing: -0.018em;
+    color: var(--marine);
+    text-wrap: balance;
+  }
+  .dl-bouton {
+    display: inline-flex;
+    align-items: center;
+    height: 48px;
+    padding: 0 22px;
+    border-radius: 999px;
+    background: var(--cyan);
+    color: var(--nuit);
+    font-weight: 700;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .dl-bouton:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px -10px rgb(108 229 232 / 0.7);
+  }
+  .dl-lien {
+    display: inline-flex;
+    align-items: center;
+    height: 48px;
+    padding: 0 18px;
+    border-radius: 999px;
+    border: 1px solid #3a4480;
+    color: #fff;
+    font-weight: 600;
+    transition: border-color 0.15s ease, background-color 0.15s ease;
+  }
+  .dl-lien:hover {
+    border-color: var(--cyan);
+    background: rgb(108 229 232 / 0.08);
+  }
+  .dl-bouton:focus-visible,
+  .dl-lien:focus-visible {
+    outline: 2px solid var(--cyan);
+    outline-offset: 3px;
+  }
+
+  .dl-gains {
+    display: grid;
+    gap: 28px;
+    margin-bottom: 0;
+  }
+  @media (min-width: 768px) {
+    .dl-gains {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+    }
+  }
+  .dl-gains > div {
+    padding-top: 18px;
+    border-top: 2px solid var(--marine);
+  }
+  .dl-gains dt {
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: var(--marine);
+    letter-spacing: -0.01em;
+  }
+  .dl-gains dd {
+    margin: 8px 0 0;
+    font-size: 1.05rem;
+    line-height: 1.5;
+    color: var(--gris);
+  }
+
+  .dl-groupe {
+    font-weight: 600;
+    color: #1b7690;
+  }
+  .dl-etapes {
+    list-style: none;
+    margin: 10px 0 0;
+    padding: 0;
+  }
+  .dl-etapes li {
+    display: grid;
+    grid-template-columns: 44px 1fr;
+    padding: 14px 0;
+    border-top: 1px solid var(--filet);
+  }
+  .dl-etapes li:first-child {
+    border-top: 0;
+    padding-top: 6px;
+  }
+  .dl-n {
+    font-weight: 600;
+    font-size: 2rem;
+    line-height: 1;
+    color: #1b7690;
+    font-variant-numeric: tabular-nums;
+  }
+  .dl-etapes h3 {
+    font-weight: 600;
+    font-size: 1.2rem;
+    line-height: 1.3;
+    color: var(--marine);
+    letter-spacing: -0.005em;
+  }
+  .dl-etapes p {
+    margin-top: 4px;
+    font-size: 0.98rem;
+    line-height: 1.5;
+    color: var(--gris);
+  }
+  .dl-retenir {
+    margin-top: 18px;
+    padding-top: 20px;
+    border-top: 1px solid var(--filet);
+    font-weight: 600;
+    font-size: clamp(1.3rem, 1.2vw + 0.8rem, 1.6rem);
+    line-height: 1.2;
+    letter-spacing: -0.014em;
+    color: var(--marine);
+  }
+  .dl-profils {
+    display: grid;
+    gap: 36px;
+  }
+  @media (min-width: 900px) {
+    .dl-profils {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+    }
+  }
+  .dl-profils > div {
+    display: flex;
+    flex-direction: column;
+    padding-top: 18px;
+    border-top: 2px solid var(--marine);
+  }
+  .dl-profils h3 {
+    font-weight: 600;
+    font-size: 1.2rem;
+    line-height: 1.3;
+    color: var(--marine);
+    letter-spacing: -0.005em;
+  }
+  .dl-profils p,
+  .dl-mini {
+    margin-top: 10px;
+    font-size: 1.05rem;
+    line-height: 1.5;
+    color: #34405e;
+  }
+  .dl-mini {
+    list-style: none;
+    padding: 0;
+    counter-reset: etape;
+  }
+  .dl-mini li {
+    counter-increment: etape;
+    display: grid;
+    grid-template-columns: 24px 1fr;
+    padding: 4px 0;
+  }
+  .dl-mini li::before {
+    content: counter(etape);
+    font-weight: 600;
+    color: #1b7690;
+    font-variant-numeric: tabular-nums;
+  }
+  .dl-suite {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: auto;
+    padding-top: 16px;
+    font-weight: 600;
+    color: var(--marine);
+    text-decoration: underline;
+    text-decoration-color: rgb(55 175 207 / 0.5);
+    text-underline-offset: 4px;
+  }
+  .dl-suite::after {
+    content: '→';
+    text-decoration: none;
+    display: inline-block;
+  }
+  .dl-suite:hover {
+    text-decoration-color: var(--bleu);
+  }
+  details .dl-suite {
+    padding-top: 0;
+    margin-top: 12px;
+  }
+  .dl-conviction {
+    font-weight: 600;
+    font-size: clamp(1.75rem, 3vw + 0.5rem, 2.9rem);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+</style>
