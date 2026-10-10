@@ -3,6 +3,7 @@ export const prerender = true;
 
 import BaseLayout from "@/layouts/BaseLayout.astro";
 
+import OncallGuideCard from '@/components/sections/OncallGuideCard.astro';
 import { Image } from 'astro:assets';
 import { blogFeed } from '@/data/blogFeed';
 
@@ -28,9 +29,15 @@ if (!lastPost) throw new Error('The French blog collection is empty.');
         <p class="text-muted-foreground text-lead max-w-2xl mb-10">
             Analyses, guides et nouveautés Momentum pour les équipes médicales françaises.
         </p>
-        <p class="text-muted-foreground text-sm max-w-2xl -mt-6 mb-10">
-            En Suisse romande ? Le guide et le modèle de planning de garde existent aussi <a href="/fr-ch/guide/planning-de-garde-medecins/" hreflang="fr-CH" class="underline underline-offset-2 hover:text-foreground">en version suisse</a> (LTr, piquet).
-        </p>
+        <OncallGuideCard
+            title="Modèle de planning de garde gratuit"
+            text="Un modèle Excel avec les compteurs d’équité, et un guide en six étapes pour construire un planning de garde équitable."
+            cta={{ label: 'Télécharger le modèle et lire le guide', href: '/fr/blog/planning-de-garde-medecins/' }}
+            image="/guides/og/fr-planning-de-garde.jpg"
+            imageAlt="Aperçu du modèle Excel de planning de garde : planning, contrôles et compteurs d’équité par médecin"
+            alternatesLabel="En Suisse romande ? La version suisse suit la LTr et intègre le piquet :"
+            alternates={[{ code: 'fr-CH', label: 'Planning de garde et de piquet (Suisse)', href: '/fr-ch/guide/planning-de-garde-medecins/' }]}
+        />
 
         <div class="border rounded mb-20 bg-white/20 hover:bg-white/35 transition-all shadow-xl shadow-secondary/5">
             <a href={lastPost.href} class="md:flex md:grid-cols-2 group">

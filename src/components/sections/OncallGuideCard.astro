@@ -1,0 +1,150 @@
+---
+// The free on-call guide and Excel template, presented at the top of a blog
+// index: a preview of the template, one line, the main link, and the versions
+// adapted to other countries' rules.
+interface Alternate {
+  code: string;
+  label: string;
+  href: string;
+}
+
+interface Props {
+  title: string;
+  text: string;
+  cta: { label: string; href: string };
+  image: string;
+  imageAlt: string;
+  alternatesLabel?: string;
+  alternates?: Alternate[];
+}
+
+const { title, text, cta, image, imageAlt, alternatesLabel, alternates = [] } = Astro.props;
+---
+
+<section class="guide mb-16" aria-label={title}>
+  <a href={cta.href} class="guide-apercu" tabindex="-1">
+    <img src={image} alt={imageAlt} width="1200" height="630" loading="eager" />
+  </a>
+  <div class="guide-texte">
+    <h2 class="guide-titre"><a href={cta.href}>{title}</a></h2>
+    <p class="guide-ligne">{text}</p>
+    <a href={cta.href} class="guide-bouton">{cta.label}<span aria-hidden="true">→</span></a>
+    {alternates.length > 0 && (
+      <div class="guide-langues">
+        <span class="guide-langues-libelle">{alternatesLabel}</span>
+        <ul>
+          {alternates.map((a) => (
+            <li><a href={a.href} hreflang={a.code} lang={a.code}>{a.label}</a></li>
+          ))}
+        </ul>
+      </div>
+    )}
+  </div>
+</section>
+
+<style>
+  .guide {
+    display: grid;
+    gap: 24px;
+    padding: 20px;
+    background: rgb(255 255 255 / 0.7);
+    border: 1px solid color-mix(in oklab, var(--secondary) 12%, transparent);
+    border-radius: 14px;
+    box-shadow: 0 1px 2px rgb(15 27 61 / 0.04), 0 18px 40px -28px rgb(15 27 61 / 0.35);
+  }
+  @media (min-width: 768px) {
+    .guide {
+      grid-template-columns: minmax(0, 300px) minmax(0, 1fr);
+      align-items: center;
+      gap: 32px;
+      padding: 22px 28px 22px 22px;
+    }
+  }
+  .guide-apercu {
+    display: block;
+    overflow: hidden;
+    border-radius: 10px;
+    border: 1px solid color-mix(in oklab, var(--secondary) 10%, transparent);
+  }
+  .guide-apercu img {
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: transform 0.4s ease;
+  }
+  .guide:hover .guide-apercu img {
+    transform: scale(1.02);
+  }
+  .guide-titre {
+    font-weight: 600;
+    font-size: 1.35rem;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    color: var(--foreground);
+  }
+  .guide-titre a:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-thickness: 1px;
+  }
+  .guide-ligne {
+    margin-top: 6px;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--muted-foreground);
+  }
+  .guide-bouton {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 16px;
+    height: 42px;
+    padding: 0 18px;
+    border-radius: 999px;
+    background: var(--secondary);
+    color: var(--secondary-foreground);
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .guide-bouton:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 22px -12px var(--secondary);
+  }
+  .guide-langues {
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px solid color-mix(in oklab, var(--secondary) 10%, transparent);
+  }
+  .guide-langues-libelle {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--muted-foreground);
+    margin-bottom: 8px;
+  }
+  .guide-langues ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .guide-langues a {
+    display: inline-flex;
+    align-items: center;
+    height: 32px;
+    padding: 0 12px;
+    border: 1px solid color-mix(in oklab, var(--secondary) 18%, transparent);
+    border-radius: 8px;
+    background: #fff;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--foreground);
+    transition: border-color 0.15s ease, background-color 0.15s ease;
+  }
+  .guide-langues a:hover {
+    border-color: var(--accent);
+    background: color-mix(in oklab, var(--primary) 12%, white);
+  }
+</style>

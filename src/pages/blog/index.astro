@@ -6,6 +6,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import { Image } from 'astro:assets';
 import { blogFeed } from '@/data/blogFeed';
 import { LOCALE_LABELS, ONCALL_GUIDE } from '@/i18n/locales';
+import OncallGuideCard from '@/components/sections/OncallGuideCard.astro';
 
 // Newest first; includes scheduled posts once their date has come
 const posts = await blogFeed('en');
@@ -36,10 +37,19 @@ if (!lastPost) throw new Error('The English blog collection is empty.');
 >
     <div class="container max-w-5xl section-padding mb-30">
         <h1 class="text-display-section mb-3">Blog</h1>
-        <p class="text-muted-foreground text-sm max-w-3xl mb-10">
-            Free on-call guide and Excel template in your language:{' '}
-            {guideLocales.map((g, i) => <>{i > 0 && ' · '}<a href={g.href} hreflang={g.code} lang={g.code} class="underline underline-offset-2 hover:text-foreground">{g.label}</a></>)}
+        <p class="text-muted-foreground text-lead max-w-2xl mb-10">
+            Physician and medical team scheduling: on-call fairness, rosters by specialty, and Momentum news.
         </p>
+
+        <OncallGuideCard
+            title="Free physician call schedule template"
+            text="An Excel template with fairness counters, and a six-step guide to build a fair call schedule."
+            cta={{ label: 'Get the template and guide', href: `${ONCALL_GUIDE.en}/` }}
+            image="/guides/og/en-call-schedule.jpg"
+            imageAlt="Preview of the Excel call schedule template: schedule, checks and fairness counters per physician"
+            alternatesLabel="Also available with each country’s rules and holidays:"
+            alternates={guideLocales}
+        />
 
         <div class="border rounded mb-20 bg-white/20 hover:bg-white/35 transition-all shadow-xl shadow-secondary/5">
             <a href={lastPost.href} class="md:flex md:grid-cols-2 group">
