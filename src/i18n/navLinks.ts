@@ -33,6 +33,13 @@ const FR_NAV_LINKS: NavLink[] = [
         anchor: '#momentum',
         showMobile: true,
         showDesktop: true,
+        subitems: [
+            { label: 'nav.overview', alt: 'nav.overview-subtitle', href: '/fr/', showDesktop: true, showMobile: true },
+            { label: 'nav.auto-scheduling', alt: 'nav.auto-scheduling-subtitle', href: '/fr/fonctionnalites/planification-optimisee-automatiquement-2/', showDesktop: true, showMobile: true },
+            { label: 'nav.oncall', alt: 'nav.oncall-subtitle', href: '/fr/fonctionnalites/plannings-de-garde-centralises/', showDesktop: true, showMobile: true },
+            { label: 'nav.time-hr', alt: 'nav.time-hr-subtitle', href: '/fr/fonctionnalites/badgeage-et-suivi-rh/', showDesktop: true, showMobile: true },
+            { label: 'nav.doctolib', alt: 'nav.doctolib-subtitle', href: '/fr/fonctionnalites/integration-doctolib/', showDesktop: true, showMobile: true },
+        ],
     },
     {
         label: 'nav.specialties',
@@ -104,7 +111,8 @@ function reprefixFrNav(): NavLink[] {
     return FR_NAV_LINKS.map((link) => ({
         ...link,
         href: frChLocalPathFor(link.href),
-        subitems: link.subitems?.map((sub) => ({ ...sub, href: frChLocalPathFor(sub.href) })),
+        // Doctolib does not serve Switzerland: its integration page stays off the Swiss menu.
+        subitems: link.subitems?.filter((sub) => !sub.href.includes('integration-doctolib')).map((sub) => ({ ...sub, href: frChLocalPathFor(sub.href) })),
     }));
 }
 

@@ -30,7 +30,17 @@
         "whitepapers": "Livres blancs",
         "whitepapers-subtitle": "Guides pratiques par spécialité",
         "oncall-template": "Modèle de planning de garde",
-        "oncall-template-subtitle": "Modèle Excel gratuit et guide"
+        "oncall-template-subtitle": "Modèle Excel gratuit et guide",
+        "overview": "Vue d’ensemble",
+        "overview-subtitle": "Momentum en un coup d’œil",
+        "auto-scheduling": "Planning automatique",
+        "auto-scheduling-subtitle": "Généré selon vos règles",
+        "oncall": "Gardes et astreintes",
+        "oncall-subtitle": "Avec l’activité de jour",
+        "time-hr": "Badgeage et RH",
+        "time-hr-subtitle": "Du badgeage à la paie",
+        "doctolib": "Intégration Doctolib",
+        "doctolib-subtitle": "Vos plannings dans Doctolib"
     },
     "cta": {
         "demo": "Demander une démo"
