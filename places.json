@@ -1,0 +1,62 @@
+{
+ "maj": "2026-10-11T00:00:41.585Z",
+ "capacite": 30,
+ "seuil_complet": 28,
+ "sessions": {
+  "s0945": {
+   "inscrits": 1,
+   "attente": 0,
+   "ferme": false
+  },
+  "s1030": {
+   "inscrits": 4,
+   "attente": 0,
+   "ferme": false
+  },
+  "s1130": {
+   "inscrits": 1,
+   "attente": 0,
+   "ferme": false
+  },
+  "s1330": {
+   "inscrits": 7,
+   "attente": 0,
+   "ferme": false
+  },
+  "s1415": {
+   "inscrits": 4,
+   "attente": 0,
+   "ferme": false
+  },
+  "s1515": {
+   "inscrits": 0,
+   "attente": 0,
+   "ferme": false
+  },
+  "s1600": {
+   "inscrits": 5,
+   "attente": 0,
+   "ferme": false
+  },
+  "s1700": {
+   "inscrits": 1,
+   "attente": 0,
+   "ferme": false
+  },
+  "s1720": {
+   "inscrits": 0,
+   "attente": 0,
+   "ferme": true
+  }
+ },
+ "personnes": 14,
+ "annulations": 2,
+ "dernieres_24h": 0,
+ "par_source": {
+  "newsletter": 0,
+  "invitation_leo": 0,
+  "invitation_sarah": 0,
+  "lien_direct": 11,
+  "autre": 3
+ }
+}
